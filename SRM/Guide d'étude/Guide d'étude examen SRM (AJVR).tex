@@ -21,12 +21,16 @@
 
 \part*{Préliminaires}
 
+\section{Rappel des bases de statistiques}
+
 \begin{YTB_vids}[Vidéos YouTube]
 \begin{itemize}
 	\item	\href{https://www.youtube.com/watch?v=bsZGt-caXO4}{StatQuest: One or Two Tailed P-Values}
 	\item	\href{https://www.youtube.com/watch?v=KS6KEWaoOOE}{Khan Academy: P-values and significance tests}
 \end{itemize}
 \end{YTB_vids}
+
+\subsection{Notes sur les vidéos YouTube}
 
 \begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=bsZGt-caXO4}{StatQuest: One or Two Tailed P-Values}}
 \begin{itemize}
@@ -73,12 +77,19 @@
 
 \clearpage
 
+\section{Autres ressources}
+\begin{FORMULA_SUMM}{Liens}
+\begin{itemize}
+	\item	\href{https://physics.info/music/}{Article} sur la musique et le bruit;
+	\item	\href{https://www.quantstart.com/articles/White-Noise-and-Random-Walks-in-Time-Series-Analysis/}{Article} sur l'analyse de séries chronologiques avec \textsc{R};
+\end{itemize}
+\end{FORMULA_SUMM}
+
 \part*{Sujets à l'étude}
 
 \chapter[Basics of statistical learning]{Basics of statistical learning (7.5\% à 12.5\%)}
 
-%\addcontentsline{toc}{subsection}{Information}
-\subsubsection{Information}
+\subsection{Information}
 
 \begin{distributions}[Objective]
 Understand key concepts of statistical learning
@@ -112,6 +123,8 @@ Understand key concepts of statistical learning
 \end{itemize}
 \end{YTB_vids}
 
+\subsection{Résumés des chapitres}
+
 \begin{CHPT_SUMM}{1. Basics of Statistical Learning}
 	\begin{itemize}
 		\item	Définitions de base
@@ -137,6 +150,7 @@ Understand key concepts of statistical learning
 	\end{itemize}
 \end{CHPT_SUMM}
 
+\subsection{Notes sur les vidéos YouTube}
 
 \begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=Gv9_4yMHFhI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=2&t=0s}{StatQuest: A Gentle Introduction to Machine Learning}}
 \begin{itemize}
@@ -150,7 +164,7 @@ Understand key concepts of statistical learning
 
 \begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=EuBBz3bI-aA&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=6}{StatQuest: Machine Learning Fundamentals: Bias and Variance}}
 \begin{itemize}
-	\item	\textbf{Biais}: Inhabilité pour une méthode de prévision de capturer la vraie relation. Par exemple:
+	\item	\textbf{Biais}: Inhabilité pour une méthode de prévision de capturer la vraie relation. Pour exemple:
 	\begin{itemize}
 		\item	Essayer de fit une droite aux points du vidéo; évidemment elle ne peut pas reproduire la vraie relation \textbf{VS} une squiggly line qui peut avec little to no biais.
 		\item	Alors, la squiggly line sera mieux ajusté aux données d'entrainement mais pas aux testing data; alias, elle sera \textbf{overfitted}.
@@ -447,9 +461,9 @@ Understand key concepts concerning Generalized Linear Models
 
 \section{Régression linéaire}
 
-\subsubsection{Résumés des chapitres}
+\subsection{Résumés des chapitres}
 
-\begin{CHPT_SUMM}{2. Linear Regression:  Estimating parameters}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{2. Linear Regression:  Estimating parameters}2. Linear Regression:  Estimating parameters}
 \begin{enumerate}
 	\item	Régression linéaire simple
 	\begin{itemize}
@@ -476,7 +490,7 @@ Understand key concepts concerning Generalized Linear Models
 Dans les deux cas c'est à partir de données qui incluent souvent le produit croisée des observations, ou la corrélation, etc.
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{3. Linear Regression: Standard Error\, $R^{2}$\, and $t$ statistic}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{3. Linear Regression: Standard Error\, $R^{2}$\, and $t$ statistic}3. Linear Regression: Standard Error\, $R^{2}$\, and $t$ statistic}
 \begin{enumerate}
 	\item	Residual Standard Error of the Regression
 	\begin{itemize}
@@ -503,7 +517,7 @@ Dans les deux cas c'est à partir de données qui incluent souvent le produit cr
 Donc il faut concrètement comprendre la distinction et les formules pour les SS, $R^{2}$ et variance des coefficients.
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{4. Linear Regression: $F$ statistic}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{4. Linear Regression: $F$ statistic}4. Linear Regression: $F$ statistic}
 En gros le chapitre explique les deux différents tests F
 \begin{enumerate}
 	\item	Test de la validité gloable que l'on compare notre modèle à la moyenne.
@@ -523,10 +537,11 @@ En gros le chapitre explique les deux différents tests F
 	\item	Trouver la statistique F pour le test global;
 	\item	Trouver la statistique F pour le test partiel. 
 \end{enumerate}
-Dans les deux cas, souvent la question donne de l'information partielle et il faut savoir utiliser les différentes formulations pour l'équation. Par exemple, avec $R^{2}$, avec le $t^{2}$, avec SSR ou SSE, etc.
+Dans les deux cas, souvent la question donne de l'information partielle et il faut savoir utiliser les différentes formulations pour l'équation. Pour exemple, avec $R^{2}$, avec le $t^{2}$, avec SSR ou SSE, etc.
 \end{CHPT_SUMM}
 
-\subsubsection{Notes sur les vidéos YouTube}
+\subsection{Notes sur les vidéos YouTube}
+
 
 \begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=PaFPbb66DxQ&list=PLblh5JKOoLUIzaEkCLIUxQFjPIlapw8nU&index=1}{StatQuest: Fitting a line to data, aka least squares, aka linear regression}}
 Recall the basic formula $y = ax + b$.
@@ -721,9 +736,9 @@ For comprehension, we define the measure of correlation by $R$ rather than $\rho
 
 \section{Validation, sélection et qualité d'ajustement}
 
-\subsubsection{Résumés des chapitres}
+\subsection{Résumés des chapitres}
 
-\begin{CHPT_SUMM}{5. Linear Regression:  Validation}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{5. Linear Regression:  Validation}5. Linear Regression:  Validation}
 \begin{enumerate}
 	\item	Validating model assumptions
 	\begin{itemize}
@@ -739,8 +754,8 @@ For comprehension, we define the measure of correlation by $R$ rather than $\rho
 		\begin{enumerate}
 			\item	Linéarité -> vérifié avec un QQplot;
 			\item	Normalité -> vérifé avec un graphique des résidus $\hat{\varepsilon}$ contre les prévisions $\hat{Y}$;
-			\item	Homoscédasticité -> vérifiés avec un graphique des résidus contre chaque variable explicative qui ne devrait pas avoir de tendance (\textbf{pattern}) discernable (par exemple, quadratique);
-			\item	Indépendance des observations -> vérifiés avec la même graphique mais dans un ordre dont la corrélation est attendue (par exemple, si données chronologiques selon le temps).
+			\item	Homoscédasticité -> vérifiés avec un graphique des résidus contre chaque variable explicative qui ne devrait pas avoir de tendance (\textbf{pattern}) discernable (pour exemple, quadratique);
+			\item	Indépendance des observations -> vérifiés avec la même graphique mais dans un ordre dont la corrélation est attendue (pour exemple, si données chronologiques selon le temps).
 		\end{enumerate}
 	\end{itemize}
 	\item	Outliers and influential points
@@ -781,7 +796,7 @@ For comprehension, we define the measure of correlation by $R$ rather than $\rho
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{6. Resampling methods}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{6. Resampling methods}6. Resampling methods}
 \begin{enumerate}
 	\item	Les méthodes classiques statistiques posent, et testent, des hypothèses.
 	\begin{itemize}
@@ -815,7 +830,7 @@ For comprehension, we define the measure of correlation by $R$ rather than $\rho
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{7. Linear Regression:  Subset Selection}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{7. Linear Regression:  Subset Selection}7. Linear Regression:  Subset Selection}
 L'importance de la section est surtout de comprendre que puisque l'ajustement sera toujours \textit{meilleur} avec plus de paramètres, nous devons établir des méthodes de réduire le nombre de paramètres. 
 
 S'il y a $p$ paramètres, alors il y a $2^{p}$ possibilités de modèles. Il est donc important de comprendre qu'on ne peut pas tester autant de possibilités de modèles et donc qu'on doit établir des méthodes de sélection de modèle algorithmique.
@@ -849,7 +864,7 @@ Finalement, on veut comparer des différents modèles et c'est de là que vient 
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{8. Linear Regression:  Shrinkage and Dimension Reduction}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{8. Linear Regression:  Shrinkage and Dimension Reduction}8. Linear Regression:  Shrinkage and Dimension Reduction}
 \begin{enumerate}
 	\item	\textbf{Shrinkage methods}: On fait la sélection de variables soit en réduisant les coefficients ou en les retirant.
 	\begin{itemize}
@@ -866,7 +881,7 @@ Finalement, on veut comparer des différents modèles et c'est de là que vient 
 		\begin{itemize}
 %			\item	Pour sélectionner le \textbf{principal component} $Z_{1} = \sum_{j} \phi_{j1} X_{j}$, on fait la sélection des $\phi_{j1}$ t.q. $\sum \phi^{2}_{j1} = 1$ et la variance de $\sum_{j = 1}^{k} \phi_{j1}(X_{j} - \bar{X}_{j})$ est maximisée. Sa direction est celle minimisant l'écart entre la ligne et les données;
 %			\item	Le deuxième \textbf{principal component} est choisit tel qu'il n'est pas corrélé au premier et que la variance est maximisée. Sa direction est perpendiculaire au premier;
-%			\item	Les vecteurs $Z_{i}$ ont $n$ composantes (comme les $X_{i}$). Par exemple, les composantes de $Z_{1}$ sont $z_{i1} = \sum_{j = 1}^{k}\phi_{j1}(x_{ij} - \bar{x_{j}})$;
+%			\item	Les vecteurs $Z_{i}$ ont $n$ composantes (comme les $X_{i}$). Pour exemple, les composantes de $Z_{1}$ sont $z_{i1} = \sum_{j = 1}^{k}\phi_{j1}(x_{ij} - \bar{x_{j}})$;
 			\item	Les $\phi_{ji}$ sont surnommés les \textbf{loadings} et les $z_{i1}$ les \textbf{principal component scores};
 			\item	Les \textit{scores} sont la distance entre les points et les \textit{principal components};
 			\item	La \textbf{régression} de principal components (PCR) est \textbf{sur les principal components};
@@ -902,7 +917,8 @@ Finalement, on veut comparer des différents modèles et c'est de là que vient 
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\subsubsection{Notes sur les vidéos YouTube}
+\subsection{Notes sur les vidéos YouTube}
+
 
 \begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=Z-jXJpVohiI}{Phil Chan: Introduction to the Hat matrix in regression}}
 It is essential to visualize the plane from the video.
@@ -1192,9 +1208,9 @@ This video enables us to see the direct link between the holdout sample method, 
 
 \section{Prévisions et interprétations}
 
-\subsubsection{Résumés des chapitres}
+\subsection{Résumés des chapitres}
 
-\begin{CHPT_SUMM}{9. Linear Regression:  Predictions}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{9. Linear Regression:  Predictions}9. Linear Regression:  Predictions}
 \noindent
 \begin{tabular}{|l|l|}
 \hline
@@ -1218,7 +1234,7 @@ En régression linéaire multiple, $\widehat{\text{Var}}(y^{*}) = s^{2}(1 + \mat
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{10. Interpreting Regression Results}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{10. Interpreting Regression Results}10. Interpreting Regression Results}
 \begin{enumerate}
 	\item	Statistical significance.
 	\begin{itemize}
@@ -1246,7 +1262,7 @@ En régression linéaire multiple, $\widehat{\text{Var}}(y^{*}) = s^{2}(1 + \mat
 	\end{itemize}
 	\item	Data collection
 	\begin{itemize}
-		\item	\textbf{Sampling frame error}: mauvaise population est utilisée pour choisir un échantillon. (par exemple, ceux qui achète des bonds pensent déjà vivre plus longtemps donc ce n'est pas un échantillon représentatif de la population);
+		\item	\textbf{Sampling frame error}: mauvaise population est utilisée pour choisir un échantillon. (pour exemple, ceux qui achète des bonds pensent déjà vivre plus longtemps donc ce n'est pas un échantillon représentatif de la population);
 		\item	Les variables explicatives pourrait être \textbf{censurées}. Des données censurées de façon significative peut mener à un biais dans l'estimation des coefficients;
 		\item	Les variables explicatives pourrait être \textbf{tronquées}. Ceci est un problème plus sévère que des données censurées puisqu'elles ne sont pas observées du tout;
 		\item	L'\textbf{exclusion} de variables explicatives peut mener à un \textbf{biais};
@@ -1258,9 +1274,9 @@ En régression linéaire multiple, $\widehat{\text{Var}}(y^{*}) = s^{2}(1 + \mat
 
 \section{Modèles linéaires généralisés}
 
-\subsubsection{Résumés des chapitres}
+\subsection{Résumés des chapitres}
 
-\begin{CHPT_SUMM}{11. Basics}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{11. Basics}11. Basics}
 \begin{enumerate}
 	\item	Famille exponentielle linéaire
 	\begin{itemize}
@@ -1292,7 +1308,7 @@ En régression linéaire multiple, $\widehat{\text{Var}}(y^{*}) = s^{2}(1 + \mat
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{12. Categorical Response}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{12. Categorical Response}12. Categorical Response}
 \begin{enumerate}
 	\item	Binomial (binary) response
 	\begin{itemize}
@@ -1333,7 +1349,7 @@ En régression linéaire multiple, $\widehat{\text{Var}}(y^{*}) = s^{2}(1 + \mat
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{13. Count Response}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{13. Count Response}13. Count Response}
 \begin{enumerate}
 	\item	Poisson response
 	\item	Sur-dispersion et modèles avec binomiale négative;
@@ -1395,8 +1411,8 @@ En régression linéaire multiple, $\widehat{\text{Var}}(y^{*}) = s^{2}(1 + \mat
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{14. Measures of Fit}
-\textbf{Note importante}: Lorsqu'on test si un modèle est une simplification adéquate d'un autre, on teste (par exemple):
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{14. Measures of Fit}14. Measures of Fit}
+\textbf{Note importante}: Lorsqu'on test si un modèle est une simplification adéquate d'un autre, on teste (pour exemple):
 \begin{align*}
 	\mathcal{H}_{0}&: \beta_{1} = \beta_{2} = 0	&
 	\mathcal{H}_{1}&: \beta_{1} \neq 0 \cup \beta_{2} \neq 0
@@ -1501,7 +1517,7 @@ Ce qui est un test unilatéral et donc on veut que la statistique du TRV soit $>
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\subsubsection{Notes sur les vidéos YouTube}
+\subsection{Notes sur les vidéos YouTube}
 
 \begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=yIYKR4sgzI8}{StatQuest: Logistic Regression}}
 \begin{enumerate}
@@ -1704,6 +1720,7 @@ Understand key concepts concerning regression-based time series models.
 
 \begin{YTB_vids}[Vidéos YouTube]
 \begin{itemize}
+	\item	\href{https://www.youtube.com/watch?v=7A83lXbs6Ik}{Dr. Daniel Soper: Visualizing Random Walks in Three Dimensions}
 	\item	\href{https://www.youtube.com/watch?v=-gmlyRRscXo}{Ben Lambert: Time series vs cross sectional data}
 	\item	\href{https://www.youtube.com/watch?v=bWo_ka37szw&list=PLvo9ZnEQG5oXC-cg8ecXr6SJZWprEL1UC&index=3}{Ben Lambert: Time series Gauss Markov conditions}
 	\item	\href{https://www.youtube.com/watch?v=DeORzP0go5I&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=14}{ritvikmath: Time Series Talk : Autocorrelation and Partial Autocorrelation}
@@ -1723,106 +1740,151 @@ Understand key concepts concerning regression-based time series models.
 
 \subsection{Résumés des chapitres}
 
-\begin{CHPT_SUMM}{19. Time Series: Basics}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{19. Time Series: Basics}19. Time Series: Basics}
 Time series -> Séries chronologiques
 \begin{enumerate}
 	\item	\textbf{Introduction}
-	\begin{itemize}
-		\item	\textbf{Séries chronologiques}: Série d'observations $y_{1}, y_{2}, \dots, y_{T}$ sur des intervalles de temps consécutives;
-		\item	\textbf{Analyse de séries chronologiques}: Essayer de déchiffrer des patterns dans les séries chrono pour en faire des prévisions;
+	\item[]	\textbf{Séries chronologiques}
+		\begin{itemize}
+		\item	Série d'observations $y_{1}, y_{2}, \dots, y_{T}$ sur des intervalles de temps consécutives;
+		\item	L'analyse de séries chronologiques consiste à essayer de déchiffrer des patterns dans les séries pour en faire des prévisions;
 		\item[]	Ces patterns peuvent prendre plusieurs formes y inclut de relier les observations $y_{t}$ aux observations précédentes de la série ou, au temps lui-même;
-		\item	\textbf{Données longitudinales}: Données d'un processus variant avec le temps;
-		\item	Des données \textbf{cross-sectional} sont l'inverse, elles ne sont pas organisées chronologiquement;
-		\item	Un \textbf{causal model} est un modèle sans variables explicatives reliées au temps;
-		\item[]	Caveat: Les modèles statistiques dépistent la corrélation et non la causalité;
-		\item[]	En revanche, des modèles de séries chronologiques peuvent trouver des relations causales avec le temps;
-		\item[]	Caveat: Des modèles statistiques doivent connaître les valeurs des variables indépendantes pour faire des prévisions de la variable dépendante;
-		\item	3 composantes aux séries chronologiques:
+		\end{itemize}
+	\item[]	\textbf{Données}
+		\begin{itemize}
+		\item	\textbf{Longitudinales}: Données d'un processus variant avec le temps;
+		\item	\textbf{Transversales (cross-sectional)}: l'inverse, elles ne sont pas organisées chronologiquement;
+		\item	Pour bien saisir la distinction, on peut visualiser des données \textbf{transversales comme une image} et des \textbf{longitudinales comme une vidéo};
+		\item	La différence entre des données chronologiques vs transversales est bien expliquée dans le vidéo de Ben Lambert;
+		\end{itemize}
+	\item[]	\textbf{Modèle} de 
+		\begin{itemize}
+		\item	\textbf{causalité}: Sans variables explicatives reliées au temps;
+		\item[]	\textcolor{darkterracotta}{Négatif}: les modèles de causalité dépistent la \textbf{corrélation} et \emph{pas} la causalité;
+		\item[]	\textcolor{darkterracotta}{Négatif}: les modèles de causalité doivent connaître les valeurs des variables indépendantes pour faire des prévisions sur la variable dépendante;
+		\item	\textbf{série chronologique}: L'inverse.
+		\item[]	\textcolor{ao(english)}{Positif}: Les modèles de séries chronologiques peuvent trouver des relations causales avec le temps;
+		\end{itemize}
+	\item[]	\textbf{3 composantes} aux séries chronologiques :
 		\begin{enumerate}
-			\item	\textbf{Trend} $T_{t}$: Long term pattern des données;
-			\item	\textbf{Seasonality} $S_{t}$: Cyclical pattern des données;
-			\item	\textbf{Random patterns};
+		\item	\textbf{Trend} $T_{t}$: Long term pattern des données;
+		\item	\textbf{Seasonality} $S_{t}$: Cyclical pattern des données;
+		\item	\textbf{Random patterns} $\varepsilon_{t}$;
 		\end{enumerate}	
-		\item	On utilise un scatter plot du modèle et du temps, i.e. un \textbf{time series plot}, afin de évaluer la série chronologique;
-		\item[]	\textbf{Seasonal adjustment} Pour prendre en compte les seasonal patterns on peut ajuster le modèle avec une variable binaire;
-		\item	\textbf{Regime change}: Pour prendre en compte un behaviour change on peut ajuster le modèle avec une variable binaire débutant à un point fixé dans le temps;
-		\item	Les modèles de séries chronologiques adressent quelques problèmes des modèles de régression:		
+	\item[]	\textbf{Tendance} 
+		\begin{enumerate}
+			\item	Additive: 		$y_{t} = T_{t} + S_{t} + \varepsilon_{t}$
+			\item	Multiplicative: 	$y_{t} = T_{t} \times S_{t} + \varepsilon_{t}$
+		\end{enumerate}
+	\item[]	\textbf{Ajustement et évaluation} :
 		\begin{itemize}
-			\item	Les modèles de régression sont \textbf{naïve dans le sens qu'ils ignorent l'information autre que la série chronologique étant ajusté}.
-			\item	\textit{Un autre négatif est que le modèle de régression allouent plus de poids aux observations récentes (celles ayant les statistiques $t$ les plus éloignés de la moyenne)};
-			\item	La différence en modélisation de données chronologiques vs transversales est bien expliquée dans le vidéo de Ben Lambert;
+		\item	Lorsqu'il y une tendance, ou un cycle, \textbf{saisonnale} on peut ajuster le modèle avec une variable binaire;
+		\item	Lorsqu'il y a une transition (\textbf{Regime change}) on peut ajuster le modèle avec une variable binaire égale à 0 avant le point fixé et 1 après;
+		\item	Un scatter plot du modèle contre le temps, i.e. un \textbf{time series plot}, permet d'évaluer la série chronologique. 
+		Par exemple:
+		
+		\includegraphics[scale=0.35]{src/time-series-plots.png}
+		\end{itemize}
+	\item[]	\textbf{Problèmes} :
+		\begin{itemize}
+		\item	On surnomme parfois les prévisions de séries chronologiques comme étant des prévisions \og \textbf{naïves} \fg{}. 
+		\item[]	Les prévisions des modèles de série chronologique prennent en compte uniquement les observations passées pour faire des prévisions;
+		\item[]	Elles ne sont \textbf{\textit{ni} ajustés} \textit{ni} \textbf{évaluées} pour des \textbf{relations causales}. 
+		\item[]	Ce faisant, elles ne sont pas très représentatives de la réalité et sont \textbf{\textit{naïves}};
+		\item	De plus, le modèle de régression va allouer le \textbf{plus de poids aux observations} avec des variables explicatives \textbf{anormalement élevées};
+		\item[]	On peut visualiser que si le temps était une variable explicative, alors les données le plus récentes et les plus anciennes seraient les plus éloigné du temps moyen;
+		\item[]	\textit{Par exemple}, si le temps va de 1 à 10 alors le temps moyen est de 5.5 et les points au début et à la fin sont les plus éloignés;
+		\item[]	Le modèle va donc attribuer \textbf{plus de poids} aux observations \textbf{récentes et anciennes} qu'aux autres, ce qui n'est pas idéal;
+		\item[]	Ce problème est adressé avec du \textbf{smoothing} au chapitre 21;		
 		\end{itemize} 
-	\end{itemize}
-	\item	\textbf{Mean} and \textbf{variance}
-	\begin{itemize}
-		\item	Si la \textbf{moyenne} \textit{(au temps t)} $\text{E}[y_{t}] = \mu(t)$ ne varie pas dans le temps, la série est dite d'avoir une espérance \textbf{stationnaire};
-		\item	Ce faisant, on peut l'estimer avec les valeurs observées;
-		\item	Pareillement, si la \textbf{variance} \textit{(au temps t)} $\text{Var}(y_{t}) = \sigma^{2}(t)$ ne varie pas dans le temps, la série est dite d'avoir une variance \textbf{stationnaire} et on peut l'estimer avec la variance échantillonnale;
-		\item[]	Sinon, $\sigma^{2}(t) = \text{E}[(y_{t} - \mu(t))^{2}]$;
+	\item[]	\textbf{Incertitude} des prévisions:
 		\begin{itemize}
-			\item	On s'attend à de la corrélation. Ceci implique que la variance échantillonnale va sous-estimer la vraie variance;
-			\item	Cependant, le biais décroît rapidement lorsque la taille de la série augmente;
-		\end{itemize}
-		\item	\textbf{Autocorrelation} ou \textit{serial correlation}: voir formule pour l'auto-corrélation échantillonnale $r_{k}$.
+		\item	Avec des données transversales, le plus éloigné un point est de la masse principale, le moins nous sommes certain des prévisions;
+		\item[]	Ce faisant, nous sommes majoritairement intéressés aux prévisions sur des points près de la masse principale;
+		\item 	Pareillement, avec des données chronologiques, le plus loin dans le futur une prévision, le moins nous en sommes certains;
+		\item[]	Ce faisant, nous sommes majoritairement intéressés aux prévisions d'évènements pas trop loin dans le temps; 
+		\end{itemize} 
+	\item	\textbf{Moyenne} et \textbf{variance}
+	\item[]	\textbf{Stationnarité}
 		\begin{itemize}
-			\item	Le distance $k$ des observations d'une série chronologique au temps $t$ avec la même série au temps $t + k$ est le \textbf{lag};
-			\item	Si la série à une espérance stationnaire, et que la variance et corrélation sont fonction seulement du \textit{lag} et non du temps lui-même, la série est dite \textbf{\textit{(weakly)} stationary} \textbf{(par défaut)};
-			\item	Si aucun des moments plus élevés varient avec le temps, alors la série est \textbf{\textit{strongly} stationary};
+		\item	Si la \textbf{moyenne} \textit{(au temps t)} $\text{E}[y_{t}] = \mu(t)$ ne varie pas dans le temps, la série est \textbf{stationnary in the mean};
+		\item[]	Ce faisant, on peut l'estimer avec les valeurs observées;
+		\item	Pareillement, si la \textbf{variance} \textit{(au temps t)} $\text{Var}(y_{t}) = \sigma^{2}(t)$ ne varie pas dans le temps, la série est \textbf{stationnary in the variance};
+		\item[]	Ce faisant, on peut l'estimer avec la variance échantillonnale;
+		\item	Cependant, lorsque les données sont corrélées (ce à quoi on s'attend) alors la variance échantillonnale va \textbf{sous-estimer} la vraie variance;
+		\item	L'\textbf{autocorrelation, ou \textit{serial correlation})} est mesuré par la corrélation échantillonnale;
+		\item[]	À noter que la sous-estimation de la variance devient de moins en moins importante plus la taille de la série augmente;
+		\item	Le distance $k$ des observations d'une série chronologique au temps $t$ avec la même série au temps $t + k$ est le \textbf{lag};
+		\item	Si la série a une espérance stationnaire et que la variance et corrélation sont fonction seulement du \textit{lag}, et non du temps lui-même, alors la série est dite \textbf{\textit{(weakly)} stationary} \textbf{(par défaut)};
+		\item	Si aucun des moments plus élevés varient avec le temps, alors la série est \textbf{\textit{strongly} stationary};
 		\end{itemize}
-	\end{itemize}
-	\item	\textbf{White noise}: Une série chronologique \textbf{white noise} est caractérisé par:
+	\item	\textbf{White noise}: Une série chronologique \textbf{white noise}  $w_{t}$ est caractérisé par:
 	\begin{itemize}
 		\item	L'indépendance des termes;
 		\item[]	Ce faisant, la corrélation $r_{k}$ à tous \textbf{lag} supérieurs à 0 est de 0 ($r_{0}$ est toujours égale à 1);
-		\item	Une espérance constante $\mu$;
-		\item	Une variance constante $\sigma^{2}$;
-		\item	Habituellement, on suppose la normalité;
+		\item	Une espérance constante $\mu_w$;
+		\item[]	Habituellement, elle est nulle;
+		\item	Une variance constante $\sigma^{2}_w$;
+		\item	Habituellement, on suppose également la normalité;
 	\end{itemize}
-	\item[]	Réduction de série, alias \textbf{time series \textit{filtering}}:
-	\begin{itemize}
-		\item	Nous voulons toujours réduire toute série chronologique à une série white noise en identifiant des patterns;
-		\item	La partie inexplicable par les patterns qui demeurent est dite d'être \textbf{irréductible} et est donc traitée comme du \textbf{\textit{white noise}};
-		\item	On peut donc penser à ceci comme l'équivalent de l'erreur $\varepsilon$ en régression pour les séries chronologiques;
-		\item	Pour des \hyperref[sec:ex_rand_walk]{exemples}, voir la fin de la section de marches aléatoires;
-	\end{itemize}
-	 et en laissant l'imprévisible comme du white noise
+	\item[]	Réduction de série alias \textbf{time series \textit{filtering}}:
+		\begin{itemize}
+		\item	Nous cherchons toujours à réduire toute série chronologique à une série white noise en \textbf{identifiant des patterns};
+		\item	Pour visualiser ce que le time series filtering représente, on observe ces graphiques d'ondes sonores d'instruments:
+		
+		\includegraphics[scale=0.3]{src/music-waves.png}
+		\item[]	Et si nous avions une combinaison de ces fréquences:
+		
+		\includegraphics[scale=0.6]{src/regime-change-wave.png}
+%		\item	Sans annotations, on pourrait peut-être porté à croire qu'il n'y a pas de tendances dans certaines de ces images;
+		\item	Cette idée d'observer des tendances dans des graphiques d'ondes sonores est exactement la même idée que le \textit{time series filtering};
+		\item[]	On cherche à identifier des tendances, des cycles, des changements de régime, etc. dans une série qui peuvent sembler d'être aléatoires;
+		\item	Dans le même ordre d'idée, lorsqu'un musicien joue son instrument on imagine que ce n'est pas parfait et qu'il y a un certain niveau d'erreur!
+		\item[]	Ceci est donc le \textbf{white noise}, l'erreur aléatoire de la fréquence observée à la fréquence attendue;
+		\item[]	Alors, pour néanmoins reconnaître une fréquence d'instrument imparfait, on alloue une variabilité (ou déviance) à la série \og parfaite \fg{};
+		\item	La partie inexplicable par les patterns qui demeure est dite d'être \textbf{irréductible} et est donc traitée comme du \textbf{\textit{white noise}};
+		\end{itemize}
+%		\item	Pour des \hyperref[sec:ex_rand_walk]{exemples}, voir la fin de la section de marches aléatoires;
 	\item	\textbf{Marches aléatoires}: Une \textbf{marche aléatoire} est:
-	\begin{itemize}
+		\begin{itemize}
 		\item	Une série chronologique \textbf{\textit{non}-stationnaire};
-		\item	Ayant comme valeur le niveau initial $y_{0}$ plus l'accumulation du \textit{white noise} $c_{t}$;
-		\item	L'expression est donc de forme: $y_{t} = y_{t - 1} + c_{t}, t \ge 1$.
-	\end{itemize}
-	\item[]	Voir les formules des espérances / variances;
-	\begin{itemize}
-		\item	Habituellement, $\text{E}[c_{t}] = \mu_{c} = 0$ mais l'auteur le défini plus généralement;
+		\item	Ayant comme valeur le niveau initial $y_{0}$ en plus de l'accumulation du \textit{white noise} $w_{t}$;
+		\item	L'expression est donc de la forme: $y_{t} = y_{t - 1} + w_{t}, t \ge 1$.
+		\end{itemize}
+	\item[]	\textbf{Notes} sur l'\textit{espérance} et la \textit{variance}:
+		\begin{itemize}
 		\item	Si $\mu_{c} = 0$ la série est néanmoins non-stationnaire puisque la variance croît avec le temps;
-		\item	Si $\mu_{c} \neq 0$ la série est une marche aléatoire \textbf{avec drift} où $\mu_{c}$ est le drift;
+		\item	Si $\mu_{w} \neq 0$ la série est une marche aléatoire \textbf{avec drift} où $\mu_{w}$ est le drift;
 		\item	On déduit de plus que la différence entre marches aléatoires $y_{t} - y_{t - 1}$ est du white noise;
-	\end{itemize}
+		\end{itemize}
 	\item[]	Pour distinguer et comprendre la distinction entre une tendance dans le temps (à gauche) et une marche aléatoire (à droite) on compare les deux:
 	\begin{align*}
 		y_{t}	&= 	y_{0} + t k + \varepsilon_{t}	&
 		&\text{vs}	&
-		y_{t}	&= 	y_{0} + t \mu_{c}  + \sum_{j = 1}^{t} \varepsilon_{j}	
+		y_{t}	&= 	y_{0} + t \mu_{w}  + \sum_{j = 1}^{t} \varepsilon_{j}	
 	\end{align*}
-	D'où le lien entre l'erreur et le white noise s'éclaircit. Malgré une espérance identique si $k = \mu_{c}$, la variance de la série chrono va croître avec le temps;
-	\item[]	\label{sec:ex_rand_walk} Exemples de \textbf{filtering}: 
-	\begin{itemize}
+	D'où on peut voir le lien entre l'erreur d'un modèle causal et d'un modèle chronologique. Malgré une espérance identique, si $k = \mu_{w}$ la variance de la série chrono va croître avec le temps;
+	\item[]	\label{sec:ex_rand_walk} \textbf{Exemples théoriques} de \textbf{filtering}: 
+		\begin{itemize}
 		\item	Différencier une marche aléatoire;
 		\item	Prendre le log de la série. Ceci peut stabiliser la variance;
 		\item	Finalement, prendre le log de la différence des séries qui correspond \textit{approximativement} à des changements proportionnels;
-	\end{itemize}
-	\item	\textbf{Control charts}: Graphique pour observer l'évolution d'un processus avec le temps.
-	\begin{itemize}
+		\end{itemize}
+	\item	\textbf{Control charts}: Graphiques pour observer l'évolution d'un processus avec le temps.
+		\begin{itemize}
 		\item	Les données sont placées en ordre chronologique;
-		\item	Le graphique comporte une ligne centrale pour la moyenne et deux lignes pour les bornes supérieures et inférieures (typiquement Q1 et Q3);
+		\item	Le graphique comporte une ligne centrale et deux lignes pour les bornes supérieures et inférieures (typiquement Q1 et Q3);
 		\item	L'axe des y sert à évaluer la moyenne du processus et l'axe des x permet d'observer l'étendu;
-		\item	Ce faisant, l'utilité est un peu semblable à celle d'un boxplot. On évalue si un processus est relativement stable en observant leur distribution relative au temps. En revanche, un boxplot permet vérifier que les données n'ont pas trop de points abérrants et qu’elles ne sont pas trop répandues.;
-		\item	On peut donc évaluer si un processus est stable (en contrôle) ou instable (hors de contrôle)
-	\end{itemize}
+		\item	Ce faisant, l'utilité est un peu semblable à celle d'un boxplot:
+			\begin{itemize}
+			\item	On évalue si un processus est relativement stable en observant leur distribution relative au temps;
+			\item	En revanche, un boxplot permet vérifier que les données n'ont pas trop de points aberrants et qu’elles ne sont pas trop répandues;
+			\item	On peut donc évaluer si un processus est stable (en contrôle) ou instable (hors de contrôle);
+			\end{itemize}
+		\end{itemize}
 	\item[]	\textbf{Xbar charts}: Calculer la moyenne des séries de $k$ observations.
 		\begin{itemize}
-		\item	Par exemple avec $k = 5$, on calcule la moyenne des observations 1 à 5, 6 à 10, 11 à 15, etc.;
+		\item	Pour exemple avec $k = 5$, on calcule la moyenne des observations 1 à 5, 6 à 10, 11 à 15, etc.;
 		\item	Puisque la variance des moyennes sera plus faible que la variance de la série, des tendances inhabituelles devraient être plus apparentes;
 		\end{itemize}
 	\item[]	\textbf{R charts}: Calculer l'étendu des séries de $k$ observations.
@@ -1830,6 +1892,9 @@ Time series -> Séries chronologiques
 		\item	L'étendu est la valeur maximale - la valeur minimale;
 		\item	Ceci donne une idée de la dispersion des données pour évaluer la volatilité et évaluer des patterns;
 		\end{itemize}
+	\item[]	Exemple de xbar plot:
+	
+	\includegraphics[scale=0.35]{src/xbar-plots.png}
 	\item	\textbf{Evaluating forecasts} \textit{(évaluer les prévisions)}
 	\item[]	On utilise le \textbf{out-of-sample validation}
 		\begin{itemize}
@@ -1848,60 +1913,82 @@ Time series -> Séries chronologiques
 \end{enumerate}
 \textbf{Note sur les exercices:} 
 \begin{enumerate}
-	\item	
+	\item	Systématiquement les examens de la CAS ont une question où il faut calculer le sample correlation pour un tableau de données dont fort probable ce sera dans SRM (1 à 6);
+	\item	Question qu'il faut trouver la prévision ou l'écart-type (d'ailleurs, 2 des sample questions de SRM portent sur ceci);
+	\item	Question qualitative sur les propriétés (stationnarité, prévisions, homogénéité, etc.);
+	\item	Question comme 17 à 20 dont il faut calculer une des statistiques pour un random walk ou du white noise;
+	\item	Avec un peu de réflexion la logique derrière les 5 formules devient évidente et il n'est pas nécessaire de les mémoriser;
 \end{enumerate}
 \end{CHPT_SUMM}
 
 \begin{FORMULA_SUMM}{Formules chapitre 19}
-\textbf{ASTUCE}: La corrélation échantillonnale peut être calculé avec la TI-30XS. $r_{k} = \frac{\sum X^{2}}{\sum XY}$ où la colonne des $X$ exclue le  premier terme et la colonne des $Y$ le dernier.
+%\textbf{ASTUCE}: La corrélation échantillonnale peut être calculé avec la TI-30XS. $r_{k} = \frac{\sum XY}{\sum X^{2}}$ où la colonne des $X$ exclue le  premier terme et la colonne des $Y$ le dernier.
+
 \begin{align*}
 	s^{2}	&=	\frac{\sum_{t = 1}^{n}(y_{t} - \bar{y})^{2}}{n - 1}	&
 	r_{k}	&=	\frac{\sum_{t = k + 1}^{T}(y_{t - k} - \bar{y})(y_{t} - \bar{y})}{\sum_{t = 1}^{T}(y_{t} - \bar{y})^{2}}	\\
 	r_{0}	&=	1
 \end{align*}
 \begin{align*}
-	ME	&=	\frac{1}{T - T_{1}} \sum_{t = T_{1}}^{T} e_{t}	&
-	MPE	&=	\frac{100}{T - T_{1}} \sum_{t = T_{1}}^{T} \frac{e_{t}}{y_{t}}	\\
-	MSE	&=	\frac{1}{T - T_{1}} \sum_{t = T_{1}} e_{t}^{2}	\\
-	MAE	&=	\frac{1}{T - T_{1}} \sum_{t = T_{1}}^{T} |e_{t}|	&	
-	MAPE	&=	\frac{100}{T - T_{1}} \sum_{t = T_{1}}^{T} \left| \frac{e_{t}}{y_{t}}\right|	\\
+	\textcolor{amethyst}{M}E	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} e_{t}	&
+	\textcolor{amethyst}{M}\textcolor{teal}{P}E	&=	\frac{\textcolor{teal}{100}}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} \frac{e_{t}}{\textcolor{teal}{y_{t}}}	\\
+	\textcolor{amethyst}{M}\textcolor{lava}{S}E	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}} e_{t}^{\textcolor{lava}{2}}	\\
+	\textcolor{amethyst}{M}\textcolor{burntorange}{A}E	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} {\color{burntorange}\bigg|}e_{t}{\color{burntorange}\bigg|}	&	
+	\textcolor{amethyst}{M}\textcolor{burntorange}{A}\textcolor{teal}{P}E	&=	\frac{\textcolor{teal}{100}}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} {\color{burntorange}\bigg|} \frac{e_{t}}{\textcolor{teal}{y_{t}}}{\color{burntorange}\bigg|}	\\
 \end{align*}
-Pour une marche aléatoire $y_{t}$ avec la série white noise $c_{t}$:
-\begin{align*}
-	y_{t}	&= 	y_{t - 1} + c_{t},	t \ge 1	\\
-	\text{E}[c_{t}]	&=	\mu_{c}	&
-	\text{Var}(c_{t})	&=	\sigma^{2}_{c}	\\
-	\text{E}[y_{t}]	&=	y_{0} + t \mu_{c}	&
-	\text{Var}(y_{t})	&=	t \sigma^{2}_{c}	\\	
-	y_{T + l}	&= 	y_{T} + l \bar{c}	
-\end{align*}
-$\bar{c}$ est la moyenne échantillonnale de $c_{t}$.
 
-\begin{tabular}{|l|l|l|}
+Une marche aléatoire est définie par $y_{t} = y_{t - 1} + w_{t}$ lorsque $t \ge 1	$. Ce faisant, on peut définir la série de white noise $w_{t} = y_{t} - y_{t - 1}$.
+
+\begin{minipage}[t]{0.5\linewidth}
+Pour une série white noise $w_{t}$:
+\begin{align*}
+	\text{Var}(w_{t})	
+		&=	\sigma^{2}_{w}	\\
+	\text{E}[w_{t}]	
+		&=	\mu_{w}			
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+Pour une marche aléatoire $y_{t}$ :
+\begin{align*}
+	\text{Var}(y_{t})	
+		&=	t \sigma^{2}_{w}	\\	
+	\text{E}[y_{t}]	
+		&=	y_{0} + {\color{burntorange}\underset{\text{drift si } \mu_w \neq 0}{\underbrace{t \mu_{w}}}}		
+\end{align*}
+\end{minipage}
+\noindent
+\begin{tabular}{|p{4.5cm}|c|c|}
 \hline
 \rowcolor[HTML]{21650A} 
 		\multicolumn{1}{|c|}{\cellcolor[HTML]{21650A}{\color[HTML]{FFFFFF} \textbf{Measure}}}                
 	&	\multicolumn{1}{c|}{\cellcolor[HTML]{21650A}{\color[HTML]{FFFFFF} \textbf{White noise}}}	
 	&	\multicolumn{1}{c|}{\cellcolor[HTML]{21650A}{\color[HTML]{FFFFFF} \textbf{Random walk}}}	\\	
 \hline
-\rowcolor[HTML]{B8F0A5}	$l$-period lookahead forecast &	$\hat{y}_{T + l} = \bar{y} \; \forall l$	&	$\hat{y}_{T + l} = y_{T} + l \bar{c}$	\\	
+\rowcolor[HTML]{B8F0A5}	Estimated standard error		&	$se_{\hat{y}_{T + l}} = s_{y}\sqrt{1 + \frac{1}{T}}$	&	$se_{\hat{y}_{T + l}} = s_{w}\sqrt{l}$ 	\\ \hline
+\rowcolor[HTML]{B8F0A5}	$l$-period lookahead forecast &	$\hat{y}_{T + l} = \bar{y} \; \forall l$	&	$\hat{y}_{T + l} = y_{T} + l \bar{w}$	\\	
 \hline
-%\rowcolor[HTML]{B8F0A5}	Forecast interval of $y_{T + l}$	&	$\bar{y} \pm t_{T - 1, 1 - \frac{\alpha}{2}} s_{y}\sqrt{1 + \frac{1}{T}}$	&	de niveau \\	\hline
-\rowcolor[HTML]{B8F0A5}	Estimated standard error $se_{\hat{y}_{T + l}}$	&	$s_{y}\sqrt{1 + \frac{1}{T}}$	&	$s_{w}\sqrt{l}$ 	\\ \hline
+\rowcolor[HTML]{B8F0A5}	Forecast interval of $y_{T + l}$	&	$\bar{y} \pm t_{T - 1, 1 - \frac{\alpha}{2}} s_{y}\sqrt{1 + \frac{1}{T}}$	&	\\	
+\hline
+\rowcolor[HTML]{B8F0A5}	\parbox{4.5cm}{\textbf{Approximate} 95\% forecast interval of $y_{T + l}$}	&	$\bar{y} \pm 2 s_{y}$	&	$\bar{y} + l \bar{w} \pm 2 s_{w} \sqrt{l}$	\\	
+\hline
 \end{tabular}
-où $w_{t} = y_{t} - y_{t - 1}$.
+où $\bar{w}$ est la moyenne échantillonnale de $w_{t}$.
 
 \end{FORMULA_SUMM}
 
-\begin{CHPT_SUMM}{20. Time Series: Autoregressive Models}
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{20. Time Series: Autoregressive Models}20. Time Series: Autoregressive Models}
 \textbf{Pas encore fait, notes pour me donner une idée du chapitre}
 \begin{enumerate}
 	\item	Intro
 	\begin{itemize}
-		\item	AR(1) model is a time series where each term may be expressed in terms of the previous term plus white noise;
-		\item	Examples;
-		\item	Stationnarity;
-		\item	True autocorrelation at lag $k$;
+		\item	Un \textbf{autoregressive model} d'ordre 1, AR(1), est une série chronologique dont chaque terme peut être exprimé en fonction du précédent:
+		\begin{align*}
+			y_{t}	&=	\beta_{0} + \beta_{1} y_{t - 1} + \varepsilon_{t}
+		\end{align*}
+		\item	Pour exemple, si $\beta_{1} = 0$ alors c'est une série white noise et si $\beta_{1} = 1$ c'est une marche aléatoire;
+		\item	On rappel qu'une série white noise est stationnaire, donc on veut que $0 < | \beta_{1} | < 1$ puisque lorsque $| \beta_{1} | < 1$ la série est stationnaire;
+		\item	Voir la formule de la \textbf{vraie auto-corrélation} au lag $k$;
 		\item	Coefficients;
 	\end{itemize}
 	\item	Forecasting with AR(1) series
@@ -1912,8 +1999,14 @@ où $w_{t} = y_{t} - y_{t - 1}$.
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{21. Time Series: Forecasting Models}
-\textbf{Pas encore fait, notes pour me donner une idée du chapitre}
+\begin{FORMULA_SUMM}{Formules chapitre 20}
+La \textbf{vraie auto-corrélation} au lag $k$ pour un processus AR(1) stationnaire:
+\begin{align*}
+	\rho_{k}	&=	\beta_{1}^{k}
+\end{align*}
+\end{FORMULA_SUMM}
+
+\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{21. Time Series: Forecasting Models}21. Time Series: Forecasting Models}
 \begin{enumerate}
 	\item	Moving average smoothing
 	\begin{itemize}

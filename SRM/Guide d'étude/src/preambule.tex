@@ -19,9 +19,13 @@
 %\usepackage[landscape, hmargin=1cm, vmargin=1.7cm]{geometry}
 %\usepackage{multicol}
 \usepackage{sectsty}
+\usepackage{titlesec}
 %%% -----------------------------
-%%%	Sections
+%%%	Sections et chapitres
 %%% -----------------------------
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
 \sectionfont{\color{cobalt}}
 \subsectionfont{\color{indigo(web)}}
 %%%
