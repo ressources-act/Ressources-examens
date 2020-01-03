@@ -1702,8 +1702,8 @@ Understand key concepts concerning regression-based time series models.
 	\item	Décrire des modèles de séries chronologiques précis dont:
 	\begin{itemize}
 		\item	Exponential smoothing
-		\item	Autoregressive
-		\item	Autoregressive conditionally heteroskedastic models
+		\item	Autoregressive (AR)
+		\item	Autoregressive Conditionally Heteroskedastic (ARCH et GARCH)
 	\end{itemize}
 	\item	Calculer et interpréter les valeurs prédites et leurs intervalles de confiance.
 \end{enumerate}
@@ -1712,9 +1712,9 @@ Understand key concepts concerning regression-based time series models.
 \begin{ASM_chapter}[Related lessons ASM]
 \begin{enumerate}
   \setcounter{enumi}{18}
-	\item	Time Series: Basics
-	\item	Time Series: Autoregressive Models
-	\item	Time Series: Forecasting Models
+	\item	\hyperref[timeseries19]{Time Series: Basics}
+	\item	\hyperref[timeseries20]{Time Series: Autoregressive Models}
+	\item	\hyperref[timeseries21]{Time Series: Forecasting Models}
 \end{enumerate}
 \end{ASM_chapter}
 
@@ -1723,24 +1723,26 @@ Understand key concepts concerning regression-based time series models.
 	\item	\href{https://www.youtube.com/watch?v=7A83lXbs6Ik}{Dr. Daniel Soper: Visualizing Random Walks in Three Dimensions}
 	\item	\href{https://www.youtube.com/watch?v=-gmlyRRscXo}{Ben Lambert: Time series vs cross sectional data}
 	\item	\href{https://www.youtube.com/watch?v=bWo_ka37szw&list=PLvo9ZnEQG5oXC-cg8ecXr6SJZWprEL1UC&index=3}{Ben Lambert: Time series Gauss Markov conditions}
+	\item	\href{https://www.youtube.com/watch?v=LgIOgb-6mYA&list=PLvo9ZnEQG5oXC-cg8ecXr6SJZWprEL1UC&index=3}{Ben Lambert: Strict exogeneity}
+	\item	\href{https://www.youtube.com/watch?v=a7_3qX67e7c&list=PLvo9ZnEQG5oXC-cg8ecXr6SJZWprEL1UC&index=4}{Ben Lambert: Strict exogeneity assumption - intuition}
 	\item	\href{https://www.youtube.com/watch?v=DeORzP0go5I&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=14}{ritvikmath: Time Series Talk : Autocorrelation and Partial Autocorrelation}
 	\item	\href{https://www.youtube.com/watch?v=oY-j2Wof51c&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=6}{ritvikmath: Time Series Talk: Stationarity}
 	\item	\href{https://www.youtube.com/watch?v=cr4zIXAmSRI}{ritvikmath: Time Series Talk : White Noise}
-%	\item	\href{https://www.youtube.com/watch?v=VPNijQ2L3XM&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=4}{ritvikmath: Time Series Talk : Lag operator}
+	\item	\href{https://www.youtube.com/watch?v=VPNijQ2L3XM&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=4}{ritvikmath: Time Series Talk : Lag operator} \textit{(pas super important pour SRM)}
 	\item	\href{https://www.youtube.com/watch?v=5-2C4eO4cPQ}{ritvikmath: Time Series Talk : Autoregressive Model}
-%	\item	\href{https://www.youtube.com/watch?v=voryLhxiPzE&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=11}{ritvikmath: Time Series Talk: Moving Average}
+	\item	\href{https://www.youtube.com/watch?v=voryLhxiPzE&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=6}{ritvikmath: Time Series Talk : Moving Average Model}
 %	\item	\href{https://www.youtube.com/watch?v=_tgB-ri9-8c&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=10}{ritvikmath: Time Series Talk: Moving Average and ACF}
-%	\item	\href{https://www.youtube.com/watch?v=HhvTlaN06AM&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=9}{ritvikmath: Time Series Talk: ARMA Model}
-%	\item	\href{https://www.youtube.com/watch?v=Li95a2biFCU&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=8}{ritvikmath: Time Series Talk: ARCH Model}
-%	\item	\href{https://www.youtube.com/watch?v=3UmyHed0iYE&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=5}{ritvikmath: Time Series Talk: ARIMA Model}
+	\item	\href{https://www.youtube.com/watch?v=HhvTlaN06AM&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=9}{ritvikmath: Time Series Talk: ARMA Model}
+	\item	\href{https://www.youtube.com/watch?v=3UmyHed0iYE&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=9}{ritvikmath: Time Series Talk: ARIMA Model}
+	\item	\href{https://www.youtube.com/watch?v=Li95a2biFCU&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=8}{ritvikmath: Time Series Talk: ARCH Model}
 %	\item	\href{https://www.youtube.com/watch?v=4hrMdu9CSQs&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=3}{ritvikmath: Time Series Talk: What is seasonality?}
-%	\item	\href{https://www.youtube.com/watch?v=WjeGUs6mzXg&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=2}{ritvikmath: Time Series Talk: Seasonal ARIMA Model}
+	\item	\href{https://www.youtube.com/watch?v=WjeGUs6mzXg&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=2}{ritvikmath: Time Series Talk: Seasonal ARIMA Model}
 \end{itemize}
 \end{YTB_vids}
 
 \subsection{Résumés des chapitres}
 
-\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{19. Time Series: Basics}19. Time Series: Basics}
+\begin{CHPT_SUMM}[label = {timeseries19}]{\addcontentsline{toc}{subsubsection}{19. Time Series: Basics}19. Time Series: Basics}
 Time series -> Séries chronologiques
 \begin{enumerate}
 	\item	\textbf{Introduction}
@@ -1804,6 +1806,7 @@ Time series -> Séries chronologiques
 		\item 	Pareillement, avec des données chronologiques, le plus loin dans le futur une prévision, le moins nous en sommes certains;
 		\item[]	Ce faisant, nous sommes majoritairement intéressés aux prévisions d'évènements pas trop loin dans le temps; 
 		\end{itemize} 
+%%%		
 	\item	\textbf{Moyenne} et \textbf{variance}
 	\item[]	\textbf{Stationnarité}
 		\begin{itemize}
@@ -1818,6 +1821,7 @@ Time series -> Séries chronologiques
 		\item	Si la série a une espérance stationnaire et que la variance et corrélation sont fonction seulement du \textit{lag}, et non du temps lui-même, alors la série est dite \textbf{\textit{(weakly)} stationary} \textbf{(par défaut)};
 		\item	Si aucun des moments plus élevés varient avec le temps, alors la série est \textbf{\textit{strongly} stationary};
 		\end{itemize}
+%%%		
 	\item	\textbf{White noise}: Une série chronologique \textbf{white noise}  $w_{t}$ est caractérisé par:
 	\begin{itemize}
 		\item	L'indépendance des termes;
@@ -1844,7 +1848,13 @@ Time series -> Séries chronologiques
 		\item[]	Alors, pour néanmoins reconnaître une fréquence d'instrument imparfait, on alloue une variabilité (ou déviance) à la série \og parfaite \fg{};
 		\item	La partie inexplicable par les patterns qui demeure est dite d'être \textbf{irréductible} et est donc traitée comme du \textbf{\textit{white noise}};
 		\end{itemize}
-%		\item	Pour des \hyperref[sec:ex_rand_walk]{exemples}, voir la fin de la section de marches aléatoires;
+	\item[]	\label{sec:ex_rand_walk} \textbf{Exemples théoriques} de \textbf{filtering}: 
+		\begin{itemize}
+		\item	Différencier une marche aléatoire (voir ci-dessous);
+		\item	Prendre le log de la série. Ceci peut stabiliser la variance;
+		\item	Finalement, prendre le log de la différence des séries qui correspond \textit{approximativement} à des changements proportionnels;
+		\end{itemize}
+%%%
 	\item	\textbf{Marches aléatoires}: Une \textbf{marche aléatoire} est:
 		\begin{itemize}
 		\item	Une série chronologique \textbf{\textit{non}-stationnaire};
@@ -1864,12 +1874,7 @@ Time series -> Séries chronologiques
 		y_{t}	&= 	y_{0} + t \mu_{w}  + \sum_{j = 1}^{t} \varepsilon_{j}	
 	\end{align*}
 	D'où on peut voir le lien entre l'erreur d'un modèle causal et d'un modèle chronologique. Malgré une espérance identique, si $k = \mu_{w}$ la variance de la série chrono va croître avec le temps;
-	\item[]	\label{sec:ex_rand_walk} \textbf{Exemples théoriques} de \textbf{filtering}: 
-		\begin{itemize}
-		\item	Différencier une marche aléatoire;
-		\item	Prendre le log de la série. Ceci peut stabiliser la variance;
-		\item	Finalement, prendre le log de la différence des séries qui correspond \textit{approximativement} à des changements proportionnels;
-		\end{itemize}
+%%%		
 	\item	\textbf{Control charts}: Graphiques pour observer l'évolution d'un processus avec le temps.
 		\begin{itemize}
 		\item	Les données sont placées en ordre chronologique;
@@ -1930,11 +1935,16 @@ Time series -> Séries chronologiques
 	r_{0}	&=	1
 \end{align*}
 \begin{align*}
-	\textcolor{amethyst}{M}E	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} e_{t}	&
-	\textcolor{amethyst}{M}\textcolor{teal}{P}E	&=	\frac{\textcolor{teal}{100}}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} \frac{e_{t}}{\textcolor{teal}{y_{t}}}	\\
-	\textcolor{amethyst}{M}\textcolor{lava}{S}E	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}} e_{t}^{\textcolor{lava}{2}}	\\
-	\textcolor{amethyst}{M}\textcolor{burntorange}{A}E	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} {\color{burntorange}\bigg|}e_{t}{\color{burntorange}\bigg|}	&	
-	\textcolor{amethyst}{M}\textcolor{burntorange}{A}\textcolor{teal}{P}E	&=	\frac{\textcolor{teal}{100}}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1}}^{T} {\color{burntorange}\bigg|} \frac{e_{t}}{\textcolor{teal}{y_{t}}}{\color{burntorange}\bigg|}	\\
+	\textcolor{amethyst}{M}E	
+	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1} + 1}^{T} e_{t}	&
+	\textcolor{amethyst}{M}\textcolor{teal}{P}E	
+	&=	\frac{\textcolor{teal}{100}}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1} + 1}^{T} \frac{e_{t}}{\textcolor{teal}{y_{t}}}	\\
+	\textcolor{amethyst}{M}\textcolor{lava}{S}E	
+	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1} + 1} e_{t}^{\textcolor{lava}{2}}	\\
+	\textcolor{amethyst}{M}\textcolor{burntorange}{A}E	
+	&=	\frac{1}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1} + 1}^{T} {\color{burntorange}\bigg|}e_{t}{\color{burntorange}\bigg|}	&	
+	\textcolor{amethyst}{M}\textcolor{burntorange}{A}\textcolor{teal}{P}E	
+	&=	\frac{\textcolor{teal}{100}}{\textcolor{amethyst}{T - T_{1}}} \sum_{t = T_{1} + 1}^{T} {\color{burntorange}\bigg|} \frac{e_{t}}{\textcolor{teal}{y_{t}}}{\color{burntorange}\bigg|}	\\
 \end{align*}
 
 Une marche aléatoire est définie par $y_{t} = y_{t - 1} + w_{t}$ lorsque $t \ge 1	$. Ce faisant, on peut définir la série de white noise $w_{t} = y_{t} - y_{t - 1}$.
@@ -1977,62 +1987,575 @@ où $\bar{w}$ est la moyenne échantillonnale de $w_{t}$.
 
 \end{FORMULA_SUMM}
 
-\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{20. Time Series: Autoregressive Models}20. Time Series: Autoregressive Models}
-\textbf{Pas encore fait, notes pour me donner une idée du chapitre}
+\begin{CHPT_SUMM}[label = {timeseries20}]{\addcontentsline{toc}{subsubsection}{20. Time Series: Autoregressive Models}20. Time Series: Autoregressive Models}
+Le chapitre 19 couvre l'identification de \textbf{patterns majeures} comme première étape pour faire des prévisions. Le chapitre 20 couvre l'identification de \textbf{tendances plus subtiles} et les modèles pour les accommoder.
+
 \begin{enumerate}
 	\item	Intro
-	\begin{itemize}
-		\item	Un \textbf{autoregressive model} d'ordre 1, AR(1), est une série chronologique dont chaque terme peut être exprimé en fonction du précédent:
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	Tout comme nous avons l'\textit{auto}-corrélation, nous avons les modèles \textbf{\textit{auto}régressifs};
+		\item[]	On applique alors le même concept d'utiliser les valeurs précédentes de la série pour prévoir les prochaines;
+		\item	\textbf{Modèle}
 		\begin{align*}
 			y_{t}	&=	\beta_{0} + \beta_{1} y_{t - 1} + \varepsilon_{t}
 		\end{align*}
-		\item	Pour exemple, si $\beta_{1} = 0$ alors c'est une série white noise et si $\beta_{1} = 1$ c'est une marche aléatoire;
-		\item	On rappel qu'une série white noise est stationnaire, donc on veut que $0 < | \beta_{1} | < 1$ puisque lorsque $| \beta_{1} | < 1$ la série est stationnaire;
-		\item	Voir la formule de la \textbf{vraie auto-corrélation} au lag $k$;
-		\item	Coefficients;
-	\end{itemize}
-	\item	Forecasting with AR(1) series
+		\end{itemize}
+	\item[]	\textbf{Stationnarité} et liens
+		\begin{itemize}
+		\item	On note que si $\beta = 1$ alors la série est une marche aléatoire et est non-stationnaire;
+		\item	Également, si $\beta_1 = 0$ alors la série est du white noise;
+		\item	Pour assurer la stationnarité, on veut donc $0 < |\beta_{1}| < 1$;
+
+		\item[]	Ce faisant, le domaine de $\beta_{1}$ implique que le modèle auto-régressif sera stationnaire sans être une série white noise;
+		\end{itemize}
+	\item[]	Comment déterminer qu'un modèle auto-régressif est approprié
+		\begin{enumerate}
+		\item	Utiliser un \textbf{control chart} pour évaluer la stabilité;
+		\item[]	Le modèle AR(1) est stationnaire, on s'attend à un graphique relativement stable;
+		\item	Utiliser un \textbf{scatterplot} de la dernière valeur contre la valeur présente de la série;
+		\item[]	Le modèle AR(1) devrait, par définition, être corrélé avec la valeur précédente;
+		\item	Évaluer la structure de l'\textbf{auto-corrélation};
+		\item[]	On test que la série n'est pas du white noise ($\rho_{k} \neq 0$). Voir ci-dessous pour l'explication;
+		\end{enumerate}
+	\item[]	\textbf{Auto-corrélation}
+		\begin{itemize}
+		\item	On a que $\rho_{k} = \beta^{k}_{1}$ pour le modèle AR(1);
+		\item[]	La logique est que la formule est récursive donc on multiplie les $\beta$ jusqu'à ce qu'on arrive à la première valeur de la série : 1;
+		\item	Comme mentionné, si $\beta_{1} = 0$ la série est une série white noise;
+		\item[]	Cela implique également que $\rho_{k} = 0$;
+		\item	Le \textbf{test} sur l'auto-corrélation est donc de tester \textbf{si} $\rho_{k}$ est \textbf{significativement différent de 0};
+		\item[]	Cependant, puisque $-1 < \rho_{k} < 1$, cela peut s'avérer difficile;
+		\item[] On \textbf{évalue} donc le \textbf{standard error} de l'auto-corrélation plutôt que la corrélation elle-même;
+		\setlength{\mathindent}{-1cm}
+		\begin{align*}
+			&\mathcal{H}_{0}: \text{Pas d'auto-corrélation \textit{(white noise)} et } se(r_{k}) \approx \frac{1}{\sqrt{T}}	\\
+			&\mathcal{H}_{a}: \text{Auto-corrélation et } | se(r_{k}) | > \frac{2}{\sqrt{T}}	
+		\end{align*}
+		\setlength{\mathindent}{1cm}
+		\end{itemize}
+	\item[]	\textbf{Estimation} des coefficients
+		\begin{itemize}
+		\item	Pour comprendre l'estimation de $\beta_{1}$ avec un modèle auto-régressif, on rappel la formulation $b_{1} = r_{xy} \frac{s_{y}}{s_{x}}$;
+		\item[]	Puisque la variable explicative est l'observation précédente, $s_{x} = s_{y}$ et $b_{1} = r_{xy}$;
+		\item[]	La distinction importante est que le \textbf{modèle évolue dans le temps};
+		\item[] Donc, nous n'avons pas la corrélation entre 2 différentes variables mais plutôt l'auto-corrélation entre \textbf{même variable à 2 différents moments};
+		\item	Puisqu'il est irréaliste d'évaluer l'auto-corrélation à tous les moments, $b_{1} \approx r_{1}$;
+		\item	Également, on déduit que $\bar{x} = \bar{y}$ et $b_{0} \approx \bar{y} (1 - b_{1})$;
+		\item	La série de prévisions, surnommée \textbf{smoothed series}, devient donc $\hat{y_{t}} = b_{0} + b_{1} y_{t - 1}$ et l'erreur $e_{t} = y_{t} - (b_{0} + b_{1} y_{t - 1})$;
+		\end{itemize}
+	\item[]	\textbf{Variance} et \textbf{prévisions}
+		\begin{itemize}
+		\item	Voir la boite de formule pour le raisonnement sous-jacent à la formule du MSE;
+		\item	On peut généraliser l'équation de prévision pour obtenir la \textbf{\textcolor{amethyst}{$k$-step ahead} prévision} de $y_{T + k}$ avec $\hat{y}_{T + \textcolor{amethyst}{k}} = b_{0} + b_{1} \hat{y}_{T + \textcolor{amethyst}{k - 1}}$;
+		\item	Voir les formules pour comprendre le raisonnement derrière les formules de prévisions également;
+		\end{itemize}
 \end{enumerate}
 \textbf{Note sur les exercices:} 
 \begin{enumerate}
-	\item	
+	\item	Calculs de base pour faire liens entre variances;
+	\item[]	Semble trop basic pour être une question d'exam, les questions qui semble plus être du genre d'examen sont:
+	\item	Faire des prévisions de façon récursive;
+	\item	Intervalles de confiances / formules de variance de l'erreur	
 \end{enumerate}
 \end{CHPT_SUMM}
 
 \begin{FORMULA_SUMM}{Formules chapitre 20}
 La \textbf{vraie auto-corrélation} au lag $k$ pour un processus AR(1) stationnaire:
 \begin{align*}
-	\rho_{k}	&=	\beta_{1}^{k}
+	\rho_{k}	
+		&=	\beta_{1}^{k}	\\
 \end{align*}
+
+Estimations des coefficients
+\begin{align*}
+	b_{0}	
+		&\approx		\bar{y} (1 - b_{1})	&
+	b_{1}	
+		&\approx		r_{1}	\\
+\end{align*}
+
+Prévisions
+\begin{align*}
+	\hat{y}_{t}	
+		&=	b_{0} + b_{1} y_{t - 1}	&
+	\hat{y}_{T + \textcolor{amethyst}{k}}
+		&=	b_{0} + b_{1} \hat{y}_{T + \textcolor{amethyst}{k - 1}}, k \ge 1	\\
+	e_{t}	
+		&=	y_{t} - (b_{0} + b_{1} y_{t - 1})	\\
+\end{align*}
+
+MSE:
+
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{align*}
+	s^{2}
+		&=	\sum_{t = \textcolor{teal}{2}}^{T}	\frac{(e_{t} - \bar{e})^{2}}{\textcolor{burntorange}{T - 3}}	\\
+	\widehat{\text{Var}}(y_{t})
+		&=	\frac{s^{2}}{1 - \hat{\beta}_{1}^{2}}
+\end{align*}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{itemize}
+	\item	\textcolor{teal}{$e_{1}$ n'existe pas puisque $y_{0}$ n'existe pas et donc il y a seulement $T - 1$ résidus;}
+	\item	\textcolor{burntorange}{On pondère par $T - 3$ puisqu'il y a $T - 1$ observations et 2 paramètres à estimer. La formule est donc la même que d'habitude;}
+\end{itemize}
+\end{minipage}
+
+Prévision:
+
+\setlength{\mathindent}{-1cm}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{align*}
+	se_{\hat{y}_{T + \textcolor{amethyst}{k}}} 
+		&= 	s \sqrt{1 + b_{1}^{2} + \dots + b_{1}^{2\textcolor{amethyst}{(k - 1)}}}	\\
+		&=	s \sqrt{\sum_{t = \textcolor{amethyst}{1}}^{\textcolor{amethyst}{k}} b_{1}^{2\textcolor{amethyst}{(t - 1)}}}	\\
+	y_{\textcolor{amethyst}{T + k}}
+		&\in		\hat{y}_{\textcolor{amethyst}{T + k}} \pm	t_{1 - \frac{\alpha}{2}, \textcolor{teal}{n - 3}} \, se_{\hat{y}_{T + \textcolor{amethyst}{k}}}	
+\end{align*}
+\end{minipage}
+\begin{minipage}[ht]{0.5\linewidth}
+\begin{itemize}
+	\item	\textcolor{amethyst}{Voir le $k$-step ahead forecast pour comprendre la logique derrière la variance de l'erreur de prévision $\hat{y}_{T + \textcolor{amethyst}{k}}$;}
+	\item	\textcolor{teal}{$n - 3$ pour la même raison que ci-dessus;}
+\end{itemize}
+\end{minipage}
+\setlength{\mathindent}{1cm}
 \end{FORMULA_SUMM}
 
-\begin{CHPT_SUMM}{\addcontentsline{toc}{subsubsection}{21. Time Series: Forecasting Models}21. Time Series: Forecasting Models}
+\begin{CHPT_SUMM}[label = {timeseries21}]{\addcontentsline{toc}{subsubsection}{21. Time Series: Forecasting Models}21. Time Series: Forecasting Models}
 \begin{enumerate}
-	\item	Moving average smoothing
-	\begin{itemize}
-		\item	Average $k$ consecutive terms and create a new time series
-		\item	Moving average smoothing is weighted least square with weights of 1 on the most recent $k$ periods and 0 on earlier periods;
-	\end{itemize}
-	\item	Exponential smoothing
-	\begin{itemize}
-		\item	Moving average weights are constant for the $k$ previous periods and then drop off to 0;
-		\item	To have a smoother pattern of weights, use exponential smoothing to put weights that're proportionnal;
-		\item	Impact of different weights;
-	\end{itemize}
-	\item	Seasonal models
-	\begin{itemize}
-		\item	Fixed effects;
-		\item	Autoregressive seasonal models;
-		\item	Seasonal exponential smoothing;
-	\end{itemize}
-	\item	Unit root tests
-	\item	ARCH and GARCH models
+	\item	\textbf{Moving, \textit{or running}, average} smoothing
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	Modèle très naïf stipulant que \textbf{la prochaine observation} est la \textbf{moyenne} des k \textbf{dernières observations};
+		\item	On peut penser à la \textbf{longueur} du moving average, $k$, comme une \textbf{fenêtre} d'observations sur lesquelles on applique le modèle de moving average;
+		\end{itemize}
+	\item[]	\textbf{Estimation} et \textbf{longueur} $k$ du moving average
+		\begin{itemize}
+		\item	L'estimation du modèle de moving average est défini comme :
+			\begin{equation*}
+			\hat{s}_{t}	
+				=	\frac{y_{t - (k - 1)} + y_{t - (k - 2)} + \dots + y_{t}}{k}
+			\end{equation*}
+		Ce qui est essentiellement une reformulation de la moyenne échantillonnale;
+		\item	Le plus large la fenêtre $k$, le plus \textit{smooth} le modèle et le plus la moyenne va tendre vers 0;
+		\item[]	Également, si $k = 1$ aucun \textit{smoothing} n'est appliqué;
+		\item	Pour bien saisir ceci voici un exemple avec $k = 24$ et $k = 12$ d'un modèle de smoothing:
+		
+		\includegraphics[scale=0.25]{src/smoothing-example.png}
+		\item	Un bon exemple de ceci en pratique est l'indice des prix à la consommation pour stabiliser les augmentations et mieux identifier les tendances;
+		\item	La balance est donc de bien balancer le $k$ pour identifier les tendances sans faire de \textbf{oversmoothing} et être incapable d'identifier les vraies tendances;
+		\end{itemize}
+	\item[]	\textbf{Prévisions}
+		\begin{itemize}
+		\item	La série peut également être réexprimée pour faire des prévisions :
+			\begin{equation*}
+			\hat{s}_{t}	=	\hat{s}_{t - 1} - \frac{y_{t} - y_{t - k}}{k}
+			\end{equation*}
+			S'il n'y a pas de tendance, $y_{t} - y_{t - k}$ s'annule et on prévoit $\hat{y}_{T + l} = \hat{s}_{T} \, \forall l$;
+		\item	Si un modèle a une tendance linéaire, par exemple $y_{t} = \beta_{0} + \beta_{1} t + \varepsilon_{t}$, on peut le traiter avec du \textit{double smoothing};
+		\end{itemize}
+	\item[]	\textbf{Procédure} pour obtenir une série \textbf{doubly smoothed}
+		\begin{enumerate}
+		\item	Créer une \textbf{smoothed series} des valeurs $\hat{s}_{t}^{(1)}$ avec la même formule réécrite ci-dessous:
+			\begin{equation*}
+			\hat{s}_{t}^{(1)}	
+				=	\frac{y_{t} + \dots + y_{t - (k - 1)}}{k}
+			\end{equation*}
+		\item	Pour	 créer une \textbf{doubly smoothed series}, réappliquer la même formule à la série qui a \textbf{déjà \textit{été smoothed}}:
+			\begin{equation*}
+			\hat{s}_{t}^{(2)}	
+				=	\frac{\hat{s}_{t}^{(1)} + \dots + \hat{s}_{t - (k - 1)}^{(1)}}{k}
+			\end{equation*}
+		\end{enumerate}
+	\item[]	\textbf{Estimations} de \textbf{double smoothing}
+		\begin{itemize}
+		\item	L'estimation de la tendance est alors
+			\begin{equation*}
+			b_{1, T}	
+				=	\frac{2(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)})}{k - 1}
+			\end{equation*}
+		\item	Et la prévision $l$ lead times dans le futur :
+			\begin{equation*}
+			\hat{y}_{T + l}
+				=	\hat{s}_{t} + b_{1, T}	
+			\end{equation*}
+		\end{itemize}
+	\item[]	\textbf{Attribution de poids}
+		\begin{itemize}
+		\item	Le average smoothing est en réalité une \textit{minimisation des moindres carrés \textbf{pondérée}} assignant un poids de 1 pour les observations dans la fenêtre $k$ et de 0 pour les autres;
+		\item[]	Ce faisant, il n'est pas optimal d'arbitrairement sélectionner un point $k$ où l'on segmente les données et d'ensuite attribuer le même poids aux observations sélectionnées;
+		\item[]	En réalité, on veut donner plus de poids aux observations récentes qu'aux plus vieilles observations;
+		\item[]	Allouer un poids décroissant aux observations est précisement ce que fait le \textit{exponential smoothing};
+		\end{itemize}	
+%%%			
+	\item	\textbf{Exponential} smoothing	
+	\item[]	\textbf{Lien} avec le moving average smoothing
+		\begin{itemize}
+		\item	Pour visualiser le lien avec le moving average et avec l'estimation des moindres carrés pondérés, l'expression du \textbf{exponential smoothed estimate} de la série est:
+			\begin{equation*}
+			\hat{s}_{t}
+				=	\frac{y_{t} + w y_{t - 1} + w^{2} y_{t - 2} + \dots + w^{t} y_{0}}{1/(1 - w)}
+			\end{equation*}
+			d'où l'idée de pondération des observations s'éclaircit;
+		\end{itemize}
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	L'\textbf{exponential smoothing} utilise la même logique que le moving average smoothing mais en attribuant un \textbf{poids décroissant};
+		\item[] Alias, on attribue plus d'importance aux observations récentes avec de moins en moins d'importance le plus on s'éloigne du présent;
+		\item	On peut réécrire l'expression de façon récursive :
+			\begin{equation*}
+			\hat{s}_{t}
+				=	w \hat{s}_{t - 1} + (1 - w) y_{t}
+			\end{equation*}
+		\item	Le poids (weight), ou \textbf{smoothing factor}, est \textbf{contenu entre 0 et 1} et représente \textbf{la vitesse} à laquelle le poids de l'observation précédente va \textbf{décroître};
+		\item[]	Alors, le plus faible $w$, le plus \textit{smooth} la série
+		\item[]	Pour concrétiser, en un exemple de différentes poids:
+		
+		\includegraphics[scale=0.2]{src/exponential-smoothing-example.png}
+		\end{itemize}
+	\item[]	\textbf{Prévision} de exponential smoothing
+		\begin{itemize}
+		\item	La prévision $l$ lead times dans le futur :
+			\begin{equation*}
+			\hat{y}_{T + l}
+				=	\hat{s}_{T}	
+			\end{equation*}
+		\item	De plus, le \textbf{one-step ahead prediction error} permet de comparer ce que le modèle aurait prédit dans le passé, $\hat{s}_{t - 1}$, contre les données que nous possédons $y_{t}$:
+			\begin{equation*}
+			\varepsilon_{t}
+				=	y_{t} - \hat{s}_{t - 1}	
+			\end{equation*}		
+		\item[]	Les \textbf{prévisions} permettent alors d'\textbf{évaluer l'ajustement} du modèle;
+		\item	On définit également la \textbf{Sum of Squared one-step ahead prediction error}:
+			\begin{equation*}
+			SS(w)
+				=	\sum_{t = 1}^{T}(y_{t} - \hat{s}_{t - 1})^{2}, \, \hat{s}_{0} = y_{0}
+			\end{equation*}
+		\item[]	Puisque $SS(w)$ est fonction du poids, on choisit le poids la minimisant $SS(w)$;
+		\end{itemize}	
+	\item[]	\textbf{Tendances linéaires} et \textbf{double smoothing}
+		\begin{enumerate}
+		\item[]	Pareillement au moving average smoothing, le présence de tendance linéaire est traitée avec du \textit{double smoothing}
+		\item	Créer une \textbf{smoothed series} des valeurs $\hat{s}_{t}^{(1)}$ avec la formule simplifiée réécrite ci-dessous:
+			\begin{equation*}
+			\hat{s}_{t}^{(1)}	
+				=	w \hat{s}^{(1)}_{t - 1} + (1 - w) y_{t}
+			\end{equation*}
+		\item	Pour	 créer une \textbf{doubly smoothed series}, utiliser l'étape précédente comme input:
+			\begin{equation*}
+			\hat{s}_{t}^{(2)}	
+				=	w \hat{s}^{(2)}_{t - 1} + (1 - w) \hat{s}^{(1)}_{t}
+			\end{equation*}
+		\end{enumerate}
+	\item[]	\textbf{Estimations} de \textbf{double exponential smoothing}
+		\begin{itemize}
+		\item	L'estimation de la tendance et de l'intercepte est alors
+			\begin{align*}
+			b_{1, T}	
+				&=	\frac{(1 - w)}{w}\left(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}\right)	\\
+			b_{0, T}
+				&=	2(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)})
+			\end{align*}
+			où l'équation de l'intercepte est \textit{très semblable} à l'équation de la pente pour le moving average smoothing;
+		\item	Et la prévision $l$ lead times dans le futur :
+			\begin{equation*}
+			\hat{y}_{T + l}
+				=	b_{0, T} + b_{1, T} l	
+			\end{equation*}
+		\end{itemize}
+%%%		
+	\item	\textbf{Seasonal} models
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	Les modèles de saisonnalité sont habituellement utilisés pour expliquer des phénomènes naturels;
+		\item	Par exemple, la position du soleil dans le temps qui dépends de l'heure;
+		\item	Ce faisant, les fonctions trigonométriques peuvent être utilisées pour ajuster des modèles avec saisonnalité;
+		\item[]	Pour comprendre l'intuition sous-jacente à l'utilisation des fonctions trigonométriques, observer ce graphique de la fonction d'autocovariance:
+		
+		\includegraphics[scale=0.25]{src/sine-wave-autocorrelation.png}
+		\item[]	Il y a de l'autocorrélation cyclique;
+		\item[] La 1ère valeur est très semblable à la 24ème, la 12ème à la 36ème, etc. et donc nous allons observer des valeurs très semblables à chaque 24 unité de temps;
+		\item[]	De plus, le graphique \textbf{ressemble} évidemment \textbf{à une fonction sinusoïdale};
+		\item 	Alors, nous avons un cycle \textbf{saisonnale} pouvant être \textbf{estimé par une fonction sinusoïdale};
+		\end{itemize}
+	\item[]	\textbf{Fixed effects}
+		\begin{itemize}
+		\item	\og fixed effects \fg{} représente que la relation est fixe dans le temps;
+		\item[]	Pour exemple, on ne s'attend pas à de la neige en juillet;
+		\item	On peut représenter beaucoup de patterns avec des fonctions trigonométriques;
+		\item	Pour exemple, soit la fonction $g(t) = a \sin (f t + b)$ avec:
+		\item[]	$a$: l'\textbf{amplitude}, alias la valeur la plus élevée de la courbe;
+		\item[]	$f$: la \textbf{fréquence}, alias le nombre de cycles sur l'intervalle $(0, 2\pi)$
+		\item[]	$b$: le \textbf{déphasage};
+		\item	Rappel: $\sin(x + y) = \cos(x) \sin(y) + \cos(y) \sin(x)$;
+		\item	On réécrit $g(t)$ comme:
+		\begin{align*}
+			g(t)
+				&=	a \sin (f t + b)	\\
+				&=	\beta_{1} \sin(ft) + \beta_{2} \cos(ft)	\\
+			&\text{où}\\
+			\beta_{1}	
+				&=	a \cos (b)	&
+			\beta_{2}	
+				&=	a \sin (b)	
+		\end{align*}
+		\item	Pour une série chrono avec une \textbf{seasonal base} (SB), on défini $f_{i} = \frac{2\pi i}{SB}$ pour l'équation générale:
+		\begin{align*}
+			S(t)
+				&=	a_{i	} \sin (f_{i} t + b_{i})	\\
+				&=	\sum_{i = 1}^{m} \{ \beta_{1i} \sin(f_{i}t) + \beta_{2i} \cos(f_{i}t)	 \} 
+		\end{align*}
+		Pour exemple, si le série était des observations mensuelles alors $SB = 12$;
+		\item	Par la suite, on défini le modèle de régression linéaire multiple avec $k = 2m$ et $m \le SB/2$ variables explicatives: 
+		\begin{align*}
+			y_{t}
+				&=	\beta_{0} + S_t + \varepsilon_{t}	\\
+				&=	\beta_{0} + \sum_{i = 1}^{m} \{ \beta_{1i} \sin(f_{i}t) + \beta_{2i} \cos(f_{i}t)	 \} + \varepsilon_{t} 
+		\end{align*}
+		\end{itemize}
+	\item[]	\textbf{Autoregressive seasonal models}
+		\begin{itemize}
+		\item	Le même concept d'avoir les \textit{lagged} variables réponses ($y_{t - 1}$) comme variable explicative peut être appliqué au modèles avec saisonnalité;
+		\item	Nous avons donc le \textbf{Seasonal Autoregressive model of \textcolor{burntorange}{Order P}}, SAR(\textcolor{burntorange}{P}), défini comme:
+		\begin{align*}
+			y_{t}
+				&=	\beta_{0} + \beta_{\textcolor{burntorange}{1}}y_{t - SB} + \beta_{\textcolor{burntorange}{2}} y_{t - \textcolor{burntorange}{2}SB} + \dots + \beta_{\textcolor{burntorange}{P}} y_{t - \textcolor{burntorange}{P} SB} + \varepsilon_{t}
+		\end{align*}
+		\item[]	Pour exemple, si $SB = 12$ alors SAR(\textcolor{burntorange}{1}) est défini comme étant $y_{t} = \beta_{0} + \beta_{\textcolor{burntorange}{1}}y_{t - 12} + \varepsilon_{t}$;
+		\item	Chaque terme est donc fonction des P termes précédents;
+		\end{itemize}
+	\item[]	\textbf{Seasonal exponential smoothing}
+		\begin{itemize}
+		\item	Holt à généralisé le double exponential smoothing avec 2 smoothing parameters $w_{2}$ et $w_{1}$;
+		\item[]	Ce faisant le niveau (intercepte) $\beta_{0}$ et la trend (tendance) $\beta_{1}$ n'ont pas besoin d'avoir le même smoothing parameter;
+		\item	L'estimation des paramètres est:
+			\begin{align*}
+			b_{0, t}	
+			&=	(1 - w_{1}) y_{t} + w_{1} (b_{0, t - 1} + b_{1, t - 1})	\\
+			b_{1, t}	
+			&=	(1 - w_{2}) (b_{0, t} - b_{0, t - 1}) + w_{2} b_{1, t - 1}	
+			\end{align*}
+		\item	La prévision du modèle avec tendance linéaire $y_{t} = \beta_{0} + \beta_{1}t + \varepsilon_{t}$ est donc la même qu'avec le double exponential smoothing $\hat{y}_{T + l} = b_{0, T} + b_{1, T} l$;
+		\item	Par la suite, Winters à généralisé la procédure pour y inclure des \textit{tendances saisonnales};
+		\item	Le résultat est le \textbf{Holt-Winters seasonal additive model}:
+			\begin{align*}
+			y_{t} 
+			&= 	\beta_{0} + \beta_{1}t + S_{t} + \varepsilon_{t}
+			\end{align*}		
+		\item[]	où $S_{t} = S_{t - SB}$ et $S_{1} = S_{2} = \dots = S_{SB} = 0$;
+		\item	Le nouveau modèle emploi \textbf{trois smoothing parameters}:		
+			\begin{enumerate}
+			\item[$w_{1}$]: level;
+			\item[$w_{2}$]: trend;
+			\item[$w_{3}$]: seasonality;
+			\end{enumerate}
+		\item	Les estimations des paramètres sont donc:
+			\begin{align*}
+			b_{0, t}	
+			&=	(1 - w_{1}) (y_{t} - \hat{S}_{t - SB}) + w_{1} (b_{0, t - 1} +  b_{1, t - 1})	\\
+			b_{1, t}	
+			&=	(1 - w_{2}) (b_{0, t} - b_{0, t - 1}) + w_{2} b_{1, t - 1}	\\
+			\hat{S}_{t}	
+			&=	(1 - w_{3}) (y_{t} - b_{0, t}) + w_{3} \hat{S}_{t - SB}	
+			\end{align*}
+		\item	Les prévisions:
+			\begin{align*}
+			\hat{y}_{T + l}
+			&=	b_{0, T} + b_{1, T} l + \hat{S}_{T}(l)
+			\end{align*}		
+		\item[]	où $\hat{S}_{T}(l) = \hat{S}_{T + l}$ pour $l = 1, \dots, SB$, $\hat{S}_{T}(l) = \hat{S}_{T + l - SB}$ pour $l = SB + 1, \dots, 2SB$, etc.;
+		\item[]	Pour exemple, si $SB = 12$ alors $\hat{S}_{16} \Leftrightarrow \hat{S}_{4}(12) = \hat{S}_{4}$;	
+		\end{itemize}
+%%%		
+	\item	\textbf{Unit root tests}
+	\item[]	\textbf{Contexte}
+		\begin{itemize}
+		\item	Les \textit{unit root tests} servent à tester si une série est stationnaire ou pas;
+		\item	Ce faisant, une série est non-stationnaire lorsqu'elle \textit{possède} une unit root;
+		\item	Le test de Dickey-Fuller en est un exemple;
+		\item	Le test sert à déterminer si la tendance d'une série chronologique est linéaire, auto-régressive, ou une marche aléatoire;	
+		\item	Pour ce faire, on établit le système de régression:
+			\begin{equation*}
+			y_{t} - y_{t - 1}	
+			=	\beta_{0} + (\phi - 1) y_{t - 1} + \beta_{1} t + \varepsilon_{t}
+			\end{equation*}
+		\item[]	On observe que: 
+			\begin{enumerate}
+			\item	Si $\phi = 1$, la série est une marche aléatoire avec $y_{t} = \beta_{0} + \beta_{1} t + y_{t - 1} + \varepsilon_{t} $;
+			\item	Si $\phi < 1$ et que $\beta_{1} = 0$, la série est une auto-régression AR(1) avec $y_{t} = \beta_{0} + \phi y_{t - 1} + \varepsilon_{t}$ 
+			\item[]	\textit{(Le paramètre $\phi$ est le paramètre de tendance habituellement écrit comme $\beta_{1}$)};
+			\item	Si $\phi = 0$, la série est une tendance linéaire avec $y_{t} = \beta_{0} + \beta_{1} t + \varepsilon_{t} $;
+			\end{enumerate}
+		\end{itemize}
+	\item[]	\textbf{Test} Dickey-Fuller et statistique $t$ :
+		\begin{itemize}
+		\item[]	Si la série est une marche aléatoire, $\phi = 1$, elle est \textit{non-stationnaire};
+		\item	On cherche donc à faire un test très semblable au \textit{test d'auto-corrélation} du chapitre 20 pour \textbf{tester la stationnarité} de la série:
+		\setlength{\mathindent}{-2cm}
+			\begin{align*}
+			\mathcal{H}_{0} &:	\phi = 1, \ \text{le modèle est non-stationnaire (marche aléatoire)}	\\
+			\mathcal{H}_{1} &:	\phi < 1, \ \text{le modèle est stationnaire}	
+			\end{align*}
+		\setlength{\mathindent}{1cm}
+		\item	Cependant, puisque sous l'hypothèse nulle la série est une marche aléatoire, $t_{ddl}$ \textit{ne suit \textbf{pas} la distribution $t$ habituelle} ($t_{ddl} \not\sim t$) mais plutôt une distribution spéciale;
+		\end{itemize}
+	\item[]	Test \textbf{Dickey-Fuller} :
+		\begin{itemize}
+		\item	Le test \textit{Dickey-Fuller} est donc conçu pour ce test d'hypothèse;
+		\item[\textbf{Note}]: Les valeurs critiques compilées par Dickey-Fuller sont plus élevées que le test habituel;
+		\item[]	Ce faisant, il est plus difficile de rejeter l'hypothèse d'une marche aléatoire et est donc typique d'utiliser un seuil de 10\% au lieu de 5\% pour compenser;		
+		\item	Le test pose que les erreurs $\varepsilon_{t}$ ne sont pas auto-corrélées alors que le \textit{test \textbf{augmenté} de Dickey-Fuller} le permet:
+			\begin{equation*}
+			y_{t} - y_{t - 1}	
+			=	\beta_{0} + (\phi - 1) y_{t - 1} + \beta_{1} t + \sum_{j = 1}^{p} \phi_{j} (y_{t - j} - y_{t - j - 1}) + \varepsilon_{t}
+			\end{equation*}
+		\item[]	Le test augmenté inclut les lagged variables dans le modèle de régression;
+		\item[]	Du fait, c'est la même idée que le généralisation du ARCH par le GARCH ci-dessous;
+		\item	Typiquement, pour déterminer le nombre $p$ de variables lagged, le test est répété pour plusieurs valeurs possibles;
+		\end{itemize}
+%%%		
+	\item	\textbf{Modèles de volatilité}
+	\item[]	Description du modèle \textbf{ARCH}
+		\begin{itemize}
+		\item	C'est le \textbf{Auto Regressive Changing Heteroscedasticity}, ou \textbf{Auto Regressive Conditional Heteroscedasticity}, model d'ordre p - ARCH(p):
+		\item	\textit{Heteroscedasticité} veut juste dire que la volatilité, ou variance, n'est \textbf{pas constante} dans le temps;
+		\item[]	En observant la graphique du vidéo sur ARCH de ritvikmath, on voit que la volatilité \textbf{change} dans le temps;
+		\item[] Annuellement, il y a une période de temps pour laquelle les résidus sont très volatiles, mais que pour le reste de l'année elle est relativement stable;
+		\item	C'est-à-dire, la volatilité est \textbf{conditionnelle} à le moment dans le temps où nous sommes;
+		\item[]	L'erreur à un moment dépend de l'erreur au moment précédent et donc nous avons un  modèle \textbf{auto-régressif};
+		\end{itemize}
+	\item[]	\textbf{Variance} du modèle ARCH
+		\begin{itemize}
+		\item	La volatilité, ou plutôt variance $\text{Var}(\varepsilon_{t}) = \sigma^{2}_{t}$, d'aujourd'hui est fonction de celle du passé;
+		\item	Pour un modèle d'ordre \textcolor{lava}{1}, ARCH(\textcolor{lava}{1}), on obtient:
+			\begin{align*}
+			\sigma^{2}_{t}	&=	w + \gamma_{\textcolor{lava}{1}} \varepsilon_{t - \textcolor{lava}{1}}^{2}
+			\end{align*}
+		\item[]	On peut voir la \textbf{volatilité à long-terme} $w$ un peu comme une volatilité \og \textit{moyenne} \fg{} à l'entour de laquelle les erreurs se situent;
+		\item[]	Donc, $\gamma_{1}$ est l'importance, ou \textbf{poids}, à accorder à l'erreur de la période précédente;
+		\item	Plus généralement, la variance conditionnelle d'un modèle d'ordre \textcolor{lava}{P} AR\textcolor{lava}{CH}(\textcolor{lava}{P}) est:
+			\begin{align*}
+			\sigma^{2}_{t}	&=	w + \sum_{j = 1}^{\textcolor{lava}{p}} \gamma_{j} \varepsilon_{t - j}^{2}
+			\end{align*}
+		\item	Et la variance inconditionnelle: 
+			\begin{align*}
+			\text{Var}(\varepsilon_{t})	
+			&=	\frac{w}{1 - \sum \gamma_{j}}
+			\end{align*}
+		\item	Donc, plus P est large plus on capture des effets à plus long-terme;
+		\item	Quelques conditions:
+			\begin{align*}
+			w &> 0	&	
+			\gamma_{j} &\ge 0	&
+			\sum_{j = 1}^{p} \gamma_{j} &< 1
+			\end{align*}
+		\end{itemize}
+	\item[]	\textbf{Généralisation} du modèle ARCH
+		\begin{itemize}
+		\item	Nous avons le \textbf{\textit{Generalized} Auto Regressive Changing Heteroscedasticity} model d'ordre P textcolor{teal}{G}ARCH(p, \textcolor{teal}{q});
+		\item	Le GARCH complément le ARCH de la même façon que le modèle de moving average complément le modèle auto-régressif;
+		\item	Le \textcolor{teal}{G}AR\textcolor{lava}{CH}(\textcolor{lava}{p}, \textcolor{teal}{q}) inclut une dépendance sur les \textcolor{teal}{q} dernières variances:
+			\begin{align*}
+			\sigma^{2}_{t}	&=	w + \sum_{j = 1}^{\textcolor{lava}{p}} \gamma_{j} \varepsilon_{t - j}^{2} + \sum_{i = 1}^{\textcolor{teal}{q}} \delta_{i} \textcolor{teal}{\sigma^{2}_{t - i}}
+			\end{align*}
+		\item	Quelques conditions:
+			\begin{align*}
+			w &> 0	&	
+			\delta_{i}	&\ge 0	&
+			\gamma_{i} &\ge 0	&
+			\sum_{j = 1}^{p} \gamma_{j} + \sum_{i = 1}^{q} \delta_{i} &< 1
+			\end{align*}
+		\end{itemize}
+	\item[]	\textbf{Stationnarité} et \textbf{variance \textit{conditionnelle}}
+		\begin{itemize}
+		\item	Un modèle GARCH est stationnaire et a comme variance \textbf{in}conditionnelle:
+			\begin{align*}
+			\text{Var}(\varepsilon_{t})	
+			&=	\frac{w}{1 - \sum \gamma_{j} - \sum \delta_{i}}
+			\end{align*}
+		\end{itemize}
 \end{enumerate}
+
 \textbf{Note sur les exercices:} 
 \begin{enumerate}
-	\item	
+	\item	Pour smoothing exponentiel, questions sont de récursivement calculer une prévision;
+	\item	Pour le Holt-Winters model, calculer récursivement une prévision / les paramètres;
+	\item	Pour le ARCH/GARCH ce serait quelque-chose avec les variances (style \# 15);
 \end{enumerate}
 \end{CHPT_SUMM}
+
+\begin{FORMULA_SUMM}{Formules chapitre 21}
+Moving average smoothing
+\begin{align*}
+	\hat{s}_{t}
+		&=	\frac{y_{t - (k - 1)} + y_{t - (k - 2)} + \dots + y_{t}}{k}	\\
+		&=	\hat{s}_{t - 1} - \frac{y_{t} - y_{t - k}}{k}	\\
+	\hat{s}_{t}^{(2)}	
+		&=	\frac{\hat{s}_{t}^{(1)} + \dots + \hat{s}_{t - (k - 1)}^{(1)}}{k}	\\
+	b_{1, T}	
+		&=	\frac{2(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)})}{k - 1}	\\
+	\hat{y}_{T + l}
+		&=	\hat{s}_{t} + b_{1, T}	
+\end{align*}
+
+Exponential smoothing
+\begin{align*}
+	\hat{s}_{t}
+		&=	w \hat{s}_{t - 1} + (1 - w) y_{t}	\\
+		&=	\frac{y_{t} + w y_{t - 1} + w^{2} y_{t - 2} + \dots + w^{t} y_{0}}{1/(1 - w)}	\\
+	\hat{y}_{T + l}
+		&=	\hat{s}_{T}		\\
+	\varepsilon_{t}
+		&=	y_{t} - \hat{s}_{t - 1}	\\
+	SS(w)
+		&=	\sum_{t = 1}^{T}(y_{t} - \hat{s}_{t - 1})^{2}, \hat{s}_{0} = y_{0}	\\
+	b_{1, T}	
+		&=	\frac{(1 - w)}{w}\left(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}\right)	\\
+	\hat{y}_{T + l}
+		&=	b_{0, T} + b_{1, T} l	\\
+\end{align*}
+
+Seasonal models
+Fixed effects
+\begin{align*}
+	y_{t}
+		&=	\beta_{0} + S_t + \varepsilon_{t}	\\
+		&=	\beta_{0} + \sum_{i = 1}^{m} \{ \beta_{1i} \sin(f_{i}t) + \beta_{2i} \cos(f_{i}t)	 \} + \varepsilon_{t} 
+\end{align*}
+
+SAR\textcolor{burntorange}{P}
+\begin{align*}
+	y_{t}
+	&=	\beta_{0} + \beta_{\textcolor{burntorange}{1}}y_{t - SB} + \beta_{\textcolor{burntorange}{2}} y_{t - \textcolor{burntorange}{2}SB} + \dots + \beta_{\textcolor{burntorange}{P}} y_{t - \textcolor{burntorange}{P} SB} + \varepsilon_{t}	\\
+\end{align*}
+
+Holt-Winters seasonal additive model
+\begin{align*}
+	y_{t} 
+	&= 	\beta_{0} + \beta_{1}t + S_{t} + \varepsilon_{t}
+\end{align*}
+\begin{align*}
+	b_{0, t}	
+	&=	(1 - w_{1}) (y_{t} - \hat{S}_{t - SB}) + w_{1} (b_{0, t - 1} +  b_{1, t - 1})	\\
+	b_{1, t}	
+	&=	(1 - w_{2}) (b_{0, t} - b_{0, t - 1}) + w_{2} b_{1, t - 1}	\\
+	\hat{S}_{t}	
+	&=	(1 - w_{3}) (y_{t} - b_{0, t}) + w_{3} \hat{S}_{t - SB}	
+\end{align*}
+\begin{align*}
+	\hat{y}_{T + l}
+	&=	b_{0, T} + b_{1, T} l + \hat{S}_{T}(l)
+\end{align*}
+
+\textbf{Unit root test}
+
+\textbf{ARCH}
+
+\textbf{GARCH}
+\end{FORMULA_SUMM}
+
 
 \subsection{Notes sur les vidéos YouTube}
 
@@ -2118,7 +2641,231 @@ Il est important de faire cette distinction pour les séries chronologiques puis
 With these conditions, we prove the OLS is BLUE.
 \end{YTB_SUMM}
 
-%\begin{YTB_SUMM}{}
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=LgIOgb-6mYA&list=PLvo9ZnEQG5oXC-cg8ecXr6SJZWprEL1UC&index=3}{Ben Lambert: Strict exogeneity}}
+\begin{itemize}
+	\item	By including the previous value in the model, we remove the problem of the monetary policy at time 2 being dependant on the monetary police 2 units of time ago;
+	\item	It’s a \textbf{lagged effect} because the dependant variable depends on itself;
+	\item	Also, adding the lagged variable makes the model \textit{dynamic};
+	\item	However, what if the dependant variable, say sales, is actually dependant on a \textbf{function} of the sales at a previous time and not just the amount of sales themselves?
+	\item	Well this is what we can't easily model and as such the model would have \textbf{weak exogeneity} and \textbf{NOT \textit{strict} exoogenity};
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=a7_3qX67e7c&list=PLvo9ZnEQG5oXC-cg8ecXr6SJZWprEL1UC&index=4}{Ben Lambert: Strict exogeneity assumption - intuition}}
+\begin{itemize}
+	\item	Because sales is, obviously, highly correlated with itself then of course advertising will also seem very correlated;
+	\item	The impact is that the OLS estimate of the parameter will be > the true parameter;
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=5-2C4eO4cPQ&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=5}{ritvikmath: Time Series Talk : Autoregressive model}}
+\begin{itemize}
+	\item	Auto\textbf{regressive}: means regression
+	\item	\textbf{Auto}regressive: means predict something based on past values of that same thing
+	\item	\textbf{Emphasis} on how \textbf{natural} it is to want to \textit{predict the value} of something based on \textit{what it was} in the past;
+	\item[]	For example, price of an item, number of houses sold per month, etc.;
+	\item[]	Then you can \textbf{identify patterns} on how that something evolves over time;
+	\item	Want to identify \textbf{which lags}, i.e. which \textit{past values}, are the most \textbf{important};
+	\item[]	We don't want all the past values or model would be overly complex;
+	\item	This is where the importance of seasonal patterns come into play;
+	\item[]	For example, maybe the value 12 months ago is much more important than few previous months;
+	\item	This is thus evaluated with the autocorrelation function (ACF);
+	\item[]	We'd only want to include the lags with an ACF value above a certain band;
+	\item	\textbf{We only want the lags whose direct effects are high in magnitude}	
+	\item	Example from video:
+	
+	\includegraphics[scale=0.2]{src/ritvikmath-lags-pcf.png}
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=voryLhxiPzE&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=6}{ritvikmath: Time Series Talk : Moving Average Model}}
+Food equation: $\hat{f}_{t} = \mu + \phi_{1} \varepsilon_{t - 1} = 10 + 0.5 \varepsilon_{t - 1} $
+\begin{itemize}
+	\item	First parameter is the baseline;
+	\item[]	Ceteris paribus, you would bring 10 cupcakes to the party so $\mu = 10$;
+	\item	Professor's crazy and every month he's gonna say you brought the wrong number of cupcakes by a certain amount $\varepsilon_{t}$;
+	\item[]	This amount is normally distributed with an average of $\mu_{\varepsilon}$ of cupcakes which is usually 0 and a variability of the wrong number of cupcakes $\sigma_{\varepsilon}$ that we'll say is 1;
+	\item	$\varepsilon \sim \mathcal{N}(\mu_{\varepsilon} = 0, \sigma_{\varepsilon} = 1)$
+	\item	Since we know he's a little crazy, want to take into account the error into the amount of cupcakes we bring each month;
+	\item	Logically, each month we will therefore look at how close we were to bringing the right amount of cupcakes last month and take that into account;
+	\item	The amount of consideration for last month's error is $\phi_{1}$ which we set to $0.5$;
+	\item[]	Thereby, I'm always gonna bring 10 cupcakes but will adjust by whatever the professor said was my error last time;
+	\item[]	The first month, I'd bring 10;
+	\item[]	Last month I brought 10 and only needed 8 so my error was 2;
+	\item[]	This month I'll bring $10 + 0.5 * (-2) = 9$;
+	\item[]	The professor says I was off by one and should've brought 10;
+	\item[]	The following month I'll bring $10 + 0.5 (1) = 10.5$ (pretend can bring fractionnal amount of cupcakes);
+	
+	\includegraphics[scale=0.4]{src/ritvikmath-MA-table.png}
+	\item	So we have our average, 10, and we move around it always being centered at 10 -> \textbf{\textit{moving} average model};
+	\item	This is the MA(1) model because we only take into account last month's error;
+	\item	The real amount of cupcakes would therefore be $f_{t} = \mu + \phi_{1} \varepsilon_{t - 1} + \textcolor{burntorange}{\varepsilon_{t}}$;
+	\item[]	i.e., we take into account \textit{this month's error};
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=HhvTlaN06AM&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=8}{ritvikmath: Time Series Talk: ARMA Model}}
+Lightbulb manufacturer. Challenge is: how many lightbulbs ($k_{t}$) to manufacture?
+\begin{itemize}
+	\item	We use the \textbf{Auto Regressive Moving Average} \textcolor{amethyst}{AR}\textcolor{burntorange}{MA}(1, 1) model: 
+	\begin{equation*}
+		l_{t} = \beta_{0} + \textcolor{amethyst}{\beta_{1} l_{t - 1}} + \textcolor{burntorange}{\phi_{1} \varepsilon_{t - 1}} + \varepsilon_{t}
+	\end{equation*}
+	\item[]	The \textcolor{amethyst}{autoregressive bit} is the number of lightbulbs need to create last month;
+	\item[]	The \textcolor{burntorange}{moving average bit} is the error from the previous time period;
+	\item	Anything \og hat \fg{} is the forecast in time series;
+	\begin{equation*}
+		\hat{l}_{t} = \beta_{0} + \textcolor{amethyst}{\beta_{1} l_{t - 1}} + \textcolor{burntorange}{\phi_{1} \varepsilon_{t - 1}}
+	\end{equation*}
+	\item	Rule of thumb to identify the order of the ARMA model is the correlation functions
+	\item[]	ACF helps identify the MA order because it measures direct effects;
+	\item[]	PACF helps identify the AR order because it measures the moving average bit;
+	\item	
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=3UmyHed0iYE&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=9}{ritvikmath: Time Series Talk: ARIMA Model}}
+\begin{itemize}
+	\item	Context is salesman of anchors;
+	\item[]	The number of anchors sold is $a_{t}$;
+	\item[]	We see the time series doesn't have a constant mean and thus is not stationnary;
+	
+	\includegraphics[scale=0.4]{src/ritvikmath-anchors-plot.png}
+	\item[]	Therefore, we can't use the straight AR, MA, or ARMA models;
+	\item	However, if we could \textbf{eliminate the trend} we could probably use it;
+	\item[]	Enter, the ARIMA model;
+	\item[]	When things look stationnary except for a trend, a \textbf{moving mean};
+	\item	\textbf{Auto Regressive \textit{Integrated} Moving Average} (ARIMA) model;
+	\item[]	Integrated means that \textbf{instead} of predicting the time series itself, we \textbf{predict \textit{differences} of the time series} between 2 times;
+	
+	\includegraphics[scale=0.4]{src/ritvikmath-anchors-plot-diff.png}
+	\item	If we take the diference between a linear function from one time stamp to the next, we expect linearity;
+	\item[]	So, we expect the same behaviour from our time series;
+	\item[]	We expect it to hover around a constant and that's what we see with the transformation;
+\end{itemize}
+\begin{itemize}
+	\item	\textcolor{amethyst}{AR}\textcolor{teal}{I}\textcolor{burntorange}{MA}(\textcolor{amethyst}{p}, \textcolor{teal}{d}, \textcolor{burntorange}{q})
+	\item[]	\textcolor{amethyst}{p} and \textcolor{burntorange}{q} are both orbiters but \textcolor{amethyst}{p} for the \textcolor{amethyst}{AR} part and \textcolor{burntorange}{q} for the \textcolor{burntorange}{MA} part;
+	\item[]	\textcolor{teal}{d} is the orbiter for the \textcolor{teal}{Integrated (I)} part;
+	\item	The second difference, \textcolor{teal}{d = 2}, would be creating a new series of the differences of the series of differences of the original series;
+	\item[]	However, once is usually sufficient;
+	\item	The integrated bit is take care of by $\textcolor{teal}{z_{t}}$ being a difference:
+	\begin{equation*}
+		\textcolor{teal}{z_{t}}	=	\textcolor{amethyst}{\phi_{1}} z_{t - 1} + \textcolor{burntorange}{\theta_{1}} \varepsilon_{t - 1}
+	\end{equation*}	
+	\item	To recover the original value, $a_{k}$, 
+	\item	Alot of time series is just how complicated can we make this acronym
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=4hrMdu9CSQs&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=10}{ritvikmath: Time Series Talk : What is seasonality?}}
+\begin{itemize}	
+	\item	Setup: Ice cream vendor;
+	\item	\textbf{Seasonality}: Repeating \textbf{predictible} pattern \textbf{within a year}
+	
+	\includegraphics[scale=0.4]{src/ritvikmath-seasonality-plot.png}
+	\item	If there's seasonality then it's \textit{not stationnary} so we want to remove it;
+	\item[]	Lots of ways to remove it;
+	
+	\item	\textbf{Cycle}: Repeating pattern over the course of years, and \textbf{aren't predictible}
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=VPNijQ2L3XM}{ritvikmath: Time Series Talk : Lag Operator}}
+\begin{enumerate}
+	\item	Takes alot of space to write out, for example, an ARMA(3, 3) model:
+	\begin{equation*}
+	y_{t} = \phi_{1}y_{t - 1} + \phi_{2}y_{t - 2} + \phi_{3}y_{t - 3} + \theta_{1} \varepsilon_{t - 1} + \theta_{2} \varepsilon_{t - 2} + \theta_{3} \varepsilon_{t - 3}
+	\end{equation*}
+	\item	So, we want to use the \textbf{backshift} or \textbf{lag} operator;
+	\item	First, we rewrite the equation:
+	\begin{equation*}
+	y_{t} - \phi_{1}y_{t - 1} - \phi_{2}y_{t - 2} - \phi_{3}y_{t - 3} = \theta_{1} \varepsilon_{t - 1} + \theta_{2} \varepsilon_{t - 2} + \theta_{3} \varepsilon_{t - 3}
+	\end{equation*}
+	\item	And then plug in the lag operator $L$ such that $L y_{t} = y_{t - 1}$:
+	\begin{equation*}
+	1 \ y_{t} - \phi_{1} L y_{t} - \phi_{2} L^{2} y_{t} - \phi_{3} L^{3} y_{t} 
+	= 
+	\theta_{1} L \varepsilon_{t} + \theta_{2} L^{2} \varepsilon_{t} + \theta_{3} L^{3} \varepsilon_{t}
+	\end{equation*}
+	\item	Then we factor out the $y_{t}$ and $\varepsilon_{t}$:
+	\begin{equation*}
+	(1 - \phi_{1} L - \phi_{2} L^{2} - \phi_{3} L^{3}) y_{t} 
+	= 
+	(\theta_{1} L + \theta_{2} L^{2} + \theta_{3} L^{3}) \varepsilon_{t}
+	\end{equation*}
+	\item	Then we define the \textbf{lag polynomial}
+	\begin{equation*}
+	\Phi(L) y_{t} 
+	= 
+	\Theta(L) \varepsilon_{t}
+	\end{equation*}
+\end{enumerate}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=WjeGUs6mzXg&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=2}{ritvikmath: Time Series Talk: Seasonal ARIMA Model}}
+\begin{itemize}
+	\item	Seasonal ARIMA model;
+	\item	\textcolor{ao(english)}{S}\textcolor{amethyst}{AR}\textcolor{teal}{I}\textcolor{burntorange}{MA} $(\textcolor{amethyst}{p}, \textcolor{teal}{d}, \textcolor{burntorange}{q}) (\textcolor{amethyst}{P}, \textcolor{teal}{D}, \textcolor{burntorange}{Q})_{\textcolor{ao(english)}{m}}$
+	\item	Backshift operator $B$, aka lag operator, means to back up by one time unit
+	\item	For example, $(1, \textcolor{teal}{1}, 1) (1, \textcolor{teal}{1}, 1)_{4}$  implies:
+	\begin{equation*}
+		\textcolor{amethyst}{(1 - \phi_{1} B)}\textcolor{amethyst}{(1 - \Phi_{1} B^{4})}\textcolor{teal}{(1 - B)}\textcolor{teal}{(1 - B^{4})} y_{t} = \textcolor{burntorange}{(1 + \theta_{1} B)} \textcolor{burntorange}{(1 + \Theta_{1} B^{4})} \varepsilon_{t}
+	\end{equation*}
+	The powers to the four correspond to the uppercase letters and are the seasonal components;
+	\item	$z_{t} = y_{t} - y_{t - 4} = \phi_{1} z_{t - 1} + \Theta_{1} \varepsilon_{t - 4} + \varepsilon_{t}$
+\end{itemize}
+\end{YTB_SUMM}	
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=Li95a2biFCU&list=PLvcbYUQ5t0UHOLnBzl46_Q6QKtFgfMGc3&index=8}{ritvikmath: Time Series Talk: ARCH Model}}
+\begin{itemize}
+	\item	Situation: Run a movie theather and want to predict weekly ticket sales;
+	\item	Steps to ARCH model:
+		\begin{enumerate}
+		\item	Fit best possible model to the data
+		\item	Plot residuals $\varepsilon_{t}$
+		
+		\includegraphics[scale=0.4]{src/ritvikmath-movie-plot-residuals.png}
+		\end{enumerate}
+	\item	We see that in the middle of each year (summer) way more volatile than the rest of the year but why?
+	\item[]	Maybe there's lots of really good and really bad movies in summer so hard to predict;
+	\item[]	Beginning of year / end of year, maybe there's better or less movies so more consistent;
+	\item	BUT, the important is that there are \textbf{annual patterns} which we could \textbf{use to predict} the sales;
+	\item	Enter the \textbf{Auto Regressive Conditional Heteroscedasticity}, or \textbf{Auto Regressive Changing Heteroscedasticity}, (ARCH) Model;
+		\begin{itemize}
+		\item	Heteroscedasticity just means the \textbf{volatility} is \textbf{not constant};
+		\item[]	Logically, we see there's alot of volatility at times but not all the time;
+		\item	That's to say, the volatility is \textbf{conditional} on where we are rather than being constant;
+		\item	Further more, depending on where we are means we need an \textbf{auto-regressive} model;
+		\end{itemize}
+	\item	For an ARCH(1) model:
+	\item	The variance, or volatility, of the error today $\text{Var}(\varepsilon_{t}) = \sigma^{2}_{t}$ is $\sigma^{2}_{t} = \alpha_{0} + \alpha_{1} \sigma^{2}_{t - 1}$;
+	\item[]	That is, a constant $\alpha_{0}$ plus another constant $\alpha_{1}$ time the volatility of yesterday $\varepsilon_{t - 1}$;
+	\item[]	So, how crazy, or far, you're swinging from the mean $\alpha_{0}$ today $\sigma^{2}_{t}$ will be a function of how far you were swinging from the mean yesterday $\sigma^{2}_{t - 1}$;
+	\item	We then find the formula for the error $\varepsilon_{t}$ as:
+	\begin{align*}
+		\varepsilon_{t}	&=	w_{t} \sqrt{\alpha_{0} + \alpha_{1} \varepsilon_{t - 1}^{2}}
+	\end{align*}
+	\item[]	So we have the unpredictible white noise $w_{t}$ times the root of the mean $\alpha_{0}$ plus the square of yesterday's error $\varepsilon_{t - 1}$ multiplied by the trend $\alpha_{1}$;
+	\item	Since a square root is only positive, the white noise $w_{t}$ serves as a indicator of whether it'll be negative or positive;
+	\item[]	That's why we can go from a very large to a very small value from one period to the next;
+	\item	For an ARCH(\textcolor{lava}{2}) this becomes:
+	\begin{align*}
+		\varepsilon_{t}	&=	w_{t} \sqrt{\alpha_{0} + \alpha_{1} \varepsilon_{t - 1}^{2} \textcolor{lava}{+ \alpha_{2}  \varepsilon_{t - 2}^{2}}}
+	\end{align*}
+	So today's error is a function of both yesterday and two days ago's error;
+	\item	If yesterday's error is large then so will today;
+	\item	To better see the \textcolor{blue_rectangle}{auto-regressive} part, we expand the square of the error of a ARCH(1) model:
+	\begin{align*}
+		\textcolor{blue_rectangle}{ \varepsilon_{t}^{2}}	&=	w_{t}^{2} \alpha_{0} + w_{t}^{2} \alpha_{1} \textcolor{blue_rectangle}{ \varepsilon_{t - 1}^{2}}
+	\end{align*}
+	\item	For an ARCH(1) model we'd expect to see high auto-correlation between the present error  $\varepsilon_{t}$ and the error lagged by one $\varepsilon_{t - 1}$
+	
+	\includegraphics[scale=0.4]{src/ritvikmath-movie-plot-residuals-ARCH.png}
+\end{itemize}
+\end{YTB_SUMM}
+
+%\begin{YTB_SUMM}{\href{}{ritvikmath: Time Series Talk : }}
 %\begin{itemize}
 %	\item	
 %\end{itemize}
@@ -2130,44 +2877,104 @@ With these conditions, we prove the OLS is BLUE.
 \subsubsection{Information}
 
 \begin{distributions}[Objective]
-UUnderstand key concepts concerning Principal Components Analysis
+Understand key concepts concerning Principal Components Analysis
 \end{distributions}
 
 \begin{outcomes}[Learning outcomes]
 \begin{enumerate}
-	\item	Définir \og principal components \fg{} 
-	\item	Interpréter les résultats d'une analyse par composantes principales en prenant en compte:
+	\item	Définir des composantes principales
+	\item	Interpréter les résultats d'une analyse en composantes principales tout en considérant:
 	\begin{itemize}
 		\item	\og Loading Factors \fg{} 
 		\item	Proportion de la variance expliquée
 	\end{itemize}
-	\item	Expliquer les applications de l'analyse par composantes principales
+	\item	Expliquer les utilités et applications de l'analyse en composantes principales
 \end{enumerate}
 \end{outcomes}
 
 \begin{ASM_chapter}[Related lessons ASM]
 \begin{enumerate}
   \setcounter{enumi}{14}
-	\item	$K$-Nearest neighbors
+	\item	\hyperref[PCA-KNN]{PCA: $K$-Nearest neighbors}
   \setcounter{enumi}{16}
-	\item	Principal Component Analysis
+	\item	\hyperref[PCA-KNN]{Principal Component Analysis}
 \end{enumerate}
 \end{ASM_chapter}
 
-\begin{CHPT_SUMM}{15. $K$-Nearest neighbors}
-\textbf{Pas encore fait, notes pour me donner une idée du chapitre}
+\begin{YTB_vids}[Vidéos YouTube et liens]
+\begin{itemize}
+	\item	\href{https://blog.bioturing.com/2018/06/14/principal-component-analysis-explained-simply/}{biotutoring: Principal component analysis explained simply (blog)}
+	\item	\href{https://blog.bioturing.com/2018/06/18/how-to-read-pca-biplots-and-scree-plots/}{biotutoring: How to read PCA biplots and scree plots (blog)}
+	\item	\href{https://www.youtube.com/watch?v=HMOI_lkzW08&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=23}{StatQuest: PCA main ideas in only 5 minutes!!!}
+%	\item	\href{https://www.youtube.com/watch?v=_UVHneBUBW0&t=16s}{StatQuest: Principal Component Analysis (PCA) clearly explained (2015)} (outdated, focuses on eigenvector approach)
+	\item	\href{https://www.youtube.com/watch?v=FgakZw6K1QQ}{StatQuest: Principal Component Analysis (PCA) (step by step)}
+	\item	\href{https://www.youtube.com/watch?v=oRvgq966yZg&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=24}{StatQuest: PCA - Practical Tips}
+%	\item	\href{https://www.youtube.com/watch?v=0Jp4gsfOLMs}{StatQuest: PCA in R} (to watch!)
+	\item	\href{https://www.youtube.com/watch?v=HVXime0nQeI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=33}{StatQuest: K-nearest neighbors, Clearly Explained}
+\end{itemize}
+\end{YTB_vids}
+
+\subsection{Résumés des chapitres}
+\begin{CHPT_SUMM}[label = {PCA-KNN}]{\addcontentsline{toc}{subsubsection}{15. $K$-Nearest neighbors}15. $K$-Nearest neighbors}
+Le KNN est un alternatif à la régression. Le chapitre couvre le cas de variable réponse catégorique et le contexte de régression.
 \begin{enumerate}
-	\item	The Bayes classifier
+	\item	The \textbf{Bayes classifier}
+	\item[]	Variable réponse catégorique
 	\begin{itemize}
-		\item	Error rate with and without the Bayes classifier;
-		\item	It is the best classifier;
-		\item	Bayes decision boundaries;
+		\item	Si nous avons une variable réponse catégorique, nous ne pouvons pas utiliser des mesures comme le MSE puisque nous prévoyons des classes;
+		\item	Il faut plutôt évaluer la qualité des classifications avec un taux d'erreur:
+			\begin{align*}
+			\frac{1}{n} \sum_{i = 1}^{n} I_{\{y_{i} \neq \hat{y}_{i} \}}
+			\end{align*}
+				Donc l'indicateur est de 1 s'il y a une mauvaise classification et de 0 sinon;
+		\item	Le meilleur classificateur est le classificateur de Bayes qui classifie chaque observation selon la classe $j$ la plus probable étant donné ses prédicteurs $x_{0}$:
+			\begin{align*}
+			\underset{j}{\max} \Pr(Y = j | X = x_{0})
+			\end{align*}
+		\item	Pour exemple, s'il y avait 2 classes, on assigne la classe 1 si $\Pr( Y = 1 | X = x_{0}) > 0.5$;
+		\item	Graphiquement, à 2 classes, la classification ressemblerait à ceci:
+		
+		\includegraphics[scale=0.3]{src/ISLR-KNN-CLASSIF.png}	
+		\item	Les barrière entre les groupes sont les \textit{Bayes decision boundaries};
+		\item[]	Dans le cas de deux classes, il n'en a qu'une seule comme on peut voir;
+		\item	On note qu'il y a des mauvaises classifications;
+		\item	Puisque le classificateur de Bayes maximise $\Pr(Y = j | X = x_{0})$, le \textit{taux d'erreur de Bayes} est $1 - \underset{j}{\max} \Pr(Y = j | X = x_{0})$;
+		\item	En général, le taux d'erreur globale prends la moyenne des probabilités pour toutes les valeurs possible de $X$:
+			\begin{align*}
+			1 - \text{E}[\underset{j}{\max} \Pr(Y = j | X = x_{0})]
+			\end{align*}
+		\item	On peut penser au taux d'erreur de Bayes comme l'erreur irréductible en régression;
 	\end{itemize}
-	\item	KNN classifier
+%%%	
+	\item	\textbf{KNN classifier}
+	\item[]	\textbf{Mise en garde} avec Bayes
 	\begin{itemize}
-		\item	Caveat with Bayes is we don't know the probabilities $\Pr(Y = j | x_{0})$;
-		\item	Estimate them with the KNN classifier;
+		\item	En réalité, on ne connait pas la distribution conditionnelle de Y;
+		\item	Ce faisant, le classificateur de Bayes sert plus comme un \textit{golden standard} auquel on peut comparer d'autres méthodes;
+		\item	Les autres méthodes \textit{estiment} la probabilité conditionnelle puis classifie avec la valeur maximale \textit{estimée};
+		\item	
 	\end{itemize}
+	\item[]	Classification avec KNN
+		\begin{enumerate}
+		\item	Sélectionner un nombre entier $K$;
+		\item	Considérer les valeurs de $Y$ pour les $K$ points les plus près;
+		\item	Poser:
+			\begin{align*}
+			\Pr(Y = j | X = x_{0})	
+			=	\frac{\text{nombre de points où} Y = j }{\text{nombre de points} K}
+			\end{align*}
+		\item	Assigner la valeur de $Y$ avec le classificateur de Bayes
+		\item[]	C'est-à-dire, la valeur la plus présente dans les $K$ points les plus près
+		\end{enumerate}
+	\item[]	Considérations
+		\begin{itemize}
+		\item	La valeur de $K$ a un énorme impact;
+		\item[]	Si $K$ est trop faible, la classification n'est pas assez flexible;
+		\item[]	Si $K$ est trop élevée, la classification est trop flexible (overfitting);
+		\item	Pour exemple :
+		
+		\includegraphics[scale=0.3]{src/ISLR-KNN-CLASSIF-K-choice.png}
+		\end{itemize}
 	\item	KNN regression
 	\begin{itemize}
 		\item	KNN is non-parametric;
@@ -2182,50 +2989,252 @@ UUnderstand key concepts concerning Principal Components Analysis
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{CHPT_SUMM}{17. Principal Component Analysis}
-\textbf{Pas encore fait, notes pour me donner une idée du chapitre}
+\begin{CHPT_SUMM}[label = {PCA-PCA}]{\addcontentsline{toc}{subsubsection}{17. Principal Component Analysis}17. Principal Component Analysis}
+
+Les chapitres 17 et 18 (Cluster analysis) sont des chapitres traitant sur l'apprentissage non supervisé. En apprentissage non supervisé on ne cherche pas à prédire, mais plutôt à apprendre des données. Par exemple, Google qui te suggère des sites selon ce que tu click dessus habituellement, ce que le monde semblable à toi click, etc.
+
 \begin{enumerate}
-	\item	Loadings and scores
+	\item	\textbf{Loadings} et \textbf{scores}
+	\item[]	\textbf{Préliminaire}
+		\begin{itemize}
+		\item	There is a set of $p$ features (aka independant variables) $X_{1}, \dots, X_{p}$;
+		\item	There are $n$ observations;
+		\item	Pour toutes les $n$ observations, on soustrait leur moyenne $\bar{x}_{i}$ des $p$ variables $x_{ij}$ pour que la moyenne de chacune des $p$ variables soit nulle:
+			\begin{align*}
+			\sum_{i = 1}^{n} x_{ij} &= 0, \, \forall \ j = 1, \dots, p
+			\end{align*}
+		\end{itemize}
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	PCA finds a low-demensional representation of the data set that contains as much as possible of the variation;
+		\item	PCA seeks a small number of dimensions that are as \textit{interesting} as possible;
+		\item	\textit{interesting} is measured by the amount of variability of the observations along each \textit{dimension} or, \textit{principal component};
+		\end{itemize}
+	\item[]	\textbf{Finding} the principal components
+		\begin{itemize}
+		\item	The \textit{first principal component} is the \textit{normalized} linear combination of it's \textit{loadings} $\phi_{11}, \dots, \phi_{p1}$ and the features $X_{1}, \dots, X_{p}$:
+			\begin{equation*}
+			Z_{1}	=	\phi_{11} X_{1} + \dots + \phi_{p1} X_{p}
+ 			\end{equation*}
+		at the point where it's variance, $\text{Var}(Z_{1})$, is \textit{maximised};
+		\item	\textit{maximising} the variance represents explaining as much of the variability of the points as possible;
+		\item	\textit{Normalized} means that the $\sum_{j = 1}^{p} \phi_{j1}^{2} = 1$;
+		\item[]	Alors, on maximise \textit{sous contraintes}, comme avec Ridge et Lasso, sauf que l'on applique également une \textit{pondération} des variables:
+			\setlength{\mathindent}{-1cm}
+			\begin{align*}
+			\max 
+				\left\{ \frac{1}{n} \sum_{i = 1}^{n} \left( \sum_{j = 1}^{p} \phi_{j1} x_{ij} \right)^{2} \right\} \, 
+			\text{sous contraite que } 
+				\sum_{j = 1}^{p} \phi_{ji}^{2} = 1
+			\end{align*}
+			\setlength{\mathindent}{1cm}
+		\item	Les loadings sont donc des \textit{poids} pour chacune des variables explicatives $X_{1}, \dots, X_{p}$;
+		\item	En bref, chaque composante principale, $Z_{i}$, a $p$ loadings, $\phi_{ji}$, sélectionnés en maximisant sa variabilité;
+		\item	De plus, pour maximiser les composantes principales après 1 on ajoute la contrainte que $Z_{m}$ n'est pas corrélé avec $Z_{k}$ pour tout $k < m$;
+		\item[]	Ceci est fondé sur l'algèbre linéaire et les \textit{eigenvectors} mais ce n'est pas dans le cadre de l'examen;
+		\item[]	Cela dit, l'idée est que pour ne pas être corrélé la deuxième composante principale direction sera \textbf{orthogonale} à la première;
+		\item[]	Pour la suite, chaque composante principale sera orthogonale à l'hyperplan des composantes principales précédentes;
+		\end{itemize}
+	\item[]	\textbf{Scores} des observations
+		\begin{itemize}
+		\item	Chacune des $n$ observations ont des \og coordonnées \fg{} $z_{ki}$ dans le \textit{$Z$ coordinate system} surnommées des \textbf{scores};
+		\item	Il y a $p$ scores pour chacune des $n$ observations;
+		\item[] Pour example, les scores de la première observation sont:
+			\begin{align*}
+			z_{k1}	&=	\sum_{j = 1}^{p} \phi_{j1} x_{kj}, \ k = 1, \dots, n
+			\end{align*}
+		\item	Donc, chaque composante principale trouvé avec est une \textit{combinaison linéaire} des $p$ features;
+		\item	Alors on \textit{réduit les \textbf{dimensions}}, le nombre de variables, avec des \textit{\textbf{combinaisons} des variables} existantes corrélées;
+		\item[]	En contraste, Ridge \textit{réduit les \textbf{coefficients}} des variables corrélées;
+%		\item	Le score $i$ de l'observation $k$ est la distance du point $k$ de 0, dans la direction, ou \textit{dimension}, $Z_{i}$;
+		\item	Le plus faible le \textit{score}, le plus corrélé ou près les points;
+		\item 	Cependant, il peut s'avérer compliqué d'interpréter juste des chiffres et donc nous avons le \textit{biplot};
+		\end{itemize}
+%%%		
+	\item	\textbf{Biplots}
 	\begin{itemize}
-		\item	PCA's an unsupervised method for visualising data;
-		\item	Creates principal components that summarize correlated variables;
-		\item[]	These are linear combinations of the existing variables;
-		\item	Loadings $\phi_{ji}$: the $p$ weights on the variables $X_{j}$ in the expression for $Z_{i}$;
-		\item	Scores $z_{ki}$: $p$ coordinates of the observations in the $Z$ coordinate system;
-		\item[]	Score $i$ for observation $k$ is the distance of point $k$ from $0$, in the $Z_{i}$ direction;
+		\item	Un biplot plot à la fois les loading vector (voir vidéo de StatQuest, très bien expliqué) et les loading scores;
+		\item[]	Les loadings vectors aident à visualiser dans quelle direction chacune des variables est dirigée;
+		\item[]	Les loadings scores sont les coordonnées des observations;
+		
+		\includegraphics[scale=0.4]{src/PCA-BIPLOT.png}
+		\item	On peut donc, entres autres, en déduire:
+			\begin{itemize}
+			\item	l'influence de chaque variable sur les observations;
+			\item	Si des vecteurs de direction sont semblables alors les variables se recoupent;
+			\item	Si des points sont plus dans un coin que l'autre, selon les vecteurs, on peut déduire quelles variables ont un plus gros impact;
+			\item	On peut d'ici faire des regroupements de points semblables, etc.;
+			\end{itemize}
+		\item	On note que les variables du graphique ci-dessus sont standardisées;
+		\item[]	Donc, la majorité des points sont entre -3 et 3 (99.7\% des points d'une distribution normale standardisée sont entre -3 et 3);
+		
 	\end{itemize}
-	\item	Biplots
-	\begin{itemize}
-		\item	
-	\end{itemize}
+%%%	
 	\item	Approximation and scaling
+	\item[]	\textbf{Approximation}
 	\begin{itemize}
-		\item	Another interpretation of principal components is that they are the best linear approximations of the observations;
-		\item	Scale matters in PCA unlike linear regression;
+		\item	Nous développons davantage la discussion sur les composantes principales comme	 des surfaces linéaires à basse dimension les \textit{plus près} des observations;
+		\item	Par exemple, pour la première composante principale: 
+		
+		\includegraphics[scale=0.3]{src/PCA-2D-CLOSEST.png}
+		\item	Donc, les erreurs (pointillés à gauche) sont minimisées;
+		\item	Cette idée est la même dans les prochaines dimensions, pour exemple la 3ème :
+		
+		\includegraphics[scale=0.28]{src/PCA-3D-CLOSEST.png}
+		\item	Ce faisant, les $k$ premières composantes principales sont la meilleure approximation à $k$ dimensions de la $i$ème observation $x_{ij}$;
+		\item	Lorsque les variables sont centrées à 0, l'approximation de la $j$ème composante de la $i$ème observation est:
+			\begin{align*}
+			x_{ij}	&\approx	\sum_{m = 1}^{M} z_{im} \phi_{jm}
+			\end{align*}
+		\item	Cette approximation est donc logiquement exacte si tous les PC sont utilisés, $M = \min(n - 1, p)$, et est une bonne approximation puisque d'habitude avec 2 PCs on expliquer la majorité de la variabilité;
 	\end{itemize}
-	\item	Proportion of variance explained (PVE)
-	\begin{itemize}
-		\item	Cross-validation isn't possible for unsupervised methods so how to determine the number of principal components to use?
-		\item	Can look at the PVE by the principal components
-	\end{itemize}
+	\item[]	\textbf{Unique}: On rappel que des \textit{eigenvalues sont uniques}. 
+			Ce faisant, peut importe le programme utilisé, le vecteur de composantes principales sera toujours le même;
+	\item[]	\textbf{Scaling}
+		\begin{itemize}
+		\item	L'échelle a une grande importance pour l'analyse en composantes principales;
+		\item	En régression linéaire, si une variable $x$ est multipliée par $r$ on peut diviser $\beta$ par $r$;
+		\item[]	Puisque nous avons des combinaisons linéaires en PCA, ceci n'est pas vrai et pourrait biaiser les résultats;
+		\item	Habituellement, on \textit{pondère par l'écart-type};
+		\item	Voici un exemple du live qui rend évident la distinction:
+		
+		\includegraphics[scale=0.25]{src/PCA-SCALING.png}
+		\end{itemize}
+%%%	
+	\item	\textbf{Proportion of variance explained} (PVE)
+		\begin{itemize}
+		\item	Puisqu'on sait qu'en réduisant on ne capture pas toute la variabilité, on veut savoir combien qu'on en perds?
+		\item	Donc, on veut la \textbf{Proportion de Variance Expliquée \textit{(PVE)}} pour chacune des composantes principales;
+		\item	La \textit{variance totale} d'un ensemble de données, en prenant pour acquis que les variables sont centrées à 0, est:
+			\begin{align*}
+			\sum_{j = 1}^{p} \text{Var}(X_{j})	&=	\sum_{j = 1}^{p} \frac{1}{n} \sum_{i = 1}^{n} x_{ij}^{2}
+			\end{align*}
+		\item	La \textit{variance expliquée} par la $m$ème composante principale est:
+			\begin{align*}
+			\text{Var}(Z_{m})
+			&=	\frac{1}{n} \sum_{i = 1}^{n}	z^{2}_{im} \\
+			&= \frac{1}{n} \sum_{i = 1}^{n} \left( \sum_{j = 1}^{p} \phi_{jm} x_{ij} \right)^{2}
+			\end{align*}
+		\item	La \textit{\textbf{proportion} de la variance expliquée} par la $m$ème composante principale est donc:
+			\begin{align*}
+			PVE	
+			&=	\frac{\text{Var}(Z_{m})}{\sum_{j = 1}^{p} \text{Var}(X_{j})}	\\
+			&=	\frac{\sum_{i = 1}^{n} \left( \sum_{j = 1}^{p} \phi_{jm} x_{ij} \right)^{2}}{\sum_{j = 1}^{p} \sum_{i = 1}^{n} x_{ij}^{2}}	
+			\end{align*}
+		\item	On peut calculer la PVE cumulative pour M composantes principales jusqu'à un certain seuil pour sélectionner un M;
+		\item	On peut aussi regarder un screen plot jusqu'à ce qu'on ai un \textit{elbow} satisfaisant;
+		\end{itemize}
 \end{enumerate}
+
 \textbf{Note sur les exercices:} 
 \begin{enumerate}
-	\item	
+	\item	Calculer des scores ou loadings de données partielles (1 à 3);
+	\item	Questions qualitatives sur le PCA (4, 5);
+	\item	Questions dont il faut \textbf{interpréter le graphique} comme 7;
+	\item	Calculer un PVE comme 6;
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{YTB_vids}[Vidéos YouTube]
-\begin{itemize}
-	\item	\href{https://www.youtube.com/watch?v=HVXime0nQeI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=33}{StatQuest: K-nearest neighbors, Clearly Explained}
-	\item	\href{https://www.youtube.com/watch?v=HMOI_lkzW08&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=23}{StatQuest: PCA main ideas in only 5 minutes!!!}
-	\item	\href{https://www.youtube.com/watch?v=_UVHneBUBW0&t=16s}{StatQuest: Principal Component Analysis (PCA) clearly explained (2015)}
-	\item	\href{https://www.youtube.com/watch?v=FgakZw6K1QQ}{StatQuest: Principal Component Analysis (PCA) (step by step)}
-	\item	\href{https://www.youtube.com/watch?v=oRvgq966yZg&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=24}{StatQuest: PCA - Practical Tips}
-	\item	\href{https://www.youtube.com/watch?v=0Jp4gsfOLMs}{StatQuest: PCA in R}
-\end{itemize}
-\end{YTB_vids}
+\subsection{Notes sur les vidéos YouTube}
 
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=FgakZw6K1QQ}{StatQuest : Principal Component Analysis (PCA) (step by step)}}
+\begin{itemize}
+	\item	We plot the data and find the middle of it;
+	\item	Afterwards, we shift the data to center it at the origin ($0$, $0$);
+	\item	From here, we want to fit a line to the data;
+	\item[]	We note that the distance from the point to the origin, $a$, is constant;
+	\item[]	However, both the distance from the point to the line, $b$, and from the projection of the point on the line to the origin, $c$, are variable;
+	\item	Usually, we minimise the distance of the points to the line (the error);
+	\item[]	However, in PCA it's actually easier to \textit{maximise} the distance of the \textit{projection to the origin} and that is \textbf{equivalent} as per the \textit{Pythagorean theorem};
+	\item	To fully understand this, it's imperative to see how this image moves around in the video or \href{https://cdn-images-1.medium.com/max/800/0*XqrkXQoEQEIRe0Nm}{this gif}	:	
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-PYTHAGOREAN.png}
+	\item	The ratio 4 to 1 means the data is mostly spread out along the gene 1 axis---4 times more spread out in fact;
+	\item[]	We can think of it as a cocktail mixture:
+		\begin{enumerate}
+		\item	Mix \textbf{4} parts gene 1;
+		\item	Mix \textbf{1} part gene 2;
+		\item	Pour over ice and serve;
+		\end{enumerate}
+	\item[]	This is called a \textit{linear combination} of genes 1 and 2;
+	\item	Thus, we got the following unit vector:
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-unit-vector.png}
+	\item	To get a 1 unit long vector, we scale both sides by 4.12 (length of $c$);
+	\item	Thus, we get a new recipe for which the \textit{proportions are the same} but the parts changed: 
+		\begin{enumerate}
+		\item	Mix \textbf{0.97} part gene 1;
+		\item	Mix \textbf{0.242} part gene 2;
+		\item	Pour over ice and serve;
+		\end{enumerate}
+	\item[]	This vector is called the \textit{singular vector} or \textbf{eigenvector};
+	\item[]	The proportions of each gene are the \textbf{loading scores};
+	\item	Finally, the sum of squared distances from the projection to the origin is the Sum of Squared distances SS(distances):
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-SSD.png}
+	\item	The SS(distances) for the \textit{best fit line} is then called the \textbf{eigenvalue} for the first principal component PC1;
+	\item[]	It's square root, $\sqrt{\text{Eigenvalue for PC1}}$, is the \textit{singular value};
+	\item	PC2 then becomes the line through the origin \textit{perpendicular} to PC1;
+	\item	It's cocktail recipe and scaling is the same procedure as before:
+		\begin{enumerate}
+		\item	Mix \textbf{-1} part gene 1 -> -0.242 part gene 1;
+		\item	Mix \textbf{4} parts gene 2 -> 0.97 part gene 2;
+		\item	Pour over ice and serve;
+		\end{enumerate}
+	\item	The unit vector in blue is thus the \textit{singular vector}, or \textit{eigenvector}, for PC2;
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-unit-vector-PC2.png}
+	\item	The interpretation, in terms of how the values are \textit{projected} onto PC2:
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-unit-vector-PC2-projection.png}
+	
+	is that gene 2 is 4 times more important than gene 1;
+	\item	Finally, like for PC1, the \textit{eigenvalue} is the SS(distances) between projected points and the origin:
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-SSD-PC2.png}
+	\item	The PCA plot is thus the rotation of the graph with the principal components as the axes;
+	\item[]	The samples are mapped with the loadings as the ($x$, $y$) coordinates;
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-PCA-plot.png}
+	
+	\item	For variation, imagine the variation of PC1 is 15 and of PC2 is 3;
+	\item[]	Thus, PC1 accounts for 83\% of the variation and PC2 17\%;
+	\item	We can make a plot of these percentages and that's called a \textit{scree} plot:
+	
+	\includegraphics[scale=0.4]{src/SQ-PCA-scree-plot.png}
+	\item	Example with 3 PC
+	\item	The number of PCs is usually the minimum between the number of variables and observations;
+	\item	Once we have all the PCs, we can use the SS(distances), a.k.a. \textit{eigenvalues}, to determine the proportion of variance each PC accounts for;
+	\item	We see from the scree plot that PC1 and PC2 already explain 94\% of the variation and that just those 2 vectors would be a good approximation;
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=oRvgq966yZg&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=24}{StatQuest: PCA - Practical Tips}}
+\begin{enumerate}
+	\item	\textbf{Scaling} your data: Make sure variables are on the same scale and, if not, scale them.
+		\begin{itemize}
+		\item	For example, math scores between 0 and 100 vs English scores between 0 and 10;
+		\item	We'd then have 99 parts math to 1 part reading;
+		\item	But that's only because the math scale is 10 times that of reading scores;
+		\item	In reality, it's a 1 to 1 relationship!;
+		\item	Thus, ensure scales are \textit{roughly} equivalent otherwise will be biased towards one of them;
+		\item	This is usually done with the standard deviation;
+		\end{itemize}
+	\item	Centering your data: Make sure your data is centered.
+		\begin{itemize}
+		\item	Not always done by default;
+		\item	If I try SVD without centering, it will still try to fit a line through the origin which can become ridiculous;
+		\end{itemize}
+	\item	How many PC can you expect to find?
+		\begin{itemize}
+		\item	in 2D there's no way to draw a perpendicular line to both PC1 and PC2;
+		\item	So, if we've only measured 2 things then we couldn't have more than 2 PCs;
+		\item	With 2 points we can only have a line;
+		\item	A plan requires at least 3;
+		
+		\end{itemize}
+\end{enumerate}
+\end{YTB_SUMM}
 
 \newpage
 \chapter[Decision Trees]{Decision Trees (10\% à 15\%)}
@@ -2250,11 +3259,20 @@ Understand key concepts concerning decision tree models
 \begin{ASM_chapter}[Related lessons ASM]
 \begin{enumerate}
   \setcounter{enumi}{15}
-	\item	Decision Trees
+	\item	\hyperref[DECISION-TREES]{Decision Trees}
 \end{enumerate}
 \end{ASM_chapter}
 
-\begin{CHPT_SUMM}{16. Decision Trees}
+\begin{YTB_vids}[Vidéos YouTube]
+\begin{itemize}
+	\item	\href{https://www.youtube.com/watch?v=7VeUPuFGJHk&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=34}{StatQuest: Decision Trees}
+	\item	\href{https://www.youtube.com/watch?v=wpNl-JwwplA&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=35}{StatQuest: Decision Trees, Part 2 - Feature Selection and Missing Data}
+	\item	\href{https://www.youtube.com/watch?v=g9c66TUylZ4&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=36}{StatQuest: Regression Trees, Clearly Explained!!!}
+	\item	\href{https://www.youtube.com/watch?v=D0efHEJsfHo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=37}{StatQuest: How to Prune Regression Trees, Clearly Explained!!!}
+\end{itemize}
+\end{YTB_vids}
+
+\begin{CHPT_SUMM}[label = {DECISION-TREES}]{16. Decision Trees}
 \textbf{Pas encore fait, notes pour me donner une idée du chapitre}
 \begin{enumerate}
 	\item	Building decision trees
@@ -2313,15 +3331,6 @@ Understand key concepts concerning decision tree models
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{YTB_vids}[Vidéos YouTube]
-\begin{itemize}
-	\item	\href{https://www.youtube.com/watch?v=7VeUPuFGJHk&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=34}{StatQuest: Decision Trees}
-	\item	\href{https://www.youtube.com/watch?v=wpNl-JwwplA&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=35}{StatQuest: Decision Trees, Part 2 - Feature Selection and Missing Data}
-	\item	\href{https://www.youtube.com/watch?v=g9c66TUylZ4&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=36}{StatQuest: Regression Trees, Clearly Explained!!!}
-	\item	\href{https://www.youtube.com/watch?v=D0efHEJsfHo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=37}{StatQuest: How to Prune Regression Trees, Clearly Explained!!!}
-\end{itemize}
-\end{YTB_vids}
-
 \newpage
 \chapter[Cluster Analysis]{Cluster Analysis (10\% à 15\%)}
 
@@ -2344,60 +3353,219 @@ Understand key concepts concerning cluster analysis
 \begin{ASM_chapter}[Related lessons ASM]
 \begin{enumerate}
   \setcounter{enumi}{17}
-	\item	Cluster Analysis
+	\item	\hyperref[CLUSTERS]{Cluster Analysis}
 \end{enumerate}
 \end{ASM_chapter}
 
-\begin{CHPT_SUMM}{18. Cluster Analysis}
-\textbf{Pas encore fait, notes pour me donner une idée du chapitre}
+\begin{YTB_vids}[Vidéos YouTube]
+\begin{itemize}
+	\item	\href{https://www.youtube.com/watch?v=4b5d3muPQmA&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=32}{StatQuest: K-means clustering}
+	\item	\href{https://www.youtube.com/watch?v=7xHsRkOdVwo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=31}{StatQuest: Hierarchical Clustering}
+\end{itemize}
+\end{YTB_vids}
+
+\subsection{Résumés des chapitres}
+
+\begin{CHPT_SUMM}[label = {CLUSTERS}]{\addcontentsline{toc}{subsubsection}{18. Cluster Analysis}18. Cluster Analysis}
 \begin{enumerate}
-	\item[]	Unsupervised learning method;
-	\item[]	Groups observations into homogeneous clusters, groups of similar observations;
-	\item[]	Contrast to PCA;
-	\item[]	Examples of application;
-	\item	$K$-means clustering
-	\begin{itemize}
-		\item	Decide the number of clusters in advance;
-		\item	Clusters are exhaustive and mutually exhaustive;
-		\item[] Each observation will belong to one and none belongs to more than one;
-		\item	Clusters selected to minimise the dissimilarities between points within the clusters;
-		\item	Centroid of clusters;
-		\item	Algorithm;
-	\end{itemize}
-	\item	Hierarchical clustering
-	\begin{itemize}
-		\item	Doesn't specify the number of clusters;
-		\item	Results in bigger clusters containing smaller clusterings containing smaller clusterings ....;
-		\item	\textbf{Bottom-up} clustering;
-		\item	\textbf{agglomerative} clustering;
-		\item	Dendrogram;
-		\item	\textbf{Linkage}: dissimilarity between clusters
+	\item	\textbf{Descriptions}
+		\begin{itemize}
+		\item	Méthode d'apprentissage non supervisée;
+		\item	Classification des observations dans un petit nombre de regroupements (clusters) avec des observations similaires entre eux;
+		\item	Exemples d'applications:		
+			\begin{itemize}
+			\item	Marketing: classification des clients selon leurs achats afin de viser les clients plus probables d'être intéressés à des produits;
+			\item	Médecine: regroupement des patients selon des mesures médicales pour déterminer le meilleur traitement;
+			\item	Modélisation actuarielle: classification des polices en catégories (cells) pour la tarification;
+			\end{itemize}
+		\end{itemize}
+%%%
+	\item	\textbf{$K$-means} clustering
+%	
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	On pose $p$ variables vecteurs $\bm{X}_{j}$ et $n$ observations telles que $\bm{X}_{j} = \{x_{1j}, x_{2j}, \dots, x_{nj}\}$;
+		\item[]	\textbf{Note}: Une observation correspond alors au vecteur des $i^{\text{e}}$ termes de chacune des $p$ variables $\{x_{ip}, x_{ip}, \dots, x_{ip}\}$;
+		\item	On pose un nombre, $K$, de clusters $C_{1}, \dots, C_{K}$ avant la classification;
+		\item	Toutes les observations sont assignées à un groupe, la classification est dite \textit{exhaustive};
+		\item	Aucune observation n'est assignée à plus d'un cluster, la classification est dite \textit{mutuellement exclusive};
+		\end{itemize}
+%
+	\item[]	Optimisation théorique
+		\begin{itemize}
+		\item	On cherche à minimiser la somme des $K$ dissemblances totales inter-cluster $W(C_{k})$: 
+		\begin{align*}
+			\min	\sum_{k = 1}^{K} W(C_{k})
+		\end{align*}
+		\item	Souvent, la mesure de dissemblance $W(C_{k})$ est définie avec la distance euclidienne des points au centroïde:
+			\begin{align*}
+			W(C_{k})	
+			&=	\frac{1}{|C_{k}|} \sum_{i, i' \in C_{k}} \sum_{j = 1}^{p} (x_{ij} - x_{i'j})^{2}
+			\end{align*}
+		\item[]	$|C_{k}|$ peut être vu comme le $n$ habituel, c'est le nombre de points dans le cluster;
+		\item	Le problème avec cette méthode est qu'il serait \textit{irréaliste de calculer toutes les possibilités de classification} des points en $K$ clusters afin de trouver celui avec la distance minimale;
+		\item	Cependant, on utilise un algorithme qui utilise le centroïde pour trouver le minimum local;
+		\end{itemize}
+%		
+	\item[]	\textbf{Classification}
+		\begin{itemize}
+		\item	Le $K$-means clustering est en fait un \textit{cas spécial} du \textit{$K$-clusters} clustering car on utilise les \textbf{centroïdes des clusters} pour la classification;
+		\item	La méthode \textit{centroïde} consiste à classifier les observations en minimisant les dissemblances entre les points des clusters;
+		\item	Le \textit{centroïde} d'un cluster est le point ayant comme coordonnées la moyenne des coordonnées des points dans le cluster;
+		\item	Formellement, ceci est:
+			\begin{align*}
+				\bar{x}_{kj}	&=	\frac{1}{|C_{k}|} \sum_{i \in C_{k}} x_{ij}
+			\end{align*}
+			Mais il est bien plus simple de visualiser la signifiance d'un centroïde que de tenter de déchiffrer cette formule;
+		\item	Avec ceci, on peut reformuler $W(C_{k})$ avec l'identité suivante:
+			\begin{align*}
+			W(C_{k})	
+			&=	\frac{1}{|C_{k}|} \sum_{i, i' \in C_{k}} \sum_{j = 1}^{p} (x_{ij} - x_{i'j})^{2}	\\
+			&\Leftrightarrow	2 \sum_{i \in C_{k}} \sum_{j = 1}^{p} (x_{ij} - \bar{x}_{kj})^{2}	\\
+			\end{align*}
+		\item	L'algorithme est:
+			\begin{enumerate}[label = \roman*.]
+			\item	Arbitrairement, classez les observations en $K$ clusters;
+			\item	Pour chacun des clusters, calculer le centroïde;
+			\item	Créer de nouveaux clusters en associant chaque point au centroïde le plus près;
+			\item	Répéter la 2e et 3e étape jusqu'à ce que les points restent fixes;
+			\end{enumerate}
+		\end{itemize}
+	\item[]	\textbf{Problèmes}
+		\begin{itemize}
+		\item	L'algorithme doit être \textit{répété plusieurs fois} pour avoir une bonne chance d'arriver à la bonne réponse;
+		\item	Choisir $K$ est compliqué et arbitraire;
+		\end{itemize}
+%%%	
+	\item	\textbf{Hierarchical} clustering
+	\item[]	\textbf{Description}
+		\begin{itemize}
+		\item	Le \textit{hierarchical clustering} est un alternatif qui n'exige pas la spécification du nombre de clusters a priori;
+		\item	C'est plutôt comme un \textit{arbre} de gros clusters composés de plus petits clusters composés de ... ;
+		\item	Le \textbf{Bottom-up} clustering est nommé après le dendrogramme montrant les fusions à partir d'en bas montant jusqu'à un cluster général en haut;
+		\item[]	Ce faisant, il est aussi nommé \textit{agglomerative clustering};
+		\end{itemize}
+	\item[]	\textbf{Liaison} \textit{(linkage)}: Sert à définir, et mesurer, la dissemblance entre groupes d'observations (clusters);
+%		\item	À terme d'exemple, imaginons que nous avons les points $\{0, 1, 2, 5, 7, 10\}$ en groupes arbitraires $\{0, 5\}$, $\{7\}$ et $\{1, 3, 10\}$;
 		\begin{enumerate}
-			\item	Complete linkage
-			\item	Single linkage
-			\item	Average linkage
-			\item	Centroid linkage
+		\item	\textbf{Complete} linkage: On mesure la distance maximale entre les deux points les plus éloignés de clusters et on prends la minimale de ceux ci;
+%			\item[]	Par exemple, les distances de l'exemple sont $7 - 0 = 7$, $7 - 1 = 6$ et $10 - 0 = 10$;
+%			\item[]	Ce faisant, les nouveaux groupes seraient $\{0, 5\}$ et $\{1, 3, 7, 10\}$;
+		\item	\textbf{Single} linkage: Au lieu de mesurer la distance maximale, on mesure la distance minimal puis on regroupe;
+%			\item[]	Par exemple, les distances de l'exemple sont $7 - 5 = 2$, $10 - 7 = 3$ et $5 - 3 = 2$;
+%			\item[]	Ceci est un exemple d'où l'algorithme est pris dans un minimum local;
+%			\item[]	Il faudrait recommencer l'algorithme avec de différents groupes
+		\item	\textbf{Average} linkage: On prends la moyenne des distances entres tous les points des deux clusters et on fusionne ceux ayant la plus faible distance moyenne;
+		\item	\textbf{Centroid} linkage: On assigne un point \textit{centroïde} à chaque cluster ayant comme coordonnées la moyenne des coordonnées des points du clusters et on minimise la distance entre centroïdes;
 		\end{enumerate}
-	\end{itemize}
-	\item	Issues with clustering
-	\begin{itemize}
-		\item	Assumption of hierarchy with hierarchical clustering;
-		\item	Decisions that need to be made;
-		\item	Difficulty in validating clusters;
-		\item	Lack of robustness;
-	\end{itemize}
+	\item[]	\textbf{Mesures de dissemblance}
+		\begin{itemize}
+		\item	Malgré que la distance euclidienne est souvent utilisée, différentes mesures sont possibles;
+		\item	StatQuest explique le \textit{Manhattan Distance} et le livre la mesure basée sur la corrélation;
+		\item	Ce qu'on doit en retirer est que différentes mesures ont différents impacts et donc qu'il faut considérer les applications pour décider quelle mesure choisir;
+		\item	Pour exemple, on cherche à regrouper des clients d'Amazon par leurs historiques d'achats;
+		\item	La distance euclidienne va regrouper les clients ayant acheté peu d'items --- des clients allant moins fréquemment au site; 
+		\item	On voit donc que ceci n'est pas nécessairement ce que l'on veut;
+		\item	En contraste, une mesure de corrélation va regrouper des clients avec des historiques d'achat semblables;
+		\item	Il n'y a pas de solution simple, il faut songer au contexte et au but du clustering pour trancher;
+		\end{itemize}
+	\item[]	\textbf{Scaling}
+		\begin{itemize}
+		\item	Comme pour le $K$-means clustering, on doit songer à s'il est nécessaire de ramener les variables sur la même échelle;
+		\item	Clairement, \textit{une} télévision est moins que \textit{dix} bas, mais est-ce qu'il est approprié de faire cette comparaison?
+		\item[]	Sans scaling, les bas auront un impact beaucoup plus significatif;
+		\item	Lorsque nous comparons des kilomètres contre des centimètres, la réponse est simple, mais en unités ça \textit{dépends du contexte};
+		\item	Voici un bel exemple du livre:
+		\end{itemize}
+		
+	\includegraphics[scale=0.3]{src/ISLR-HIERARCH-SCALE.png}
+%%%	
+	\item	\textbf{Problèmes et considérations} avec le clustering
+		\begin{itemize}
+		\item	Le hierarchical clustering suppose qu'une hiérarchie existe;
+		\item[]	Pour exemple, si les variables sont le sexe et la race, alors le $K$-means clustering sera mieux ajusté;
+		\item	Il y a également les problèmes d'échelle et de mesure de dissemblance;
+		\item	Il est difficile de valider les clusters, comment savoir si ce sont des vrais regroupements ou si l'on \textit{cluster the noise}?
+		\item	Nous forçons \textit{tous} les observations à appartenir à un groupe, ce faisant les outliers peuvent déformer les clusters;
+		\item	Le clustering n'est pas une méthode robuste;
+		\item[]	On peut retirer un point, recommencer la procédure et arriver à des clusters entièrement différents;
+		\end{itemize}
+%		
+	\item[]	Il y a également plusieurs \textbf{décisions} à prendre ayant toutes un impact sur le résultat:
+		\begin{enumerate}[label = \roman*.]
+		\item	Quelle méthode de clustering est plus appropriée?
+		\item	Est-ce que les variables devraient être mises à l'échelle?
+		\item	Combien de clusters ($K$-means)?
+		\item	Quelle mesure de dissemblance devrait être utilisée (hierarchical)?
+		\item	Quelle méthode de liaison (hierarchical)?
+		\item	À quelle hauteur partitionner le dendrogramme (hierarchical)?
+		\end{enumerate}
+	\item[]	En pratique, on veut donc essayer plusieurs résultats et analyser avant de faire de décisions;
 \end{enumerate}
 \textbf{Note sur les exercices:} 
 \begin{enumerate}
-	\item	
+	\item	En gros ce n'est pas compliqué, faut le pratiquer un peu pour être à l'aise à le faire;
+	\item	Pour les questions qualitatives faut vraiment prendre le temps de bien lire et bien saisir---vidéo de StatQuest essentiel;
+	\item	Examen aura des choix multiples où il faut comparer les méthodes (voir 18.12), interpréter le clustering (18.1), etc. (18.9);
+	\item	Faire une itération d'un $K$-means assurément (2, 3, 10, 11);
+	\item	Faire une itération / le hierarchical clustering assurément (5, 6, 7, 8);
 \end{enumerate}
 \end{CHPT_SUMM}
 
-\begin{YTB_vids}[Vidéos YouTube]
+\subsection{Notes sur les vidéos YouTube}
+
+\begin{YTB_SUMM}{\href{https://www.youtube.com/watch?v=7xHsRkOdVwo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=31}{StatQuest: Hierarchical Clustering}}
 \begin{itemize}
-	\item	\href{https://www.youtube.com/watch?v=7xHsRkOdVwo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=31}{StatQuest: Hierarchical Clustering}
-	\item	\href{https://www.youtube.com/watch?v=4b5d3muPQmA&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=32}{StatQuest: K-means clustering}
+	\item	We have the following example:
+	
+	\includegraphics[scale=0.4]{src/SQ-HIERARCH-heatmap.png}
+	\item[]	Red means highly expressed while blue is the opposite
+	\item	Steps:
+		\begin{enumerate}
+		\item	Figure out which gene is most similar to gene \# 1;
+		\item[]	We see \# 1 and \# 3 are very similar;
+		\item	Figure out which genre is most similar to gene \# 2;
+		\item[]	We see \# 2 and \# 4 are very similar;
+		\item[]	We then repeat this for genes \# 3 and \# 4;
+		\item	Of the possible combinations we figure out which 2 genes are the most similar and merge them into a cluster;
+		\item[]	Thus, we see that genes \# 3 and \# 4 are most similar than any other combination of genes and merge them:
+		
+		\includegraphics[scale=0.4]{src/SQ-HIERARCH-heatmap-cluster.png}
+		\item	Repeat from step \# 1 treating the cluster as a single gene;
+		\item[]	We see cluster number 1 is most similar to gene \# 4;
+		\item	We then see gene \# 2 is most similar to gene \# 4 
+		\item[]	We repeat for gene \# 4 as well;
+		\item	We then merge genes \# 2 and \# 4 into one cluster as they're the most similar:
+		
+		\includegraphics[scale=0.4]{src/SQ-HIERARCH-heatmap-cluster-2.png}
+		\item	We go back to the first step, but since there's only 2 clusters left we merge them;
+		\end{enumerate}
+	\item	After clustering, we have the dendrogram indicating both order and similarity:
+	
+	\includegraphics[scale=0.4]{src/SQ-HIERARCH-heatmap-cluster-dendrogram.png}
+	\item[]	Cluster \# 1 was formed first and was the most similar, therefore it has the shortest branch;
+	\item[]	Cluster \# 2 was formed second and was the second most similarity thus it has the second shortest branch;
+	\item[]	Cluster \# 3 was formed last and and has the longest branch;
+	\item	How do we define \textit{most similar}?
+	\item[]	Often the \textit{Euclidian distance} which is just the distance between 2 points with the pythagorean theorem;
+	\item[]	Alternatives to this include the \textit{Manhattan distance} which is the absolute value of the differences;
+	\item[]	Unfortunately \textit{different distance metrics} \textit{have an impact} but the choice is arbitrary;
+	\item	How do we \textit{merge} and compare clusters ?
+	\item[]	Often the average is used (the \textit{centroid} method), but there's others;
+	\item[]	For example, if we wanted to assign a point to 2 predefined groups :
+	
+	\includegraphics[scale=0.4]{src/SQ-HIERARCH-METRICS.png}
+	\item[]	Like for the similarity, different measures have different impacts;
+	\item[]	For example:
+	
+	\includegraphics[scale=0.4]{src/SQ-HIERARCH-METRICS-IMPACT.png}
+	\item	En bref: 
+		\begin{enumerate}
+		\item	Clusters are formed based on some notion of \textit{similarity};
+		\item	Once we have a sub-cluster, we must decide how we \textit{compare} it to other sub-clusters/columns/rows/etc.
+		\item	The \textit{height of the branches} in dendrograms show you \textit{what is most similar};
+		\end{enumerate}
 \end{itemize}
-\end{YTB_vids}
+\end{YTB_SUMM}
 
 \end{document}

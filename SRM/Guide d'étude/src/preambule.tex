@@ -233,12 +233,17 @@
 %%
 %% Coloured box "CHPT_SUMM" pour résumés des chapitres de l'ASM
 %%
-\newtcolorbox{CHPT_SUMM}[ 1 ]
+%\newtcolorbox[auto counter]{CHPT_SUMM}[ 2 ][] 	%pour ajouter du numérotage automatique
+\newtcolorbox{CHPT_SUMM}[ 2 ][]
 {
 	colback = green!5!white,
 	colframe = darkseagreen,
 	breakable,
-	fonttitle = \bfseries,title=#1
+	enhanced,
+	fonttitle = \bfseries,
+%	title = Chapitre~\thetcbcounter: #2, 		pour inclure le numérotage automatique
+	title = #2,
+	#1
 }
 %%
 %% Coloured box "FORMULA_SUMM" pour résumés des formules de l'ASM
