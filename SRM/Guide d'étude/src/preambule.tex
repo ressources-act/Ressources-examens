@@ -258,13 +258,16 @@
 %%
 %% Coloured box "YTB_SUMM" pour résumés des vidéos Youtube
 %%
-\newtcolorbox{YTB_SUMM}[ 1 ]
+\newtcolorbox{YTB_SUMM}[ 2 ][]
 {
 	colback = red!5!white,
 	colframe = darkterracotta,
 	breakable,
+	enhanced,
 %	    frame hidden,
-	fonttitle = \bfseries,title=#1
+	fonttitle = \bfseries,
+	title=#2,
+	#1
 }
 
 %% -----------------------------
