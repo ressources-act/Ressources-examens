@@ -3024,6 +3024,8 @@ Understand key concepts concerning Principal Components Analysis
 	\item	\href{https://www.youtube.com/watch?v=FgakZw6K1QQ}{StatQuest: Principal Component Analysis (PCA) (step by step)}
 	\item	\href{https://www.youtube.com/watch?v=oRvgq966yZg&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=24}{StatQuest: PCA - Practical Tips}
 %	\item	\href{https://www.youtube.com/watch?v=0Jp4gsfOLMs}{StatQuest: PCA in R} (to watch!)
+%	\item	\href{https://www.youtube.com/watch?v=GEn-_dAyYME}{StatQuest: MDS and PCoA}
+	\item	\hyperref[MDS-PCOA]{StatQuest: MDS and PCoA}
 \end{itemize}
 \end{YTB_vids}
 
@@ -3274,6 +3276,10 @@ Les chapitres 17 et 18 (Cluster analysis) sont des chapitres traitant sur l'appr
 \end{enumerate}
 \end{YTB_SUMM}
 
+\begin{YTB_SUMM}[label = MDS-PCOA]{\href{https://www.youtube.com/watch?v=GEn-_dAyYME}{StatQuest: MDS and PCoA}}
+\includegraphics[scale=0.3]{src/SQ-PCA-PCOA.png}
+\end{YTB_SUMM}
+
 \newpage
 \chapter[Decision Trees]{Decision Trees (10\% à 15\%)}
 
@@ -3307,9 +3313,14 @@ Understand key concepts concerning decision tree models
 %	\item	\hyperref[TREES-PART1]{StatQuest: Decision Trees}
 	\item	\href{https://www.youtube.com/watch?v=wpNl-JwwplA&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=35}{StatQuest: Decision Trees, Part 2 - Feature Selection and Missing Data}
 %	\item	\hyperref[RANDOMFORESTS-BAGGING]{StatQuest: Decision Trees, Part 2 - Feature Selection and Missing Data}
-	\item	\href{https://www.youtube.com/watch?v=g9c66TUylZ4&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=36}{StatQuest: Regression Trees, Clearly Explained!!!}
-	\item	\href{https://www.youtube.com/watch?v=D0efHEJsfHo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=37}{StatQuest: How to Prune Regression Trees, Clearly Explained!!!}
+%	\item	\href{https://www.youtube.com/watch?v=g9c66TUylZ4&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=36}{StatQuest: Regression Trees, Clearly Explained!!!}
+	\item	\hyperref[TREES-REGRESSION]{StatQuest: Regression Trees, Clearly Explained!!!}
+%	\item	\href{https://www.youtube.com/watch?v=D0efHEJsfHo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=37}{StatQuest: How to Prune Regression Trees, Clearly Explained!!!}
+	\item	\hyperref[TREES-PRUNING]{StatQuest: How to Prune Regression Trees, Clearly Explained!!!}
 	\item	\href{https://www.youtube.com/watch?v=J4Wdy0Wc_xQ}{StatQuest: Random Forests Part 1 - Building, Using and Evaluating} (Bagging too)
+	\item	\href{https://www.youtube.com/watch?v=sQ870aTKqiM}{StatQuest: Random Forests Part 2: Missing data and clustering}
+	\item	\href{https://www.youtube.com/watch?v=6EXPYzbfLCE}{StatQuest: Random Forests in R}
+	\item	\href{https://www.youtube.com/watch?v=LsK-xG1cLYA}{StatQuest: AdaBoost, Clearly Explained}
 \end{itemize}
 \end{YTB_vids}
 
@@ -3418,10 +3429,14 @@ Les arbres de décisions sont un alternatif à la régression comme le KNN (chap
 		\item	Pour une région $R_{j}$ et les classes $1, 2, \dots, K$, $\hat{y}_{R_{j}}$ est la classe la plus fréquente;
 		\item	Soit la proportion $p_{jk}$ des observations dans $R_{j}$ pour lesquelles $y_{i} = k$, le \textit{classification error rate} de la région $R_{j}$ est:
 			\begin{align*}
-			E_{j}	=	1 - \underset{}k{\max} \hat{p}_{jk}
+			E_{j}	=	1 - \underset{k}{\max} \hat{p}_{jk}
 			\end{align*}
 		\item	Mais, cette mesure n'est pas assez sensible pour faire pousser les arbres;
 		\item	En lieu, on utilise soit le \textit{Gini index} ou l'\textit{entropie croisée};
+		\end{itemize}
+%		
+	\item[]	Mesures de splitting
+		\begin{itemize}
 		\item	Pour une région $R_{j}$, le Gini index est la variance des observations: 
 			\begin{align*}
 			G_{j}	&=	\sum_{k = 1}^{K} \hat{p}_{jk} (1 - \hat{p}_{jk})
@@ -3433,34 +3448,129 @@ Les arbres de décisions sont un alternatif à la régression comme le KNN (chap
 				où puisque le log sera négatif, $D_{j} > 0$
 		\item	Les deux servent à mesurer l'impureté des nœuds, et se rapprochent numériquement;
 		\item	Les deux sont minimisée lorsque $\hat{p}_{jk}$ est près de 0 ou 1, alias lorsque toutes les classes sont bonnes ou mauvaises;
-		\item	Dans les deux cas, elles ne prennent pas en compte les fitted values
+		\item	Dans les deux cas, elles ne prennent pas en compte les fitted values;
 		\end{itemize}
-		
-	\begin{itemize}
-		\item	To optimise a \textbf{classification} tree, we minimize the classification error rate instead of the MSE;
-		\item	The classification error rate is not sufficiently sensitive to grow the tree so we use the \textbf{Gini index} or the \textbf{cross-entropy} instead;		
-		\item	Note on measure to use for pruning;
-		\item	Residual mean deviance;
-		\item	Advantages over linear models
-		\item	Shortcomings;
-	\end{itemize}
-	\item	Bagging, random forests, boosting
-	\item[]	Questions on this would be qualitative rather than quantitative because they necessitate heavy computing;
+%		
+	\item[]	Mesures de pruning
+		\begin{itemize}
+		\item	Pour le pruning, le classification error rate est idéal pour améliorer la puissance de prévision;
+		\item[]	Le Gini index ou l'entropie croisée peut résulter en nœuds splittés avec la même classe prédite;
+		\item[]	Par exemple, si nous avons 16 A et 4 B on peut avoir 2 régions avec 6A et 4B dans la une et 10A dans l'autre;
+		\end{itemize}
+%		
+	\item[]	\textbf{Residual mean deviance}
+		\begin{itemize}
+		\item	Arbres de régression: $\frac{SS(residuals)}{n - |T|}$
+		\item	Arbres de classification: $-\frac{\sum_{m}\sum_{k} n_{mk} \ln(\hat{p}_{mk})}{n - |T|}$
+		où $n_{mk}$ est le nombre d'observations de la classe $k$ dans le nœud terminal $m$, $\hat{p}_{mk} = \frac{n_{mk}}{n}$ et $|T|$ est le nombre de nœuds terminal;
+		\end{itemize}
+%
+	\item[]	Avantages contre la régression linéaire
+		\begin{itemize}
+		\item	Plus simples à expliquer;
+		\item	Plus semblable à la façon dont les humains font des décisions;
+		\item	Les arbres peuvent être dessinés rendant l'interprétation plus facile;
+		\item	Plus facile de traiter les variables catégoriques, pas besoin de \textit{dummy} variables;
+		\end{itemize}
+%		 
+	\item[]	Désavantages contre la régression linéaire
+		\begin{itemize}
+		\item	N'ont pas d'aussi bonnes prévisions;
+		\item	Pas robuste---des petites modifications aux données peut avoir un gros impact;
+		\end{itemize}
+%%%		
+	\item	\textbf{Bagging}, \textbf{random forests}, \textbf{boosting}
+	\item[]	\textbf{Notes faites vite-vite}
+	\item[]	Ces méthodes viennent remédier les désavantages des arbres de décision;
+	\item[]	\textbf{Bagging}: \textbf{B}oostrap \textbf{Agg}regation;
+		\begin{itemize}
+		\item	Méthode qui sert à réduire la variance de méthodes d'apprentissage statistique;
+		\item	On sait que prendre la moyenne d'un ensemble d'observations réduit la variance;
+		\item[]	Pour exemple, la variance de la moyenne d'observations est $\sigma^{2}/n$;
+		\item	Ce faisant, il est naturel de:
+			\begin{enumerate}
+			\item	Prendre plusieurs ensembles de données d'entraînement de la population;
+			\item	Établir un modèle de prévision pour chaque ensemble;
+			\item	Prendre la moyenne des prévisions résultantes de chaque moyenne;
+			\end{enumerate}
+		\item	Formellement, la procédure serait de:
+			\begin{enumerate}
+			\item	Créer $B$ ensembles de données d'entraînement;
+			\item	Calculer les prévisions pour chacun des ensembles $\hat{f}^{1}(x), \hat{f}^{2}(x), \dots, \hat{f}^{B}(x)$;
+			\item	Calculer la moyenne des prévisions :
+			\begin{align*}
+			\hat{f}_{\text{avg}}(x)	&=	\frac{1}{B} \sum_{b = 1}^{B} \hat{f}^{b}(x)
+			\end{align*}
+			et ainsi obtenir un modèle d'apprentissage à faible variance
+			\end{enumerate}
+		\item	Puisque nous n'avons pas assez de données pour créer autant d'ensembles de données d'entraînement, on crée des \textit{échantillons bootstrap};
+		\item[]	Ce faisant, nous avons plutôt les prévisions dénotées $\hat{f}^{*b}(x)$ et la moyenne dénotée $\hat{f}_{\text{bag}}(x)	=	\frac{1}{B} \sum_{b = 1}^{B} \hat{f}^{*b}(x)$ et obtenons le \textbf{bagging}
+		\item	Ce concept est appliqué aux arbres de régression en établissant $B$ arbres dont on prend la moyenne des prévisions;
+		\item[]	Chaque arbre individuellement a une haute variabilité et un faible biais, donc prendre la moyenne avec le Bagging réduit la variance;
+		\end{itemize}
+%		
+	\item[]	\textbf{Out-of-Bag} Error Estimation;
+		\begin{itemize}
+%		\item	Ce arbres ne seront probablement pas indépendants;
+		\item	Chaque \textit{bagged} arbre n'utilise pas, environ, 1/3 des données;
+		\item[]	Ces données sont connues comme l'\textbf{out-of-bag} (OOB) validation set;
+		\item	On les utilise pour calculer la puissance de prévision du modèle;
+		\end{itemize}
+%		
+	\item[]	Quantifier les variables
+		\begin{itemize}
+		\item	On peut quantifier l'importance des variables avec la baisse du SSE en raison de splits ou la somme des baisses du Gini index;
+		\item[]	Ce faisant, le plus élevé la différence le mieux que c'est;
+		\item	On peut ensuite représenter ces différences graphiquement avec un \textit{Variable importance plot}
+		\end{itemize}
+%		
+	\item[]	\textbf{Random Forests};
+		\begin{itemize}
+		\item	Puisque les bagged trees peuvent être corrélés, on choisit aléatoirement un nombre $m$ des variables à considérer \textbf{à chaque split};
+		\item[]	Le split peut seulement utiliser un des $m$ variables;
+		\item	Typiquement, $m \approx \sqrt{p}$ ($p$ est le nombre de variables);
+		\item	La logique est que si une variable est bien supérieure aux autres, alors à chaque split les bagged trees vont l'utiliser et les arbres résultat seront tous très similaire et les prévisions corrélées;
+		\item[]	Et prendre la moyenne des quantités corrélées ne réduit pas autant la variance que des quantités non corrélées;
+		\item	Ce faisant, les forêts aléatoires aident à réduire la corrélation entre arbres et ainsi augmenter la puissance de prévision;
+		\item	Si $m = p$, alors ceci revient à du Bagging;
+		\end{itemize}
+	\item[]	Pour le bagging et les forêts aléatoires, \textbf{augmenter $B$ ne mène pas à du overfitting} et donc il est choisi tel que le taux d'erreur se soit stabilisé;
+%		
+	\item[]	\textbf{Boosting}
+	\item[]	Description
+		\begin{itemize}
+		\item	Comme le bagging, c'est une méthode plus générale pouvant être appliquée à plusieurs autres méthodes d'apprentissage statistique;
+		\item	Le boosting \og généralise \fg{} le bagging en créant les arbres de façon séquentielle;
+		\item	Chaque arbre est créé avec l'information des arbres précédents;
+		\item	Au lieu d'utiliser les ensembles de données bootstrap, chaque arbre est ajusté avec une version modifiée de l'ensemble de données original;
+		\item	Au lieu d'ajuster un arbre avec la variable endogène $Y$ comme réponse, on ajuste avec les résidus comme variable réponse;
+		\item[]	On ajoute ensuite cet arbre à la fonction ajusté pour mettre à jour les résidus;
+		\item[]	Cette méthode est donc connue comme étant très lente;
+		\item	Chaque arbre peut être relativement petit avec $d$ splits;
+		\item[]	En ajustant des petits arbres aux résidus, on améliore graduellement $\hat{f}$ dans les endroits où il n'obtient pas de bons résultats;
+		\item	La méthode peut être ralentie davantage avec le paramètre de shrinkage $\lambda$ permettant à davantage d'arbres de différentes formes de \og s'attaquer \fg{} aux résidus;
+		\item	La méthode pour les arbres de classification est plus compliquée est pas dans le cadre du livre;
+		\end{itemize}
+	\item[]	\textbf{Tuning parameters}
 		\begin{enumerate}
-		\item	Bagging	
-		\item[]	Form of boostrapping;
-		\item[]	Bootstrapping is not on the syllabus, but it's needed to understand bagging;
-		\item	Random forests
-		\item[]	Bagged trees may be correlated and random forests corrects this I think;
-		\item	Boosting
-		\item[]	Only discussed for regression (continuous) setting;
-		\item[]	Parameters;
-		\item[]	Algorithm;
+		\item	$B$: Le nombre d'arbres;
+		\item[]	Si $B$ est trop large, le modèle \textbf{sera overfitted} inversement aux forêts aléatoires et le bagging;
+		\item[]	Il est sélectionné avec la validation croisée;
+		\item	$\lambda$: le \textit{shrinkage} parameter;
+		\item[]	Contrôle le taux auquel l'algorithme de boosting apprends;
+		\item[]	$\lambda < 1$;
+		\item	$d$: le nombre de splits par arbre;
+		\item[]	Contrôle la complexité du modèle de boosting;
+		\item[]	Représente le \textit{depth of interaction} puisque le modèle aura au plus $d$ variables;
+		\item[]	Nombre de terminal nodes, $|T|$, moins 1;
+		\item[]	Si $d = 1$ alors il y a qu'un seul split;
 		\end{enumerate}
+	
+	\includegraphics[scale=0.25]{src/ISLR-BOOSTING-ALGO.png}
 \end{enumerate}
 \textbf{Note sur les exercices:} 
 	\begin{enumerate}
-	\item	
+	\item	Des questions sur le bagging, foret aléatoires, boosting seraient qualitatives et non quantitatives puisqu'elles nécessitent beaucoup de puissance informatique;
 	\end{enumerate}
 \end{CHPT_SUMM}
 
@@ -3492,6 +3602,62 @@ Les arbres de décisions sont un alternatif à la régression comme le KNN (chap
 %	\item	The proportion of Out-Of-Bag samples which were incorrectly labed is the \textbf{Out-Of-Bag Error}
 %\end{itemize}
 %\end{YTB_SUMM}
+
+\begin{YTB_SUMM}[label = TREES-REGRESSION]{\href{https://www.youtube.com/watch?v=g9c66TUylZ4&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=36}{StatQuest: Regression Trees, Clearly Explained!!!}}
+\begin{itemize}
+	\item	Alternative to a straight line for predictions;
+	\item	Each leaf represents a numerical value;
+	\item[]	In constrast, classification trees have a True/False, or a category, in their leaves;
+	\item	Average value of group corresponding to the test, for example:
+	
+	\includegraphics[scale=0.3]{src/SQ-TREES-REGRESSION.png}
+	\item	Because of the way the data's formed, with clusters of information, the tree will do a better job reflecting the data than a straight line;
+	\item	The graph is just as easy to use to predict with one predictor and only a bit of data but with many predictors and alot of data it becomes much less conveniant;
+	\item[]	In contrast, a decision tree will be just as simple with the extra predictors;
+	\item	Split data into groups by finding threshold giving the smallest SS(residuals);
+	\item	When model fits training data perfectly, probably means overfit and won't perform well with testing data;
+	\item[]	It has low bias and a high variance;
+	\item	One way to treat is to split only above a certain number of observations;
+	\item[]	For example, if there's less than 20 observations don't split the node;
+%	
+	\item	With several predictors?
+	\item[]	Find threshold with lowest SS(residual) for each variable and pick the variable having the lowerst overall SS(residual);
+	\item	In brief;
+	\item[]	Regression trees are a type of decision trees;
+	\item[]	Determine how to divide observations by trying different thresholds and calculating the SS(residuals) at each step;
+	\item[]	With multiple, calculate most optimal threshold for each and pick lowest overall;
+	\item[]	Split until we have less observations than our required minimum in a group;
+\end{itemize}
+\end{YTB_SUMM}
+
+\begin{YTB_SUMM}[label = {TREES-PRUNING}]{\href{https://www.youtube.com/watch?v=D0efHEJsfHo&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=37}{StatQuest: How to Prune Regression Trees, Clearly Explained!!!}}
+\begin{itemize}
+	\item	Each leaf corresponds to the average druf effectiveness from a different cluster of observations;
+	\item	Residuals are small in some areas and large in others;
+	\item[]	The 4 in the middle now look like outliers, meaning we overfit the tree;
+	\item[]	One way to prevent overfitting is to remove some of the leaves and replace them with the average of a larger number of observations;
+	\item	The main idea of pruning data, is preventing overfitting the training data;
+	\item	Theoretically, we could keep \textit{going up} and removing leaves, but how do we decide which tree to use (how many nodes to remove)?
+	\item[]	With \textbf{cost complexity pruning};
+	\item	Each time we prune the tree, SS(residuals) gets larger;
+	\item[]	However, we \textit{want this} as the idea is the prune tree \textit{won't fit} the data as well as the full sized tree;
+	\item	So, we have the Tree Score = \textbf{SSR} + $\alpha$\textbf{T};
+	\item	$\alpha$ is a tuning parameter found with cross-validation;
+	\item	So select tree with smallest tree score;
+	\item[]	$\alpha$ \textit{makes a big difference} on decision;
+%	
+		\begin{enumerate}
+		\item	Fit a full-sized tree with all the data (training and testing);
+		\item[]	Note $\alpha = 0$ is of course the smallest penalty possible;
+		\item	Increase $\alpha$ until pruning leaves leads to a lower score;
+		\item[]	We obtain $\alpha = 10 000$;
+		\item	Repeat and find different threshold values for $\alpha$;
+		\item	Fit trees with oonly the training data for each of the same thresholds;
+		\item[]	Select tree having smallest SS(residuals) with the testing data;
+		\item	Repeat 10 times with different seperations of training and testing data for 10-fold cross-validation;
+		\end{enumerate}
+\end{itemize}
+\end{YTB_SUMM}
 
 \newpage
 \chapter[Cluster Analysis]{Cluster Analysis (10\% à 15\%)}
