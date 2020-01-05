@@ -1899,7 +1899,7 @@ Time series -> Séries chronologiques
 		\item	Lorsqu'il y une tendance, ou un cycle, \textbf{saisonnale} on peut ajuster le modèle avec une variable binaire;
 		\item	Lorsqu'il y a une transition (\textbf{Regime change}) on peut ajuster le modèle avec une variable binaire égale à 0 avant le point fixé et 1 après;
 		\item	Un scatter plot du modèle contre le temps, i.e. un \textbf{time series plot}, permet d'évaluer la série chronologique. 
-		Par exemple:
+		Pour exemple:
 		
 		\includegraphics[scale=0.35]{src/time-series-plots.png}
 		\end{itemize}
@@ -1907,17 +1907,17 @@ Time series -> Séries chronologiques
 		\begin{itemize}
 		\item	On surnomme parfois les prévisions de séries chronologiques comme étant des prévisions \og \textbf{naïves} \fg{}. 
 		\item[]	Les prévisions des modèles de série chronologique prennent en compte uniquement les observations passées pour faire des prévisions;
-		\item[]	Elles ne sont \textbf{\textit{ni} ajustés} \textit{ni} \textbf{évaluées} pour des \textbf{relations causales}. 
+		\item[]	Elles ne sont \textbf{\textit{ni} ajustées} \textit{ni} \textbf{évaluées} pour des \textbf{relations causales}. 
 		\item[]	Ce faisant, elles ne sont pas très représentatives de la réalité et sont \textbf{\textit{naïves}};
 		\item	De plus, le modèle de régression va allouer le \textbf{plus de poids aux observations} avec des variables explicatives \textbf{anormalement élevées};
-		\item[]	On peut visualiser que si le temps était une variable explicative, alors les données le plus récentes et les plus anciennes seraient les plus éloigné du temps moyen;
-		\item[]	\textit{Par exemple}, si le temps va de 1 à 10 alors le temps moyen est de 5.5 et les points au début et à la fin sont les plus éloignés;
+		\item[]	On peut visualiser que si le temps est une variable explicative, alors les données les plus récentes et les plus anciennes seraient les plus éloignées du temps moyen;
+		\item[]	\textit{Pour exemple}, si le temps va de 1 à 10 alors le temps moyen est de 5.5 et les points au début et à la fin sont les plus éloignés;
 		\item[]	Le modèle va donc attribuer \textbf{plus de poids} aux observations \textbf{récentes et anciennes} qu'aux autres, ce qui n'est pas idéal;
 		\item[]	Ce problème est adressé avec du \textbf{smoothing} au chapitre 21;		
 		\end{itemize} 
 	\item[]	\textbf{Incertitude} des prévisions:
 		\begin{itemize}
-		\item	Avec des données transversales, le plus éloigné un point est de la masse principale, le moins nous sommes certain des prévisions;
+		\item	Avec des données transversales, le plus éloigné un point est de la masse principale, le moins nous sommes certains des prévisions;
 		\item[]	Ce faisant, nous sommes majoritairement intéressés aux prévisions sur des points près de la masse principale;
 		\item 	Pareillement, avec des données chronologiques, le plus loin dans le futur une prévision, le moins nous en sommes certains;
 		\item[]	Ce faisant, nous sommes majoritairement intéressés aux prévisions d'évènements pas trop loin dans le temps; 
@@ -1931,22 +1931,23 @@ Time series -> Séries chronologiques
 		\item	Pareillement, si la \textbf{variance} \textit{(au temps t)} $\text{Var}(y_{t}) = \sigma^{2}(t)$ ne varie pas dans le temps, la série est \textbf{stationnary in the variance};
 		\item[]	Ce faisant, on peut l'estimer avec la variance échantillonnale;
 		\item	Cependant, lorsque les données sont corrélées (ce à quoi on s'attend) alors la variance échantillonnale va \textbf{sous-estimer} la vraie variance;
-		\item	L'\textbf{autocorrelation, ou \textit{serial correlation})} est mesuré par la corrélation échantillonnale;
+		\item	L'\textbf{auto-corrélation, ou \textit{serial correlation})} est mesuré par la corrélation échantillonnale;
 		\item[]	À noter que la sous-estimation de la variance devient de moins en moins importante plus la taille de la série augmente;
-		\item	Le distance $k$ des observations d'une série chronologique au temps $t$ avec la même série au temps $t + k$ est le \textbf{lag};
+		\item	La distance $k$ des observations d'une série chronologique au temps $t$ avec la même série au temps $t + k$ est le \textbf{lag};
 		\item	Si la série a une espérance stationnaire et que la variance et corrélation sont fonction seulement du \textit{lag}, et non du temps lui-même, alors la série est dite \textbf{\textit{(weakly)} stationary} \textbf{(par défaut)};
-		\item	Si aucun des moments plus élevés varient avec le temps, alors la série est \textbf{\textit{strongly} stationary};
+		\item	Si aucun des moments plus élevés ne varie avec le temps, alors la série est \textbf{\textit{strongly} stationary};
 		\end{itemize}
 %%%		
 	\item	\textbf{White noise}: Une série chronologique \textbf{white noise}  $w_{t}$ est caractérisé par:
 	\begin{itemize}
 		\item	L'indépendance des termes;
-		\item[]	Ce faisant, la corrélation $r_{k}$ à tous \textbf{lag} supérieurs à 0 est de 0 ($r_{0}$ est toujours égale à 1);
+		\item[]	Ce faisant, la corrélation $r_{k}$ à tous \textbf{lag} \textit{supérieurs à 0} est de 0 ($r_{0}$ est toujours égale à 1);
 		\item	Une espérance constante $\mu_w$;
 		\item[]	Habituellement, elle est nulle;
 		\item	Une variance constante $\sigma^{2}_w$;
 		\item	Habituellement, on suppose également la normalité;
 	\end{itemize}
+%	
 	\item[]	Réduction de série alias \textbf{time series \textit{filtering}}:
 		\begin{itemize}
 		\item	Nous cherchons toujours à réduire toute série chronologique à une série white noise en \textbf{identifiant des patterns};
@@ -1958,12 +1959,13 @@ Time series -> Séries chronologiques
 		\includegraphics[scale=0.6]{src/regime-change-wave.png}
 %		\item	Sans annotations, on pourrait peut-être porté à croire qu'il n'y a pas de tendances dans certaines de ces images;
 		\item	Cette idée d'observer des tendances dans des graphiques d'ondes sonores est exactement la même idée que le \textit{time series filtering};
-		\item[]	On cherche à identifier des tendances, des cycles, des changements de régime, etc. dans une série qui peuvent sembler d'être aléatoires;
+		\item[]	On cherche à identifier des tendances, des cycles, des changements de régime, etc. dans une série pouvant sembler d'être aléatoire;
 		\item	Dans le même ordre d'idée, lorsqu'un musicien joue son instrument on imagine que ce n'est pas parfait et qu'il y a un certain niveau d'erreur!
 		\item[]	Ceci est donc le \textbf{white noise}, l'erreur aléatoire de la fréquence observée à la fréquence attendue;
 		\item[]	Alors, pour néanmoins reconnaître une fréquence d'instrument imparfait, on alloue une variabilité (ou déviance) à la série \og parfaite \fg{};
 		\item	La partie inexplicable par les patterns qui demeure est dite d'être \textbf{irréductible} et est donc traitée comme du \textbf{\textit{white noise}};
 		\end{itemize}
+%		
 	\item[]	\label{sec:ex_rand_walk} \textbf{Exemples théoriques} de \textbf{filtering}: 
 		\begin{itemize}
 		\item	Différencier une marche aléatoire (voir ci-dessous);
@@ -1977,6 +1979,7 @@ Time series -> Séries chronologiques
 		\item	Ayant comme valeur le niveau initial $y_{0}$ en plus de l'accumulation du \textit{white noise} $w_{t}$;
 		\item	L'expression est donc de la forme: $y_{t} = y_{t - 1} + w_{t}, t \ge 1$.
 		\end{itemize}
+%		
 	\item[]	\textbf{Notes} sur l'\textit{espérance} et la \textit{variance}:
 		\begin{itemize}
 		\item	Si $\mu_{c} = 0$ la série est néanmoins non-stationnaire puisque la variance croît avec le temps;
@@ -2016,6 +2019,7 @@ Time series -> Séries chronologiques
 	\item[]	Exemple de xbar plot:
 	
 	\includegraphics[scale=0.35]{src/xbar-plots.png}
+%%%	
 	\item	\textbf{Evaluating forecasts} \textit{(évaluer les prévisions)}
 	\item[]	On utilise le \textbf{out-of-sample validation}
 		\begin{itemize}
@@ -2092,7 +2096,7 @@ Pour une marche aléatoire $y_{t}$ :
 	&	\multicolumn{1}{c|}{\cellcolor[HTML]{21650A}{\color[HTML]{FFFFFF} \textbf{Random walk}}}	\\	
 \hline
 \rowcolor[HTML]{B8F0A5}	Estimated standard error		&	$se_{\hat{y}_{T + l}} = s_{y}\sqrt{1 + \frac{1}{T}}$	&	$se_{\hat{y}_{T + l}} = s_{w}\sqrt{l}$ 	\\ \hline
-\rowcolor[HTML]{B8F0A5}	$l$-period lookahead forecast &	$\hat{y}_{T + l} = \bar{y} \; \forall l$	&	$\hat{y}_{T + l} = y_{T} + l \bar{w}$	\\	
+\rowcolor[HTML]{B8F0A5}	$l$-period lookahead forecast &	$\hat{y}_{T + l} = \bar{y} \; \forall l$	&	$\hat{y}_{T + l} = y_{T} \textcolor{burntorange}{+ l \bar{w}}$	\\	
 \hline
 \rowcolor[HTML]{B8F0A5}	Forecast interval of $y_{T + l}$	&	$\bar{y} \pm t_{T - 1, 1 - \frac{\alpha}{2}} s_{y}\sqrt{1 + \frac{1}{T}}$	&	\\	
 \hline
@@ -2107,7 +2111,7 @@ où $\bar{w}$ est la moyenne échantillonnale de $w_{t}$.
 Le chapitre 19 couvre l'identification de \textbf{patterns majeures} comme première étape pour faire des prévisions. Le chapitre 20 couvre l'identification de \textbf{tendances plus subtiles} et les modèles pour les accommoder.
 
 \begin{enumerate}
-	\item	Intro
+	\item	Introduction
 	\item[]	\textbf{Description}
 		\begin{itemize}
 		\item	Tout comme nous avons l'\textit{auto}-corrélation, nous avons les modèles \textbf{\textit{auto}régressifs};
@@ -2119,14 +2123,14 @@ Le chapitre 19 couvre l'identification de \textbf{patterns majeures} comme premi
 		\end{itemize}
 	\item[]	\textbf{Stationnarité} et liens
 		\begin{itemize}
-		\item	On note que si $\beta = 1$ alors la série est une marche aléatoire et est non-stationnaire;
+		\item	On note que si $\beta_{1} = 1$ alors la série est une marche aléatoire et est non-stationnaire;
 		\item	Également, si $\beta_1 = 0$ alors la série est du white noise;
 		\item	Pour assurer la stationnarité, on veut donc $0 < |\beta_{1}| < 1$;
 
 		\item[]	Ce faisant, le domaine de $\beta_{1}$ implique que le modèle auto-régressif sera stationnaire sans être une série white noise;
 		\end{itemize}
 	\item[]	Comment déterminer qu'un modèle auto-régressif est approprié
-		\begin{enumerate}
+		\begin{enumerate}[label = \roman*.]
 		\item	Utiliser un \textbf{control chart} pour évaluer la stabilité;
 		\item[]	Le modèle AR(1) est stationnaire, on s'attend à un graphique relativement stable;
 		\item	Utiliser un \textbf{scatterplot} de la dernière valeur contre la valeur présente de la série;
@@ -2156,7 +2160,7 @@ Le chapitre 19 couvre l'identification de \textbf{patterns majeures} comme premi
 		\item[]	Puisque la variable explicative est l'observation précédente, $s_{x} = s_{y}$ et $b_{1} = r_{xy}$;
 		\item[]	La distinction importante est que le \textbf{modèle évolue dans le temps};
 		\item[] Donc, nous n'avons pas la corrélation entre 2 différentes variables mais plutôt l'auto-corrélation entre \textbf{même variable à 2 différents moments};
-		\item	Puisqu'il est irréaliste d'évaluer l'auto-corrélation à tous les moments, $b_{1} \approx r_{1}$;
+		\item	Puisqu'il est irréaliste d'évaluer l'auto-corrélation $r_{k}$ à tous les moments $k$, $b_{1} \approx r_{1}$;
 		\item	Également, on déduit que $\bar{x} = \bar{y}$ et $b_{0} \approx \bar{y} (1 - b_{1})$;
 		\item	La série de prévisions, surnommée \textbf{smoothed series}, devient donc $\hat{y_{t}} = b_{0} + b_{1} y_{t - 1}$ et l'erreur $e_{t} = y_{t} - (b_{0} + b_{1} y_{t - 1})$;
 		\end{itemize}
@@ -2164,7 +2168,7 @@ Le chapitre 19 couvre l'identification de \textbf{patterns majeures} comme premi
 		\begin{itemize}
 		\item	Voir la boite de formule pour le raisonnement sous-jacent à la formule du MSE;
 		\item	On peut généraliser l'équation de prévision pour obtenir la \textbf{\textcolor{amethyst}{$k$-step ahead} prévision} de $y_{T + k}$ avec $\hat{y}_{T + \textcolor{amethyst}{k}} = b_{0} + b_{1} \hat{y}_{T + \textcolor{amethyst}{k - 1}}$;
-		\item	Voir les formules pour comprendre le raisonnement derrière les formules de prévisions également;
+		\item	Voir le résumé des formules pour comprendre le raisonnement sous-jacent aux formules de prévisions;
 		\end{itemize}
 \end{enumerate}
 \textbf{Note sur les exercices:} 
@@ -2201,14 +2205,14 @@ Prévisions
 		&=	y_{t} - (b_{0} + b_{1} y_{t - 1})	\\
 \end{align*}
 
-MSE:
+MSE (variance du terme d'erreur):
 
 \begin{minipage}[ht]{0.5\linewidth}
 \begin{align*}
 	s^{2}
 		&=	\sum_{t = \textcolor{teal}{2}}^{T}	\frac{(e_{t} - \bar{e})^{2}}{\textcolor{burntorange}{T - 3}}	\\
 	\widehat{\text{Var}}(y_{t})
-		&=	\frac{s^{2}}{1 - \hat{\beta}_{1}^{2}}
+		&=	\frac{s^{2}}{1 - b_{1}^{2}}
 \end{align*}
 \end{minipage}
 \begin{minipage}[ht]{0.5\linewidth}
@@ -2388,10 +2392,10 @@ Prévision:
 		\item	Les modèles de saisonnalité sont habituellement utilisés pour expliquer des phénomènes naturels;
 		\item	Par exemple, la position du soleil dans le temps qui dépends de l'heure;
 		\item	Ce faisant, les fonctions trigonométriques peuvent être utilisées pour ajuster des modèles avec saisonnalité;
-		\item[]	Pour comprendre l'intuition sous-jacente à l'utilisation des fonctions trigonométriques, observer ce graphique de la fonction d'autocovariance:
+		\item[]	Pour comprendre l'intuition sous-jacente à l'utilisation des fonctions trigonométriques, observer ce graphique de la fonction d'auto-corrélation:
 		
 		\includegraphics[scale=0.25]{src/sine-wave-autocorrelation.png}
-		\item[]	Il y a de l'autocorrélation cyclique;
+		\item[]	Il y a de l'auto-corrélation cyclique;
 		\item[] La 1ère valeur est très semblable à la 24ème, la 12ème à la 36ème, etc. et donc nous allons observer des valeurs très semblables à chaque 24 unité de temps;
 		\item[]	De plus, le graphique \textbf{ressemble} évidemment \textbf{à une fonction sinusoïdale};
 		\item 	Alors, nous avons un cycle \textbf{saisonnale} pouvant être \textbf{estimé par une fonction sinusoïdale};
@@ -2410,8 +2414,10 @@ Prévision:
 		\begin{align*}
 			g(t)
 				&=	a \sin (f t + b)	\\
-				&=	\beta_{1} \sin(ft) + \beta_{2} \cos(ft)	\\
-			&\text{où}\\
+				&=	\beta_{1} \sin(ft) + \beta_{2} \cos(ft)	
+		\end{align*}
+		où
+		\begin{align*}
 			\beta_{1}	
 				&=	a \cos (b)	&
 			\beta_{2}	
@@ -2424,7 +2430,7 @@ Prévision:
 				&=	\sum_{i = 1}^{m} \{ \beta_{1i} \sin(f_{i}t) + \beta_{2i} \cos(f_{i}t)	 \} 
 		\end{align*}
 		Pour exemple, si le série était des observations mensuelles alors $SB = 12$;
-		\item	Par la suite, on défini le modèle de régression linéaire multiple avec $k = 2m$ et $m \le SB/2$ variables explicatives: 
+		\item	Par la suite, on défini le modèle de régression linéaire multiple avec $p = 2m$, et $m \le SB/2$, variables explicatives: 
 		\begin{align*}
 			y_{t}
 				&=	\beta_{0} + S_t + \varepsilon_{t}	\\
@@ -2517,6 +2523,7 @@ Prévision:
 		\setlength{\mathindent}{1cm}
 		\item	Cependant, puisque sous l'hypothèse nulle la série est une marche aléatoire, $t_{ddl}$ \textit{ne suit \textbf{pas} la distribution $t$ habituelle} ($t_{ddl} \not\sim t$) mais plutôt une distribution spéciale;
 		\end{itemize}
+%		
 	\item[]	Test \textbf{Dickey-Fuller} :
 		\begin{itemize}
 		\item	Le test \textit{Dickey-Fuller} est donc conçu pour ce test d'hypothèse;
@@ -2535,7 +2542,7 @@ Prévision:
 	\item	\textbf{Modèles de volatilité}
 	\item[]	Description du modèle \textbf{ARCH}
 		\begin{itemize}
-		\item	C'est le \textbf{Auto Regressive Changing Heteroscedasticity}, ou \textbf{Auto Regressive Conditional Heteroscedasticity}, model d'ordre p - ARCH(p):
+		\item	C'est le \textbf{Auto Regressive Changing Heteroscedasticity}, ou \textit{Auto Regressive \textbf{Conditional} Heteroscedasticity}, model d'ordre p---ARCH(p):
 		\item	\textit{Heteroscedasticité} veut juste dire que la volatilité, ou variance, n'est \textbf{pas constante} dans le temps;
 		\item[]	En observant la graphique du vidéo sur ARCH de ritvikmath, on voit que la volatilité \textbf{change} dans le temps;
 		\item[] Annuellement, il y a une période de temps pour laquelle les résidus sont très volatiles, mais que pour le reste de l'année elle est relativement stable;
@@ -2603,35 +2610,57 @@ Prévision:
 \end{CHPT_SUMM}
 
 \begin{FORMULA_SUMM}{Formules chapitre 21}
+\begin{multicols*}{2}
 Moving average smoothing
+
+\begin{minipage}[ht]{0.5\linewidth}
+\setlength{\mathindent}{-1cm}
 \begin{align*}
 	\hat{s}_{t}
 		&=	\frac{y_{t - (k - 1)} + y_{t - (k - 2)} + \dots + y_{t}}{k}	\\
-		&=	\hat{s}_{t - 1} - \frac{y_{t} - y_{t - k}}{k}	\\
-	\hat{s}_{t}^{(2)}	
-		&=	\frac{\hat{s}_{t}^{(1)} + \dots + \hat{s}_{t - (k - 1)}^{(1)}}{k}	\\
+		&=	\hat{s}_{t - 1} - \frac{y_{t} - y_{t - k}}{k}	
+\end{align*}
+\setlength{\mathindent}{1cm}
+\end{minipage}
+\setlength{\mathindent}{-1cm}
+\begin{align*}
 	b_{1, T}	
 		&=	\frac{2(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)})}{k - 1}	\\
 	\hat{y}_{T + l}
-		&=	\hat{s}_{t} + b_{1, T}	
+		&=	\hat{s}_{t} + b_{1, T}	\\
+	\hat{s}_{t}^{(2)}	
+		&=	\frac{\hat{s}_{t}^{(1)} + \dots + \hat{s}_{t - (k - 1)}^{(1)}}{k}	
 \end{align*}
+\setlength{\mathindent}{1cm}
 
+\vfill\null
+\
+
+\begin{minipage}[ht]{0.5\linewidth}
 Exponential smoothing
+\setlength{\mathindent}{-1cm}
 \begin{align*}
 	\hat{s}_{t}
-		&=	w \hat{s}_{t - 1} + (1 - w) y_{t}	\\
-		&=	\frac{y_{t} + w y_{t - 1} + w^{2} y_{t - 2} + \dots + w^{t} y_{0}}{1/(1 - w)}	\\
+		&=	\frac{y_{t} + w y_{t - 1} + w^{2} y_{t - 2} + \dots + w^{t} y_{0}}{1/(1 - w)}		\\
+		&=	w \hat{s}_{t - 1} + (1 - w) y_{t}	
+\end{align*}
+\setlength{\mathindent}{1cm}
+\end{minipage}
+\setlength{\mathindent}{-1cm}
+\begin{align*}
+	b_{1, T}	
+		&=	\frac{(1 - w)}{w}\left(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}\right)	\\
+	\hat{y}_{T + l}
+		&=	b_{0, T} + b_{1, T} l	\\
 	\hat{y}_{T + l}
 		&=	\hat{s}_{T}		\\
 	\varepsilon_{t}
 		&=	y_{t} - \hat{s}_{t - 1}	\\
 	SS(w)
-		&=	\sum_{t = 1}^{T}(y_{t} - \hat{s}_{t - 1})^{2}, \hat{s}_{0} = y_{0}	\\
-	b_{1, T}	
-		&=	\frac{(1 - w)}{w}\left(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}\right)	\\
-	\hat{y}_{T + l}
-		&=	b_{0, T} + b_{1, T} l	\\
+		&=	\sum_{t = 1}^{T}(y_{t} - \hat{s}_{t - 1})^{2}, \hat{s}_{0} = y_{0}	
 \end{align*}
+\setlength{\mathindent}{1cm}
+\end{multicols*}
 
 Seasonal models
 Fixed effects
@@ -2836,7 +2865,6 @@ Lightbulb manufacturer. Challenge is: how many lightbulbs ($k_{t}$) to manufactu
 	\item	Rule of thumb to identify the order of the ARMA model is the correlation functions
 	\item[]	ACF helps identify the MA order because it measures direct effects;
 	\item[]	PACF helps identify the AR order because it measures the moving average bit;
-	\item	
 \end{itemize}
 \end{YTB_SUMM}
 
@@ -3172,6 +3200,7 @@ Les chapitres 17 et 18 (Cluster analysis) sont des chapitres traitant sur l'appr
 	\item	Questions qualitatives sur le PCA (4, 5);
 	\item	Questions dont il faut \textbf{interpréter le graphique} comme 7;
 	\item	Calculer un PVE comme 6;
+	\item	Si question à, pour exemple, $p = 2$ et $\phi_{11} = 0.73$ et stipule $k < 0$ alors $\phi_{12} = -\sqrt{1 - 0.73^{2}}$. Alias, un ajoute un négatif;
 \end{enumerate}
 \end{CHPT_SUMM}
 
