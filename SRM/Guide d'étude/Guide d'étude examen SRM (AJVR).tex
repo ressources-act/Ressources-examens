@@ -875,7 +875,7 @@ Finalement, on veut comparer des différents modèles et c'est de là que vient 
 		\item	Régression \textbf{Ridge}: utile pour la multicolinéarité en réduisant des coefficients;
 		\item	Régression \textbf{Lasso}: utile pour la sélection de variables en posant des coefficients égale à 0;
 		\item	Dans les deux cas, on trouve la balance entre l'augmentation du biais et la diminution de la variance où le MSE est minimisé;
-		\item	Nous avons soit le \textbf{tuning parameter} $\lambda$ ou le \textbf{budget alloué} \textbf{s}.
+		\item	Nous avons soit le \textbf{tuning parameter}---$\lambda$---ou le \textbf{budget alloué}---\textbf{s}.
 	\end{itemize}
 	\item	\textbf{Méthodes de réduction de dimensions}: \textbf{Au lieu} de \textit{\textbf{réduire}} le nombre de variables nécessaire pour le modèle, on \textbf{\textit{crée}} des \textbf{nouvelles variables} qui sont des \textbf{combinaisons linéaires} des variables originales.
 	\item[]	Deux méthodes abordées: 
@@ -2231,13 +2231,13 @@ Prévision:
 		&= 	s \sqrt{1 + b_{1}^{2} + \dots + b_{1}^{2\textcolor{amethyst}{(k - 1)}}}	\\
 		&=	s \sqrt{\sum_{t = \textcolor{amethyst}{1}}^{\textcolor{amethyst}{k}} b_{1}^{2\textcolor{amethyst}{(t - 1)}}}	\\
 	y_{\textcolor{amethyst}{T + k}}
-		&\in		\hat{y}_{\textcolor{amethyst}{T + k}} \pm	t_{1 - \frac{\alpha}{2}, \textcolor{teal}{n - 3}} \, se_{\hat{y}_{T + \textcolor{amethyst}{k}}}	
+		&\in		\hat{y}_{\textcolor{amethyst}{T + k}} \pm	t_{1 - \frac{\alpha}{2}, \textcolor{teal}{T - 3}} \, se_{\hat{y}_{T + \textcolor{amethyst}{k}}}	
 \end{align*}
 \end{minipage}
 \begin{minipage}[ht]{0.5\linewidth}
 \begin{itemize}
 	\item	\textcolor{amethyst}{Voir le $k$-step ahead forecast pour comprendre la logique derrière la variance de l'erreur de prévision $\hat{y}_{T + \textcolor{amethyst}{k}}$;}
-	\item	\textcolor{teal}{$n - 3$ pour la même raison que ci-dessus;}
+	\item	\textcolor{teal}{$T - 3$ pour la même raison que ci-dessus;}
 \end{itemize}
 \end{minipage}
 \setlength{\mathindent}{1cm}
@@ -2271,7 +2271,7 @@ Prévision:
 		\begin{itemize}
 		\item	La série peut également être réexprimée pour faire des prévisions :
 			\begin{equation*}
-			\hat{s}_{t}	=	\hat{s}_{t - 1} - \frac{y_{t} - y_{t - k}}{k}
+			\hat{s}_{t}	=	\hat{s}_{t - 1} + \frac{y_{t} - y_{t - k}}{k}
 			\end{equation*}
 			S'il n'y a pas de tendance, $y_{t} - y_{t - k}$ s'annule et on prévoit $\hat{y}_{T + l} = \hat{s}_{T} \, \forall l$;
 		\item	Si un modèle a une tendance linéaire, par exemple $y_{t} = \beta_{0} + \beta_{1} t + \varepsilon_{t}$, on peut le traiter avec du \textit{double smoothing};
@@ -2335,12 +2335,13 @@ Prévision:
 		
 		\includegraphics[scale=0.2]{src/exponential-smoothing-example.png}
 		\end{itemize}
+%		
 	\item[]	\textbf{Prévision} de exponential smoothing
 		\begin{itemize}
 		\item	La prévision $l$ lead times dans le futur :
 			\begin{equation*}
 			\hat{y}_{T + l}
-				=	\hat{s}_{T}	
+				=	b_{0, T} + b_{1, T} l
 			\end{equation*}
 		\item	De plus, le \textbf{one-step ahead prediction error} permet de comparer ce que le modèle aurait prédit dans le passé, $\hat{s}_{t - 1}$, contre les données que nous possédons $y_{t}$:
 			\begin{equation*}
@@ -2355,6 +2356,7 @@ Prévision:
 			\end{equation*}
 		\item[]	Puisque $SS(w)$ est fonction du poids, on choisit le poids la minimisant $SS(w)$;
 		\end{itemize}	
+%		
 	\item[]	\textbf{Tendances linéaires} et \textbf{double smoothing}
 		\begin{enumerate}
 		\item[]	Pareillement au moving average smoothing, le présence de tendance linéaire est traitée avec du \textit{double smoothing}
@@ -2376,7 +2378,7 @@ Prévision:
 			b_{1, T}	
 				&=	\frac{(1 - w)}{w}\left(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}\right)	\\
 			b_{0, T}
-				&=	2(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)})
+				&=	2\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}
 			\end{align*}
 			où l'équation de l'intercepte est \textit{très semblable} à l'équation de la pente pour le moving average smoothing;
 		\item	Et la prévision $l$ lead times dans le futur :
@@ -2400,6 +2402,7 @@ Prévision:
 		\item[]	De plus, le graphique \textbf{ressemble} évidemment \textbf{à une fonction sinusoïdale};
 		\item 	Alors, nous avons un cycle \textbf{saisonnale} pouvant être \textbf{estimé par une fonction sinusoïdale};
 		\end{itemize}
+%		
 	\item[]	\textbf{Fixed effects}
 		\begin{itemize}
 		\item	\og fixed effects \fg{} représente que la relation est fixe dans le temps;
@@ -2618,7 +2621,7 @@ Moving average smoothing
 \begin{align*}
 	\hat{s}_{t}
 		&=	\frac{y_{t - (k - 1)} + y_{t - (k - 2)} + \dots + y_{t}}{k}	\\
-		&=	\hat{s}_{t - 1} - \frac{y_{t} - y_{t - k}}{k}	
+		&=	\hat{s}_{t - 1} + \frac{y_{t} - y_{t - k}}{k}	
 \end{align*}
 \setlength{\mathindent}{1cm}
 \end{minipage}
@@ -2627,7 +2630,7 @@ Moving average smoothing
 	b_{1, T}	
 		&=	\frac{2(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)})}{k - 1}	\\
 	\hat{y}_{T + l}
-		&=	\hat{s}_{t} + b_{1, T}	\\
+		&=	\hat{s}_{t} + b_{1, T} l	\\
 	\hat{s}_{t}^{(2)}	
 		&=	\frac{\hat{s}_{t}^{(1)} + \dots + \hat{s}_{t - (k - 1)}^{(1)}}{k}	
 \end{align*}
@@ -2652,8 +2655,6 @@ Exponential smoothing
 		&=	\frac{(1 - w)}{w}\left(\hat{s}_{t}^{(1)} - \hat{s}_{t}^{(2)}\right)	\\
 	\hat{y}_{T + l}
 		&=	b_{0, T} + b_{1, T} l	\\
-	\hat{y}_{T + l}
-		&=	\hat{s}_{T}		\\
 	\varepsilon_{t}
 		&=	y_{t} - \hat{s}_{t - 1}	\\
 	SS(w)
@@ -3868,6 +3869,13 @@ Understand key concepts concerning cluster analysis
 	\item	Faire une itération / le hierarchical clustering assurément (5, 6, 7, 8);
 \end{enumerate}
 \end{CHPT_SUMM}
+
+\begin{FORMULA_SUMM}{Formules cool}
+La \textbf{distance Minkowski}, entre deux variables $X$ et $Y$, est la généralisation de la distance euclidienne ($p = 2$) et Manhattan ($p = 1$):
+\begin{align*}
+	\left( \sum_{i = 1}^{n} | X_{i} - Y_{i} |^{p} \right)^{1/p}
+\end{align*}
+\end{FORMULA_SUMM}
 
 \subsection{Notes sur les vidéos YouTube}
 
