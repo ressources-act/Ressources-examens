@@ -48,12 +48,12 @@
 			\begin{itemize}
 			\item	values for the illustrative life tables;
 			\item	Standard normal distribution;
-			\item	Abridiged inventories of discrete and continuous probability distributions;
+			\item	Abridged inventories of discrete and continuous probability distributions;
 			\item	Chi-square distribution;
 			\item	$t$-distribution;
 			\item	$F$-distribution;
 			\end{itemize}
-		\item	\textbf{There is a guessing adjustement};
+		\item	\textbf{There is a guessing adjustment};
 	\end{itemize}
 \end{CHPT_SUMM}
 
@@ -106,10 +106,19 @@ Notes de la sous-section:
 		\begin{itemize}
 		\item	For increments in the homogeneous case;
 		\item	For interval times in the homogeneous case;
-		\item	For increments in the non-homogenous case;
+		\item	For increments in the non-homogeneous case;
 		\item	Resulting from special types of events in the Poisson process;
-		\item	Resulting from sums of independant Poisson processes;
+		\item	Resulting from sums of independent Poisson processes;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Poisson process;
+		\item	Non-homogeneous Poisson process;
+		\item	Memoryless property of Exponential and Poisson;
+		\item	Relationship between Exponential and Gamma;
+		\item	Relationship between Exponential and Poisson;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	For any Poisson process and the inter-arrival and waiting distributions associated with the Poisson process, calculate:
 		\begin{itemize}
@@ -117,14 +126,39 @@ Notes de la sous-section:
 		\item	Variances;
 		\item	Probabilities;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Probability calculations for Poisson process
+		\item	Conditional distribution of arrival times;
+		\item	Splitting grouped Poisson rate to subsets of population using probability distribution;
+		\item	Conditional distribution of events by category within a group within a certain time period;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	For a compound Poisson process, calculate moments associated with the value of the process at a given time;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Compound Poisson process mean and variance;
+		\item	Normal approximation and hypothesis testing;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Apply the Poisson process concepts to calculate the hazard function and related survival model concepts;
 		\begin{itemize}
 		\item	Relationship between hazard rate, probability density function and cumulative distribution function;
 		\item	Effect of memoryless nature of Poisson distribution on survival time estimation;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Failure time random variables;
+		\item	Cumulative distribution functions;
+		\item	Survival functions;
+		\item	Probability density functions;
+		\item	Hazard functions and relationship to Exponential distribution;
+		\item	Relationships between failure time random variables in the functions above;
+		\item	Greedy algorithms;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Given the joint distribution of more than one source of failure in a system (or life) and using Poisson Process assumptions:
 		\begin{itemize}
@@ -132,6 +166,24 @@ Notes de la sous-section:
 		\item	Understand differences between a series system (joint life) and parallel system (last survivor) when calculating expected time to failure or probability of failure by a certain time;
 		\item	Understand the effect of multiple sources of failure (multiple decrement) on expected system time to failure (expected lifetime);
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Joint distribution of failure times;
+		\item	Probabilities and moments;
+		\item	Time until failure of the system (life);
+		\item	Time until failure of the system (life) from a specific cause;
+		\item	Time until failure of the system (life) for parallel or series systems with multiple components;
+		\item	Paths that lead to parallel or series system failures for systems with multiple components;
+		\item	Relationship between failure time and minimal path and minimal cut sets;
+		\item	Bridge system and defining path to failure;
+		\item	Random graphs and defining path to failure;
+		\item	Effect of multiple sources of failure (multiple decrements) on failure time calculations (competing risk);
+		\item	Non-uniform probability of component failure (multiple decrement);
+		\item	Method of inclusion and exclusion as applied to failure time estimates;
+		\item	Expected system lifetime as function of component lifetime and properties of expected lifetime estimates;
+		\item	Linkage between reliability function for a system and future expected lifetime;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	For discrete Markov Chains under both homogeneous and non-homogenous states:	
 		\begin{itemize}
@@ -140,6 +192,20 @@ Notes de la sous-section:
 		\item	Accessible states;
 		\item	Ergodic Markov Chains and limiting probabilities;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Random Walk;
+		\item	Classification of states and classes of states (absorbing, accessible, transition, irreducible, and recurrent);
+		\item	Transition step probabilities;
+		\item	Stationary probabilities;
+		\item	Recurrent vs. transient states;
+		\item	Gamblers ruin problem;
+		\item	Branching processes;
+		\item	Homogeneous transition probabilities;
+		\item	Memoryless property of Markov Chains;
+		\item	Limiting probabilities;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Solve Life Contingency problems using a life table in a spreadsheet as the combined result of discount, probability of payment and amount of payment vectors. Understand the linkage between the life table and the corresponding probability models;
 		\begin{itemize}
@@ -147,6 +213,14 @@ Notes de la sous-section:
 		\item	Calculate life insurance single net premiums (or P \& C pure premiums) for discrete time;
 		\item	Solve for net level premiums (\textbf{not} including fractional lives);
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Discounted cash flow;
+		\item	Relationship between annuity values and insurance premiums;
+		\item	Life table linkage to probability models;
+		\item	Equivalence property;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	The candidate should be familiar with basic computer simulation methods.
 		\begin{itemize}
@@ -155,6 +229,14 @@ Notes de la sous-section:
 		\item	Generate random numbers from a variety of distributions using the inversion method;
 		\item	Be able to explain when and how to use the Acceptance-Rejection method;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Random Number Generation;
+		\item	Uniform Random Numbers;
+		\item	Inversion Method;
+		\item	Acceptance-Rejection Method;
+	\end{enumerate}
+	\end{knowledge}
 \end{enumerate}
 \end{outcomes}
 
@@ -415,28 +497,8 @@ Notes du descriptif principal:
 		\item	MSE;
 		\end{itemize}
 	\end{multicols*}
-\tcbline
-	Calculate parameter estimates using methods other than maximum likelihood;
-	\item	Test statistical hypotheses including Type I and Type II errors using:
-		\begin{itemize}
-		\item	Neyman-Pearson theorem;
-		\item[]	Apply Neyman-Pearson theorem to construct likelihood ratio equation;
-		\item	Likelihood ratio tests;
-		\item	First principles;
-		\item[]	Use critical values from a sampling distribution to test means and variances;
-		\end{itemize}
-\tcbline
-	\item	For the Exponential, Gamma, Weibull, Pareto, Lognormal, Beta, and mixtures thereof:
-		\begin{itemize}
-		\item	Identify the applciations to Insurance claim modeling in which each distribution is used and reasons why;
-		\item	Transformation of distributions; 
-		\end{itemize}
-	\item	Calculate Order Statistics of a sample for a given distribution;
-\end{enumerate}
-\end{outcomes}
-
-\begin{outcomes}[Knowledge Statements]
-\begin{enumerate}[label = \alph*.]
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
 	\item	Equations for MLE of mean, variance from a sample;
 	\item	Estimation of mean and variance based on samples;
 	\item	General equations for MLE of parameters;
@@ -454,9 +516,20 @@ Notes du descriptif principal:
 	\item	Percentile Matching;
 	\item	Kernel Density Estimation;
 	\item	Maximum Likelihood with Censoring and Truncation;
-\end{enumerate}
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
-\begin{enumerate}[label = \alph*.]
+	Calculate parameter estimates using methods other than maximum likelihood;
+	\item	Test statistical hypotheses including Type I and Type II errors using:
+		\begin{itemize}
+		\item	Neyman-Pearson theorem;
+		\item[]	Apply Neyman-Pearson theorem to construct likelihood ratio equation;
+		\item	Likelihood ratio tests;
+		\item	First principles;
+		\item[]	Use critical values from a sampling distribution to test means and variances;
+		\end{itemize}		
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
 	\item	Presentation of fundamental inequalities based on general assumptions and normal assumptions;
 	\item	Definition of Type I and Type II errors;
 	\item	Significance levels;
@@ -475,19 +548,31 @@ Notes du descriptif principal:
 	\item	Application of Neyman-Pearson theorem to Uniformly Most Powerful hypothesis tests;
 	\item	Equivalence between critical regions and confidence intervals;
 	\item	Kolmogorov-Smirnov test;
-\end{enumerate}
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
-\begin{enumerate}[label = \alph*.]
+	\item	For the Exponential, Gamma, Weibull, Pareto, Lognormal, Beta, and mixtures thereof:
+		\begin{itemize}
+		\item	Identify the applciations to Insurance claim modeling in which each distribution is used and reasons why;
+		\item	Transformation of distributions; 
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
 	\item	Frequency, severity and aggregate loss;
 	\item	Common continuous distributions for modeling claim severity;
 	\item	Mixing distributions;
 	\item	Tail properties of claim severity;
 	\item	Effects of coverage modifications including, for example: limits, deductibles, loss elimination ratios and effects of inflation;
-\end{enumerate}
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
-\begin{enumerate}[label = \alph*.]
+	\item	Calculate Order Statistics of a sample for a given distribution;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
 	\item	General form for distribution of $n^{\text{th}}$ largest element of a set;
 	\item	Application to a given distributional form;
+	\end{enumerate}
+	\end{knowledge}
 \end{enumerate}
 \end{outcomes}
 
@@ -707,15 +792,88 @@ Notes de la sous-section:
 		\item	PCA regression;
 		\end{itemize}
 	\end{multicols*}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Understand the relationship between mean and variance by model family member for the exponential distribution;
+		\item	Understand how to select the appropriate distribution function for the dependent variable and the implication for the appropriate model form;
+		\item	Link functions (Identity, Log, Logit, Power, Inverse);
+		\item	Characteristics of Exponential Family (Binomial, Normal, Exponential, Gamma, Poisson, Inverse Gaussian, Negative Binomial, and Tweedie);
+		\item	Canonical Forms of link function and effect of non-canonical link function on bias;
+		\item	Penalized Regression as implemented using the Lasso or Ridge Regression;
+		\item	Understand concept of models within models for Generalized Additive Models (GAM);
+		\item	Understand dimension reduction using Partial Least Squares (PLS) or Principal Components Regression (PCR);
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Evaluate models developed using Extended Linear Model approach;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Raw or studentized Residuals;
+		\item	$R^{2}$;
+		\item	Cook's Distance and outliers;
+		\item	Influential points;
+		\item	Leverage;
+		\item	AIC and BIC penalized log likelihood measures;
+		\item	Standardized / Studentized Residuals;
+		\item	Deviance, Deviance Residuals and relationship to likelihood;
+		\item	Pearson Residuals vs. Deviance residuals;
+		\item	Scatter, QQ and Box Plots;
+		\item	Type III Sequential Chi-Square test;
+		\item	$T$-test and Wald test for significance of regression coefficients;
+		\item	Prediction intervals for response variable;
+		\item	MSE and standard error;
+		\item	Calculation and validity of $F$ test to compare 2 models (under OLS);
+		\item	Cross-Validation;
+		\item	Test vs. Train Error;
+		\item	Bootstrapping to test model validity;
+		\item	Prediction vs. Forecast Error;
+		\item	Overfitting;
+		\item	Bias-Variance Tradeoff;
+		\item	Evaluate collinearity using VIF;
+		\item	Evaluate appropriateness of underlying assumptions including homoscedasticity and autocorrelation of residuals;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Understand the algorithms behind the numerical solutions for the different forms of the Extended Linear Model family to enable interpretation of output from the statistical software employed in modeling and to make appropriate modeling choices when selecting modeling options;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Maximum Likelihood and OLS;
+		\item	Fisher Scoring (iterative weighted least squares as implemented using the Information and Score functions from section B. 1);
+		\item	Quasi-Likelihood and relationship to maximum likelihood;
+		\item	Collinearity (Aliasing) and model stability; 
+		\item	Hat matrix $\bm{H}$;
+		\item	Design matrix $\bm{X}$;
+		\item	Fitting adjoining, overlapping observations in groups for Local Regression;
+		\item	Supervised vs. Unsupervised learning methods;
+		\item	Modeling functions within functions for GAMs;
+		\item	Penalty function in Penalized regression models (Lasso and Ridge Regression);
+		\item	PLS supervised learning vs. PCR unsupervised learning;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Understand and be able to select the appropriate model structure for an Extended Linear Model given the behavior of the data set to be modeled;
-\tcbline
-	\item	
-\tcbline
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Predictor variables;
+		\item	Response variables;
+		\item	Regression through the origin;
+		\item	Transformation of variables;
+		\item	Categorical vs. continuous explanatory variables;
+		\item	Interaction terms;
+		\item	Significance and model comparison statistics;
+		\item	Residuals and model parameter selection;
+		\item	Piecewise linear and Smoothing Splines;
+		\item	Smoothing parameter for splines;
+		\item	Basis Functions;
+		\item	Knot Selection for Splines;
+		\item	Weighting function for local regression;
+		\item	Selection of functions within functions for GAMs;
+		\item	Selection of appropriate tuning factor for Lasso or Ridge Regression;
+		\item	Select either Lasso or Ridge Regression depending on desired effect from penalized regression;
+		\item	Curse of High Dimensionality;
+		\item	Forward or backward or best subset selection;
+	\end{enumerate}
+	\end{knowledge}
 \end{enumerate}
 \end{outcomes}
 
@@ -900,16 +1058,51 @@ Notes de la sous-section:
 		\item	Estimation, data analysis, and forecasting;
 		\item	Forecast errors and confidence intervals;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}
+	\item	Mean-reverting time series;
+	\item	Elimination of trends using differencing;
+	\item	Relationship between seasonality and autocorrelation;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Model relationships of current and past values of a statistic / metric;
 		\begin{itemize}
 		\item	Estimation, data analysis, and forecasting;
 		\item	Forecast errors and confidence intervals;
 		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}
+	\item	Calculation and use of lag $k$ autocorrelation statistic and cross correlation statistics in determining model structure;
+	\item	Stationary series;
+	\item	AR(1) models;
+	\item	ARIMA models---AR(p), MA(q), ARMA(p, q), ARIMA(p, d, q), ARMA vs ARIMA;
+	\item	Invertible time series and relationship between AR and MA models;
+	\item	Converting between AR and MA models;
+	\item	Interpretation of auto-correlation function as aid to model selection (AR vs. MA and number of lags to include in model);
+	\item	Relationship between time series input and item modeled for AR vs. MA;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Understand forecasts produced by ARIMA;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}
+	\item	Forecast using ARIMA models;
+	\item	\textbf{One} step ahead \textit{prediction} vs \textbf{many} step ahead \textit{projection};
+	\item	Change in variance in prediction by AR vs MA model;
+	\end{enumerate}
+	\end{knowledge}
 \tcbline
 	\item	Time Series with Regression;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}
+	\item	Deterministic vs. Stochastic Trend;
+	\item	Serial correlation in regression error results;
+	\item	Correction in regression via Generalized Least Squares;
+	\item	Transformation of data using natural logarithms for regression modelling;
+	\item	Forecast error correction under natural logarithms transformation;
+	\end{enumerate}
+	\end{knowledge}
 \end{enumerate}
 \end{outcomes}
 
@@ -937,8 +1130,146 @@ Notes de la sous-section:
 \begin{CHPT_SUMM_AUTO}[label = {L.-57}]{57. Time Series: Trend and Seasonality}
 Introduction to Time Series with \texttt{R} 1
 \begin{itemize}
-	\item[1:]	Time Series Data
+	\item[1.1:]	Time Series Data---Purpose;
+		\begin{itemize}
+		\item	Understand the past and predict the future;
+		\item	Usage by Singapore Airlines to increase their fleet based on future goals (expansion) and past trends (growing popularity);
+		\item	Usage by gas suppliers in the UK who must purchase the supply the day before it's demanded from offshore fields;
+		\item[]	The price thus varies according to the temperature, the time of year, etc. and even the wind temperature.
+		\end{itemize}
+	\item[1.2:]	Time Series Data---Time Series;
+		\begin{itemize}
+		\item	Idea that variables are measured sequentially in time everywhere;
+		\item[]	Banks record interest and exchange rates on a daily basis;
+		\item[]	Governments measure GDP on a yearly basis;
+		\item	Time series model, a.k.a. \textbf{discrete-time stochastic process}, is a \textbf{sequence} of \textit{random variables} defined at \textbf{fixed} \textbf{sampling intervals};
+		\item	Main \textbf{features} of time series are \textbf{trends} and \textbf{seasonal variations};
+		\item	Another important feature is that most observations which are close together in time tend to be correlated \textit{(serially dependent)};
+		\item	This can be applied to making predictions and test whether, for example, fluctuations in sales are due to an underlying change or just regular variation;
+		\item	Sampling intervals can differ in their relation to data.
+			\begin{itemize}
+			\item	The data could have been aggregated over the period (for example, the number of foreign tourists arriving per day);
+			\item	The data could have been sampled over the period (for example, the daily close price of Apple stock).
+			\end{itemize}
+		\end{itemize}
+	\item[1.3:]	Time Series Data---\texttt{R language};
+	\item[1.4:]	Time Series Data---Plots, trends, and seasonal variation;
+		\begin{itemize}
+		\item	\textbf{Trend}: systemic change in a time series which doesn't appear to be periodic;
+		\item[]	The simplest model for trends is a linear (de)increase and is often an adequate approximation;
+		\item	\textbf{Seasonal variation}: Repeating pattern within each year;
+		\item[]	For example, restaurant bookings varying according to the weekday;
+		\item	\textbf{Cycles}: do not correspond to some \textbf{fixed} natural period
+		\item[]	For example, the economic cycle;
+		\item[]	\textit{No cycles are apparent in the image below:}
+		
+		\includegraphics[scale=0.35]{src/TS-TREND.png}
+		\item	The trend has many possible explanations (post-WWII prosperity, cheaper flights, etc.) but if there are non then it would be a \textbf{stochastic trend};
+		\item[]	In this case, regression's not appropriate;
+		\item	Forecasting uses extrapolation supposing trends continue at a slow pace;
+		\item	Therefore, linear extrapolation is a reasonable approximation for a \textbf{few steps} ahead;
+		\item[]	There's no empirical way to verify this, so we must explain the trend to justify extrapolation;
+		\item	Forecasts beyond a year are thus better described as \textit{\textbf{scenarios}};
+		\item	\textbf{Seasonal effects} can be \textit{removed} by \textit{aggregating to an annual basis} and evaluating the resulting time series;
+		\item	Example of Chocolate/Beer/Electricity in Australia for \textit{Multiple Time Series};
+		\item	Because autocorrelated series will often have the same trends and seasonal variations, they're often removed before comparison;
+		\item	These trends will often be \textit{deterministic}
+		\item[]	Australian population increase leads to an increase in electricity usage;
+		\item	In contrast, finance will often have \textit{stochastic} trends;
+		\item	Sometimes these can be modeled with a \textbf{random walk};
+		\item	Idea of there being two distinct trends
+		
+		\includegraphics[scale=0.35]{src/TS-TREND-SPLIT.png}
+		\item	Thereby, split the series in 2 (\texttt{window} in \texttt{R});
+		
+		\includegraphics[scale=0.35]{src/TS-TREND-SPLIT-PLOTS.png}
+		\item	This also highlights the importance of not extrapolating---without additional information we don't know whether the trend will continue;
+		\item	Idea that 2 unrelated time series will be correlated if they both contain a trend thus we can't attribute global warming to fossil fuel increase without a physical explanation;
+		\item	As per scientists, we judge appropriate to attribute a \textbf{causal relationship} and to expect mean global temperature to continue rising if greenhouse gas emissions aren't reduced;
+		\end{itemize}
+	\item[1.5:]	Time Series Data---Decomposition of series;
+		\begin{itemize}
+	\item	Time series of length $n$: $\{x_{t} : t = 1, \dots, n\} = \{x_{1}, x_{2}, \dots, x_{n}\}$;
+	\item[]	It is a sequence of random variables $x_{t}$ sampled at $n$ discrete times $1, 2, \dots, n$;
+	\item	Forecast at time $t$ for a future value $t + k$: $\hat{x}_{t + k | t}$;
+	\item[]	$k$ is the \textbf{lead time};
+		\end{itemize}
+		\begin{itemize}
+		\item	If the seasonal effect tends to increase as the trend increases, a multiplicative model may be more appropriate;
+		\item	If there's a multiplicative factor modelled with the random variable (for example we have really large numbers) then an additive decomposition model for $\log(x_{t})$ may be more appropriate;
+		\end{itemize}
+		\begin{itemize}
+		\item	Moving average centered around $x_{t}$ is one of the simplest ways to estimate a trend;
+		\item[]	Because the average time is $t = 6.5$ and we have integer values, we have one half of both $x_{t - 6}$ and $x_{t + 6}$;
+		\item	We can estimate the seasonal effect of each month $\bar{s}_{t}$ by averaging $\hat{s}_{t}$ per month;
+		\item	Substracting these from the time series gives the \textbf{seasonally adjusted series};
+		\end{itemize}
+		\begin{itemize}
+		\item	\textbf{loess}: locally weighted regression technique;
+		\item[]	\og \textit{local} \fg{} as it uses a \og small \fg{}  number of points \og around \fg{}  it;
+		\item[]	Thereby, this reduces the impact of outliers;
+		
+		\end{itemize}
 \end{itemize}
+
+\begin{FORMULA_SUMM}{Formules chapitre 1}
+Notation:
+	\begin{align*}
+	\text{time series}&:	
+		\{x_{t} : t = 1, \dots, n\} 
+	= 	\{x_{1}, x_{2}, \dots, x_{n}\}	\\
+	\text{forecast}	&:	
+		\hat{x}_{t + k | t}
+	\end{align*}
+	
+Models
+	\begin{align*}
+	\text{additive decomposition model}	:	
+	x_{t}	
+	&=	m_{t} + s_{t} + z_{t}		\\
+	\text{multiplicative model}	:	
+	x_{t}	
+	&=	m_{t} \cdot s_{t} + z_{t}		\\
+	\text{additive decomposition model for }\log(x_{t})	:	
+	x_{t}	
+	&=	m_{t} + s_{t} + z_{t}	\\
+	\text{forecast when }z_{t} \sim \mathcal{N}(0, \sigma^{2})	:
+	\hat{x}_{t}	
+	&=	\text{e}^{m_{t} + s_{t}}\text{e}^{\frac{1}{2}\sigma^{2}}
+	\end{align*}
+où
+	\begin{multicols*}{2}
+	\begin{description}
+	\item[$x_{t}$]	observed series;
+	\item[$m_{t}$]	trend;
+	\item[$s_{t}$]	seasonal effect;
+	\item[$z_{t}$]	error term.
+	\end{description}
+	\end{multicols*}
+$z_{t}$ is generally a sequence of random variables with a mean of zero;
+
+Moving average of a monthly series
+	\begin{align*}
+	\hat{m}_{t}
+	&=	\frac{\frac{1}{2} x_{t - 6} + x_{t - 5} + x_{t - 4} + x_{t - 3} + x_{t - 2} + x_{t - 1} + x_{t} + x_{t + 1} + x_{t + 2} + x_{t + 3} + x_{t + 4} + x_{t + 5} + x_{t + 6}}{12}	\\
+	\end{align*}
+	
+Monthly additive effect estimation:
+	\begin{align*}
+	\hat{s}_{t} 
+	&= 	x_{t} - \hat{m}_{t}	\\
+	\end{align*}
+	
+Monthly multiplicative effect estimation:
+	\begin{align*}
+	\hat{s}_{t} 
+	&= 	\frac{x_{t}}{\hat{m}_{t}}	\\
+	\end{align*}
+	
+$\bar{s}_{t} = \text{mean}(\hat{s}_{t})$.
+
+
+\end{FORMULA_SUMM}
 \tcbline
 	\begin{itemize}
 		\item	
