@@ -1,5 +1,5 @@
 \documentclass[12pt, titlepage, french]{report}
-\input{../preambule.tex}
+\input{../../preambule.tex}
 %% -----------------------------
 %% Section Font customization
 %% -----------------------------
@@ -43,13 +43,126 @@
 		\item	The learning objectives define the behaviours and the knowledge statements illustrate more fully their intended scope;
 		\item	Learning objectives should not be seen as independent units but as building blocks for our understanding;
 		\item	The ranges are just guidelines;
-		\item	The overall section weights should be seen as having more significance than the individual section weights
+		\item	The overall section weights should be seen as having more significance than the individual section weights;
+		\item	Tables include :
+			\begin{itemize}
+			\item	values for the illustrative life tables;
+			\item	Standard normal distribution;
+			\item	Abridiged inventories of discrete and continuous probability distributions;
+			\item	Chi-square distribution;
+			\item	$t$-distribution;
+			\item	$F$-distribution;
+			\end{itemize}
+		\item	\textbf{There is a guessing adjustement};
 	\end{itemize}
 \end{CHPT_SUMM}
 
+\part*{Sujets à l'étude}
+
+\chapter[Probability models (Stochastic Processes and Survival Models)]{Probability models (Stochastic Processes and Survival Models) (20\% à 35\%)}
+
+\subsection{Information}
+
+\begin{distributions}[Description]
+Notes du descriptif principal:
+\begin{itemize}
+	\item	Stochastic processes
+	\item	Survival models
+		\begin{itemize}
+		\item	Covered in depth as part of probability modeling in generic terms;
+		\end{itemize}
+	\item	Markov Chains
+		\begin{itemize}
+		\item	Provide the means to model how an entity can move through different states;
+		\end{itemize}
+	\item	Simplified version of life contingencies
+		\begin{itemize}
+		\item	Life contingencies problems can be viewed as discounted cash flow problems which include thee effect of probability of payment;
+		\item	Covered through a study note which link the generic survival model concepts to a subset of life actuarial concepts;
+		\item	This study note illustrates how to calculate annuities or single premium insurance amounts;
+		\end{itemize}
+\end{itemize}
+\tcbline
+Notes de la sous-section:
+\begin{itemize}
+	\item	Résoudre des problèmes de processus aléatoires;
+	\item	Identifier les probabilités et distributions associées avec ces processus;
+		\begin{itemize}
+		\item	Particulièrement, être capable d'utiliser un processus de Poisson dans ces applications;
+		\end{itemize}
+	\item	Les modèles de survie sont une rallonge aux modèles de probabilité de processus stochastiques;
+		\begin{itemize}
+		\item	En lieu, on estime la vie futur d'une entité avec quelques suppositions sur la distribution de la vraisemblance de survie;
+		\end{itemize}
+	\item	Chaines de Markov utiles pour modéliser la mobilité entre états dans un processus et souligner les modèles Bayésien MCMC sous-jacent;
+	\item	La simulation est incluse puisqu'elle peut s'avérer essentielle pour arriver à une solution de problème complexe;
+\end{itemize}
+\end{distributions}
 
 
-\section{Rappel des bases de statistiques}
+\begin{outcomes}[Learning objectives]
+\begin{enumerate}
+	\item	Understand and apply the properties of Poisson processes;
+		\begin{itemize}
+		\item	For increments in the homogeneous case;
+		\item	For interval times in the homogeneous case;
+		\item	For increments in the non-homogenous case;
+		\item	Resulting from special types of events in the Poisson process;
+		\item	Resulting from sums of independant Poisson processes;
+		\end{itemize}
+\tcbline
+	\item	For any Poisson process and the inter-arrival and waiting distributions associated with the Poisson process, calculate:
+		\begin{itemize}
+		\item	Expected values;
+		\item	Variances;
+		\item	Probabilities;
+		\end{itemize}
+\tcbline
+	\item	For a compound Poisson process, calculate moments associated with the value of the process at a given time;
+\tcbline
+	\item	Apply the Poisson process concepts to calculate the hazard function and related survival model concepts;
+		\begin{itemize}
+		\item	Relationship between hazard rate, probability density function and cumulative distribution function;
+		\item	Effect of memoryless nature of Poisson distribution on survival time estimation;
+		\end{itemize}
+\tcbline
+	\item	Given the joint distribution of more than one source of failure in a system (or life) and using Poisson Process assumptions:
+		\begin{itemize}
+		\item	Calculate probabilities and moments associated with functions of these random variables' variances;
+		\item	Understand differences between a series system (joint life) and parallel system (last survivor) when calculating expected time to failure or probability of failure by a certain time;
+		\item	Understand the effect of multiple sources of failure (multiple decrement) on expected system time to failure (expected lifetime);
+		\end{itemize}
+\tcbline
+	\item	For discrete Markov Chains under both homogeneous and non-homogenous states:	
+		\begin{itemize}
+		\item	Definition of a Markov Chain;
+		\item	Chapman-Kolmogorov Equations for $n$-step transition calculations;
+		\item	Accessible states;
+		\item	Ergodic Markov Chains and limiting probabilities;
+		\end{itemize}
+\tcbline
+	\item	Solve Life Contingency problems using a life table in a spreadsheet as the combined result of discount, probability of payment and amount of payment vectors. Understand the linkage between the life table and the corresponding probability models;
+		\begin{itemize}
+		\item	Calculate annuities for discrete time;
+		\item	Calculate life insurance single net premiums (or P \& C pure premiums) for discrete time;
+		\item	Solve for net level premiums (\textbf{not} including fractional lives);
+		\end{itemize}
+\tcbline
+	\item	The candidate should be familiar with basic computer simulation methods.
+		\begin{itemize}
+		\item	Understand the basic framework of Monte Carlo Simulation;
+		\item	Understand the mechanics of generating uniform random numbers;
+		\item	Generate random numbers from a variety of distributions using the inversion method;
+		\item	Be able to explain when and how to use the Acceptance-Rejection method;
+		\end{itemize}
+\end{enumerate}
+\end{outcomes}
+
+\begin{ASM_chapter}[Related lessons ASM]
+\begin{enumerate}
+	\item	\hyperref[BASICS]{Basics of Statistical Learning}
+\end{enumerate}
+\end{ASM_chapter}
 
 \begin{YTB_vids}[Vidéos YouTube]
 \begin{itemize}
@@ -57,40 +170,276 @@
 \end{itemize}
 \end{YTB_vids}
 
+\subsection{Résumés des chapitres}
+
+\begin{CHPT_SUMM}[label = {BASICS}]{\addcontentsline{toc}{subsubsection}{1. Basics of Statistical Learning}1. Basics of Statistical Learning}
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM}
+
 \subsection{Notes sur les vidéos YouTube}
 
-%\begin{YTB_SUMM}{}
-%
-%\end{YTB_SUMM}
-
-\clearpage
-
-\section{Autres ressources}
-\begin{FORMULA_SUMM}{Liens}
+\begin{YTB_SUMM}[label = {SQ-BASICS-ML-INTRO}]{\href{https://www.youtube.com/watch?v=Gv9_4yMHFhI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=2&t=0s}{StatQuest: A Gentle Introduction to Machine Learning}}
 \begin{itemize}
 	\item	
 \end{itemize}
-\end{FORMULA_SUMM}
+\end{YTB_SUMM}
 
-\part*{Sujets à l'étude}
+\newpage
 
-\chapter[Basics of statistical learning]{Basics of statistical learning (7.5\% à 12.5\%)}
+\chapter[Statistics]{Statistics (15\% à 30\%)}
 
 \subsection{Information}
 
-\begin{distributions}[Objective]
-Understand key concepts of statistical learning
+\begin{distributions}[Description]
+Notes du descriptif principal:
+\begin{itemize}
+	\item	Topics which would commonly be covered in a 2-semester Probability \& Statistics sequence;
+\end{itemize}
 \end{distributions}
 
-\begin{outcomes}[Learning outcomes]
+\begin{outcomes}[Learning objectives]
 \begin{enumerate}
-	\item	Expliquer les différents types de problèmes, et différentes méthodes, de modélisation. Y compris: 
+	\item	Perform point estimation of statistical parameters using Maximum likelihood estimation (MLE). Apply criteria to estimates such as :
+	\begin{multicols*}{2}
+		\begin{itemize}
+		\item	Consistency;
+		\item	Unbiasedness;
+		\item	Sufficiency;
+		\item	Efficiency;
+		\item	Minimum variance;
+		\item	MSE;
+		\end{itemize}
+	\end{multicols*}
+\tcbline
+	Calculate parameter estimates using methods other than maximum likelihood;
+	\item	Test statistical hypotheses including Type I and Type II errors using:
+		\begin{itemize}
+		\item	Neyman-Pearson theorem;
+		\item[]	Apply Neyman-Pearson theorem to construct likelihood ratio equation;
+		\item	Likelihood ratio tests;
+		\item	First principles;
+		\item[]	Use critical values from a sampling distribution to test means and variances;
+		\end{itemize}
+\tcbline
+	\item	For the Exponential, Gamma, Weibull, Pareto, Lognormal, Beta, and mixtures thereof:
+		\begin{itemize}
+		\item	Identify the applciations to Insurance claim modeling in which each distribution is used and reasons why;
+		\item	Transformation of distributions; 
+		\end{itemize}
+	\item	Calculate Order Statistics of a sample for a given distribution;
+\end{enumerate}
+\end{outcomes}
+
+\begin{outcomes}[Knowledge Statements]
+\begin{enumerate}[label = \alph*.]
+	\item	Equations for MLE of mean, variance from a sample;
+	\item	Estimation of mean and variance based on samples;
+	\item	General equations for MLE of parameters;
+	\item	Recognition of consistency property of estimators and alternative measures of consistency;
+	\item	Application of criteria for measurement when estimating parameters through minimisation of variance, MSE;
+	\item	Definition of statistical bias and recognition of estimators that are unbiased or biased;
+	\item	Application of Rao-Cramer Lower Bound and Efficiency;
+	\item	Relationship between Sufficiency and Minimum Variance;
+	\item	Develop and estimate a sufficient statistic for a distribution;
+	\item	Factorization Criterion for sufficiency;
+	\item	Application of Rao-Cramer Lower Bound and Fisher Information;
+	\item	Application of MVUE for the exponential class of distributions;
+	\item	Linkage between Score Function, Fisher Information and maximum likelihood;
+	\item	Method of Moments;
+	\item	Percentile Matching;
+	\item	Kernel Density Estimation;
+	\item	Maximum Likelihood with Censoring and Truncation;
+\end{enumerate}
+\tcbline
+\begin{enumerate}[label = \alph*.]
+	\item	Presentation of fundamental inequalities based on general assumptions and normal assumptions;
+	\item	Definition of Type I and Type II errors;
+	\item	Significance levels;
+	\item	One-sided versus two-sided tests;
+	\item	Estimation of sample sizes under normality to control for Type I and Type II errors;
+	\item	Determination of critical regions;
+	\item	Definition and measurement of likelihood ratio tests;
+	\item	Determining parameters and testing using tabular values (from a table);
+	\item	Recognizing when to apply likelihood ratio tests versus chi-square or other goodness of fit tests;
+	\item	Apply paired $t$-test to two samples;
+	\item	Test for difference in variance under Normal distribution between two samples through the application of $F$-test;
+	\item	Test of significance of means from two samples under Normal distribution assumptions in both large and small sample cases;
+	\item	Test for significance of difference in proportions between two samples under the Binomial distribution assumption in both large and small sample cases;
+	\item	Application of contingency tables to test independence between effects;
+	\item	Asymptotic relationship between likelihood ratio tests and the Chi-Square distribution;
+	\item	Application of Neyman-Pearson theorem to Uniformly Most Powerful hypothesis tests;
+	\item	Equivalence between critical regions and confidence intervals;
+	\item	Kolmogorov-Smirnov test;
+\end{enumerate}
+\tcbline
+\begin{enumerate}[label = \alph*.]
+	\item	Frequency, severity and aggregate loss;
+	\item	Common continuous distributions for modeling claim severity;
+	\item	Mixing distributions;
+	\item	Tail properties of claim severity;
+	\item	Effects of coverage modifications including, for example: limits, deductibles, loss elimination ratios and effects of inflation;
+\end{enumerate}
+\tcbline
+\begin{enumerate}[label = \alph*.]
+	\item	General form for distribution of $n^{\text{th}}$ largest element of a set;
+	\item	Application to a given distributional form;
+\end{enumerate}
+\end{outcomes}
+
+\begin{ASM_chapter}[Related lessons ASM]
+\begin{enumerate}
+	\item	\hyperref[BASICS]{Basics of Statistical Learning}
+\end{enumerate}
+\end{ASM_chapter}
+
+\begin{YTB_vids}[Vidéos YouTube]
+\begin{itemize}
+	\item	
+\end{itemize}
+\end{YTB_vids}
+
+\subsection{Résumés des chapitres}
+
+\begin{CHPT_SUMM}[label = {BASICS}]{\addcontentsline{toc}{subsubsection}{1. Basics of Statistical Learning}1. Basics of Statistical Learning}
 	\begin{itemize}
-		\item	Apprentissage supervisé vs non-supervisé
-		\item	Régression vs classification	
+		\item	
 	\end{itemize}
-	\item	Expliquer les méthodes courantes pour évaluer la précision d'un modèle.
-	\item	Utiliser les méthodes de base d'analyse exploratoire de données y compris la validation et vérification de données.
+\end{CHPT_SUMM}
+
+\subsection{Notes sur les vidéos YouTube}
+
+\begin{YTB_SUMM}[label = {SQ-BASICS-ML-INTRO}]{\href{https://www.youtube.com/watch?v=Gv9_4yMHFhI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=2&t=0s}{StatQuest: A Gentle Introduction to Machine Learning}}
+\begin{itemize}
+	\item	
+\end{itemize}
+\end{YTB_SUMM}
+
+\newpage
+
+\chapter[Extended Linear Models]{Extended Linear Models (30\% à 50\%)}
+
+\subsection{Information}
+
+\begin{distributions}[Description]
+Notes du descriptif principal:
+\begin{itemize}
+	\item	Include GLMs which are commonly used to construct classification plans;
+	\item	OLS model is covered as one member of the exponential family;
+	\item	\texttt{R} is useful to better visualise and conceptualise the material;
+\end{itemize}
+\tcbline
+Notes de la sous-section:
+\begin{itemize}
+	\item	OLS treated as \textit{one} type of model that may be used when the dependant variable follows the Normal distribution and the observations are (iid) with a constant variance;
+	\item	All models assume data is (iid) from the exponentional family;
+	\item	Assume linear relationship between dependant and independant variables;
+	\item	Assume variance is a function of the mean;
+	\item	\textbf{VIF} formula found on p. 102 of James et al. and p. 101 of Dobson is used and not hte one on p. 101 of James and et al.;
+		\begin{align*}
+			\text{VIF}(b_{j})
+			&=	\frac{1}{1 - R_{(j)}^{2}}
+		\end{align*}
+	\item	Questions may contain parameter tables and plots (of the type shown in texts) with which we should familiarise ourselves;
+\end{itemize}
+\end{distributions}
+
+\begin{outcomes}[Learning objectives]
+\begin{enumerate}
+	\item	Understand the assumptions behind different forms of the Extended Linear Model and be able to select the appropriate model from list below:
+	\begin{multicols*}{2}
+		\begin{itemize}
+		\item	OLS;
+		\item	GLM;
+		\item	ANOVA;
+		\item	GAM;
+		\item	Local Regression;
+		\item	Lasso;
+		\item	Ridge Regression;
+		\item	Partial Least Squares;
+		\item	PCA regression;
+		\end{itemize}
+	\end{multicols*}
+\tcbline
+	\item	Evaluate models developed using Extended Linear Model approach;
+\tcbline
+	\item	Understand the algorithms behind the numerical solutions for the different forms of the Extended Linear Model family to enable interpretation of output from the statistical software employed in modeling and to make appropriate modeling choices when selecting modeling options;
+\tcbline
+	\item	Understand and be able to select the appropriate model structure for an Extended Linear Model given the behavior of the data set to be modeled;
+\tcbline
+	\item	
+\tcbline
+\end{enumerate}
+\end{outcomes}
+
+\begin{ASM_chapter}[Related lessons ASM]
+\begin{enumerate}
+	\item	\hyperref[BASICS]{Basics of Statistical Learning}
+\end{enumerate}
+\end{ASM_chapter}
+
+\begin{YTB_vids}[Vidéos YouTube]
+\begin{itemize}
+	\item	
+\end{itemize}
+\end{YTB_vids}
+
+\subsection{Résumés des chapitres}
+
+\begin{CHPT_SUMM}[label = {BASICS}]{\addcontentsline{toc}{subsubsection}{1. Basics of Statistical Learning}1. Basics of Statistical Learning}
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM}
+
+\subsection{Notes sur les vidéos YouTube}
+
+\begin{YTB_SUMM}[label = {SQ-BASICS-ML-INTRO}]{\href{https://www.youtube.com/watch?v=Gv9_4yMHFhI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=2&t=0s}{StatQuest: A Gentle Introduction to Machine Learning}}
+\begin{itemize}
+	\item	
+\end{itemize}
+\end{YTB_SUMM}
+
+\newpage
+
+\chapter[Time Series with Constant Variance]{Time Series with Constant Variance (10\% à 20\%)}
+
+\subsection{Information}
+
+\begin{distributions}[Description]
+Notes du descriptif principal:
+\begin{itemize}
+	\item	Covers an introduction to modeling activity, such as financial results or stock prices, over time;
+	\item	The model used is the Auto Regressive Integrated Moving Average (ARIMA) where activity in a given period may be linked to activity in subsequent time periods;
+	\item	The connection between adjacent time periods violates one of the assumptions behind the Extended Linear Model techniques;
+	\item	The ARIMA appproach incorporates that linkage as an aid for it's predictions;
+	\item	Also covers the application of regression models to time series analysis;
+\end{itemize}
+\tcbline
+Notes de la sous-section:
+\begin{itemize}
+	\item	Section covers basic applications of the ARIMA time series model;
+\end{itemize}
+\end{distributions}
+
+\begin{outcomes}[Learning objectives]
+\begin{enumerate}
+	\item	Use time series to model trends;
+		\begin{itemize}
+		\item	Estimation, data analysis, and forecasting;
+		\item	Forecast errors and confidence intervals;
+		\end{itemize}
+\tcbline
+	\item	Model relationships of current and past values of a statistic / metric;
+		\begin{itemize}
+		\item	Estimation, data analysis, and forecasting;
+		\item	Forecast errors and confidence intervals;
+		\end{itemize}
+\tcbline
+	\item	Understand forecasts produced by ARIMA;
+\tcbline
+	\item	Time Series with Regression;
 \end{enumerate}
 \end{outcomes}
 
