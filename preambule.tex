@@ -262,6 +262,20 @@
 %	phantomlabel = {#2},
 	#1
 }
+\newtcolorbox[auto counter, list inside = CHPT]{CHPT_SUMM_AUTO_NUMB}[ 2 ][]
+{
+	colback = green!5!white,
+	colframe = darkseagreen,
+	breakable,
+	enhanced,
+	fonttitle = \bfseries,
+	title = Chapter~\thetcbcounter: #2, 		
+%	title = #2,
+	nameref = #2,
+	after upper = {\addcontentsline{toc}{subsubsection}{\thetcbcounter: #2}},
+%	phantomlabel = {#2},
+	#1
+}
 %%
 %% Coloured box "FORMULA_SUMM" pour résumés des formules de l'ASM
 %%
