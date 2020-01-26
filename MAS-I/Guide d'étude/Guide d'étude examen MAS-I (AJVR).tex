@@ -1202,13 +1202,12 @@ Introduction to Time Series with \texttt{R} 1
 		\item	Moving average centered around $x_{t}$ is one of the simplest ways to estimate a trend;
 		\item[]	Because the average time is $t = 6.5$ and we have integer values, we have one half of both $x_{t - 6}$ and $x_{t + 6}$;
 		\item	We can estimate the seasonal effect of each month $\bar{s}_{t}$ by averaging $\hat{s}_{t}$ per month;
-		\item	Substracting these from the time series gives the \textbf{seasonally adjusted series};
+		\item	We can take the mean of the averages and substract it from the time series and obtain the \textbf{seasonally adjusted series};
 		\end{itemize}
 		\begin{itemize}
 		\item	\textbf{loess}: locally weighted regression technique;
 		\item[]	\og \textit{local} \fg{} as it uses a \og small \fg{}  number of points \og around \fg{}  it;
 		\item[]	Thereby, this reduces the impact of outliers;
-		
 		\end{itemize}
 \end{itemize}
 
@@ -1249,31 +1248,36 @@ où
 $z_{t}$ is generally a sequence of random variables with a mean of zero;
 
 Moving average of a monthly series
+	\setlength{\mathindent}{-1cm}
 	\begin{align*}
 	\hat{m}_{t}
-	&=	\frac{\frac{1}{2} x_{t - 6} + x_{t - 5} + x_{t - 4} + x_{t - 3} + x_{t - 2} + x_{t - 1} + x_{t} + x_{t + 1} + x_{t + 2} + x_{t + 3} + x_{t + 4} + x_{t + 5} + x_{t + 6}}{12}	\\
+	&=	\frac{\frac{1}{2} x_{t - 6} + x_{t - 5} + \dots + x_{t} + \dots + x_{t + 5} + x_{t + 6}}{12}	\\
 	\end{align*}
+	\setlength{\mathindent}{1cm}
+
 	
-Monthly additive effect estimation:
+Monthly additive effect:
 	\begin{align*}
 	\hat{s}_{t} 
 	&= 	x_{t} - \hat{m}_{t}	\\
 	\end{align*}
+Adjustment such that $\bar{s} = 0$.
 	
-Monthly multiplicative effect estimation:
+Monthly multiplicative effect:
 	\begin{align*}
 	\hat{s}_{t} 
 	&= 	\frac{x_{t}}{\hat{m}_{t}}	\\
 	\end{align*}
-	
-$\bar{s}_{t} = \text{mean}(\hat{s}_{t})$.
+Adjustment such that $\bar{s} = 1$.
 
 
+$\bar{s} = \frac{\sum_{t = 1}^{t = m}\hat{s}_{t}}{m}$.
+Seasonally adjusted data: $x_{t} - \hat{s}_{t}$.
 \end{FORMULA_SUMM}
 \tcbline
-	\begin{itemize}
-		\item	
-	\end{itemize}
+%	\begin{itemize}
+%		\item	
+%	\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-58}]{58. Time Series: Correlation}
