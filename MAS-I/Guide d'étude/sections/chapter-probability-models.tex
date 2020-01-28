@@ -1,0 +1,411 @@
+\chapter[Probability models (Stochastic Processes and Survival Models)]{Probability models (Stochastic Processes and Survival Models) (20\% à 35\%)}
+
+\subsection{Information}
+
+\begin{distributions}[Description]
+Notes du descriptif principal:
+\begin{itemize}
+	\item	Stochastic processes
+	\item	Survival models
+		\begin{itemize}
+		\item	Covered in depth as part of probability modeling in generic terms;
+		\end{itemize}
+	\item	Markov Chains
+		\begin{itemize}
+		\item	Provide the means to model how an entity can move through different states;
+		\end{itemize}
+	\item	Simplified version of life contingencies
+		\begin{itemize}
+		\item	Life contingencies problems can be viewed as discounted cash flow problems which include thee effect of probability of payment;
+		\item	Covered through a study note which link the generic survival model concepts to a subset of life actuarial concepts;
+		\item	This study note illustrates how to calculate annuities or single premium insurance amounts;
+		\end{itemize}
+\end{itemize}
+\tcbline
+Notes de la sous-section:
+\begin{itemize}
+	\item	Résoudre des problèmes de processus aléatoires;
+	\item	Identifier les probabilités et distributions associées avec ces processus;
+		\begin{itemize}
+		\item	Particulièrement, être capable d'utiliser un processus de Poisson dans ces applications;
+		\end{itemize}
+	\item	Les modèles de survie sont une rallonge aux modèles de probabilité de processus stochastiques;
+		\begin{itemize}
+		\item	En lieu, on estime la vie futur d'une entité avec quelques suppositions sur la distribution de la vraisemblance de survie;
+		\end{itemize}
+	\item	Chaines de Markov utiles pour modéliser la mobilité entre états dans un processus et souligner les modèles Bayésien MCMC sous-jacent;
+	\item	La simulation est incluse puisqu'elle peut s'avérer essentielle pour arriver à une solution de problème complexe;
+\end{itemize}
+\end{distributions}
+
+
+\begin{outcomes}[Learning objectives]
+\begin{enumerate}
+	\item	Understand and apply the properties of Poisson processes;
+		\begin{itemize}
+		\item	For increments in the homogeneous case;
+		\item	For interval times in the homogeneous case;
+		\item	For increments in the non-homogeneous case;
+		\item	Resulting from special types of events in the Poisson process;
+		\item	Resulting from sums of independent Poisson processes;
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Poisson process;
+		\item	Non-homogeneous Poisson process;
+		\item	Memoryless property of Exponential and Poisson;
+		\item	Relationship between Exponential and Gamma;
+		\item	Relationship between Exponential and Poisson;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	For any Poisson process and the inter-arrival and waiting distributions associated with the Poisson process, calculate:
+		\begin{itemize}
+		\item	Expected values;
+		\item	Variances;
+		\item	Probabilities;
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Probability calculations for Poisson process
+		\item	Conditional distribution of arrival times;
+		\item	Splitting grouped Poisson rate to subsets of population using probability distribution;
+		\item	Conditional distribution of events by category within a group within a certain time period;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	For a compound Poisson process, calculate moments associated with the value of the process at a given time;
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Compound Poisson process mean and variance;
+		\item	Normal approximation and hypothesis testing;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	Apply the Poisson process concepts to calculate the hazard function and related survival model concepts;
+		\begin{itemize}
+		\item	Relationship between hazard rate, probability density function and cumulative distribution function;
+		\item	Effect of memoryless nature of Poisson distribution on survival time estimation;
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Failure time random variables;
+		\item	Cumulative distribution functions;
+		\item	Survival functions;
+		\item	Probability density functions;
+		\item	Hazard functions and relationship to Exponential distribution;
+		\item	Relationships between failure time random variables in the functions above;
+		\item	Greedy algorithms;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	Given the joint distribution of more than one source of failure in a system (or life) and using Poisson Process assumptions:
+		\begin{itemize}
+		\item	Calculate probabilities and moments associated with functions of these random variables' variances;
+		\item	Understand differences between a series system (joint life) and parallel system (last survivor) when calculating expected time to failure or probability of failure by a certain time;
+		\item	Understand the effect of multiple sources of failure (multiple decrement) on expected system time to failure (expected lifetime);
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Joint distribution of failure times;
+		\item	Probabilities and moments;
+		\item	Time until failure of the system (life);
+		\item	Time until failure of the system (life) from a specific cause;
+		\item	Time until failure of the system (life) for parallel or series systems with multiple components;
+		\item	Paths that lead to parallel or series system failures for systems with multiple components;
+		\item	Relationship between failure time and minimal path and minimal cut sets;
+		\item	Bridge system and defining path to failure;
+		\item	Random graphs and defining path to failure;
+		\item	Effect of multiple sources of failure (multiple decrements) on failure time calculations (competing risk);
+		\item	Non-uniform probability of component failure (multiple decrement);
+		\item	Method of inclusion and exclusion as applied to failure time estimates;
+		\item	Expected system lifetime as function of component lifetime and properties of expected lifetime estimates;
+		\item	Linkage between reliability function for a system and future expected lifetime;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	For discrete Markov Chains under both homogeneous and non-homogenous states:	
+		\begin{itemize}
+		\item	Definition of a Markov Chain;
+		\item	Chapman-Kolmogorov Equations for $n$-step transition calculations;
+		\item	Accessible states;
+		\item	Ergodic Markov Chains and limiting probabilities;
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Random Walk;
+		\item	Classification of states and classes of states (absorbing, accessible, transition, irreducible, and recurrent);
+		\item	Transition step probabilities;
+		\item	Stationary probabilities;
+		\item	Recurrent vs. transient states;
+		\item	Gamblers ruin problem;
+		\item	Branching processes;
+		\item	Homogeneous transition probabilities;
+		\item	Memoryless property of Markov Chains;
+		\item	Limiting probabilities;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	Solve Life Contingency problems using a life table in a spreadsheet as the combined result of discount, probability of payment and amount of payment vectors. Understand the linkage between the life table and the corresponding probability models;
+		\begin{itemize}
+		\item	Calculate annuities for discrete time;
+		\item	Calculate life insurance single net premiums (or P \& C pure premiums) for discrete time;
+		\item	Solve for net level premiums (\textbf{not} including fractional lives);
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Discounted cash flow;
+		\item	Relationship between annuity values and insurance premiums;
+		\item	Life table linkage to probability models;
+		\item	Equivalence property;
+	\end{enumerate}
+	\end{knowledge}
+\tcbline
+	\item	The candidate should be familiar with basic computer simulation methods.
+		\begin{itemize}
+		\item	Understand the basic framework of Monte Carlo Simulation;
+		\item	Understand the mechanics of generating uniform random numbers;
+		\item	Generate random numbers from a variety of distributions using the inversion method;
+		\item	Be able to explain when and how to use the Acceptance-Rejection method;
+		\end{itemize}
+	\begin{knowledge}[Knowledge Statements]
+	\begin{enumerate}[label = \alph*.]
+		\item	Random Number Generation;
+		\item	Uniform Random Numbers;
+		\item	Inversion Method;
+		\item	Acceptance-Rejection Method;
+	\end{enumerate}
+	\end{knowledge}
+\end{enumerate}
+\end{outcomes}
+
+\begin{ASM_chapter}[Related lessons ASM]
+\begin{enumerate}
+	\item	\nameref{L.-1}
+	\item	\nameref{L.-2}
+	\item	\nameref{L.-3}
+\tcbline
+	\item	\nameref{L.-4}
+	\item	\nameref{L.-5}
+	\item	\nameref{L.-6}
+	\item	\nameref{L.-7}
+	\item	\nameref{L.-8}
+	\item	\nameref{L.-9}
+	\item	\nameref{L.-10}
+	\item	\nameref{L.-11}
+	\item	\nameref{L.-12}
+	\item	\nameref{L.-13}
+	\item	\nameref{L.-14}
+	\item	\nameref{L.-15}
+	\item	\nameref{L.-16}
+	\item	\nameref{L.-17}
+	\item	\nameref{L.-18}
+	\item	\nameref{L.-19}
+\tcbline
+	\item	\nameref{L.-20}
+	\item	\nameref{L.-21}
+\tcbline
+	\item	\nameref{L.-22}
+	\item	\nameref{L.-23}
+	\item	\nameref{L.-24}
+\end{enumerate}
+\end{ASM_chapter}
+
+\begin{YTB_vids}[Vidéos YouTube]
+\begin{itemize}
+	\item	
+\end{itemize}
+\end{YTB_vids}
+
+\subsection{Résumés des chapitres}
+
+\subsubsection*{Probability Review}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-1}]{Probability Review}
+Introduction to Mathematical Statistics 1 - 3, 5
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-2}]{Parametric Distributions}
+Introduction to Mathematical Statistics 2.2, 2.7
+Nonlife Actuarial Models---Theory Methods and Evaluation 2.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-3}]{Mixtures}
+Introduction to Mathematical Statistics 3.7
+Nonlife Actuarial Models---Theory Methods and Evaluation 2.3.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\subsubsection*{Stochastic Processes}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-4}]{Markov Chains: Chapman-Kolmogorov Equations}
+Ross 4.1 - 4.2, 4.5.1 - 4.5.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-5}]{Markov Chains: Classification of States}
+Ross 4.3
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-6}]{Discrete Markov Chains: Long-Run Proportions and Limiting Probabilities}
+Ross 4.4
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-7}]{Markov Chains: Time in Transient States}
+Ross 4.6
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-8}]{Markov Chains: Branching Processes}
+Ross 4.7
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-9}]{Markov Chains: Time Reversible}
+Ross 4.8
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-10}]{Exponential Distribution}
+Ross 5.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-11}]{The Poisson Process: Probabilities of Events}
+Ross 5.3.1 - 5.3.2
+Daniel Poisson Study Note 1.1, 1.4.1
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-12}]{The Poisson Process: Time To Next Event}
+Ross 5.2, 5.3.3
+Daniel Poisson Study Note 1.1.1
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-13}]{{The Poisson Process: Thinning, or Couting Special Types of Events}}
+Ross 5.3.4
+Daniel Poisson Study Note 1.3.1, 1.4.3
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-14}]{The Poisson Process: Other Characteristics}
+Ross 5.2.3, 5.3.4, 5.3.5
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-15}]{The Poisson Process: Sums and Mixtures}
+Ross 5.4.3
+Daniel Poisson Study Note 1.3.2, 1.3.3
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-16}]{Compound Poisson Processes}
+Ross 5.4.2
+Daniel Poisson Study Note 1.2, 1.4.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-17}]{Reliability: Structure Functions}
+Ross 9.1 - 9.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-18}]{Reliability: Probabilities}
+Ross 9.3 - 9.4
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-19}]{Reliability: Time to Failure}
+Ross 9.5 - 9.6
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\subsubsection*{Life Contingencies}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-20}]{Survival Models}
+Struppeck 1, 2, 6, 7
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-21}]{Contingent Payments}
+Struppeck 3, 4, 5, 6
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\subsubsection*{Simulation}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-22}]{Simulation---Inverse Transformation Method}
+Ross 11.1, 11.2.1
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-23}]{Simulation---Applications}
+Ross 11.1, 11.2.1
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-24}]{Simulation---Rejection Method}
+Ross 11.2.2
+	\begin{itemize}
+		\item	
+	\end{itemize}
+\end{CHPT_SUMM_AUTO_NUMB}
+
+\subsection{Notes sur les vidéos YouTube}
+
+\begin{YTB_SUMM}[label = {SQ-BASICS-ML-INTRO}]{\href{https://www.youtube.com/watch?v=Gv9_4yMHFhI&list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF&index=2&t=0s}{StatQuest: A Gentle Introduction to Machine Learning}}
+\begin{itemize}
+	\item	
+\end{itemize}
+\end{YTB_SUMM}
