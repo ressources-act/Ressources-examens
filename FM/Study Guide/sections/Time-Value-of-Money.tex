@@ -82,61 +82,158 @@ Section 2: Practical Applications
 \subsection{Résumés des chapitres}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1a}]{1a. Basic Concepts}
-	\begin{itemize}
+	\begin{itemize}[leftmargin = *]
 		\item	
 	\end{itemize}
+
+\begin{FORMULA_SUMM}{Effective rate of interest}
+\begin{description}
+	\item[$a(t)$]	\textbf{Accumulation function} defined as the Accumulated Value (AV) of the fund at time $t$ of an initial investment of $\$1.00$ at time 0.
+		\begin{itemize}[leftmargin = *]
+		\item	$a(0) \equiv 1$.
+		\item	Generally \textbf{continuous} and \textbf{increasing}.
+		\end{itemize}
+	\item[$a(t) - a(t - 1)$]	\textbf{\textit{Amount} of growth} in the $t^{\text{th}}$ year.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. the interest earned
+		\end{itemize}
+	\item[$\frac{a(t) - a(t - 1)}{a(t - 1)}$]	\textbf{\textit{Rate} of growth} in the $t^{\text{th}}$ year.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. effective rate of interest denoted $i_{t}$.
+		\end{itemize}
+	\item[$A(t)$]	\textbf{Amount function} defined as the Accumulated Value (AV) of the fund at time $t$ of an initial investment of $\$k$ at time 0.
+		\begin{itemize}[leftmargin = *]
+		\item	$A(t) = k a(t)$.
+		\end{itemize}
+	\item[$i_{t}$]	\textbf{Effective rate of interest} defined as the rate of growth based on the amount in the fund at the \textbf{\textit{beginning}} of the year.
+		\begin{itemize}[leftmargin = *]
+		\item	$i_{t} = \frac{A(t) - A(t - 1)}{A(t - 1)}$.
+		\item	We deduce $A(t) = (1 + i_{t})A(t - 1)$.
+		\end{itemize}
+\end{description}
+\end{FORMULA_SUMM}
+
+\begin{FORMULA_SUMM}{Effective Rate of Discount}
+\begin{description}
+	\item[$d_{t}$]	\textbf{Effective rate of discount} defined as the rate of growth based on the amount in the fund at the \textbf{\textit{end}} of the year.
+		\begin{itemize}[leftmargin = *]
+		\item	$d_{t} = \frac{A(t) - A(t - 1)}{A(t)}$.\
+		\item	Although we could get by without it, it's useful to determine the amount to pay today for a specified amount in the future.
+		\end{itemize}
+	\item[Discounting]	Finding the price we'd be willing to pay for the promise to receive a future amount.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. finding the present value which is why $i = \frac{d}{1 - d}$.
+		\item	$v = (1 - d) = \frac{1}{1 + i}$.
+		\item	$d = \frac{i}{1 + i}$.
+		\end{itemize}
+\end{description}
+\end{FORMULA_SUMM}
+
+\begin{FORMULA_SUMM}{Nominal Rates of Interest}
+\begin{description}
+	\item[$i^{(m)}$]	\textbf{Nominal} annual rate of of interest \textbf{compounded $m$ times a year}.
+	\item[$\frac{i^{(m)}}{m}$]	\textbf{Effective} rate of of interest \textbf{for an $m^{\text{th}}$ of a year}.
+		\begin{itemize}[leftmargin = *]
+		\item	Thus $(1 + i) = \left(1 + \frac{i^{(m)}}{m}\right)^{m}$.\
+		\end{itemize}
+\end{description}
+\end{FORMULA_SUMM}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1b}]{1b. Why Do We Need a Force of Interest?}
 	\begin{itemize}
-		\item	
+		\item	An effective rate of interest only gives information about the starting and ending values, but give no information about in between.
+		\item	Thus, the force of interest can give information at any given time about the rate of growth.
+		\item	The image of the four different fund's growth curves with the same starting and ending values is a perfect visualization.
 	\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1c}]{1c. Defining the Force of Interest}
-	\begin{itemize}
-		\item	
+	\begin{itemize}[leftmargin = *]
+		\item	The derivative is divided by the amount function to obtain a rate of growth proportional to the amount invested.
+		\item	Two funds can have the same rate of change but different amounts originally invested.
+		\item	If one fund's growing with a smaller amount of money, then it's rate of change is actually less than the other.
 	\end{itemize}
+	
+\paragraph{TRAP} If given the derivative of the accumulation function, $a'(t)$, use the property that the fund at the beginning is 1, $a(0) = 1$, to define the $+ C$ when integrating for $a(t)$.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1d}]{1d. Finding the Fund in Terms of the Force of Interest}
-	\begin{itemize}
-		\item	
+	\begin{itemize}[leftmargin = *]
+		\item	If we want to find the accumulation, or amount, function from the force of interest we inverse the equation.
+		\item	To do so, recall that $\frac{\partial}{\partial x}\ln(f(x)) = \frac{f'(x)}{f(x)}$.
+		\item	Also $\int_{0}^{t} \frac{\partial}{\partial r} \ln(a(r)) dr = 	\ln(a(r))\big|_{0}^{t} =	\ln(a(t))$.
 	\end{itemize}
+	
+\begin{FORMULA_SUMM}{Force of interest}
+\begin{description}
+	\item[Force of interest]	the rate of growth at a point in time.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. finding the present value which is why $i = \frac{d}{1 - d}$.
+		\item	$v = (1 - d) = \frac{1}{1 + i}$.
+		\item	$d = \frac{i}{1 + i}$.
+		\end{itemize}
+	\item[$\delta_{t}$]	The \textbf{Force of interest} at time $t$.
+		\begin{itemize}[leftmargin = *]
+		\item	$\delta_{t} = \frac{A'(t)}{A(t)}$.
+		\item	$a(t)	=	\textrm{e}^{\int_{0}^{t}\delta_{r}dr}$
+		\end{itemize}
+\end{description}
+\end{FORMULA_SUMM}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1e}]{1e. The Simplest Case: A Constant Force of Interest}
-	\begin{itemize}
+	\begin{itemize}[leftmargin = *]
 		\item	
 	\end{itemize}
+	
+\begin{FORMULA_SUMM}{Simple Force of interest}
+\begin{description}
+	\item[$\delta$]	The constant force of interest.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. the nominal rate of interest compounded continuously.
+		\item	$\delta = \underset{m \rightarrow \infty}{\lim} i^{(m)} = i^{(\infty)} = \ln(1 + i)$.
+		\item	$a(t)	=	\textrm{e}^{\int_{0}^{t}\delta dr}	=	\textrm{e}^{\delta t}$.
+		\end{itemize}
+\end{description}
+\end{FORMULA_SUMM}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1f}]{1f. Power Series}
-	\begin{itemize}
-		\item	
+	\begin{itemize}[leftmargin = *]
+		\item	Not really on past exams, section is \og just in case \fg{}.
 	\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1g}]{1g. The Variable Force of Interest Trap}
-	\begin{itemize}
-		\item	
+	\begin{itemize}[leftmargin = *]
+		\item	When we want the accumulated value of an amount not invested at the beginning, we integrate the force of interest over the respective integral. 
+		\item	Alternatively, we can take the ratio of the accumulation function at both times.
 	\end{itemize}
+
+\begin{FORMULA_SUMM}{Variable Force of interest}
+\begin{align*}
+	FV
+	&=	\textrm{e}^{\int_{t_{1}}^{t_{2}}\delta_{r} dr}	\\
+	&\equiv	\frac{a(t_{2})}{a(t_{1})}	
+\end{align*}
+\end{FORMULA_SUMM}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-1h}]{1h. Equivalent Rates}
-	\begin{itemize}
+	\begin{itemize}[leftmargin = *]
 		\item	
 	\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-2a}]{{2a. Equations of Value, Time Value of Money, and Time Diagrams}}
-	\begin{itemize}
+	\begin{itemize}[leftmargin = *]
 		\item	
 	\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-2b}]{2b. Unknown Time and Unknown Interest Rate}
-	\begin{itemize}
+	\begin{itemize}[leftmargin = *]
 		\item	
 	\end{itemize}
 \end{CHPT_SUMM_AUTO}
