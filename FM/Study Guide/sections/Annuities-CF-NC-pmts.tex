@@ -543,33 +543,87 @@ If $P \neq Q$:
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-4i}]{4i. Remembering Increasing Annuity Formulas}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+A few basic definitions:
+\begin{description}
+	\item[$I$]	means the \textbf{annual rate} of payment increases once a year.\\
+	For example, the annual rate of payment is $1$ in the first year, $2$ in the second, etc.
+	\item[$I^{(m)}$]	means the \textbf{annual rate} of payment increases at $m^{\text{thly}}$ intervals\\
+	For example, the annual rate of payment is $\frac{1}{m}$ in the first $\frac{1}{m}$-th of a year, $\frac{2}{m}$ in the second $\frac{1}{m}$-th of a year, etc.
+	\item[$a$]	means payments are made \textbf{annually}.
+	\item[$a^{(m)}$]	means payments are made $m$thly.
+\end{description}
+
+For example:
+\begin{description}
+	\item[]	$\Ia_{\angl{n}}$	\textbf{annual rate} of payment of 1 in the first year, 2 in the second, etc.\\
+	The payments are made annually up to a payment of $n$ in the $n$th year.
+	\item[]	$\Ia_{\angl{n}}^{[(m)]}$	\textbf{annual rate} of payment of $1$ in the first year, $2$ in the second, etc.\\
+	The payments are made $m$-thly thus there are $m$ payments of $\frac{1}{m}$ in the first year, $m$ payments of $\frac{2}{m}$ in the second, etc.
+	\item[]	$(\actsymb{I}{}[(m)]a)_{\angln}^{(m)}$	the \textbf{annual rate} of payment increases $m$-thly and payments are made in $m$-thly installments.\\
+	The payments at the end of each $m$-th of a year are $\frac{1}{m^{2}}, \frac{2}{m^{2}}, \dots, \frac{mn}{m^{2}}$.\\
+	To remember, we can think of it as the \og double $m$ \fg{} symbol.
+\end{description}
+
+In brief:
+\begin{align*}
+	\Ia_{\angl{n}}	
+	&=	\frac{\ax**{\angln} - nv^{n}}{i}	\\
+	\Ia_{\angl{n}}^{[(m)]}
+	&=	\frac{\ax**{\angln} - nv^{n}}{i^{(m)}}	\\
+	(\actsymb{I}{}[(m)]a)_{\angln}^{(m)}
+	&=	\frac{\ax**{\angln}[(m)] - nv^{n}}{i^{(m)}}	\\
+	(\bar{I}\bar{a})_{\angln}
+	&=	\frac{\ax*{\angln} - nv^{n}}{\delta}
+\end{align*}
+
+\paragraph*{NOTE}	Revise this section's table in the book (page 230) to understand logic completely.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-4j}]{4j. Payments in Geometric Progression}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+The PV of an annuity with a first payment of 1 and subsequent payments increasing by a factor of $(1 + k)$ annually at an effective rate of interest of $i$ is:
+\begin{align*}
+	PV	
+	&=	\frac{1 - \left( \frac{1 + k}{1 + i} \right)^{n}}{i - k}
+\end{align*}
+
+Alternatively, we can define the new rate of interest $i'$ as $i' = \frac{|i - k|}{1 + k}$ (we insert absolute value as we subtract the larger from the smaller rate). With this rate, we can use normal formulas such as $\ax{\angln}$.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-4k}]{4k. The Amazing Expanding Money Machine (Or Continouss Varying Annuities)}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Chapter explains the intuition behind continuously paid annuities.
+
+\begin{itemize}[leftmargin = *]
+	\item	For a the continuously increasing continuously paid annuity, $(\bar{Ia})_{\angln}$, we integrate $1$ times $v^{t}$ as the payments are linearly increasing ($\int_{0}^{n}v^{t}dt$).
+	\item	We can also integrate a function and have $PV = \int_{0}^{n} f(t) v^{t}dt$ if it is not constant.
+	\item	Then, if the interest varies, we have $PV = \int_{0}^{n} f(t) \textrm{e}^{-\int_{0}^{t}\delta_{r}dr}dt$
+\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-4l}]{4l. A Short-Cut Method for the Palindromic Annuity}
-	\begin{itemize}
-		\item	
+A palindrome is, for example, 1342431 where it is the same read backward or forward. This pattern can occur for annuities too.
+
+The book takes for example a series of payments of $1, 2, 3, 4, 5, 4, 3, 2, 1$. 
+	\begin{itemize}[leftmargin = *]
+		\item	This could be solved as $\Ia_{\angl{5}} + v^{5} \Da_{\angl{4}}$.
+		\item	However, there is a simpler method as this equation yields $\ax{\angl{5}} \cdot \ax**{\angl{5}}$.
+		\item	First, we visualise the payments:
+			\begin{center}
+			\includegraphics[scale=.4]{img/palyndrome-graph.png}
+			\end{center}
+		\item	Which we can rewrite as:
+			\begin{center}
+			\includegraphics[scale=.4]{img/palyndrome-pmt.png}
+			\end{center}
+		\item	Thus, $PV = \ax{\angl{5}}\ax**{\angl{5}}$.
+		\item	If the original series is due, we have the annuity-due squared.
 	\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-4m}]{4m. The 0\% Test: A Quick Check of Symbolic Answers}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Trick to eliminate some of the answer choices when answers are in symbolic form.
+
+Since answers should be correct for any rate of interest, they should be correct for $0\%$ as well. With $i = 0$, we most notably get $\ax{\angln} = \sx{\angln} = n$.
+\paragraph*{NOTE}	revise this section to properly understand examples.
 \end{CHPT_SUMM_AUTO}
 
 %\subsection{Notes sur les vidéos YouTube}
