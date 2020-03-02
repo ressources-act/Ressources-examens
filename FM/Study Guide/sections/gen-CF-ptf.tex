@@ -194,22 +194,118 @@ See Coaching Actuaries' formula sheet for a good visualisation.
 \end{description}
 \end{CHPT_SUMM_AUTO}
 
+\begin{center}
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 3cm,
+		minimum width = 3cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 3.5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 3/.style = {
+		text width = 3.5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 4/.style = {
+		text width = 3.5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+%	row 1 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+	Feature	&	Bond	&	Preferred Stock	&	Common Stock	\\
+	Nature of the Security	&	Loan to a company or governmental unit.	&	Capital investment in a corporation, with no guarantee of a return.	&	Same as preferred stock.	\\
+	Relation of the Investor to the Company	&	\textbf{Creditor} of (or lender to) the company.	&	\textbf{Part-owner} of the company, with the right to vote for the Board of Directors and on other corporate matters.	&	Same as preferred stock.	\\
+	Term of the Investment	&	Usually fixed at issue although some may be called before.	&	Generally has no maturity date.	&	Same as preferred stock.	\\
+	Investment Returns	&	Periodic coupons throughout the term plus the face amount on maturity.	&	Fixed periodic dividends.	&	Periodic dividends at the company's discretion.	\\
+	Price	&	Varies with current interest rates. Default risk may also affect the price.	&	Varies with current interest rates as the dividends are a fixed amount.	&	Very volatile.	\\
+	Degree of Security	&	First in degree of security as payments on debt are made before issuing dividends.	&	Preferred stock dividends are paid before common stock dividends can be.	&	Last in degree of security.	\\
+};
+\end{tikzpicture}
+\end{center}
+
 \begin{CHPT_SUMM_AUTO}[label = {L.-8a}]{8a. Bonds Preferred Stock and Common Stock}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+A company can raise money with:
+\begin{description}
+	\item[Debt]	Bonds are a form of debt.
+	\item[Equity]	Stocks are a form of equity.
+\end{description}
+
+\
+
+There are a few types of bonds:
+\begin{description}
+	\item[Junk bonds]	Often used as a way to finance the takeover of a one corporation by another and are much riskier than investment grade bonds.
+	\item[Investment grade bonds]	Bonds with a very low risk of default.
+	\item[Zero-coupon bonds]	Bond without coupons in which the investor receives a single lump sum payment at maturity.
+\end{description}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-8b}]{8b. Price of a Share of Stock}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+The price of a typical preferred stock (or perpetual bond) is the PV of a perpetuity of the dividends (or coupons):
+\begin{align*}
+	P	&=	\frac{Fr}{i}
+\end{align*}
+
+With the \textbf{dividend discount model}, or \textbf{the discounted cash flow technique}, if the dividends $D$ for a common stock increase by a constant ratio of $(1 + k)$ we obtain:
+\begin{align*}
+	P	&=	\frac{D}{i - k}
+\end{align*}
+However this method is \textit{theoretical} as the future dividends of common stock are difficult to predict.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-8c}]{8c. Other Financial Instruments}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+\begin{description}
+	\item[Sector funds]	Mutual funds with investments in a particular sector.
+	\item[Index funds]	No active management of the fund, it reproduces the results of the index it follows.
+	\item[Load]	Commission to buy shares, but there are many \textbf{no-load} mutual funds as well.
+	\item[Money Market Mutual Funds]	Invest in very safe, short-term debt instruments (for example, T-bills).
+		\begin{itemize}[leftmargin = *]
+%		\item	Usually no government deposit insurance.
+		\item	Interest rates frequently change.
+		\end{itemize}
+	\item[Certificate of Deposit]	Deposit in a bank for a fixed term with a guaranteed interest rate.
+		\begin{itemize}[leftmargin = *]
+		\item	There is usually an interest penalty for an early withdrawal.
+%		\item	Deposit insurance.
+		\item	Interest rates frequently change.
+		\end{itemize}
+\end{description}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10a}]{10a. Duration of a Single Cash Flow}
