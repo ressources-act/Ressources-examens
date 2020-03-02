@@ -8,9 +8,8 @@ The Candidate will understand key concepts concerning yield curves, rates of ret
 
 \begin{outcomes}[Learning outcomes]
 The candidate will be able to:
-\begin{enumerate}[label = \alph*)]
+\begin{enumerate}[label = \alph*), leftmargin = *]
 	\item	Define and recognize the \textit{definitions} of the following terms:
-		\begin{multicols*}{2}
 		\begin{itemize}[leftmargin = *]
 		\item	Yield rate / rate of return;
 		\item	Dollar-weighted rate of return;
@@ -25,14 +24,13 @@ The candidate will be able to:
 		\item	Stock price;
 		\item	Stock dividend;
 		\end{itemize}
-		\end{multicols*}
 	\item	Calculate:
-		\begin{itemize}
+		\begin{itemize}[leftmargin = *]
 		\item	The dollar-weighted and time-weighted rate of return;
 		\item 	The duration and convexity of a set of cash flows;
 		\item	Either Macaulay or modified duration given the other;
 		\item	The approximate change in present value due to a change in interest rate,
-			\begin{itemize}
+			\begin{itemize}[leftmargin = *]
 			\item	Using 1st-order linear approximation based on modified duration;
 			\item	Using 1st-order approximation based on Macaulay duration.
 			\end{itemize}
@@ -77,39 +75,123 @@ Section 11:
 \subsection{Chapter summaries}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-5a}]{5a. Net Present Value and Internal Rate of Return}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+\paragraph{Net Present Value (NPV)}
+Method consists of comparing the NPV of the cash inflows and outflows.
+\begin{description}
+	\item[$A_{t}$]	Cash inflow at time $t$ ("\textbf{A}ssets").
+	\item[$L_{t}$]	Cash outflow at time $t$ ("\textbf{L}iabilities").
+	\item[$i$]	The rate we believe could be earned on alternative investments with the \hl{same degree of risk}.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. the \textbf{cost of capital}, opportunity cost of capital or the interest preference rate.
+		\end{itemize}
+	\item[$P(i)$]	NPV at rate $i$.
+		\begin{itemize}[leftmargin = *]
+		\item	This notation is used as the NPV is a function of the interest rate $i$.
+		\end{itemize}
+\end{description}
+\begin{align*}
+	P(i)
+	&=	\sum A_{t} v^{t} - \sum L_{t} v^{t}
+	=	\sum (A_{t} - L_{t}) v^{t}
+\end{align*}
+
+\tcbline
+
+\paragraph{Yield Rate or Internal Rate of Return (IRR)}
+Because $P(i)$ can be negative or positive depending on the interest rate, we deduce there must be a rate such that it is equal to $0$. In fact, the solution such that $P(i) = 0$ is the IRR:
+\begin{align*}
+	P(i)
+	&=	\sum (A_{t} - L_{t}) v^{t}
+	=	0
+\end{align*}
+
+\tcbline
+
+\paragraph{Note}	This can be solved by the calculator.
+\begin{itemize}[leftmargin = *]
+	\item	Access the cashflows worksheet through \colorbox{arsenic}{\textcolor{white}{CF}}.
+	\item	Cash flows are the \texttt{C01} options.
+	\item	The \texttt{F01} options are the frequency for the payments.
+	\item	Press the \colorbox{arsenic}{\textcolor{white}{NPV}} button after cashflows are entered, enter the interest rate, then go down to the \texttt{NPV} field and hit \colorbox{arsenic}{\textcolor{white}{CPT}}.
+	\item	To obtain the IRR of a series of cashflows, press the \colorbox{arsenic}{\textcolor{white}{IRR}} button followed by \colorbox{arsenic}{\textcolor{white}{CPT}} after entering the series.
+\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-5b}]{5b. Is the Yield Rate Unique?}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+For most transactions there is one positive solutions however in the theory there are as many as the degree of the polynomial in the equation $P(i)$ (i.e. the largest exponent). Situations where it is not unique are often somewhat artificial but they can happen. \\
+
+This sections highlights the limitations of the yield rate as an answer to \og Is this a good investment? \fg{} and that there are other methods which are not part of the syllabus to answer it.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-5c}]{5c. Reinvestment Rates}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Two general scenarios:
+\begin{enumerate}[leftmargin = *]
+	\item	Suppose we have $1$ in a fund crediting interest at rate $i$.\\
+			Annually, we withdraw the interest and reinvest it into another fund earning $i'$.
+			Their accumulated value at the end of $n$ years is :
+			\begin{align*}
+			AV
+			&=	1 + i \sx{\angln i'}
+			\end{align*}
+	\item	Suppose that we deposit $1$ in a fund crediting interest at rate $i$ at the beginning of each year.\\
+			Annually, we withdraw the interest and reinvest it into another fund earning $i'$.
+			Their accumulated value at the end of $n$ years is :
+			\begin{align*}
+			AV
+			&=	n + i \Is{\angln i'}
+			\end{align*}
+\end{enumerate}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-5d}]{5d. Yield Rate Earned by a Fund}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+\begin{description}
+	\item[$A$]	Amount in the fund at the beginning of the year.
+	\item[$B$]	Amount in the fund at the end of the year.
+	\item[$C_{t}$]	Deposit in or withdrawal from (positive or negative) the fund at time $t$.
+	\item[$C$]	Net sum of the deposits / withdrawals.
+		\begin{align*}
+		C	&=	\sum C_{t}
+		\end{align*}
+	\item[$I$]	Amount of interest earned in the period.
+		\begin{align*}
+		I	&=	B - A - C
+		\end{align*}
+\end{description}
+%We thus have the relation $B = A(1 + i) + \sum C_{t} (1 + i)^{1 - t}$ which can be approximated with simple interest $B \approx A(1 + i) + \sum C_{t} [1 + (1 - t)i]$. We use this to isolate $i$ with $C = \sum C_{t}$ representing the net sum of the deposits / withdrawals:
+%\begin{align*}
+%	i
+%	&\approx	\frac{B - A - C}{A + \sum C_{t} (1 - t)}
+%\end{align*}
+
+%We then define:
+%and rewrite the approximation with the assumption that the net amount of deposits / withdrawals occurs at time $1/2$:
+With this we approximate the yield rate as:
+\begin{align*}
+	i
+	\approx	\frac{2I}{A + B - I}
+\end{align*}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-5e}]{5e. Dollar-Weighted and Time-Weighted Interest Rates}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+\textbf{Dollar-weighted} consists of isolating $i$ from the cashflows with the assumption of simple interest.
+\textbf{Time-weighted} ignores how much time each transaction spent accumulating and multiplies balances. It is easy to make a mistake and best practice to draw a table. \\
+
+See Coaching Actuaries' formula sheet for a good visualisation.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-5f}]{5f. Portfolio Methods and Investment Year Methods}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+\begin{description}
+	\item[Portfolio Method]	The yield rate is proportional to the amount members invested regardless of the date they invested.
+		\begin{itemize}[leftmargin = *]
+		\item	May seem unfair, but if there are losses the new members are the losers.
+		\item	This is how savings accounts, TFSAs, etc. operate.
+		\end{itemize}
+	\item[Investment Year Method (IYM)]	The yield rate is proportional to the date members invested.
+		\begin{itemize}[leftmargin = *]
+		\item	There are several methods, but this is \hl{no longer on the syllabus}.
+		\item	This is how a Certificate of Deposit (CD) operates.
+		\end{itemize}
+\end{description}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-8a}]{8a. Bonds Preferred Stock and Common Stock}
