@@ -53,13 +53,7 @@ Section 6: Loans
 \end{itemize}
 \end{ASM_chapter}
 
-\begin{YTB_vids}[Vidéos YouTube]
-\begin{itemize}
-	\item	
-\end{itemize}
-\end{YTB_vids}
-
-\subsection{Résumés des chapitres}
+\subsection{Chapter summaries}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-6a}]{6a. Amortizing a Loan}
 \textbf{Amortization} is reducing the outstanding balance ($B$) of a loan by making payments ($R$) which are part interest ($I$) and part principal ($P$).\\
@@ -89,9 +83,10 @@ We're interested in distinguishing the interest and principal portions of each p
 
 Thus we get:
 \begin{align*}
-	R_{t}	&= P_{t} + I_{t}	\\
-	I_{t}	&= iB_{t - 1}	\\
-	B_{t} 	&= B_{t - 1} - P_{t}	\\
+	R_{t}	&= 	P_{t} + I_{t}		\\
+	I_{t}	&= 	iB_{t - 1}			\\
+	P_{t}	&=	R_{t} - I_{t}		\\
+	B_{t} 	&= 	B_{t - 1} - P_{t}	\\
 	B_{n}	&=	0	&
 	B_{0}	&=	L
 \end{align*}
@@ -116,7 +111,7 @@ Also, we have the following interpretations for the totals:
 
 The amortization schedule can also be generalized for a loan of $L$, we simply multiply by a factor of $\frac{L}{\ax{\angln}}$ to cancel out the default loan of $\ax{\angln}$.\\
 
-\paragraph{Note}	Do example at the end of the section showing 4 methods of calculating interest with the calculator \hl{(P. 324)}.
+\paragraph*{Note}	The amortization worksheet on the calculator can perform the calculations for us.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-6b}]{6b. Varying Series of Payments}
@@ -128,20 +123,21 @@ Important to remember that for any loan:
 	\item	The \textbf{principal repaid} is the loan payment minus the \textbf{interest paid}.
 	\item	The new \textbf{loan balance} is the previous balance minus the \textbf{principal repaid}
 \end{itemize}
+
+Finally, if a payment is not sufficient to repay the interest, we still write (in an amortization schedule) the full interest payment but the principal repaid \textit{becomes negative} by the difference!
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-6c}]{6c. Equal Principal Repayments (A Special Case of Varying Payments)}
 We can pay a \textbf{level amount of \textit{principal}} and the interest on the outstanding balance. This is different than a level payment as a level payment includes the interest paid on the outstanding balance.
+
+\paragraph*{Note}	\hl{practice problems where split increasing into an annuity and an increasing / decreasing}
 \end{CHPT_SUMM_AUTO}
-%
+
 \begin{CHPT_SUMM_AUTO}[label = {L.-6d}]{6d. Final Payments (Balloon and Drop Payments)}
-
+There are at least 3 ways of repaying a loan by level payments, followed by an unequal final payment:
+\begin{itemize}
+	\item	A final payment \textit{larger} than the level payments is a \textbf{balloon payment}.
+	\item	A final payment \textit{smaller} than the level payments is a \textbf{drop payment}.
+	\item	A final payment \textit{smaller} than the level payments made on a date in between regular payment dates \textit{(not common practice)}.
+\end{itemize}
 \end{CHPT_SUMM_AUTO}
-
-\subsection{Notes sur les vidéos YouTube}
-
-%\begin{YTB_SUMM}[label = {}]{}
-%\begin{itemize}
-%	\item	
-%\end{itemize}
-%\end{YTB_SUMM}
