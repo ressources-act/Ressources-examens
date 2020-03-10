@@ -22,17 +22,17 @@ The candidate will be able to:
 		\item	Forward rate;
 		\item	Yield Curve;
 		\item	Stock price;
-		\item	Stock dividend;
+		\item	Stock dividend.
 		\end{itemize}
 	\item	Calculate:
 		\begin{itemize}[leftmargin = *]
 		\item	The dollar-weighted and time-weighted rate of return;
 		\item 	The duration and convexity of a set of cash flows;
 		\item	Either Macaulay or modified duration given the other;
-		\item	The approximate change in present value due to a change in interest rate,
+		\item	The approximate change in present value due to a change in interest rate using a 1st-order:
 			\begin{itemize}[leftmargin = *]
-			\item	Using 1st-order linear approximation based on modified duration;
-			\item	Using 1st-order approximation based on Macaulay duration.
+			\item	Linear approximation based on modified duration;
+			\item	Approximation based on Macaulay duration.
 			\end{itemize}
 		\item	The price of a stock using the dividend discount model;
 		\item	The present value of a set of cash flows, using a yield curve developed from forward and spot rates.
@@ -282,6 +282,10 @@ The price of a typical preferred stock (or perpetual bond) is the PV of a perpet
 	P	&=	\frac{Fr}{i}
 \end{align*}
 
+%%%	--------------------
+%%%	NOTE:
+%%%	+	Don't think I wrote this right, need to verify for common vs preferred stock.
+%%%	--------------------
 With the \textbf{dividend discount model}, or \textbf{the discounted cash flow technique}, if the dividends $D$ for a common stock increase by a constant ratio of $(1 + k)$ we obtain:
 \begin{align*}
 	P	&=	\frac{D}{i - k}
@@ -309,50 +313,70 @@ However this method is \textit{theoretical} as the future dividends of common st
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10a}]{10a. Duration of a Single Cash Flow}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+\begin{description}
+	\item[Fixed-income investments]	Investments that pay \textbf{fixed} (\textit{known}) amounts of future income.
+		\begin{itemize}[leftmargin = *]
+		\item	e.g., bond coupons, mortgage payments, etc.
+		\item	Opposite of investments with \textbf{unknown} future amounts.\\
+				e.g., dividends.
+		\end{itemize}
+\end{description}
+\begin{itemize}[leftmargin = *]
+	\item	Given that the \textit{future} income is fixed, the \textit{present} value of the investments depends on \textit{current} interest rates.\\
+			Thereby, companies need tools to measure the impact that changes in interest rates have on asset values.\\
+			e.g., duration, convexity, etc.
+	\item	An issue arising from this is that a financial institution \textbf{guarantees} \textit{future} payments.\\
+			However, its ability to fulfill them depends on the value of the investment it holds.
+\end{itemize}
+\begin{description}
+	\item[Immunization]	Protection against the effect of future changes in interest rates.
+		\begin{itemize}[leftmargin = *]
+		\item	The institution tries to "immunize" itself from the impact of changes in interest rates.
+		\end{itemize}
+\end{description}
+
+	\tcbline
+
+\begin{description}
+	\item[Price sensitivity]	of a bond to a change in the interest rate.
+		\begin{itemize}[leftmargin = *]
+		\item	i.e., the percentage change in price.
+		\item	The greater the term of the bond, the more sensitive its price.
+		\end{itemize}
+	\item[Duration]	The time remaining to a single cash inflow or outflow.
+\end{description}
+
+Given the shape of the price/yield curve, a decrease in the interest rate will lead to a larger difference in price than an increase.
+\begin{center}
+	\includegraphics[scale=0.3]{img/duration-SCF.png}
+\end{center}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10b}]{10b. Macaulay Duration}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10c}]{10c. Macaulay Duration as a Measure of Price Sensitivity}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10d}]{10d. Modified Duration}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10e}]{10e. Duration of a Portfolio}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10f}]{10f. Change in Duration As Time Goes By}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10g}]{10g. Convexity}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-11a}]{11a. Spot Rates and Forward Rates}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+
 \end{CHPT_SUMM_AUTO}
 
