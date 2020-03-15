@@ -353,10 +353,45 @@ Given the shape of the price/yield curve, a decrease in the interest rate will l
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10b}]{10b. Macaulay Duration}
+\paragraph{Macaulay duration}	Weigh the time at which each cash flow occurs by its \textit{present value}.
+	\begin{itemize}[leftmargin = *]
+	\item	The greater the Macaulay duration $D_{\text{mac}}(i)$, the greater the sensitivity of the PV of the CFs to a change in the interest rate $i$.
+	\item	There is no standard notation for the duration, but the study note uses $D_{\text{mac}}(i)$.
+	\item	It is often just called \textbf{\textit{duration}}.
+	\item	The special case where $i = 0$ is duration by the method of equated time with $D_{\text{mac}}(0) = \frac{\underset{t = 0}{\overset{n}{\sum}} (A_{t})(t)}{\underset{t = 0}{\overset{n}{\sum}} (A_{t})}$.
+	\item	For a single CF, the duration is simply the time remaining to the CF.\\
+			For example, the duration of a zero-coupon bond of 1 000\$ is $D_{\text{mac}}(i) = \frac{1000v^{n}n}{1000v^{n}} = n$.
+	\end{itemize}
+	
+\tcbline
+So we get:
+\begin{description}
+	\item[$P(i)$]	PV of the CFs at interest rate $i$.
+		\begin{align*}
+		P(i)	
+		&=	\underset{t = 0}{\overset{n}{\sum}} (A_{t}v^{t})
+		\end{align*}
+	\item[$D_{\text{mac}}(i)$]	Macaulay duration at interest rate $i$.
+	\begin{align*}
+	D_{\text{mac}}(i)
+	&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t})}{P(i)}
+	\end{align*}
+\end{description}
 
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10c}]{10c. Macaulay Duration as a Measure of Price Sensitivity}
+The Macaulay Duration can also be defined as a measure of sensitivity of the PV of the CFs to a change in the interest rate. To define it mathematically, there are 2 considerations:
+\begin{itemize}[leftmargin = *]
+	\item	The slope of the PV/yield curve is negative and as such we multiply the derivative by $-1$:
+	\begin{center}
+		\includegraphics[scale=0.35]{img/duration-slope.png}
+	\end{center}
+	\item	Price sensitivity is a \textit{relative} measure.\\
+			To obtain the rate of change in the PV as a percentage of the PV, we divide the derivative of the PV of the CFs by the PV itself.
+\end{itemize}
+
+Thus, PV sensitivity = $\frac{-P'(i)}{P(i)}$. This is actually the \textbf{modified duration} and deriving by the \textit{force of interest} leads to the Macaulary Duration $\frac{-P'(\delta)}{P(\delta)}$.
 
 \end{CHPT_SUMM_AUTO}
 
