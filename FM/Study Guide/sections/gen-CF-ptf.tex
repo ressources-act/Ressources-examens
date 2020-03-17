@@ -372,10 +372,10 @@ So we get:
 		&=	\underset{t = 0}{\overset{n}{\sum}} (A_{t}v^{t})
 		\end{align*}
 	\item[$D_{\text{mac}}(i)$]	Macaulay duration at interest rate $i$.
-	\begin{align*}
-	D_{\text{mac}}(i)
-	&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t})}{P(i)}
-	\end{align*}
+		\begin{align*}
+		D_{\text{mac}}(i)
+		&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t})}{P(i)}
+		\end{align*}
 \end{description}
 
 \end{CHPT_SUMM_AUTO}
@@ -391,24 +391,134 @@ The Macaulay Duration can also be defined as a measure of sensitivity of the PV 
 			To obtain the rate of change in the PV as a percentage of the PV, we divide the derivative of the PV of the CFs by the PV itself.
 \end{itemize}
 
-Thus, PV sensitivity = $\frac{-P'(i)}{P(i)}$. This is actually the \textbf{modified duration} and deriving by the \textit{force of interest} leads to the Macaulary Duration $\frac{-P'(\delta)}{P(\delta)}$.
+Thus, PV sensitivity = $\frac{-P'(i)}{P(i)}$. \\
+This is actually the \textbf{modified duration} and deriving by the \textit{force of interest} leads to the Macaulary Duration:
+\begin{align*}
+	\text{PV sensitivity (with respect to $\delta$)}
+	&=	\frac{-P'(\delta)}{P(\delta)}	\\
+	&=	D_{\text{mac}}(i)
+\end{align*}
 
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10d}]{10d. Modified Duration}
+As noted above, we get:
+\begin{align*}
+	\text{PV sensitivity (with respect to $i$)}
+	&=	\frac{-P'(i)}{P(i)}	
+	=	D_{\text{mod}}(i)
+\end{align*}
 
+And we find:
+\begin{align*}
+	D_{\text{mod}}(i)	
+	&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t + 1})}{P(i)}	
+	=	v D_{\text{mac}}(i)	
+\end{align*}
+
+\textbf{Notes}
+\begin{itemize}[leftmargin = *]
+	\item	To remember that the modified duration adds a ${\color{teal}v}$ to the (Macaulay) duration, note that \og modified duration \fg{} is the same as saying \og {\color{teal}\textbf{v}}ariation of duration \fg{}.
+	\item	Modified duration is sometimes referred to as \textbf{volatility}.
+\end{itemize}
+
+\tcbline
+
+\begin{center}
+	\textbf{First-Order approximations}
+\end{center}
+
+\begin{description}
+	\item[$i_{0}$]	Initial interest rate used to calculate the PV of the CFs.
+	\item[$i$]	New interest rate for which we want to approximate the change in the PV of the CFs.
+\end{description}
+\begin{itemize}
+	\item	They are \og first-order \fg{} approximations because they correspond to the terms of the Taylor series expansion of $P(i_{0} + \Delta i_{0}$ up to the first power of $\Delta i_{0}$.
+\end{itemize}
+
+\textbf{First-Order modified approximation}:
+\begin{align*}
+	P(i)
+	&\approx	P(i_{0})[1 - (i - i_{0})D_{\text{mod}}(i_{0})]
+\end{align*}
+\begin{itemize}[leftmargin = *]
+	\item	The approximate change in PV due to a change in interest rate from $i_{0}$ to $i$ reduces to $(i - i_{0})P'(i)$.
+	\item	Because the slope of the PV is always negative, $P'(i)$ is always negative.\\
+			Therefore, an {\color{blue}\textit{increase}} in the interest rate implies that $(i - i_{0}) > 0$ which leads to a {\color{red}\textit{decrease}} in the PV of the CFs and vice-versa.
+\end{itemize}
+
+\textbf{First-Order Macaulay approximation}:
+\begin{align*}
+	P(i)
+	&\approx	P(i_{0}) \left( \frac{1 + i_{0}}{1 + i} \right)^{D_{\text{mac}}(i_{0})}
+\end{align*}
 \end{CHPT_SUMM_AUTO}
 
-\begin{CHPT_SUMM_AUTO}[label = {L.-10e}]{10e. Duration of a Portfolio}
+\begin{distributions}[Study Note]
+\begin{center}
+	\textbf{Cash Flows}
+\end{center}
+\begin{description}
+	\item[Cash Flow $(a, t)$]	An \textbf{amount} $a$ ($a \in \mathbb{R}$) at \textbf{time} $t$ ($t \in \mathbb{R}^{+}$).
+	\item[Cash Flow Series]	Sequence of cash flows $(a_{k}, t_{k})$ ($k \in \mathbb{N}$).
+	\item[$i$]	Periodic effective interest rate (same period as the CFs).
+	\item[$P(i)$]	Present value of the CF series as a function of the interest rate:
+		\begin{align*}
+		P(i)	
+		&=	\underset{k \in \mathbb{N}}{\sum} \left( a_{k} (1 + i)^{-t_{k}} \right)
+		=	\overset{n}{\underset{k = 1}{\sum}} \left( a_{k} (1 + i)^{-t_{k}} \right)
+		\end{align*}
+		\begin{itemize}[leftmargin = *]
+		\item	We implicitly assume that the sum converges and as such suppose that $N$ is a finite set of the form $\{1, \dots, n\}$.
+		\item	Because the formulas for duration imply division by $P(i)$, we assume that $P(i) \neq 0$.
+		\end{itemize}
+\end{description}
 
+\textbf{Note}
+\begin{itemize}[leftmargin = *]
+	\item	First-Order modified approximation is $\le$\\
+	 		First-Order Macaulay approximation $\le$ \\
+	 		Actual PV (for positive CFs).
+\end{itemize}
+\end{distributions}
+
+\begin{CHPT_SUMM_AUTO}[label = {L.-10e}]{10e. Duration of a Portfolio}
+To determine the duration of a portfolio of bonds, we can take a weighted average of the duration of each bond. \\
+The weight is the PV of the bond's payments. In other words, the price of the bond at the interest rate for which we are calculating the duration.
+
+\begin{align*}
+	D(\text{ptf.}) 
+	&=	\frac{D_{1}P_{1} + \dots + D_{n}P_{n}}{P_{1} + \dots + P_{n}}
+\end{align*}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10f}]{10f. Change in Duration As Time Goes By}
+Duration has a saw-toothed distribution, much like the value of a bond, as its value linearly goes down right until the moment of payment where it slightly jumps up.
 
+\paragraph{Note}	\hl{Check with 13th edition to see if they improved this section}.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10g}]{10g. Convexity}
+\begin{align*}
+	C_{\text{mod}}(i)
+	&=	\frac{P''(i)}{P(i)}
+	=	\frac{\overset{n}{\underset{t = 1}{\sum}} t (t + 1) v^{t + 2} A_{t}}{P(i)}	\\
+	C_{\text{mac}}(i)
+	&=	\frac{P''(\delta)}{P(\delta)}
+	=	\frac{\overset{n}{\underset{t = 1}{\sum}} t^{2} v^{t} A_{t}}{P(i)}
+\end{align*}
 
+The relation between both is not as straightforward:
+\begin{align*}
+	C_{\text{mod}}(i)
+	&=	(C_{\text{mac}}(i) + D_{\text{mac}}(i))v^{2}
+\end{align*}
+
+\begin{itemize}[leftmargin = *]
+	\item	Unlikely that exam questions will require the use of the summations definition of convexity.
+	\item	Duration consistently understates the exact PV at the new interest rate.
+	\item	Convexity refers to modified convexity by default (opposite of duration which refers to Macaulay duration by default).
+\end{itemize}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-11a}]{11a. Spot Rates and Forward Rates}
