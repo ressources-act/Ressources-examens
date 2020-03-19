@@ -522,6 +522,42 @@ The relation between both is not as straightforward:
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-11a}]{11a. Spot Rates and Forward Rates}
+Yield curve, aka the term structure of interest rates, consists of \textbf{spot rates} for different term of an investment.
 
+\begin{description}
+	\item[$r_{t}$]	The $t$-year spot rate is the annual effective interest rate earned on an investment made for $t$-years.
+\end{description}
+
+Notes:
+\begin{itemize}[leftmargin = *]
+	\item	To calculate PV, we actualise each payment with the respective spot rate from the table for that year.
+	\item	To calculate the IRR, we isolate the rate from the annuity.
+	\item	Generally we work backwards to find the spot rates from the YTM.
+	\item	The $t$ in $r_{t}$ does not have to be whole.
+\end{itemize}
+
+Where $P_{t}$ is the price of a $t$-year zero-coupon bond, $r_{t} = P_{t}^{-1/t} - 1$.
+
+\tcbline
+
+The \textbf{forward rate} is an interest rate that will be earned on an investment made at a future point in time expressed as an annual effective interest rate.
+\begin{description}
+	\item[$f_{[t_{1}, t_{2}]}$]	Annual effective interest rate in effect between $t_{1}$ and $t_{2}$.
+
+\textbf{Notes}:
+\begin{itemize}[leftmargin = *]
+	\item	The forward rate is today's anticipation for the rate of a future period.
+	\item	$(1 + f_{[t_{1}, t_{2}]})(1 + f_{[t_{2}, t_{3}]}) = (1 + f_{[t_{1}, t_{3}]})$
+	\item	Link:
+\end{itemize}
+	\begin{align*}
+	f_{[t_{1}, t_{2}]}
+	&=	\left[\frac{(1 + r_{t_{2}})^{t_{2}}}{(1 + r_{t_{1}})^{t_{1}}}\right]^{1/(t_{2} - t_{1})} - 1
+	\end{align*}			
+		\begin{align*}
+		(1 + r_{n})^{n} 
+		&=	\overset{n}{\underset{i = 1}{\prod}} (1 + f_{t_{i}})
+		\end{align*}
+\end{description}
 \end{CHPT_SUMM_AUTO}
 
