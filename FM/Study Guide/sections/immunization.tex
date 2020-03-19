@@ -37,33 +37,72 @@ Section 10: Duration, Convexity, and Immunization
 \subsection{Chapter summaries}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10h}]{10h. Redington Immunization}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Unless asset cash inflows and liability cash outflows are \textbf{exactly} matched, changes in interest rates (up or down) can cause us to be unable to pay the liabilities.
+\begin{description}
+	\item[Immunization]	Protecting a financial enterprise from changes in interest rates.
+\end{description}
+
+
+Redington defined \textbf{Redington Immunization} with 3 principles to protect a company against \textbf{small} changes in interest rates:
+\begin{enumerate}
+	\item	PV assets = PV liabilities
+	\item	Duration assets = Duration liabilities
+	\item	Convexity assets > Convexity liabilities
+\end{enumerate}
+
+Conditions 2 and 3 ensure a small change in the interest rate on either side of $i_{0}$ will result in a net increase of the PV of the assets over the PV of the liabilities.
+
+Equivalently, we can write these as:
+\begin{enumerate}
+	\item	$P_{A} = P_{L}$
+	\item	$P'_{A} = P'_{L}$
+	\item	$P''_{A} = P''_{L}$
+\end{enumerate}
+
+If we define the NPV $P = P_{A} - P_{L}$ we can write them as:
+\begin{enumerate}
+	\item	$P = 0$
+	\item	$P' = 0$
+	\item	$P'' > 0$
+\end{enumerate}
+
+Note that conditions 2 and 3 are the conditions for a relative minimum at $i = i_{0}$ thereby ensuring that the NPV is concave upwards at $i_{0}$.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10i}]{10i. Full Immunization}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Full immunization protects a company against \textbf{any} change in the interest rate, no matter the size. Essentially, we ensure that there are 2 asset cash inflows: one before the liability cash outflow and one after.
+
+Conditions are:
+\begin{enumerate}
+	\item	PV assets = PV liabilities
+	\item	Duration assets = Duration liabilities
+	\item	There is one asset cash inflow before the liability cash outflow and one after it.
+\end{enumerate}
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10j}]{10j. A Note on Rebalancing}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+In the real world, assets and liabilities change regularly and a company must \textbf{rebalance} its portfolio often. Another possible reason why company may no longer be immunized is that duration changes as time goes by.
 \end{CHPT_SUMM_AUTO}
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-10k}]{10k. Immunization by Exact Matching ("Dedication")}
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Exact matching ensures that the asset cash flow at each time $t$ is equal to the corresponding liability cash outflow at that time, i.e., $A_{t} = L_{t}, \forall t$.
+
+\begin{itemize}[leftmargin = *]
+	\item	This means that changes in interest rates wouldn't have any incidence as all cash flows are exactly matched.
+	\item	This is also known as \textbf{dedication}, cash flow matching, exact matching and asset-liability matching.
+\end{itemize}
+
+There are a few problems:
+
+\begin{itemize}[leftmargin = *]
+	\item	Cash inflows are not always predictable (bonds may be called, mortgages prepaid, etc.).
+	\item	Cash outflows are often only estimates (may depend on probabilities of death, sickness, etc., or customer actions like withdrawals).
+	\item	Assets may not be available to exactly match liabilities.
+	\item	This rigid method may not lead to the best yield rate.
+\end{itemize}
+
+To solve these problems, we must start from the end and work ourselves backward to the beginning. The book has an example and this is the end result:
+\begin{center}
+	\includegraphics[scale=0.4]{img/immunization-exact.png}
+\end{center}
 \end{CHPT_SUMM_AUTO}
-
-\subsection{Notes sur les vidéos YouTube}
-
-%\begin{YTB_SUMM}[label = {}]{}
-%\begin{itemize}
-%	\item	
-%\end{itemize}
-%\end{YTB_SUMM}
