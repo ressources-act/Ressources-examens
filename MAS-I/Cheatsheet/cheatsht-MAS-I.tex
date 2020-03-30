@@ -1,0 +1,83 @@
+% Template pour faire aide-mémoire
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{MAS-I}
+\def\sigle{(CAS)}
+%
+% 	Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+%
+% 	thin space, limits underneath in displays
+%
+\DeclareMathOperator*{\argmax}{arg\,max} 
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSectionColor{azure(colorwheel)}
+%% -----------------------------
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+%\input{contributeurs/contrib-MAS-I}
+
+\newpage
+
+\begin{multicols*}{2}
+
+\def\SectionColor{red!80!white}
+\section*{Lesson 25: Estimator Quality}
+\begin{distributions}[Sample Statistics]
+\begin{description}
+	\item[Sample Mean]	Unbiased estimator of the true mean $\mu$.
+\begin{align*}
+	\bar{x}
+	&=	\frac{\sumz{n}{i = 1} x_{i}}{n}
+\end{align*}
+	\item[Sample Variance]	Unbiased estimator of the true variance $\sigma^{2}$.
+\begin{align*}
+	s^{2} 
+	&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n - 1}
+\end{align*}
+	\item[Empirical Variance]	Biased estimator of the true variance $\sigma^{2}$.
+		\begin{align*}
+		\hat{\sigma}^{2} 
+		&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n}
+		\end{align*}
+\end{description}
+
+\end{distributions}
+\end{multicols*}
+\end{document}

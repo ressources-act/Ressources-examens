@@ -10,8 +10,9 @@ Notes du descriptif principal:
 \end{distributions}
 
 \begin{outcomes}[Learning objectives]
-\begin{enumerate}
-	\item	Perform point estimation of statistical parameters using Maximum likelihood estimation (MLE). Apply criteria to estimates such as :
+	\begin{enumerate}
+	\item	Perform point estimation of statistical parameters using Maximum likelihood estimation (MLE). \\
+			Apply criteria to estimates such as :
 	\begin{multicols*}{2}
 		\begin{itemize}
 		\item	Consistency;
@@ -22,7 +23,9 @@ Notes du descriptif principal:
 		\item	MSE;
 		\end{itemize}
 	\end{multicols*}
-	\begin{knowledge}[Knowledge Statements]
+	\end{enumerate}
+\end{outcomes}
+\begin{knowledge}[Knowledge Statements]
 	\begin{enumerate}[label = \alph*.]
 	\item	Equations for MLE of mean, variance from a sample;
 	\item	Estimation of mean and variance based on samples;
@@ -42,9 +45,12 @@ Notes du descriptif principal:
 	\item	Kernel Density Estimation;
 	\item	Maximum Likelihood with Censoring and Truncation;
 	\end{enumerate}
-	\end{knowledge}
-\tcbline
-	Calculate parameter estimates using methods other than maximum likelihood;
+\end{knowledge}
+
+\begin{outcomes}[Learning objectives]
+	\begin{enumerate}
+  \setcounter{enumi}{1}
+	\item	Calculate parameter estimates using methods other than maximum likelihood.
 	\item	Test statistical hypotheses including Type I and Type II errors using:
 		\begin{itemize}
 		\item	Neyman-Pearson theorem;
@@ -52,8 +58,10 @@ Notes du descriptif principal:
 		\item	Likelihood ratio tests;
 		\item	First principles;
 		\item[]	Use critical values from a sampling distribution to test means and variances;
-		\end{itemize}		
-	\begin{knowledge}[Knowledge Statements]
+		\end{itemize}	
+	\end{enumerate}
+\end{outcomes}	
+\begin{knowledge}[Knowledge Statements]
 	\begin{enumerate}[label = \alph*.]
 	\item	Presentation of fundamental inequalities based on general assumptions and normal assumptions;
 	\item	Definition of Type I and Type II errors;
@@ -74,14 +82,19 @@ Notes du descriptif principal:
 	\item	Equivalence between critical regions and confidence intervals;
 	\item	Kolmogorov-Smirnov test;
 	\end{enumerate}
-	\end{knowledge}
-\tcbline
+\end{knowledge}
+	
+\begin{outcomes}[Learning objectives]
+	\begin{enumerate}
+  \setcounter{enumi}{3}
 	\item	For the Exponential, Gamma, Weibull, Pareto, Lognormal, Beta, and mixtures thereof:
 		\begin{itemize}
 		\item	Identify the applciations to Insurance claim modeling in which each distribution is used and reasons why;
 		\item	Transformation of distributions; 
 		\end{itemize}
-	\begin{knowledge}[Knowledge Statements]
+	\end{enumerate}
+\end{outcomes}
+\begin{knowledge}[Knowledge Statements]
 	\begin{enumerate}[label = \alph*.]
 	\item	Frequency, severity and aggregate loss;
 	\item	Common continuous distributions for modeling claim severity;
@@ -89,17 +102,20 @@ Notes du descriptif principal:
 	\item	Tail properties of claim severity;
 	\item	Effects of coverage modifications including, for example: limits, deductibles, loss elimination ratios and effects of inflation;
 	\end{enumerate}
-	\end{knowledge}
-\tcbline
-	\item	Calculate Order Statistics of a sample for a given distribution;
-	\begin{knowledge}[Knowledge Statements]
+\end{knowledge}
+
+\begin{outcomes}[Learning objectives]
+	\begin{enumerate}
+  \setcounter{enumi}{4}
+	\item	Calculate Order Statistics of a sample for a given distribution.
+	\end{enumerate}
+\end{outcomes}
+\begin{knowledge}[Knowledge Statements]
 	\begin{enumerate}[label = \alph*.]
 	\item	General form for distribution of $n^{\text{th}}$ largest element of a set;
 	\item	Application to a given distributional form;
 	\end{enumerate}
-	\end{knowledge}
-\end{enumerate}
-\end{outcomes}
+\end{knowledge}
 
 \begin{ASM_chapter}[Related lessons ASM]
 \begin{enumerate}
@@ -142,10 +158,37 @@ Notes du descriptif principal:
 \subsection{Résumés des chapitres}
 
 \begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-25}]{Estimator Quality}
-Introduction to Mathematical  4.1.3, 5.1, 7.1
-	\begin{itemize}
-		\item	
-	\end{itemize}
+Introduction to Mathematical  4.1.3, 5.1, 7.1\\
+
+
+Overview of various basic functions to evaluate the quality of an estimator including:
+\begin{enumerate}[leftmargin = *]
+	\item	The Bias of an estimator (incl. asymptotically unbiased).
+		\begin{itemize}[leftmargin = *]
+		\item	Shows the sample mean $\bar{x}$ is an unbiased estimator of the true mean $\mu$.
+		\item	Shows the sample variance $s^{2} = \frac{\sum (x_{i} - \bar{x})^{2}}{n - 1}$ is an unbiased estimator of the true variance $\sigma^{2}$.
+		\item	Shows the empirical variance $\hat{\sigma}^{2} = \frac{\sum (x_{i} - \bar{x})^{2}}{n}$ is an biased estimator of the true variance $\sigma^{2}$.	\\
+				However, with a bias of $\frac{n - 1}{n}\sigma^{2} - \sigma^{2} = -\frac{\sigma^{2}}{n}$, it is \textit{asymptotically} unbiased.
+		\item	Gives the boiling water feet-freezer head analogy for why the bias is not sufficient to assess the quality of an estimator.
+		\end{itemize}
+	\item	The consistency of an estimator.
+		\begin{itemize}[leftmargin = *]
+		\item	As the number of observations $n$ on which an estimator $\hat{\theta}_{n}$ is based increases, if both the bias and variance of $\hat{\theta}_{n}$ go to 0, we can say it is a consistent estimator.	\\
+				Although this condition is sufficient, it is not necessary.
+		\item	For example, the sample mean $\bar{x}$ is a consistent estimator of the true mean for both the Gamma and Normal distributions.	\\
+				However, a Pareto distribution with $\alpha \leq 2$ has an infinite variance; therefore, the variance of the estimator is infinite and $\bar{x}$ is not a consistent estimator.
+		\end{itemize}
+	\item	The efficiency of an estimator.
+		\begin{itemize}[leftmargin = *]
+		\item	Shows the relative efficiency of one estimator to another.
+		\end{itemize}
+	\item	The Mean Square Error (MSE) of an estimator.
+		\begin{itemize}[leftmargin = *]
+		\item	Shows both how it's defined as the variance of the estimator's predictions of the parameter and the relation with bias and variance.
+		\end{itemize}
+\end{enumerate}
+
+We then combine these concepts to define the \textbf{uniformly minimum variance unbiased estimator (UMVUE)} which has a smaller variance, for any true value $\theta$, than any other \underline{unbiased} estimator.
 \end{CHPT_SUMM_AUTO_NUMB}
 
 \begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-26}]{Kernel Density Estimation}
