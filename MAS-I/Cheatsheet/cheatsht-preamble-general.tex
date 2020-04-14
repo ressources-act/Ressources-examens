@@ -16,6 +16,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{babel}
 \usepackage{lmodern}
+\usepackage{xargs} % for more logical new function creation
 
 %% -----------------------------
 %% Variable definition
@@ -94,6 +95,7 @@
 %%	Example usage:	\LVx{h}	<=>	\actsymb[h]{L}{}[]
 %%					\LVx[n]{h}	<=>	\actsymb[h]{L}{}[n]
 \newcommand{\LVx}[2][]{\actsymb[#2]{L}{}[#1]}
+\newcommandx{\icbox}[3][1 = bleudefrance, 2 = beaublue]{\fcolorbox{#1}{#2}{#3}}
 
 
 
@@ -302,6 +304,7 @@
 %
 %	Colour definitions
 %
+\definecolor{palechestnut}{rgb}{0.87, 0.68, 0.69}
 \definecolor{armygreen}{rgb}{0.29, 0.33, 0.13}	%	army
 \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}	% pastel green militariesque
 \definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}

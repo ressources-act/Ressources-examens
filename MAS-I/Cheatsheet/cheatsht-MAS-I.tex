@@ -45,6 +45,9 @@
 %%
 \newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\usepackage{scalerel,stackengine,amsmath}
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
 \begin{document}
 
@@ -56,6 +59,8 @@
 \newpage
 
 \begin{multicols*}{2}
+
+\paragraph{Note}	The moments of a mixture, are the mixture of the moments.
 
 \def\SectionColor{red!80!white}
 \section*{Lesson 25: Estimator Quality}
@@ -77,7 +82,100 @@
 		&=	\frac{\sum (x_{i} - \bar{x})^{2}}{n}
 		\end{align*}
 \end{description}
-
 \end{distributions}
+
+\section*{Lesson 27: Method of Moments}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\mu_{k}'$]	$k^{\text{th}}$ moment centred around 0, \icbox{$\mu_{k}' = \text{E}[X^{k}]$}.
+	\item[$\equalhat$]	Set equal.
+\end{description}
+\end{distributions}
+
+\textbf{Exponential Distribution}
+There is only one parameter $\theta$ which is the mean, we set \icbox[red][palechestnut]{$\hat{\theta}	\equalhat	\mu'_{1}$}.
+
+\textbf{Gamma Distribution}
+We have:
+\begin{align*}
+	\esp{X}
+	&=	\alpha\theta	
+	\equalhat	\bar{x}	&
+	\text{Var}(X)
+	&=	\alpha\theta^{2}
+	\equalhat	\hat{\sigma}^{2}	\\
+	\therefore
+	\hat{\theta}
+	&=	\frac{\hat{\sigma}^{2}}{\bar{x}}	
+	=	\frac{\hat{\mu}_{2}' -  \hat{\mu}_{1}'^{2}}{\hat{\mu}_{1}'}	&
+	\hat{\alpha}
+	&=	\frac{\bar{x}^{2}}{\hat{\sigma}^{2}}
+	=	\frac{\hat{\mu}_{1}'^{2}}{\hat{\mu}_{2}' -  \hat{\mu}_{1}'^{2}}
+\end{align*}
+
+\textbf{Pareto Distribution}
+\begin{align*}
+	\esp{X}
+	&=	\frac{\theta	}{\alpha  -  1}
+	\equalhat	\hat{\mu}_{1}'	&
+	\esp{X^{2}}
+	&=	\frac{2\theta^{2}}{(\alpha  -  1)(\alpha - 2)}
+	\equalhat	\hat{\mu}_{2}'	\\
+	\therefore
+	\hat{\alpha}
+	&=	\frac{2(\hat{\mu}_{2}' - \hat{\mu}_{1}'^{2})}{(\hat{\mu}_{2}' - 2\hat{\mu}_{1}'^{2})}	&
+	\hat{\theta}
+	&=	\frac{\hat{\mu}_{1}'\hat{\mu}_{2}'}{\hat{\mu}_{2}' - 2\hat{\mu}_{1}'^{2}}
+\end{align*}
+
+\textbf{Lognormal Distribution}
+\begin{align*}
+	\hat{\mu}
+	&=	2\ln(\hat{\mu}_{1}') - 0.5\ln(\hat{\mu}_{2}')	&
+	\hat{\sigma}^{2}
+	&=	\ln(\hat{\mu}_{2}') - 2\ln(\hat{\mu}_{1}')	
+\end{align*}
+
+\textbf{Uniform Distribution}
+\begin{align*}
+	\esp{X}
+	&=	\frac{\theta}{2}	&
+	\therefore
+	\hat{\theta}
+	&=	2\hat{\mu}_{1}'
+\end{align*}
+
+\section*{Lesson 28: Percentile Matching}
+\paragraph*{Note:}	Exams don't typically ask a lot of percentile matching questions, thus it's not really worth memorizing each distribution's formulas as it can easily be about a random distribution.\\
+\textbf{Exponential Distribution}
+\begin{align*}
+	\hat{\theta}
+	&=	\frac{-\pi_{g}}{\ln(1 - g)}
+\end{align*}
+
+\textbf{Weibull Distribution}
+\begin{align*}
+	\hat{\tau}
+	&=	\frac{\ln\left(\ln(1 - g_{1})/\ln(1 - g_{2})\right)}{\ln(\pi_{g_{1}}/\pi_{g_{2}})}	&
+	\hat{\theta}
+	&=	\frac{\pi_{g_{1}}}{\sqrt[\hat{\tau}]{-\ln(1 - g_{1})}}
+\end{align*}
+
+\textbf{Lognormal Distribution} (use the percentiles of a normal distribution $z_{p}$)
+\begin{align*}
+	\hat{\sigma}
+	&=	\frac{\ln(\pi_{g_{2}}) - \ln(\pi_{g_{1}})}{z_{g_{2}} - z_{g_{1}}}	&
+	\hat{\mu}
+	&=	\ln(\pi_{g_{1}}) - z_{g_{1}} \hat{\sigma}
+\end{align*}
+
+\subsubsection*{Truncated data}
+For $(X | X > d)$:
+\begin{align*}
+	F_{X}(x | X > d)
+	&=	\frac{F_{X}(x) - F_{x}(d)}{S_{X}(d)}	&
+	S_{X}(x | X > d) 
+	&=	\frac{S_{X}(x)}{S_{X}(d)}
+\end{align*}
 \end{multicols*}
 \end{document}
