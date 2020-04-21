@@ -177,5 +177,90 @@ For $(X | X > d)$:
 	S_{X}(x | X > d) 
 	&=	\frac{S_{X}(x)}{S_{X}(d)}
 \end{align*}
+
+
+\section*{Lesson 29: }
+\section*{Lesson 30: MLE Special Techniques}
+If the likelihood function is of the form \lfbox[formula]{$\mathcal{L}(\gamma)	=	\gamma^{-a}\textrm{e}^{-b/\gamma}$} then \lfbox[formula]{$\hat{\gamma}^{\text{MLE}}	=	\frac{b}{a}$}.
+
+If the likelihood function is of the form \lfbox[formula]{$\mathcal{L}(\lambda)	=	\lambda^{a}\textrm{e}^{-\lambda b}$} then \lfbox[formula]{$\hat{\lambda}^{\text{MLE}}	=	\frac{a}{b}$}.
+
+If the likelihood function is of the form \lfbox[formula]{$\mathcal{L}(\lambda)	=	\theta^{a}(1	-	\theta)^{b}$} then \lfbox[formula]{$\hat{\theta}^{\text{MLE}}	=	\frac{a}{a + b}$}.
+
+\textbf{Exponential}
+\begin{align*}
+	\hat{\theta}
+	&=	\frac{\sumz{n + c}{i = 1}(x_{i}	-	d_{i})}{n}
+\end{align*}
+
+\textbf{Weibull} with a fixed $\tau$
+\begin{align*}
+	\hat{\theta}
+	&=	\sqrt[\tau]{\frac{\sumz{n + c}{i	=	1}x_{i}^{\tau} - \sumz{n + c}{i	=	1}d_{i}^{\tau}}{n}}
+\end{align*}
+
+\textbf{Lognormal} (use the percentiles of a normal distribution $z_{p}$)
+\begin{align*}
+	\hat{\sigma}
+	&=	\sqrt{\frac{\sumz{n}{i = 1}\ln^{2} x_{i}}{n} - \hat{\mu}^{2}}	&
+	\hat{\mu}
+	&=	\frac{\sumz{n}{i = 1}\ln x_{i}}{n}
+\end{align*}
+
+\textbf{Uniform $(0, \theta)$} for individual data
+\begin{align*}
+	\hat{\theta}
+	&=	\max x_{i}
+\end{align*}
+
+\textbf{Uniform $(0, \theta)$} for grouped data
+\begin{description}
+	\item[$c_{j}$]	Upper bound of highest finite interval
+	\item[$n_{j}$]	Number of observations below $c_{j}$
+\end{description}
+\begin{align*}
+	\hat{\theta}
+	&=	c_{j} \left(\frac{n}{n_{j}}\right)	\\
+\end{align*}
+
+\textbf{Inverse exponential}
+\begin{align*}
+	\hat{\theta}
+	&=	\frac{n}{\sumz{n}{i = 1}(1/x_{i})}
+\end{align*}
+
+\textbf{Two-parameter Pareto}, fixed $\theta$
+\begin{align*}
+	\hat{\alpha}
+	&=	-\frac{n}{K}	&
+	K
+	&=	\sumz{n + c}{i	=	1} \left\{\ln (\theta +  d_{i})	-	\ln (\theta + x_{i})\right\}
+\end{align*}
+
+\textbf{Single-parameter Pareto}, fixed $\theta$
+\begin{align*}
+	\hat{\alpha}
+	&=	-\frac{n}{K}	&
+	K
+	&=	\sumz{n + c}{i	=	1} \left\{\ln \max(\theta, d_{i})	-	\ln x_{i}\right\}
+\end{align*}
+
+\textbf{Beta}, fixed $\theta$, $\beta	=	1$
+\begin{align*}
+	\hat{\alpha}
+	&=	-\frac{n}{K}	&
+	K
+	&=	\sumz{n + c}{i	=	1} \left\{\ln (x_{i})\right\}	-	n\ln \theta
+\end{align*}
+
+\textbf{Beta}, fixed $\theta$, $\alpha	=	1$
+\begin{align*}
+	\hat{\beta}
+	&=	-\frac{n}{K}	&
+	K
+	&=	\sumz{n + c}{i	=	1} \left\{\ln (\theta - x_{i})\right\}	-	n\ln \theta
+\end{align*}
+
+
 \end{multicols*}
 \end{document}

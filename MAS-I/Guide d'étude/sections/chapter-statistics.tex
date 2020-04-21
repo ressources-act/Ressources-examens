@@ -158,7 +158,7 @@ Notes du descriptif principal:
 \subsection{Résumés des chapitres}
 
 \begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-25}]{Estimator Quality}
-Introduction to Mathematical  4.1.3, 5.1, 7.1
+Introduction to Mathematical Statistics 4.1.3, 5.1, 7.1
 
 \tcbline
 
@@ -295,9 +295,15 @@ Nonlife Actuarial Models: Theory Methods and Evaluation 10.2, 12.3
 
 \tcbline
 
-	\begin{itemize}[leftmargin = *]
-		\item	
-	\end{itemize}
+Whatever the type of data, maximise the function representing the probability of the observation occuring \lfbox[formula]{$\mathcal{L}(\theta)	=	\prod g(x_{i}, \theta)$}.\\
+
+Therefore $g(x_{i}, \theta)	=$
+\begin{description}
+	\item[$f(x_{i})$]	for complete individual observations.
+	\item[$F(x_{i})	-	F(x_{i	-	1})$]	for grouped observations.
+	\item[$S(u)$]	for observations censored at $u$ (for those below $u$, $g(x_{i}, \theta)	=	f(x_{i})$).
+	\item[$\frac{f(x_{i})}{S(d)}$]	for observations truncated at $d$.
+\end{description}
 \end{CHPT_SUMM_AUTO_NUMB}
 
 \begin{CHPT_SUMM_AUTO_NUMB}[label = {L.-30}]{Maximum Likelihood Estimators---Special Techniques}
