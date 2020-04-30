@@ -96,7 +96,7 @@ Notes de la sous-section:
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-57}]{57. Time Series: Trend and Seasonality}
 Introduction to Time Series with \texttt{R} 1
-\begin{itemize}
+\begin{description}
 	\item[1.1:]	Time Series Data---Purpose;
 		\begin{itemize}
 		\item	Understand the past and predict the future;
@@ -176,71 +176,7 @@ Introduction to Time Series with \texttt{R} 1
 		\item[]	\og \textit{local} \fg{} as it uses a \og small \fg{}  number of points \og around \fg{}  it;
 		\item[]	Thereby, this reduces the impact of outliers;
 		\end{itemize}
-\end{itemize}
-
-\begin{FORMULA_SUMM}{Formules chapitre 1}
-Notation:
-	\begin{align*}
-	\text{time series}&:	
-		\{x_{t} : t = 1, \dots, n\} 
-	= 	\{x_{1}, x_{2}, \dots, x_{n}\}	\\
-	\text{forecast}	&:	
-		\hat{x}_{t + k | t}
-	\end{align*}
-	
-Models
-	\begin{align*}
-	\text{additive decomposition model}	:	
-	x_{t}	
-	&=	m_{t} + s_{t} + z_{t}		\\
-	\text{multiplicative model}	:	
-	x_{t}	
-	&=	m_{t} \cdot s_{t} + z_{t}		\\
-	\text{additive decomposition model for }\log(x_{t})	:	
-	x_{t}	
-	&=	m_{t} + s_{t} + z_{t}	\\
-	\text{forecast when }z_{t} \sim \mathcal{N}(0, \sigma^{2})	:
-	\hat{x}_{t}	
-	&=	\text{e}^{m_{t} + s_{t}}\text{e}^{\frac{1}{2}\sigma^{2}}
-	\end{align*}
-où
-	\begin{multicols*}{2}
-	\begin{description}
-	\item[$x_{t}$]	observed series;
-	\item[$m_{t}$]	trend;
-	\item[$s_{t}$]	seasonal effect;
-	\item[$z_{t}$]	error term.
-	\end{description}
-	\end{multicols*}
-$z_{t}$ is generally a sequence of random variables with a mean of zero;
-
-Moving average of a monthly series
-	\setlength{\mathindent}{-1cm}
-	\begin{align*}
-	\hat{m}_{t}
-	&=	\frac{\frac{1}{2} x_{t - 6} + x_{t - 5} + \dots + x_{t} + \dots + x_{t + 5} + x_{t + 6}}{12}	\\
-	\end{align*}
-	\setlength{\mathindent}{1cm}
-
-	
-Monthly additive effect:
-	\begin{align*}
-	\hat{s}_{t} 
-	&= 	x_{t} - \hat{m}_{t}	\\
-	\end{align*}
-Adjustment such that $\bar{s} = 0$.
-	
-Monthly multiplicative effect:
-	\begin{align*}
-	\hat{s}_{t} 
-	&= 	\frac{x_{t}}{\hat{m}_{t}}	\\
-	\end{align*}
-Adjustment such that $\bar{s} = 1$.
-
-
-$\bar{s} = \frac{\sum_{t = 1}^{t = m}\hat{s}_{t}}{m}$.
-Seasonally adjusted data: $x_{t} - \hat{s}_{t}$.
-\end{FORMULA_SUMM}
+\end{description}
 \tcbline
 %	\begin{itemize}
 %		\item	
@@ -249,10 +185,10 @@ Seasonally adjusted data: $x_{t} - \hat{s}_{t}$.
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-58}]{58. Time Series: Correlation}
 Introduction to Time Series with \texttt{R} 2 - 3.1
-\begin{itemize}
+\begin{description}
 	\item[2:]	Correlation
 	\item[3.1:]	Forecasting Strategies---Purpose
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{enumerate}
 		\item	Second order properties of a time series;
@@ -262,12 +198,12 @@ Introduction to Time Series with \texttt{R} 2 - 3.1
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-59}]{59. Time Series: White Noise and Random Walks}
 Introduction to Time Series with \texttt{R} 4.1 - 4.4
-\begin{itemize}
+\begin{description}
 	\item[4.1:]	Basic Stochastic Models---Purpose
 	\item[4.2:]	Basic Stochastic Models---White Noise
 	\item[4.3:]	Basic Stochastic Models---Random Walks
 	\item[4.4:]	Basic Stochastic Models---Fitted models and diagnostic plots
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{enumerate}
 		\item	White noise;
@@ -277,12 +213,12 @@ Introduction to Time Series with \texttt{R} 4.1 - 4.4
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-60}]{60. Time Series: Autoregressive Models}
 Introduction to Time Series with \texttt{R} 4.5 - 4.8
-\begin{itemize}
+\begin{description}
 	\item[4.5:]	Basic Stochastic Models---AR models
 	\item[4.6:]	Basic Stochastic Models---Fitted models
 	\item[4.7:]	Basic Stochastic Models---Summary of \texttt{R} commands
 	\item[4.8:]	Basic Stochastic Models---Exercices
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{enumerate}
 		\item[]	Correlograms and partial correlograms;
@@ -293,9 +229,9 @@ Introduction to Time Series with \texttt{R} 4.5 - 4.8
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-61}]{61. Time Series: Regression}
 Introduction to Time Series with \texttt{R} 5
-\begin{itemize}
+\begin{description}
 	\item[5:]	Regression
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{enumerate}
 		\item	Correcting for autocorrelation;
@@ -307,12 +243,12 @@ Introduction to Time Series with \texttt{R} 5
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-62}]{62. Time Series: Moving Average Models}
 Introduction to Time Series with \texttt{R} 6.1 - 6.4
-\begin{itemize}
+\begin{description}
 	\item[6.1:]	Stationary Models---Purpose
 	\item[6.2:]	Stationary Models---Strictly stationary series
 	\item[6.3:]	Stationary Models---MA models
 	\item[6.4:]	Stationary Models---Fitted MA models
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{itemize}
 		\item	
@@ -321,12 +257,12 @@ Introduction to Time Series with \texttt{R} 6.1 - 6.4
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-63}]{63. Time Series: ARMA Models}
 Introduction to Time Series with \texttt{R} 6.5 - 6.8
-\begin{itemize}
+\begin{description}
 	\item[6.5:]	Stationary Models---Mixed models: The ARMA process
 	\item[6.6:]	Stationary Models---ARMA models: Empirical Analysis
 	\item[6.7:]	Stationary Models---Summary of \texttt{R} commands
 	\item[6.8:]	Stationary Models---Exercices
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{itemize}
 		\item	
@@ -335,11 +271,11 @@ Introduction to Time Series with \texttt{R} 6.5 - 6.8
 
 \begin{CHPT_SUMM_AUTO}[label = {L.-64}]{64. Time Series: ARIMA and SARIMA Models}
 Introduction to Time Series with \texttt{R} 7.1 - 7.3
-\begin{itemize}
+\begin{description}
 	\item[7.1:]	Non-stationary Models---Purpose
 	\item[7.2:]	Non-stationary Models---Non-Seasonal ARIMA models
 	\item[7.3:]	Non-stationary Models---Seasonal ARIMA models
-\end{itemize}
+\end{description}
 \tcbline
 	\begin{itemize}
 		\item	

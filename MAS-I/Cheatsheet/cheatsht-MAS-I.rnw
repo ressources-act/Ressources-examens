@@ -1,55 +1,5 @@
 % Template pour faire aide-mémoire
-\documentclass[10pt, french]{article}\usepackage[]{graphicx}\usepackage[]{color}
-% maxwidth is the original width if it is less than linewidth
-% otherwise use linewidth (to make sure the graphics do not exceed the margin)
-\makeatletter
-\def\maxwidth{ %
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-
-\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
-\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
-\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
-\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
-\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
-\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
-\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
-\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
-\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
-\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
-\let\hlipl\hlkwb
-
-\usepackage{framed}
-\makeatletter
-\newenvironment{kframe}{%
- \def\at@end@of@kframe{}%
- \ifinner\ifhmode%
-  \def\at@end@of@kframe{\end{minipage}}%
-  \begin{minipage}{\columnwidth}%
- \fi\fi%
- \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
- \colorbox{shadecolor}{##1}\hskip-\fboxsep
-     % There is no \\@totalrightmargin, so:
-     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
- \MakeFramed {\advance\hsize-\width
-   \@totalleftmargin\z@ \linewidth\hsize
-   \@setminipage}}%
- {\par\unskip\endMakeFramed%
- \at@end@of@kframe}
-\makeatother
-
-\definecolor{shadecolor}{rgb}{.97, .97, .97}
-\definecolor{messagecolor}{rgb}{0, 0, 0}
-\definecolor{warningcolor}{rgb}{1, 0, 1}
-\definecolor{errorcolor}{rgb}{1, 0, 0}
-\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
-
-\usepackage{alltt}
+\documentclass[10pt, french]{article}
 
 %% -----------------------------
 %% Préambule
@@ -117,9 +67,11 @@
     keywordstyle=\color{blue},
     commentstyle=\color{darkgreen},
 }
+<<echo = FALSE, message = FALSE, warning = FALSE>>=
+library(tidyverse)  
+library(tikzDevice)
+@
 
-
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 %\SweaveOpts{concordance=TRUE}
 
@@ -490,50 +442,25 @@ Center moving average for monthly data:
 			&			&			&			\\
 	\textbf{Function}	&	\textbf{Description}	&	\textbf{Possible Values}	&	\textbf{Example} \\
 	\texttt{ts}		&	Produces a time series object.	&		&	
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{series.obj} \hlkwb{<-} \hlkwd{ts}\hlstd{(}
-        \hlkwc{data} \hlstd{=} \hlkwd{sample}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlkwc{from} \hlstd{=} \hlnum{98}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{102}\hlstd{),} \hlkwc{size} \hlstd{=} \hlnum{10}\hlstd{,} \hlkwc{replace} \hlstd{= T),}
-        \hlkwc{frequency} \hlstd{=} \hlnum{4}\hlstd{,}
-        \hlkwc{start} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1956}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlstd{series.obj}
-\end{alltt}
-\begin{verbatim}
-##      Qtr1 Qtr2 Qtr3 Qtr4
-## 1956        99  100  101
-## 1957   98   99   99   99
-## 1958   98  102   98
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+	<<>>=
+	series.obj <- ts(
+		data = sample(x = seq(from = 98, to = 102), size = 10, replace = T), 
+		frequency = 4,
+		start = c(1956, 2))
+	series.obj
+   	@ 	
    	\\
 	\texttt{aggregate}		&	Creates an aggregated series.	&		&	
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{aggregate}\hlstd{(}\hlkwc{x} \hlstd{= series.obj,}
-          \hlkwc{nfrequency} \hlstd{=} \hlnum{2}\hlstd{,} \hlcom{# aggregate by half year}
-          \hlkwc{FUN} \hlstd{= mean)} \hlcom{# calculate the mean}
-\end{alltt}
-\begin{verbatim}
-## Time Series:
-## Start = 1956.25 
-## End = 1958.25 
-## Frequency = 2 
-## [1]  99.5  99.5  99.0  98.5 100.0
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+	<<>>==
+	aggregate(x = series.obj, 
+          nfrequency = 2, # aggregate by half year
+          FUN = mean) # calculate the mean
+	@
 	\\
 	\texttt{ts.plot}		&	Produces a time series plot for one (or more) series.	&	 	&	
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{ts.plot}\hlstd{(series.obj)}
-\end{alltt}
-\end{kframe}
-\end{knitrout}
+	<<eval = FALSE>>==
+	ts.plot(series.obj)
+	@
 	\\
 };
     \node[fit=(m-1-1)(m-1-4)]{Time Series Data};
@@ -601,54 +528,23 @@ Center moving average for monthly data:
 ] {
 	\textbf{Function}	&	\textbf{Description}	&	\textbf{Possible Values}	&	\textbf{Example} \\
 	\texttt{window}	&	Extracts a subset of a time series.	&	Same arguments as the other time series functions.  	&	
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{window}\hlstd{(}\hlkwc{x} \hlstd{= series.obj,} \hlkwc{start} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1957}\hlstd{),} \hlkwc{end} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1957}\hlstd{,} \hlnum{4}\hlstd{))}
-\end{alltt}
-\begin{verbatim}
-##      Qtr1 Qtr2 Qtr3 Qtr4
-## 1957   98   99   99   99
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+	<<>>==
+	window(x = series.obj, start = c(1957), end = c(1957, 4))
+	@
 	\\
 	\texttt{time}		&	Extracts the time from a time series object.	&	 	&	
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlkwd{time}\hlstd{(series.obj)}
-\end{alltt}
-\begin{verbatim}
-##         Qtr1    Qtr2    Qtr3    Qtr4
-## 1956         1956.25 1956.50 1956.75
-## 1957 1957.00 1957.25 1957.50 1957.75
-## 1958 1958.00 1958.25 1958.50
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+	<<>>==
+	time(series.obj)
+	@
 	\\
 	\texttt{ts.intersect}	&	Creates the intersection of one (or more) time series. 	&	 Chiffre.	&	
-\begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-\begin{alltt}
-\hlstd{series.obj2} \hlkwb{<-} \hlkwd{ts}\hlstd{(}
-        \hlkwc{data} \hlstd{=} \hlkwd{sample}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlkwc{from} \hlstd{=} \hlnum{98}\hlstd{,} \hlkwc{to} \hlstd{=} \hlnum{102}\hlstd{),} \hlkwc{size} \hlstd{=} \hlnum{10}\hlstd{,} \hlkwc{replace} \hlstd{= T),}
-        \hlkwc{frequency} \hlstd{=} \hlnum{4}\hlstd{,}
-        \hlkwc{start} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1957}\hlstd{,} \hlnum{2}\hlstd{))}
-\hlkwd{ts.intersect}\hlstd{(series.obj, series.obj2)}
-\end{alltt}
-\begin{verbatim}
-##         series.obj series.obj2
-## 1957 Q2         99         102
-## 1957 Q3         99          99
-## 1957 Q4         99         102
-## 1958 Q1         98         102
-## 1958 Q2        102         100
-## 1958 Q3         98         100
-\end{verbatim}
-\end{kframe}
-\end{knitrout}
+	<<results='tex', resize.height='1in'>>==
+	series.obj2 <- ts(
+		data = sample(x = seq(from = 98, to = 102), size = 10, replace = T), 
+		frequency = 4,
+		start = c(1957, 2))
+	ts.intersect(series.obj, series.obj2)
+	@
 	\\
 	\texttt{cycle}	&	Returns the season for each value in a time series.	&	Booléen. 	&	\texttt{importance = TRUE} 	\\
 	\texttt{decompose}	&	Decompose a time series into the components.	&	 Chiffre.	&	\texttt{nodesize = 5}	\\
