@@ -1,0 +1,251 @@
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{FM}
+\def\sigle{(SOA)}
+%
+% 	Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+\setcounter{secnumdepth}{0}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+%
+% 	thin space, limits underneath in displays
+%
+\DeclareMathOperator*{\argmax}{arg\,max} 
+\usepackage{stackengine}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSectionColor{azure(colorwheel)}
+%% -----------------------------
+
+\begin{document}
+
+%\begin{center}
+%	\textsc{\Large Contributeurs}\\[0.5cm] 
+%\end{center}
+%\input{contributeurs/contrib-FM}
+
+%\newpage
+\raggedcolumns
+\begin{multicols*}{2}
+
+\def\SectionColor{red!80!white}
+\section{Time Value of Money}
+\begin{distributions}[Notation effective rate of interest]
+\begin{description}
+	\item[$a(t)$]	\textbf{Accumulation function} defined as the \textit{A}ccumulated \textit{V}alue (\textit{AV}) of the fund at time $t$ of an initial investment of $\$1$ at time 0.
+		\begin{itemize}
+		\item	$a(0) \equiv 1$.
+		\item	Generally \textbf{continuous} and \textbf{increasing}.
+		\end{itemize}
+	\item[$A(t)$]	\textbf{Amount function} defined as the Accumulated Value (AV) of the fund at time $t$ of an initial investment of $\$k$ at time 0.
+		\begin{itemize}[leftmargin = *]
+		\item	$A(t) = k a(t)$.
+		\end{itemize}
+	\item[$i_{t}$]	\textbf{Effective rate of interest} defined as the rate of growth based on the amount in the fund at the \textbf{\textit{beginning}} of the year.
+		\begin{itemize}[leftmargin = *]
+		\item	$i_{t} = \frac{A(t) - A(t - 1)}{A(t - 1)}$.
+		\item	We deduce $A(t) = (1 + i_{t})A(t - 1)$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+We then find: 
+\begin{description}
+	\item[$a(t) - a(t - 1)$]	\textbf{\textit{Amount} of growth} in the $t^{\text{th}}$ year.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. the interest earned
+		\end{itemize}
+	\item[$\frac{a(t) - a(t - 1)}{a(t - 1)}$]	\textbf{\textit{Rate} of growth} in the $t^{\text{th}}$ year.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. effective rate of interest denoted $i_{t}$.
+		\end{itemize}
+\end{description}
+
+\
+
+Discounting is finding the price we'd be willing to pay for the promise to receive a future amount. That is to say, finding the present value which is why $i = \frac{d}{1 - d}$.
+\begin{distributions}[Notation effective rate of discount]
+\begin{description}
+	\item[$d_{t}$]	\textbf{Effective rate of discount} defined as the rate of growth based on the amount in the fund at the \textbf{\textit{end}} of the year.
+		\begin{itemize}
+		\item	$d_{t} = \frac{A(t) - A(t - 1)}{A(t)}$.\
+		\item	Although we could get by without it, it's useful to determine the amount to pay today for a specified amount in the future.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+We then find:
+\begin{align*}
+	v 
+	&=	(1 - d) 
+	=	\frac{1}{1 + i}	\\
+	d 
+	&=	\frac{i}{1 + i}
+\end{align*}
+
+\begin{distributions}[Notation nominal rates of interest]
+\begin{description}
+	\item[$i^{(m)}$]	\textbf{Nominal} annual rate of of interest \textbf{compounded $m$ times a year}.
+	\item[$\frac{i^{(m)}}{m}$]	\textbf{Effective} rate of of interest \textbf{for an $m^{\text{th}}$ of a year}.
+		\begin{itemize}[leftmargin = *]
+		\item	Thus $(1 + i) = \left(1 + \frac{i^{(m)}}{m}\right)^{m}$.\
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\
+
+The force of interest is the rate of growth at a specific point in time.
+\begin{distributions}[Notation force of interest]
+\begin{description}
+	\item[$\delta_{t}$]	The \textbf{Force of interest} at time $t$.
+		\begin{itemize}[leftmargin = *]
+		\item	$\delta_{t} = \frac{A'(t)}{A(t)}$.
+		\end{itemize}
+	\item[$\delta$]	The \textbf{constant} force of interest.
+		\begin{itemize}[leftmargin = *]
+		\item	a.k.a. the nominal rate of interest compounded continuously.
+		\item	$\delta = \underset{m \rightarrow \infty}{\lim} i^{(m)} = i^{(\infty)} = \ln(1 + i)$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+We then find:
+\begin{align*}
+	a(t)
+	&=	\textrm{e}^{\int_{0}^{t}\delta_{r}dr}	\\
+	FV
+	&=	\textrm{e}^{\int_{t_{1}}^{t_{2}}\delta_{r} dr}	\\
+	&\equiv	\frac{a(t_{2})}{a(t_{1})}	
+\end{align*}
+
+and for a constant force of interest: 
+\begin{align*}
+	a(t)	
+	&=	\textrm{e}^{\int_{0}^{t}\delta dr}	
+	=	\textrm{e}^{\delta t}
+\end{align*}
+
+
+\newpage
+\def\SectionColor{blue!80!white}
+\section{Annuities / cash flows with non-contingent payments}
+\textbf{Geometric series relation :}
+\begin{align*}
+	r^{10} + r^{20} + \dots + r^{10n}
+	&=	r^{10}\frac{1 - r^{n}}{1 - r}	\\
+	&=	(\text{first term}) \frac{1 - (\text{ratio})^{\text{nb. of terms}}}{1 - (\text{ratio})} 	\\
+\end{align*}
+
+\begin{definitionNOHFILL}[Annuity]
+An annuity is called an \textbf{annuity-immediate} if, in determining its present value, the valuation date is \textbf{\textit{one period before}} the first payment (symbol $\ax{\angln}$). An annuity is called an \textbf{annuity-due} if, in determining its present value, the valuation date is \textit{\textbf{on}} the date of the first payment (symbol $\ax*{\angln}$).
+
+\tcbline
+
+An annuity is called an \textbf{annuity-immediate} if, in determining its accumulated value, the valuation date is \textit{\textbf{on}} the date of the last payment (symbol $\sx{\angln}$). An annuity is called an \textbf{annuity-due} if, in determining its accumulated value, the valuation date is \textit{\textbf{one period after}} the date of the last payment (symbol $\sx*{\angln}$).
+\end{definitionNOHFILL}
+
+\textbf{Standard Annuities:}
+\begin{align*}
+	\cumlaut[cyan]{a}_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{1 - v^n}{ (i^{\textcolor{red}{(m)}}{\color{black}|}{\color{cyan}d}^{\textcolor{red}{(m)}}{\color{black})}}	&
+	\cumlaut[cyan]{s}_{\angln}^{\textcolor{red}{(m)}} 
+		&=	\frac{(1+i)^{n} - 1}{(i^{\textcolor{red}{(m)}} | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}	\\
+\end{align*}
+
+\textbf{Annuities for Payments in Arithmetic Progression:}
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{\cumlaut[black]{a}_{\angl{n}}^{\textcolor{blue}{(m)}} - nv^n}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} &
+	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{a})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{n - a_{\angl{n}}^{\textcolor{blue}{(m)}}}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}
+\end{align*}
+
+\begin{align*}
+	(I^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{\cumlaut[black]{s}_{\angl{n}}^{\textcolor{blue}{(m)}} - n}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})} &
+	(D^{\textcolor{blue}{(m)}}\cumlaut[cyan]{s})_{\angl{n}}^{\textcolor{red}{(m)}} 
+		&= \frac{n(1+i)^{n} - s_{\angl{n}}^{\textcolor{blue}{(m)}}}{(i | \textcolor{cyan}{d}^{\textcolor{red}{(m)}})}  	\\
+\end{align*}
+
+\textbf{Annuities for Payments in Arithmetic Progression:}
+\begin{align*}
+	(\bar{I}\bar{s})_{\angl{n}i} &= \frac{\bar{s}_{\angl{n}i} - n}{\delta} &
+	(\bar{D}\bar{s})_{\angl{n}i} &= \frac{n e^{\delta n} - \bar{s}_{\angl{n}i}}{\delta} \\
+	(\bar{I}\bar{a})_{\angl{n}i} &= \frac{\bar{a}_{\angl{n}i} - n e^{-\delta n}}{\delta} &
+	(\bar{D}\bar{a})_{\angl{n}i} &= \frac{n - \bar{a}_{\angl{n}i}}{\delta} 	\\
+\end{align*}	
+
+\textbf{Annuities for Payments in Arithmetic Progression:}
+\begin{align*}
+	\cumlaut[cyan]{a}_{\angl{n}i^{R}}
+		&=	\frac{1 - (1 + i^{R})^{-n}}{\left( \frac{i^{R}}{1 + i^{R}} \right)} {\color{cyan}\frac{1}{1 + r}	}	&
+	{s}_{\angln i^{R}}
+		&=	\frac{(1+i)^{n} - (1 + r)^{n}}{i - r} 	\\
+\end{align*}
+
+\textbf{Relations between types of Annuities:}
+\begin{align*}
+	\ax**{\angln}	
+	&=	(1 + i) \ax{\angln}	\\
+	&=	\ax{\angl{n - 1}} - 1	\\
+	\sx**{\angln}	
+	&=	(1 + i) \sx{\angln}	\\
+	&=	\sx{\angl{n + 1}} - 1	
+\end{align*}
+
+\textbf{Relations for deferred Annuities:}
+\begin{align*}
+	\ax[r|]{n} 
+	&\equiv \ax**[r + 1| ]{n}	\\
+	\ax[r|]{n}
+	&=	\ax{n + r} - \ax{r}	\\
+	\ax[r|]{n}
+	&=	v^{r} \ax{n}		\\
+	&\equiv	v^{r + 1} \ax**{n}	\\
+\end{align*}
+
+\textbf{Other relations:}
+\begin{align*}
+	\ax{\angl{2n}} / \ax{\angl{n}}
+	&=	(1 + v^{n})	\\
+	\ax{\angl{3n}} / \ax{\angl{n}}
+	&=	(1 + v^{n} + v^{2n})	\\
+\end{align*}
+
+\textbf{Perpetuities:}
+\begin{align*}
+	\cumlaut[cyan]{a}_{\angl{\infty}} 
+		&= \frac{1}{(i|\textcolor{cyan}{d})} 	\\
+	(I\cumlaut[cyan]{a})_{\angl{\infty}} 
+		&= \frac{1}{(i|\textcolor{cyan}{d})d} 	\\
+\end{align*}
+
+
+\textbf{Payments in arithmetic progression:}\\
+For a first payment of $P$ and a common difference of $Q$, 
+\begin{align*}
+	PV
+	&=	P\ax{\angln} + Q \frac{\ax{\angln} - n v^{n}}{i}	\\
+\end{align*}
+
+
+\end{multicols*}
+\end{document}
