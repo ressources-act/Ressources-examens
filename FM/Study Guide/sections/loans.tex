@@ -136,4 +136,12 @@ There are at least 3 ways of repaying a loan by level payments, followed by an u
 	\item	A final payment \textit{smaller} than the level payments is a \textbf{drop payment}.
 	\item	A final payment \textit{smaller} than the level payments made on a date in between regular payment dates \textit{(not common practice)}.
 \end{itemize}
+
+
+For example, want the final payment on a 10 000\$ loan repaid with payments of 800\$ at an effective interest rate of 4\% :
+\begin{itemize}
+	\item	4 \calc{I/Y} 10000 \calc{+|-}\calc{PV} 800\calc{PMT} 0 \calc{FV} \calc{CPT} \calc{N};
+	\item	We take the whole number from N to set as the new N, for example if it's 16 then 16 \calc{N}.
+	\item	Then, we compute the FV to know how much to pay: \calc{CPT} \calc{FV}
+\end{itemize}
 \end{CHPT_SUMM_AUTO}
