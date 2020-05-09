@@ -19,6 +19,7 @@
 %	Extra math symbols
 %
 \usepackage{mathrsfs}
+\usepackage{multirow}
 %
 % 	thin space, limits underneath in displays
 %
@@ -255,6 +256,137 @@ For a first payment of $P$ and a common difference of $Q$,
 	PV
 	&=	P\ax{\angln} + Q \frac{\ax{\angln} - n v^{n}}{i}	\\
 \end{align*}
+
+\newpage
+\def\SectionColor{cyan!80!white}
+\section{Bonds}
+\begin{definitionNOHFILL}[Callable Bond]
+Bond in which the borrower (issuer) may redeem the bond at a certain \textbf{call price} before it has matured. Generally, the bond cannot be redeemed before a certain \textbf{call date}. 
+
+\begin{itemize}
+	\item	The \textbf{call premium} is the difference between the \textit{call price} and the \textit{redemption value} at maturity.
+\end{itemize}
+
+\begin{rappel_enhanced}[Context]
+\begin{itemize}
+	\item	When interest rates drop, the bond issuer can redeem the bonds and reinvest the call price into bonds with a lower yield rate.
+	\item	To compensate for the higher risk, callable bonds typically offer a \textit{higher yield rate}.
+\end{itemize}
+\end{rappel_enhanced}
+
+To price callable bonds, we find the worst possible date of redemption at which we ensure a minimal return :
+\begin{itemize}
+		\item	For bonds selling at a \textbf{P}remium, the \textbf{E}arliest redemption date is the \textbf{W}orst one (\textbf{PEW}).
+		\item	For bonds selling at a discount, the latest redemption date is the worst one.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+
+\newpage
+\def\SectionColor{teal!80!white}
+\section{General Cash Flows and Portfolios}
+\subsection{Stocks}
+\begin{definitionNOHFILLprop}[Price of a share of Stock]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$D$]	First dividend.
+	\item[$k$]	Annual rate of increase, \lfbox[conditions]{$k	<	i$}.
+\end{description}
+\end{distributions}
+\begin{description}
+	\item[Level dividends]	\lfbox[formula]{$P	=	\frac{D}{i}$}.
+	\item[Increasing dividends]	\lfbox[formula]{$P	=	\frac{D}{i - k}$}.
+\end{description}
+\end{definitionNOHFILLprop}
+
+
+\subsection{Duration and Convexity}
+\begin{description}
+	\item[$P(i)$]	PV of the CFs at interest rate $i$.
+		\begin{align*}
+		P(i)	
+		&=	\underset{t = 0}{\overset{n}{\sum}} (A_{t}v^{t})
+		\end{align*}
+\end{description}
+
+\begin{definitionNOHFILLsub}[Duration]
+\begin{description}
+	\item[$D_{\text{mac}}(i)$]	Macaulay duration \textcolor{teal}{(PV sensitivity)} at interest rate $i$ \textcolor{teal}{(at force of interest $\delta$)}.
+		\begin{align*}
+		D_{\text{mac}}(i)
+		&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t})}{P(i)}	\\
+		&=	\textcolor{teal}{\frac{-P'(\delta)}{P(\delta)}}
+		\end{align*}
+	\item[$D_{\text{mod}}(i)$]	Modified duration \textcolor{teal}{(PV sensitivity)} at interest rate $i$.
+		\begin{align*}
+		D_{\text{mod}}(i)
+		&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (A_{t}v^{t + 1})}{P(i)}	\\
+		&=	\textcolor{teal}{\frac{-P'(i)}{P(i)}}
+		\end{align*}
+\end{description}
+
+\tcbline
+
+$D_{\text{mod}}(i)	=	vD_{\text{mac}}(i)$.
+\end{definitionNOHFILLsub}
+
+For a portfolio with $n$ components of duration $D_{i}$ and price $P_{i}$, $D(ptf)	=	\frac{\sumz{n}{i = 1}D_{i}P_{i}}{\sumz{n}{i = 1}P_{i}}$.
+
+
+\begin{definitionNOHFILLprop}[Approximations]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$i_{0}$]	Original interest rate used to calculate the PV of the cash flows.
+	\item[$i_{n}$]	New interest rate for which we want to approximate the change in Pv.
+\end{description}
+\end{distributions}
+\begin{description}
+	\item[First-Order Modified Price Approximation]	\lfbox[formula]{$P(i)	\approx	P(i_{0})[1 - (i - i_{0})D_{\text{mod}}(i_{0})]$}.
+	\item[First-Order Macaulay Price Approximation]	\lfbox[formula]{$P(i)	\approx	P(i_{0}) \left( \frac{1 + i_{0}}{1 + i} \right)^{D_{\text{mac}}(i_{0})}$}.
+\end{description}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLsub}[Convexity]
+\begin{description}
+	\item[$C_{\text{mac}}(i)$]	Macaulay convexity at interest rate $i$.
+		\begin{align*}
+		C_{\text{mac}}(i)
+		&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t^{2}) (A_{t}v^{t})}{P(i)}	\\
+		&=	\frac{P''(\delta)}{P(\delta)}	
+		\end{align*}
+	\item[$C_{\text{mod}}(i)$]	Modified convexity at interest rate $i$.
+		\begin{align*}
+		C_{\text{mod}}(i)
+		&=	\frac{\underset{t = 0}{\overset{n}{\sum}} (t) (t + 1) (A_{t}v^{t + 2})}{P(i)}	\\
+		&=	\frac{P''(i)}{P(i)}	
+		\end{align*}
+\end{description}
+
+\tcbline
+
+$C_{\text{mod}}(i)	=	v^{2}\left(C_{\text{mac}}(i) + D_{\text{mac}}(i)\right)$
+\end{definitionNOHFILLsub}
+
+
+\newpage
+\def\SectionColor{gray!80!white}
+\section{Immunization}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{white} }m{3cm} | >{\columncolor{white} }m{3cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Redington}}	&	\textcolor{white}{\textbf{Full}}		\\\specialrule{0.1em}{0em}{0em} 
+\multicolumn{2}{c}{$PV_{\text{A}}	=	PV_{\text{L}}$}	\\\hline
+\multicolumn{2}{c}{$MacD_{\text{A}}	=	MacD_{\text{L}}$}	\\
+\multicolumn{2}{c}{\textit{or}}	\\
+\multicolumn{2}{c}{$P'_{\text{A}}	=	P'_{\text{L}}$}	\\\hline
+$C_{\text{A}}	=	C_{\text{L}}$	&	There has to be an 	\\
+\textit{or}	&	$A$ CF before and \\
+$P''_{\text{A}}	>	P''_{\text{L}}$	&	after each $L$ CF	\\\hline
+Immunizes against small changes in $i$	&	Immunizes against any change in $i$	\\\hline
+\end{tabular}
+\end{center}
 
 
 \end{multicols*}

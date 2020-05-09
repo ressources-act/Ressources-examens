@@ -97,7 +97,7 @@
 %%					\LVx[n]{h}	<=>	\actsymb[h]{L}{}[n]
 \newcommand{\LVx}[2][]{\actsymb[#2]{L}{}[#1]}
 \newcommandx{\icbox}[3][1 = bleudefrance, 2 = beaublue]{\fcolorbox{#1}{#2}{#3}}
-
+\newcommand{\calc}[1]{\colorbox{arsenic}{\textcolor{white}{#1}}}
 
 \usepackage{longfbox}
 %	voir cette page, paquetage avec CSS https://ctan.math.illinois.edu/macros/latex/contrib/longfbox/longfbox.html
@@ -196,6 +196,29 @@
 	pad at break* = 0mm, 						% to split the box
 	title = {#1},
 	before title = {\faNavicon \quad }, %faBars  faGetPocket
+	breakable
+}
+
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLprop}{ o }				% #1 parameter
+{
+	colframe=amber(sae/ece),colback=amber(sae/ece)!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faGetPocket \quad }, %faBars  faGetPocket
+	breakable
+}
+%%
+%% Coloured box "definition3" for propriétés
+%%
+\DeclareTColorBox{definitionNOHFILLpropos}{ o }				% #1 parameter
+{
+	colframe=carmine,colback=carmine!5!white, % color of the box
+	pad at break* = 0mm, 						% to split the box
+	title = {#1},
+	before title = {\faColumns \quad }, %\faEllipsisH  faColumns
 	breakable
 }
 
