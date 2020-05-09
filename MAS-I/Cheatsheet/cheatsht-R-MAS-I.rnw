@@ -1,0 +1,256 @@
+% Template pour faire aide-mémoire
+\documentclass[10pt, french]{article}
+
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{cheatsht-preamble-general.tex}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{MAS-I}
+\def\sigle{(CAS)}
+%
+% 	Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+\setcounter{secnumdepth}{0}
+%
+%	Extra math symbols
+%
+\usepackage{mathrsfs}
+%
+% 	thin space, limits underneath in displays
+%
+\DeclareMathOperator*{\argmax}{arg\,max} 
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSectionColor{azure(colorwheel)}
+%% -----------------------------
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\usepackage{scalerel,stackengine,amsmath}
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+%%%	------------------------
+%%%	NOTES
+%%%	+	R setup
+%%%	------------------------
+\usetikzlibrary{fit, matrix}
+\definecolor{ballblue}{rgb}{0.13, 0.67, 0.8}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\definecolor{rstudioblue}{RGB}{247, 247, 247}
+\lstset{language=R,
+    basicstyle=\small\ttfamily,
+    stringstyle=\color{darkgreen},
+    otherkeywords={0,1,2,3,4,5,6,7,8,9},
+    morekeywords={TRUE,FALSE},
+    deletekeywords={data,frame,length,as,character},
+    keywordstyle=\color{blue},
+    commentstyle=\color{darkgreen},
+}
+<<echo = FALSE, message = FALSE, warning = FALSE>>=
+library(tidyverse)  
+library(tikzDevice)
+@
+
+\begin{document}
+
+\part{\texttt{R} functions}
+\section{Time Series}
+\subsection{Time Series Data (Introductory Time Series with \texttt{R})}
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 2cm,
+		minimum width = 2.6cm,
+		anchor = center,
+		outer sep = 1pt,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			fill = ballblue,  % header colour
+			text = white,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 3/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 4/.style = {
+		text width = 10cm,
+		align = center,
+		nodes = {fill = rstudioblue}
+	},
+	row 2 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	},
+	row 2 column 2/.style = {nodes = {fill = gray!80!white}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	},
+	row 2 column 3/.style = {nodes = {fill = gray!80!white}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+			&			&			&			\\
+	\textbf{Function}	&	\textbf{Description}	&	\textbf{Possible Values}	&	\textbf{Example} \\
+	\texttt{ts}		&	Produces a time series object.	&		&	
+	<<>>=
+	series.obj <- ts(
+		data = sample(x = seq(from = 98, to = 102), size = 10, replace = T), 
+		frequency = 4,
+		start = c(1956, 2))
+	series.obj
+   	@ 	
+   	\\
+	\texttt{aggregate}		&	Creates an aggregated series.	&		&	
+	<<>>==
+	aggregate(x = series.obj, 
+          nfrequency = 2, # aggregate by half year
+          FUN = mean) # calculate the mean
+	@
+	\\
+	\texttt{ts.plot}		&	Produces a time series plot for one (or more) series.	&	 	&	
+	<<eval = FALSE>>==
+	ts.plot(series.obj)
+	@
+	\\
+};
+    \node[fit=(m-1-1)(m-1-4)]{Time Series Data};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\clip node (m) [
+	matrix,
+	matrix of nodes,
+	fill = black!20, % alternating rows color
+	inner sep = 1pt, % width of exterior line
+	nodes in empty cells,
+	nodes = {
+		minimum height = 2cm,
+		minimum width = 2.6cm,
+		anchor = center,
+		outer sep = 0,
+		font = \sffamily
+	},
+	row 1/.style = {
+		nodes = {
+			text = black,
+			font = \bfseries
+		}
+	},
+	column 1/.style = {
+		text width = 4cm, 
+		align = center,
+		nodes = {
+			font = \bfseries
+		},
+		every even row/.style = {
+			nodes = {
+				fill = white
+			}
+		}
+	},
+	column 2/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 3/.style = {
+		text width = 5cm,
+		align = center,
+		every even row/.style = {nodes = {fill = white}},
+	},
+	column 4/.style = {
+		text width = 10cm,
+		align = center,
+		nodes = {fill = rstudioblue}
+	},
+	row 1 column 1/.style = {nodes = {fill = gray}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	},
+	row 1 column 2/.style = {nodes = {fill = gray!80!white}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	},
+	row 1 column 3/.style = {nodes = {fill = gray!80!white}},
+	prefix after command = {
+		[rounded corners = 4mm] (m.north east) rectangle (m.south west)
+	}
+] {
+	\textbf{Function}	&	\textbf{Description}	&	\textbf{Possible Values}	&	\textbf{Example} \\
+	\texttt{window}	&	Extracts a subset of a time series.	&	Same arguments as the other time series functions.  	&	
+	<<>>==
+	window(x = series.obj, start = c(1957), end = c(1957, 4))
+	@
+	\\
+	\texttt{time}		&	Extracts the time from a time series object.	&	 	&	
+	<<>>==
+	time(series.obj)
+	@
+	\\
+	\texttt{ts.intersect}	&	Creates the intersection of one (or more) time series. 	&	 Chiffre.	&	
+	<<results='tex', resize.height='1in'>>==
+	series.obj2 <- ts(
+		data = sample(x = seq(from = 98, to = 102), size = 10, replace = T), 
+		frequency = 4,
+		start = c(1957, 2))
+	ts.intersect(series.obj, series.obj2)
+	@
+	\\
+	\texttt{cycle}	&	Returns the season for each value in a time series.	&	Booléen. 	&	\texttt{importance = TRUE} 	\\
+	\texttt{decompose}	&	Decompose a time series into the components.	&	 Chiffre.	&	\texttt{nodesize = 5}	\\
+	\texttt{stl}	&	Decomposes a time series using loess smoothing.	&	 Chiffre.	&	\texttt{nodesize = 5}	\\
+};
+\end{tikzpicture}
+
+
+\end{document}
