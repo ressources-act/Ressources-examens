@@ -4,7 +4,7 @@
 %% -----------------------------
 %% Préambule
 %% -----------------------------
-\input{cheatsht-preamble-general.tex}
+\input{../../cheatsht-preamble-general.tex}
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
@@ -20,10 +20,6 @@
 %	Extra math symbols
 %
 \usepackage{mathrsfs}
-%
-% 	thin space, limits underneath in displays
-%
-\DeclareMathOperator*{\argmax}{arg\,max} 
 
 %% -----------------------------
 %% 	Colour setup for sections
@@ -48,8 +44,7 @@
 \newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \usepackage{scalerel,stackengine,amsmath}
-\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
-    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
 %%%	------------------------
 %%%	NOTES
 %%%	+	R setup

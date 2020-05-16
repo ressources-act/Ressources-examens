@@ -54,7 +54,7 @@
 %% -----------------------------
 %% Préambule
 %% -----------------------------
-\input{cheatsht-preamble-general.tex}
+\input{../../cheatsht-preamble-general.tex}
 %% -----------------------------
 %% Variable definition
 %% -----------------------------
@@ -70,10 +70,6 @@
 %	Extra math symbols
 %
 \usepackage{mathrsfs}
-%
-% 	thin space, limits underneath in displays
-%
-\DeclareMathOperator*{\argmax}{arg\,max} 
 
 %% -----------------------------
 %% 	Colour setup for sections
@@ -98,8 +94,7 @@
 \newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \usepackage{scalerel,stackengine,amsmath}
-\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
-    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
+
 %%%	------------------------
 %%%	NOTES
 %%%	+	R setup
@@ -201,9 +196,9 @@
 \end{alltt}
 \begin{verbatim}
 ##      Qtr1 Qtr2 Qtr3 Qtr4
-## 1956        98   98   99
-## 1957  100  100   98  100
-## 1958   99  102  101
+## 1956        98   99   98
+## 1957  102  101   98  101
+## 1958  100  102  100
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -221,7 +216,7 @@
 ## Start = 1956.25 
 ## End = 1958.25 
 ## Frequency = 2 
-## [1]  98.0  99.5  99.0  99.5 101.5
+## [1]  98.5 100.0  99.5 100.5 101.0
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -308,7 +303,7 @@
 \end{alltt}
 \begin{verbatim}
 ##      Qtr1 Qtr2 Qtr3 Qtr4
-## 1957  100  100   98  100
+## 1957  102  101   98  101
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -340,12 +335,12 @@
 \end{alltt}
 \begin{verbatim}
 ##         series.obj series.obj2
-## 1957 Q2        100         101
-## 1957 Q3         98          99
-## 1957 Q4        100          98
-## 1958 Q1         99         101
-## 1958 Q2        102         101
-## 1958 Q3        101         100
+## 1957 Q2        101         101
+## 1957 Q3         98         100
+## 1957 Q4        101         100
+## 1958 Q1        100          98
+## 1958 Q2        102          99
+## 1958 Q3        100         100
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
