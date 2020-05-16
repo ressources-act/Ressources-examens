@@ -1532,19 +1532,28 @@ Par exemple, si on teste $\mathrm{H}_{0}: f_{X}(x)	=	g(x)$ v.s. $\mathrm{H}_{1}:
 
 \columnbreak
 \subsubsection{Cas d'hypothèses composées}
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}
 
-\begin{definitionNOHFILL}[Test uniformément le plus puissant]
-Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ si :
-\begin{enumerate}
-	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
-	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
-\end{enumerate}
-Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+On applique la même procédure en posant un $\theta$ fixe pour l'hypothèse alternative dans le ratio. Il s'ensuit que pour toute valeur de $\theta$ qui y est supérieur, la relation va demeurer.\\
 
-\begin{itemize}
-	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{} 
-\end{itemize}
-\end{definitionNOHFILL}
+Le test n'existe pas toujours, mais dans le cas qu'il existe le théorème de Neymann-Pearson permet de le trouver.
+
+%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+%%%	Test UMP selon les NDC de M.-P.	%%%%	
+%\begin{definitionNOHFILL}[Test uniformément le plus puissant]
+%Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ du test d'une hypothèse simple $\mathrm{H}_{0}$ contre l'hypothèse composée $\mathrm{H}_{1}$ si :
+%
+%\begin{enumerate}
+%	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
+%	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
+%\end{enumerate}
+%Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+%
+%\begin{itemize}
+%	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{}.
+%\end{itemize}
+%\end{definitionNOHFILL}
+%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%%		À rajouter éventuellement	%%%%	
