@@ -446,12 +446,12 @@ Ce qu'il faut bien saisir avec les intervalles de confiance, c'est que \lfbox[im
 
 On peut conceptualiser les intervalles comme une distribution binomiale avec probabilité de succès de $(1 - \alpha)$. Si l'on effectue $M$ essais indépendants, on s'attend à ce que $(1 - \alpha)M$ intervalles de confiance contiennent $\theta$. Donc on se sent confiant à $(1 - \alpha)\%$ que la vraie valeur de $\theta$ est contenue dans l'intervalle observé $(\hat{\theta}_{l}, \hat{\theta}_{u})$.
 
-\subsubsection*{Efficacité des intervalles de confiance}
+\paragraph{Efficacité des intervalles de confiance}
 Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ augmente si on augmente le niveau de confiance $(1 - \alpha)$. Par exemple, pour être certain à 100\% que l'intervalle va contenir la valeur, on a qu'à faire un intervalle $(-\infty, \infty)$.\\
 
 Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
 
-\subsubsection*{Statistiques}
+\subsubsection{Statistiques}
 \begin{rappel_enhanced}[Rappel : Loi du khi-carré]
 Soit un échantillon aléatoire $(X_{1}, X_{2}, \dots, X_{n})$ de variables aléatoires normales de moyenne $\mu$ et variance $\sigma^{2}$.\\
 Soit \lfbox[formula]{$Q	=	\sumz{n}{i	=	1}\left(X_{i}	-	\mu\right)^{2}$}.\\
@@ -484,7 +484,7 @@ Alors, \lfbox[formula]{$F	=	\frac{W_{1}/\nu_{1}}{W_{2}/\nu_{2}}	\sim	\mathcal{F}
 
 \tcbline
 
-La loi de Student tend vers la normale lorsque $n$ est très grand.
+On peut relier la loi de Student et la loi F : \lfbox[formula]{$T^{2}	=	\frac{Z^{2}}{W/n}	\sim	\mathcal{F}_{(1, n)}$} puisque \lfbox[formula]{$Z^{2} \sim \chi^{2}_{(1)}$} où \lfbox[conditions]{$Z \sim \mathcal{N}(0, 1)$}.
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Statistique de test $T_{n}$]
@@ -508,7 +508,7 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 	\item	Estime sans biais la moyenne $\mu$ ;
 	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
 	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
-	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{s_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
+	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{S_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
 \end{itemize}
 \end{definitionNOHFILLprop}
 
@@ -537,16 +537,18 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 \end{itemize}
 \end{definitionNOHFILLprop}
 
-
+\paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscule lorsqu'elle sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
+Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
 
 \columnbreak
-\subsubsection*{Intervalles de confiance}
+\subsubsection{Intervalles de confiance}
 %
 %De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
 
 \begin{definitionNOHFILLsub}[Intervalle de confiance sur la variance]
 %%%	https://www.youtube.com/watch?v=qwqB5a7_W44
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(\chi^{2}_{1 - \alpha/2} \leq \frac{(n - 1)s^{2}_{n}}{\sigma^{2}} \leq \chi^{2}_{\alpha/2}\right) =	(1 - \alpha)$}. \\
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(\chi^{2}_{1 - \alpha/2} \leq \frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \leq \chi^{2}_{\alpha/2}\right) =	(1 - \alpha)$}. \\
+
 Graphiquement: 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -590,8 +592,8 @@ Graphiquement:
 Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{align*}
 	\sigma^{2} \in \left[
-		\frac{(n - 1)s^{2}_{n}}{\chi^{2}_{\alpha / 2}}, 
-		\frac{(n - 1)s^{2}_{n}}{\chi^{2}_{1 - \alpha / 2}}
+		\frac{(n - 1)S^{2}_{n}}{\chi^{2}_{\alpha / 2}}, 
+		\frac{(n - 1)S^{2}_{n}}{\chi^{2}_{1 - \alpha / 2}}
 	\right]
 \end{align*}
 \end{definitionNOHFILLsub}
@@ -599,7 +601,8 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ connue)]
 %%%	https://www.youtube.com/watch?v=KG921rfbTDw&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=4&t=0s
 %%%	https://www.youtube.com/watch?v=-iYDu8flFXQ&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=3&t=268s
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{x} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.\\
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.\\
+
 Graphiquement:
 \begin{center}
 
@@ -653,12 +656,13 @@ Graphiquement:
 
 Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
-	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right].
+	\mu \in \left[ \bar{X} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{X} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right].
 \end{equation*}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ inconnue)]
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{x} - \mu}{s_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.\\
+Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{X} - \mu}{S_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.\\
+
 Graphiquement:
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -708,7 +712,7 @@ Graphiquement:
 
 Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
-	\mu \in \left[ \bar{x} - t_{\alpha/2, n - 1} \frac{s}{\sqrt{n}}, \bar{x} + t_{\alpha/2, n - 1} \frac{s}{\sqrt{n}}\right].
+	\mu \in \left[ \bar{X} - t_{\alpha/2, n - 1} \frac{S_{n}}{\sqrt{n}}, \bar{X} + t_{\alpha/2, n - 1} \frac{S_{n}}{\sqrt{n}}\right].
 \end{equation*}
 \end{definitionNOHFILLsub}
 
@@ -725,7 +729,7 @@ Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distr
 
 Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
-	\mu \in \left[ \bar{x} - z_{\alpha/2} \frac{s}{\sqrt{n}}, \bar{x} + z_{\alpha/2} \frac{s}{\sqrt{n}}\right].
+	\mu \in \left[ \bar{X} - z_{\alpha/2} \frac{s}{\sqrt{n}}, \bar{X} + z_{\alpha/2} \frac{s}{\sqrt{n}}\right].
 \end{equation*}
 \end{definitionNOHFILLsub}
 
@@ -748,7 +752,7 @@ Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	(\mu_{1}	-	\mu_{2}) \in \left[ 
 	\bar{x}_{n}	-	\bar{y}_{m}
-	\pm	t_{\alpha/2, n + m - 2} s_{p}\sqrt{\frac{1}{n} + \frac{1}{m}} \right].
+	\pm	t_{\alpha/2, n + m - 2} S_{p}\sqrt{\frac{1}{n} + \frac{1}{m}} \right].
 \end{equation*}
 \begin{align*}
 \end{align*}
@@ -760,8 +764,8 @@ Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1},
 Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
 \begin{equation*}
 	(\mu_{1}	-	\mu_{2}) \in \left[ 
-	\bar{x}_{n}	-	\bar{y}_{m}
-	\pm	z_{\alpha/2} \sqrt{\frac{s_{n}^{2}}{n} + \frac{s_{m}^{2}}{m}} \right].
+	\bar{X}_{n}	-	\bar{Y}_{m}
+	\pm	z_{\alpha/2} \sqrt{\frac{S_{n}^{2}}{n} + \frac{S_{m}^{2}}{m}} \right].
 \end{equation*}
 \begin{align*}
 \end{align*}
@@ -1384,7 +1388,7 @@ Soit le test d'hypothèse avec les nombres spécifiés $p_{1,0}, p_{2,0}, p_{k -
 \end{align*}
 où $p_{k}	=	p_{k,0}	=	1	-	p_{1,0}	-	\hdots	-	p_{k - 1,0}$.
 
-Alors, sous l'hypothèse nulle : \lfbox[formula]{$T	=	\sumz{k}{i = 1} \frac{(O_{i}	-	np_{i,0})^{2}}{np_{i,0}}	\approx	\chi_{(k - 1)}^{2}$}.
+Alors, sous l'hypothèse nulle : \lfbox[formula]{$Q	=	\sumz{k}{i = 1} \frac{(O_{i}	-	np_{i,0})^{2}}{np_{i,0}}	\approx	\chi_{(k - 1)}^{2}$}.
 \begin{itemize}
 %	\item	Si $O_{i} \sim \mathcal{N}$ alors le distribution du khi carrée n'est pas une approximation ;
 	\item	Il y a seulement $k - 1$ degrés de liberté car on estime seulement $k - 1$ paramètres.
