@@ -828,7 +828,7 @@ Puis, on spécifie une \textcolor{orange-red}{expérience} et un \textcolor{oran
 
 \begin{distributions}[Terminologie]
 \begin{description}
-\item[Hypothèse simple]	Spécifie \textbf{entièrement} une distribution de probabilité.
+\item[\hypertarget{hyp-simple}{Hypothèse simple}]	Spécifie \textbf{entièrement} une distribution de probabilité.
 	\begin{itemize}
 	\item	Par exemple, $\mathcal{H}_{0}	:	q = 0.50$---on connaît la valeur exacte du paramètre $q$ pour une distribution Bernoulli.
 	\end{itemize}
@@ -1253,23 +1253,182 @@ Si, par exemple, on rejette l'hypothèse nulle on pourrait tracer la fonction de
 		\item	$\beta(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} ;  \theta \in \Theta_{1}\right\}	=	1 - \gamma(\theta_{1})$.
 		\end{itemize}
 \end{description}
+
 \end{distributions}
+Pour mettre en contexte cette notation, revoici le tableau des types d'erreur pour un test $\delta$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
-\begin{definitionNOHFILLprop}[Tests optimaux]
-Bien qu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser $a\alpha(\delta) + b\beta(\delta)$.
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,165); %set diagram left start at 0, and has height of 165
 
-\tcbline
+%Shape: Rectangle [id:dp5658804967739193] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (74,50.17) -- (163.83,50.17) -- (163.83,101.5) -- (74,101.5) -- cycle ;
+%Shape: Rectangle [id:dp933461228347003] 
+\draw  [fill={rgb, 255:red, 240; green, 111; blue, 111 }  ,fill opacity=1 ] (163.83,101.5) -- (253.67,101.5) -- (253.67,152.83) -- (163.83,152.83) -- cycle ;
+%Shape: Rectangle [id:dp24194313951746427] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (163.83,50) -- (253.67,50) -- (253.67,101.33) -- (163.83,101.33) -- cycle ;
+%Shape: Rectangle [id:dp27324261874552724] 
+\draw  [fill={rgb, 255:red, 148; green, 250; blue, 106 }  ,fill opacity=1 ] (74,101.33) -- (163.83,101.33) -- (163.83,152.67) -- (74,152.67) -- cycle ;
 
-Soit les constantes $a, b > 0$.\\
-Soit un test $\delta^{*}$ tel que :
+%Shape: Rectangle [id:dp9425087952138109] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 200 }  ,fill opacity=1 ] (74,30.17) -- (163.83,30.17) -- (163.83,50) -- (74,50) -- cycle ;
+%Shape: Rectangle [id:dp4099498200973881] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 200 }  ,fill opacity=1 ] (163.83,30.17) -- (253.67,30.17) -- (253.67,50) -- (163.83,50) -- cycle ;
+%Shape: Rectangle [id:dp35293578825776084] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 200 }  ,fill opacity=1 ] (-17,101.33) -- (74,101.33) -- (74,152.67) -- (-17,152.67) -- cycle ;
+%Shape: Rectangle [id:dp2841127241620307] 
+\draw  [fill={rgb, 255:red, 179; green, 179; blue, 200 }  ,fill opacity=1 ] (-17,50.17) -- (74,50.17) -- (74,101.5) -- (-17,101.5) -- cycle ;
+
+%Shape: Rectangle [id:dp40513736937576916] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (74,10.33) -- (253.67,10.33) -- (253.67,30.17) -- (74,30.17) -- cycle ;
+%Shape: Rectangle [id:dp5918283025493905] 
+\draw  [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (-17,30.33) -- (74,30.33) -- (74,50.17) -- (-17,50.17) -- cycle ;
+
+% Text Node
+\draw (138.33,13) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Vrai état};
+% Text Node
+\draw (90.92,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{0} \Rightarrow \theta \in \Theta_{0}$};
+% Text Node
+\draw (180.75,35) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$ \text{H}_{1} \Rightarrow \theta \in \Theta_{1}$};
+
+% Text Node
+\draw (-13.25,112) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\shortstack[l]{Accepter $\text{H}_{0}$\\ $(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement}$ }};
+% Text Node
+\draw (-10.25,60.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1] [align=left] {\shortstack[l]{Rejeter $\text{H}_{0}$\\ $(X_{1}, \dots, X_{n}) \in \mathcal{C}$}};
+
+% Text Node
+\draw (0.25,32.75) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Décision};
+% Text Node
+\draw (108.92,65.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] 
+{$\alpha(\delta)$};
+% Text Node
+\draw (200.75,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\beta(\delta)$};
+% Text Node
+\draw (100.92,117) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$1 - \alpha(\delta)$};
+% Text Node
+\draw (190.75,65.67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$1 - \beta(\delta)$};
+\end{tikzpicture}
+\end{center}
+
 \begin{itemize}
-	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	>	bf(\bm{x} ; \theta_{1})$} ;
-	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	<	bf(\bm{x} ; \theta_{1})$} ;
-	\item	Si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	=	bf(\bm{x} ; \theta_{1})$} soit $\mathrm{H}_{0}$ ou $\mathrm{H}_{1}$ peut être acceptée.
+	\item	\textit{En théorie}, on minimise la probabilité d'une erreur de type I \textbf{et} de II ; 
+	\item	\textit{En réalité}, il y a un compromis et on ne pourra pas avoir des très petites probabilités pour les deux ;
+	\item	Le contexte va déterminer ce qu'on souhaite minimiser le plus ;
+		\begin{itemize}
+		\item	Par exemple, soit l'hypothèse nulle que quelqu'un n'a pas le cancer ;
+		\item	Il est plus grave de dire à quelqu'un qu'il n'a pas le cancer alors qu'il l'a (erreur de type II) que de dire qu'il a le cancer alors qu'il ne l'a pas (erreur de type I) ;
+		\item	Dans ce contexte, on souhaiterait minimiser l'erreur de type II $\beta(\delta)$ plus que celle de type I $\alpha(\delta)$.
+		\end{itemize}
+%	\item	Cela dit, on peut tenter de minimiser une \textit{fonction} des deux erreurs.
 \end{itemize}
 
-Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
+Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on :
+\begin{enumerate}
+	\item	Fixe l'erreur de type I à un seuil, alias une taille de région critique, $k$.
+	\item	Trouve parmi tout les sous-ensembles de taille $k$ celui qui minimise l'erreur de type II.
+\end{enumerate}
+
+\begin{definitionNOHFILLprop}[Tests optimaux]
+%Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser la fonction \lfbox[formula]{$a\alpha(\delta) + b\beta(\delta)$} des \lfbox[conditions]{constantes $a, b > 0$}.\\
+
+%\tcbline
+
+Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simple}} :
+\begin{align*}
+	\mathrm{H}_{0}	&:	\theta	=	\theta_{0}	\\
+	\mathrm{H}_{1}	&:	\theta	=	\theta_{1}
+\end{align*}
+\begin{itemize}
+	\item	Par exemple, on pourrait avoir une distribution Bernoulli et poser $\mathrm{H}_{0}	:	p	=	0.4$ v.s. $\mathrm{H}_{1}	:	p	=	0.6$.
+\end{itemize}
+\
+
+La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille $k$ du test $\delta^{\ast}$ est la suivante :
+\begin{enumerate}
+	\item	On trouve une région critique (alias, un sous-ensemble de $\mathcal{S}$) $\mathcal{C}$ tel que la probabilité $\alpha(\delta^{\ast})$ d'une erreur de type I est de $k$.
+		\begin{itemize}
+		\item	C'est-à-dire, \lfbox[conditions]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	k$}.
+		\item	Cependant, ce critère n'identifie par un sous-ensemble unique ;
+		\item	Il y a une multitude de sous-ensemble $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $k$ ;
+		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}; \theta	=	\theta_{0}	\right\}	=	k$.
+		\end{itemize}
+	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$.
+		\begin{itemize}
+		\item	C'est-à-dire, \lfbox[formula]{$Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta	=	\theta_{1}	\right\}	\geq Pr\big\{(X_{1}, \dots, X_{n}) \in \mathcal{A};$} \lfbox[formula]{$\theta	=	\theta_{1}	\big\}$}.
+		\end{itemize}
+\end{enumerate}
+
+Avec ces deux critères, on peut trouver une seule région critique $\mathcal{C}$ \textbf{optimale} de taille $k$.
+
+%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+%%%	Test optimal selon les NDC de M.-P.	%%%%	
+%\begin{itemize}
+%	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	>	bf(\bm{x} ; \theta_{1})$} ;
+%	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	<	bf(\bm{x} ; \theta_{1})$} ;
+%	\item	Si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	=	bf(\bm{x} ; \theta_{1})$} soit $\mathrm{H}_{0}$ ou $\mathrm{H}_{1}$ peut être acceptée.
+%\end{itemize}
+%
+%Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
+%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 \end{definitionNOHFILLprop}
+En bref, on pose fixe à un seuil $k$ la fonction de puissance posant que le vrai paramètre $\theta	=	\theta_{0}$ puis on trouve la région critique qui maximise la puissance posant que le vrai paramètre $\theta	=	\theta_{1}$.
+
+\begin{formula}{Exemple avec une distribution Binomiale}
+Soit :
+\begin{itemize}
+	\item	La variable aléatoire $X \sim Binom(n = 3, p = \theta)$.
+		\begin{itemize}
+		\item	Alors, $\mathcal{S}	=	\{x : x	=	0, 1, 2, 3\}$.
+		\end{itemize}
+	\item	Les hypothèses : \\
+		\begin{align*}
+		\mathrm{H}_{0}	&:	\theta	=	0.50	\\
+		\mathrm{H}_{1}	&:	\theta	=	0.75
+		\end{align*}
+	\item	Le seuil de signifiance $k	=	0.125$.
+	\item	Les sous-ensembles $\mathcal{A}_{1}	=	\{x : x = 0\}$ et $\mathcal{A}_{2}	=	\{x : x = 3\}$ de $\mathcal{S}$.
+\end{itemize}
+Alors, $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.50)	=	\Pr( X \in \mathcal{A}_{2}; \theta	=	0.50)	=	0.125$ et il n'y a pas d'autres sous-ensembles de $\mathcal{S}$ avec la même taille de $0.125$.\\
+Il s'ensuit que soit $\mathcal{A}_{1}$ ou $\mathcal{A}_{2}$ est la région critique $\mathcal{C}$ optimale de taille $k$ pour tester $\mathrm{H}_{0}$ contre $\mathrm{H}_{1}$.\\
+
+On trouve que $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.75)	=	0.015625$ alors que $\Pr( X \in \mathcal{A}_{2}; \theta	=	0.75)	=	0.421875$. 
+\begin{itemize}
+	\item	Dans le premier cas :\\
+		\setlength{\mathindent}{-1cm}
+		\begin{align*}
+		\Pr( \underbrace{X \in \mathcal{A}_{1}; \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
+		&=	0.015625		&
+		&<	&
+		\Pr( \underbrace{X \in \mathcal{A}_{1}; \theta	=	0.50}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est vraie ($\theta = 0.50$)}}})	
+		&=	0.125	
+		\end{align*}
+		\setlength{\mathindent}{1cm}
+	\item	Dans le deuxième cas :\\
+		\setlength{\mathindent}{-1cm}
+		\begin{align*}
+		\Pr( \underbrace{X \in \mathcal{A}_{2}; \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
+		&=	0.421875		&
+		&>	&
+		\Pr( \underbrace{X \in \mathcal{A}_{2}; \theta	=	0.50}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est vraie ($\theta = 0.50$)}}})	
+		&=	0.125	
+		\end{align*}
+		\setlength{\mathindent}{1cm}
+	\item	Le premier sous-ensemble $\mathcal{A}_{1}$ n'est pas désirable car on serait plus probable de incorrectement rejeter $\mathrm{H}_{0}$ lorsqu'elle est vraie (erreur de type I) que de correctement la rejeter lorsqu'elle est fausse ! 
+	\item	Alors, on choisit $\mathcal{C}	=	\mathcal{A}_{2}	=	\{x: x = 3\}$.
+\end{itemize}
+
+D'ailleurs, la région est choisie en incluant dans $\mathcal{C}$ les points $x$ pour lesquels $f(x; \theta	=	0.50)$ est petite par rapport à $f(x; \theta	=	0.75)$.
+\begin{itemize}
+	\item	On peut d'ailleurs observer que le ratio $\frac{f(x; \theta	=	0.50)}{f(x; \theta	=	0.75)}$ évalué à $x	=	5$ est un minimum.
+\end{itemize}
+\end{formula}
+
+On peut utiliser ce ratio comme outil pour identifier la région critique $\mathcal{C}$ optimale pour un seuil fixe de $k$.
+
+
+\columnbreak
+\subsubsection{Approche systématique pour trouver la région critique optimale}
 
 \begin{definitionNOHFILL}[Lemme de Neymann-Pearson]
 Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à $\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) ; \theta \in \Theta_{0} \right\}$.
@@ -1368,7 +1527,7 @@ Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\thet
 
 \columnbreak
 \subsection{Test du khi carré}
-\subsubsection*{Test d'adéquation (\og \textit{goodness-of-fit test} \fg{})}
+\subsubsection{Test d'adéquation (\og \textit{goodness-of-fit test} \fg{})}
 Soit $n$ répétitions (indépendantes) d'une expérience aléatoire.\\
 On pose :
 \begin{itemize}
@@ -1398,7 +1557,8 @@ Alors, sous l'hypothèse nulle : \lfbox[formula]{$Q	=	\sumz{k}{i = 1} \frac{(O_{
 		\end{itemize}
 \end{itemize}
 
-\subsubsection*{Tableau de contingence}
+
+\subsubsection{Tableau de contingence}
 Dans le cas de données à deux dimensions, alias un tableau de contingence, on défini :
 \begin{description}
 	\item[$E_{ij}$]	L'espérance du nombre d'observations dans la cellule $i, j$ ;
