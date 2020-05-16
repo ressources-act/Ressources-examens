@@ -106,6 +106,11 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\mathcal{L}(\theta; \bm{x})$]	Fonction de vraisemblance de $\theta$ en fonction des observations $\bm{x}$;
+		\begin{align*}
+		\mathcal{L}(\theta; \bm{x})
+		&=	\prod_{i	=	1}^{n}	f_{X}(x_{i} ; \theta)
+		\end{align*}
+		où $\bm{x}^{\top}	=	(x_{1}, \dots, x_{n})$.
 	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de $n$ observations.
 		\begin{itemize}[leftmargin = *]
 		\item	Si les $n$ observations sont indépendantes entres-elles et proviennent de la même distribution paramétrique (identiquement distribué) c'est un \textbf{échantillon aléatoire} \textbf{(iid)};
@@ -114,9 +119,9 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 \end{description}
 \end{distributions}
 
-On peut voir la fonction de densité $f(x; \theta)$ comme étant une fonction du paramètre inconnu $\theta$ avec $x$ fixé; ceci est la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$.
 Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$, il faut songer à ce que représente $f(x; \theta)$. \\
-$f(x; \theta)$ est une fonction qui fait varier $x$ pour un (ou plusieurs) paramètre $\theta$ fixe. Alors, $\mathcal{L}(\theta; \bm{x})$ est une fonction qui fait varier $\theta$ pour un "paramètre" $\bm{x}$ fixé; ce que l'on considère habituellement comme étant "$x$" est en fait $\theta$ pour la fonction de vraisemblance!
+La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une différente façon de voir la fonction de densité $f(x ; \theta)$. Au lieu de faire varier $x$ pour un (ou des) paramètre $\theta$ fixe, on fait varier $\theta$ pour un échantillon d'observations $\bm{x}$ fixé ; l'entrée à la fonction de vraisemblance est donc $\theta$ comparativement au "$x$" de la fonction de densité !
+
 
 \columnbreak
 \section{Qualité de l'estimateur}
@@ -221,7 +226,7 @@ Premièrement, on définit l'utilité des deux premières dérivées:
 	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa forme.
 \end{description}
 
-L'estimateur $\hat\theta^{\texttt{EMV}}$ du paramètre $\theta$ d'une distribution est obtenu en posant la première dérivée de sa fonction de vraisemblance $\mathcal{L}(\theta ; x)$ égale à 0. Alors, la première dérivée de $\mathcal{L}(\theta; \bm{x})$ est nulle au point $\theta = \hat\theta^{\texttt{EMV}}$. \\
+L'estimateur $\hat\theta^{\texttt{EMV}}$ du paramètre $\theta$ d'une distribution est obtenu en posant la première dérivée de sa fonction de vraisemblance $\mathcal{L}(\theta ; \bm{x})$ égale à 0. Alors, la première dérivée de $\mathcal{L}(\theta; \bm{x})$ est nulle au point $\theta = \hat\theta^{\texttt{EMV}}$. \\
 
 Puisque ce point maximise la fonction, la dérivée va augmenter avant et diminuer après.
 %Puisque ce point maximise la fonction, la dérivée sera négative par la suite! \\
@@ -1334,7 +1339,7 @@ Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilit�
 
 %\tcbline
 
-Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simple}} :
+Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simples}} :
 \begin{align*}
 	\mathrm{H}_{0}	&:	\theta	=	\theta_{0}	\\
 	\mathrm{H}_{1}	&:	\theta	=	\theta_{1}
@@ -1344,14 +1349,14 @@ Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blu
 \end{itemize}
 \
 
-La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille $k$ du test $\delta^{\ast}$ est la suivante :
+La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille $\alpha$ du test $\delta^{\ast}$ est la suivante :
 \begin{enumerate}
-	\item	On trouve une région critique (alias, un sous-ensemble de $\mathcal{S}$) $\mathcal{C}$ tel que la probabilité $\alpha(\delta^{\ast})$ d'une erreur de type I est de $k$.
+	\item	On trouve une région critique (alias, un sous-ensemble de $\mathcal{S}$) $\mathcal{C}$ tel que la probabilité $\alpha(\delta^{\ast})$ d'une erreur de type I est de $\alpha$.
 		\begin{itemize}
-		\item	C'est-à-dire, \lfbox[conditions]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	k$}.
+		\item	C'est-à-dire, \lfbox[conditions]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	\alpha$}.
 		\item	Cependant, ce critère n'identifie par un sous-ensemble unique ;
-		\item	Il y a une multitude de sous-ensemble $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $k$ ;
-		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}; \theta	=	\theta_{0}	\right\}	=	k$.
+		\item	Il y a une multitude de sous-ensemble $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $\alpha$ ;
+		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}; \theta	=	\theta_{0}	\right\}	=	\alpha$.
 		\end{itemize}
 	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$.
 		\begin{itemize}
@@ -1359,7 +1364,7 @@ La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille 
 		\end{itemize}
 \end{enumerate}
 
-Avec ces deux critères, on peut trouver une seule région critique $\mathcal{C}$ \textbf{optimale} de taille $k$.
+Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathcal{C}$ de taille $\alpha$ \textbf{optimale} pour tester les hypothèses simples.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test optimal selon les NDC de M.-P.	%%%%	
@@ -1372,7 +1377,8 @@ Avec ces deux critères, on peut trouver une seule région critique $\mathcal{C}
 %Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 \end{definitionNOHFILLprop}
-En bref, on pose fixe à un seuil $k$ la fonction de puissance posant que le vrai paramètre $\theta	=	\theta_{0}$ puis on trouve la région critique qui maximise la puissance posant que le vrai paramètre $\theta	=	\theta_{1}$.
+
+En bref, on pose fixe à un seuil $\alpha$ la fonction de puissance posant que le vrai paramètre $\theta	=	\theta_{0}$ puis on trouve la région critique qui maximise la puissance posant que le vrai paramètre $\theta	=	\theta_{1}$.
 
 \begin{formula}{Exemple avec une distribution Binomiale}
 Soit :
@@ -1386,11 +1392,11 @@ Soit :
 		\mathrm{H}_{0}	&:	\theta	=	0.50	\\
 		\mathrm{H}_{1}	&:	\theta	=	0.75
 		\end{align*}
-	\item	Le seuil de signifiance $k	=	0.125$.
+	\item	Le seuil de signifiance $\alpha	=	0.125$.
 	\item	Les sous-ensembles $\mathcal{A}_{1}	=	\{x : x = 0\}$ et $\mathcal{A}_{2}	=	\{x : x = 3\}$ de $\mathcal{S}$.
 \end{itemize}
 Alors, $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.50)	=	\Pr( X \in \mathcal{A}_{2}; \theta	=	0.50)	=	0.125$ et il n'y a pas d'autres sous-ensembles de $\mathcal{S}$ avec la même taille de $0.125$.\\
-Il s'ensuit que soit $\mathcal{A}_{1}$ ou $\mathcal{A}_{2}$ est la région critique $\mathcal{C}$ optimale de taille $k$ pour tester $\mathrm{H}_{0}$ contre $\mathrm{H}_{1}$.\\
+Il s'ensuit que soit $\mathcal{A}_{1}$ ou $\mathcal{A}_{2}$ est la région critique $\mathcal{C}$ optimale de taille $\alpha$ pour tester $\mathrm{H}_{0}$ contre $\mathrm{H}_{1}$.\\
 
 On trouve que $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.75)	=	0.015625$ alors que $\Pr( X \in \mathcal{A}_{2}; \theta	=	0.75)	=	0.421875$. 
 \begin{itemize}
@@ -1424,40 +1430,108 @@ D'ailleurs, la région est choisie en incluant dans $\mathcal{C}$ les points $x$
 \end{itemize}
 \end{formula}
 
-On peut utiliser ce ratio comme outil pour identifier la région critique $\mathcal{C}$ optimale pour un seuil fixe de $k$.
+On peut utiliser ce ratio comme outil pour identifier la région critique $\mathcal{C}$ optimale pour un seuil fixe de $\alpha$.
 
 
 \columnbreak
-\subsubsection{Approche systématique pour trouver la région critique optimale}
+\subsubsection{Cas d'hypothèses simples}
 
-\begin{definitionNOHFILL}[Lemme de Neymann-Pearson]
-Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à $\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) ; \theta \in \Theta_{0} \right\}$.
+\begin{definitionNOHFILL}[Théorème de Neymann-Pearson]
+%Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à 
+%$\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) ; \theta \in \Theta_{0} \right\}$.
 
-\tcbline
+Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simple}} :
+\begin{align*}
+	\mathrm{H}_{0}	&:	\theta	=	\theta_{0}	\\
+	\mathrm{H}_{1}	&:	\theta	=	\theta_{1}
+\end{align*}
+\
 
-Soit une constante $k > 0$.\\
-Soit un test $\delta^{*}$ tel que :
-\begin{itemize}
-	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	>	kf(\bm{x} ; \theta_{1})$} ;
-	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	<	kf(\bm{x} ; \theta_{1})$} ;
-	\item	Si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	=	kf(\bm{x} ; \theta_{1})$} une ou l'autre sera acceptée.
-\end{itemize}
+Soit une constante $k > 0$ et le sous-ensemble $\mathcal{C} \in \mathcal{S}$ tel que :
+\begin{enumerate}
+	\item	\lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\leq	k$} pour tout \lfbox[conditions]{$x \in \mathcal{C}$}.
+	\item	\lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$} pour tout \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}.
+		\begin{itemize}
+		\item	En réécrivant les équations comme $\mathcal{L}(\theta_{1} ; \bm{x})	\leq\textcolor{teal}{(\geq)}\	k\mathcal{L}(\theta_{0} ; \bm{x})$ on peut l'interpréter comme qu'il doit être plus vraisemblable que $\theta	=	\theta_{0}\textcolor{teal}{(\theta_{1})}$ que $\theta_{1}\textcolor{teal}{(\theta_{0})}$ lorsque $x \in \mathcal{C}^{\textcolor{teal}{\complement}}$ et que l'on rejette \textcolor{teal}{(accepte)} $\mathrm{H}_{0}$.
+		\end{itemize}
+	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
+\end{enumerate}
 
-Si $\delta$ est n'importe quel autre test que $\delta^{*}$ tel que \lfbox[conditions]{$\alpha(\delta) \leq \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	\geq	\beta(\delta^{*})$}.
-\begin{itemize}
-	\item	De façon semblable, si \lfbox[conditions]{$\alpha(\delta) < \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	>	\beta(\delta^{*})$} ;
-\end{itemize}
+Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} de taille $\alpha$.
+
+%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+%%%	Neymann-Pearsoon selon les NDC de M.-P.	%%%%	
+%\begin{itemize}
+%	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	>	kf(\bm{x} ; \theta_{1})$} ;
+%	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	<	kf(\bm{x} ; \theta_{1})$} ;
+%	\item	Si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	=	kf(\bm{x} ; \theta_{1})$} une ou l'autre sera acceptée.
+%\end{itemize}
+%Si $\delta$ est n'importe quel autre test que $\delta^{*}$ tel que \lfbox[conditions]{$\alpha(\delta) \leq \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	\geq	\beta(\delta^{*})$}.
+%\begin{itemize}
+%	\item	De façon semblable, si \lfbox[conditions]{$\alpha(\delta) < \alpha(\delta^{*})$} alors \lfbox[formula]{$\beta(\delta)	>	\beta(\delta^{*})$} ;
+%\end{itemize}
+%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 \end{definitionNOHFILL}
 
+\begin{definitionNOHFILLsub}[Test non biaisé]
+Soit les mêmes hypothèses que dans la définition du théorème de Neymann-Pearson.\\
 
-\begin{definitionNOHFILLsub}[Sous la forme du ratio de vraisemblance]
-Soit le \textbf{ratio de vraisemblance} \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	=	\frac{f(\bm{x} ; \theta_{1})}{f(\bm{x} ; \theta_{0})}$}.\\
+Un test $\delta$ est non biaisé si sa puissance est toujours d'au moins $\alpha$ ; c'est-à-dire, \lfbox[formula]{$\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta \right\} \geq \alpha$}.\\
 
-\tcbline
-
-Alors, le test $\delta$ au seuil $\alpha$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ rejette $\mathrm{H}_{0}$ si : \lfbox[formula]{$\frac{L(\theta_{1})}{L(\theta_{0})}	>	\frac{1}{k}$}.
+Le meilleur test obtenue par le théorème de Neymann-Pearson est non biaisé.
 \end{definitionNOHFILLsub}
 
+\begin{formula}{Exemple avec une distribution Normale}
+Soit :
+\begin{itemize}
+	\item	L'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ d'une distribution normale $\mathcal{N}(\mu = \theta, \sigma^{2} = 0)$.
+		\begin{itemize}
+		\item	Alors, $\mathcal{S}	=	\{x : x	\in \mathbb{R}\}$.
+		\end{itemize}
+	\item	Les hypothèses : 
+		\begin{align*}
+		\mathrm{H}_{0}	&:	\theta	=	0	\\
+		\mathrm{H}_{1}	&:	\theta	=	1
+		\end{align*}
+\end{itemize}
+
+On a : 
+\begin{align*}
+	\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}
+	&=	\frac{\textrm{exp}\left\{-\sum_{i = 1}^{n}x^{2}_{i}/2\right\}\frac{1}{(\sqrt{2\pi})^{n}}}{\textrm{exp}\left\{-\sum_{i = 1}^{n}(x_{i} - 1)^{2}/2\right\}\frac{1}{(\sqrt{2\pi})^{n}}}	
+	=	\textrm{exp}\left\{-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}\right\}	\\
+\end{align*}
+
+Alors, la région critique $\mathcal{C}$ optimale est composée des points $(x_{1}, x_{2}, \dots, x_{n})$ tel que :
+\begin{align*}
+	\textrm{e}^{-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}}	
+	&\leq	k	&
+	&\Rightarrow	&
+	-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}
+	&\leq	\ln(k)	&
+	&\Rightarrow	&
+	\sum_{i = 1}^{n}x_{i}
+	&\geq	\frac{n}{2}	-	\ln(k)	
+\end{align*}
+\begin{align*}
+	\therefore
+	\frac{\sum_{i = 1}^{n}x_{i}}{\color{teal}n}
+	&\geq	\underbrace{\frac{1}{2}	-	\frac{\ln(k)}{\color{teal}n}}_{\color{amethyst}c}	
+\end{align*}
+
+Alors, la région critique optimale $\mathcal{C}	=	\left\{(x_{1}, x_{2}, \dots, x_{n})	:	\frac{1}{n}\sum_{i	=	1}^{n} x_{i}	\geq	 {\color{amethyst}c}  \right\}$ où $\color{amethyst}c$ est une constante choisie tel que la taille de $\mathcal{C}$ est $\alpha$.\\
+
+Par exemple, puisque $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \mathcal{N}(0, 1 / n)$ on peut trouver $c$ avec $\Pr\left\{\bar{X}	\geq	c ; \theta	=	\theta_{0} \right\}	=	\alpha$.	\\
+Puis, on peut trouver la puissance du test quand $\mathrm{H}_{1}$ est vraie avec $\Pr\left\{\bar{X}	\geq	c ; \theta	=	\theta_{1} \right\}$.
+\end{formula}
+
+\paragraph{Note sur les hypothèses}
+Les hypothèses doivent entièrement spécifier la distribution. Si les hypothèses sont sur les paramètres, elles doivent être des hypothèses simples, mais elles peuvent être sur autre chose.\\
+Par exemple, si on teste $\mathrm{H}_{0}: f_{X}(x)	=	g(x)$ v.s. $\mathrm{H}_{1}: f_{X}(x)	=	h(x)$ alors la vraisemblance sera un ratio de deux distributions différentes.
+
+
+\columnbreak
+\subsubsection{Cas d'hypothèses composées}
 
 \begin{definitionNOHFILL}[Test uniformément le plus puissant]
 Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ si :
@@ -1482,7 +1556,7 @@ Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\thet
 %%%	Statistique de test
 %%%	Région de réjection
 %%%	Erreurs de type I et II
-%		Tests optimaux
+%%%		Tests optimaux
 %		Lemme de Neymann-Pearson
 %		Ratio de vraisemblance
 %%%	Valeurs critique et seuil observé
@@ -1508,7 +1582,7 @@ Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\thet
 %		Test de Kolmogorov-Smirnov
 %		Test du khi-carré de Pearson
 %			design multinomial
-%		Tableau de contingence
+%%%		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
 %\subsection{Exhaustivité}
@@ -1858,7 +1932,7 @@ On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \
 \subsection{Méthode du maximum de vraisemblance}
 
 Nous cherchons à maximiser la probabilité d'observer les données.
-Ceci est fait par la vraisemblance $\mathcal{L}(\theta; x)$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
+Ceci est fait par la vraisemblance $\mathcal{L}(\theta; \bm{x})$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
 
 \begin{algo}{Maximum de vraisemblance}
 \begin{align*}
