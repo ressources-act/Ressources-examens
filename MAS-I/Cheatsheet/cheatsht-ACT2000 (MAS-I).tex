@@ -1534,9 +1534,33 @@ Par exemple, si on teste $\mathrm{H}_{0}: f_{X}(x)	=	g(x)$ v.s. $\mathrm{H}_{1}:
 \subsubsection{Cas d'hypothèses composées}
 \hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}\\
 
-On applique la même procédure en posant un $\theta$ fixe pour l'hypothèse alternative dans le ratio. Il s'ensuit que pour toute valeur de $\theta$ qui y est supérieur, la relation va demeurer.\\
+%On applique la même procédure en posant un $\theta$ fixe pour l'hypothèse alternative dans le ratio.
+%Ensuite, la procédure dépend de la situation.
 
-Le test n'existe pas toujours, mais dans le cas qu'il existe le théorème de Neymann-Pearson permet de le trouver.
+\begin{formula}{Exemple avec une distribution normale}
+Soit :
+\begin{itemize}
+	\item	Un échantillon aléatoire $\bm{X}	=	(X_{1}, X_{2}, \dots, X_{n})$ tiré d'une distribution normale $\mathcal{N}(0, \theta)$ ;
+	\item	Les hypothèses : 
+		\begin{align*}
+		\mathrm{H}_{0}	&:	\theta	=	1	\\
+		\mathrm{H}_{1}	&:	\theta	>	1
+		\end{align*}
+\end{itemize}
+
+Alors, on trouve le ratio : 
+\begin{align*}
+	\frac{\mathcal{L}(\theta_{0} = 1; \bm{x})}{\mathcal{L}(\theta_{1}; \bm{x})}
+	&=	\frac{\frac{1}{(1)^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2(1)^{2}}}}{\frac{1}{\theta_{1}^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n}(x_{i})^{2}}{2\theta_{1}^{2}}}}	
+	=	\theta_{1}^{n} \textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2}\left(1 - \frac{1}{\theta_{1}^{2}}\right)}	\\
+\end{align*}
+
+On voit que le ratio décroît alors que $\sum x^{2}_{i}$ augmente. Par conséquent, un test uniformément le plus puissance aura une région critique définie par $\sum x^{2}_{i} > k$ avec un $k$ choisi selon le seuil de signifiance.
+\end{formula}
+
+L'idée est donc de poser un $\theta_{1}$ fixe pour évaluer la forme du ratio de la vraisemblance. Selon la croissance ou décroissance de la fonction, ainsi que l'hypothèse, on peut établir une région pour laquelle une augmentation du $\theta_{1}$ maintient la relation. \\
+
+La région uniformément la plus puissante n'existe pas toujours, mais dans le cas qu'elle existe le théorème de Neymann-Pearson permet de la trouver.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test UMP selon les NDC de M.-P.	%%%%	
@@ -1566,7 +1590,7 @@ Le test n'existe pas toujours, mais dans le cas qu'il existe le théorème de Ne
 %%%	Région de réjection
 %%%	Erreurs de type I et II
 %%%		Tests optimaux
-%		Lemme de Neymann-Pearson
+%%%		Lemme de Neymann-Pearson
 %		Ratio de vraisemblance
 %%%	Valeurs critique et seuil observé
 %%%	Test unilatéral et bilatéral
@@ -1589,17 +1613,17 @@ Le test n'existe pas toujours, mais dans le cas qu'il existe le théorème de Ne
 %	Test d'adéquation
 %		Fonction de répartition empirique
 %		Test de Kolmogorov-Smirnov
-%		Test du khi-carré de Pearson
-%			design multinomial
+%%%		Test du khi-carré de Pearson
+%%%			design multinomial
 %%%		Tableau de contingence
 %		Test d'indépendance du khi-carré
 
 %\subsection{Exhaustivité}
-%%	Contenu à y inclure
-%	Définition de l'exhaustivité
-%	Théorème de factorisation de Fisher-Neymann
-%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
-%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
+%	Contenu à y inclure
+%%%	Définition de l'exhaustivité
+%%%	Théorème de factorisation de Fisher-Neymann
+%%%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
+%%%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
 %	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
 %	MVUE
 %		Élaboration sur le MVUE
@@ -1651,12 +1675,35 @@ Dans le cas de données à deux dimensions, alias un tableau de contingence, on 
 \begin{itemize}
 	\item	On pose qu'il y a $c$ colonnes au tableau pour $r$ rangées (les rangées sont les différents ensembles) ;
 	\item	On peut donc tester si la distribution de la fréquence est identique pour les $c$ colonnes avec \lfbox[formula]{$Q	=	\sumz{r}{i	=	1}\sumz{c}{j	=	1}\frac{(O_{ij} - E_{ij})^{2}}{E_{ij}} \approx	\chi^{2}_{(r - 1) \cdot (c - 1)}$} ;
-	\item	Cette formule est beaucoup plus intuitive visuellement que par formule, pour la comprendre fwwaites un exemple.
+	\item	Cette formule est beaucoup plus intuitive visuellement que par formule; pour la comprendre, faites un exemple.
 \end{itemize}
 
+\columnbreak
+\subsection{Test du rapport de vraisemblance}
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}\\
+
+En fonction des observations, calculer :
+\begin{enumerate}
+	\item	Le maximum de vraisemblance sous l'hypothèse nulle ;
+	\item	Le maximum de vraisemblance sous l'hypothèse alternative
+\end{enumerate}
+La région critique correspond à la région pour laquelle le ratio des vraisemblances est en dessous d'une constante $k$.
+\begin{itemize}
+	\item	Si les deux hypothèses sont simple, ceci équivaut à utiliser le théorème de Neymann-Pearson.
+\end{itemize}
+\
+
+Cependant, il peut s'avérer difficile d'isoler une distribution dans le ratio. Pour des grands échantillons, on peut plutôt utiliser la distribution asymptotique.\\
+Soit une hypothèse nulle qui spécifie $k$ paramètre et une hypothèse alternative qui en spécifie seulement $l$ ($l < k$). Alors, la statistique du rapport de vraisemblance \lfbox[formula]{$Q	=	-2\left(\ln(\theta_{0})	-	\ln(\theta_{1})\right)	\sim	\chi^{2}_{k - l}$}.
+
+\
+
+Cette statistique est vue dans les modèles linéaires généralisés aussi.
 
 \columnbreak
 \section{Statistiques exhaustives}
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}\\
+
 \begin{definitionNOHFILL}[Statistique exhaustive]
 Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
 Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si la distribution conditionnelle $(X_{1}, \dots, X_{n} | T_{n})$ ne \textbf{dépend pas} de $\theta$.
