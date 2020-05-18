@@ -13,8 +13,8 @@
 \def\SectionColor{teal!90!black}
 \def\SubSectionColor{teal!45!black}
 \def\SubSubSectionColor{armygreen}
-\def\cours{GRF-II}
-\def\sigle{ACT-2011}
+\def\cours{gestion du risque financier}
+\def\sigle{ACT-2011 et ACT-1006}
 
 
 %% -----------------------------
@@ -39,6 +39,7 @@
 \raggedcolumns
 
 \begin{multicols*}{2}
+\part{Gestion des risques financiers II (ACT-2011)}
 
 \section{Introduction aux produits dérivés}
 
@@ -5259,6 +5260,271 @@ Fourni au détenteur une option à un temps futur déterminé. À l'échéance d
 \begin{definitionNOHFILLsub}[Options \og \textit{chooser} \fg{}]
 Permet au détenteur de choisir à un moment futur déterminé si l'option sera une option d'achat ou de vente européenne.
 \end{definitionNOHFILLsub}
+
+
+
+\pagebreak
+\part{Gestion des risques financiers I (ACT-1006)}
+
+\setcounter{secnumdepth}{6}
+\section{Mean-Variance Portfolio Theory}
+\subsection{Risque et rendement d'un actif}
+\begin{definitionNOHFILL}[Rendement effectif]
+Rendement réellement observé sur une période de temps. Mathématiquement, c'est le pourcentage d'augmentation de la valeur d'un titre proportionnellement au montant initialement investi.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$R_{t, t + 1}$]	Rendement sur le titre entre $t$ et $t + 1$ ;
+	\item[$P_{t}$]	Prix du titre au temps $t$ ;
+	\item[$D_{t + 1}$]	Dividende payable à $t$.
+\end{description}
+\end{distributions}
+
+Le rendement effectif de $t$ à $t + 1$ est donc :
+\begin{align*}
+R_{t, t + 1}
+	&=	\frac{{\color{teal}D_{t + 1} + }P_{t + 1} - P_{t}}{P_{t}}
+\end{align*}
+
+On peut séparer le rendement effectif en 2 composantes :
+\begin{description}
+	\item[\og \textit{Dividend yield} \fg{}]	$\tfrac{D_{t + 1}}{P_{t}}$.
+	\item[\og \textit{Capital gain rate} \fg{}]	$\tfrac{P_{t + 1} - P_{t}}{P_{t}}$.
+\end{description}
+
+\tcbline
+
+\begin{itemize}
+	\item	En anglais, \og \textit{realized return} \fg{}.
+\end{itemize}
+
+
+\begin{definitionNOHFILLsub}[Rendement effectif annuel]
+Pour calculer le taux de rendement effectif annuel lorsqu'il y a des dividendes, on multiplie le rendement par période de paiement pour l'obtenir sous base annuelle.	\\
+
+Par exemple, pour des dividendes semestriels: $1 + R_{\text{annuel}}	=	(1 + R_{t, t + 6/12}) \times (1 + R_{t + 6/12, t + 1})$.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Rendement annuel moyen]
+Le rendement annuel moyen sur une période de temps est la moyenne des rendements annuels.
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\bar{R}$]	Rendement annuel moyen.
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	\bar{R}
+	&=	\tfrac{1}{T} \sumz{T}{t	=	1}R_{t}
+\end{align*}
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Rendement espéré]
+Lorsqu'il y a plusieurs rendements possible pour un investissement, on calcule la moyenne pondérée des possibilités de rendements : 
+\begin{align*}
+	\text{E}[R]
+	&=	\sumz{n}{i	=	1} p_{i}R_{i}
+\end{align*}
+\end{definitionNOHFILL}
+
+\paragraph*{Mesures de la variabilité des rendements :}
+\begin{description}
+	\item[Variance]	Mesure la dispersion des rendements.
+		\begin{align*}
+		\text{Var}(R)
+		&=	\text{E}[(R_{i}	-	\text{E}[R]	)^{2}]
+		\end{align*}
+		\begin{itemize}
+		\item	La racine de la variance (l'écart type) est souvent appelé \textbf{la volatilité} ;
+		\item	On peut la considérer la variance soit comme la volatilité \textit{des rendements} ou la volatilité \textit{du titre} ;
+		\item	Si le rendement est sans risque, la variance sera nulle ;
+		\item	En théorie on connaît la moyenne, mais en réalité on doit l'estimer avec le rendement annuel moyen $\bar{R}$ :
+			\begin{align*}
+			\widehat{\text{Var}(R)}
+			&=	\tfrac{1}{T	-	1} \sumz{T}{t	=	1}(R_{t}	-	\bar{R})^{2}
+			\end{align*}
+		\end{itemize}
+	\item[Erreur type]	Mesure l'erreur d'estimation du vrai rendement espéré par le rendement moyen.
+		\begin{itemize}
+		\item	L'erreur type correspond à l'écart type du rendement moyen : \lfbox[formula]{$\text{Erreur type}	=	\tfrac{SD(\text{risque individuel})}{\sqrt{\text{nombre d'observations}}}$} ;
+		\item	On peut calculer un intervalle approximatif de confiance de 95\% avec $\text{rendement moyen empirique} \pm 2 \cdot \text{erreur type}$.
+		\end{itemize}
+\end{description}
+
+
+\columnbreak
+\subsection{Risque et rendement d'un portefeuille}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$R_{p}$]	Rendement du portefeuille.
+	\item[$w_{i}$]	Pourcentage du portefeuille investi dans l'actif $i$.
+		\begin{align*}
+		w_{i}
+		&=	\frac{\text{valeur de l'actif} i}{\text{valeur totale du ptf.}}
+		\end{align*}
+\end{description}
+\end{distributions}
+
+Le rendement du portefeuille est donc la moyenne pondérée des rendements sur chacun des actifs :
+\begin{align*}
+	R_{p}
+	&=	\sumz{n}{i	=	1} w_{i} R_{i}
+\end{align*}
+\begin{itemize}
+	\item	Le rendement espéré du portefeuille $\text{E}[R_{p}]$ est simplement la moyenne pondérée des rendements espérés $\text{E}[R_{i}]$.
+\end{itemize}
+
+\begin{definitionNOHFILL}[Covariance]
+Mesure le degré auquel la variabilité des deux titres bougent ensemble.
+
+\begin{align*}
+	\text{Cov}(R_{i}, R_{j})
+	&=	\text{E}[(R_{i}	-	\text{E}[R_{i}])(R_{j}	-	\text{E}[R_{j}])]	\\
+	\widehat{\text{Cov}}	(R_{i}, R_{j})
+	&=	\tfrac{1}{T	-	1} \sumz{T}{i	=	1} (R_{i, t}	-	\bar{R}_{i})(R_{j, t}	-	\bar{R}_{j})	\\
+\end{align*}
+
+\tcbline
+
+\begin{itemize}
+	\item	Le désavantage de la covariance est qu'elle varie selon l'échelle des variables mesurées ce qui complique son interprétation.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Corrélation]
+Mesure la puissance et de la direction de la relation linéaire entre les deux variables.
+
+\begin{align*}
+	\rho_{i, j}
+	&=	\frac{\text{Cov}	(R_{i}, R_{j})}{\sigma_{i}\sigma_{j}}
+\end{align*}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da7855246610174613] 
+\draw    (173,70) -- (446.16,70) (242,66) -- (242,74)(311,66) -- (311,74)(380,66) -- (380,74) ;
+\draw [shift={(446.16,70)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(173,70)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+
+% Text Node
+\draw (162,76) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle -1$};
+% Text Node
+\draw (443.46,76) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (306.23,76) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw  [draw opacity=0][fill={rgb, 255:red, 232; green, 137; blue, 149 }  ,fill opacity=0.34 ]  (129,16) -- (211,16) -- (211,60) -- (129,60) -- cycle  ;
+\draw (132,20) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 163; green, 5; blue, 24 }  ,opacity=1 ] [align=left] {
+\footnotesize\textcolor[rgb]{0.64,0.02,0.09}{\shortstack[c]{Bouge toujours\\ dans le sens\\ opposé}}};
+% Text Node
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 214; blue, 252 }  ,fill opacity=0.63 ]  (406,16) -- (488,16) -- (488,60) -- (406,60) -- cycle  ;
+\draw (409,20) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 163; green, 5; blue, 24 }  ,opacity=1 ] [align=left] {
+\footnotesize\textcolor[rgb]{0.28,0.52,0.8}{\shortstack[c]{Bouge toujours\\ dans le même\\ sens}}
+};
+
+% Text Node
+\draw (440.5,65) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 163; green, 5; blue, 24 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{73.02180000000001pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize \textcolor[rgb]{0.28,0.52,0.8}{corrélation}}\\{\footnotesize \textcolor[rgb]{0.28,0.52,0.8}{positive}}\\{\footnotesize \textcolor[rgb]{0.28,0.52,0.8}{parfaite }}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (59,66) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 163; green, 5; blue, 24 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{76.20964000000001pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize \textcolor[rgb]{0.64,0.02,0.09}{corrélation négative }}\\{\footnotesize \textcolor[rgb]{0.64,0.02,0.09}{parfaite }}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw  [draw opacity=0][fill={rgb, 255:red, 232; green, 137; blue, 149 }  ,fill opacity=0.19 ]  (202.17,73) -- (282.17,73) -- (282.17,117) -- (202.17,117) -- cycle  ;
+\draw (205.17,77) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 163; green, 5; blue, 24 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{52.126216pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize \textcolor[rgb]{0.64,0.02,0.09}{tendance à }}\\{\footnotesize \textcolor[rgb]{0.64,0.02,0.09}{bouger dans }}\\{\footnotesize \textcolor[rgb]{0.64,0.02,0.09}{le sens opposé}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw  [draw opacity=0][fill={rgb, 255:red, 182; green, 214; blue, 252 }  ,fill opacity=0.32 ]  (343.17,75) -- (418.17,75) -- (418.17,119) -- (343.17,119) -- cycle  ;
+\draw (346.17,79) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 163; green, 5; blue, 24 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{48.43585600000001pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize \textcolor[rgb]{0.28,0.52,0.8}{tendance à }}\\{\footnotesize \textcolor[rgb]{0.28,0.52,0.8}{bouger dans }}\\{\footnotesize \textcolor[rgb]{0.28,0.52,0.8}{le même sens}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (305,32) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \rho $};
+
+
+\end{tikzpicture}
+\end{center}
+
+\tcbline
+
+\begin{itemize}
+	\item	L'avantage de la corrélation est qu'elle n'est pas sur l'échelle des variables mesurées.
+\end{itemize}
+\end{definitionNOHFILL}
+
+Pour un portefeuille à 2 actifs, \lfbox[formula]{$\sigma_{p}^{2}	=	w_{1}^{2}\sigma_{R_{1}}^{2} + w_{2}^{2}\sigma_{R_{2}}^{2} + 2w_{1}w_{2}\rho_{1, 2}\sigma_{R_{1}, R_{2}}$}.\\
+Dans le cas plus général : 
+\begin{align*}
+	\text{Var}(R_{p})	
+	&=	\text{Cov}(R_{p}, R_{p})
+	=	\sumz{n}{i	=	1}\sumz{n}{j	=	1} w_{i}w_{j} \text{Cov}(R_{i}, R_{j})
+\end{align*}
+
+
+\columnbreak
+\subsection{Diversification}
+\begin{definitionNOHFILLprop}[Types de risque]
+\begin{description}
+	\item[Risque systématique]	Risque inhérent au marché. 
+		\begin{itemize}
+		\item	Alias, risque du marché ou \og \textit{undiversifiable risk} \fg{} en anglais ;
+		\item	Par exemple, les fluctuations due aux cycles économiques.
+		\end{itemize}
+	\item[Risque non-systématique]	Risque inhérent à une compagnie, ou industrie, particulière.
+		\begin{itemize}
+		\item	Alias, risque indépendant ou \og \textit{diversifiable risk} \fg{} en anglais ;
+		\item	Par exemple, la fluctuation de la valeur d'un titre découlant de nouvelles qui y sont spécifiques (p. ex., le prix de l'action d'Apple baisse de 3\$ après qu'ils annoncent une mise à pied d'employés).
+		\end{itemize}
+	\item[Diversification]	Réduis le risque relié au portefeuille d'une compagnie en agrégeant les fluctuations \underline{non systématiques}. 
+\end{description}
+\end{definitionNOHFILLprop}
+
+
+
+\columnbreak
+\subsection{Mean-Variance Portfolio Theory}
+
+
+
+\pagebreak
+\section{Assset Pricing Models}
+
+
+
+\pagebreak
+\section{Market Efficiency and Behavioural Finance}
+
+
+
+\pagebreak
+\section{Investment Risk and Project Analysis}
+
+
+
+\pagebreak
+\section{Capital Structure}
+
+
 
 \end{multicols*}
 

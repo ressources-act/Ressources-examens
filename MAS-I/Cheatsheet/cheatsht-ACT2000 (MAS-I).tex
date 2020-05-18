@@ -17,6 +17,7 @@
 %
 %	Extra math symbols
 %
+
 \usepackage{mathrsfs}
 %
 % 	thin space, limits underneath in displays
@@ -1811,6 +1812,8 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 
 \columnbreak
 \section{Statistiques d'ordre}
+%%%	NOTES :
+%%%	+	Ajouter des détails sur l arelation avec la loi Béta
 
 Soit un échantillon aléatoire de taille $n$.
 Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
@@ -1854,12 +1857,14 @@ De façon plus générale, on défini:
 	F_{X_{(k)}}(x)
 	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
 \end{align*}
+
+On peut observer que $X_{(k)}	\sim	Beta(\alpha	=	k, \beta	=	n - k + 1)$
 \end{algo}
 
 Nous pouvons également définir quelques autres statistiques d'intérêt :
 
 \begin{description}
-	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendu}e (range) est la différence entre le minimum et le maximum d'un échantillon.
+	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendue} (range) est la différence entre le minimum et le maximum d'un échantillon.
 		\begin{itemize}[leftmargin = *]
 		\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
 		\item	Par exemple, supposons qu’on observe des données historiques de température pour le 1er septembre. \\
@@ -1910,6 +1915,201 @@ Finalement, on définit la distribution conjointe du minimum et du maximum $\for
 	f_{X_{(1)}, X_{(n)}}(x, y)
 	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
 \end{align*}
+
+\columnbreak
+\subsection{Q-Q plots}
+Pour $n$ données observées, la $k^{\text{e}}$ statistique d'ordre $Y_{(k)}$ est le $\frac{k}{(n + 1)}^{\text{e}}$ quantile.
+
+Un sommaire à cinq chiffres consiste de :
+\begin{enumerate}
+	\item	Le minimum.
+	\item	Le premier quartile $Q_{1}$.
+	\item	La médiane (deuxième quartile) $Q_{2}$.
+	\item	Le troisième quartile $Q_{3}$.
+	\item	Le maximum.
+\end{enumerate}
+
+Ces chiffres forment d'ailleurs le diagramme de boîte à moustaches (\og \textit{boxplot} \fg{}) avec \lfbox[conditions]{$h = 1.5 \cdot (Q_{3} - Q_{1})$} : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da129737114081373] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (181,70) -- (181,144) ;
+%Straight Lines [id:da6241443915481115] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (181,184) -- (181,229) ;
+%Shape: Rectangle [id:dp9646011782302748] 
+\draw   (146,144) -- (216,144) -- (216,184) -- (146,184) -- cycle ;
+%Straight Lines [id:da9057676058861892] 
+\draw    (153.75,229) -- (208.25,229) ;
+%Straight Lines [id:da28703820276341374] 
+\draw    (153.75,70) -- (208.25,70) ;
+%Straight Lines [id:da23169419071689368] 
+\draw [line width=2.25]    (145.75,168) -- (216.5,168) ;
+%Shape: Circle [id:dp21208293035447068] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (177,61) .. controls (177,59.34) and (178.34,58) .. (180,58) .. controls (181.66,58) and (183,59.34) .. (183,61) .. controls (183,62.66) and (181.66,64) .. (180,64) .. controls (178.34,64) and (177,62.66) .. (177,61) -- cycle ;
+%Shape: Circle [id:dp06804994911291695] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (177,49) .. controls (177,47.34) and (178.34,46) .. (180,46) .. controls (181.66,46) and (183,47.34) .. (183,49) .. controls (183,50.66) and (181.66,52) .. (180,52) .. controls (178.34,52) and (177,50.66) .. (177,49) -- cycle ;
+%Shape: Brace [id:dp16337358256224843] 
+\draw   (211,65) .. controls (213.97,65) and (215.46,63.51) .. (215.46,60.54) -- (215.46,60.54) .. controls (215.46,56.29) and (216.95,54.17) .. (219.92,54.17) .. controls (216.95,54.17) and (215.46,52.04) .. (215.46,47.79)(215.46,49.71) -- (215.46,47.79) .. controls (215.46,44.82) and (213.97,43.33) .. (211,43.33) ;
+%Straight Lines [id:da0690372797278489] 
+\draw [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ]   (120,40) -- (120,142.67) ;
+\draw [shift={(120,142.67)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(120,40)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da0032989468420259183] 
+\draw [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ]   (120,142.67) -- (120,165.67) ;
+\draw [shift={(120,165.67)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(120,142.67)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da7171607128941915] 
+\draw [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ]   (120,166.33) -- (120,183.33) ;
+\draw [shift={(120,183.33)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(120,166.33)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da8789207501910292] 
+\draw [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ]   (120,182.67) -- (120,239.67) ;
+\draw [shift={(120,239.67)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(120,182.67)}, rotate = 270] [color={rgb, 255:red, 36; green, 61; blue, 89 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+
+% Text Node
+\draw (221,37) node [anchor=north west][inner sep=0.75pt] [font=\footnotesize]  [align=left] {
+\shortstack[l]{potentiellement des\\ valeurs extrêmes}};
+% Text Node
+\draw (218,137) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle Q_{3}$};
+% Text Node
+\draw (217.5,177) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle Q_{1}$};
+% Text Node
+\draw (218,160) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {Médiane ($\displaystyle Q_{2}$)};
+% Text Node
+\draw (62,16) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 36; green, 61; blue, 89 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{49.455856000000004pt}\setlength\topsep{0pt}
+\begin{center}
+Proportion \\des données
+\end{center}
+\end{minipage}};
+% Text Node
+\draw (84,84.33) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 36; green, 61; blue, 89 }  ,opacity=1 ] [align=left] {$\displaystyle 25\%$};
+% Text Node
+\draw (84,147.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 36; green, 61; blue, 89 }  ,opacity=1 ] [align=left] {$\displaystyle 25\%$};
+% Text Node
+\draw (84,167.83) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 36; green, 61; blue, 89 }  ,opacity=1 ] [align=left] {$\displaystyle 25\%$};
+% Text Node
+\draw (84,204.17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 36; green, 61; blue, 89 }  ,opacity=1 ] [align=left] {$\displaystyle 25\%$};
+% Text Node
+\draw (210,66) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle Q_{3} +h$};
+% Text Node
+\draw (210,223) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle Q_{1} -h$};
+\end{tikzpicture}
+\end{center}
+
+En pratique, on pose souvent que les données suivent une distribution. Un q-q plot permet de comparer les quantiles théoriques aux quantiles empiriques observés. 
+\begin{itemize}
+	\item	Il s'ensuit que l'on connait la distribution, mais pas les paramètres ;
+	\item	Dans le cas d'une loi normale, on peut centrer et réduire pour obtenir $Z$ ce qui correspond donc à une q-q plot \textbf{normale} ;
+	\item	\hl{Autrement, on estime les paramètres avec l'échantillon} (\underline{vérifier}).
+\end{itemize}
+
+Par exemple :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp6907328462183413] 
+\draw  (159.17,162) -- (308.17,162)(159.17,21) -- (159.17,162) -- cycle (301.17,157) -- (308.17,162) -- (301.17,167) (154.17,28) -- (159.17,21) -- (164.17,28)  ;
+%Straight Lines [id:da2684391209424455] 
+\draw [line width=2.25]    (179,157) -- (179,167) ;
+%Straight Lines [id:da26665731526815106] 
+\draw [line width=2.25]    (206,157) -- (206,167) ;
+%Straight Lines [id:da5458795480754546] 
+\draw [line width=2.25]    (235,157) -- (235,167) ;
+%Straight Lines [id:da7749608799910399] 
+\draw [line width=2.25]    (263,157) -- (263,167) ;
+%Straight Lines [id:da781366529806411] 
+\draw [line width=2.25]    (292,157) -- (292,167) ;
+%Straight Lines [id:da5656665110363344] 
+\draw [line width=2.25]    (153.67,39) -- (164.5,39) ;
+%Straight Lines [id:da06457141428798874] 
+\draw [line width=2.25]    (153.67,77) -- (164.5,77) ;
+%Straight Lines [id:da07440013590512717] 
+\draw [line width=2.25]    (153.67,110) -- (164.5,110) ;
+%Straight Lines [id:da7046117446976516] 
+\draw [line width=2.25]    (153.67,144) -- (164.5,144) ;
+%Flowchart: Connector [id:dp26709638677620307] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (187,142.42) .. controls (187,140.99) and (188.16,139.83) .. (189.58,139.83) .. controls (191.01,139.83) and (192.17,140.99) .. (192.17,142.42) .. controls (192.17,143.84) and (191.01,145) .. (189.58,145) .. controls (188.16,145) and (187,143.84) .. (187,142.42) -- cycle ;
+%Flowchart: Connector [id:dp9807914547061263] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (183,148.42) .. controls (183,146.99) and (184.16,145.83) .. (185.58,145.83) .. controls (187.01,145.83) and (188.17,146.99) .. (188.17,148.42) .. controls (188.17,149.84) and (187.01,151) .. (185.58,151) .. controls (184.16,151) and (183,149.84) .. (183,148.42) -- cycle ;
+%Flowchart: Connector [id:dp15148611073322638] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (195,139.42) .. controls (195,137.99) and (196.16,136.83) .. (197.58,136.83) .. controls (199.01,136.83) and (200.17,137.99) .. (200.17,139.42) .. controls (200.17,140.84) and (199.01,142) .. (197.58,142) .. controls (196.16,142) and (195,140.84) .. (195,139.42) -- cycle ;
+%Flowchart: Connector [id:dp8718571676300524] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (201,135.42) .. controls (201,133.99) and (202.16,132.83) .. (203.58,132.83) .. controls (205.01,132.83) and (206.17,133.99) .. (206.17,135.42) .. controls (206.17,136.84) and (205.01,138) .. (203.58,138) .. controls (202.16,138) and (201,136.84) .. (201,135.42) -- cycle ;
+%Flowchart: Connector [id:dp6298382695689162] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (206,132.42) .. controls (206,130.99) and (207.16,129.83) .. (208.58,129.83) .. controls (210.01,129.83) and (211.17,130.99) .. (211.17,132.42) .. controls (211.17,133.84) and (210.01,135) .. (208.58,135) .. controls (207.16,135) and (206,133.84) .. (206,132.42) -- cycle ;
+%Flowchart: Connector [id:dp7974400157875505] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (214,124.42) .. controls (214,122.99) and (215.16,121.83) .. (216.58,121.83) .. controls (218.01,121.83) and (219.17,122.99) .. (219.17,124.42) .. controls (219.17,125.84) and (218.01,127) .. (216.58,127) .. controls (215.16,127) and (214,125.84) .. (214,124.42) -- cycle ;
+%Flowchart: Connector [id:dp18385794853649817] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (222,121.42) .. controls (222,119.99) and (223.16,118.83) .. (224.58,118.83) .. controls (226.01,118.83) and (227.17,119.99) .. (227.17,121.42) .. controls (227.17,122.84) and (226.01,124) .. (224.58,124) .. controls (223.16,124) and (222,122.84) .. (222,121.42) -- cycle ;
+%Flowchart: Connector [id:dp41038901090251567] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (230,119.42) .. controls (230,117.99) and (231.16,116.83) .. (232.58,116.83) .. controls (234.01,116.83) and (235.17,117.99) .. (235.17,119.42) .. controls (235.17,120.84) and (234.01,122) .. (232.58,122) .. controls (231.16,122) and (230,120.84) .. (230,119.42) -- cycle ;
+%Flowchart: Connector [id:dp9668794505330132] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (240,107.42) .. controls (240,105.99) and (241.16,104.83) .. (242.58,104.83) .. controls (244.01,104.83) and (245.17,105.99) .. (245.17,107.42) .. controls (245.17,108.84) and (244.01,110) .. (242.58,110) .. controls (241.16,110) and (240,108.84) .. (240,107.42) -- cycle ;
+%Flowchart: Connector [id:dp23760159423012994] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (244,99.42) .. controls (244,97.99) and (245.16,96.83) .. (246.58,96.83) .. controls (248.01,96.83) and (249.17,97.99) .. (249.17,99.42) .. controls (249.17,100.84) and (248.01,102) .. (246.58,102) .. controls (245.16,102) and (244,100.84) .. (244,99.42) -- cycle ;
+%Flowchart: Connector [id:dp9760550495862494] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (252,94.42) .. controls (252,92.99) and (253.16,91.83) .. (254.58,91.83) .. controls (256.01,91.83) and (257.17,92.99) .. (257.17,94.42) .. controls (257.17,95.84) and (256.01,97) .. (254.58,97) .. controls (253.16,97) and (252,95.84) .. (252,94.42) -- cycle ;
+%Flowchart: Connector [id:dp09806905504709196] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (258,93.42) .. controls (258,91.99) and (259.16,90.83) .. (260.58,90.83) .. controls (262.01,90.83) and (263.17,91.99) .. (263.17,93.42) .. controls (263.17,94.84) and (262.01,96) .. (260.58,96) .. controls (259.16,96) and (258,94.84) .. (258,93.42) -- cycle ;
+%Flowchart: Connector [id:dp21547983210697952] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (265,92.42) .. controls (265,90.99) and (266.16,89.83) .. (267.58,89.83) .. controls (269.01,89.83) and (270.17,90.99) .. (270.17,92.42) .. controls (270.17,93.84) and (269.01,95) .. (267.58,95) .. controls (266.16,95) and (265,93.84) .. (265,92.42) -- cycle ;
+%Flowchart: Connector [id:dp13436174967362358] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (271,88.42) .. controls (271,86.99) and (272.16,85.83) .. (273.58,85.83) .. controls (275.01,85.83) and (276.17,86.99) .. (276.17,88.42) .. controls (276.17,89.84) and (275.01,91) .. (273.58,91) .. controls (272.16,91) and (271,89.84) .. (271,88.42) -- cycle ;
+%Flowchart: Connector [id:dp6321990138892946] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (279,85.42) .. controls (279,83.99) and (280.16,82.83) .. (281.58,82.83) .. controls (283.01,82.83) and (284.17,83.99) .. (284.17,85.42) .. controls (284.17,86.84) and (283.01,88) .. (281.58,88) .. controls (280.16,88) and (279,86.84) .. (279,85.42) -- cycle ;
+%Flowchart: Connector [id:dp8650742018499089] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (286,79.42) .. controls (286,77.99) and (287.16,76.83) .. (288.58,76.83) .. controls (290.01,76.83) and (291.17,77.99) .. (291.17,79.42) .. controls (291.17,80.84) and (290.01,82) .. (288.58,82) .. controls (287.16,82) and (286,80.84) .. (286,79.42) -- cycle ;
+%Flowchart: Connector [id:dp8249100072120605] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (293,71.42) .. controls (293,69.99) and (294.16,68.83) .. (295.58,68.83) .. controls (297.01,68.83) and (298.17,69.99) .. (298.17,71.42) .. controls (298.17,72.84) and (297.01,74) .. (295.58,74) .. controls (294.16,74) and (293,72.84) .. (293,71.42) -- cycle ;
+%Flowchart: Connector [id:dp5353454981608219] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (299,60.42) .. controls (299,58.99) and (300.16,57.83) .. (301.58,57.83) .. controls (303.01,57.83) and (304.17,58.99) .. (304.17,60.42) .. controls (304.17,61.84) and (303.01,63) .. (301.58,63) .. controls (300.16,63) and (299,61.84) .. (299,60.42) -- cycle ;
+
+
+% Text Node
+\draw (183,5) node [anchor=north west][inner sep=0.75pt]   [align=left] {\underline{QQ plot}};
+% Text Node
+\draw (205,188) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{40.828356pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize quantiles }\\{\footnotesize théoriques}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (63.5,63.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{42.634572pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize quantiles }\\{\footnotesize empiriques}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (166.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (194.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 10$};
+% Text Node
+\draw (230.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 15$};
+% Text Node
+\draw (259.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 20$};
+% Text Node
+\draw (287.62,170.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 25$};
+% Text Node
+\draw (136.62,144.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (136.62,117.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 10$};
+% Text Node
+\draw (136.62,81.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 15$};
+% Text Node
+\draw (136.62,47.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 20$};
+\end{tikzpicture}
+
+\end{center}
+
 
 \columnbreak
 \section{Construction d'estimateurs}
@@ -2964,6 +3164,7 @@ Données tronquées vers la gauche avec un déductible de $d$:\\
 \section{Évaluation et sélection de modèles}
 \subsection{Graphiquement}
 Densité empirique
+
 
 \subsection{Tests de mauvaise classification et diagnostiques}
 Test de Kolmogorov-Smirnov
