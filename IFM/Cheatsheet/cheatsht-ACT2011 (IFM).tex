@@ -16,7 +16,6 @@
 \def\cours{gestion du risque financier}
 \def\sigle{ACT-2011 et ACT-1006}
 
-
 %% -----------------------------
 %% Section
 %%	+	assure que les sections sont numérotées mais pas les sous-sections et plus tout en les mettant dans le TOC
@@ -5810,12 +5809,12 @@ Soit un portefeuille composé à $x\%$ d'un portefeuille risqué et à $(1 - x)\
 
 On trouve que le rendement espéré du portefeuille est \lfbox[formula]{$\text{E}[R_{xP}]	=	r_{f} + x(\text{E}[R_{P}] - r_{f})$} et que la volatilité est \lfbox[formula]{$\sigma_{xP}	=	x\sigma_{P}$}. 
 
-\begin{definitionNOHFILL}[Ligne d'allocation du capital]
+\begin{definitionNOHFILL}[Droite d'allocation du capital]
 %%	------------------------
 %%%	NOTES
 %%%	+	Clarifier cette définition.
 %%%	------------------------
-La ligne d'allocation du capital (AC) décrit les rendements espérés et volatilités possibles des différentes combinaisons d'un portefeuille risqué et d'un actif sans risque :
+La droite d'allocation du capital (AC) décrit les rendements espérés et volatilités possibles des différentes combinaisons d'un portefeuille risqué et d'un actif sans risque :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -5872,7 +5871,7 @@ On trouve \lfbox[conditions]{$x	=	\frac{\sigma_{xP}}{\sigma_{P}}$} avec l'équat
 
 \begin{itemize}
 	\item	En anglais, \og \textit{capital allocation line (CAL)} \fg{} ;
-	\item	La pente de la ligne d'AC représente le rendement additionnel disponible par incrément d'une unité de risque et équivaut au \textit{\textbf{ratio de Sharpe}}.
+	\item	La pente de la droite d'AC représente le rendement additionnel disponible par incrément d'une unité de risque et équivaut au \textit{\textbf{ratio de Sharpe}}.
 \end{itemize}
 \end{definitionNOHFILL}
 
@@ -5888,7 +5887,7 @@ Emprunter au taux sans risque puis acheter des actions risqués.
 Portefeuille qui consiste d'une position courte sur l'actif sans risque.
 \begin{itemize}
 	\item	En anglais, \og \textit{levered portfolio} \fg{} ;
-	\item	Visuellement, ceci équivaut au pointillé de la ligne d'AC ;
+	\item	Visuellement, ceci équivaut au pointillé de la droite d'AC ;
 	\item	Il s'ensuit qu'une vente à découvert implique un rendement \textit{et} une volatilité plus élevée.
 \end{itemize}
 
@@ -5899,7 +5898,7 @@ Alors, $x	=	300\%	=	3$ puisque la portion risquée du portefeuille équivaut à 
 \end{definitionNOHFILLsub}
 
 
-Avec la ligne de l'AC et la frontière efficiente, on peut trouver le \textbf{portefeuille risqué optimal} $P$ :
+Avec la droite de l'AC et la frontière efficiente, on peut trouver le \textbf{portefeuille risqué optimal} $P$ :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -5961,17 +5960,17 @@ rendement \\espéré
 
 
 \columnbreak
-\subsubsection{Ligne du marché des capitaux}
+\subsubsection{Droite du marché des capitaux}
 \begin{rappel_enhanced}[Contexte]
-Si chaque investisseur a des attentes de rendement espéré, volatilité et corrélation différentes, alors chaque investisseur aura une ligne d'AC et un portefeuille risqué optimal différent.\\
+Si chaque investisseur a des attentes de rendement espéré, volatilité et corrélation différentes, alors chaque investisseur aura une droite d'AC et un portefeuille risqué optimal différent.\\
 
 Cependant, afin de simplifier l'analyse moyenne-variance on pose habituellement que les investisseurs ont des espérances homogènes et donc qu'ils ont tous la même estimation de la volatilité, de la corrélation et du rendement espéré de titres financiers.
 \end{rappel_enhanced}
 
-L'hypothèse que les attentes des investisseurs sont homogènes implique également une même ligne d'AC et un même portefeuille optimal pour le marché.
+L'hypothèse que les attentes des investisseurs sont homogènes implique également une même droite d'AC et un même portefeuille optimal pour le marché.
 
-\begin{definitionNOHFILL}[Portefeuille du marché]
-Portefeuille optimal du marché.
+\begin{definitionNOHFILL}[Portefeuille du marché (PM)]
+Portefeuille optimal du marché (PM).
 \begin{itemize}
 	\item	En théorie, il est composé de toutes les actions et tous les titres financiers risqués du marché ;
 	\item	En pratique, ceci est impossible et l'on utilise un indice tel que le S\&P 500 ;
@@ -5979,8 +5978,8 @@ Portefeuille optimal du marché.
 \end{itemize}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Ligne du marché des capitaux]
-Ligne d'AC du marché.
+\begin{definitionNOHFILL}[Droite du marché des capitaux]
+Droite d'AC du marché.
 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -6018,7 +6017,7 @@ rendement \\espéré
 % Text Node
 \draw (178,24) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{63.053pt}\setlength\topsep{0pt}
 \begin{center}
-{\footnotesize \textcolor[rgb]{0.56,0.07,1}{ligne du marché }}\\{\footnotesize \textcolor[rgb]{0.56,0.07,1}{des capitaux}}
+{\footnotesize \textcolor[rgb]{0.56,0.07,1}{droite du marché }}\\{\footnotesize \textcolor[rgb]{0.56,0.07,1}{des capitaux}}
 \end{center}
 
 \end{minipage}};
@@ -6063,7 +6062,16 @@ La règle générale est donc d'ajouter un investissement au portefeuille si \lf
 
 \pagebreak
 \section{Assset Pricing Models}
-\subsection{Capital Asset Pricing Model}
+\subsection{Modèle d'évaluation des actifs financiers}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$r_{i}$]	Coût du capital pour l'investissement $i$.
+	\item[$\text{E}\lbrack R_{i} \rbrack$]	Rendement espéré pour l'investissement $i$.
+	\item[$\beta_{i}$]	Beta de l'investissement $i$.
+	\item[$\text{E}\lbrack R_{M} \rbrack$]	Rendement espéré du marché.
+\end{description}
+\end{distributions}
+
 \begin{definitionNOHFILLsub}[Coût du capital]
 Le rendement requis sur un actif (portefeuille, projet, etc.) pour qu'un individu investisse ses \textit{actifs} dans une entreprise.	\\
  C'est à dire, le "coût" pour qu'une compagnie obtienne des \textit{capitaux propres}.
@@ -6073,29 +6081,442 @@ Le rendement requis sur un actif (portefeuille, projet, etc.) pour qu'un individ
 \end{itemize}
 
 \end{definitionNOHFILLsub}
-\subsubsection{Beta}
+
+\begin{definitionNOHFILLsub}[Beta $\beta$ d'un actif]
+Mesure du risque systémique d'un actif calculé en mesurant la sensibilité du rendement d'un actif relative au rendement du marché.
+\begin{itemize}
+	\item	En moyenne, \textbf{le beta d'une action est d'environ 1}.
+	\item	Les industries plus sensibles aux chocs économiques ont tendance à avoir des betas plus élevés.
+		\begin{itemize}
+		\item	 Par exemple, le secteur de luxe.
+		\end{itemize}
+	\item	Les industries moins sensibles aux fluctuations du marché ont tendance à avoir des betas plus faibles.
+		\begin{itemize}
+		\item	Par exemple, le secteur pharmaceutique qui est stable et très réglementé.
+		\end{itemize}
+	\item	Le Beta d'un portefeuille $P$ est simplement la moyenne pondérée $\sum_{i = 1}^{n} w_{i} \beta_{i}$.
+\end{itemize}
+
+\tcbline
+
+Le beta de l'actif $i$ est calculé par \lfbox[formula]{$\beta_{i}	=	\frac{\sigma_{i, M}}{\sigma^{2}_{M}}	=	\rho_{i, M}\frac{\sigma_{i}}{\sigma_{M}}$}.
+
+La règle générale est donc :
+\begin{description}
+	\item[$\beta > 1$]	l'actif a un risque systémique plus important que le marché.
+	\item[$\beta = 1$]	l'actif a le même risque systémique que le marché.
+	\item[$\beta < 1$]	l'actif a un risque systémique moins important que le marché.
+	\item[$\beta = 0$]	le rendement de l'actif n'est pas corrélé à celui du marché.
+\end{description}
+\end{definitionNOHFILLsub}
+
+Avec une régression, on peut estimer le beta de l'actif en le considérant comme la pente et en considérant le rendement de l'actif $\alpha$ comme l'intercepte :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp954299495869529] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da7226226944481302] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (264.3,49.92) -- (118,145) ;
+%Shape: Circle [id:dp34497809539226076] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (159.52,119) .. controls (159.52,117.63) and (160.63,116.52) .. (162,116.52) .. controls (163.37,116.52) and (164.48,117.63) .. (164.48,119) .. controls (164.48,120.37) and (163.37,121.48) .. (162,121.48) .. controls (160.63,121.48) and (159.52,120.37) .. (159.52,119) -- cycle ;
+%Shape: Circle [id:dp6402608510945291] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (165.95,115.52) .. controls (165.95,114.16) and (167.06,113.05) .. (168.43,113.05) .. controls (169.79,113.05) and (170.9,114.16) .. (170.9,115.52) .. controls (170.9,116.89) and (169.79,118) .. (168.43,118) .. controls (167.06,118) and (165.95,116.89) .. (165.95,115.52) -- cycle ;
+%Shape: Circle [id:dp8456764702313726] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (160,114.52) .. controls (160,113.16) and (161.11,112.05) .. (162.48,112.05) .. controls (163.84,112.05) and (164.95,113.16) .. (164.95,114.52) .. controls (164.95,115.89) and (163.84,117) .. (162.48,117) .. controls (161.11,117) and (160,115.89) .. (160,114.52) -- cycle ;
+%Shape: Circle [id:dp9296589117050036] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (175.95,113.52) .. controls (175.95,112.16) and (177.06,111.05) .. (178.43,111.05) .. controls (179.79,111.05) and (180.9,112.16) .. (180.9,113.52) .. controls (180.9,114.89) and (179.79,116) .. (178.43,116) .. controls (177.06,116) and (175.95,114.89) .. (175.95,113.52) -- cycle ;
+%Shape: Circle [id:dp32028035526501264] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (169.95,106.52) .. controls (169.95,105.16) and (171.06,104.05) .. (172.43,104.05) .. controls (173.79,104.05) and (174.9,105.16) .. (174.9,106.52) .. controls (174.9,107.89) and (173.79,109) .. (172.43,109) .. controls (171.06,109) and (169.95,107.89) .. (169.95,106.52) -- cycle ;
+%Shape: Circle [id:dp4483415592018749] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (179.95,104.52) .. controls (179.95,103.16) and (181.06,102.05) .. (182.43,102.05) .. controls (183.79,102.05) and (184.9,103.16) .. (184.9,104.52) .. controls (184.9,105.89) and (183.79,107) .. (182.43,107) .. controls (181.06,107) and (179.95,105.89) .. (179.95,104.52) -- cycle ;
+%Shape: Circle [id:dp7294239015186668] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (178.95,99.57) .. controls (178.95,98.21) and (180.06,97.1) .. (181.43,97.1) .. controls (182.79,97.1) and (183.9,98.21) .. (183.9,99.57) .. controls (183.9,100.94) and (182.79,102.05) .. (181.43,102.05) .. controls (180.06,102.05) and (178.95,100.94) .. (178.95,99.57) -- cycle ;
+%Shape: Circle [id:dp26318786151365026] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (188.95,106.52) .. controls (188.95,105.16) and (190.06,104.05) .. (191.43,104.05) .. controls (192.79,104.05) and (193.9,105.16) .. (193.9,106.52) .. controls (193.9,107.89) and (192.79,109) .. (191.43,109) .. controls (190.06,109) and (188.95,107.89) .. (188.95,106.52) -- cycle ;
+%Shape: Circle [id:dp6296378002703897] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (183,105.52) .. controls (183,104.16) and (184.11,103.05) .. (185.48,103.05) .. controls (186.84,103.05) and (187.95,104.16) .. (187.95,105.52) .. controls (187.95,106.89) and (186.84,108) .. (185.48,108) .. controls (184.11,108) and (183,106.89) .. (183,105.52) -- cycle ;
+%Shape: Circle [id:dp3909707695009883] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (198.95,104.52) .. controls (198.95,103.16) and (200.06,102.05) .. (201.43,102.05) .. controls (202.79,102.05) and (203.9,103.16) .. (203.9,104.52) .. controls (203.9,105.89) and (202.79,107) .. (201.43,107) .. controls (200.06,107) and (198.95,105.89) .. (198.95,104.52) -- cycle ;
+%Shape: Circle [id:dp37192864439485507] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (192.95,97.52) .. controls (192.95,96.16) and (194.06,95.05) .. (195.43,95.05) .. controls (196.79,95.05) and (197.9,96.16) .. (197.9,97.52) .. controls (197.9,98.89) and (196.79,100) .. (195.43,100) .. controls (194.06,100) and (192.95,98.89) .. (192.95,97.52) -- cycle ;
+%Shape: Circle [id:dp9063049345924845] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (202.95,95.52) .. controls (202.95,94.16) and (204.06,93.05) .. (205.43,93.05) .. controls (206.79,93.05) and (207.9,94.16) .. (207.9,95.52) .. controls (207.9,96.89) and (206.79,98) .. (205.43,98) .. controls (204.06,98) and (202.95,96.89) .. (202.95,95.52) -- cycle ;
+%Shape: Circle [id:dp04049095390820612] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (201.95,90.57) .. controls (201.95,89.21) and (203.06,88.1) .. (204.43,88.1) .. controls (205.79,88.1) and (206.9,89.21) .. (206.9,90.57) .. controls (206.9,91.94) and (205.79,93.05) .. (204.43,93.05) .. controls (203.06,93.05) and (201.95,91.94) .. (201.95,90.57) -- cycle ;
+%Shape: Circle [id:dp6059624038987319] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (172.95,120.52) .. controls (172.95,119.16) and (174.06,118.05) .. (175.43,118.05) .. controls (176.79,118.05) and (177.9,119.16) .. (177.9,120.52) .. controls (177.9,121.89) and (176.79,123) .. (175.43,123) .. controls (174.06,123) and (172.95,121.89) .. (172.95,120.52) -- cycle ;
+%Shape: Circle [id:dp3269650983328478] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (171.95,115.57) .. controls (171.95,114.21) and (173.06,113.1) .. (174.43,113.1) .. controls (175.79,113.1) and (176.9,114.21) .. (176.9,115.57) .. controls (176.9,116.94) and (175.79,118.05) .. (174.43,118.05) .. controls (173.06,118.05) and (171.95,116.94) .. (171.95,115.57) -- cycle ;
+%Shape: Circle [id:dp7344316786920082] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (176,121.52) .. controls (176,120.16) and (177.11,119.05) .. (178.48,119.05) .. controls (179.84,119.05) and (180.95,120.16) .. (180.95,121.52) .. controls (180.95,122.89) and (179.84,124) .. (178.48,124) .. controls (177.11,124) and (176,122.89) .. (176,121.52) -- cycle ;
+%Shape: Circle [id:dp9043815174185361] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (191.95,120.52) .. controls (191.95,119.16) and (193.06,118.05) .. (194.43,118.05) .. controls (195.79,118.05) and (196.9,119.16) .. (196.9,120.52) .. controls (196.9,121.89) and (195.79,123) .. (194.43,123) .. controls (193.06,123) and (191.95,121.89) .. (191.95,120.52) -- cycle ;
+%Shape: Circle [id:dp6403448546401829] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (185.95,113.52) .. controls (185.95,112.16) and (187.06,111.05) .. (188.43,111.05) .. controls (189.79,111.05) and (190.9,112.16) .. (190.9,113.52) .. controls (190.9,114.89) and (189.79,116) .. (188.43,116) .. controls (187.06,116) and (185.95,114.89) .. (185.95,113.52) -- cycle ;
+%Shape: Circle [id:dp9756624389793735] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (195.95,111.52) .. controls (195.95,110.16) and (197.06,109.05) .. (198.43,109.05) .. controls (199.79,109.05) and (200.9,110.16) .. (200.9,111.52) .. controls (200.9,112.89) and (199.79,114) .. (198.43,114) .. controls (197.06,114) and (195.95,112.89) .. (195.95,111.52) -- cycle ;
+%Shape: Circle [id:dp6881446735982482] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (194.95,106.57) .. controls (194.95,105.21) and (196.06,104.1) .. (197.43,104.1) .. controls (198.79,104.1) and (199.9,105.21) .. (199.9,106.57) .. controls (199.9,107.94) and (198.79,109.05) .. (197.43,109.05) .. controls (196.06,109.05) and (194.95,107.94) .. (194.95,106.57) -- cycle ;
+%Shape: Circle [id:dp9019609351617717] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (174.95,90.52) .. controls (174.95,89.16) and (176.06,88.05) .. (177.43,88.05) .. controls (178.79,88.05) and (179.9,89.16) .. (179.9,90.52) .. controls (179.9,91.89) and (178.79,93) .. (177.43,93) .. controls (176.06,93) and (174.95,91.89) .. (174.95,90.52) -- cycle ;
+%Shape: Circle [id:dp5095757141009629] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (173.95,85.57) .. controls (173.95,84.21) and (175.06,83.1) .. (176.43,83.1) .. controls (177.79,83.1) and (178.9,84.21) .. (178.9,85.57) .. controls (178.9,86.94) and (177.79,88.05) .. (176.43,88.05) .. controls (175.06,88.05) and (173.95,86.94) .. (173.95,85.57) -- cycle ;
+%Shape: Circle [id:dp26502193850533184] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (178,91.52) .. controls (178,90.16) and (179.11,89.05) .. (180.48,89.05) .. controls (181.84,89.05) and (182.95,90.16) .. (182.95,91.52) .. controls (182.95,92.89) and (181.84,94) .. (180.48,94) .. controls (179.11,94) and (178,92.89) .. (178,91.52) -- cycle ;
+%Shape: Circle [id:dp6985436023539344] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (193.95,90.52) .. controls (193.95,89.16) and (195.06,88.05) .. (196.43,88.05) .. controls (197.79,88.05) and (198.9,89.16) .. (198.9,90.52) .. controls (198.9,91.89) and (197.79,93) .. (196.43,93) .. controls (195.06,93) and (193.95,91.89) .. (193.95,90.52) -- cycle ;
+%Shape: Circle [id:dp2949791823193908] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (187.95,83.52) .. controls (187.95,82.16) and (189.06,81.05) .. (190.43,81.05) .. controls (191.79,81.05) and (192.9,82.16) .. (192.9,83.52) .. controls (192.9,84.89) and (191.79,86) .. (190.43,86) .. controls (189.06,86) and (187.95,84.89) .. (187.95,83.52) -- cycle ;
+%Shape: Circle [id:dp22083446469496448] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (197.95,81.52) .. controls (197.95,80.16) and (199.06,79.05) .. (200.43,79.05) .. controls (201.79,79.05) and (202.9,80.16) .. (202.9,81.52) .. controls (202.9,82.89) and (201.79,84) .. (200.43,84) .. controls (199.06,84) and (197.95,82.89) .. (197.95,81.52) -- cycle ;
+%Shape: Circle [id:dp2371069564113233] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (196.95,76.57) .. controls (196.95,75.21) and (198.06,74.1) .. (199.43,74.1) .. controls (200.79,74.1) and (201.9,75.21) .. (201.9,76.57) .. controls (201.9,77.94) and (200.79,79.05) .. (199.43,79.05) .. controls (198.06,79.05) and (196.95,77.94) .. (196.95,76.57) -- cycle ;
+%Shape: Circle [id:dp9867728920735555] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (200.95,101.52) .. controls (200.95,100.16) and (202.06,99.05) .. (203.43,99.05) .. controls (204.79,99.05) and (205.9,100.16) .. (205.9,101.52) .. controls (205.9,102.89) and (204.79,104) .. (203.43,104) .. controls (202.06,104) and (200.95,102.89) .. (200.95,101.52) -- cycle ;
+%Shape: Circle [id:dp8285540753909157] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (199.95,96.57) .. controls (199.95,95.21) and (201.06,94.1) .. (202.43,94.1) .. controls (203.79,94.1) and (204.9,95.21) .. (204.9,96.57) .. controls (204.9,97.94) and (203.79,99.05) .. (202.43,99.05) .. controls (201.06,99.05) and (199.95,97.94) .. (199.95,96.57) -- cycle ;
+%Shape: Circle [id:dp5866262608543329] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (204,102.52) .. controls (204,101.16) and (205.11,100.05) .. (206.48,100.05) .. controls (207.84,100.05) and (208.95,101.16) .. (208.95,102.52) .. controls (208.95,103.89) and (207.84,105) .. (206.48,105) .. controls (205.11,105) and (204,103.89) .. (204,102.52) -- cycle ;
+%Shape: Circle [id:dp4508862725275873] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (219.95,101.52) .. controls (219.95,100.16) and (221.06,99.05) .. (222.43,99.05) .. controls (223.79,99.05) and (224.9,100.16) .. (224.9,101.52) .. controls (224.9,102.89) and (223.79,104) .. (222.43,104) .. controls (221.06,104) and (219.95,102.89) .. (219.95,101.52) -- cycle ;
+%Shape: Circle [id:dp730533643750001] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (213.95,94.52) .. controls (213.95,93.16) and (215.06,92.05) .. (216.43,92.05) .. controls (217.79,92.05) and (218.9,93.16) .. (218.9,94.52) .. controls (218.9,95.89) and (217.79,97) .. (216.43,97) .. controls (215.06,97) and (213.95,95.89) .. (213.95,94.52) -- cycle ;
+%Shape: Circle [id:dp9360442346841504] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (223.95,92.52) .. controls (223.95,91.16) and (225.06,90.05) .. (226.43,90.05) .. controls (227.79,90.05) and (228.9,91.16) .. (228.9,92.52) .. controls (228.9,93.89) and (227.79,95) .. (226.43,95) .. controls (225.06,95) and (223.95,93.89) .. (223.95,92.52) -- cycle ;
+%Shape: Circle [id:dp025076547083871636] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (222.95,87.57) .. controls (222.95,86.21) and (224.06,85.1) .. (225.43,85.1) .. controls (226.79,85.1) and (227.9,86.21) .. (227.9,87.57) .. controls (227.9,88.94) and (226.79,90.05) .. (225.43,90.05) .. controls (224.06,90.05) and (222.95,88.94) .. (222.95,87.57) -- cycle ;
+%Shape: Circle [id:dp5181244456176788] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (199.95,87.52) .. controls (199.95,86.16) and (201.06,85.05) .. (202.43,85.05) .. controls (203.79,85.05) and (204.9,86.16) .. (204.9,87.52) .. controls (204.9,88.89) and (203.79,90) .. (202.43,90) .. controls (201.06,90) and (199.95,88.89) .. (199.95,87.52) -- cycle ;
+%Shape: Circle [id:dp196680423509215] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (198.95,82.57) .. controls (198.95,81.21) and (200.06,80.1) .. (201.43,80.1) .. controls (202.79,80.1) and (203.9,81.21) .. (203.9,82.57) .. controls (203.9,83.94) and (202.79,85.05) .. (201.43,85.05) .. controls (200.06,85.05) and (198.95,83.94) .. (198.95,82.57) -- cycle ;
+%Shape: Circle [id:dp2954672562656153] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (203,88.52) .. controls (203,87.16) and (204.11,86.05) .. (205.48,86.05) .. controls (206.84,86.05) and (207.95,87.16) .. (207.95,88.52) .. controls (207.95,89.89) and (206.84,91) .. (205.48,91) .. controls (204.11,91) and (203,89.89) .. (203,88.52) -- cycle ;
+%Shape: Circle [id:dp8548165127565825] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (218.95,87.52) .. controls (218.95,86.16) and (220.06,85.05) .. (221.43,85.05) .. controls (222.79,85.05) and (223.9,86.16) .. (223.9,87.52) .. controls (223.9,88.89) and (222.79,90) .. (221.43,90) .. controls (220.06,90) and (218.95,88.89) .. (218.95,87.52) -- cycle ;
+%Shape: Circle [id:dp05963106369983273] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (212.95,80.52) .. controls (212.95,79.16) and (214.06,78.05) .. (215.43,78.05) .. controls (216.79,78.05) and (217.9,79.16) .. (217.9,80.52) .. controls (217.9,81.89) and (216.79,83) .. (215.43,83) .. controls (214.06,83) and (212.95,81.89) .. (212.95,80.52) -- cycle ;
+%Shape: Circle [id:dp22231923672229503] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (222.95,78.52) .. controls (222.95,77.16) and (224.06,76.05) .. (225.43,76.05) .. controls (226.79,76.05) and (227.9,77.16) .. (227.9,78.52) .. controls (227.9,79.89) and (226.79,81) .. (225.43,81) .. controls (224.06,81) and (222.95,79.89) .. (222.95,78.52) -- cycle ;
+%Shape: Circle [id:dp6996544025433038] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ] (221.95,73.57) .. controls (221.95,72.21) and (223.06,71.1) .. (224.43,71.1) .. controls (225.79,71.1) and (226.9,72.21) .. (226.9,73.57) .. controls (226.9,74.94) and (225.79,76.05) .. (224.43,76.05) .. controls (223.06,76.05) and (221.95,74.94) .. (221.95,73.57) -- cycle ;
+
+% Text Node
+\draw (269,177) node [anchor=north west][inner sep=0.75pt]   [align=left] {rendement \\du marché};
+% Text Node
+\draw (46,18) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\de l'actif
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (105,137) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{center}
+$\displaystyle \alpha $
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (217.54,54.42) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ,rotate=-327.82] [align=left] {{\footnotesize pente = $\displaystyle \beta $}};
+
+
+\end{tikzpicture}
+\end{center}
+
+\begin{definitionNOHFILL}[Le modèle d'évaluation des actifs financiers (MÉDAF)]
+Le MÉDAF nous permet de trouver le coût du capital $r_{i}$ (alias, le rendement espéré $\text{E}[R_{i}]$) d'un actif en posant que le niveau de risque systématique de base correspond au niveau de risque du portefeuille du marché. \\
+
+L'équation du MÉDAF est \lfbox[formula]{$r_{i}	=	\text{E}[R_{i}]	=	r_{f} + \beta_{i}(\text{E}[R_{M}]	-	r_{f})$}.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{Capital Asset Pricing Model (CAPM)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Hypothèses du MÉDAF}
+\begin{enumerate}
+	\item	Les investisseurs peuvent transiger tous les titres aux prix compétitifs du marché.
+		\begin{itemize}
+		\item	Il n'y a pas de taxes ni de frais de transactions.
+		\item	Les investisseurs peuvent emprunter et prêter de l'argent au taux sans risque.
+		\end{itemize}
+	\item	Les investisseurs détiennent uniquement des portefeuilles efficients.
+		\begin{itemize}
+		\item	Ceci implique que les investisseurs sont rationnels, qu’ils ont une aversion au risque et  qu'ils cherchent à maximiser leurs investissements.
+		\end{itemize}
+	\item	Les investisseurs ont des attentes homogènes pour les volatilités, les corrélations et les rendements espérés de titres financiers.
+\end{enumerate}
+\end{conceptgen}
+
+\begin{definitionNOHFILLsub}[Droite du marché des titres]
+Représentation graphique du MÉDAF.
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp954299495869529] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da7226226944481302] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (264.3,49.92) -- (118,145) ;
+%Straight Lines [id:da8365355669623116] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (191.15,97.46) -- (191.15,180.32) ;
+%Straight Lines [id:da7387452691634961] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (118.3,97.46) -- (191.15,97.46) ;
+%Shape: Circle [id:dp5467744572484954] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 128; green, 128; blue, 128 }  ,fill opacity=1 ] (187.15,97.46) .. controls (187.15,95.25) and (188.94,93.46) .. (191.15,93.46) .. controls (193.36,93.46) and (195.15,95.25) .. (195.15,97.46) .. controls (195.15,99.67) and (193.36,101.46) .. (191.15,101.46) .. controls (188.94,101.46) and (187.15,99.67) .. (187.15,97.46) -- cycle ;
+
+% Text Node
+\draw (227,187) node [anchor=north west][inner sep=0.75pt]   [align=left] {Beta};
+% Text Node
+\draw (46,18) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (77,90) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{27.480500000000003pt}\setlength\topsep{0pt}
+\begin{center}
+$\displaystyle \text{E}[ R_{M}]$
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (267.69,36.47) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {{\footnotesize droite du MT}};
+% Text Node
+\draw (186,183) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{center}
+$\displaystyle 1$
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (179,71) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize] [align=left] {\begin{minipage}[lt]{17.3825pt}\setlength\topsep{0pt}
+\begin{center}
+$\displaystyle \beta _{M}$
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (104,138) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{10.701500000000001pt}\setlength\topsep{0pt}
+\begin{center}
+$\displaystyle r_{f}$
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (128.31,137.43) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ,rotate=-327] [align=left] {{\scriptsize $\displaystyle \text{E}[ R_{M}] -r_{f}$}};
+
+
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item	En anglais, \og \textit{security market line (SML)} \fg{}.
+\end{itemize}
+
+\end{definitionNOHFILLsub}
+
+\begin{rappel_enhanced}[Distinction entre la droite du MC et la droite du MT]
+L'abscisse de la droite du marché des capitaux (MC) utilise la volatilité (alias le \textbf{risque total}).
+\begin{itemize}
+	\item	Seulement les portefeuilles efficients composés d'une combinaison de l'actif sans risque et du portefeuille du marché seront tracés.
+\end{itemize}
+
+L'abscisse de la droite du marché des titres (MT) utilise le beta (alias le \textbf{risque systémique}).
+\begin{itemize}
+	\item	Le \underline{risque non systémique est sans importance au MÉDAF} ;
+	\item	Alors, la relation sous-jacente à la droite du MT ne se limite pas aux portefeuilles efficients.
+\end{itemize}
+\end{rappel_enhanced}
+
+
+%\columnbreak
+\subsubsection{Prime de risque du marché}
+\begin{definitionNOHFILLsub}[Prime de risque du marché]
+la prime de risque du marché correspond à l'écart entre le rendement espéré du marché et le taux sans risque : \lfbox[formula]{$\text{E}[R_{M}]	-	r_{f}$}.
+
+Elle peut être approximée de deux façons :
+\begin{enumerate}
+	\item	La prime de risque historique.
+	\item	L'approche fondamentale.
+\end{enumerate}
+
+\begin{itemize}
+	\item	En anglais, \og \textit{Market Risk Premium} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLprop}[Prime de risque historique]
+La prime de risque est calculé comme étant la moyenne historique de l'excédant du rendement du marché sur le taux sans risque.\\
+
+\textbf{Limitations :}
+\begin{itemize}
+	\item	L'erreur type des prévisions est large.
+	\item	Le passé n'est pas nécessairement garant de l'avenir.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Approche fondamentale]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Div_{1}$]	Dividende payable au temps 1.
+	\item[$P_{0}$]	Prix courant de l'action.
+		\begin{itemize}
+		\item	Le ratio $\frac{Div_{1}}{P_{0}}$ est le \textbf{rendement de l'action} (\og \textit{dividend yield} \fg{}).
+		\end{itemize}
+	\item[$g$]	Taux de croissance fixe des dividendes.
+\end{description}
+\end{distributions}
+
+On pose un taux de croissance fixe des dividendes $g$ avec \lfbox[conditions]{$P_{0}	=	\frac{Div_{1}}{\text{E}[R_{M}]	-	g}$}. En réécrivant l'équation, on trouve que \lfbox[formula]{$\text{E}[R_{M}]	=	\frac{Div_{1}}{P_{0}} + g$}.\\
+
+\textbf{Limitation :}
+\begin{itemize}
+%%%	------------------------
+%%%	NOTES
+%%%	+	clarifier l'écriture de cette phrase
+%%%	------------------------
+	\item	L'approche est adéquate seulement pour l'ensemble de marchés et non pour des actions individuelles.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
 
 
 \columnbreak
-\subsubsection{The Capital Asset Pricing Model (CAPM)}
+\subsubsection{Coût des capitaux d'emprunt}
+Lorsque l'on cherche à estimer le coût de capitaux d'emprunt au lieu du coût de capitaux propres, il y a 2 méthodes : 
+\begin{enumerate}
+	\item	Ajustement du rendement de la dette.
+	\item	MÉDAF avec les betas de dette.
+\end{enumerate}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$r_{d}$]	Coût des capitaux d'emprunt.
+		\begin{itemize}
+		\item	\og \textit{Debt cost of capital} \fg{}.
+		\end{itemize}
+	\item[$\beta_{d}$]	Beta de la dette.
+\end{description}
+
+Soit une obligation zéro-coupon avec :
+\begin{description}
+	\item[$y$]	Taux de rendement à l'échéance de l'obligation.
+		\begin{itemize}
+		\item	En anglais, \og \textit{yield to maturity (YTM) of the bond} \fg{}.
+		\end{itemize}
+	\item[$p$]	Probabilité de défaut de l'obligation.
+	\item[$L$]	Espérance du montant de perte, par dollar de dette, s'il y a défaut
+		\begin{itemize}
+		\item	On représente $L$ par dollar de dette afin de l'inclure dans l'équation de $r_{d}$ plus bas.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+
+\begin{definitionNOHFILLsub}[Ajustement du rendement de la dette]
+Pour un investissement de 1\$ dans une obligation zéro-coupon
+\begin{itemize}
+	\item	sans risque de défaut, on obtient $(1 + y)\$$ dans un an.
+	\item	avec risque de défaut, on obtient :
+		\begin{itemize}
+		\item	$(1 + y - L)\$$ dans un an avec probabilité $p$
+		\item	$(1 + y)\$$ dans un an avec probabilité $(1 - p)$
+		\end{itemize}
+\end{itemize}
+
+Donc, en effectuant la moyenne pondérée des rendements on trouve que \lfbox[formula]{$r_{d}	=	y	-	pL$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[MÉDAF avec les betas de dette]
+Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{d}	=	r_{f} + \beta_{d}\left(\shortstack{prime de risque\\ du marché}\right)$}.\\
+\end{definitionNOHFILLprop}
 
 
 \columnbreak
-\subsubsection{Market Risk Premium}
+\subsubsection{Rendement requis pour un projet pleinement financé par des actions}
+On peut généraliser le MÉDAF afin d'estimer le rendement nécessaire pour un projet en remplaçant le beta de l'investissement par le beta du projet.
 
+\begin{itemize}
+	\item	Typiquement, on ne peut pas estimer le beta d'un projet directement puisque le projet n'est pas coté en bourse ;
+	\item	En lieu, on utilise le beta \textit{d'entreprises semblables} ;
+		\begin{itemize}
+		\item	C'est à dire, des entreprises dont le secteur d'opération ou le risque est semblable à celui du projet.
+		\end{itemize}
+\end{itemize}
+
+Si on compare le projet à une entreprise :
+\begin{itemize}
+	\item	Sans effet de levier, on applique l'équation du MÉDAF directement.
+	\item	Avec effet de levier, on doit calculer le \textbf{coût du capital sans effet de levier}.
+\end{itemize}
+
+\begin{definitionNOHFILLsub}[coût du capital et beta sans effet de levier]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$r_{U}$]	Coût du capital sans effet de levier.
+	\item[$\beta_{U}$]	Beta sans effet de levier.
+	\item[$E$]	Valeur au marché de l'équité de l'entreprise.
+	\item[$D$]	Valeur au marché de la dette de l'entreprise.
+	\item[$r_{E}$]	Coût des capitaux propres.
+	\item[$r_{D}$]	Coût des capitaux d'emprunt.
+	\item[$w_{E}$]	Proportion de l'entreprise financée par des capitaux propres.
+		\begin{itemize}
+		\item	\lfbox[formula]{$w_{E}	=	\frac{E}{E + D}$}.
+		\end{itemize}
+	\item[$w_{D}$]	Proportion de l'entreprise financée par de la dette.
+		\begin{itemize}
+		\item	\lfbox[formula]{$w_{D}	=	\frac{D}{E + D}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+Donc, on trouve : 
+\begin{itemize}
+	\item	le coût du capital sans effet de levier \lfbox[formula]{$r_{U}	=	w_{E} \cdot r_{E} + w_{D} \cdot r_{D}$}, et 
+	\item	le beta sans effet de levier \lfbox[formula]{$\beta_{U}	=	w_{E} \cdot \beta_{E} + w_{D} \cdot \beta_{D}$} ;
+	\item	En anglais, \og \textit{unlevered cost of capital} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[MÉDAF d'un projet pour une comparaison à une entreprise avec effet de levier]
+Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\shortstack{prime de risque\\ du marché}\right)$}.\\
+\end{definitionNOHFILLprop}
+
+\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$.
 
 \columnbreak
-\subsubsection{The Debt Cost of Capital}
+\subsubsection{Rendement requis pour un projet avec effet de levier}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\tau_{C}$]	Taux d'imposition sur la dette.
+\end{description}
+\end{distributions}
 
+Dans le cas où le projet doit être financé par des capitaux propre \textbf{\textit{et}} de la dette, on trouve le coût moyen pondéré du capital (CMPC) \lfbox[formula]{$r_{\text{CMPC}}	=	w_{E} r_{E} + w_{D} r_{D}(1 - \tau_{C})$}.
+\begin{itemize}
+	\item	Souvent, l'intérêt payable sur la dette est déductible d'impôts ;
+	\item	En anglais, \og \textit{weighted-average cost of capital (WACC)} \fg{}.
+\end{itemize}
 
-\columnbreak
-\subsubsection{Required Return on All-Equity Project}
+Le CMPC se base sur le coût des capitaux d'emprunt après imposition alors que le coût du capital sans effet de levier se base sur le coût des capitaux d'emprunt avant imposition. En bref :
 
-
-\columnbreak
-\subsubsection{Required Return on a Leveraged Project}
-
-
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}m{6cm} | >{\columncolor{beaublue}}m{6cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Coût des capitaux sans effet de levier}}	&	\textcolor{white}{\textbf{CMPC}}		\\\specialrule{0.1em}{0em}{0em} 
+Utilisé pour évaluer un projet financé sans emprunt ayant le même risque que l'entreprise	&	Utilisé pour évaluer un projet ayant le même financement et le même risque que l'entreprise	\\\hline
+\end{tabular}
+\end{center}
 
 \columnbreak
 \subsection{Factor Models}
