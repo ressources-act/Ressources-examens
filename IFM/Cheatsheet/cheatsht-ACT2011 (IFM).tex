@@ -5266,7 +5266,7 @@ Permet au détenteur de choisir à un moment futur déterminé si l'option sera 
 \pagebreak
 \part{Gestion des risques financiers I (ACT-1006)}
 
-\setcounter{secnumdepth}{6}
+\setcounter{section}{6}
 \section{Mean-Variance Portfolio Theory}
 \subsection{Risque et rendement d'un actif}
 \begin{definitionNOHFILL}[Rendement effectif]
@@ -5499,30 +5499,620 @@ Dans le cas plus général :
 \end{description}
 \end{definitionNOHFILLprop}
 
+\begin{rappel_enhanced}[Raccourci Bernoulli]
+Soit la probabilité $p$ de $a$ et la probabilité $1 - p$ de $b$.\\
+Alors, la variance est \lfbox[formula]{$(b - a)^{2}p(1 - p)$}.
+\end{rappel_enhanced}
+
+Soit :
+\begin{itemize}
+	\item	un portefeuille de $n$ actions;
+	\item	le poids de chaque action \lfbox[conditions]{$x_{i}	=	\frac{1}{n}$}.
+\end{itemize}
+
+La matrice de covariance du portefeuille est : 
+\begin{align*}
+	\begin{bmatrix}
+	\sigma_{1, 1}	&	\sigma_{1, 2}	&	\hdots	&	\sigma_{1, n}	\\
+	\sigma_{2, 1}	&	\sigma_{2, 2}	&	\hdots	&	\sigma_{2, n}	\\
+	\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+	\sigma_{n, 1}	&	\sigma_{n, 2}	&	\hdots	&	\sigma_{n, n}	
+	\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Il s'ensuit qu'elle a $n^{2}$ termes dont $n$ de variance et $n^{2}	-	n$ de covariance dont la moitié ($\frac{n^{2} - n}{2}$) sont uniques ;
+	\item	On peut exprimer :
+	\setlength{\mathindent}{-1cm}
+		\begin{align*}
+		\text{Var}(R_{p})	
+		&=	\frac{1}{n} \times \left(\shortstack{variance moyenne\\ de chaque action}\right) + \left(1 - \frac{1}{n}\right)  \times  \left(\shortstack{covariance moyenne\\	entre les actions}\right)
+		\end{align*}
+	\setlength{\mathindent}{1cm}
+	\item	Il s'ensuit que $\text{Var}(R_{p}) \underset{n\rightarrow \infty}{\longrightarrow} \shortstack{covariance moyenne}$.
+\end{itemize}
 
 
 \columnbreak
 \subsection{Mean-Variance Portfolio Theory}
+\subsubsection{Portefeuilles efficients}
+\begin{definitionNOHFILL}[Analyse de portefeuille moyenne-variance]
+L'analyse de portefeuille moyenne-variance pose que les investisseurs peuvent évaluer les caractéristiques du risque-rendement d'un investissement avec les rendements espérés, les variances et les corrélations des actifs.
+\end{definitionNOHFILL}
+
+\begin{conceptgen}{Hypothèses sous-jacentes à l'analyse de portefeuille moyenne-variance}
+\begin{enumerate}
+	\item	Tous les investisseurs ont une aversion au risque.
+	\item	Les rendements espérés, les variances et les covariances des actifs sont supposés connus.
+	\item	Pour déterminer un portefeuille optimal, les investisseurs n'ont qu'à connaitre les rendements espérés, les variances et les covariances des rendements.
+	\item	Il n'y a aucun frais de transactions, ni de taxes.
+\end{enumerate}
+\end{conceptgen}
+
+Pour trouver des portefeuilles efficients, on utilise le diagramme de moyenne-variance. Ce diagramme fait varier les proportions $x_{A}$ et $x_{B}$ investis dans deux actifs $A$ et $B$ :
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp4877478511835136] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da5292878918548434] 
+\draw [line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (119,122) -- (262.5,122) ;
+%Curve Lines [id:da7544269338190221] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (190.75,122) .. controls (192.5,127.32) and (183.5,132.32) .. (216.5,158.32) ;
+%Curve Lines [id:da9655156149195883] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (273.5,52.32) .. controls (223.5,53.32) and (191,97.5) .. (190.75,122) ;
+%Shape: Circle [id:dp775694287030839] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (191,135.32) .. controls (191,133.67) and (192.34,132.32) .. (194,132.32) .. controls (195.66,132.32) and (197,133.67) .. (197,135.32) .. controls (197,136.98) and (195.66,138.32) .. (194,138.32) .. controls (192.34,138.32) and (191,136.98) .. (191,135.32) -- cycle ;
+%Shape: Circle [id:dp9336389306192374] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (213,157.32) .. controls (213,155.67) and (214.34,154.32) .. (216,154.32) .. controls (217.66,154.32) and (219,155.67) .. (219,157.32) .. controls (219,158.98) and (217.66,160.32) .. (216,160.32) .. controls (214.34,160.32) and (213,158.98) .. (213,157.32) -- cycle ;
+%Shape: Circle [id:dp4743935385951963] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (199,91.32) .. controls (199,89.67) and (200.34,88.32) .. (202,88.32) .. controls (203.66,88.32) and (205,89.67) .. (205,91.32) .. controls (205,92.98) and (203.66,94.32) .. (202,94.32) .. controls (200.34,94.32) and (199,92.98) .. (199,91.32) -- cycle ;
+%Shape: Circle [id:dp37018445621976737] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (223,67.32) .. controls (223,65.67) and (224.34,64.32) .. (226,64.32) .. controls (227.66,64.32) and (229,65.67) .. (229,67.32) .. controls (229,68.98) and (227.66,70.32) .. (226,70.32) .. controls (224.34,70.32) and (223,68.98) .. (223,67.32) -- cycle ;
+%Shape: Circle [id:dp9284342964070993] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (270.5,52.32) .. controls (270.5,50.67) and (271.84,49.32) .. (273.5,49.32) .. controls (275.16,49.32) and (276.5,50.67) .. (276.5,52.32) .. controls (276.5,53.98) and (275.16,55.32) .. (273.5,55.32) .. controls (271.84,55.32) and (270.5,53.98) .. (270.5,52.32) -- cycle ;
+
+% Text Node
+\draw (214,190) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (41,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (175,45) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.29,0.56,0.89}{efficace}};
+% Text Node
+\draw (129,140) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.82,0.01,0.11}{inefficace}};
+% Text Node
+\draw (276,45) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {actif B (1, 0)};
+% Text Node
+\draw (219,153) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {actif A (0, 1)};
+% Text Node
+\draw (200,89.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (0.5, 0.5)};
+% Text Node
+\draw (225,65) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (0.8, 0.2)};
+% Text Node
+\draw (195,125) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (0.2, 0.8)};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+Un portefeuille est :
+\begin{description}
+	\item[efficient]	Si pour un niveau donné de volatilité, il offre le meilleur rendement espéré.
+	\item[inefficient]	Si pour un niveau donné de volatilité, il est possible de trouver un meilleur rendement espéré.
+\end{description}
+
+\begin{definitionNOHFILL}[Frontière efficiente]
+Courbe des portefeuilles maximisant le rendement espéré pour un niveau de volatilité donné. \\
+
+Selon son niveau de risque, un investisseur choisit des proportions parmi ceux qui sont sur la frontière efficiente. Par exemple, un investisseur avec une tolérance au risque élevée pourrait choisir un portefeuille avec une plus grande volatilité pour avoir un rendement espéré plus élevé.
+\end{definitionNOHFILL}
+
+
+La corrélation entre actifs peut impacter la frontière, par exemple si l'on investi dans 2 actifs : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp36472036740726677] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da06881977667489858] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (283,58) -- (221.9,159.93) ;
+%Curve Lines [id:da19740884975223993] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=0.87 ][line width=1.5]    (221.9,159.93) .. controls (205.9,131.93) and (245.9,103.93) .. (283,58) ;
+%Curve Lines [id:da42806367647793087] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 5 }  ,draw opacity=0.63 ][line width=1.5]    (221.9,159.93) .. controls (186.9,133.93) and (241.9,86.93) .. (283,58) ;
+%Curve Lines [id:da8219225169519757] 
+\draw [color={rgb, 255:red, 107; green, 115; blue, 145 }  ,draw opacity=1 ][line width=1.5]    (221.9,159.93) .. controls (138.9,127.93) and (241.9,86.93) .. (283,58) ;
+%Straight Lines [id:da05456530275003768] 
+\draw [color={rgb, 255:red, 74; green, 154; blue, 247 }  ,draw opacity=1 ][line width=1.5]    (283,58) -- (118.9,128.93) ;
+%Straight Lines [id:da2204623788548825] 
+\draw [color={rgb, 255:red, 74; green, 154; blue, 247 }  ,draw opacity=1 ][line width=1.5]    (221.9,159.93) -- (118.9,128.93) ;
+%Shape: Circle [id:dp08392787883452146] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (114.1,128.93) .. controls (114.1,126.27) and (116.25,124.13) .. (118.9,124.13) .. controls (121.55,124.13) and (123.7,126.27) .. (123.7,128.93) .. controls (123.7,131.58) and (121.55,133.72) .. (118.9,133.72) .. controls (116.25,133.72) and (114.1,131.58) .. (114.1,128.93) -- cycle ;
+
+% Text Node
+\draw (214,190) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (41,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (190,161) node [anchor=north west][inner sep=0.75pt]   [align=left] {actif A};
+% Text Node
+\draw (261,38) node [anchor=north west][inner sep=0.75pt]   [align=left] {actif B};
+% Text Node
+\draw (254.45,111.96) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {corr.=+1};
+% Text Node
+\draw (159.45,70.96) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {corr.=-1};
+% Text Node
+\draw (73,116) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{30.5065pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.56,0.07,1}{sans }\\\textcolor[rgb]{0.56,0.07,1}{risque}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+\end{center}
+
+Le volatilité d'un portefeuille des actifs $A$ et $B$ lorsque 
+\begin{description}
+	\item[$\rho_{B, W} = 1$]	est maximisée ;
+		\begin{itemize}
+		\item	La volatilité équivaut à la moyenne pondérée de la volatilité des actifs.
+		\end{itemize}
+	\item[$\rho_{B, W} < 1$]	est moins que la moyenne pondérée ;
+	\item[$\rho_{B, W} = -1$]	un portefeuille \textcolor{amethyst}{sans risque} peut être construit.
+\end{description}
+
+Investir un montant négatif dans une action équivaut à un \og \textit{short-sell} \fg{} (vente à découvert) et la frontière est rallongée :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Curve Lines [id:da126524382447448] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (338.3,43.13) .. controls (317.3,46.32) and (296.3,48.13) .. (273.5,52.32) ;
+%Shape: Axis 2D [id:dp6673318093332545] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da2261641715581777] 
+\draw [line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (119,122) -- (262.5,122) ;
+%Curve Lines [id:da9106576884133932] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (190.75,122) .. controls (192.5,127.32) and (183.5,132.32) .. (216.5,158.32) ;
+%Curve Lines [id:da05124936898207322] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (273.5,52.32) .. controls (212.3,60.13) and (191,97.5) .. (190.75,122) ;
+%Shape: Circle [id:dp16470704138236059] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (191,135.32) .. controls (191,133.67) and (192.34,132.32) .. (194,132.32) .. controls (195.66,132.32) and (197,133.67) .. (197,135.32) .. controls (197,136.98) and (195.66,138.32) .. (194,138.32) .. controls (192.34,138.32) and (191,136.98) .. (191,135.32) -- cycle ;
+%Shape: Circle [id:dp7175051647262234] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (213,157.32) .. controls (213,155.67) and (214.34,154.32) .. (216,154.32) .. controls (217.66,154.32) and (219,155.67) .. (219,157.32) .. controls (219,158.98) and (217.66,160.32) .. (216,160.32) .. controls (214.34,160.32) and (213,158.98) .. (213,157.32) -- cycle ;
+%Shape: Circle [id:dp3193182704177373] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (199,91.32) .. controls (199,89.67) and (200.34,88.32) .. (202,88.32) .. controls (203.66,88.32) and (205,89.67) .. (205,91.32) .. controls (205,92.98) and (203.66,94.32) .. (202,94.32) .. controls (200.34,94.32) and (199,92.98) .. (199,91.32) -- cycle ;
+%Shape: Circle [id:dp2900673953428521] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (223,67.32) .. controls (223,65.67) and (224.34,64.32) .. (226,64.32) .. controls (227.66,64.32) and (229,65.67) .. (229,67.32) .. controls (229,68.98) and (227.66,70.32) .. (226,70.32) .. controls (224.34,70.32) and (223,68.98) .. (223,67.32) -- cycle ;
+%Shape: Circle [id:dp10862219342683344] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (270.5,52.32) .. controls (270.5,50.67) and (271.84,49.32) .. (273.5,49.32) .. controls (275.16,49.32) and (276.5,50.67) .. (276.5,52.32) .. controls (276.5,53.98) and (275.16,55.32) .. (273.5,55.32) .. controls (271.84,55.32) and (270.5,53.98) .. (270.5,52.32) -- cycle ;
+%Curve Lines [id:da600668274682344] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (267.3,190.13) .. controls (241.3,179.13) and (233.3,170.13) .. (216.5,158.32) ;
+%Shape: Circle [id:dp5703950228917769] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (335.3,43.13) .. controls (335.3,41.47) and (336.64,40.13) .. (338.3,40.13) .. controls (339.96,40.13) and (341.3,41.47) .. (341.3,43.13) .. controls (341.3,44.78) and (339.96,46.13) .. (338.3,46.13) .. controls (336.64,46.13) and (335.3,44.78) .. (335.3,43.13) -- cycle ;
+%Shape: Circle [id:dp4593909531372147] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (266.3,191.13) .. controls (266.3,189.47) and (267.64,188.13) .. (269.3,188.13) .. controls (270.96,188.13) and (272.3,189.47) .. (272.3,191.13) .. controls (272.3,192.78) and (270.96,194.13) .. (269.3,194.13) .. controls (267.64,194.13) and (266.3,192.78) .. (266.3,191.13) -- cycle ;
+
+% Text Node
+\draw (188,184) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (41,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (275.5,52.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {actif B (1, 0)};
+% Text Node
+\draw (236,137) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {actif A (0, 1)};
+% Text Node
+\draw (200,89.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (0.5, 0.5)};
+% Text Node
+\draw (225,65) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (0.8, 0.2)};
+% Text Node
+\draw (195,125) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (0.2, 0.8)};
+% Text Node
+\draw (299,20) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (1.5, -0.5)};
+% Text Node
+\draw (271.3,191.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] { (-0.5, 1.5)};
+
+
+\end{tikzpicture}
+\end{center}
+
+Diversifier avec plus d'actions (qui ne sont pas parfaitement corrélées) permet une meilleur frontière efficiente :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp053135063496398516] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Curve Lines [id:da4116180304977153] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (190.75,122) .. controls (192.5,127.32) and (183.5,132.32) .. (216.5,158.32) ;
+%Curve Lines [id:da8129419759820313] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (273.5,52.32) .. controls (214.3,68.32) and (191,97.5) .. (190.75,122) ;
+%Curve Lines [id:da8791633164216062] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (244.3,175.32) .. controls (223.3,164.32) and (233.3,170.13) .. (216.5,158.32) ;
+%Curve Lines [id:da19605421117215305] 
+\draw [color={rgb, 255:red, 88; green, 165; blue, 1 }  ,draw opacity=1 ][line width=2.25]    (156.3,131.32) .. controls (159.3,141.32) and (154.55,143) .. (183.3,165.32) ;
+%Curve Lines [id:da771629139304369] 
+\draw [color={rgb, 255:red, 88; green, 165; blue, 1 }  ,draw opacity=1 ][line width=2.25]    (252.3,42.32) .. controls (190.1,61.32) and (150.3,107.32) .. (156.3,131.32) ;
+%Curve Lines [id:da05631185573198971] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (211.1,182.32) .. controls (190.1,171.32) and (200.1,177.13) .. (183.3,165.32) ;
+
+% Text Node
+\draw (188,184) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (41,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (219,88.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2 actions};
+% Text Node
+\draw (156,50.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {5 actions};
+
+
+\end{tikzpicture}
+\end{center}
+
+Voir \hyperref[sec:MVT-newinv]{la dernière sous-section} pour des détails sur quand qu'il est optimal d'ajouter un nouvel investissement.
+
+
+\columnbreak
+\subsubsection{Combinaisons d'actifs risqués et avec aucun risque}
+On peut combiner un portefeuille risqué à un actif sans risque ayant un rendement espéré égale au taux sans risque et une volatilité nulle.\\
+
+Soit un portefeuille composé à $x\%$ d'un portefeuille risqué et à $(1 - x)\%$ d'un actif sans risque.
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\sigma_{P}$]	volatilité du portefeuille risqué.
+		\begin{itemize}
+		\item	La volatilité de l'actif sans risque est nulle.
+		\end{itemize}
+	\item[$r_{f}$]	taux sans risque (alias le rendement espéré) de l'actif sans risque.
+%%	------------------------
+%%%	NOTES
+%%%	+	utiliser [] dans une équation mène à une erreur puisque la liste pense que c'est pour fermer ;
+%%%	+	faut utilliser \lbrack et \rbrack à place.
+%%%	------------------------
+	\item[$\text{E}\lbrack R_{P}\rbrack$]	rendement espéré du portefeuille risqué.
+	\item[$\text{E}\lbrack R_{xP}\rbrack$]	rendement espéré d'un portefeuille composé à $x\%$ du portefeuille risqué.
+	\item[$\sigma_{xP}$]	volatilité du portefeuille composé à $x\%$ d'un actif risqué
+\end{description}
+\end{distributions}
+
+On trouve que le rendement espéré du portefeuille est \lfbox[formula]{$\text{E}[R_{xP}]	=	r_{f} + x(\text{E}[R_{P}] - r_{f})$} et que la volatilité est \lfbox[formula]{$\sigma_{xP}	=	x\sigma_{P}$}. 
+
+\begin{definitionNOHFILL}[Ligne d'allocation du capital]
+%%	------------------------
+%%%	NOTES
+%%%	+	Clarifier cette définition.
+%%%	------------------------
+La ligne d'allocation du capital (AC) décrit les rendements espérés et volatilités possibles des différentes combinaisons d'un portefeuille risqué et d'un actif sans risque :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp16704807941155386] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da9724090132301113] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (174,110.52) -- (174,183) ;
+%Straight Lines [id:da6016442902359609] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (221,79.52) -- (221,183) ;
+%Straight Lines [id:da3065084885013789] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (221,79.52) -- (120.5,79.52) ;
+%Straight Lines [id:da5676477547539422] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (119.5,110.52) -- (174,110.52) ;
+%Straight Lines [id:da004443162701488479] 
+\draw [color={rgb, 255:red, 61; green, 131; blue, 213 }  ,draw opacity=1 ][line width=2.25]    (221,79.52) -- (118,146) ;
+%Straight Lines [id:da2382628136252254] 
+\draw [color={rgb, 255:red, 61; green, 131; blue, 213 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (221,79.52) -- (251.3,60.13) ;
+
+% Text Node
+\draw (268,181) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (47,17) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (83,72.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \text{E}[ R_{P}]$};
+% Text Node
+\draw (79,102.32) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \text{E}[ R_{xP}]$};
+% Text Node
+\draw (163,181) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \sigma _{xP}$};
+% Text Node
+\draw (213,181) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \sigma _{P}$};
+% Text Node
+\draw (103,137) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle r_{f}$};
+% Text Node
+\draw (238,39) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{81.23484pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.24,0.51,0.84}{Ligne d'allocation}\\\textcolor[rgb]{0.24,0.51,0.84}{du capital}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+\end{center}
+
+On trouve \lfbox[conditions]{$x	=	\frac{\sigma_{xP}}{\sigma_{P}}$} avec l'équation pour la volatilité du portefeuille puis on le substitue dans l'équation du rendement pour trouver :  \lfbox[formula]{$\text{E}[R_{xP}]	=	r_{f} + \sigma_{xP} \frac{\text{E}[R_{P}]	-	r_{f}}{\sigma_{P}}$}.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{capital allocation line (CAL)} \fg{} ;
+	\item	La pente de la ligne d'AC représente le rendement additionnel disponible par incrément d'une unité de risque et équivaut au \textit{\textbf{ratio de Sharpe}}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Achat d'actions sur marge]
+Emprunter au taux sans risque puis acheter des actions risqués.
+\begin{itemize}
+	\item	En anglais, \og \textit{buying stocks on margin} \fg{};
+	\item	On peut aussi dire qu'on achète les actions avec un \textbf{effet de levier}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Portefeuille avec levier]
+Portefeuille qui consiste d'une position courte sur l'actif sans risque.
+\begin{itemize}
+	\item	En anglais, \og \textit{levered portfolio} \fg{} ;
+	\item	Visuellement, ceci équivaut au pointillé de la ligne d'AC ;
+	\item	Il s'ensuit qu'une vente à découvert implique un rendement \textit{et} une volatilité plus élevée.
+\end{itemize}
+
+\begin{formula}{Exemple de vente à découvert}
+Par exemple, je souhaite investir dans un portefeuille de 30\$ avec 10\$.\\
+Alors, $x	=	300\%	=	3$ puisque la portion risquée du portefeuille équivaut à 300\% de mon investissement initial.
+\end{formula}
+\end{definitionNOHFILLsub}
+
+
+Avec la ligne de l'AC et la frontière efficiente, on peut trouver le \textbf{portefeuille risqué optimal} $P$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp6485885315666768] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da6187697978759195] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=2.25]    (265.3,49.92) -- (119,145) ;
+%Curve Lines [id:da32863019282893036] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (183.3,133.32) .. controls (185.05,138.65) and (176.05,143.65) .. (209.05,169.65) ;
+%Curve Lines [id:da8344007314232385] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (271.3,58.32) .. controls (169.3,99.13) and (185.3,111.13) .. (183.3,133.32) ;
+%Shape: Circle [id:dp8762352669922273] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (201.3,89) .. controls (201.3,86.79) and (203.09,85) .. (205.3,85) .. controls (207.51,85) and (209.3,86.79) .. (209.3,89) .. controls (209.3,91.21) and (207.51,93) .. (205.3,93) .. controls (203.09,93) and (201.3,91.21) .. (201.3,89) -- cycle ;
+
+% Text Node
+\draw (269,179) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (47,17) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (103,137) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle r_{f}$};
+% Text Node
+\draw (164,20) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{84.558pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize \textcolor[rgb]{0.56,0.07,1}{frontière efficiente}}\\{\footnotesize \textcolor[rgb]{0.56,0.07,1}{avec l'actif sans risque}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (241,69) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{76.67pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.29,0.56,0.89}{{\footnotesize frontière efficiente }}\\\textcolor[rgb]{0.29,0.56,0.89}{{\footnotesize du portefeuile risqué}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (145,65) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{44.914pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize portefeuille }\\{\footnotesize optimal}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item	On l'appel aussi \textit{le portefeuille efficient} et \textit{le portefeuille tangent} ;
+	\item	Ce point correspond au maximum de la pente et donc maximise le ratio de Sharpe.
+\end{itemize}
+
+
+\columnbreak
+\subsubsection{Ligne du marché des capitaux}
+\begin{rappel_enhanced}[Contexte]
+Si chaque investisseur a des attentes de rendement espéré, volatilité et corrélation différentes, alors chaque investisseur aura une ligne d'AC et un portefeuille risqué optimal différent.\\
+
+Cependant, afin de simplifier l'analyse moyenne-variance on pose habituellement que les investisseurs ont des espérances homogènes et donc qu'ils ont tous la même estimation de la volatilité, de la corrélation et du rendement espéré de titres financiers.
+\end{rappel_enhanced}
+
+L'hypothèse que les attentes des investisseurs sont homogènes implique également une même ligne d'AC et un même portefeuille optimal pour le marché.
+
+\begin{definitionNOHFILL}[Portefeuille du marché]
+Portefeuille optimal du marché.
+\begin{itemize}
+	\item	En théorie, il est composé de toutes les actions et tous les titres financiers risqués du marché ;
+	\item	En pratique, ceci est impossible et l'on utilise un indice tel que le S\&P 500 ;
+	\item	En anglais, \og \textit{market portfolio} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Ligne du marché des capitaux]
+Ligne d'AC du marché.
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp954299495869529] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da7226226944481302] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=2.25]    (265.3,49.92) -- (119,145) ;
+%Curve Lines [id:da11750654254498083] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (183.3,133.32) .. controls (185.05,138.65) and (176.05,143.65) .. (209.05,169.65) ;
+%Curve Lines [id:da7446996086761495] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (271.3,58.32) .. controls (169.3,99.13) and (185.3,111.13) .. (183.3,133.32) ;
+%Shape: Circle [id:dp2662101856372143] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (201.3,89) .. controls (201.3,86.79) and (203.09,85) .. (205.3,85) .. controls (207.51,85) and (209.3,86.79) .. (209.3,89) .. controls (209.3,91.21) and (207.51,93) .. (205.3,93) .. controls (203.09,93) and (201.3,91.21) .. (201.3,89) -- cycle ;
+
+% Text Node
+\draw (269,179) node [anchor=north west][inner sep=0.75pt]   [align=left] {volatilité};
+% Text Node
+\draw (47,17) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{54.3235pt}\setlength\topsep{0pt}
+\begin{center}
+rendement \\espéré
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (84,134) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{24.5055pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize bon du }\\{\footnotesize trésor}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (178,24) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{63.053pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize \textcolor[rgb]{0.56,0.07,1}{ligne du marché }}\\{\footnotesize \textcolor[rgb]{0.56,0.07,1}{des capitaux}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (241,73) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{69.70816pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.29,0.56,0.89}{{\footnotesize frontière efficiente }}\\\textcolor[rgb]{0.29,0.56,0.89}{{\footnotesize du marché}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (145,65) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{43.5455pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize portefeuille}\\{\footnotesize du marché }
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+
+\end{center}
+\begin{itemize}
+	\item	En anglais, \og \textit{Capital Market line (CML)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsubsection{Ajout d'un nouvel investissement}
+\label{sec:MVT-newinv}
+Il y a 3 considérations à prendre pour l'ajout d'un nouveau investissement à un portefeuille :
+\begin{enumerate}
+	\item	Le ratio de Sharpe du nouveau investissement.
+	\item	Le ratio de Sharpe du portefeuille existant.
+	\item	La corrélation entre les rendements du nouveau investissement et du portefeuille existant.
+\end{enumerate}
+
+La règle générale est donc d'ajouter un investissement au portefeuille si \lfbox[formula]{$\frac{\text{E}[R_{\text{new}}] - r_{f}	}{\sigma_{\text{new}}}	>	\rho_{\text{new}, P}\frac{\text{E}[R_{P}] - r_{f}	}{\sigma_{P}}$}.
 
 
 
 \pagebreak
 \section{Assset Pricing Models}
+\subsection{Capital Asset Pricing Model}
+\begin{definitionNOHFILLsub}[Coût du capital]
+Le rendement requis sur un actif (portefeuille, projet, etc.) pour qu'un individu investisse ses \textit{actifs} dans une entreprise.	\\
+ C'est à dire, le "coût" pour qu'une compagnie obtienne des \textit{capitaux propres}.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{cost of capital} \fg{}.
+\end{itemize}
+
+\end{definitionNOHFILLsub}
+\subsubsection{Beta}
+
+
+\columnbreak
+\subsubsection{The Capital Asset Pricing Model (CAPM)}
+
+
+\columnbreak
+\subsubsection{Market Risk Premium}
+
+
+\columnbreak
+\subsubsection{The Debt Cost of Capital}
+
+
+\columnbreak
+\subsubsection{Required Return on All-Equity Project}
+
+
+\columnbreak
+\subsubsection{Required Return on a Leveraged Project}
 
 
 
-\pagebreak
-\section{Market Efficiency and Behavioural Finance}
+\columnbreak
+\subsection{Factor Models}
+\subsubsection{Multi-factor Model}
+
+
+%\pagebreak
+%\section{Market Efficiency and Behavioural Finance}
+
+
+%\pagebreak
+%\section{Investment Risk and Project Analysis}
 
 
 
-\pagebreak
-\section{Investment Risk and Project Analysis}
-
-
-
-\pagebreak
-\section{Capital Structure}
+%\pagebreak
+%\section{Capital Structure}
 
 
 
