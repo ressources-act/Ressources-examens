@@ -1,4 +1,4 @@
-%% Aide-mémoire
+%% Préambule
 \documentclass[10pt, french]{article}
 \input{../../cheatsht-preamble-general.tex}
 \usepackage{array, multirow}
@@ -21,7 +21,7 @@
 %%	+	assure que les sections sont numérotées mais pas les sous-sections et plus tout en les mettant dans le TOC
 %% -----------------------------
 \setcounter{secnumdepth}{1}
-  
+
 %% -----------------------------
 %% Début du document
 %% -----------------------------
@@ -37,8 +37,8 @@
 \newpage
 \raggedcolumns
 
-\begin{multicols*}{2}
 \part{Gestion des risques financiers II (ACT-2011)}
+\begin{multicols*}{2}
 
 \section{Introduction aux produits dérivés}
 
@@ -664,9 +664,6 @@ Il n'y a aucun impact sur les profits et le \textbf{vendeur peut ne jamais avoir
 \end{tabular}
 \end{center}%
 \begin{center}
-
-
-
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -4911,89 +4908,6 @@ Soit $n + 1$ prix observés $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle régul
 \end{enumerate}
 \end{definitionNOHFILL}
 
-
-\pagebreak
-\section*{Risque d'investissement}
-\paragraph{Note}	\hl{Chapitre 10.1 des notes de Coaching Actuaries pour IFM. Pas dans le cadre du cours de GRF II.}
-\begin{description}
-	\item[Variance]	Mesure de risque symétrique qui prend en compte les rendements au-dessus et en dessous de la moyenne;
-	\item[Semi-variance]	Écart-type moyen en dessous de la moyenne.
-		\begin{itemize}[leftmargin = *]
-		\item	En anglais, \og \textit{semi-variance} \fg{};
-		\item	\icbox{$\sigma^{2}_{SV}	=	\esp{\min(0, R - \esp{R})^{2}}$};
-		\item	Le \og \textit{downside semi-variance} \fg{} est la racine $\sigma_{SV}$ de la semi-variance.
-		\end{itemize}
-	\item[Value-at-Risk ($VaR$)]	$100\alpha^{\text{e}}$ pourcentile;
-	\item[Tail Value-at-Risk ($VaR$)]	
-		\begin{itemize}[leftmargin = *]
-		\item	Alias, \og \textit{expected shortfall} \fg{} ou \og \textit{conditional tail expectation} \fg{};
-		\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X \leq \alpha}	=	\frac{1}{\alpha} \int_{-\infty}^{VaR_{\alpha}} x f_{X}(x)dx$};
-		\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution des gains et \icbox{$TVaR_{\alpha}(X)	=	\esp{X | X > \alpha}	=	\frac{1}{1 - \alpha} \int_{VaR_{\alpha}}^{\infty} x f_{X}(x)dx$};
-		\end{itemize}
-\end{description}
-
-\subsection*{Mesure de risque cohérente}
-Une mesure de risque $\rho$ est dite "\textbf{cohérente}" si elle rencontre ces 4 caractéristiques:
-\begin{enumerate}[leftmargin = *]
-	\item	Invariance à la translation si pour un \icbox[red][palechestnut]{scalaire $c	>	0$}, la mesure de risque \icbox{$\rho(X + c)	=	\rho(X) + c$};
-		\begin{itemize}[leftmargin = *]
-		\item	Ajouter un montant positif à un risque ajoute un montant équivalent à la mesure de risque.
-		\end{itemize}
-	\item	Homogénéité positive si pour un \icbox[red][palechestnut]{scalaire $c	>	0$}, la mesure de risque \icbox{$\rho(cX)	=	c\rho(X)$};
-		\begin{itemize}[leftmargin = *]
-		\item	Multiplier le risque $X$ par un montant positif $c$ ajuste la mesure de risque $\rho$ proportionnellement.
-		\end{itemize}
-	\item	Sous-additivité si la mesure de risque \icbox{$\rho(X + Y)	=	\rho(X) + \rho(Y)$};
-		\begin{itemize}[leftmargin = *]
-		\item	Combiner des risques mène à des bénéfices de mutualisation tant qu'ils ne sont pas parfaitement corrélés.
-		\end{itemize}
-	\item	Monotonicité si pour \icbox[red][palechestnut]{$X	\leq	Y$}, la mesure de risque \icbox{$\rho(X)	\leq	\rho(Y)$}.
-		\begin{itemize}[leftmargin = *]
-		\item	Si un risque $X$ est moins risqué qu'un autre risque $Y$, les mesures de risques doivent également suivent l'ordre.
-		\end{itemize}
-\end{enumerate}
-
-\columnbreak
-
-\section*{Analyse du risque d'un projet}
-\paragraph{Note}	\hl{Chapitre 10.2 des notes de Coaching Actuaries pour IFM. Pas dans le cadre du cours de GRF II.}
-
-On souhaite toujours maximiser la valeur actualisée nette (VAN) d'un projet avec \icbox{$VAN	=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	i_{t})^{t}}$}.\\
-Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
-
-\subsection*{Analyse de rentabilité (\og \textit{break-even analysis} \fg{})}
-Lorsque la valeur actualisée nette (VAN) est nulle, un projet devient rentable.\\
-Une analyse de rentabilité calcule la valeur de chaque paramètre tel que la VAN du projet est nulle. \\
-Notamment, on isole le \og \textit{internal rate of return (IRR)} \fg{}:
-\begin{align*}
-	VAN
-	&=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	IRR)^{t}}
-	=	0
-\end{align*}
-
-On peut aussi isoler la seuil de rentabilité pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
-
-\subsection*{Analyse de sensibilité (\og \textit{sensitivity analysis} \fg{})}
-Une analyse de sensibilité évalue la sensibilité de la VAN à chacune des variables en les faisant varier une à la fois. Ceci permet d'identifier les variables les plus importantes selon leurs effets sur la VAN.\\
-
-On débute par calculer la VAN d'un scénario de référence. Puis, on calcule la VAN en variant une des variables par un pourcentage fixe. 
-
-\subsection*{Analyse de scénarios (\og \textit{scenario analysis} \fg{})}
-L'analyse de scénarios est semblable à l'analyse de sensibilité sauf que l'on fait varier plusieurs variables à la fois. Le plus la VAN varie selon les différents scénarios, plus le risque du projet est élevé.
-
-\subsection*{Simulation Monte-Carlo}
-On estime la distribution de probabilité d'une quantité d'intérêt (e.g., la VAN).
-
-Les étapes générales sont:
-\begin{enumerate}[leftmargin = *]
-	\item	Construire le modèle d'intérêt;
-	\item	Simuler des nombres aléatoires d'une distribution supposée pour chacune des variables;
-	\item	Déterminer la valeur de la quantité d'intérêt avec les variables calculées précédemment;
-	\item	Répéter les 2 étapes précédentes un grand nombre de fois;
-	\item	Calculer des mesures d'intérêt (moyenne, variance, etc.) puis tracer les valeurs simulées comme une distribution de probabilité.
-\end{enumerate}
-
-
 \pagebreak
 \section{Évaluation par la méthode de Monte Carlo}
 Lorsque la valeur à l'échéance dépend de la trajectoire du prix, le modèle binomiale devient trop compliqué et nous utilisons plutôt la méthode de Monte Carlo; on simule des prix pour estimer le prix (alias la valeur espérée actualisée) de l'option.
@@ -5260,10 +5174,11 @@ Fourni au détenteur une option à un temps futur déterminé. À l'échéance d
 Permet au détenteur de choisir à un moment futur déterminé si l'option sera une option d'achat ou de vente européenne.
 \end{definitionNOHFILLsub}
 
+\end{multicols*}
 
-
-\pagebreak
+\newpage
 \part{Gestion des risques financiers I (ACT-1006)}
+\begin{multicols*}{2}
 
 \setcounter{section}{6}
 \section{Mean-Variance Portfolio Theory}
@@ -6060,8 +5975,8 @@ La règle générale est donc d'ajouter un investissement au portefeuille si \lf
 
 
 
-\pagebreak
-\section{Assset Pricing Models}
+\newpage
+\section{Asset Pricing Models}
 \subsection{Modèle d'évaluation des actifs financiers}
 \begin{distributions}[Notation]
 \begin{description}
@@ -6476,6 +6391,9 @@ Si on compare le projet à une entreprise :
 	\item[$\beta_{U}$]	Beta sans effet de levier.
 	\item[$E$]	Valeur au marché de l'équité de l'entreprise.
 	\item[$D$]	Valeur au marché de la dette de l'entreprise.
+		\begin{itemize}
+		\item	S'il y a des capitaux propres, on calcule $D - CP$.
+		\end{itemize}
 	\item[$r_{E}$]	Coût des capitaux propres.
 	\item[$r_{D}$]	Coût des capitaux d'emprunt.
 	\item[$w_{E}$]	Proportion de l'entreprise financée par des capitaux propres.
@@ -6501,7 +6419,7 @@ Donc, on trouve :
 Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\shortstack{prime de risque\\ du marché}\right)$}.\\
 \end{definitionNOHFILLprop}
 
-\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$.
+\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$ ; c'est à dire, $D - CP$.
 
 %\columnbreak
 \subsubsection{Rendement requis pour un projet avec effet de levier}
@@ -6529,10 +6447,10 @@ Utilisé pour évaluer un projet financé sans emprunt ayant le même risque que
 
 
 \columnbreak
-\subsection{Factor Models}
+\subsection{Modèles multi-factoriels}
 \begin{rappel_enhanced}[Contexte]
 Le MÉDAF pose que la volatilité des rendements du marché sont expliqué par \textbf{\textit{un seul facteur}}---le rendement sur le portefeuille du marché.\\
-Le MÉDAF multi-factorial prend plusieurs facteurs en considération pour estimer le rendement espéré. Ce modèle muti-factorial est aussi connu comme la théorie de l'arbitrage de prix (\og \textit{arbitrage pricing theory (APT)} \fg{}).
+Le MÉDAF multi-factoriel prend plusieurs facteurs en considération pour estimer le rendement espéré. Ce modèle muti-factoriel est aussi connu comme la théorie de l'arbitrage de prix (\og \textit{arbitrage pricing theory (APT)} \fg{}).
 \end{rappel_enhanced}
 \begin{distributions}[Notation]
 \begin{description}
@@ -6545,7 +6463,7 @@ On trouve que l'équation de l'APT est \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} 
 L'APT est semblable au CAPM mais comporte des hypothèses moins restrictives :
 \begin{conceptgen}{Hypothèses de l'APT}
 \begin{enumerate}
-	\item	Un modèle multi-factorial décrit les rendements d'un actif sans toutefois indiquer le nombre de facteurs.
+	\item	Un modèle multi-factoriel décrit les rendements d'un actif sans toutefois indiquer le nombre de facteurs.
 	\item	Le risque non systémique peut être éliminé avec de la diversification et n'est pas tarifé.
 	\item	Il n'y a pas d'arbitrage.
 \end{enumerate}
@@ -6585,22 +6503,429 @@ La spécification de facteurs FFC est la plus courante avec le \textbf{marché},
 On trouve que \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \beta_{i}^{M}\left(\text{E}[R_{M}] - r_{f}\right) + \beta_{i}^{GMP} \text{E}[R_{GMP}]$}	\lfbox[formula]{$+ \beta_{i}^{EMF} \text{E}[R_{EMF}]	 + \beta_{i}^{AVE} \text{E}[R_{AVE}]$}.
 \end{definitionNOHFILL}
 
-\pagebreak
+
+
+\newpage
+\setcounter{section}{38} % dut sauter 9 à cause d'un problème avec le toc
 \section{Market Efficiency and Behavioural Finance}
+\begin{definitionNOHFILL}[Marché efficient]
+Marché dont les prix des titres financiers s'ajustent rapidement à toutes nouvelles informations ; les prix reflètent toute l'information disponible.
 
 
-%\pagebreak
-%\section{Investment Risk and Project Analysis}
+%%%	------------------------
+%%%	NOTES
+%%%	+	Mieux expliquer ça.
+%%%	------------------------
+Si un marché :
+\begin{description}
+	\item[est efficient]	le prix de l'action reflètent toute l'information disponible.
+		\begin{itemize}
+		\item	Les stratégies passives sont optimales.
+		\end{itemize}
+	\item[n'est pas efficient]	le prix de l'action peut ne pas être représentatif de sa vraie valeur.
+		\begin{itemize}
+		\item	Des stratégies actives peuvent être supérieures à une stratégie passive.
+		\end{itemize}
+\end{description}
+
+\begin{itemize}
+	\item	En anglais, \og \textit{efficient market hypothesis (EMH)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\subsection{Formes d'efficience de marché (EM)}
+En bref : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}m{2cm}<{\centering}   | >{\columncolor{beaublue}}m{2cm}<{\centering}  | >{\columncolor{beaublue}}m{2cm}<{\centering}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Forme d'EM}}	&	\textcolor{white}{\textbf{Données historiques}}	&	\textcolor{white}{\textbf{Informatique publique}}	&	\textcolor{white}{\textbf{Information privée}}		\\\hline
+\og \textit{Weak} \fg{} 	&	$\checkmark$	&		&		\\\hline
+\og \textit{Semi-strong} \fg{} 	&	$\checkmark$	&	$\checkmark$	&		\\\hline
+\og \textit{Strong} \fg{} 	&	$\checkmark$	&	$\checkmark$	&	$\checkmark$	\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{definitionNOHFILLsub}[Hypothèse d'EM \og \textit{weak form} \fg{}]
+Pose que les prix de titres financiers reflètent \textbf{toute l'information historique du marché}. 
+
+\begin{itemize}
+	\item	Cette théorie pose donc que le prix d'un titre prend déjà en compte ses rendements, ou tendances de rendements, antérieurs et donc que ses rendements \textit{futurs} sont indépendants du passé.
+	\item	Cette théorie implique que l'on ne peut pas obtenir des rendements supérieurs \underline{\textbf{de façon régulière}} en analysant les rendements historiques.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Hypothèse d'EM \og \textit{semi-strong form} \fg{}]
+Pose que les prix de titres financiers reflètent \textbf{toute l'information disponible publiquement}, y compris les données historiques du marché.
+
+\begin{itemize}
+	\item	Cette théorie pose que les prix de titres financiers s'ajustent au moment que de nouvelles informations sont rendues disponibles.
+		\begin{itemize}
+		\item	P. ex. : diffusion publique des gains, annonce d'une fusion, mise à pied, etc.
+		\end{itemize}
+	\item	Cette théorie implique que l'on ne peut pas obtenir des rendements supérieurs \underline{\textbf{de façon régulière}} en analysant des rapports annuels puisque l'information est déjà prises en considération dans le prix du titre.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Hypothèse d'EM \og \textit{strong form} \fg{}]
+Pose que les prix de titres financiers reflètent \textbf{toute l'information publique \textit{et} privée}. Y compris l'information connue par des gestionnaires, mais pas le public.
+
+\begin{itemize}
+	\item	Cette théorie pose qu'il y a des investisseurs chanceux et malchanceux mais que \textbf{personne} (y compris les gestionnaires d'une compagnie) \textbf{peut obtenir des rendements supérieurs \underline{de façon régulière}}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\pagebreak
+\subsection{Preuves empiriques supportant l'hypothèse d'EM}
+\subsubsection{Hypothèse d'EM \og \textit{weak} \fg{}}
+Plusieurs études ont été effectuées sur l'effet du passé sur le prix d'actions :
+\begin{itemize}
+	\item	En 1953, Kendall a effectué une étude en espérant de trouver des cycles réguliers dans les prix d'actions. En lieu, il a trouvé que les prix suivent un modèle de marche aléatoire.
+	\item	En 2017, 3 chercheurs ont trouvé que les coefficients d'autocorrélation des prix d'actions étaient presque nuls n’impliquant aucun lien entre journées consécutives.
+%%%	------------------------
+%%%	NOTES
+%%%	+	Clarifier ceci, pas clair.
+%%%	------------------------
+	\item	En 1988, 2 chercheurs ont investigué si le modèle est avec dérive :
+		\begin{itemize}
+			\item	Ils ont trouvé un \og \textit{short-term momentum} \fg{} dans les prix d'actions sur de courtes périodes de temps.
+			\item	Ils ont trouvé que les prix d'actions ont tendance à s'inverser pour de longues périodes de temps. 
+		\end{itemize}
+\end{itemize}
+En bref, le passé n'est pas garant du futur. 
+
+
+\subsubsection{Hypothèse d'EM \og \textit{semi-strong} \fg{}}
+Selon la théorie, il ne devrait pas avoir de tendances dans le prix de l'action d'une entreprise \textbf{suite} à la sortie de nouvelles informations par rapport à celle-ci.
+\begin{itemize}
+	\item	En théorie, il ne devrait pas avoir de tendances dans le prix de l'action \textit{\textbf{avant}} la sortie non plus. 
+	\item	En pratique, il y a habituellement des différences dans le niveau d'information qui est publique ou des fuites d'informations avant l'annonce officielle.
+\end{itemize}
+
+Des chercheurs ont investigué le prix d'actions en réponse à des annonces de résultats, fusions, changements de conditions macroéconomiques, etc.
+\begin{itemize}
+	\item	Pour ce faire, les chercheurs ont évalué le rendement anormal d'une action comme étant le $\alpha$ du MÉDAF.
+		\begin{itemize}
+		\item	C'est à dire, la différence entre le rendement observé et l'espérance du rendement d'une action.
+		\end{itemize}
+	\item	2 chercheurs ont effectué une étude sur des entreprises qui étaient l'objet d'une prise de contrôle.
+		\begin{itemize}
+		\item	Puisque l'entreprise qui effectue l'acquisition doit payer plus que le prix de l'action au marché boursier, une annonce d'une prise de contrôle mène à une augmentation importante du prix de l'action.
+		\item	Ils ont trouvés que les rendements anormaux de l'action augmentent graduellement 3 mois avant l'annonce d'une prise de contrôle puis qu'au moment de l'annonce il y a un saut.
+		\item	Par la suite, il n'y a aucune tendance.
+		\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Hypothèse d'EM \og \textit{strong} \fg{}}
+Pour tester le \og \textit{strong form} \fg{}, il faut évaluer toute l'information d'une compagnie qui peut être obtenue par une analyse minutieuse.
+\begin{itemize}
+	\item	Plusieurs études ont démontré que des analystes "experts" n'obtiennent pas des rendements supérieurs au marché.
+	\item	En 2017, 3 chercheurs ont trouvés que de 1971 à 2013 seulement 40\% des fonds avec une gestion active évalués ont obtenu des rendements supérieurs à l'indice Wilshire 5000.
+	\item	En 1995, Malkiel a trouvé qu'à chaque année, les gestionnaires des fonds les plus performants ont une chance sur deux de battre leur rendement de l'année précédente.
+	\item	Si les frais de gestion sont pris en compte, ces fonds deviennent encore moins intéressants.
+\end{itemize}
+
+
+\columnbreak
+\subsection{Preuves empiriques allant à l'encontre de l'hypothèse d'EM : Anomalies du marché}
+Historiquement, l'hypothèse de marchés efficients était supposée adéquate. Cependant, des anomalies du marché ont fourni des preuves allant à l'encontre de l'EM. Si une anomalie existe, alors un investisseur peut en tirer profit.\\
+
+Cela dit, plusieurs arguments peuvent être faits à l'encontre d'anomalies :
+\begin{itemize}
+	\item	Les anomalies qui ont eu lieu dans le passé ne sont pas garanties de se perpétuer.
+	\item	L'exploration de données peut mener à de faux positifs---il est inévitable qu'avec suffisamment de recherche, on peut trouver des tendances anormales.
+	\item	La majorité du temps, un investisseur ne peut pas tirer profit d'anomalies à moins qu'il utilise un algorithme sur un ordinateur.
+\end{itemize}
+
+\subsubsection{Effets de calendrier}
+Certaines anomalies semblent indiquer qu'un investisseur peut obtenir de meilleurs rendements à un certain moment de l'année, de la semaine ou du jour.
+
+\begin{definitionNOHFILLprop}[Effet du mois de janvier]
+Les rendements en janvier on tendance à être supérieurs aux autres mois alors que ceux en décembre ont tendance à être plus faibles.
+\begin{itemize}
+	\item	L'hypothèse courante est que les investisseurs vendent des parties de leurs portefeuilles en effectuant leurs impôts de fin d'année ce qui réduit les prix ;
+	\item	En janvier, les investisseurs achètent davantage d'actions en raison des prix faibles.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet du lundi]
+Les rendements sont plus faible le lundi (et plus élevés le vendredi) que les autres jours de la semaine.
+
+\begin{itemize}
+	\item	L'hypothèse est que de mauvaises nouvelles sortent au cours de la fin de semaine et que les investisseurs sont pessimistes le lundi en retournant au travail.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet du moment de la journée]
+Les rendements sont plus volatiles près de la fermeture et de l'ouverture des marchés. Également, le volume transigé est plus élevé.
+\end{definitionNOHFILLprop}
+
+\subsubsection{Réactions excessives du marché}
+\begin{itemize}
+	\item	En théorie selon l'hypothèse de marchés \og \textit{semi-strong} \fg{}, toute l'information publique est calculée dans le prix courant d'une action. 
+	\item	En pratique, il est arrivé que les investisseurs réagissent de façon exagérée à de nouvelles informations.
+\end{itemize}
+
+\begin{definitionNOHFILLprop}[Énigme des nouvelles émissions]
+La réaction démesurée à une nouvelle émission fait augmenter le prix initial. 
+
+\begin{itemize}
+	\item	Les investisseurs sont emportés par l'espoir d'obtenir de gros rendements.
+	\item	Cependant, dans l'espace de quelques années les rendements deviennent inférieurs à ceux de portefeuilles comparables.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Énigme de la divulgation des profits]
+Les annonces de profits (ou pertes) mettent du temps à se refléter dans le prix de l'action. 
+
+\begin{itemize}
+	\item	Un investisseur pourrait donc acheter l'action immédiatement après l'annonce d'un profit supérieur aux attentes et obtenir un meilleur rendement.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+%%%	------------------------
+%%%	NOTES
+%%%	+	Traduction de moment à effet et reversal à revirement sketchy...
+%%%	------------------------
+\begin{definitionNOHFILLprop}[Effet d'un élan v.s. effet d'un revirement]
+La forme \og \textit{weak} \fg{} de l'hypothèse d'EM utilise la marche aléatoire. Cependant, plusieurs études ont trouvés des effets résultant de l'élan ou le revirement du prix de l'action.
+\begin{itemize}
+	\item	L'effet d'un élan implique qu'une action dont le prix est en croissance continue d'accroître (et vice-versa pour une action dont le prix est en \textit{dé}croissance). 
+	\item	L'effet d'un revirement implique un retour à la moyenne.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\subsubsection{Autres anomalies}
+\begin{definitionNOHFILLprop}[Entreprises à double cotation]
+Deux actions découlant d'une même entreprise sont exposées aux mêmes risques. Intuitivement, ils devraient avoir des prix semblables. En pratique, ce n'est pas le cas.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet du cycle politique]
+Pour un gouvernement donné, sa première et dernière année ont des rendements supérieurs aux années intermédiaires.
+
+\begin{itemize}
+	\item	Ceci est peut-être puisque le marché anticipe de nouvelles politiques.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet du fractionnement d'actions]
+Lorsqu'une compagnie effectue un fractionnement d'actions, elle divise son action en multiples afin de diminuer le prix.
+\begin{itemize}
+	\item	En théorie, on s'attend à aucun effet sur le rendement d'une action puisque ceci n'a aucun impact sur sa valeur marchande.
+	\item	En pratique, les rendements sont supérieurs avant et après le fractionnement.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet de petites entreprises]
+Des petites entreprises ont tendance à obtenir des rendements anormalement élevés. 
+
+\begin{itemize}
+	\item	Ces petites entreprises sont moins évaluées par les analystes financiers.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet du \og \textit{Super Bowl} \fg{}]
+Historiquement, le marché boursier a tendance à offrir des meilleurs rendements si le vainqueur est une équipe du NFC que le AFC.
+
+\begin{itemize}
+	\item	Cet effet est plus probablement le résultat de sur-exploration de données que réel.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet de la taille d'une compagnie]
+Les entreprises à faible capitalisation boursière ont tendance à obtenir de meilleurs rendements que les entreprises à grande capitalisation.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Effet du ratio cours-bénéfice]
+Les actions à faible ratio cours-bénéfice (ou cours-valeur comptable) ont de meilleurs rendement de façon régulière.
+
+\begin{itemize}
+	\item	Le ratio cours-bénéfice divise le prix de l'action par le rendement par action.
+	\item	Le ratio de cours-valeur comptable divise le prix de l'action par la valeur comptable par action.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\subsubsection{Bulles et exubérance irrationnelle}
+Bien qu'elles ne sont pas des anomalies de marché, les bulles vont à l'encontre de l'EM.\\
+
+Par exemple : 
+\begin{itemize}
+	\item	La bulle immobilière américaine de 1996 à 2007.
+	\item	La bulle internet à la fin des années 90s où la valeur de l'indice NASDAQ a augmentée d'environ 580\%.
+\end{itemize}
+
+
+\columnbreak
+\subsection{Finance comportementale}
+La finance comportementale évalue l'effet du comportement humain sur les marchés financiers.
+
+\subsubsection{Diversification et biais de portefeuille}
+Plusieurs investisseurs individuels ne diversifient pas suffisamment leurs portefeuilles. Il y a deux explications possibles : 
+
+\begin{definitionNOHFILLprop}[Biais de familiarité]
+Les investisseurs vont avoir tendance à investir dans des entreprises avec lesquels ils sont familiers.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Préoccupations relatives à la richesse]
+Les investisseurs se préoccupent principalement de la performance de leur portefeuille relatif aux portefeuilles de leurs paires. Ceci les mène à choisir des portefeuilles qui ne sont pas diversifiés dans l'espoir d'obtenir des rendements au moins égaux à celui de leurs paires.\end{definitionNOHFILLprop}
+
+
+\subsubsection{Transactions excessives}
+En raison des frais de transactions, transiger des titres trop souvent diminue les rendements. L'hypothèse principale est que les investisseurs ont trop de confiance dans leurs connaissances et expertise financière.
+
+
+\subsubsection{Sophisme des coûts irrécupérables}
+Les investisseurs ont tendance à conserver des investissements dont la valeur a diminuée et à vendre des investissements dont la valeur a augmentée.
+
+
+\subsubsection{Émotions des investisseurs}
+Les investisseurs ont tendance d'être influencés par les médias où les événements qui capturent l'attention.
+\begin{itemize}
+	\item	Il a été démontré que les investisseurs ont tendance à acheter des actions récemment dans les nouvelles.
+	\item	Il a été démontré que les rendements d'actions ont tendance à être plus élevés les journées ensoleillées.
+	\item	Certains investisseurs ont tendance à surévaluer leur expérience financière.
+\end{itemize}
+
+
+\subsubsection{Comportement moutonnier}
+Les investisseurs agissent en groupe, pour plusieurs raisons : 
+\begin{enumerate}
+	\item	L'investisseur croit que les autres ont plus d'information et suit les tendances du marché.
+	\item	L'investisseur peut suivre le marché afin d'avoir un rendement au moins égal au marché.
+	\item	Les gestionnaires de fonds souhaitent éviter d'endommager leurs réputations s'ils détiennent des actions trop différentes de celles de leurs paires.
+\end{enumerate}
+
+
+\pagebreak
+\section{Risque d'investissement et analyse de projets}
+\subsection{Risque d'investissement}
+\subsubsection{Mesures du risque d'investissement}
+\begin{definitionNOHFILL}[Variance]
+Mesure de risque symétrique qui prend en compte les rendements au-dessus et en dessous de la moyenne.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Semi-variance]
+Écart-type moyen des rendements \underline{\textbf{en dessous}} de la moyenne.
+
+\begin{itemize}
+		\item	Utile si un investisseur se soucie seulement du risque à la baisse ;
+		\item	\icbox{$\sigma^{2}_{SV}	=	\esp{\min(0, R - \esp{R})^{2}}$} ;
+		\item	Le \og \textit{downside standard deviation} \fg{} est la racine $\sigma_{SV}$ de la semi-variance.
+		\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Value-at-Risk ($VaR_{\kappa}$)]
+La $VaR_{\kappa}$ est le $100\kappa^{\text{e}}$ pourcentile.
+
+\begin{itemize}
+	\item	Si $X$ représente les \textbf{gains} (hypothèse de base pour IFM) alors une valeur négative représente une perte.
+	\item	Si $X$ représente les \textbf{pertes} (hypothèse de base en intro 2) alors \textbf{une valeur négative représente un gain}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Tail Value-at-Risk ($TVaR_{\kappa}$)]
+Mesure de risque qui prend en considération les valeurs au dessus (en dessous) de la $VaR_{\kappa}$.
+
+\begin{itemize}[leftmargin = *]
+	\item	Alias, \og \textit{expected shortfall (ES)} \fg{} ou \og \textit{conditional tail expectation (CTE)} \fg{} ;
+	\item	Si $X$ représente les pertes, on s'intéresse à l'extrémité supérieure de la distribution et \icbox{$TVaR_{\kappa}(X)	=	\esp{X | X > VaR_{\kappa}}	=	\frac{1}{1 - \kappa} \int_{VaR_{\kappa}}^{\infty} x f_{X}(x)dx$} ;
+	\item	Si $X$ représente les gains, on s'intéresse à l'extrémité inférieure de la distribution et \icbox{$TVaR_{\kappa}(X)	=	\esp{X | X \leq VaR_{\kappa}}	=	\frac{1}{\kappa} \int_{-\infty}^{VaR_{\kappa}} x f_{X}(x)dx$}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsubsection{Mesure de risque cohérente}
+Une mesure de risque $\rho$ est dite "\textbf{cohérente}" si elle rencontre ces 4 caractéristiques:
+\begin{definitionNOHFILLsub}[Homogénéité]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$a	>	0$}, la mesure de risque $\rho$ est dite homogène si \icbox{$\rho(aX)	=	a\rho(X)$}.
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, on peut poser que $a	=	1.75$ est le taux de change entre le dollar canadien et le dollar américain.\\
+Il est alors \textit{cohérent} que calculer $\rho(1.75X)$ soit équivalent à calculer $1.75\rho(X)$.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Invariance à la translation]
+Soit une v.a. $X$ et un scalaire \icbox[red][palechestnut]{$a	\in	\mathbb{R}$}, la mesure de risque $\rho$ satisfait la propriété d'invariance à la translation si \icbox{$\rho(X + a)	=	\rho(X) + a$}.	\\
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, on peut poser que $a	=	-500\$$ est la franchise d'un contrat d'assurance auto ; c'est-à-dire, un assuré va payer de sa poche le premier 500\$ d'un accident auto.\\
+
+Il est alors \textit{cohérent} que calculer $\rho(X - 500)$ soit équivalent à calculer $\rho(X) - 500$. Par exemple, si on utilise l'espérance comme mesure de risque ($\rho(X)	=	\text{E}[X]$) alors  il devrait nous être familier que $\text{E}[X	-	500]	=	\text{E}[X]	-	500$.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Monotonicité]
+Soit les v.a. $X_{1}$ et $X_{2}$ \icbox[red][palechestnut]{tel que $\Pr(X_{1}		\leq		X_{2})	=	1$}, la mesure de risque $\rho$ satisfait la propriété de monotonicité si \icbox{$\rho(X_{1})	\leq	\rho(X_{2})$} ou si pour un \icbox[red][palechestnut]{$\kappa	\in	(0, 1)$} fixé, \icbox{$F_{X_{1}}^{-1}(\kappa)	\leq	F_{X_{2}}^{-1}(\kappa)$}.\\
+
+\begin{rappel_enhanced}[Interprétation]
+Par exemple, si $X_{1}$ est un assuré plus dangereux que $X_{2}$ il est \textit{cohérent} que la mesure de risque lui charge plus cher.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Sous-additivité]
+Soit les v.a. $X_{1}$ et $X_{2}$, la mesure de risque $\rho$ satisfait la propriété de sous-additivité si \icbox{$\rho(X_{1}	+	X_{2})	\leq	\rho(X_{1})	+	\rho(X_{2})$}.\\
+
+\begin{rappel_enhanced}[Interprétation]
+On peut raisonner qu'il est cohérent que ce soit moins cher pour une compagnie d'assurance d’assurer deux personnes que pour deux compagnies d'assurance d’assurer chacune une personne.
+\end{rappel_enhanced}
+\end{definitionNOHFILLsub}
+
+
+\columnbreak
+\subsection{Analyse du risque d'un projet}
+
+On souhaite toujours maximiser la valeur actualisée nette (VAN) d'un projet avec \icbox{$VAN	=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	i_{t})^{t}}$}.\\
+Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
+
+
+\subsubsection{Analyse de rentabilité (\og \textit{break-even analysis} \fg{})}
+Lorsque la valeur actualisée nette (VAN) est nulle, un projet devient rentable.\\
+Une analyse de rentabilité calcule la valeur de chaque paramètre tel que la VAN du projet est nulle. \\
+Notamment, on isole le \og \textit{internal rate of return (IRR)} \fg{}:
+\begin{align*}
+	VAN
+	&=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	IRR)^{t}}
+	=	0
+\end{align*}
+
+On peut aussi isoler la seuil de rentabilité pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
+
+
+\subsubsection{Analyse de sensibilité (\og \textit{sensitivity analysis} \fg{})}
+Une analyse de sensibilité évalue la sensibilité de la VAN à chacune des variables en les faisant varier une à la fois. Ceci permet d'identifier les variables les plus importantes selon leurs effets sur la VAN.\\
+
+On débute par calculer la VAN d'un scénario de référence. Puis, on calcule la VAN en variant une des variables par un pourcentage fixe. 
+
+
+\subsubsection{Analyse de scénarios (\og \textit{scenario analysis} \fg{})}
+L'analyse de scénarios est semblable à l'analyse de sensibilité sauf que l'on fait varier plusieurs variables à la fois. Le plus la VAN varie selon les différents scénarios, plus le risque du projet est élevé.
+
+
+\subsubsection{Simulation Monte-Carlo}
+On estime la distribution de probabilité d'une quantité d'intérêt (e.g., la VAN).
+
+Les étapes générales sont:
+\begin{enumerate}[leftmargin = *]
+	\item	Construire le modèle d'intérêt;
+	\item	Simuler des nombres aléatoires d'une distribution supposée pour chacune des variables;
+	\item	Déterminer la valeur de la quantité d'intérêt avec les variables calculées précédemment;
+	\item	Répéter les 2 étapes précédentes un grand nombre de fois;
+	\item	Calculer des mesures d'intérêt (moyenne, variance, etc.) puis tracer les valeurs simulées comme une distribution de probabilité.
+\end{enumerate}
 
 
 
 %\pagebreak
 %\section{Capital Structure}
 
-
-
 \end{multicols*}
-
 %% -----------------------------
 %% Fin du document
 %% -----------------------------
