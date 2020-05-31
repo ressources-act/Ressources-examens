@@ -6069,6 +6069,11 @@ La règle générale est donc d'ajouter un investissement au portefeuille si \lf
 	\item[$\text{E}\lbrack R_{i} \rbrack$]	Rendement espéré pour l'investissement $i$.
 	\item[$\beta_{i}$]	Beta de l'investissement $i$.
 	\item[$\text{E}\lbrack R_{M} \rbrack$]	Rendement espéré du marché.
+	\item[$\alpha$]	Rendement qui n'est pas expliqué par le risque systémique (beta).
+		\begin{itemize}
+		\item	Ceci correspond à la différence entre le vrai rendement de l'investissement $i$ et le rendement prédit par le MÉDAF $r_{i}$ ;
+		\item	En régression, c'est \textbf{l'erreur irréductible} $\varepsilon$.
+		\end{itemize}
 \end{description}
 \end{distributions}
 
@@ -6110,7 +6115,7 @@ La règle générale est donc :
 \end{description}
 \end{definitionNOHFILLsub}
 
-Avec une régression, on peut estimer le beta de l'actif en le considérant comme la pente et en considérant le rendement de l'actif $\alpha$ comme l'intercepte :
+Avec une régression, on peut estimer le beta de l'actif en le considérant comme la pente et en considérant le rendement en excès du taux sans risque de l'actif $\alpha$ comme l'intercepte :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -6233,20 +6238,24 @@ Le MÉDAF nous permet de trouver le coût du capital $r_{i}$ (alias, le rendemen
 L'équation du MÉDAF est \lfbox[formula]{$r_{i}	=	\text{E}[R_{i}]	=	r_{f} + \beta_{i}(\text{E}[R_{M}]	-	r_{f})$}.
 
 \begin{itemize}
-	\item	En anglais, \og \textit{Capital Asset Pricing Model (CAPM)} \fg{}.
+	\item	En anglais, \og \textit{Capital Asset Pricing Model (CAPM)} \fg{} ;
+	\item	En régression, ceci correspond à l'équation pour la prévision $\hat{y}_{i}	=	\hat{\beta}_{0} + \hat{\beta}_{1}x_{i}$ ;
+	\item	Alors, le vrai rendement de l'investissement $i$ est $r_{f} + \beta_{i}(r_{M} -  r_{f}) \textcolor{teal}{+ \alpha_{i}}$.
 \end{itemize}
 \end{definitionNOHFILL}
 
 \begin{conceptgen}{Hypothèses du MÉDAF}
 \begin{enumerate}
-	\item	Les investisseurs peuvent transiger tous les titres aux prix compétitifs du marché.
+	\item	Les investisseurs sont des preneurs de prix.
 		\begin{itemize}
-		\item	Il n'y a pas de taxes ni de frais de transactions.
+		\item	C'est à dire qu'ils transiger les titres aux prix compétitifs du marché sans pouvoir les influencer (concept de macro.) ;
+		\item	Il n'y a pas de taxes ni de frais de transactions ;
 		\item	Les investisseurs peuvent emprunter et prêter de l'argent au taux sans risque.
 		\end{itemize}
 	\item	Les investisseurs détiennent uniquement des portefeuilles efficients.
 		\begin{itemize}
-		\item	Ceci implique que les investisseurs sont rationnels, qu’ils ont une aversion au risque et  qu'ils cherchent à maximiser leurs investissements.
+		\item	Ceci implique que les investisseurs sont rationnels, qu’ils ont une aversion au risque et qu'ils cherchent à maximiser leurs investissements.
+		\item	C'est à dire que pour un niveau de risque (volatilité) donné, il n'y a pas de portefeuilles avec un rendement supérieur. 
 		\end{itemize}
 	\item	Les investisseurs ont des attentes homogènes pour les volatilités, les corrélations et les rendements espérés de titres financiers.
 \end{enumerate}
@@ -6417,7 +6426,7 @@ Soit une obligation zéro-coupon avec :
 	\item[$p$]	Probabilité de défaut de l'obligation.
 	\item[$L$]	Espérance du montant de perte, par dollar de dette, s'il y a défaut
 		\begin{itemize}
-		\item	On représente $L$ par dollar de dette afin de l'inclure dans l'équation de $r_{d}$ plus bas.
+		\item	On représente $L$ par dollar de dette afin de l'inclure comme pourcentage dans l'équation de $r_{d}$ plus bas.
 		\end{itemize}
 \end{description}
 \end{distributions}
@@ -6434,7 +6443,7 @@ Pour un investissement de 1\$ dans une obligation zéro-coupon
 		\end{itemize}
 \end{itemize}
 
-Donc, en effectuant la moyenne pondérée des rendements on trouve que \lfbox[formula]{$r_{d}	=	y	-	pL$}.
+Donc, on trouve avec une moyenne pondérée des rendements \lfbox[formula]{$r_{d}	=	y	-	pL$}.
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLprop}[MÉDAF avec les betas de dette]
@@ -6494,7 +6503,7 @@ Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\sh
 
 \paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$.
 
-\columnbreak
+%\columnbreak
 \subsubsection{Rendement requis pour un projet avec effet de levier}
 \begin{distributions}[Notation]
 \begin{description}
@@ -6504,27 +6513,80 @@ Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\sh
 
 Dans le cas où le projet doit être financé par des capitaux propre \textbf{\textit{et}} de la dette, on trouve le coût moyen pondéré du capital (CMPC) \lfbox[formula]{$r_{\text{CMPC}}	=	w_{E} r_{E} + w_{D} r_{D}(1 - \tau_{C})$}.
 \begin{itemize}
-	\item	Souvent, l'intérêt payable sur la dette est déductible d'impôts ;
+	\item	Souvent, l'intérêt payable sur la dette est déductible d'impôts et donc on veut le coût de la dette après imposition ;
 	\item	En anglais, \og \textit{weighted-average cost of capital (WACC)} \fg{}.
 \end{itemize}
 
-Le CMPC se base sur le coût des capitaux d'emprunt après imposition alors que le coût du capital sans effet de levier se base sur le coût des capitaux d'emprunt avant imposition. En bref :
+Le CMPC se base sur le coût du capital d'emprunt après imposition alors que le coût du capital sans effet de levier se base sur le coût du capital d'emprunt avant imposition. En bref :
 
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}m{6cm} | >{\columncolor{beaublue}}m{6cm}  |}
 \hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{Coût des capitaux sans effet de levier}}	&	\textcolor{white}{\textbf{CMPC}}		\\\specialrule{0.1em}{0em}{0em} 
+\textcolor{white}{\textbf{Coût du capital sans effet de levier}}	&	\textcolor{white}{\textbf{CMPC}}		\\\specialrule{0.1em}{0em}{0em} 
 Utilisé pour évaluer un projet financé sans emprunt ayant le même risque que l'entreprise	&	Utilisé pour évaluer un projet ayant le même financement et le même risque que l'entreprise	\\\hline
 \end{tabular}
 \end{center}
 
+
 \columnbreak
 \subsection{Factor Models}
-\subsubsection{Multi-factor Model}
+\begin{rappel_enhanced}[Contexte]
+Le MÉDAF pose que la volatilité des rendements du marché sont expliqué par \textbf{\textit{un seul facteur}}---le rendement sur le portefeuille du marché.\\
+Le MÉDAF multi-factorial prend plusieurs facteurs en considération pour estimer le rendement espéré. Ce modèle muti-factorial est aussi connu comme la théorie de l'arbitrage de prix (\og \textit{arbitrage pricing theory (APT)} \fg{}).
+\end{rappel_enhanced}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$N$]	Nombre de facteurs.
+	\item[$\beta_{{\color{teal}i}}^{{\color{burntorange}F}{\color{amethyst}n}}$]	Beta de l'actif ${\color{teal}i}$ au {\color{burntorange}facteur} ${\color{amethyst}n}$ en tenant les autres facteurs constants.
+\end{description}
+\end{distributions}
+On trouve que l'équation de l'APT est \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \sum_{n = 1}^{N} \beta_{i}^{Fn}\left(\text{E}[R_{Fn}]	-	r_{f}\right)$}.
+
+L'APT est semblable au CAPM mais comporte des hypothèses moins restrictives :
+\begin{conceptgen}{Hypothèses de l'APT}
+\begin{enumerate}
+	\item	Un modèle multi-factorial décrit les rendements d'un actif sans toutefois indiquer le nombre de facteurs.
+	\item	Le risque non systémique peut être éliminé avec de la diversification et n'est pas tarifé.
+	\item	Il n'y a pas d'arbitrage.
+\end{enumerate}
+\end{conceptgen}
 
 
-%\pagebreak
-%\section{Market Efficiency and Behavioural Finance}
+\subsubsection{Fama-French-Carhart (FFC)}
+\begin{definitionNOHFILL}[Notation]
+La spécification de facteurs FFC est la plus courante avec le \textbf{marché}, la \textbf{capitalisation boursière}, le \textbf{ratio cours / valeur comptable} et \textbf{l'élan} comme facteurs.
+
+\begin{description}
+	\item[$M$]	Portefeuille du marché.
+		\begin{itemize}
+		\item	Prend en considération le risque des capitaux propres.
+		\end{itemize}
+	\item[$GMP$]	Portefeuille gros-moins-petit.
+		\begin{itemize}
+		\item	En anglais, \og \textit{small-minus-big (SMB)} \fg{} ;
+		\item	Prends en considération la diversité de la taille des entreprises selon la capitalisation boursière ;
+		\item	On l'estime comme la différence entre le rendement d'entreprises avec une capitalisation boursière élevée et faible $\text{E}[R_{GMP}]	=	\text{E}[R_{G}]	-	\text{E}[R_{P}]$.
+		\end{itemize}
+	\item[$EMF$]	Portefeuille élevé moins faible.
+		\begin{itemize}
+		\item	En anglais, \og \textit{high-minus-low (HML)} \fg{} ;
+		\item	Prends en considération la diversité des rendements sur des actions de valeur et des actions de croissance ;
+		\item	Les action de valeur sont définies comme des actions avec un ratio cours-valeur comptable élevé alors que des actions de croissance ont un ratio cours-valeurs comptable faible ;
+		\item	On l'estime comme la différence entre le rendement d'entreprises avec un ratio élevé et faible $\text{E}[R_{EMF}]	=	\text{E}[R_{E}]	-	\text{E}[R_{F}]$.
+		\end{itemize}
+	\item[$AVE$]	Portefeuille de l'année avant l'élan d'une entreprise.
+		\begin{itemize}
+		\item	En anglais, \og \textit{prior 1-year momentum (PR1YR)} \fg{} ;
+		\item	Prends en considération l'élan d'une compagnie ;
+		\item	On l'estime comme la différence entre le rendements des gagnants et des perdants de l'année passée $\text{E}[R_{AVE}]	=	\text{E}[R_{GAVE}]	-	\text{E}[R_{PAVE}]$..
+		\end{itemize}
+\end{description}
+
+On trouve que \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \beta_{i}^{M}\left(\text{E}[R_{M}] - r_{f}\right) + \beta_{i}^{GMP} \text{E}[R_{GMP}]$}	\lfbox[formula]{$+ \beta_{i}^{EMF} \text{E}[R_{EMF}]	 + \beta_{i}^{AVE} \text{E}[R_{AVE}]$}.
+\end{definitionNOHFILL}
+
+\pagebreak
+\section{Market Efficiency and Behavioural Finance}
 
 
 %\pagebreak
