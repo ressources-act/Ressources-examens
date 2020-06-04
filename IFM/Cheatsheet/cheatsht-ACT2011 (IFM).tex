@@ -6882,7 +6882,8 @@ On peut raisonner qu'il est cohérent que ce soit moins cher pour une compagnie 
 \subsection{Analyse du risque d'un projet}
 
 On souhaite toujours maximiser la valeur actualisée nette (VAN) d'un projet avec \icbox{$VAN	=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	i_{t})^{t}}$}.\\
-Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
+
+Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Cependant ces estimations ont une certaine incertitude et donc nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
 
 
 \subsubsection{Analyse de rentabilité (\og \textit{break-even analysis} \fg{})}
@@ -6896,13 +6897,20 @@ Notamment, on isole le \og \textit{internal rate of return (IRR)} \fg{}:
 	=	0
 \end{align*}
 
-On peut aussi isoler la seuil de rentabilité pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
+\begin{definitionNOHFILLsub}[\og \textit{internal rate of return (IRR)} \fg{}]
+Le coût du capital auquel la VAN est nulle. C'est à dire, le taux auquel la valeur actualisée des rentrées de fonds équivaut la valeur actualisée des sorties de fonds permettant d'équilibrer les comptes.
+\end{definitionNOHFILLsub}
+
+On peut aussi isoler la \textit{seuil de rentabilité} pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
 
 
 \subsubsection{Analyse de sensibilité (\og \textit{sensitivity analysis} \fg{})}
 Une analyse de sensibilité évalue la sensibilité de la VAN à chacune des variables en les faisant varier une à la fois. Ceci permet d'identifier les variables les plus importantes selon leurs effets sur la VAN.\\
 
-On débute par calculer la VAN d'un scénario de référence. Puis, on calcule la VAN en variant une des variables par un pourcentage fixe. 
+On débute par calculer la VAN d'un scénario de base. Puis, on calcule la VAN en variant une des variables par un pourcentage (ou montant) fixe au dessus et en dessus du scénario de base. 
+\begin{itemize}
+	\item	Par exemple, faire varier le nombre d'unités vendues et le prix par unité puis évaluer l'étendu (différence entre le maximum et le minimum).
+\end{itemize}
 
 
 \subsubsection{Analyse de scénarios (\og \textit{scenario analysis} \fg{})}
@@ -6915,16 +6923,236 @@ On estime la distribution de probabilité d'une quantité d'intérêt (e.g., la 
 Les étapes générales sont:
 \begin{enumerate}[leftmargin = *]
 	\item	Construire le modèle d'intérêt;
-	\item	Simuler des nombres aléatoires d'une distribution supposée pour chacune des variables;
-	\item	Déterminer la valeur de la quantité d'intérêt avec les variables calculées précédemment;
-	\item	Répéter les 2 étapes précédentes un grand nombre de fois;
+		\begin{itemize}
+		\item	C'est à dire, une fonction de plusieurs variables entrantes.
+		\end{itemize}
+	\item	Simuler des nombres aléatoires d'une distribution \textbf{posée} pour chacune des variables;
+	\item	Déterminer la valeur de la quantité d'intérêt avec les valeurs calculées précédemment;
+	\item	Répéter les 2 étapes précédentes un grand nombre de fois (e.g. 10 000 itérations);
 	\item	Calculer des mesures d'intérêt (moyenne, variance, etc.) puis tracer les valeurs simulées comme une distribution de probabilité.
 \end{enumerate}
 
 
+\columnbreak
+\subsection{Options réelles}
 
-%\pagebreak
-%\section{Capital Structure}
+L'idée des options dites \og réelles \fg{} est de prendre les concepts d'options financières et les appliquer aux décisions d'investissement d'une entreprise.
+\begin{itemize}
+	\item	Donc on applique les techniques d'options financières pour décider si l'on devrait investir dans un nouveau projet, l'élargir, le réduire, etc.
+\end{itemize}
+
+
+\begin{definitionNOHFILL}[Options réelles]
+Options de décisions d'investissement qui donnent aux gestionnaires le \textit{droit} (pas l'obligation) de faire une décision dans le futur lorsque de nouvelles informations seront rendues disponibles.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{real options} \fg{} qui sont des \og \textit{capital budgeting options} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+	
+\subsubsection{Arbres de décision}
+L'arbre de décision est une approche graphique qui illustre les différentes décisions possibles et le résultat de chaque décision l'économie.
+\begin{itemize}
+	\item	Dans un arbre binomial, les branches représentent une incertitude qui ne peut pas être contrôlée.
+	\item	Dans un arbre de décisions, les branches représentent les différents choix qui s'offrent  à un gestionnaire.
+\end{itemize}
+
+\begin{formula}{Exemple}
+Soit une compagnie aérienne qui pense acheter 20 avions commerciales au coût de 2M\$ chaque. L'ajout des avions permet des revenus additionnels de 50M\$.
+
+Un arbre de décision est : 
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,173); %set diagram left start at 0, and has height of 173
+
+%Shape: Square [id:dp24517560175499553] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (89.48,64.48) -- (118.52,64.48) -- (118.52,93.52) -- (89.48,93.52) -- cycle ;
+%Straight Lines [id:da3756647199693315] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (147.3,35.7) -- (118.52,64.48) ;
+%Straight Lines [id:da6104562133416749] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (248.3,35.7) -- (147.3,35.7) ;
+%Straight Lines [id:da14739125655905938] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (147.3,121.48) -- (118.52,92.7) ;
+%Straight Lines [id:da2609101791300228] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (248.3,121.48) -- (147.3,121.48) ;
+%Shape: Square [id:dp3510659520557746] 
+\draw   (249.25,9.25) -- (303.52,9.25) -- (303.52,63.52) -- (249.25,63.52) -- cycle ;
+%Shape: Square [id:dp23837361602321772] 
+\draw   (249.25,94.25) -- (303.52,94.25) -- (303.52,148.52) -- (249.25,148.52) -- cycle ;
+
+% Text Node
+\draw (151,19) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {acheter 20 avions};
+% Text Node
+\draw (158,105) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {rien faire};
+% Text Node
+\draw (266.89,111.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 0\$$};
+% Text Node
+\draw (254.39,26.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 10M\$$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+Si on pose qu'il y a une chance sur deux d'avoir une forte demande, on obtient : 
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,231); %set diagram left start at 0, and has height of 231
+
+%Shape: Square [id:dp32023785380502523] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (88.48,116.48) -- (117.52,116.48) -- (117.52,145.52) -- (88.48,145.52) -- cycle ;
+%Straight Lines [id:da12822093887945507] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (146.3,87.7) -- (117.52,116.48) ;
+%Straight Lines [id:da2581516742903831] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (247.3,87.7) -- (146.3,87.7) ;
+%Straight Lines [id:da31217004972766316] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (146.3,173.48) -- (117.52,144.7) ;
+%Straight Lines [id:da3392576403671965] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (247.3,173.48) -- (146.3,173.48) ;
+%Shape: Square [id:dp170988150861471] 
+\draw   (248.25,146.25) -- (302.52,146.25) -- (302.52,200.52) -- (248.25,200.52) -- cycle ;
+%Shape: Circle [id:dp9895757220751431] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (247.3,87.7) .. controls (247.3,79.68) and (253.8,73.18) .. (261.82,73.18) .. controls (269.85,73.18) and (276.35,79.68) .. (276.35,87.7) .. controls (276.35,95.72) and (269.85,102.23) .. (261.82,102.23) .. controls (253.8,102.23) and (247.3,95.72) .. (247.3,87.7) -- cycle ;
+%Straight Lines [id:da4273550651430713] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (305.3,56.93) -- (276.52,85.7) ;
+%Straight Lines [id:da3703060888075631] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (406.3,56.93) -- (305.3,56.93) ;
+%Straight Lines [id:da17572424004120135] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (305.12,116.48) -- (276.35,87.7) ;
+%Straight Lines [id:da8780053534267966] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (406.12,116.48) -- (305.12,116.48) ;
+%Shape: Square [id:dp6757137459750928] 
+\draw   (406.25,30.25) -- (460.52,30.25) -- (460.52,84.52) -- (406.25,84.52) -- cycle ;
+%Shape: Square [id:dp442435216663005] 
+\draw   (406.25,89.25) -- (460.52,89.25) -- (460.52,143.52) -- (406.25,143.52) -- cycle ;
+
+% Text Node
+\draw (150,71) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{acheter 20 avions}};
+% Text Node
+\draw (156,158) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{rien faire}};
+% Text Node
+\draw (265.89,163.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 0\$$};
+% Text Node
+\draw (167.89,91) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle -40M\$$};
+% Text Node
+\draw (411.39,47.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 75M\$$};
+% Text Node
+\draw (297,66) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 50\%$};
+% Text Node
+\draw (296,91) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 50\%$};
+% Text Node
+\draw (308,40) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{demande élevée}};
+% Text Node
+\draw (307.12,119.48) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{demande faible}};
+% Text Node
+\draw (411.39,106.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 25M\$$};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+\begin{itemize}
+	\item	Les carrés sont des \textbf{nœuds de décisions} et les cercles des \textbf{nœuds d'information}.
+	\item	Les flux financiers sont indiqués au moment qu'ils sont réalisés.
+	\item	$\text{E}[\text{valeur à l'échéance}]	=	0.5 \times (75 - 40) + 0.5 \times (25 - 40)=	10$.
+	\item	On peut continuer d'ajouter des possibilités et de complexifier l'arbre.
+		\begin{itemize}
+		\item	Par exemple, acheter 5 avions puis, si la demande est élevée, acheter 15 autres avions à un prix plus élevé de 2.2M\$ par avion.
+		\item	etc.
+		\end{itemize}
+\end{itemize}
+\end{formula}
+
+\subsubsection{Option de calendrier}
+\hl{Ajouter plus de détails et pratiquer pour bien saisir comment calculer les affaires avec Black-Scholes. Section pas complétée}.
+
+Les options de calendrier donnent un délai à une entreprise avant d'avoir à prendre une décision. L'avantage est que la compagnie pourrait avoir davantage d'information dans le futur et réduire l'incertitude de la décision.
+\begin{itemize}
+	\item	On peut utiliser formule de Black Scholes.
+\end{itemize}
+
+Il y a 3 facteurs qui influe le calendrier de l'investissement :
+\begin{enumerate}
+	\item	La VAN de l'investissement.
+		\begin{itemize}
+		\item	On investit seulement si $VAN(\text{invest. aujourd'hui}) > VAN(\text{avec une option réelle})$ $\textbf{OU} \text{valeur de prendre l'option d'attendre}$.
+		\item	Parfois prendre on considération l'option réelle cause une VAN négative à devenir positive.
+		\end{itemize}
+	\item	La volatilité.
+		\begin{itemize}
+		\item	La valeur d'une option d'achat augmente avec la volatilité.
+		\item	Donc, attendre est la meilleur option s'il y a beaucoup d'incertitude vis-à-vis un investissement.
+		\end{itemize}
+	\item	Les dividendes.
+		\begin{itemize}
+		\item	L'équivalent des dividendes pour une option réelle sont les flux monétaires qui auxquels on renonce en attendant.
+		\item	Il est souvent mieux d'attendre Àà moins qu'il y ait un coût associé.
+		\end{itemize}
+\end{enumerate}
+
+
+\subsubsection{Sizing options}
+\hl{Ajouter plus de détails et pratiquer comment établir les équations}.
+
+\begin{definitionNOHFILLsub}[Options de croissance]
+Lorsqu'une entreprise est optimiste pour le futur, une option de croissance lui donne l'option d'augmenter ses investissements.
+\begin{itemize}
+	\item	Par exemple, acheter 5 avions puis garder l'option d'en acheter 15 dans le futur si les choses vont bien.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Options d'abandon]
+Lorsqu'une entreprise est pessimiste pour le futur, une option d'abandon lui donne l'option d'abandonner un projet.
+\begin{itemize}
+	\item	Habituellement, elle est exercée si la VAN des flux monétaires reliés à l'abandon d'un projet sont plus élevée que ceux reliés au maintient du projet.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\pagebreak
+\section{Structure du capital}
+\subsection{Financement par actions}
+\subsubsection{Financement par actions pour des compagnies privées}
+\paragraph{Sources de capital}
+
+\paragraph{Investissement \og \textit{Venture capital} \fg{}}
+
+\paragraph{Évaluation avant et après}
+
+\paragraph{Conditions de financement}
+
+exiting
+
+\subsubsection{Financement par actions pour des compagnies publiques}
+intro
+
+\paragraph{Types d'offres}
+
+\paragraph{Mécaniques}
+
+\paragraph{Énigmes}
+
+Sous-évaluation
+Cycles
+Coût d'un IPO
+Performance à long terme
+
+\subsection{Financement par emprunt}
+\subsubsection{Dette corporative}
+\subsubsection{Autres}
+
+\subsection{Propositions de Modigliani-Miller}
+
+
 
 \end{multicols*}
 %% -----------------------------
