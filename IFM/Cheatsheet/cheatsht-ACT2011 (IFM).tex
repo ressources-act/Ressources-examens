@@ -5176,6 +5176,9 @@ Permet au détenteur de choisir à un moment futur déterminé si l'option sera 
 
 \end{multicols*}
 
+
+
+
 \newpage
 \part{Gestion des risques financiers I (ACT-1006)}
 \begin{multicols*}{2}
@@ -6368,6 +6371,7 @@ Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{d}	=	r_{f} + \beta_{d}\left(\sh
 
 \columnbreak
 \subsubsection{Rendement requis pour un projet pleinement financé par des actions}
+\label{sec:wacc_def}
 On peut généraliser le MÉDAF afin d'estimer le rendement nécessaire pour un projet en remplaçant le beta de l'investissement par le beta du projet.
 
 \begin{itemize}
@@ -6384,17 +6388,17 @@ Si on compare le projet à une entreprise :
 	\item	Avec effet de levier, on doit calculer le \textbf{coût du capital sans effet de levier}.
 \end{itemize}
 
-\begin{definitionNOHFILLsub}[coût du capital et beta sans effet de levier]
+\begin{definitionNOHFILLsub}[Coût du capital et beta sans effet de levier]
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$r_{U}$]	Coût du capital sans effet de levier.
+	\item[$r_{U}$]	Coût des capitaux propres sans effet de levier.
 	\item[$\beta_{U}$]	Beta sans effet de levier.
 	\item[$E$]	Valeur au marché de l'équité de l'entreprise.
 	\item[$D$]	Valeur au marché de la dette de l'entreprise.
 		\begin{itemize}
 		\item	S'il y a des capitaux propres, on calcule $D - CP$.
 		\end{itemize}
-	\item[$r_{E}$]	Coût des capitaux propres.
+	\item[$r_{E}$]	Coût des capitaux propres avec levier.
 	\item[$r_{D}$]	Coût des capitaux d'emprunt.
 	\item[$w_{E}$]	Proportion de l'entreprise financée par des capitaux propres.
 		\begin{itemize}
@@ -6409,7 +6413,7 @@ Si on compare le projet à une entreprise :
 
 Donc, on trouve : 
 \begin{itemize}
-	\item	le coût du capital sans effet de levier \lfbox[formula]{$r_{U}	=	w_{E} \cdot r_{E} + w_{D} \cdot r_{D}$}, et 
+	\item	le coût des capitaux propres sans effet de levier \lfbox[formula]{$r_{U}	=	w_{E} \cdot r_{E} + w_{D} \cdot r_{D}$}, et 
 	\item	le beta sans effet de levier \lfbox[formula]{$\beta_{U}	=	w_{E} \cdot \beta_{E} + w_{D} \cdot \beta_{D}$} ;
 	\item	En anglais, \og \textit{unlevered cost of capital} \fg{}.
 \end{itemize}
@@ -6435,12 +6439,12 @@ Dans le cas où le projet doit être financé par des capitaux propre \textbf{\t
 	\item	En anglais, \og \textit{weighted-average cost of capital (WACC)} \fg{}.
 \end{itemize}
 
-Le CMPC se base sur le coût du capital d'emprunt après imposition alors que le coût du capital sans effet de levier se base sur le coût du capital d'emprunt avant imposition. En bref :
+Le CMPC se base sur le coût des capitaux d'emprunt après imposition alors que le coût des capitaux propres sans effet de levier se base sur le coût des capitaux d'emprunt avant imposition. En bref :
 
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}m{6cm} | >{\columncolor{beaublue}}m{6cm}  |}
 \hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{Coût du capital sans effet de levier}}	&	\textcolor{white}{\textbf{CMPC}}		\\\specialrule{0.1em}{0em}{0em} 
+\textcolor{white}{\textbf{Coût des capitaux propres sans effet de levier}}	&	\textcolor{white}{\textbf{CMPC}}		\\\specialrule{0.1em}{0em}{0em} 
 Utilisé pour évaluer un projet financé sans emprunt ayant le même risque que l'entreprise	&	Utilisé pour évaluer un projet ayant le même financement et le même risque que l'entreprise	\\\hline
 \end{tabular}
 \end{center}
@@ -6883,7 +6887,7 @@ On peut raisonner qu'il est cohérent que ce soit moins cher pour une compagnie 
 
 On souhaite toujours maximiser la valeur actualisée nette (VAN) d'un projet avec \icbox{$VAN	=	\sum_{t	=	1}^{n}\frac{CF_{t}}{(1	+	i_{t})^{t}}$}.\\
 
-Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût du capital. Cependant ces estimations ont une certaine incertitude et donc nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
+Pour ce faire, on doit estimer les flux monétaires futurs ainsi que le coût des capitaux. Cependant ces estimations ont une certaine incertitude et donc nous voyons 4 façons d'évaluer l'impact de cette incertitude et d'identifier les principaux facteurs sous-jacents à la VAN d'un projet.
 
 
 \subsubsection{Analyse de rentabilité (\og \textit{break-even analysis} \fg{})}
@@ -6898,7 +6902,7 @@ Notamment, on isole le \og \textit{internal rate of return (IRR)} \fg{}:
 \end{align*}
 
 \begin{definitionNOHFILLsub}[\og \textit{internal rate of return (IRR)} \fg{}]
-Le coût du capital auquel la VAN est nulle. C'est à dire, le taux auquel la valeur actualisée des rentrées de fonds équivaut la valeur actualisée des sorties de fonds permettant d'équilibrer les comptes.
+Le coût des capitaux auquel la VAN est nulle. C'est à dire, le taux auquel la valeur actualisée des rentrées de fonds équivaut la valeur actualisée des sorties de fonds permettant d'équilibrer les comptes.
 \end{definitionNOHFILLsub}
 
 On peut aussi isoler la \textit{seuil de rentabilité} pour le nombre d'unités à vendre, le prix par unité, le coût par unité de marchandise, etc.
@@ -7543,8 +7547,442 @@ Titre dont les rendements proviennent d'actifs sous-jacent.
 
 \columnbreak
 \subsection{Propositions de Modigliani-Miller}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$U$]	Valeur au marché de l'équité d'une entreprise sans levier.
+	\item[$E$]	Valeur au marché de l'équité d'une entreprise avec levier.
+	\item[$D$]	Valeur au marché de la dette d'une entreprise avec levier.
+	\item[$V_{U}$]	Valeur au marché d'une entreprise sans levier.
+		\begin{itemize}
+		\item	\lfbox[formula]{$V_{U}	=	U$}.
+		\end{itemize}
+	\item[$V_{L}$]	Valeur au marché d'une entreprise avec levier.
+		\begin{itemize}
+		\item	\lfbox[formula]{$V_{L}	=	E	+	D$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\subsubsection{Proposition I (sans impôts)}
+\textbf{La structure du capital n'a aucun impact sur la valeur d'une entreprise} sous les conditions suivantes :
+\begin{definitionNOHFILLpropos}[Conditions pour la proposition 1 de MM]
+\begin{enumerate}
+	\item	Tous les investisseurs ont les mêmes attentes de rendements.
+	\item	Les marchés financiers sont parfaitement concurrentiels.
+		\begin{itemize}
+		\item	Concept de micro.
+		\item	En anglais, \og \textit{perfect competition} \fg{}.
+		\item	Il n'y a pas de taxes, de frais de transaction, de coûts de faillite.
+		\end{itemize}
+	\item	Les investisseurs peuvent emprunter et prêter au taux sans risque.
+	\item	Il n'y a pas de conflits d'intérêts entre les gestionnaires et les actionnaires (aucun coût d'agence).
+		\begin{itemize}
+		\item	Les gestionnaires agissent dans le meilleur intérêt des actionnaires.
+		\end{itemize}
+	\item	Les décisions d'investissement et de financement d'une entreprise sont indépendantes.
+		\begin{itemize}
+		\item	C'est-à-dire que les décisions de financement n’ont aucune influence sur les revenus que génèrent les investissements.
+		\end{itemize}
+\end{enumerate}
+\end{definitionNOHFILLpropos}
+
+Donc, la structure du capital d'une entreprise n'a aucune importance à sa valeur. 
+\begin{itemize}
+	\item	Selon MM I, une compagnie composée à 75\% de capitaux propres et 25\% de dette est équivalente à une entreprise composée à 75\% de dette et à 25\% de capitaux propres. 
+	\item	C'est à dire, $V_{L}	=	V_{U}$.
+	\item	Un investisseur peut augmenter ou diminuer le levier de son portefeuille aux taux sans risque (condition 3) et donc obtenir une structure de capital à son goût sans égard.
+		\begin{itemize}
+		\item	La structure de l'entreprise dans laquelle il investit n'a donc aucun impact sur sa décision d'investir.
+		\item	En anglais, ceci s'appelle du \og \textit{homemade leverage} \fg{}.
+		\end{itemize}
+\end{itemize}
 
 
+\subsubsection{Proposition II de MM (sans impôts)}
+\begin{itemize}
+	\item	Nous \hyperref[sec:wacc_def]{\textcolor{teal}{avons vu}} que \lfbox[rappel]{$r_{CMPC}	=	\frac{E}{E + D} r_{E} + \frac{D}{E + D} r_{D}$}.
+	\item	Également, puisque sous la proposition I de MM \lfbox[conditions]{$V_{U}	=	V_{L}$} alors \lfbox[formula]{$U	=	E + D$}.
+	\item	Sans impôts, on trouve que le CMPC et le coût du capital sans levier sont égaux : $r_{U}	=	r_{CMPC}$. 
+	\item	En réécrivant l'équation, \lfbox[formula]{$r_{E}	=	r_{U} + \frac{D}{E} (r_{U}	-	r_{D})$}.
+\end{itemize}
+
+On voit donc qu'une augmentation de la dette $D$ augmente le rendement sur les capitaux propres avec levier $r_{E}$.
+\begin{itemize}
+	\item	La préposition 2 de MM stipule que \textbf{le coût des capitaux propres avec levier augmente avec le ratio d'endettement d'une entreprise}.
+\end{itemize}
+
+%%%	------------------------
+%%%	NOTES
+%%%	+	Mieux expliquer ceci intuitivement (AJvR).
+%%%	------------------------
+\
+
+\begin{itemize}
+	\item	Initialement, le coût de la dette est plus faible que celui des capitaux propres puisque les rendements sont plus faibles et moins risqués. 
+	\item	Cependant, plus une entreprise a de la dette plus le risque que les actionnaires ne se fassent pas payer augmente. 
+	\item	Alors, le coût croissant des capitaux propres contrebalance l'avantage d'utiliser davantage de dette ce qui mène à un CMPC constant.
+	\item	Visuellement : 
+\end{itemize}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp8697465826041249] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da8814727713420509] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (244.83,126) -- (118,126) ;
+%Straight Lines [id:da16442005234532675] 
+\draw [color={rgb, 255:red, 61; green, 131; blue, 213 }  ,draw opacity=1 ][line width=2.25]    (238.83,49) -- (118,126) ;
+%Straight Lines [id:da9188413160436577] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (256.83,154) -- (118,154) ;
+
+% Text Node
+\draw (184,185) node [anchor=north west][inner sep=0.75pt]   [align=left] {ratio d'endettement};
+% Text Node
+\draw (63,32) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{39.015pt}\setlength\topsep{0pt}
+\begin{center}
+coût du \\capital
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (206,36) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{13.175pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle r_{E}$}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (246.83,129) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{14.527928000000001pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.5,0.5,0.5}{r_{D}}$}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (209.83,108) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{36.6775pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{CMPC}$}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+\begin{formula}{Exemple de calcul du CMPC et du coût des capitaux propres sans effet de levier}
+Soit la compagnie LMN qui veut changer sa structure de capital pour avoir un ratio d'endettement ($D/E$) de $0.75$.
+\begin{itemize}
+	\item	Le ratio d'endettement ($D/E$) d'LMN est présentement de $0.50$.
+	\item	Le coût des capitaux d'emprunt ($r_{D}$) est présentement de $7\%$.
+	\item	Le coût des capitaux propres ($r_{E}$) est présentement de $11.5\%$.
+	\item	Augmenter le ratio ratio d'endettement ($D/E$) d'LMN à $0.75$ augmente le coût des capitaux d'emprunt à $9\%$.
+\end{itemize}
+
+On trouve le CMPC, et donc le coût des capitaux propres sans effet de levier $r_{U}$, avec $r_{CMPC}	=	r_{U}	=	\frac{0.5E}{1.5E} r_{E} + \frac{1E}{1.5E} r_{D}	=	\frac{1}{3} \times 0.115 + \frac{2}{3} \times 0.07	=	0.10$.\\
+
+Avec $r_{U}	=	10\%$, on trouve que le coût des capitaux propres avec effet de levier est $r_{E}^{\ast}	=	r_{U}	+	\frac{D}{E} (r_{U}	-	r_{D}^{\ast})	=	0.10 + 0.75 (0.10 - 0.09)	=	0.1075$.
+\end{formula}
+
+
+\paragraph{CMPC avec plusieurs titres}	Les deux types de titres qui forment typiquement la structure du capital d'une entreprise sont les capitaux propres et la dette. 
+\begin{itemize}
+	\item	Si une compagnie a plus de titres, il suffit de faire une moyenne pondérée des rendements. 
+	\item	Pour $n$ types de rendements \lfbox[formula]{$r_{U}	=	\sum_{i	=	1}^{n} w_{i} r_{i}$}.
+	\item	Par exemple, elle pourrait avoir des actions ordinaires et des actions privilégiées.
+\end{itemize}
+
+
+\paragraph{Betas avec et sans effet de levier}	On peut appliquer la formule du coût des capitaux propres sans effet de levier aux betas avec $\beta_{E}	=	\beta_{U} + \frac{D}{E}(\beta_{U}	-	\beta_{D})$ qui découle de l'équation $\beta_{U}	=	w_{E} \beta_{E} + w_{D} \beta_{D}$.
+
+
+\subsubsection{Propositions avec impôts}
+\paragraph{Proposition I de MM}	Avec impôt, la structure du capital a un impact sur la valeur d'une entreprise puisque les paiements d'intérêt sont habituellement réductibles d'impôts.
+\begin{itemize}
+	\item	Emprunter offre donc des épargnes qui augmentent la valeur d'une entreprise.
+	\item	On trouve que $$V_{L}		=	V_{U} + \shortstack{bouclier fiscale\\ sur l'intérêt}$$
+	\item	Également, $$\shortstack{bouclier fiscale\\ sur l'intérêt}	=	\tau_{C} \times \text{paiements d'intérêt}$$
+\end{itemize}
+
+\begin{formula}{Exemple de la valeur d'une entreprise avec effet de levier}
+Soit :
+\begin{itemize}
+	\item	un emprunt de $2M\$$ avec intérêt de $10\%$ par année.
+	\item	un taux d'imposition $\tau_{C}	=	45\%$.
+	\item	un taux sans risque $r_{f}	=	5\%$.
+\end{itemize}
+
+La compagnie décide de payer l'intérêt a chaque année puis de payer le principal à la fin de 10 ans.\\
+
+Alors, le bouclier fiscale est de $0.45 \times 2M \times 0.10	=	900k\$$ par année. 
+\begin{itemize}
+	\item	La valeur actualisée est $900k\$ \ax{\angl{10}5\%}	=	6.9M\$$. 
+	\item	Alors, $V_{L}	=	V_{U}	+	6.9M\$$.
+\end{itemize}
+\end{formula}
+
+\paragraph{Proposition II de MM}	Le CMPC après impôts calcule le coût des capitaux propres en considérant l'avantage du bouclier fiscale.
+
+On trouve donc que \lfbox[formula]{$r_{CMPC}	=	w_{E} r_{E} + w_{D} r_{D} (1 - \tau_{C})$} ou de façon équivalente : 
+\begin{align*}
+	\underbrace{w_{E} r_{E} + w_{D} r_{D}}_{\text{CMPC avant impôts}} - \underbrace{\tau_{C} w_{D} r_{D}}_{\text{bouclier fiscale}}
+\end{align*}
+
+\
+
+Également, le coût des capitaux propres avec effet de levier est \lfbox[formula]{$r_{E}	=	r_{U} + \frac{D}{E} (r_{U} - r_{D})(1 - \tau_{C})$}.
+
+Visuellement : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp05665703449666082] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da23527423296147232] 
+\draw [color={rgb, 255:red, 61; green, 131; blue, 213 }  ,draw opacity=1 ][line width=2.25]    (238.83,49) -- (118,126) ;
+%Straight Lines [id:da33774173673680163] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (256.83,154) -- (118,154) ;
+%Curve Lines [id:da600116537886787] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (118,126) .. controls (137.17,133) and (189.17,145) .. (255.17,144) ;
+
+% Text Node
+\draw (184,185) node [anchor=north west][inner sep=0.75pt]   [align=left] {ratio d'endettement};
+% Text Node
+\draw (63,32) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{39.015pt}\setlength\topsep{0pt}
+\begin{center}
+coût du \\capital
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (208,37) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{13.175pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle r_{E}$}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (251.83,153) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{14.527928000000001pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.5,0.5,0.5}{r}\textcolor[rgb]{0.5,0.5,0.5}{_{D}}$}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (212.83,110) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{55.27835600000001pt}\setlength\topsep{0pt}
+\begin{center}
+{\small \textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{CMPC}$}\textcolor[rgb]{0.96,0.65,0.14}{ }}\\\textcolor[rgb]{0.96,0.65,0.14}{{\small après impôts}}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+\end{center}
+
+
+\columnbreak
+\subsubsection{Coûts de détresse financière}
+\hl{Ajouter plus de détails et pratiquer pour bien saisir comment calculer les VAN. Section pas complétée}.
+Le désavantage des leviers financiers est les pertes importantes qu'ils causent en temps de crises.
+
+La valeur actualisée des coûts de détresse financière a 3 composantes : 
+\begin{enumerate}
+	\item	Les coûts liés à une détresse financière et une faillite s'il y a une détresse.
+		\begin{itemize}
+		\item	Ceux-ci peuvent être des coûts :
+		\begin{description}
+		\item[directs]	Des dépenses encourues en lien avec la faillite (p. ex., des frais judiciaires et administratifs).
+		\item[indirects]	Inclus les opportunités de placement perdues, perte d'affaires, etc.
+			\begin{itemize}
+			\item	Ces coûts sont plus difficiles à quantifier et sont habituellement plus importants que les coûts directs.
+			\end{itemize}
+		\end{description}
+		\end{itemize}
+%%%	------------------------
+%%%	NOTES
+%%%	+	Vraiment pas clair ici (AJvR).
+%%%	------------------------
+	\item	Le probabilité qu'une détresse financière ait lieu.
+		\begin{itemize}
+		\item	Ceci augmente avec le ratio d'endettement.
+		\item	Également, elle augmente avec la volatilité des rendements. 
+		\end{itemize}
+	\item	Le rabais pour les coûts de détresse.
+		\begin{itemize}
+		\item	Le rabais varie selon le risque au marché de l'entreprise.
+		\item	Plus le beta d'une entreprise est élevé, plus la probabilité qu'elle soit en détresse est élevée et plus son beta des coûts de détresse est négatif.
+		\item	Plus un beta est négatif, plus le coût du capital décroît et par conséquent la valeur actualisée des coûts de détresse augmente.
+		\end{itemize}
+\end{enumerate}
+
+
+\subsubsection{Coûts et avantages de \og \textit{agency costs} \fg{}}
+\hl{Ajouter plus de détails et pratiquer pour bien saisir. J'étais tanné et j'ai moins bien fait cette section qui n'est pas complétée}.
+
+La structure du capital peut influencer les décisions d'investissement des gestionnaires. 
+\begin{definitionNOHFILL}[\og \textit{agency costs} \fg{}]
+Coûts liés au conflits d'intérêt parmi les parties prenantes de l'entreprise (gestionnaires, actionnaires et créanciers). 
+\begin{itemize}
+	\item	C'est le problème qui survient en raison du partage inégale des coûts et des avantages des actions de l'entreprise.
+\end{itemize}
+\end{definitionNOHFILL}
+
+%%%	------------------------
+%%%	NOTES
+%%%	+	Distinguer les agency costs des agency benefits (AJvR).
+%%%	------------------------
+
+\paragraph{Coûts comme levier}	L'utilisation d'un levier financier par une entreprise implique un conflit d'intérêts si les décisions d'investissement ont des conséquences différentes pour les actionnaires et les créanciers.
+
+P. ex. : 
+\begin{itemize}
+	\item	Prise de risque excessive et remplacement d'actifs.
+		\begin{itemize}
+		\item	Une entreprise qui remplace ses actifs à risque faible par des actifs très risqués engendre le problème de remplacement d'actifs.
+		\item	Le rendement des actionnaires est lié à la performance de l'entreprise et donc ils préfèrent des investissements risqués avec un potentiel de rendements plus élevés.
+		\item	Les créanciers ont des revenus fixes et donc préfèrent des investissements moins risqués.
+		\end{itemize}
+	\item	Excédent de dette ou sous-investissement.
+		\begin{itemize}
+		\item	En cas de faillites, les créanciers se font payer avec les actionnaires.
+		\item	Les actionnaires pourrait donc ne pas financer des projets avec une VAN positive qui seraient majoritairement avantageux pour les créanciers. 
+		\end{itemize}
+	\item	Retrait d'investissement.
+		\begin{itemize}
+		\item	Les actionnaires ont un incitatif à vendre les actifs pour des prix inférieurs à leur valeur puisqu'ils seront payés après les créanciers.
+		\end{itemize}
+\end{itemize}
+
+
+\paragraph{Avantages comme levier}
+Les gestionnaires peuvent avoir des motivations qui diffèrent des actionnaires et des créanciers, p. ex. : 
+\begin{description}
+	\item[\og \textit{empire building} \fg{}]	Les gestionnaires sans participation au capital peuvent choisir des projets avec un VAN négative.
+		\begin{itemize}
+		\item	Ils préfèrent être gestionnaires pour des grosses compagnies et donc choisissent des projets qui augmentent la taille de l'entreprise même si ceux-ci diminuent la rentabilité.
+		\end{itemize}
+	\item[\og \textit{managerial entrenchment} \fg{}]	Puisqu'il est peu probable que les gestionnaires soient remplacés, ils peuvent décider de faire ce qu'ils veulent.
+		\begin{itemize}
+		\item	Il s'ensuit qu'ils peuvent prendre des décisions qui sont avantageuses pour eux, et non les actionnaires.
+		\end{itemize}
+\end{description}
+
+Les leviers peuvent aussi motiver les gestionnaires à diriger l'entreprise d'une façon plus efficace en raison de : 
+\begin{itemize}
+	\item	La concentration accrue des actionnaires.
+		\begin{itemize}
+		\item	Les gestionnaires ayant une plus grosse participation dans l'entreprise ont plus d'incitatifs à prendre les meilleurs décisions pour l'entreprise.
+		\end{itemize}
+	\item	La diminution des dépenses inutiles.
+		\begin{itemize}
+		\item	Moins de levier implique moins d'argent à dépenser et donc moins de dépends inutiles (\og \textit{free cash flow hypothesis} \fg{}).
+		\end{itemize}
+	\item	Diminution du \og \textit{managerial entrenchment} \fg{} et engagement accru.
+		\begin{itemize}
+		\item	Il est plus probable qu'un gestionnaire soit renvoyé en détresse financière.
+		\item	Donc, les gestionnaires sont plus motivés à diminuer le levier et donc la probabilité de détresse financière.
+		\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Coûts d'information asymétrique}
+Il y a de l'\textbf{information asymétrique} lorsque les gestionnaires ont plus d'information sur l'entreprise que les actionnaires.
+
+Signales
+
+\begin{itemize}
+	\item	Émettre des actions est typiquement vu comme un signal négatif
+	\item	Emprunter de l'argent est typiquement vu comme un signal positif
+\end{itemize}
+
+\og \textit{pecking order hypothesis} \fg{}
+
+
+\subsubsection{Théorie de l'arbitrage}
+Cherche à balancer les effets qui augmente la valeur de la compagnie avec la dette (bouclier fiscale, \og \textit{agency benefits} \fg{}) avec les effet qui diminuent la valeur de la compagnie (détresse financière, \og \textit{agency costs} \fg{}).
+
+\begin{itemize}
+	\item	En anglais, \og \textit{trade-off theory} \fg{}.
+\end{itemize}
+
+Selon la théorie : 
+\begin{align*}
+	V_{L}
+	&=	V_{U} 
+		+ VAN(\text{bouclier fiscale sur l'intérêt})
+	 	- VAN(\text{coûts de détresse financière})
+	 	- VAN(\text{\og \textit{agency costs} \fg{} de la dette})
+	 	+ VAN(\text{\og \textit{agency benefits} \fg{} de la dette})
+\end{align*}
+
+Visuellement : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
+
+%Shape: Axis 2D [id:dp05665703449666082] 
+\draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
+%Straight Lines [id:da33774173673680163] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (208.83,81) -- (118,81) ;
+%Straight Lines [id:da046646595883229836] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (208.83,179.67) -- (208.83,81) ;
+%Curve Lines [id:da9219069987832074] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (119.83,153.67) .. controls (185.67,42.33) and (264.83,77.67) .. (278.83,132.67) ;
+
+% Text Node
+\draw (280,178) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle D$};
+% Text Node
+\draw (89,23) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{16.575000000000003pt}\setlength\topsep{0pt}
+\begin{center}
+$\displaystyle V_{L}$
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (197,181) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle D^{*}$};
+% Text Node
+\draw (89,145) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle V_{U}$};
+% Text Node
+\draw (138,134) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{46.60835600000001pt}\setlength\topsep{0pt}
+\begin{center}
+{\small pas assez }\\{\small de levier}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (216.83,134.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{37.421216pt}\setlength\topsep{0pt}
+\begin{center}
+{\small trops }\\{\small de levier}
+\end{center}
+
+\end{minipage}};
+
+
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item	Niveau de dette optimal $D^{\ast}$
+\end{itemize}
+
+
+En bref : 
+\begin{itemize}
+	\item	Les proposition de MM sans taxes.
+	\item	Les proposition de MM avec taxes.
+	\item	La théorie de l'arbitrage.
+\end{itemize}
 
 \end{multicols*}
 %% -----------------------------
