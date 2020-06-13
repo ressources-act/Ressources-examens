@@ -121,7 +121,11 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 \end{distributions}
 
 Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$, il faut songer à ce que représente $f(x; \theta)$. \\
-La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une différente façon de voir la fonction de densité $f(x ; \theta)$. Au lieu de faire varier $x$ pour un (ou des) paramètre $\theta$ fixe, on fait varier $\theta$ pour un échantillon d'observations $\bm{x}$ fixé ; l'entrée à la fonction de vraisemblance est donc $\theta$ comparativement au "$x$" de la fonction de densité !
+La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une différente façon de voir la fonction de densité $f(x ; \theta)$. 
+\begin{itemize}
+	\item	Au lieu de faire varier $x$ pour un (ou des) paramètre $\theta$ fixe, on fait varier $\theta$ pour un échantillon d'observations $\bm{x}$ fixé ; 
+\end{itemize}
+
 
 
 \columnbreak
@@ -146,28 +150,35 @@ En bref:
 \subsubsection{Biais}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
-	\item[$\theta$]	Paramètre inconnu à estimer;
+	\item[$\theta$]	Paramètre inconnu à estimer ;
+	\item[$\Theta$]	Ensemble des valeurs possibles pour $\theta$ ;
 		\begin{itemize}
 		\item	Dans le cas multivarié, on a un vecteur $\bm{\theta}$ et on défini un ensemble des valeurs possibles $\bm{\Theta}$;
-		\item	Par exemple, pour une loi Gamma $\bm{\theta}	=	\{\alpha, \beta\}$ et puisque ces paramètres sont strictement positif $\bm{\Theta}	=	\{\mathbb{R}^{+}, \mathbb{R}^{+}\}$.
+		\item	Par exemple, une loi Gamma a $\bm{\theta}	=	\{\alpha, \beta\}$ et, puisque ces paramètres sont strictement positif, $\bm{\Theta}	=	\{\mathbb{R}^{+}, \mathbb{R}^{+}\}$.
 		\end{itemize}
 	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$ basé sur $n$ observations;
 		\begin{itemize}[leftmargin = *]
-		\item	Souvent, on simplifie et écrit $\hat{\theta}$.
+		\item	Souvent, on écrit $\hat{\theta}$ pour simplifier la notation.
 		\end{itemize}
-	\item[$\text{B}(\hat{\theta}_{n})$]	Biais d'un estimateur $\theta_{n}$.
+	\item[$\text{B}(\hat{\theta}_{n})$]	Biais de l'estimateur $\hat{\theta}_{n}$.
 \end{description}
 \end{distributions}
 
-Lorsque nous avons un estimateur $\hat{\theta}_{n}$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. 
-On peut alors trouver $\text{E}[\hat{\theta}_{n} | \theta]$; soit, l'espérance de l'estimateur lorsque $\theta$ est la vraie valeur du paramètre.	\\
-Par la suite, on calcule son \textbf{biais} $\text{B}(\hat{\theta}_{n})$ dans la prévision de cette vraie valeur du paramètre:
+Lorsque nous avons un estimateur $\hat{\theta}_{n}$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. Le \textbf{biais} $\text{B}(\hat{\theta}_{n})$ d'un estimateur quantifie les erreurs de l'estimateur dans ses prévisions de la vraie valeur du paramètre $\theta$.
+
 \begin{algo}{Biais d'un estimateur}
 \begin{align*}
 	\text{B}(\hat{\theta}_{n}) 
 	&= 	\text{E}[\hat{\theta}_{n} | \theta] - \theta
 \end{align*}
+
+où :
+\begin{description}[font = \normalfont]
+	\item[$\text{E}\lbrack\hat{\theta}_{n} | \theta\rbrack$]	l'espérance de l'estimateur $\hat{\theta}_{n}$ sachant que la vraie valeur du paramètre est $\theta$.
+\end{description}
+
 \tcbline
+
 \begin{description}
 	\item[Estimateur sans biais]	lorsque le biais d'un estimateur est nul:
 		 \[
@@ -180,7 +191,9 @@ Par la suite, on calcule son \textbf{biais} $\text{B}(\hat{\theta}_{n})$ dans la
 \end{description}
 \end{algo}
 
-Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateur $\hat{\theta}_{n}$. Une bonne analogie pour comprendre ce qui nous manque est d’imaginer une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur; \textbf{en moyenne}, il est correct, mais \textbf{en réalité} il est très inconfortable. Des estimateurs non biaisés seront toujours proches de la vraie valeur, mais ce n'est pas suffisant qu'ils soient bons \textit{en moyenne}. On évalue donc la variabilité d'un estimateur avec sa variance $\text{Var}(\hat{\theta}_{n})$.
+Bien que le biais quantifie les erreurs de prévisions de l'estimateur $\hat{\theta}_{n}$, il n'indique pas la variabilité de ses prévisions. Imagine une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur. \textbf{\underline{En moyenne}}, sa température corporelle est tiède. \textit{\underline{En réalité}}, sa température corporelle est à la fois extrêmement élevée et faible. \\
+
+Les prévisions des estimateurs non biaisés seront toujours proches de la vraie valeur $\theta$. Cependant, être bon \textit{\textbf{en moyenne}} n'est pas suffisant et on souhaite évaluer la variabilité des prévisions d'un estimateur $\hat{\theta}_{n}$ avec sa variance $\text{Var}(\hat{\theta}_{n})$.
 
 %\columnbreak
 \subsubsection{Borne Cramér-Rao}
@@ -188,11 +201,11 @@ Cependant, le biais n'indique pas la variabilité des prévisions de l'estimateu
 
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$};
-	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\bm{X}$;
+	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$} ;
+	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\left\{X_{n}\right\}$ ;
 		\begin{itemize}
-		\item	La matrice d'information Fisher pour un seule observation sera donc dénotée $\bm{I}(\theta)$ ;
-		\item	On obtient une "matrice" lorsque nous estimons plusieurs paramètres et donc $\theta$ n'est pas un scalaire.
+		\item	La matrice d'information Fisher pour une seule observation sera donc dénotée $\bm{I}(\theta)$ ;
+		\item	On obtient une "matrice" lorsque nous estimons plusieurs paramètres et donc $\bm{\theta}$ n'est pas juste un scalaire $\theta$.
 		\end{itemize}
 	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
 \end{description}
@@ -210,16 +223,16 @@ où
 \begin{align*}
 	\bm{I}(\theta) 
 	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln f(\theta; x)\Big)^{2}\right]	
-	\overset{\text{iid}}{\equiv}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(\theta; x)}	\right]	\\
+	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(\theta; x)}	\right]	\\
 	\bm{I}_{n}(\theta) 
 	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; \bm{x})\Big)^{2}\right]	
-	\overset{\text{iid}}{\equiv}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln \mathcal{L}(\theta; \bm{x})}\right]	
+	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln \mathcal{L}(\theta; \bm{x})}\right]	
 \end{align*}
 \paragraph{Note}	Dans le cas d'un échantillon aléatoire (alias, les données sont iid) on obtient la deuxième équation et \lfbox[formula]{$\bm{I}_{n}(\theta)	=	n\bm{I}(\theta)$.}
 \end{algo}
 
 \subsubsection*{Détails sur la borne Cramér-Rao}
-Cette borne est rarement comprise et sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo} je me lance dans l'explication de son intuition. Si vous ne comprenez pas à partir de mes explications, je vous suggère fortement d'allez regarder les vidéos puisque c'est un concept qui va réapparaître plus tard dans le bac.\\
+La borne de Cramér-Rao est un concept qui échappe souvent aux étudiants. Sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et de \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo}, je vais tenter d'expliquer l'intuition sous-jacente au concept. Ce concept va réapparaître plus tard dans le bac et donc, s’il n’est pas clair d’ici la fin de la section, je vous conseille d’aller visionner les vidéos.	\\
 
 Premièrement, on définit l'utilité des deux premières dérivées:
 \begin{description}
@@ -227,12 +240,13 @@ Premièrement, on définit l'utilité des deux premières dérivées:
 	\item[$\frac{\partial^{2}}{\partial\theta^{2}} \mathcal{L}(\theta)$]: Représente la concavité de la fonction; on peut y penser comme sa forme.
 \end{description}
 
-L'estimateur $\hat\theta^{\texttt{EMV}}$ du paramètre $\theta$ d'une distribution est obtenu en posant la première dérivée de sa fonction de vraisemblance $\mathcal{L}(\theta ; \bm{x})$ égale à 0. Alors, la première dérivée de $\mathcal{L}(\theta; \bm{x})$ est nulle au point $\theta = \hat\theta^{\texttt{EMV}}$. \\
+L'estimateur du maximum de vraisemblance (EMV) $\hat\theta^{\texttt{EMV}}$ du paramètre $\theta$ d'une distribution maximise la fonction de vraisemblance en fonction d'un échantillon aléatoire. En posant la première dérivée de la fonction de vraisemblance comme étant égale à 0, on trouve le "point" auquel l'EMV est égale à $\theta$---$\hat{\theta^{\texttt{EMV}}}	=	\theta$. \\
 
-Puisque ce point maximise la fonction, la dérivée va augmenter avant et diminuer après.
-%Puisque ce point maximise la fonction, la dérivée sera négative par la suite! \\
-%On ajoute alors un négatif à la définition de la matrice d'information fisher (la deuxième forme) pour plus facilement comparer la décroissance (négative) et la croissance (positive) de la dérivée. \\
-Cependant, plusieurs fonctions peuvent avoir le même \textbf{point} où elles sont maximisées tout en étant complètement différentes:
+\textbf{Note:}	L'EMV devient un "point" lorsqu'on le calcule pour un échantillon aléatoire d'observations.\\
+
+La fonction de vraisemblance \textbf{est concave} et, puisque sa première dérivée est nulle à $\hat{\theta}^{\text{EMV}}_{n}$, elle va augmenter avant puis diminuer après. \lfbox[imphl]{La première dérivée permet donc de trouver une fonction qui est maximisée à $\hat{\theta}^{\text{EMV}}_{n}$}. Cependant, ceci ne permet pas d'identifier une fonction unique---plusieurs fonctions peuvent être maximisées au même \textbf{point} tout en ayant des formes différentes.	\\
+
+Par exemple, on trace ci-dessous \textcolor{amethyst}{la fonction de vraisemblance} et \textcolor{orange}{une autre fonction maximisée à $\hat{\theta}^{\text{EMV}}_{n}$} :
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -247,7 +261,7 @@ Cependant, plusieurs fonctions peuvent avoir le même \textbf{point} où elles s
 \draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ] (193.17,169) .. controls (191.18,169) and (189.46,132.67) .. (187.67,94.5) .. controls (185.87,56.33) and (184.16,20) .. (182.17,20) .. controls (180.18,20) and (178.46,56.33) .. (176.67,94.5) .. controls (174.87,132.67) and (173.16,169) .. (171.17,169) ;
 
 % Text Node
-\draw (183,184) node  [font=\small] [align=left] {$\displaystyle \widehat{\theta ^{\text{MLE}}}$};
+\draw (183,184) node  [font=\small] [align=left] {$\displaystyle \hat{\theta}^{\text{EMV}}$};
 % Text Node
 \draw (296,157) node  [font=\footnotesize] [align=left] {$\displaystyle \theta $};
 % Text Node
@@ -256,18 +270,13 @@ Cependant, plusieurs fonctions peuvent avoir le même \textbf{point} où elles s
 
 \end{tikzpicture}
 
-Clairement, la courbe \textcolor{amethyst}{en mauve} aura plus de points près de $\hat{\theta}^{\text{EMV}}$ que la courbe en \textcolor{orange}{orange}. Afin de comparer les différents estimateurs, on cherche à quantifier l'étendu, ou la variance, de leurs formes. 
-La deuxième dérivée sert donc à mesurer la \textit{forme}, ou \textbf{concavité}, de la fonction de vraisemblance et comparer des estimateurs plus adéquatement. \\
+On peut donc voir que la forme de la fonction de vraisemblance est plus comprimée, alias que la concavité est plus forte, que l'autre fonction qui se maximise au même point. C'est-à-dire. la fonction de vraisemblance correspond à la fonction avec \textit{la plus forte concavité} dont le maximum est à $\hat{\theta}^{\text{EMV}}_{n}$.	\\
 
-Ce faisant, la deuxième dérivée permet d'être plus certain d'avoir le bon estimateur. Il s'ensuit que \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{la variance ne peut pas être moins que l'estimateur du maximum} \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{de vraisemblance évalué au point où la concavité est maximisée}. Alors on peut penser à la forme à ce point comme $\bm{I}(\theta) =$ \og courbe \fg{}. \\
+On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendue de valeurs possibles et moins de points près de $\hat\theta^{\text{EMV}}$. En bref, \lfbox[imphl]{la deuxième dérivée assure que}, parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$, \lfbox[imphl]{la fonction de vraisemblance est celle dont la variabilité des prévisions est minimisée}.	\\
 
-Finalement, on veut comprendre pourquoi $1/\text{\og curve \fg{}}$ et non juste $\text{\og courbe \fg{}}$. On déduit de la fraction que plus la concavité \og courbe \fg{} est élevée, alors plus la variance sera faible. Si la concavité de la fonction est très large, et donc il y a un grand étendue, il y a moins de points près de $\hat\theta^{\text{EMV}}$. Donc:
-\begin{equation*}
-	\text{Var}(\hat\theta^{\text{EMV}}) 
-	\overset{\text{dépend}}{\sim} \frac{1}{\text{\og courbe \fg{}}}	\\
-\end{equation*}
+L'information de Fisher permet de quantifier cette fonction de la deuxième dérivée. Puis, la borne de Cramér-Rao se défini comme son réciproque $1 / \bm{I}(\theta)$. L'intuition est que plus la concavité est faible, plus l'étendue est grand. Prendre le réciproque de l'information de Fisher permet donc de quantifier l'agrandissement de l'étendu.\\
 
-On observe alors que la limite lorsque la \og courbe \fg{} tend vers l'infini implique une variance nulle. On dit donc que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
+Lorsque l'information de Fisher tend vers l'infini (alias la force de la concavité croît infiniment), on dit que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
 
 \columnbreak
 \subsubsection{Efficacité}
@@ -514,7 +523,7 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 	\item	Estime sans biais la moyenne $\mu$ ;
 	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
 	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
-	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{S_{n}/\sqrt{n}}	\equiv	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
+	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{S_{n}/\sqrt{n}}	=	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
 \end{itemize}
 \end{definitionNOHFILLprop}
 
@@ -2145,9 +2154,9 @@ Pour ajuster une distribution de $p$ paramètres, on pose égale les $p$ premier
 L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \begin{equation*}
 	\hat{\mu}_{k}' 
-	\equiv	\frac{1}{n}\sum_{i = 1}^{n} x_{i}^{k}
+	=	\frac{1}{n}\sum_{i = 1}^{n} x_{i}^{k}
 	\equalhat	\esp{X^{k}}
-	\equiv	\mu_{k}'(\theta), \quad	k = 1, 2, \dots, p
+	=	\mu_{k}'(\theta), \quad	k = 1, 2, \dots, p
 \end{equation*}
 \end{algo}
 
@@ -2201,7 +2210,7 @@ Ceci est fait par la vraisemblance $\mathcal{L}(\theta; \bm{x})$ ou, puisque le 
 et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qui maximise la fonction de vraisemblance.
 \end{algo}
 
-De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	\equiv	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
+De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	=	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
 
 \subsubsection{Raccourcis}
 
@@ -2289,7 +2298,7 @@ En notation matricielle, on multiple le vecteur $\bm{\theta}$ par la transposée
 			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}}
 			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}^{\top}}
 		\right]
-	\overset{iid}{\equiv}	\text{E}\left[	
+	\overset{iid}{=}	\text{E}\left[	
 			\frac{\partial^{2} \ln f(X; \bm{\theta})}{\partial \bm{\theta}\bm{\theta}^{\top}}
 		\right]
 \end{align*}
