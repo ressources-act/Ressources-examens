@@ -2275,9 +2275,10 @@ Par exemple :
 
 \end{center}
 
-\hl{développer ici}
-
-Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autre, évaluer la queue de la distribution selon les quantiles.
+Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autre, évaluer la queue de la distribution. Selon la distribution, les quantiles « normaux » varient. Ci-dessous est une image de \href{https://mgimond.github.io/ES218/Week06a.html}{ce site} qui montre quantiles selon la distribution avec une droite pour la normale :
+\begin{center}
+	\includegraphics[scale=0.5]{../../src/ACT-2000/qqplot-skeweing.png}
+\end{center}
 
 
 \columnbreak
@@ -3163,34 +3164,23 @@ Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le cherch
 
 \columnbreak
 \section{Estimation de modèles non paramétriques}
-\subsection{Distribution empirique}
+\subsection{Données complètes}
+\subsubsection{Distribution empirique}
+\begin{definitionNOHFILL}[Distribution empirique]
+Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
+\begin{itemize}
+	\item	On peut également la définir comme la distribution discrète équiprobable des valeurs $x_{1}, \dots, x_{n}$.
+\end{itemize}
+\end{definitionNOHFILL}
+
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$g_{h}$]	Somme partielle du nombre d'observations inférieur, ou égale, à $y_{j}$;
-		\begin{itemize}[leftmargin = *]
-		\item	Il s'ensuit que \icbox[red][palechestnut]{$g_{j}	=	\sumz{j}{h = 1}w_{h}$}.
+	\item[$\hat{f}()$]	Fonction de densité empirique.	
+	\item[$\hat{F}()$]	Fonction de répartition empirique.	
+	\item[$\tilde{F}()$]	Fonction de répartition lissée;
+		\begin{itemize}
+		\item	En anglais, \og \textit{smoothed empirical distribution function} \fg{}.
 		\end{itemize}
-	\item[Distribution empirique]	Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
-		\begin{itemize}[leftmargin = *]
-		\item	On peut également la définir comme la distribution discrète équiprobable des valeurs $x_{1}, \dots, x_{n}$.
-		\end{itemize}
-	\item[$\hat{f}()$]	Fonction de densité empirique;	
-		\begin{align*}
-		\hat{f}(y)
-		&=	\begin{cases}
-			\frac{w_{j}}{n},	&	\text{si } y = y_{j} \, \forall j	\\
-			0,	\text{sinon}
-			\end{cases}
-		\end{align*}			
-	\item[$\hat{F}()$]	Fonction de répartition empirique;
-		\begin{align*}
-		\hat{F}(y)
-		&=	\begin{cases}
-			0,	&	y	<	y_{1},	\\
-			\frac{g_{j}}{n},	&	y_{j}	\leq	y	<	y_{j + 1}, \, j	=	1, \dots, m - 1	\\
-			1,	&	y_{m}	\leq	y
-			\end{cases}
-		\end{align*}		
 %	\item[Moyenne de la distribution empirique]
 %		\begin{align*}
 %		\sumz{m}{j = 1} \frac{w_{j}}{n} y_{j}
@@ -3201,23 +3191,46 @@ Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le cherch
 %		\sumz{m}{j = 1} \frac{w_{j}}{n} (y_{j} - \bar{x})^{2}
 %		&=	\frac{1}{n} \sumz{n}{i = 1} (y_{i} - \bar{x})^{2}
 %		\end{align*}
-	\item[$\tilde{F}()$]	Fonction de répartition lissée;
-		\begin{itemize}[leftmargin = *]
-		\item	En anglais, \og \textit{smoothed empirical distribution function} \fg{};
-		\item	Estimation de la fonction de répartition \textit{lissée} pour une valeur de $y$ pas dans l'ensemble $y_{1}, \dots, y_{m}$;
-		\item	Lorsque \icbox[red][palechestnut]{$y_{j} \leq y < y_{j + 1}$} et \icbox[red][palechestnut]{$j \in \{1, 2, \dots, m - 1\}$}, $\tilde{F}(y)$ est une interpolation linéaire de $\hat{F}(y_{j + 1})$ et $\hat{F}(y_{j})$:
-		\end{itemize}
-		\begin{align*}
-		\tilde{F}(y)
-		&=	\frac{y	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j + 1})  + 
-				\frac{y_{j + 1}	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j})
-		\end{align*}
 \end{description}
 \end{distributions}
 
-\columnbreak
-\subsection{Estimation par noyaux}
+\begin{align*}
+	\hat{f}(y)
+	&=	\begin{cases}
+		\frac{w_{j}}{n},	&	\text{si } y = y_{j} \, \forall j	\\
+		0,	\text{sinon}
+		\end{cases}	\\
+		\hat{F}(y)
+	&=	\begin{cases}
+		0,	&	y	<	y_{1},	\\
+		\frac{1}{n}\sumz{j}{h = 1}w_{h},	&	y_{j}	\leq	y	<	y_{j + 1}, \, j	=	1, \dots, m - 1	\\
+		1,	&	y_{m}	\leq	y
+		\end{cases}
+\end{align*}		
 
+On peut estimer la valeur de $\hat{F}()$ pour un une valeur de $y$ pas dans l'ensemble $y_{1}, \dots, y_{m}$ avec la fonction de répartition lissée $\tilde{F}()$. Pour \icbox[red][palechestnut]{$y_{j} \leq y < y_{j + 1}$} et \icbox[red][palechestnut]{$j \in \{1, 2, \dots, m - 1\}$}, $\tilde{F}(y)$ est une interpolation linéaire de $\hat{F}(y_{j + 1})$ et $\hat{F}(y_{j})$ :
+\begin{align*}
+	\tilde{F}(y)
+	&=	\frac{y	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j + 1})  + 
+		\frac{y_{j + 1}	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j})
+\end{align*}
+
+\begin{definitionNOHFILLprop}[Distribution Binomiale de la fonction de répartition empirique]
+On peut écrire la fonction de répartition empirique comme \lfbox[formula]{$\hat{F}(y)	=	\frac{Y}{n}$} où $Y$ est le nombre d'observations qui sont inférieures ou égales à $y$ tel que \lfbox[formula]{$Y \sim \text{Bin}(n, p = F(y))$}.\\
+
+On trouve :
+\begin{align*}
+	\text{E}[Y]	
+	&=	\frac{\text{E}[\hat{F}(y)]}{n}
+	=	F(y)		\\
+	\text{Var}(Y)
+	&=	\frac{\text{Var}(\hat{F}(y))}{n^{2}}
+	=	\frac{F(y)(1 - F(y))}{n}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+
+\subsubsection{Estimation par noyaux}
 La fonction de répartition empirique résume les données d'une distribution discrète. Cependant, lorsque la variable d'intérêt $X$ est continue on souhaite estimer une fonction de densité.
 
 Pour une observation $x_{i}$ de l'échantillon, la fonction de répartition empirique assigne une masse de probabilité de $1/n$ au point $x_{i}$.
@@ -3272,6 +3285,48 @@ On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
 \end{description}
 \end{distributions}
 
+
+
+
+\columnbreak
+\subsection{Données incomplètes}
+\hl{Section à compléter avec mes notes de IARD et 11.2 de Nonlife Actuariel Models (tse).}
+\subsubsection{Estimateur de Kaplan-Meier}
+Soit : 
+\begin{align*}
+	S(y_{j})
+	&=	\Pr(X > y_{1})	\Pr(X > y_{2} | X > y_{1}) \hdots \Pr(X > y_{j} | X > y_{j - 1})
+	=	\Pr(X > y_{1}) \prod_{h = 2}^{j} \Pr(X > y_{h} | X > y_{h - 1})
+\end{align*}
+
+Où on peut estimer $\widehat{\Pr}(X > y_{1})	=	1	-	\frac{w_{1}}{r_{1}}$ et $\widehat{\Pr}(X > y_{h} | X > y_{h - 1})	=	1	-	\frac{w_{h}}{r_{h}}$ pour \lfbox[conditions]{$h	=	2, \dots, m$}.
+
+Il s'ensuit qu'on peut estimer $S(y_{j})$ par :
+\begin{align*}
+	\hat{S}(y_{j})
+	&=	\prod_{h = 1}^{j} \left(1 - \frac{w_{h}}{r_{h}}\right)
+\end{align*}
+
+Variance de l'estimateur Kaplan-Meier : \lfbox[formula]{$\text{Var}(\hat{S}_{K}(y_{j}) | \mathcal{C})	\approx	\left(S(y_{j})\right)^{2} \left(\sum^{j}_{h = 1} \frac{1 - S_{h}}{S_{h}r_{h}}\right)$} 
+Approximation de Greenwood de la variance de l'estimateur Kaplan-Meier : \lfbox[formula]{$\widehat{\text{Var}}(\hat{S}_{K}(y_{j}) | \mathcal{C})	\approx	\left(\hat{S}_{K}(y_{j})\right)^{2} \left(\sum^{j}_{h = 1} \frac{w_{h}}{r_{h} (r_{h} - w_{h})}\right)$} 
+
+
+\subsubsection{Estimateur de Nelson-Aalen}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$h(y)$]	Fonction de hasard.
+	\item[$H(y)$]	Fonction de hasard cumulative.
+\end{description}
+\end{distributions} 
+
+\begin{align*}
+	H(y)
+	&=	\int_{0}^{y} h(y) dy
+\end{align*}
+
+Il s'ensuit que \lfbox[formula]{$S(y)	=	\textrm{e}^{-H(y)}$} et \lfbox[formula]{$H(y)	=	-\ln\left(S(y)\right)$}.
+
+Avec l'approximation \lfbox[conditions]{$-\ln\left(1	-	\frac{w_{h}}{r_{h}}\right)	\approx	\frac{w_{h}}{r_{h}}$} on trouve que \lfbox[formula]{$H(y)	=	\sum_{h	=	1}^{j} \frac{w_{h}}{r_{h}}$} qui correspond à l'\textbf{estimateur Nelson-Aalen} de la fonction de hasard cumulative.
 %%%
 %%%	+	section sur données incomplètes individuelles (11.2)
 %%%	+	section sur données groupées (11.3)
@@ -3335,6 +3390,8 @@ Données tronquées vers la gauche avec un déductible de $d$:\\
 \pagebreak
 \section{Évaluation et sélection de modèles}
 \subsection{Graphiquement}
+
+
 Densité empirique
 
 
