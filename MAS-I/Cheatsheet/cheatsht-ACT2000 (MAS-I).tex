@@ -3165,6 +3165,7 @@ Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le cherch
 \columnbreak
 \section{Estimation de modèles non paramétriques}
 \subsection{Données complètes}
+\hl{Section à compléter avec mes notes de IARD et 11.2 de Nonlife Actuariel Models (tse).}
 \subsubsection{Distribution empirique}
 \begin{definitionNOHFILL}[Distribution empirique]
 Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
@@ -3327,9 +3328,12 @@ Approximation de Greenwood de la variance de l'estimateur Kaplan-Meier : \lfbox[
 Il s'ensuit que \lfbox[formula]{$S(y)	=	\textrm{e}^{-H(y)}$} et \lfbox[formula]{$H(y)	=	-\ln\left(S(y)\right)$}.
 
 Avec l'approximation \lfbox[conditions]{$-\ln\left(1	-	\frac{w_{h}}{r_{h}}\right)	\approx	\frac{w_{h}}{r_{h}}$} on trouve que \lfbox[formula]{$H(y)	=	\sum_{h	=	1}^{j} \frac{w_{h}}{r_{h}}$} qui correspond à l'\textbf{estimateur Nelson-Aalen} de la fonction de hasard cumulative.
-%%%
-%%%	+	section sur données incomplètes individuelles (11.2)
-%%%	+	section sur données groupées (11.3)
+
+\columnbreak
+\subsection{Données groupées}
+\hl{Section à compléter avec mes notes de IARD et 11.3 de Nonlife Actuariel Models (tse).}
+
+
 
 \pagebreak
 \section{Estimation de modèles paramétriques}
@@ -3396,15 +3400,64 @@ Densité empirique
 
 
 \subsection{Tests de mauvaise classification et diagnostiques}
-Test de Kolmogorov-Smirnov
-Test de Anderson-Darling
-Test d'adéquation du khi-carré
-Test du rapport de vraisemblance
+\begin{definitionNOHFILLsub}[Test de Kolmogorov-Smirnov]
 
-\subsection{Critère d'information pour la sélection de modèles}
-AIC
-BIC
+\end{definitionNOHFILLsub}
 
+\begin{definitionNOHFILLprop}[Statistique de Kolmogorov-Smirnov]
+
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLsub}[Test de Anderson-Darling]
+
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Test d'adéquation du khi-carré]
+
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Test du rapport de vraisemblancew]
+
+\end{definitionNOHFILLsub}
+
+\subsection{Critères d'information pour la sélection de modèles}
+Lorsque l'on compare deux modèles, on dit qu'un modèle est « emboîté » si l'autre comporte tous ses paramètres. Par exemple, un modèle basé sur une distribution exponentielle est emboîté par un modèle basé sur une distribution gamma ayant le même paramètre de fréquence $\beta$. \\w
+
+Il s'ensuit que le modèle comportant le plus de paramètres aura l'avantage de mieux s'ajuster aux données avec une fonction plus flexible et, possiblement, une log-vraisemblance plus élevée. Afin de comparer les modèles sur une même base, on utilise la \textbf{log-vraisemblance pénalisée}.
+
+\begin{definitionNOHFILLsub}[Critère d'information d'Akaike (AIC)]
+L'AIC pénalise les modèles ayant plus de paramètres en soustrayant le nombre de paramètres estimés $p$ du modèle de la log-vraisemblance : \lfbox[formula]{$AIC	=	\log \mathcal{L}(\hat{\theta}^{\text{EMV}}_{n} ; \bm{x})	-	p$}.
+
+\begin{itemize}
+	\item	On choisit le modèle qui maximise l'AIC.
+	\item	En anglais, \og \textit{Akaike Information Criterion (AIC)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+%%%	------------------------
+%%%	NOTES
+%%%	+	Détailler le problème de sélection du modèle avec des grands échantillons et le inconsistent.
+%%%	+	P. 393 de tse.
+%%%	+	Faire lien aux tests d'hypothèses. (erreur de type I vs II)
+%%%	+	Faire lien à la consistency.
+%%%	------------------------
+
+Le désavantage de l'AIC est que, pour deux modèles emboîtés, la probabilité de choisir le modèle plus simple (p. ex., un modèle basé sur la distribution exponentielle au lieu de la distribution gamma) \textit{alors qu'il est vrai} )erreur de type I) ne tend pas vers 1 lorsque le nombre d'observations tend vers l'infini. On dit donc que c'est une mesure \og \textit{inconsistent} \fg{}. 
+
+\begin{definitionNOHFILLsub}[Critère d'information Bayésien (BIC)]
+Le BIC pénalise plus sévèrement les modèles ayant plus de paramètres : \lfbox[formula]{$BIC	=	\log \mathcal{L}(\hat{\theta}^{\text{EMV}}_{n} ; \bm{x})	-	\frac{p}{2} \log (n)$}.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{Bayesian Information Criterion (BIC)} \fg{}
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+Le BIC est \og \textit{consistent} \fg{} et règle le désavantage de l'AIC avec une probabilité de 1 d'éviter une erreur de type I lorsque la taille de l'échantillon tend vers l'infini. \\
+
+Dans les deux cas, la probabilité de rejeter le modèle plus simple lorsque le vrai modèle est entre les deux tend vers 1. 
+ 
 \end{multicols*}
 
 \end{document}
