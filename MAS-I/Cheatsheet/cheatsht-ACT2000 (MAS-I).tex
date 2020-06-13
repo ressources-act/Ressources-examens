@@ -1825,10 +1825,15 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 %%%	+	Ajouter des détails sur l arelation avec la loi Béta
 
 Soit un échantillon aléatoire de taille $n$.
-Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.\\
-Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.\\
+Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
+\begin{itemize}
+	\item	Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
+	\item	La $k^{\text{e}}$ statistique d'ordre correspond au $\frac{k}{(n + 1)}^{\text{e}}$ quantile.
+\end{itemize}
 
-Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$.
+\
+
+Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$ :
 
 \setlength{\mathindent}{-0.75cm}
 \begin{minipage}{0.5\columnwidth}
@@ -1867,48 +1872,74 @@ De façon plus générale, on défini:
 	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
 \end{align*}
 
-On peut observer que $X_{(k)}	\sim	Beta(\alpha	=	k, \beta	=	n - k + 1)$
+\begin{itemize}
+	\item	On peut observer que $X_{(k)}	\sim	Beta(\alpha	=	k, \beta	=	n - k + 1)$
+\end{itemize}
 \end{algo}
 
+\
+
 Nous pouvons également définir quelques autres statistiques d'intérêt :
+\begin{definitionNOHFILLsub}[L'étendue (\og \textit{rangee} \fg{})]
+\textbf{L'étendue} (range) est la différence entre le minimum et le maximum d'un échantillon : \lfbox[formula]{$R = X_{(n)} - X_{(1)}$}.\\
 
-\begin{description}
-	\item[$R = X_{(n)} - X_{(1)}$: ] \textbf{L'étendue} (range) est la différence entre le minimum et le maximum d'un échantillon.
-		\begin{itemize}[leftmargin = *]
-		\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
-		\item	Par exemple, supposons qu’on observe des données historiques de température pour le 1er septembre. \\
-				En moyenne, la température est de $16\degree C$, mais nous avons un cas extrême de $-60\degree C$ en 1745.\\
-				L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.\\
-				Donc, dans ce contexte, la mesure n'est pas d'une très grande utilité.
+\begin{itemize}
+	\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
+	\item	Par exemple, supposons que l’on a des données historiques sur la température pour le 1er septembre. 
+		\begin{itemize}
+		\item	En moyenne, la température est de $16\degree C$.
+		\item	Il y a un cas extrême de $-60\degree C$ en 1745.
+		\item	L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.
+		\item	Donc, dans ce contexte, l'étendue n'est pas une mesure très utile.
 		\end{itemize}
-	\item[$M = \frac{X_{(n)} + X_{(1)}}{2}$: ] \textbf{mi-étendue} (Midrange), est la moyenne entre le minimum et le maximum d'un échantillon.
-		\begin{itemize}[leftmargin = *]
-		\item	Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne arithmétique.
-		\item	La moyenne arithmétique considère les données observées et calcule leur moyenne.\\
-				Il s'ensuit qu'elle ne considère pas les chiffres qui ne sont pas observés.
-		\item	La mi-étendue considère \textbf{tous} les chiffres, observés ou non, entre la plus grande et la plus petite valeur d'un échantillon et en prend la moyenne.		
-		\end{itemize}
-\end{description}
+\end{itemize}
+\end{definitionNOHFILLsub}
 
-\begin{conceptgen}{Exemple sur les statistiques d'ordre}
+
+\begin{definitionNOHFILLsub}[La mi-étendue (\og \textit{midrange} \fg{)}]
+La moyenne entre du minimum et du maximum d'un échantillon : \lfbox[formula]{$M = \frac{X_{(n)} + X_{(1)}}{2}$}.\\
+
+Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne arithmétique.
+\begin{itemize}
+	\item	La moyenne arithmétique considère les données observées et calcule leur moyenne.
+		\begin{itemize}
+		\item	Il s'ensuit qu'elle ne considère pas les chiffres qui ne sont pas observés.
+		\end{itemize}				
+	\item	La mi-étendue considère \textbf{tous} les chiffres---observés ou non---entre la plus grande et la plus petite valeur d'un échantillon, puis en prend la moyenne.		
+		\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[L'écart interquartile (\og \textit{interquartile range (IQR)} \fg{)}]
+Écart entre le troisième quartile et le premier quartile : \lfbox[formula]{$IQR = Q_{3} - Q_{1}$}.\\
+
+\begin{itemize}
+	\item	L'IQR mesure la distribution du 50\% des données qui sont situées au milieu de l'ensemble de données.
+	\item	L'IQR est connu comme le \og \textit{midspread} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{formula}{Exemple sur les statistiques d'ordre}
 Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (celsius).
 
 Je suppose que ce sont des températures du 4 février observées lors des dernières années.
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	La moyenne arithmétique ($-22.25\degree C$) m'intéresse, car je peux savoir, en moyenne, ce qu'est la température le 4 février.
 	\item	La mi-étendue ($-12.5\degree C$), tout comme l'étendue ($-35\degree C$), ne m'intéresse pas puisqu'elle ne prend pas en considération la vraisemblance des différentes températures.
 \end{itemize}
 
 Maintenant, je suppose que ces données sont des températures observées tout au long de l'hiver passé.
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	La moyenne arithmétique ne m'intéresse pas puisqu'elle est beaucoup trop biaisée par les températures de cette même journée. 
 	\item	Cependant, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température de l'hiver.
 \end{itemize}
 
 L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \textbf{très} simpliste et dans tous les cas on ne peut pas tirer de conclusions sur les températures de l'hiver à partir d'une seule journée.
-\end{conceptgen}
+\end{formula}
 
-Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
+Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre :
+
+\begin{definitionNOHFILLsub}[Médiane]
 \begin{align*}
 	\text{Med}
 	&=	\left\{
@@ -1919,17 +1950,28 @@ Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre:
 	\right.
 \end{align*}
 
-Finalement, on définit la distribution conjointe du minimum et du maximum $\forall x < y$:
+\begin{itemize}
+	\item	La moitié des données sont supérieures et inférieures à la médiane.
+	\item	L'utilité de la médiane est qu'elle n'est pas aussi sensible aux données aberrantes que la moyenne.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+Finalement, on définit la distribution conjointe du minimum et du maximum $\forall x < y$ :
+\begin{algo}{Distribution conjointe du maximum et du minimum}
 \begin{align*}
 	f_{X_{(1)}, X_{(n)}}(x, y)
 	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
 \end{align*}
+\end{algo}
+
 
 \columnbreak
-\subsection{Q-Q plots}
-Pour $n$ données observées, la $k^{\text{e}}$ statistique d'ordre $Y_{(k)}$ est le $\frac{k}{(n + 1)}^{\text{e}}$ quantile.
+\subsection{Graphiques}
+\subsubsection{Le diagramme en boîte (\og \textit{boxplot} \fg{})}
+Le diagramme du « \textit{sommaire à cinq chiffres} ».\\
 
-Un sommaire à cinq chiffres consiste de :
+\begin{conceptgen}{Sommaire à cinq chiffres}
+Les cinq statistiques suivantes : 
 \begin{enumerate}
 	\item	Le minimum.
 	\item	Le premier quartile $Q_{1}$.
@@ -1937,8 +1979,10 @@ Un sommaire à cinq chiffres consiste de :
 	\item	Le troisième quartile $Q_{3}$.
 	\item	Le maximum.
 \end{enumerate}
+\end{conceptgen}
 
-Ces chiffres forment d'ailleurs le diagramme de boîte à moustaches (\og \textit{boxplot} \fg{}) avec \lfbox[conditions]{$h = 1.5 \cdot (Q_{3} - Q_{1})$} : 
+Visuellement : 
+
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -2009,12 +2053,124 @@ Proportion \\des données
 \end{tikzpicture}
 \end{center}
 
-En pratique, on pose souvent que les données suivent une distribution. Un q-q plot permet de comparer les quantiles théoriques aux quantiles empiriques observés. 
 \begin{itemize}
-	\item	Il s'ensuit que l'on connait la distribution, mais pas les paramètres ;
-	\item	Dans le cas d'une loi normale, on peut centrer et réduire pour obtenir $Z$ ce qui correspond donc à une q-q plot \textbf{normale} ;
-	\item	\hl{Autrement, on estime les paramètres avec l'échantillon} (\underline{vérifier}).
+	\item	La médiane est la ligne contenu dans la boîte.
+		\begin{itemize}
+		\item	La moitié des données sont au-dessus, et l'autre moitié en-dessous, de la ligne.
+		\end{itemize}
+	\item	La boîte est délimitée par le premier et le troisième quartile.
+		\begin{itemize}
+		\item	Il s'ensuit que la boîte contient la moitié des données.
+		\item	De plus, 25\% des données sont contenues entre la borne \textit{supérieure} de la boîte et la médiane avec l'autre 25\% qui est contenu entre la borne \textit{inférieure} et la médiane.
+		\end{itemize}
+	\item	Les « moustaches » de la boîte sont tracées à un pas $h$ des quartiles où \lfbox[conditions]{$h = 1.5 \cdot (Q_{3} - Q_{1})$}.
+		\begin{itemize}
+		\item	Les points qui sont à l'extérieur de ces bornes sont les données potentiellement aberrantes.
+		\item	$Q_{3}	-	Q_{1}$ correspond à l'écart interquartile.
+		\item	Plus l'écart est élevé, plus la boîte sera large et, par conséquent, plus les moustaches seront situées loin de la médiane.
+		\item	Le 1.5 est basé sur la règle du 68-95-99.7 avec moins de 1\% des données à l'extérieur de la borne supérieure.
+		\end{itemize}
 \end{itemize}
+
+\begin{definitionNOHFILLprop}[Règle du 68-95-99.7]
+Pour une distribution normale, environ 68\% des données sont en dedans d'un écart-type de la moyenne, 95\% en dedans de 2 et 99.7\% en dedans de 3.
+
+\begin{center}
+		
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,278); %set diagram left start at 0, and has height of 278
+
+%Curve Lines [id:da8749420139531441] 
+\draw [draw opacity=0][fill={rgb, 255:red, 193; green, 193; blue, 193 }  ,fill opacity=1 ][line width=1.5]    (389,225.7) .. controls (520.68,226.75) and (483.98,107.66) .. (527.13,107.66) .. controls (571.77,107.66) and (537.05,225.26) .. (664.02,225.7) ;
+%Straight Lines [id:da8888686520092737] 
+\draw [line width=1.5]    (422.48,225.7) -- (422.48,233.64) ;
+%Straight Lines [id:da1699364296805208] 
+\draw [line width=1.5]    (593.34,225.7) -- (593.34,233.64) ;
+%Curve Lines [id:da41861109546010566] 
+\draw [line width=1.5]    (389,225.7) .. controls (517.71,227.49) and (483.98,107.66) .. (527.13,107.66) .. controls (571.77,107.66) and (536.06,225.21) .. (664.02,225.7) ;
+%Straight Lines [id:da8400965165974321] 
+\draw [line width=1.5]    (389,225.7) -- (664.02,225.7) ;
+%Shape: Regular Polygon [id:dp11998667280876218] 
+\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=1.5]  (664.02,225.7) .. controls (584.29,225.26) and (568.2,176.16) .. (562.34,162.77) .. controls (562.34,225.26) and (562.34,162.77) .. (562.34,225.7) .. controls (663.29,225.26) and (562.34,225.26) .. (664.02,225.7) -- cycle ;
+%Shape: Regular Polygon [id:dp898895201503896] 
+\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=1 ][line width=1.5]  (390.49,225.7) .. controls (470.22,225.26) and (486.31,176.16) .. (492.16,162.77) .. controls (492.16,225.26) and (492.16,162.77) .. (492.16,225.7) .. controls (391.22,225.26) and (492.16,225.26) .. (390.49,225.7) -- cycle ;
+%Shape: Regular Polygon [id:dp6032696284614307] 
+\draw  [fill={rgb, 255:red, 91; green, 91; blue, 91 }  ,fill opacity=1 ][line width=1.5]  (391.98,225.7) .. controls (426.94,225.26) and (449.26,213.36) .. (461.16,205.92) .. controls (461.16,225.26) and (461.16,205.92) .. (461.16,225.7) .. controls (392.47,225.58) and (461.16,225.58) .. (391.98,225.7) -- cycle ;
+%Shape: Regular Polygon [id:dp8816872519073748] 
+\draw  [fill={rgb, 255:red, 91; green, 91; blue, 91 }  ,fill opacity=1 ][line width=1.5]  (662.53,225.7) .. controls (627.57,225.26) and (605.25,213.36) .. (593.34,205.92) .. controls (593.34,225.26) and (593.34,205.92) .. (593.34,225.7) .. controls (662.03,225.58) and (593.34,225.58) .. (662.53,225.7) -- cycle ;
+%Shape: Polygon Curved [id:ds6677084709851981] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ][line width=0.75]  (391.98,225.7) .. controls (403.14,225.7) and (417.23,222.92) .. (422.48,221.24) .. controls (422.48,225.6) and (422.48,221.24) .. (422.48,225.7) .. controls (392.2,225.67) and (422.48,225.7) .. (391.98,225.7) -- cycle ;
+%Shape: Regular Polygon [id:dp8410749943461926] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ][line width=0.75]  (661.04,225.7) .. controls (649.88,225.7) and (635.79,222.92) .. (630.54,221.24) .. controls (630.54,225.6) and (630.54,221.24) .. (630.54,225.7) .. controls (660.82,225.67) and (630.54,225.7) .. (661.04,225.7) -- cycle ;
+%Straight Lines [id:da38668537998939256] 
+\draw [line width=1.5]    (461.16,225.7) -- (461.16,233.64) ;
+%Straight Lines [id:da1998162556500347] 
+\draw [line width=1.5]    (492.16,225.7) -- (492.16,233.64) ;
+%Straight Lines [id:da12951125252628293] 
+\draw [line width=1.5]    (562.34,225.7) -- (562.34,233.64) ;
+%Straight Lines [id:da4432220170088057] 
+\draw [line width=1.5]    (630.54,225.7) -- (630.54,233.64) ;
+%Straight Lines [id:da9928263828524586] 
+\draw [color={rgb, 255:red, 193; green, 193; blue, 193 }  ,draw opacity=1 ][line width=1.5]    (562.34,9.95) -- (492.16,9.95) ;
+\draw [shift={(492.16,9.95)}, rotate = 360] [color={rgb, 255:red, 193; green, 193; blue, 193 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(562.34,9.95)}, rotate = 360] [color={rgb, 255:red, 193; green, 193; blue, 193 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da37156360440094294] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (593.34,39.71) -- (461.16,39.71) ;
+\draw [shift={(461.16,39.71)}, rotate = 360] [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(593.34,39.71)}, rotate = 360] [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Straight Lines [id:da8337470834507461] 
+\draw [color={rgb, 255:red, 91; green, 91; blue, 91 }  ,draw opacity=1 ][line width=1.5]    (630.54,69.47) -- (422.48,69.47) ;
+\draw [shift={(422.48,69.47)}, rotate = 360] [color={rgb, 255:red, 91; green, 91; blue, 91 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+\draw [shift={(630.54,69.47)}, rotate = 360] [color={rgb, 255:red, 91; green, 91; blue, 91 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+
+% Text Node
+\draw (522.62,232.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \mu $}};
+% Text Node
+\draw (545.6,230.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \mu +\sigma $}};
+% Text Node
+\draw (576.84,242.62) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize] [align=left] {{\footnotesize $\displaystyle \mu +2\sigma $}};
+% Text Node
+\draw (616.5,230.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \mu +3\sigma $}};
+% Text Node
+\draw (517.35,11.12) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize 68\%}};
+% Text Node
+\draw (517.35,43.86) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize 95\%}};
+% Text Node
+\draw (512.35,78.08) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize 99.7\%}};
+% Text Node
+\draw (476.6,230.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \mu -\sigma $}};
+% Text Node
+\draw (443.84,242.62) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize] [align=left] {{\footnotesize $\displaystyle \mu -2\sigma $}};
+% Text Node
+\draw (406.5,230.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \mu -3\sigma $}};
+\end{tikzpicture}
+
+\end{center}
+\end{definitionNOHFILLprop}
+
+\columnbreak
+En bref, le diagramme en boîte permet d'évaluer comment les données sont distribuées. Cette image de \href{https://en.wikipedia.org/wiki/Interquartile_range}{wikipedia} résume bien : 
+\begin{center}
+	\includegraphics[scale=0.4]{../../src/ACT-2000/boxplot-normrule.png}
+\end{center}
+
+
+\columnbreak
+\subsubsection{Diagramme quantile-quantile (\og \textit{Q-Q plot} \fg{})}
+En pratique, on pose souvent que les données suivent une distribution. Un diagramme quantile-quantile permet de comparer les quantiles théoriques de la distribution aux quantiles empiriques des données. \\
+
+Dans un tel cas, on connait la distribution, mais pas les paramètres.
+\begin{itemize}
+	\item	Si les données sont normalement distribuées, on peut centrer et réduire pour obtenir la loi normale standard $Z$ ; 
+		\begin{itemize}
+		\item	Ceci correspond à un diagramme quantile-quantile \textbf{normale} ;
+		\end{itemize}
+	\item	Autrement, le diagramme quantile-quantile est tracé en estimant les paramètres de la distribution avec l'échantillon de données.
+\end{itemize}
+
+\
 
 Par exemple :
 \begin{center}
@@ -2118,6 +2274,10 @@ Par exemple :
 \end{tikzpicture}
 
 \end{center}
+
+\hl{développer ici}
+
+Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autre, évaluer la queue de la distribution selon les quantiles.
 
 
 \columnbreak
@@ -2264,7 +2424,14 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 	\item[R2]	La "vraie valeur" de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
 \tcbline
 \begin{description}
-	\item[R3]	Les deux premières dérivés de la fonction de densité $f(x; \theta)$ existent.
+	\item[R3]	La fonction de densité $f(x; \theta)$ est différentiable deux fois comme fonction de $\theta$.
+		\begin{itemize}
+		\item	Cette condition additionnelle assure que les deux premières dérivées existent pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+		\end{itemize}
+	\item[R4]	L'intégrale $\int f(x; \theta) dx$ est différentiable deux fois sous l'intégrale comme fonction de $\theta$.
+		\begin{itemize}
+		\item	Cette condition additionnelle assure que l'on peut utiliser la deuxième dérivée pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+		\end{itemize}
 \end{description}
 \end{description}
 %%%	--------------------------------
@@ -2274,12 +2441,8 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 %%%	+	Intervalles de confiance
 %%%	--------------------------------
 %\begin{description}
-%	\item[R3]	La fonction de densité $f(x; \theta)$ est différentiable deux fois comme fonction de $\theta$.
-%	\item[R4]	L'intégrale $\int f(x; \theta) dx$ est différentiable deux fois sous l'intégrale en comme fonction de $\theta$.
 %	\item[R5]	La fonction de densité $f(x; \theta)$ est différentiable trois fois comme fonction de $\theta$. De plus, $\forall \theta \in \Theta$ il existe une constante $c$ and une fonction $g(x)$ tel que $\big| \deriv[3]{\theta}{} \ln f(x; \theta) \big| \leq g(x)$.
 %\end{description}
-%\paragraph{Note:}	Les conditions R3 et R4 sont additionnelles pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
-\paragraph{Note:}	La condition R3 additionnelle pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
 %%%	Impliquent que l'on peut interchanger l'intégration et la différention wrt/ \theta
 \end{definitionNOHFILLsub}
 	
