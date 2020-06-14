@@ -3391,39 +3391,87 @@ Données tronquées vers la gauche avec un déductible de $d$:\\
 \end{algo}
 \setlength{\mathindent}{1cm}
 
+
+
 \pagebreak
 \section{Évaluation et sélection de modèles}
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}\\
+\begin{rappel_enhanced}[Contexte]
+Évaluer les modèles avec des méthodes non paramétriques a l'avantage d'avoir très peu d'hypothèses. Cependant, il est plus difficile d'évaluer le modèle d'un point de vue théorique.
+
+Évaluer les modèles avec des méthodes paramétriques a l'avantage de résumer le modèle à un petit nombre de paramètres. Cependant, ces méthodes sont une simplification et risquent d'imposer la mauvaise structure.
+\end{rappel_enhanced}
+
 \subsection{Graphiquement}
+Avec les méthodes d'évaluation visuelles, on peut détecter si les données diffèrent anormalement du modèle paramétrique.
+\begin{itemize}
+	\item	On peut évaluer la fonction de répartition empirique et la fonction de répartition théorique sur un même graphique pour évaluer l'ajustement.
+	\item	On peut évaluer le tracé des probabilités (\og \textit{P-P plot} \fg{}) qui trace la répartition empirique et la répartition théorique.
+	\item	On peut tracer l'histogramme des données et superposer la densité théorique pour évaluer l'ajustement.
+\end{itemize}
 
-
-Densité empirique
+Le désavantage de ces méthodes est qu'elle ne fournissent pas des mesures quantitatives sur l'ajustement du modèle.
 
 
 \subsection{Tests de mauvaise classification et diagnostiques}
+\begin{definitionNOHFILL}[Tests de spécification (\og \textit{misspecification tests} \fg{})]
+Test de signifiance dont l'objectif est d'évaluer les hypothèses de distribution d'un modèle.
+
+\end{definitionNOHFILL}
+
+Les tests de Kolmogorov-Smirnov et de Anderson-Darling sont idéales lorsque l'on désire comparer les fonctions de répartition.
+
 \begin{definitionNOHFILLsub}[Test de Kolmogorov-Smirnov]
+Soit : 
+\begin{description}
+	\item[$F^{\ast}()$]	Fonction de répartition d'une v.a. continue (hypothèse nulle).
+	\item[$\hat{F}()$]	Fonction de répartition empirique.
+\end{description}
 
+On teste si les données supportent l'hypothèse nulle avec la statistique de Kolmogorov-Smirnov : \lfbox[formula]{$D	=	\underset{x_{(1)}	\leq	x	\leq	x_{(n)}}{\max} \left| \hat{F}(x)	-	F^{\ast}(x) \right|$}.
+\begin{itemize}
+	\item	Puisque $\hat{F}()$ est une fonction à escalier, il faut seulement évaluer la fonction aux points observés $x_{(1)}	\leq	x_{(2)}	\leq	\hdots	\leq	x_{(n)}$.
+%%%	------------------------
+%%%	NOTES
+%%%	+	why?
+%%%	------------------------
+	\item	De plus, le maximum peut seulement arriver soit au point de saut $x_{(i)}$ ou immédiatement avant $x_{(i - 1)}$.
+\end{itemize}
+
+On peut donc récrire\\ \lfbox[formula]{$D	=	\underset{i \in \{1, \dots, n\}}{\max}\left\{ \max\left\{\left| \hat{F}(x_{(i - 1)})	-	F^{\ast}(x_{(i)}) \right|, \left| \hat{F}(x_{(i)})	-	F^{\ast}(x_{(i)}) \right|\right\}\right\}$}.
+
+\begin{itemize}
+	\item	Si les données sont bien ajustées, on s'attend à ce que $D$ soit très petit.
+	\item	Lorsque la distribution est entièrement spécifiée (aucun paramètres sont estimés) une table avec les valeurs critiques est donnée.
+	\item	S'il faut estimer des paramètres, la simulation Monte-Carlo est utilisée pour trouver des nouvelles valeurs critiques.
+\end{itemize}
 \end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLprop}[Statistique de Kolmogorov-Smirnov]
-
-\end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLsub}[Test de Anderson-Darling]
+\begin{align*}
+	A^{2}
+	&=	-\frac{1}{n} \left[
+		\sum_{j = 1}^{n} (2j - 1)\{\log(F^{\ast}(x_{(j)}) + \log(1	-	F^{\ast}(x_{(n + 1 - j)})\}	-	n
+	\right]
+\end{align*}
 
+\begin{itemize}
+	\item	Comme le test de Kolmogorov-Smirnov, des valeurs critiques sont spécifiées pour une distribution entièrement spécifiée.
+\end{itemize}
 \end{definitionNOHFILLsub}
 
-
+Le test du khi carré sert à tester les hypothèses d'une distribution en comparant les fréquences observées aux fréquences théoriques.
 \begin{definitionNOHFILLsub}[Test d'adéquation du khi-carré]
 
 \end{definitionNOHFILLsub}
 
-
+Le test du rapport de vraisemblance test la validité des restrictions d'un modèle et peut décider si un modèle peut être simplifié.
 \begin{definitionNOHFILLsub}[Test du rapport de vraisemblancew]
 
 \end{definitionNOHFILLsub}
 
 \subsection{Critères d'information pour la sélection de modèles}
-Lorsque l'on compare deux modèles, on dit qu'un modèle est « emboîté » si l'autre comporte tous ses paramètres. Par exemple, un modèle basé sur une distribution exponentielle est emboîté par un modèle basé sur une distribution gamma ayant le même paramètre de fréquence $\beta$. \\w
+Lorsque l'on compare deux modèles, on dit qu'un modèle est « emboîté » si l'autre comporte tous ses paramètres. Par exemple, un modèle basé sur une distribution exponentielle est emboîté par un modèle basé sur une distribution gamma ayant le même paramètre de fréquence $\beta$. \\
 
 Il s'ensuit que le modèle comportant le plus de paramètres aura l'avantage de mieux s'ajuster aux données avec une fonction plus flexible et, possiblement, une log-vraisemblance plus élevée. Afin de comparer les modèles sur une même base, on utilise la \textbf{log-vraisemblance pénalisée}.
 
