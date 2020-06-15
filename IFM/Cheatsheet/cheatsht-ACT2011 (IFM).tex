@@ -3604,7 +3604,7 @@ Lien entre le delta pour une options de vente et d'achat:
 	\item	La valeur d'une option décroît avec le temps. \\
 			$\theta$ estime de combien, ceteris paribus, la valeur décroît par jour;
 	\item	Ce faisant, $\theta$ est habituellement \textbf{négatif}.\\
-			Il est \textit{possible} qu'il soit négatif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé;
+			Il est \textit{possible} qu'il soit positif pour une option \underline{profondément} dans le cours du marché ayant un taux de dividende \underline{très} élevé;
 	\item	\textbf{T}heta pour \textbf{t}emps.
 \end{itemize}
 \end{definitionNOHFILL}
@@ -3971,7 +3971,11 @@ Pour un teneur de marché qui vend une option et couvre sa position en delta neu
 	\item	Une position sur une obligation zéro-coupon sans risque.
 \end{enumerate}
 
-Son profit de $t$ à $t + h$ est la somme des variations des composantes \icbox{$[+V_{t}\textrm{e}^{rh} - V_{t + h}]+ [-\Delta_{t}S_{t}\textrm{e}^{rh} + \Delta_{t}S_{t + h}]$}.\\
+Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbox{$\Delta_{t}\left(S_{t + h} - S_{t}\right)	-	\left(V_{t + h}	-	V_{t}\right)	-	(\textrm{e}^{rh}	-	1)\left(\delta_{t}S_{t}	-	V_{t}\right)$}.
+\begin{itemize}
+	\item	Pour \lfbox[conditions]{$\varepsilon	=	S_{t + h}	-	S_{t}$}, le profit est \lfbox[formula]{$\approx	-\frac{1}{2} \varepsilon^{2}\gamma_{t}	-	h\theta_{t}	-	(\textrm{e}^{rh}	-	1)\left(\delta_{t}S_{t}	-	V_{t}\right)$}.
+	\item	Si \lfbox[conditions]{$h$ est petit}, \lfbox[formula]{$(\textrm{e}^{rh}	-	1)	\approx	rh$}.
+\end{itemize}
 
 \paragraph{Note sur les autres grecs}	Si un teneur de marché souhaite couvrir avec de multiples grecs, il suffit de poser les grecs du portefeuille égaux à 0. Cependant, puisque tous les grecques autre que le $\Delta$ d'une action sont 0, on nécessite une deuxième option. Par exemple pour l'achat de 100 options d'achat de type 1, on achète $y$ options d'achat de type 2 et x actions pour obtenir un portefeuille couvert en delta et gamma neutre:
 \begin{align*}
