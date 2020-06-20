@@ -360,17 +360,16 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 
 \begin{distributions}[Terminologie]
 \begin{description}
-	\item[Prime:] Flux financiers à $t = 0$;
+	\item[Prime:] Prix payé pour un produit dérivé (à $t	=	0$).
 		\begin{itemize}[leftmargin = *]
-		\item	Dans le cas d'options, la prime est le coût $C(K)$;
-		\item	Si \textcolor{blue}{positif}, il s'agit d'un \textbf{coût};
+		\item	Dans le cas d'options, la prime correspond au coût ;
+		\item	Si \textcolor{blue}{positif}, il s'agit d'un \textbf{coût} ;
 		\item	Si \textcolor{red}{négatif}, il s'agît d'une \textbf{compensation}.		
 		\end{itemize}
-	\item[Valeur à l'échéance $T$:]	L'argent que l'on reçoit à l'échéance;
+	\item[Valeur à l'échéance $T$:]	L'argent que l'on reçoit à l'échéance.
 		\begin{itemize}[leftmargin = *]
-		\item	\og \textit{payoff} \fg{};
-		\item	C'est à dire, les flux de trésorier au temps $t = T$;
-		\item	Dans le cas de l'achat d'un actif, on reçoit son prix $S_{T}$; s'il est nul, on ne reçoit rien.
+		\item	En anglais, \og \textit{payoff} \fg{} ;
+		\item	C'est à dire, les flux de trésorier au temps $t = T$.
 		\end{itemize}
 	\item[Profit] 
 		= (valeur à l'échéance) - (valeur accumulée du coût initial) \\
@@ -380,15 +379,20 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 		\item	Par exemple, acheter une voiture et la revendre 10 ans plus tard:
 			\begin{align*}
 			\text{profit} 
-			=	&\text{(prix de revente à dans 10 ans)} -\\ &\text{\shortstack{(valeur accumulée du coût d'achat initial\\ à 0 au courant des 10 dernières années)}}
+			=	&\text{(prix de revente dans 10 ans)} -\\ &\text{\shortstack{(valeur accumulée, au courant des 10 dernières années,\\ du coût d'achat initial (à $t = 0$) )}}
 			\end{align*}
 		\item	Dans le cas d'options, on soustrait la valeur accumulée de la prime.
 		\end{itemize}
 	\tcbline
-	\item[$r$] 	taux (force) d'intérêt sans risque (effectif annuel);
+	\item[$\delta$]	Taux de dividendes composé continûment.
+	\item[$r_{f}$] 	\textcolor{amethyst}{force} (\textcolor{teal}{taux}) d'intérêt sans risque \textcolor{amethyst}{composé continûment} (\textcolor{teal}{effectif annuel});
 	\item[$T$]	date d'échéance.
 \end{description}
 \end{distributions}
+
+\begin{definitionNOHFILLprop}[\og \textit{Cost of carry} \fg{}]
+On peut interpréter l'écart entre le taux sans risque $r_{f}$ et le taux de dividende $\delta$ d'une action comme le \og \textit{cost of carry} \fg{}	=	$r_{f}	-	\delta$.
+\end{definitionNOHFILLprop}
 
 \columnbreak
 
@@ -2137,28 +2141,54 @@ Puisque le règlement des contrats à terme standardisé est quotidien alors que
 \end{description}
 \end{definitionNOHFILL}
 
-\begin{algo2}[Exemple]
-On suppose l'achat d'une action se transigeant au prix de 950\$ aujourd'hui ($S_{0}$) ayant 250 parts sous-jacentes. La force d'intérêt ($\delta$) est de 6\%, la marge initiale égale à 80\% de la valeur notionnelle et la marge de maintien 10\% de la marge initiale.
+\begin{formula}{Exemple de contrat à terme standardisé (\og \textit{futures contract} \fg{})}
+On suppose l'achat d'une action se transigeant au prix de 950\$ aujourd'hui ($S_{0}$) ayant 250 parts sous-jacentes. La force d'intérêt ($\delta$) est de 6\%, la marge initiale égale à 80\% de la valeur notionnelle et la marge de maintien 10\% de la marge initiale.	\\
 
-Ce faisant, la \colorbox{bleudefrance}{\textbf{balance de la marge}} \textit{dans une semaine} sera:
-\setlength{\mathindent}{-1cm}
-\begin{align*}
-	\overset{\text{marge de maintien}}{\overbrace{
+Au début, on doit établir la marge et sa balance initiale.
+\begin{enumerate}
+	\item	Premièrement, on trouve la valeur notionnelle : 
+		\begin{align*}
 		\underset{\text{\shortstack{nombre\\ sous-jacent}}}{\underbrace{250}} \times
-		\underset{\text{nombre acheté}}{\underbrace{10}} \times 
-		\underset{\text{prix inital}}{\underbrace{950}} \times 
-		\underset{\text{\shortstack{taux de\\ marge initale}}}{\underbrace{0.10}} \times 
-		\underset{\text{\shortstack{accumulé sur\\ une semaine}}}{\underbrace{\textrm{e}^{0.06 (1/52)}}} 
-		}} \\ 
-		+ 
-	\overset{\text{gains (pertes)}}{\overbrace{
-		\underset{\text{\shortstack[c]{nombre\\ sous-jacent}}}{\underbrace{250}} \times
-		\underset{\text{nombre acheté}}{\underbrace{10}} \times 
-		\underset{\text{\shortstack[c]{profit par action\\ dans une semaine}}}{\underbrace{(F_{1/52, T} -  950)}}
-		}}
-\end{align*}
-\setlength{\mathindent}{1cm}
-\end{algo2}
+			\underset{\text{nombre acheté}}{\underbrace{10}} \times 
+			\underset{\text{prix inital}}{\underbrace{950\$}}
+			&=	2\ 375\ 000\$
+		\end{align*}
+	\item	Puis, la marge initiale est 10\% de la valeur notionnelle : 
+		\begin{align*}
+		\underbrace{2\ 375\ 000\$}_{\text{valeur notionnelle}}\times 
+		\underbrace{0.10}_{\text{\shortstack{taux de\\ marge initale}}}
+		&=	237\ 500\$
+		\end{align*}
+	\item	Finalement, la marge de maintien est 80\% de la marge initiale :
+		\begin{align*}
+		\underbrace{237\ 500\$}_{\text{marge initiale}}	\times 
+		0.80
+		&=	190\ 000\$
+		\end{align*}
+\end{enumerate}
+
+
+Si nous désirons rebalancer le portefeuille dans une semaine avec $F_{1/52, T}	=	930\$$ : 
+\begin{enumerate}
+	\item	On accumule la balance de la marge : 
+		\begin{align*}
+		\underbrace{237\ 500\$}_{\text{balance de la marge}} \times
+		\underbrace{\textrm{e}^{0.06 (1/52)}}_{\shortstack{intérêt accumulé sur\\ une semaine}}
+		&=	237\ 774.1966\$
+		\end{align*}
+	\item	Puis, on calcule le profit (ou la perte) :
+		\begin{align*}
+		\underbrace{250}_{\shortstack[c]{nombre\\ sous-jacent}} \times
+		\underbrace{10}_{\text{nombre acheté}} \times 
+		\underbrace{(930 -  950)}_{\shortstack[c]{profit par action\\ dans une semaine}}
+		&=	-50\ 000\$
+		\end{align*}
+\end{enumerate}
+
+En combinant la valeur accumulé de balance de la marge et le profit sur l'action, la \textbf{balance de la marge} dans une semaine est : $237\ 774.1966 + -50\ 000\$	=	187\ 774.1966\$$. Cependant, la balance est inférieure à la marge de maintien de $190\ 000\$$ ! Il y aura donc un \textbf{appel de marge} afin de remonter la balance de la marge à \textbf{la marge initiale} de $237\ 500\$$.	\\
+
+Donc, l'investisseur débourse $237\ 500\$	-	187\ 774.1966\$	=	49\ 725.8034\$$ pour remonter la balance de la marge à $237\ 500\$$.
+\end{formula}
 
 \paragraph*{Note}	Le S \& P 500 a 250 parts sous-jacentes.
 
@@ -2452,7 +2482,7 @@ Il est donc important de retenir:
  	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option d'achat équivalente.
 	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
 	$PV(\text{intérêt sur $K$}) > PV(\text{dividendes})$;
-	\item	Il s'ensuit qu'il est \textbf{\textit{possiblement} rationnel} d'effectuer un \textbf{exercice hâtif} sur une \textbf{option d'achat} américaine \textbf{sans dividendes}.
+	\item	Il s'ensuit qu'il est \textbf{\textit{possiblement} rationnel} d'effectuer un \textbf{exercice hâtif} sur une \textbf{option de vente} américaine \textbf{sans dividendes}.
 \end{enumerate}
 \end{conceptgen}
 
@@ -5224,6 +5254,10 @@ On peut séparer le rendement effectif en 2 composantes :
 Pour calculer le taux de rendement effectif annuel lorsqu'il y a des dividendes, on multiplie le rendement par période de paiement pour l'obtenir sous base annuelle.	\\
 
 Par exemple, pour des dividendes semestriels: $1 + R_{\text{annuel}}	=	(1 + R_{t, t + 6/12}) \times (1 + R_{t + 6/12, t + 1})$.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{annual realized returns} \fg{}.
+\end{itemize}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Rendement annuel moyen]
@@ -5273,6 +5307,41 @@ Lorsqu'il y a plusieurs rendements possible pour un investissement, on calcule l
 		\item	On peut calculer un intervalle approximatif de confiance de 95\% avec $\text{rendement moyen empirique} \pm 2 \cdot \text{erreur type}$.
 		\end{itemize}
 \end{description}
+
+
+
+\begin{formula}{Exemple}
+Soit les rendements annuels effectifs (de fin d'année) suivants : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Année}}	&	\textcolor{white}{\textbf{Rendement annuel effectif}}		\\\specialrule{0.1em}{0em}{0em} 
+2010	&	15.1\%	\\\hline
+2011	&	2.1\%	\\\hline
+2012	&	16.0\%	\\\hline
+2013	&	32.4\%	\\\hline
+2014	&	13.7\%	\\\hline
+\end{tabular}
+\end{center}
+
+Alors, le rendement annuel moyen entre 2010 et 2014 est : 
+\begin{align*}
+	\bar{R}
+	&=	\frac{0.151 + 0.021 + 0.16 + 0.324 + 0.137}{5}
+	=	0.1586
+\end{align*}
+
+La variance est :
+\begin{align*}
+	\text{Var}(R)
+	&=	\frac{1}{5 - 1} \bigg((0.151 - 0.1586)^{2} + (0.021 - 0.1586)^{2} + \\ 
+	&\quad (0.16 - 0.1586)^{2} + (0.324 - 0.1586)^{2} + (0.137 - 0.1586)^{2})\bigg)	\\
+	&=	0.0117
+\end{align*}
+
+Puis, la volatilité est $SD(R)	=	\sqrt{\text{Var}(R)}	=	0.1082$.\\
+Également, l'erreur type de l'estimation du rendement espéré est $\frac{SD(R)}{\sqrt{T}}	=	\frac{0.1082}{\sqrt{5}}$
+\end{formula}
 
 
 \columnbreak
@@ -5591,14 +5660,25 @@ rendement \\espéré
 \end{tikzpicture}
 \end{center}
 
-Le volatilité d'un portefeuille des actifs $A$ et $B$ lorsque 
+Pour un portefeuille composé des actifs $A$ et $B$, lorsque :
 \begin{description}
-	\item[$\rho_{B, W} = 1$]	est maximisée ;
+	\item[$\rho_{B, W} = 1$]	la volatilité du portefeuille est maximisée ;
 		\begin{itemize}
-		\item	La volatilité équivaut à la moyenne pondérée de la volatilité des actifs.
+		\item	Dans ce cas-ci, la volatilité du portefeuille équivaut à la moyenne pondérée de la volatilité des actifs.
+		\item	Par exemple, pour un portefeuille composé de deux actifs $A$ et $B$ :
+			\begin{align*}
+					\sigma_{P}
+					&=	\sqrt{w_{A}^{2} \sigma_{A}^{2} + w_{B}^{2} \sigma_{B}^{2} + 2 w_{A} w_{B} (1) \sigma_{A} \sigma_{B}}	\\
+					&=	\sqrt{(w_{A} \sigma_{A} + w_{B} \sigma_{B})^{2}}	\\
+					&=	w_{A} \sigma_{A} + w_{B} \sigma_{B}
+			\end{align*}
 		\end{itemize}
-	\item[$\rho_{B, W} < 1$]	est moins que la moyenne pondérée ;
-	\item[$\rho_{B, W} = -1$]	un portefeuille \textcolor{amethyst}{sans risque} peut être construit.
+	\item[$\rho_{B, W} < 1$]	la volatilité du portefeuille est inférieure à la volatilité pondérée pondérée ;
+		\begin{itemize}
+		\item	Il s'ensuit que plus la corrélation est faible, plus il est avantageux de diversifier le portefeuille car cela réduit davantage la volatilité ;
+		\item	Si deux actifs sont parfaitement corrélés, diversifier ne change pas la volatilité et il n'y a aucun avantage à le faire.
+		\end{itemize}
+	\item[$\rho_{B, W} = -1$]	On peut construire un portefeuille \textcolor{amethyst}{sans risque}.
 \end{description}
 
 Investir un montant négatif dans une action équivaut à un \og \textit{short-sell} \fg{} (vente à découvert) et la frontière est rallongée :
@@ -7089,11 +7169,11 @@ Les options de calendrier donnent un délai à une entreprise avant d'avoir à p
 	\item	On peut utiliser formule de Black Scholes.
 \end{itemize}
 
-Il y a 3 facteurs qui influe le calendrier de l'investissement :
+Il y a 3 facteurs qui ont une influence sur le calendrier de l'investissement :
 \begin{enumerate}
 	\item	La VAN de l'investissement.
 		\begin{itemize}
-		\item	On investit seulement si $VAN(\text{invest. aujourd'hui}) > VAN(\text{avec une option réelle})$ $\textbf{OU} \text{valeur de prendre l'option d'attendre}$.
+		\item	On investit seulement si $VAN(\text{invest. aujourd'hui}) > VAN(\text{avec une option réelle})$ $\textbf{ OU } \text{ > valeur de prendre l'option d'attendre}$.
 		\item	Parfois prendre on considération l'option réelle cause une VAN négative à devenir positive.
 		\end{itemize}
 	\item	La volatilité.
