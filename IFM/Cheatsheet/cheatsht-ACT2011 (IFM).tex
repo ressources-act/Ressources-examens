@@ -867,8 +867,8 @@ Il n'y a aucun impact sur les profits et le \textbf{vendeur peut ne jamais avoir
 
 \newpage
 
-\section{Stratégie de couverture}
-\subsection{Préliminaires}
+\section{Stratégies de couverture}
+\subsection{Préliminaire}
 
 \begin{conceptgen}{Hypothèses}
 Pour tout le chapitre, nous posons les hypothèses suivantes:
@@ -1625,7 +1625,7 @@ $\text{Straddle} = Put(K, T) + Call(K, T)$.\\
 Il s'ensuit que la valeur à l'échéance est:
 \begin{align*}
 	|S_{T} - K|	
-	&\equiv	
+	&=	
 		\begin{cases}
 		(K - S_{T})	+	0	=	K - S_{T},	&	S_{T} \le K	\\
 		0	+	(S_{T} - K)	=	S_{T} - K,	&	S_{T} >	K	\\
@@ -3161,7 +3161,7 @@ On peut récrire le modèle binomiale comme:
 	r_{t + (i - 1)h, t + ih}	
 	&=	(r	-	\delta)h	+ Y_{i}\sigma	\sqrt{h}, \quad	i	=	1, 2, \dots, n	\\
 	r_{0, nh}
-	\equiv	r_{0, T}
+	=	r_{0, T}
 	&=	(r	-	\delta)T 	+ Z_{n}\sigma	\sqrt{h}
 \end{align*}
 
@@ -3292,7 +3292,7 @@ Lorsque le nombre de périodes $n$ d'un arbre binomial augmente, le prix de l'op
 			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{red}{-}} \frac{1}{2} \sigma^{2} T}
 	 			 {\sigma\sqrt{T}}
 		\right)	
-	\equiv	d_{1} - \sigma \sqrt{t}	\\
+	=	d_{1} - \sigma \sqrt{t}	\\
 \end{align*}
 
 Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
@@ -3309,8 +3309,8 @@ Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
 \begin{align*}
 	\sigma
 	&=	\sqrt{\frac{\text{Var}(\ln F^{P}_{t, T}(S))}{t}}	
-	\equiv	\sqrt{\frac{\text{Var}(\ln F_{t, T}(S))}{t}}	
-	\equiv	\sqrt{\frac{\text{Var}(\ln S_{t})}{t}}, \, \forall 0 < t \le T	\\
+	=	\sqrt{\frac{\text{Var}(\ln F_{t, T}(S))}{t}}	
+	=	\sqrt{\frac{\text{Var}(\ln S_{t})}{t}}, \, \forall 0 < t \le T	\\
 \end{align*}
 
 \begin{description}
@@ -3445,7 +3445,7 @@ Les grecs servent à mesurer l'exposition au risque en considérant un paramètr
 \hline\rowcolor{airforceblue} 
 \textcolor{white}{\textbf{Grec}}	&	\textcolor{white}{\textbf{Définition}}	&	\textcolor{white}{\textbf{Mesure le changement de la valeur ($V$)}}		\\\specialrule{0.1em}{0em}{0.0em} 
 $\Delta$	&	$\deriv{S_{0}}{V}$	&	de l'option par une augmentation (de 1\$) du prix de l'action.	\\
-$\Gamma$	&	$\deriv{S_{0}}{\Delta} \equiv \deriv[2]{S_{0}}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
+$\Gamma$	&	$\deriv{S_{0}}{\Delta} = \deriv[2]{S_{0}}{V}$	&	du Delta par une augmentation (de 1\$) du prix de l'action.	\\
 $\theta/365$	&	$\deriv{t}{V}$	&	de l'option par une baisse (d'un jour) de la date d'échéance.	\\
 \textbf{Vega}	&	$\deriv{\sigma}{V}$	&	de l'option par une augmentation (de 1\%) de la volatilité.	\\
 $\rho/100$	&	$\deriv{r}{V}$	&	de l'option par une augmentation (de 1\%) du taux sans risque.	\\
@@ -3516,7 +3516,7 @@ Lien entre le delta pour une options de vente et d'achat:
 \end{itemize}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S_{0}}{\Delta} \equiv \deriv[2]{S_{0}}{V}$]
+\begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S_{0}}{\Delta} = \deriv[2]{S_{0}}{V}$]
 Mesure la variation du Delta de l'option correspondante à une augmentation du prix de l'action.
 
 \tcbline
@@ -3858,7 +3858,7 @@ Une \textbf{prime de risque} est l'excès du rendement espéré d'un actif au ta
 	\item[Prime de risque sur l'option]	$\gamma - r$
 \end{description}
 \begin{itemize}[leftmargin = *]
-	\item	Avec la définition du rendement $\gamma$ espéré instantané sur l'option on trouve: \icbox{$	\gamma - r \equiv \Omega (\alpha - r)$};
+	\item	Avec la définition du rendement $\gamma$ espéré instantané sur l'option on trouve: \icbox{$	\gamma - r = \Omega (\alpha - r)$};
 	\item	Dans le modèle d'évaluation des actifs financiers, \icbox{$\alpha - r = \beta_{\text{action}}(\mu_{m} - r)$} alias $\beta_{\text{option}}	=	\beta_{\text{action}} \Omega_{\text{option}}$;
 	\item	Si $\alpha > r$ alors $\gamma_{C} \geq \alpha$ et $\gamma_{P} \leq r$.
 \end{itemize}
@@ -3876,7 +3876,7 @@ Le \textbf{ratio de Sharpe} d'un actif est le ratio de sa prime de risque à sa 
 		\begin{align*}
 		\text{\o}_{\text{option}}	
 		&=	\frac{\gamma - r}{\sigma_{\text{option}}}	
-		\equiv	\frac{\Omega (\alpha - r)}{|\Omega|\sigma_{\text{action}}}	
+		=	\frac{\Omega (\alpha - r)}{|\Omega|\sigma_{\text{action}}}	
 		\end{align*}
 \end{description}
 Puisque $\Omega$ est positif pour les options d'achat et négatif pour les options de vente:
@@ -4019,7 +4019,7 @@ Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbo
 \paragraph{Note sur $\theta$} Thêta mesure la \textit{variation du prix} à l'écoulement \textit{du temps} et n'a pas lié au risque de l'action. Il en résulte que le delta et le gamma d'un dépôt sans risque sont nuls, mais pas le thêta. Pour un dépôt de 1\$, la valeur accumulée $t$ années plus tard est $\textrm{e}^{rt}$. Le thêta de ce dépôt est $\theta_{\text{sans risque}}	=	\deriv{t}{r\textrm{e}^{rt}}	=	r\textrm{e}^{rt}$. 
 
 \begin{definitionNOHFILL}[Autofinançant]
-Portefeuille dont la couverture, même si elle existe un rééquilibrage, entraîne uniquement des flux monétaires intermédiaires nuls est dit autofinançant.
+Portefeuille dont la couverture, même s'il y a un rééquilibrage, entraîne uniquement des flux monétaires intermédiaires nuls est dit autofinançant. 
 \end{definitionNOHFILL}
 
 
@@ -4671,7 +4671,9 @@ Formule en format simple et selon la notation de Claire où l'on achète $k$ du 
 \end{align*}
 
 où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigma^{2} T}{\sigma \sqrt{T}}$, $d_{2}	=	d_{1} - \sigma \sqrt{T}$ et \icbox{$\sigma	=	\sqrt{\sigma^{2}_{A} + \sigma^{2}_{B}	-	2\rho\sigma_{A}\sigma_{B}}$}.
-
+\begin{itemize}
+	\item	On note que \textbf{l'on soustrait} la corrélation puisque le portefeuille est $A	-	B$.
+\end{itemize}
 
 \pagebreak
 \setcounter{section}{17}
@@ -4846,12 +4848,12 @@ On pose:
 %	\item	Isoler la distribution normale $\ln\left(\frac{S_{t}}{S_{0}}\right)$;
 %		\begin{align*}
 %		\Pr(S_{t} < K)
-%		&\equiv	\Pr\left( \ln\frac{S_{t}}{S_{0}} < \ln\frac{S_{t}}{S_{0}} \right)
+%		&=	\Pr\left( \ln\frac{S_{t}}{S_{0}} < \ln\frac{S_{t}}{S_{0}} \right)
 %		\end{align*}
 %	\item	Centrer et réduire pour obtenir la distribution normale standard $Z$.
 %		\begin{align*}
 %		\Pr(S_{t} < K)
-%		&\equiv	\Pr\left( \frac{\ln\frac{S_{t}}{S_{0}} - m}{v} < \frac{\ln\frac{K}{S_{0}} - (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)	\\
+%		&=	\Pr\left( \frac{\ln\frac{S_{t}}{S_{0}} - m}{v} < \frac{\ln\frac{K}{S_{0}} - (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)	\\
 %		&=	\Pr\left( Z < - {\color{teal}\left(
 %				\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)}
 %				\right)	\\
@@ -4923,7 +4925,7 @@ Soit $n + 1$ prix observés $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle régul
 		\begin{align*}
 		\bar{r}
 		&=	\frac{\overset{n}{\underset{i = 1}{\sum}} r_{i}}{n}	
-		\underset{\tiny{\shortstack{propriété\\ des log.}}}{\equiv}	\frac{\ln\left(\frac{S_{n}}{S_{0}}\right)}{n}
+		\underset{\tiny{\shortstack{propriété\\ des log.}}}{=}	\frac{\ln\left(\frac{S_{n}}{S_{0}}\right)}{n}
 		\end{align*}
 	\item	Estimer l'écart-type des rendements.
 		\begin{align*}
@@ -5466,7 +5468,7 @@ Mesure la puissance et de la direction de la relation linéaire entre les deux v
 \end{itemize}
 \end{definitionNOHFILL}
 
-Pour un portefeuille à 2 actifs, \lfbox[formula]{$\sigma_{p}^{2}	=	w_{1}^{2}\sigma_{R_{1}}^{2} + w_{2}^{2}\sigma_{R_{2}}^{2} + 2w_{1}w_{2}\rho_{1, 2}\sigma_{R_{1}, R_{2}}$}.\\
+Pour un portefeuille composé de 2 actifs, \lfbox[formula]{$\sigma_{p}^{2}	=	w_{1}^{2}\sigma_{R_{1}}^{2} + w_{2}^{2}\sigma_{R_{2}}^{2} + 2w_{1}w_{2}\rho_{1, 2}\sigma_{R_{1}}\sigma_{R_{2}}$}.\\
 Dans le cas plus général : 
 \begin{align*}
 	\text{Var}(R_{p})	
@@ -5514,15 +5516,19 @@ La matrice de covariance du portefeuille est :
 	\end{bmatrix}
 \end{align*}
 \begin{itemize}
-	\item	Il s'ensuit qu'elle a $n^{2}$ termes dont $n$ de variance et $n^{2}	-	n$ de covariance dont la moitié ($\frac{n^{2} - n}{2}$) sont uniques ;
-	\item	On peut exprimer :
+	\item	Il s'ensuit qu'elle a $n^{2}$ termes dont $n$ de variance et $n^{2}	-	n$ de covariance dont la moitié ($\frac{n^{2} - n}{2}$) sont uniques.
+\end{itemize}
+
+On peut exprimer :
 	\setlength{\mathindent}{-1cm}
-		\begin{align*}
-		\text{Var}(R_{p})	
-		&=	\frac{1}{n} \times \left(\shortstack{variance moyenne\\ de chaque action}\right) + \left(1 - \frac{1}{n}\right)  \times  \left(\shortstack{covariance moyenne\\	entre les actions}\right)
-		\end{align*}
+	\begin{align*}
+	\text{Var}(R_{p})	
+	&=	\frac{1}{n} \times \underbrace{\left(\text{variance moyenne}\right)}_{\small{\shortstack{risque systémique\\ diversifiable}}} + \left(1 - \frac{1}{n}\right)  \times  \underbrace{\left(\text{covariance moyenne}\right)}_{\small{\shortstack{risque \textit{non} systémique\\ \textit{non} diversifiable}}}
+	\end{align*}
 	\setlength{\mathindent}{1cm}
-	\item	Il s'ensuit que $\text{Var}(R_{p}) \underset{n\rightarrow \infty}{\longrightarrow} \shortstack{covariance moyenne}$.
+
+\begin{itemize}
+	\item	On déduit que $\text{Var}(R_{p}) \underset{n\rightarrow \infty}{\longrightarrow} \shortstack{covariance moyenne (entre les actions)}$.
 \end{itemize}
 
 
@@ -6561,6 +6567,13 @@ L'APT est semblable au CAPM mais comporte des hypothèses moins restrictives :
 \end{enumerate}
 \end{conceptgen}
 
+\begin{definitionNOHFILLprop}[Portefeuilles multi-factoriels autofinançants]
+Si les tous les portefeuilles multi-factoriels sont autofinançant, on peut récrire : \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \sum_{n = 1}^{N} \beta_{i}^{Fn}\text{E}[R_{Fn}]$}.
+\begin{itemize}
+	\item	Les $\beta$s vont sommer à 0 au lieu de 1.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
 
 \subsubsection{Fama-French-Carhart (FFC)}
 \begin{definitionNOHFILL}[Notation]
@@ -6670,6 +6683,26 @@ Pose que les prix de titres financiers reflètent \textbf{toute l'information pu
 	\item	Cette théorie pose qu'il y a des investisseurs chanceux et malchanceux mais que \textbf{personne} (y compris les gestionnaires d'une compagnie) \textbf{peut obtenir des rendements supérieurs \underline{de façon régulière}}.
 \end{itemize}
 \end{definitionNOHFILLsub}
+
+\begin{conceptgen}{Pourquoi un marché ne serais-t'il pas efficient?}
+\begin{enumerate}
+	\item	L'erreur de procuration (\og \textit{proxy error} \fg{}).
+		\begin{itemize}
+		\item	Il est impossible pour un indice (\og \textit{proxy} \fg{}) de considérer \textit{tous} les actions du marché.
+		\item	En lieu, il doit en choisir une fraction.
+		\item	P. ex., les S \& P 500.
+		\end{itemize}
+	\item	Biais comportementaux systémiques.
+	\item	Préférence de risque des investisseurs.
+		\begin{itemize}
+		\item	Certains investisseurs peuvent choisir de minimiser autre chose que la volatilité des rendements et détenir des portefeuilles « inefficaces ».
+		\end{itemize}
+%%%	------------------------
+%%%	-	Qu'est-ce que ça veut dire?
+%%%	------------------------
+	\item	\og \textit{Non-tradeable wealth} \fg{}.
+\end{enumerate}
+\end{conceptgen}
 
 
 \pagebreak
@@ -6857,43 +6890,59 @@ Par exemple :
 \subsection{Finance comportementale}
 La finance comportementale évalue l'effet du comportement humain sur les marchés financiers.
 
-\subsubsection{Diversification et biais de portefeuille}
-Plusieurs investisseurs individuels ne diversifient pas suffisamment leurs portefeuilles. Il y a deux explications possibles : 
+\subsubsection{Biais non systémique}
+Ces comportements n'ont pas d'impact sur l'hypothèse d'efficience des marchés.
 
+\begin{definitionNOHFILLsub}[Manque de diversification]
+Plusieurs investisseurs individuels ne diversifient pas suffisamment leurs portefeuilles. \\
+
+Notamment, en raison de : 
 \begin{definitionNOHFILLprop}[Biais de familiarité]
-Les investisseurs vont avoir tendance à investir dans des entreprises avec lesquels ils sont familiers.
+Les investisseurs vont avoir tendance à investir dans des entreprises avec lesquelles ils sont familiers.
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Préoccupations relatives à la richesse]
-Les investisseurs se préoccupent principalement de la performance de leur portefeuille relatif aux portefeuilles de leurs paires. Ceci les mène à choisir des portefeuilles qui ne sont pas diversifiés dans l'espoir d'obtenir des rendements au moins égaux à celui de leurs paires.\end{definitionNOHFILLprop}
+Les investisseurs se préoccupent principalement de la performance de leur portefeuille relatif aux portefeuilles de leurs paires. Ceci les mène à choisir des portefeuilles qui ne sont pas diversifiés dans l'espoir d'obtenir des rendements au moins égaux à celui de leurs paires.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILLsub}
 
+\begin{definitionNOHFILLsub}[Transactions excessives]
+En raison des frais de transactions, transiger des titres trop souvent diminue les rendements. 	\\
 
-\subsubsection{Transactions excessives}
-En raison des frais de transactions, transiger des titres trop souvent diminue les rendements. L'hypothèse principale est que les investisseurs ont trop de confiance dans leurs connaissances et expertise financière.
-
-
-\subsubsection{Sophisme des coûts irrécupérables}
-Les investisseurs ont tendance à conserver des investissements dont la valeur a diminuée et à vendre des investissements dont la valeur a augmentée.
+Notamment, en raison de : 
 \begin{itemize}
-	\item	En anglais, \og \textit{disposition effect} \fg{}.
+	\item	La confiance exagérée des investisseurs dans leurs connaissances et expertise financière.
+	\item	La recherche de sensations fortes.
 \end{itemize}
+\end{definitionNOHFILLsub}
 
-\subsubsection{Émotions des investisseurs}
+
+\subsubsection{Biais systémique}
+Ces comportements \textit{\textit{ont}} un impact sur l'hypothèse d'efficience des marchés.
+
+\begin{definitionNOHFILLsub}[Sophisme des coûts irrécupérables (l'effet de disposition)]
+Les investisseurs ont tendance à conserver des investissements dont la valeur a diminuée et à vendre des investissements dont la valeur a augmentée.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Émotions des investisseurs]
 Les investisseurs ont tendance d'être influencés par les médias où les événements qui capturent l'attention.
 \begin{itemize}
 	\item	Il a été démontré que les investisseurs ont tendance à acheter des actions récemment dans les nouvelles.
 	\item	Il a été démontré que les rendements d'actions ont tendance à être plus élevés les journées ensoleillées.
 	\item	Certains investisseurs ont tendance à surévaluer leur expérience financière.
 \end{itemize}
+\end{definitionNOHFILLsub}
 
+\begin{definitionNOHFILLsub}[Comportement moutonnier]
+Les investisseurs agissent en groupe.	\\
 
-\subsubsection{Comportement moutonnier}
-Les investisseurs agissent en groupe, pour plusieurs raisons : 
+Notamment, en raison que :
 \begin{enumerate}
-	\item	L'investisseur croit que les autres ont plus d'information et suit les tendances du marché.
+	\item	L'investisseur croit que les autres ont plus d'information et suit les tendances du marché (\og \textit{information cascade effect} \fg{}).
+	\item	Les gestionnaires de fonds souhaitent éviter d'endommager leurs réputations s'ils détiennent des actions trop différentes de celles de leurs paires (\og \textit{relative wealth concerns} \fg{}).
 	\item	L'investisseur peut suivre le marché afin d'avoir un rendement au moins égal au marché.
-	\item	Les gestionnaires de fonds souhaitent éviter d'endommager leurs réputations s'ils détiennent des actions trop différentes de celles de leurs paires.
 \end{enumerate}
+\end{definitionNOHFILLsub}
 
 
 \pagebreak
