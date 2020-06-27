@@ -4913,6 +4913,9 @@ Avec ces espérances, on trouve maintenant:
 \columnbreak
 \subsection*{Estimation des paramètres (le rendement et la volatilité) de la loi lognormale}
 Soit $n + 1$ prix observés $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle régulier de longueur $h$.
+\begin{itemize}
+	\item	Typiquement, \lfbox[formula]{$h	=	1$}
+\end{itemize}
 
 \begin{definitionNOHFILL}[Estimation des paramètres de la distribution lognormale]
 \begin{enumerate}
@@ -6270,6 +6273,9 @@ L'équation du MÉDAF est \lfbox[formula]{$r_{i}	=	\text{E}[R_{i}]	=	r_{f} + \be
 		\item	C'est à dire que pour un niveau de risque (volatilité) donné, il n'y a pas de portefeuilles avec un rendement supérieur. 
 		\end{itemize}
 	\item	Les investisseurs ont des attentes homogènes pour les volatilités, les corrélations et les rendements espérés de titres financiers.
+		\begin{itemize}
+		\item	Des chercheurs ont trouvé que si les investisseurs n'ont pas des attentes \textit{homogènes}, le MÉDAF n'est pas nécessairement invalide tant qu'ils ont des attentes \textit{\textbf{rationnelles}}.
+		\end{itemize}
 \end{enumerate}
 \end{conceptgen}
 
@@ -6578,6 +6584,9 @@ Si les tous les portefeuilles multi-factoriels sont autofinançant, on peut réc
 \subsubsection{Fama-French-Carhart (FFC)}
 \begin{definitionNOHFILL}[Notation]
 La spécification de facteurs FFC est la plus courante avec le \textbf{marché}, la \textbf{capitalisation boursière}, le \textbf{ratio cours / valeur comptable} et \textbf{l'élan} comme facteurs.
+\begin{itemize}
+	\item	L'idée de la stratégie avec la spécification de FFC est de tirer profit du fait que ces portefeuilles semblent avoir des $\alpha$ positifs.
+\end{itemize}
 
 \begin{description}
 	\item[$M$]	Portefeuille du marché.
@@ -7667,6 +7676,8 @@ Il y a quelques types dont des obligations :
 		\end{itemize}
 \end{description}
 \end{definitionNOHFILLprop}
+
+\paragraph{Note}	Il est important de savoir que les sécurités financières (e.g., \og \textit{t-bills} \fg{}) ont des coupons semi-annuels et de le considérer dans des questions relatives aux coupons.
 
 
 \paragraph{Titres adossés à des actifs}
