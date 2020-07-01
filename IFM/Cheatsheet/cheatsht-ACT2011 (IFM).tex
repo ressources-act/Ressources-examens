@@ -2486,79 +2486,90 @@ Il est donc important de retenir:
 \end{enumerate}
 \end{conceptgen}
 
+
 \columnbreak
 \subsection{Effet du prix d'exercice}
-Trois arguments sur comment différents prix d'exercices font varier les prix d'options. Ces arguments, ou \textit{propositions} expliquent le lien:
+\begin{definitionNOHFILLsub}[Effet du prix d'exercice pour des options d'achat]
+Pour $K_{1}	<	K_{2}	<	K_{3}$ :
+\begin{enumerate}
+	\item	${\color{blue}\uparrow} K \Rightarrow$ ${\color{red}\downarrow} \text{valeur à l'échéance}$ et ${\color{red}\downarrow} C(K)$ :
+			\begin{align*}
+			C(K_{1})	&\geq	C(K_{2}) \geq	C(K_{3})
+			\end{align*}
+	\item	\begin{align*}
+			C_{\text{amer}}(K_{1}) - C_{\text{amer}}(K_{2}) &\leq K_{2} - K_{1}	\\
+			C_{\text{euro}}(K_{1}) - C_{\text{euro}}(K_{2}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
+			\end{align*}
+	\item	Le prix d'une option d'achat décroît plus lentement lorsque le prix d'exercice augmente :
+			\begin{align*}
+			\frac{C(K_{1}) - C(K_{2})}{K_{2} - K_{1}}
+			&\geq	
+			\frac{C(K_{2}) - C(K_{3})}{K_{3} - K_{2}}	
+			\end{align*}
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Effet du prix d'exercice pour des options de vente]
+Pour $K_{1}	<	K_{2}	<	K_{3}$ :
+\begin{enumerate}
+	\item	${\color{blue}\uparrow} K \Rightarrow$ ${\color{blue}\uparrow} \text{valeur à l'échéance}$ et ${\color{blue}\uparrow} P(K)$ :
+			\begin{align*}
+			P(K_{1})	&\leq	P(K_{2}) \leq	P(K_{3})
+			\end{align*}
+	\item	\begin{align*}
+			P_{\text{amer}}(K_{2}) - P_{\text{amer}}(K_{1}) &\leq K_{2} - K_{1}	\\
+			P_{\text{euro}}(K_{2}) - P_{\text{euro}}(K_{1}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
+			\end{align*}
+	\item	Le prix d'une option de vente croît plus rapidement lorsque le prix d'exercice augmente :
+			\begin{align*}
+			\frac{P(K_{2}) - P(K_{1})}{K_{2} - K_{1}}
+			&\leq
+			\frac{P(K_{3}) - P(K_{2})}{K_{3} - K_{2}}	
+			\end{align*}
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Si la différence entre les deux prix d'option serait supérieure à la différence entre les deux prix d'exercice, il y aurait arbitrage. Il serai possible d'avoir aucun risque de perte.
 \begin{itemize}
-	\item	La première proposition relie le prix d'option au prix d'exercice;
-	\item	La deuxième proposition relie la différence des prix d'options à la différence des prix d'exercices;
-	\item	La troisième proposition relie le taux de variation du prix de l'option selon le prix d'exercice.
+	\item	Comme visualisation, voir le graphique de la valeur à l'échéance d'un écart-baissier ;
+	\item	Si le profit est strictement positif, la ligne pointillée rouge est uniquement au-dessus de l'axe des $x$.
 \end{itemize}
 
-\subsubsection*{Proposition 1:	Lien entre les prix d'options et d'exercice}
-\begin{description}
-	\item[Option d'achat]	Une ${\color{blue}\uparrow} K$ mène à ${\color{red}\downarrow} \text{valeur à l'échéance}$ ainsi que ${\color{red}\downarrow} C(K)$;
-		\begin{align*}
-		C(K_{1}) \geq	C(K_{2}) \geq	C(K_{3}) 
-		\end{align*}
-	\item[Option de vente]	Une ${\color{blue}\uparrow} K$ mène à ${\color{blue}\uparrow} \text{valeur à l'échéance}$ ainsi que ${\color{blue}\uparrow} P(K)$;
-		\begin{align*}
-		P(K_{1}) \leq	P(K_{2}) \leq	P(K_{3}) 
-		\end{align*}
-\end{description}
 
-\subsubsection*{Proposition 2:	Lien entre la différence des prix d'options et d'exercice}
-\begin{itemize}
-	\item	Une option d'achat profite d'une hausse de prix;
-	\item	Si le prix d'exercice baisse de, par exemple, 10\$, alors la valeur à l'échéance maximale possible augmente de 10\$;
-	\item	Ce faisant le plus que je serai prêt à payer pour potentiellement avoir 10\$ de plus \textit{est} 10\$ de plus.
-\end{itemize}
+\columnbreak
+\subsection{Effet du temps avant expiration}
+Pour $T_{1}	<	T_{2}$ :
+\begin{align*}
+	C_{\text{amer}}(S, K, T_{1})	&\leq	C_{\text{amer}}(S, K, T_{2})	\\
+	P_{\text{amer}}(S, K, T_{1})	&\leq	P_{\text{amer}}(S, K, T_{2})	\\
+\end{align*}
 
-\begin{description}
-	\item[Option d'achat]	
-		\begin{align*}
-		C_{\text{amer}}(K_{1}) - C_{\text{amer}}(K_{2}) &\leq K_{2} - K_{1}	\\
-		C_{\text{euro}}(K_{1}) - C_{\text{euro}}(K_{2}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
-		\end{align*}
-	\item[Option de vente]	
-		\begin{align*}
-		P_{\text{amer}}(K_{2}) - P_{\text{amer}}(K_{1}) &\leq K_{2} - K_{1}	\\
-		P_{\text{euro}}(K_{2}) - P_{\text{euro}}(K_{1}) &\leq (K_{2} - K_{1})\textrm{e}^{-rT}
-		\end{align*}
-\end{description}
-
-Si la différence en prix d'option était supérieure à la différence en prix d'exercice il y a arbitrage; on peut n’avoir aucun risque de perte. Pour comprendre ceci, voir le graphique d'un écart-baissier et imaginer la ligne pointillée rouge uniquement au-dessus de l'axe des x.
-
-\subsubsection*{Proposition 3: Lien entre le taux de variation des prix d'option et d'exercice}
-\begin{itemize}
-	\item	Le prix d'une option d'achat décroît plus lentement lorsque le prix d'exercice augmente;
-	\item	Le prix d'une option de vente croît plus rapidement lorsque le prix d'exercice augmente.
-\end{itemize}
-
-\begin{description}
-	\item[Option d'achat]	
-		\begin{align*}
-		\frac{C(K_{1}) - C(K_{2})}{K_{2} - K_{1}}
-		&\geq	
-		\frac{C(K_{2}) - C(K_{3})}{K_{3} - K_{2}}	
-		\end{align*}
-	\item[Option de vente]	
-		\begin{align*}
-		\frac{P(K_{2}) - P(K_{1})}{K_{2} - K_{1}}
-		&\leq
-		\frac{P(K_{3}) - P(K_{2})}{K_{3} - K_{2}}	
-		\end{align*}
-\end{description}
+Pour $T_{1}	<	T_{2}$ et une action \textbf{sans dividendes} ($\delta	=	0$) : 
+\begin{align*}
+	C_{\text{euro}}(S, K, T_{1})	&\leq	C_{\text{euro}}(S, K, T_{2})	\\
+	P_{\text{euro}}(S, K, T_{1})	&\leq	P_{\text{euro}}(S, K, T_{2})
+\end{align*}
+sauf si :
+\begin{enumerate}
+	\item	une action va payer un \textbf{boni de liquidation}.
+		\begin{itemize}
+		\item	C'est-à-dire que l'entreprise vend tous ses actifs et ferme ses portes.
+		\item	Donc, une action ayant une échéance plus élevée pourrait n'avoir aucune valeur à l'échéance.
+		\end{itemize}
+	\item	une entreprise fait faillite.
+		\begin{itemize}
+		\item	Donc, la valeur à l'échéance d'une option de vente sera le prix d'exercice.
+		\item	Alors, le moins qu'il faut actualiser $K$, le plus élevé il sera.
+		\end{itemize}
+\end{enumerate}
 
 
 \newpage
-
-% --- Chapitre 10 ---
 \section{Introduction au modèle binomial d'évaluation des options}
 
 \begin{description}
 	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période.
-		\begin{itemize}[leftmargin = *]
+		\begin{itemize}
 		\item	en anglais c'est le \og \textit{Binomial Option Pricing Model} \fg{}.
 		\end{itemize}
 \end{description}
@@ -4001,7 +4012,7 @@ Pour un teneur de marché qui vend une option et couvre sa position en delta neu
 	\item	Une position sur une obligation zéro-coupon sans risque.
 \end{enumerate}
 
-Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbox{$\Delta_{t}\left(S_{t + h} - S_{t}\right)	-	\left(V_{t + h}	-	V_{t}\right)	-	(\textrm{e}^{rh}	-	1)\left(\delta_{t}S_{t}	-	V_{t}\right)$}.
+Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbox{$\Delta_{t}\left(S_{t + h} - S_{t}\right)	-	\left(V_{t + h}	-	V_{t}\right)	-	(\textrm{e}^{rh}	-	1)\left(\Delta_{t}S_{t}	-	V_{t}\right)$}.
 \begin{itemize}
 	\item	Pour \lfbox[conditions]{$\varepsilon	=	S_{t + h}	-	S_{t}$}, le profit est \lfbox[formula]{$\approx	-\frac{1}{2} \varepsilon^{2}\gamma_{t}	-	h\theta_{t}	-	(\textrm{e}^{rh}	-	1)\left(\delta_{t}S_{t}	-	V_{t}\right)$}.
 	\item	Si \lfbox[conditions]{$h$ est petit}, \lfbox[formula]{$(\textrm{e}^{rh}	-	1)	\approx	rh$}.
@@ -4095,16 +4106,8 @@ Il y a huit versions de base des options sur moyenne:
 	\item	Moyenne du sous-jacent ou du prix d'exercice.
 \end{itemize}
 
-Pour des options ordinaires:
-\begin{align*}
-	\shortstack{valeur à l'échéance\\ d'une option d'achat}
-	&=	\max[0, S_{T}	-	K]	\\
-	\shortstack{valeur à l'échéance\\ d'une option de vente}
-	&=	\max[0, 	K	-	S_{T}]
-\end{align*}
-
 \begin{definitionNOHFILLsub}[Option asiatique sur le prix moyen]
-On remplace $S_{t}$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:
+On remplace $S_{t}$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:\\
 \begin{align*}
 	\shortstack{valeur à l'échéance\\ d'une option d'achat}
 	&=	\max[0, \bar{S}	-	K]	\\
@@ -4114,7 +4117,7 @@ On remplace $S_{t}$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance d
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Option asiatique sur le prix d'exercice moyen]
-On remplace $K$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:
+On remplace $K$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des options:\\
 \begin{align*}
 	\shortstack{valeur à l'échéance\\ d'une option d'achat}
 	&=	\max[0, S_{T}	-	\bar{S}]	\\
@@ -4123,22 +4126,26 @@ On remplace $K$ par le prix moyen $\bar{S}$ pour la valeur à l'échéance des o
 \end{align*}
 \end{definitionNOHFILLsub}
 
-\paragraph{Note:}	Deux erreurs fréquentes sont d'inclure le prix initiale dans la moyenne et ne pas calculer $V_{ud}$ \textit{et} $V_{du}$ lorsqu'on utilise la moyenne géométrique.
+\paragraph{Note:}	Deux erreurs courantes sont:  
+\begin{enumerate}
+	\item	Inclure le prix initiale dans la moyenne (il ne faut pas),
+	\item	Oublier de calculer $V_{ud}$ \textit{et} $V_{du}$ séparément lorsqu'on utilise la moyenne géométrique.
+\end{enumerate}
 
 \subsubsection*{Points importants}
 \begin{enumerate}
-	\item	La valeur d'une option asiatique sur le prix moyen est inférieure ou égale à la valeur d'une option européenne équivalente.
-		\begin{itemize}[leftmargin = *]
+	\item	La valeur d'une \textbf{option asiatique sur le prix moyen est inférieure ou égale} à la valeur d'une \textbf{option européenne équivalente}.
+		\begin{itemize}
 		\item	Le plus faible la volatilité d'une action, le moins il est probable qu'elle ait une valeur à l'échéance positive;
-		\item	Le prix moyen d'une action $\bar{S}$ est moins volatile que le prix final de l'action $S_{t}$;
+		\item	Le prix moyen d'une action \textbf{$\bar{S}$ est moins volatile que $S_{T}$} le prix final de l'action;
 		\item	Il s'ensuit que l'option asiatique a une valeur à l'échéance plus faible.
 		\end{itemize}
 	\item	La valeur d'une option asiatique sur le prix moyen baisse lorsque la fréquence d'échantillonnage $N$ augmente.
-		\begin{itemize}[leftmargin = *]
+		\begin{itemize}
 		\item	De façon semblable, augmenter $N$ diminue la moyenne et donc la valeur à l'échéance de l'option asiatique.
 		\end{itemize}
-	\item	La valeur d'une option asiatique sur le prix d'exercice moyen augmente lorsque la fréquence d'échantillonnage $N$ augmente.
-		\begin{itemize}[leftmargin = *]
+	\item	La \textbf{valeur} d'une \textbf{option asiatique sur le prix d'exercice moyen} \textit{\textbf{augmente}} lorsque la fréquence d'échantillonnage \textbf{$N$ \textit{augmente}}.
+		\begin{itemize}
 		\item	Puisque l'on soustrait le prix moyen de l'action $\bar{S}$, il s'ensuit que l'écart avec le prix à l'échéance $S_{t}$ augmente.
 		\end{itemize}
 \end{enumerate}
@@ -4163,14 +4170,14 @@ S'active si la barrière est atteinte.\\
 
 Si la barrière est:
 \begin{description}
-	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{down-and-in} \fg{}: le prix doit baisser pour atteindre la barrière;
-	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{up-and-in} \fg{}: le prix doit augmenter pour atteindre la barrière.
+	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{\textbf{down-and-in}} \fg{}: le prix doit baisser pour atteindre la barrière;
+	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{\textbf{up-and-in}} \fg{}: le prix doit augmenter pour atteindre la barrière.
 \end{description}
 
 \tcbline
 
 \begin{itemize}[leftmargin = *]
-\item	En anglais, \og \textit{Knock-in option} \fg{} car l'option est \og \textit{knocked-in} si la barrière est atteinte \fg{};
+\item	En anglais, \og \textit{\textbf{Knock-in option}} \fg{} car l'option est \og \textit{knocked-in} si la barrière est atteinte \fg{};
 	\item	Si l'option est activée alors la valeur à l'échéance est identique à une option européenne ordinaire sinon elle est nulle.
 \end{itemize}
 \end{definitionNOHFILLsub}
@@ -4181,14 +4188,14 @@ Se désactive si la barrière est atteinte.\\
 
 Si la barrière est:
 \begin{description}
-	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{down-and-out} \fg{};
-	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{up-and-out} \fg{}.
+	\item	\textbf{Dessous} le prix initial de l'action, c'est une option dite \og \textit{\textbf{down-and-out}} \fg{};
+	\item	\textbf{Dessus} le prix initial de l'action, c'est une option dite \og \textit{\textbf{up-and-out}} \fg{}.
 \end{description}
 
 \tcbline
 
 \begin{itemize}[leftmargin = *]
-	\item	En anglais, \og \textit{Knock-out option} \fg{} car l'option est \og \textit{knocked-out} si la barrière est atteinte \fg{};
+	\item	En anglais, \og \textit{\textbf{Knock-out option}} \fg{} car l'option est \og \textit{knocked-out} si la barrière est atteinte \fg{};
 	\item	Si l'option est désactivée alors la valeur à l'échéance est nulle sinon il est identique  à une option européenne ordinaire.
 \end{itemize}
 \end{definitionNOHFILLsub}
@@ -4199,14 +4206,14 @@ Paye un montant fixe si la barrière est atteinte.\\
 
 Si la barrière est:
 \begin{description}
-	\item	\textbf{Dessous} le prix initial de l'action, on l'appelle un \og \textit{down rebate} \fg{};
-	\item	\textbf{Dessus} le prix initial de l'action, on l'appelle un \og \textit{up rebate} \fg{}.
+	\item	\textbf{Dessous} le prix initial de l'action, on l'appelle un \og \textit{\textbf{down rebate}} \fg{};
+	\item	\textbf{Dessus} le prix initial de l'action, on l'appelle un \og \textit{\textbf{up rebate}} \fg{}.
 \end{description}
 
 \tcbline
 
 \begin{itemize}[leftmargin = *]
-	\item	En anglais, \og \textit{Rebate option} \fg{};
+	\item	En anglais, \og \textit{\textbf{Rebate option}} \fg{};
 	\item	Si le paiement se fait uniquement à l'échéance, c'est une remise différée (\og \textit{deferred rebate} \fg{}).
 \end{itemize}
 \end{definitionNOHFILLsub}
@@ -4214,7 +4221,7 @@ Si la barrière est:
 \subsubsection*{Parité}
 Pour des options à barrière désactivante et activante, autrement équivalentes, on a:
 \begin{align*}
-	\shortstack{option à barrière\\ activante}	+ \shortstack{option à barrière\\ désactivante}
+	\shortstack{option à barrière\\ \textit{activante}}	+ \shortstack{option à barrière\\ \textit{désactivante}}
 	&=	\shortstack{option régulière}	\\
 	\Rightarrow
 	\shortstack{option à barrière}	
@@ -4254,7 +4261,11 @@ Option qui permet à son détenteur \textbf{d'acheter ou de vendre une autre opt
 \end{definitionNOHFILL}
 
 \subsubsection*{Types d'options sur options}
-Pour calculer la valeur à l'échéance dans les deux cas, on compare le prix d'exercice $x$ à la valeur de l'option sous-jacente à l'échéance dans $T - t_{1}$ temps. On peut donc voir s'il est profitable d'acheter l'option sous-jacente maintenant à $t_{1}$.
+Dans les deux cas, pour calculer la valeur à l'échéance, on compare le prix d'exercice $x$ à la valeur de l'option sous-jacente à $t_{1}$.
+\begin{itemize}
+	\item	Il s'ensuit que l'option expire dans $T - t_{1}$ temps.
+	\item	Ceci permet de voir s'il est profitable d'acheter l'\textit{option} sous-jacente une fois rendu à $t_{1}$.
+\end{itemize}
 
 \begin{definitionNOHFILLsub}[Option d'achat composée]
 Permet au détenteur d'acheter une autre option au prix d'exercice.\\
@@ -4296,7 +4307,7 @@ On achète une option d'achat composée au temps 0 à un prix d'exercice de $x$ 
 % Text Node
 \draw (218,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{1}$};
 % Text Node
-\draw (355,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{2}$};
+\draw (355,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle T$};
 % Text Node
 \draw (274,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle T\ -\ t_{1}$};
 \end{tikzpicture}
@@ -4344,7 +4355,7 @@ On achète une option de vente composée au temps 0 à un prix d'exercice de $x$
 % Text Node
 \draw (588,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{1}$};
 % Text Node
-\draw (724,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle t_{2}$};
+\draw (724,142.5) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle T$};
 % Text Node
 \draw (641,97) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle T\ -\ t_{1}$};
 \end{tikzpicture}
@@ -4368,7 +4379,7 @@ On généralise l'équation de parité des options vente-achat:
 \columnbreak
 \subsection{Options avec écart}
 \begin{definitionNOHFILL}[Options avec écart]
-Contrairement au options classiques qui ont un seul prix pour déterminer le \underline{moment d'exercice} et \underline{la valeur à l'échéance}, les options avec écart ont un prix pour chacune des fonctions créant alors un \textit{écart}.
+Contrairement au options classiques qui ont un seul prix pour déterminer le \underline{moment d'exercice} et \underline{la valeur à l'échéance}, les options avec écart ont un prix pour chacune des fonctions; fixer un prix pour chacune des fonctions créé alors un \textit{écart}.
 
 \begin{distributions}[Notation]
 \begin{description}
@@ -4611,27 +4622,34 @@ Contrairement au options classiques qui ont un seul prix pour déterminer le \un
 \end{center}
 \end{definitionNOHFILLsub}
 
-\begin{itemize}[leftmargin = *]
-	\item	Il est possible d'avoir une valeur à l'échéance \textit{négative} si le prix déclencheur $K_{2}$ est inférieur au prix  d'exercice $K_{1}$ pour une option d'achat (ou si $K_{1} < K_{2}$ pour une option de vente);
-	\item	Cependant, même si la valeur à l'échéance est négative, l'exercice est obligatoire lorsque le prix déclencheur est atteint;
-	\item	Cela dit, il est en revanche possible d'avoir une \textbf{prime négative}.
+Il est possible d'avoir une valeur à l'échéance \textit{négative} si le prix déclencheur $K_{2}$ est inférieur au prix d'exercice $K_{1}$ pour une option d'achat (ou si $K_{1} < K_{2}$ pour une option de vente).
+\begin{itemize}
+	\item	Cela dit, même si la valeur à l'échéance est négative, \textbf{l'exercice est obligatoire} lorsque le \textbf{prix déclencheur} est \textbf{atteint};
+	\item	En raison de cette possibilité, on peut avoir une \textbf{prime négative}.
 \end{itemize}
 
+
 \subsubsection*{Formule de Black-Scholes}
-On substitue le $K$ dans l'équation principale pour le prix d'exercice $K_{1}$ et le $K$ dans l'équation de $d_{1}$ pour le prix déclencheur $K_{2}$.
+Dans la formule de Black-Scholes, on remplace le $K$ de :
+\begin{description}[font = \itshape]
+	\item[l'équation principale]	par le prix d'exercice $K_{1}$ ;
+		\begin{itemize}
+		\item	Le prix d'exercice $K_{1}$ détermine le montant de la valeur à l'échéance et est donc associé avec $K\textrm{e}^{-rT}$ dans l'équation principale.
+		\end{itemize}
+	\item[$d_{1}$]	par le prix déclencheur $K_{2}$.
+		\begin{itemize}
+		\item	Le prix déclencheur $K_{2}$ détermine si l'exercice a lieu et est donc associé avec le calcul d'une probabilité $N(d_{2})$.
+		\end{itemize}
+\end{description}
+
 \begin{align*}
 	\text{GapCall}
 	&=	S_{0} \textrm{e}^{- \delta T} N(d_{1}) - K_{1}\textrm{e}^{-rT} N(d_{2})	\\
 	\text{GapPut}
-	&=	K_{1}\textrm{e}^{-rT} N(-d_{2}) - S_{0}\textrm{e}^{-\delta T}N(-d_{1})	
+	&=	K_{1}\textrm{e}^{-rT} N(-d_{2}) - S_{0}\textrm{e}^{-\delta T}N(-d_{1})	\\
 \end{align*}
-où $d_{1}	=	\frac{\ln\left(\frac{S_{0}}{K_{2}}\right) + \left( r - \delta + \frac{1}{2} \sigma^{2} \right)T}{\sigma \sqrt{T}}$ et $d_{2}	=	d_{1} - \sigma \sqrt{T}$.\\
+où $d_{1}	=	\frac{\ln\left(\frac{S_{0}}{K_{2}}\right) + \left( r - \delta + \frac{1}{2} \sigma^{2} \right)T}{\sigma \sqrt{T}}$ et $d_{2}	=	d_{1} - \sigma \sqrt{T}$.
 
-Pour se rappeler quel $K$ remplacer:
-\begin{itemize}[leftmargin = *]
-	\item	Le prix d'exercice $K_{1}$ détermine le montant de la valeur à l'échéance et est donc associé avec $K\textrm{e}^{-rT}$ dans l'équation principale;
-	\item	Le prix déclencheur $K_{2}$ détermine si l'exercice a lieu et est donc associé avec le calcul d'une probabilité $N(d_{2})$.
-\end{itemize}
 
 \subsubsection*{Relation avec les options classiques}
 \begin{align*}
@@ -7941,14 +7959,17 @@ coût du \\capital
 
 \columnbreak
 \subsubsection{Coûts de détresse financière}
-\hl{Ajouter plus de détails et pratiquer pour bien saisir comment calculer les VAN. Section pas complétée}.
-Le désavantage des leviers financiers est les pertes importantes qu'ils causent en temps de crises.
+\hl{Ajouter plus de détails et pratiquer pour bien saisir comment calculer les VAN. Section pas complétée}.\\
+
+Le désavantage d'utiliser un levier financier est le risque de pertes importantes en temps de crises.
+
+\
 
 La valeur actualisée des coûts de détresse financière a 3 composantes : 
-\begin{enumerate}
-	\item	Les coûts liés à une détresse financière et une faillite s'il y a une détresse.
-		\begin{itemize}
-		\item	Ceux-ci peuvent être des coûts :
+
+\begin{definitionNOHFILLpropos}[1.	Les coûts d'une détresse financière et de faillite]
+\begin{itemize}
+	\item	Ceux-ci peuvent être des coûts :
 		\begin{description}
 		\item[directs]	Des dépenses encourues en lien avec la faillite (p. ex., des frais judiciaires et administratifs).
 		\item[indirects]	Inclus les opportunités de placement perdues, perte d'affaires, etc.
@@ -7956,23 +7977,31 @@ La valeur actualisée des coûts de détresse financière a 3 composantes :
 			\item	Ces coûts sont plus difficiles à quantifier et sont habituellement plus importants que les coûts directs.
 			\end{itemize}
 		\end{description}
-		\end{itemize}
-%%%	------------------------
-%%%	NOTES
-%%%	+	Vraiment pas clair ici (AJvR).
-%%%	------------------------
-	\item	Le probabilité qu'une détresse financière ait lieu.
+	\item	Les compagnies avec des biens majoritairement : 
+		\begin{description}
+		\item[intangibles]	ont des coûts de détresse plus élevés en raison du potentiel de perte de clients, le besoin de garder leurs employés et un manque d'actifs facilement liquidables.
+		\item[tangibles]	ont des coûts de détresse moins élevés puisqu'une plus grande proportion de leur valeur provient des biens (p. ex. des avions, des machines, etc.) qui sont plus facilement liquidables.	
+	\end{description}
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[2.	La probabilité d'une détresse financière et d'une faillite]
+\begin{itemize}
+	\item	Plus une compagnie est endettée, plus sa probabilité de détresse financière augmente.
+	\item	Également, plus les rendements sont volatiles, plus la probabilité de détresse financière augmente.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[3.	Le taux d'actualisation des coûts de détresse financière]
+\begin{itemize}
+	\item	Ce taux varie selon le risque de marché de l'entreprise.
+	\item	Le beta des coûts de détresse financière a le signe opposé du beta de l'entreprise.
 		\begin{itemize}
-		\item	Ceci augmente avec le ratio d'endettement.
-		\item	Également, elle augmente avec la volatilité des rendements. 
+		\item	Plus le beta d'une entreprise est \textit{élevé}, plus la probabilité qu'elle soit en détresse financière est \textit{élevée} et plus son beta des coûts de détresse décroît.
+		\item	Plus un beta est \textit{faible} (négatif), plus le coût du capital \textit{décroît} et par conséquent la valeur actualisée des coûts de détresse \textit{augmente}.
 		\end{itemize}
-	\item	Le rabais pour les coûts de détresse.
-		\begin{itemize}
-		\item	Le rabais varie selon le risque au marché de l'entreprise.
-		\item	Plus le beta d'une entreprise est élevé, plus la probabilité qu'elle soit en détresse est élevée et plus son beta des coûts de détresse est négatif.
-		\item	Plus un beta est négatif, plus le coût du capital décroît et par conséquent la valeur actualisée des coûts de détresse augmente.
-		\end{itemize}
-\end{enumerate}
+\end{itemize}
+\end{definitionNOHFILLpropos}
 
 
 \subsubsection{Coûts et avantages de \og \textit{agency costs} \fg{}}
