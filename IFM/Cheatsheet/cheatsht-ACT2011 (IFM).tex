@@ -892,17 +892,18 @@ Pour tout le chapitre, nous posons les hypothèses suivantes:
 \end{align*}
 \end{rappel}
 
-Une option est dite d'être non-couverte si nous avons aucune position dans l'actif sous-jacent. En revanche, une option est couverte si l'on a une position correspondant à l'obligation de l'option.	
-
-Une \textbf{option d'achat couverte} est la \textbf{vente de l'option d'achat} $-C(K)$ et \textbf{l'achat du sous-jacent} $+S_{0}$.\\
-Une \textbf{option de vente couverte} est la \textbf{vente de l'option de vente} $-P(K)$ et de \textbf{la vente à découvert du sous-jacent}.
+Une option est dite d'être :
+\begin{description}
+	\item[non-couverte]	si nous avons aucune position dans l'actif sous-jacent
+	\item[couverte]	si nous avons une position correspondant à l'obligation de l'option
+\end{description}
 
 \begin{definitionNOHFILL}[\textbf{Plancher} \og \textit{floor} \fg{}]
 On achète une option de vente pour garantir un prix minimum de vente et couvrir une position longue dans l'actif sous-jacent. On dit donc avoir une \textbf{option de vente de protection} qui sert de \textit{plancher} minimale. 
 
 \begin{align*}
-	\text{Floor} 
-	&=	+ S_{T} + P(K)	\\
+	\text{\og \textit{Floor} \fg{}} 
+	&=	+ S_{0} + P(K)	\\
 	\text{Valeur à l'échéance} 
 	&=	\max(0, K - S_{T}) + S_{T}
 	=	\max(S_{T}, K)
@@ -972,14 +973,23 @@ On achète une option de vente pour garantir un prix minimum de vente et couvrir
 
 \end{tikzpicture}
 \end{center}
+
+\begin{itemize}
+	\item	Un plancher est donc une option de vente couverte.
+		\begin{align*}
+		\text{\og \textit{covered put} \fg{}}
+		=	\text{\og \textit{Floor} \fg{}}
+		=	S_{0} + P(K)
+		\end{align*}
+\end{itemize}
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\textbf{Plafond} \og \textit{cap} \fg{}]
 On achète une option d'achat pour garantir un prix maximal d'achat et couvrir une position courte dans l'actif sous-jacent. Ce faisant, on \textit{plafonne} le prix d'achat.
 
 \begin{align*}
-	\text{Cap} 
-	&=	- S_{T} + C(K)	\\
+	\text{\og \textit{Cap} \fg{}} 
+	&=	- S_{0} + C(K)	\\
 	\text{Valeur à l'échéance} 
 	&=	\max(0, S_{T} - K) - S_{T}
 	=	-\min(S_{T}, K)
@@ -1049,6 +1059,14 @@ On achète une option d'achat pour garantir un prix maximal d'achat et couvrir u
 
 \end{tikzpicture}
 \end{center}
+\begin{itemize}
+	\item	Un plafond est donc une option d'achat couverte.
+		\begin{align*}
+		\text{\og \textit{covered call} \fg{}}
+		=	\text{\og \textit{Cap} \fg{}}
+		=	S_{0} - C(K)
+		\end{align*}
+\end{itemize}
 \end{definitionNOHFILL}
 
 \columnbreak
@@ -1869,8 +1887,8 @@ Il y a plusieurs façons d'acheter une action et le prix va dépendre du \textbf
 \rowcolor{blue(matcha)}
 	Contrat	&	\shortstack{Moment de\\ paiement}	&	\shortstack{Moment de\\ la livraison}	&	Paiement	\\\hline
 	\textcolor{white}{\textbf{Outright purchase}}	&	0	&	0	&	$S_{0}$	\\\hline
-	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$F_{0, T}$	\\\hline
-	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$F_{0, T}^{P}$	\\\hline
+	\textcolor{white}{\textbf{Forward contract}}		&	$T$	&	$T$	&	$S_{0}\textrm{e}^{(r - \delta)T}$	\\\hline
+	\textcolor{white}{\textbf{Prepaid forward contract}}	&	0	&	$T$	&	$S_{0}\textrm{e}^{-\delta T}$	\\\hline
 	\textcolor{white}{\textbf{Fully leveraged purchase}}	&	$T$	&	0	&	$S_{0}\textrm{e}^{rT}$	\\\hline
 \end{tabular}
 \end{center}
@@ -2183,6 +2201,9 @@ Si nous désirons rebalancer le portefeuille dans une semaine avec $F_{1/52, T}	
 		\underbrace{(930 -  950)}_{\shortstack[c]{profit par action\\ dans une semaine}}
 		&=	-50\ 000\$
 		\end{align*}
+		\begin{itemize}
+		\item	\textbf{Note}: Si on vendais les actions au lieu de les acheter, le profit est $950 - 930$.
+		\end{itemize}
 \end{enumerate}
 
 En combinant la valeur accumulé de balance de la marge et le profit sur l'action, la \textbf{balance de la marge} dans une semaine est : $(237\ 774.20\$) + (-50\ 000\$)	=	187\ 774.1966\$$. Cependant, la balance est inférieure à la marge de maintien de $190\ 000\$$ ! Il y aura donc un \textbf{appel de marge} afin de remonter la balance de la marge à \textbf{la marge initiale} de $237\ 500\$$.	\\
