@@ -2146,20 +2146,20 @@ On suppose l'achat d'une action se transigeant au prix de 950\$ aujourd'hui ($S_
 
 Au début, on doit établir la marge et sa balance initiale.
 \begin{enumerate}
-	\item	Premièrement, on trouve la valeur notionnelle : 
+	\item	Premièrement, on trouve la \textbf{valeur notionnelle} : 
 		\begin{align*}
 		\underset{\text{\shortstack{nombre\\ sous-jacent}}}{\underbrace{250}} \times
 			\underset{\text{nombre acheté}}{\underbrace{10}} \times 
 			\underset{\text{prix inital}}{\underbrace{950\$}}
 			&=	2\ 375\ 000\$
 		\end{align*}
-	\item	Puis, la marge initiale est 10\% de la valeur notionnelle : 
+	\item	Puis, la \textbf{marge initiale} est 10\% de la valeur notionnelle : 
 		\begin{align*}
 		\underbrace{2\ 375\ 000\$}_{\text{valeur notionnelle}}\times 
 		\underbrace{0.10}_{\text{\shortstack{taux de\\ marge initale}}}
 		&=	237\ 500\$
 		\end{align*}
-	\item	Finalement, la marge de maintien est 80\% de la marge initiale :
+	\item	Finalement, la \textbf{marge de maintien} est 80\% de la marge initiale :
 		\begin{align*}
 		\underbrace{237\ 500\$}_{\text{marge initiale}}	\times 
 		0.80
@@ -2170,13 +2170,13 @@ Au début, on doit établir la marge et sa balance initiale.
 
 Si nous désirons rebalancer le portefeuille dans une semaine avec $F_{1/52, T}	=	930\$$ : 
 \begin{enumerate}
-	\item	On accumule la balance de la marge : 
+	\item	On accumule la \textbf{balance de la marge} : 
 		\begin{align*}
 		\underbrace{237\ 500\$}_{\text{balance de la marge}} \times
 		\underbrace{\textrm{e}^{0.06 (1/52)}}_{\shortstack{intérêt accumulé sur\\ une semaine}}
 		&=	237\ 774.1966\$
 		\end{align*}
-	\item	Puis, on calcule le profit (ou la perte) :
+	\item	Puis, on calcule le \textbf{profit} (ou la perte) :
 		\begin{align*}
 		\underbrace{250}_{\shortstack[c]{nombre\\ sous-jacent}} \times
 		\underbrace{10}_{\text{nombre acheté}} \times 
@@ -2185,7 +2185,7 @@ Si nous désirons rebalancer le portefeuille dans une semaine avec $F_{1/52, T}	
 		\end{align*}
 \end{enumerate}
 
-En combinant la valeur accumulé de balance de la marge et le profit sur l'action, la \textbf{balance de la marge} dans une semaine est : $237\ 774.1966 + -50\ 000\$	=	187\ 774.1966\$$. Cependant, la balance est inférieure à la marge de maintien de $190\ 000\$$ ! Il y aura donc un \textbf{appel de marge} afin de remonter la balance de la marge à \textbf{la marge initiale} de $237\ 500\$$.	\\
+En combinant la valeur accumulé de balance de la marge et le profit sur l'action, la \textbf{balance de la marge} dans une semaine est : $(237\ 774.20\$) + (-50\ 000\$)	=	187\ 774.1966\$$. Cependant, la balance est inférieure à la marge de maintien de $190\ 000\$$ ! Il y aura donc un \textbf{appel de marge} afin de remonter la balance de la marge à \textbf{la marge initiale} de $237\ 500\$$.	\\
 
 Donc, l'investisseur débourse $237\ 500\$	-	187\ 774.1966\$	=	49\ 725.8034\$$ pour remonter la balance de la marge à $237\ 500\$$.
 \end{formula}

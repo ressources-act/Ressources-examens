@@ -2510,6 +2510,133 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 
 \part{Modèles linéaires en actuariat}
 
+\section{Apprentissage statistique}
+\begin{definitionNOHFILL}[Apprentissage statistique]
+L'utilisation des statistiques pour estimer les relations entre des variables. \\
+L'apprentissage statistique estime une relation fonctionnelle entre des variables explicatives et un résultat.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Variable réponse]
+Variable pour laquelle nous voulons effectuer des prévisions.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Variables explicatives]
+Variables utilisées pour les prévisions de la variable réponse.
+\end{definitionNOHFILLsub}
+
+Les modèles d'apprentissage statistique ont deux utilités principales : 
+\begin{description}
+	\item[prévision]	Prévoir la valeur de la variable réponse pour des valeurs spécifiques des variables réponse.
+	\item[inférence]	Comprendre quelles variables explicatives sont liées à la variable réponse et le degré de leurs relations.
+\end{description}
+
+\begin{definitionNOHFILLprop}[Flexibilité du modèle]
+Les modèles varient en \og flexibilité \fg{}. C'est-à-dire que certains modèles s'ajustent mieux aux données.\\
+
+Par exemple, une régression linéaire correspond à une ligne droite. En réalité, il est peut probable que les données soient situées sur une droite. En contraste, une \og \textit{spline} \fg{} va passer à travers tous les points.\\
+
+Il y a cependant un compromis entre la flexibilité d'un modèle et sa facilité d'interprétation :
+\begin{itemize}
+	\item	Les modèles \textit{moins flexibles} sont plus facilement interprétables au coût de moins bonnes prévisions. Ils sont généralement mieux pour l'inférence. 
+	\item	Les modèles \textit{plus flexibles} plus difficilement interprétables au bénéfice de meilleures prévisions. Ils sont généralement mieux pour faire des prévisions.
+\end{itemize}
+
+Cependant, si un modèle est sur ajusté aux données (e.g., un \og \textit{spline} \fg{}) il pourrait avoir des mauvaises prévisions pour des nouvelles données.
+\end{definitionNOHFILLprop}
+
+Il y a 2 types d'apprentissage statistique : 
+\begin{description}
+	\item[apprentissage supervisé]	Comporte une variable réponse.
+	\item[apprentissage non supervisé]	Ne comporte pas de variable réponse.
+\end{description}
+
+ 
+Il y existe plusieurs types de variables :
+\begin{definitionNOHFILLpropos}[Variable continue]
+Définie sur les nombres réels.	\\
+
+Par exemple :
+\begin{itemize}
+	\item	Le montant de perte.
+	\item	Le temps avant qu'une réclamation soit réglé.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[Variable catégorielle]
+Définie sur un petit nombre de valeurs catégorielles.	\\
+
+Par exemple : 
+\begin{itemize}
+	\item	Une variable binaire. 
+		\begin{itemize}
+		\item	P. ex., une variable "Maison a un système d'alarme" prenant comme valeur "oui" ou "non".
+		\item	P. ex., le sexe d'un individu prenant comme valeur "homme" ou "femme".
+		\end{itemize}
+	\item	Une variable avec plusieurs niveaux.
+		\begin{itemize}
+		\item	P. ex., la marque d'une voiture assuré prenant comme valeurs "Toyota", "Honda", etc.
+		\end{itemize}
+\end{itemize}
+
+\
+
+Une variable catégorielle peut être :
+\begin{description}
+	\item[nominale]	Il n'y a pas d'ordre aux catégories.
+		\begin{itemize}
+		\item	P. ex., le programme d'étude d'un étudiant "actuariat", "comptabilité", etc.
+		\end{itemize}
+	\item[ordinale]	Il y a une d'ordre aux catégories.
+		\begin{itemize}
+		\item	P. ex., la sévérité d'un incendie allant de 1 à 5.
+		\end{itemize}
+\end{description}
+
+\
+
+\begin{itemize}
+	\item	On dit aussi \textit{variable qualitative}.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[Variable de comptage]
+Définie sur les entiers positifs.	\\
+
+Par exemple :
+\begin{itemize}
+	\item	Le nombre de réclamations.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+
+
+Variable vs prédicteur vs ...
+Explication des composantes de la régression linéaire
+	terme d'erreur / erreur irréductible / systémique
+	supposer une relation linéaire
+	réponse quantitative 
+
+Pourquoi estimer la fonction
+	prévision
+	inférence
+		relation entre les prédicteurs
+		relation entre la variable réponse et chacun des prédicteurs
+		relation plus compliquée qu'une relation linéaire?
+
+Comment estimer la fonction
+	Méthodes paramétriques
+	Méthodes non-paramétriques
+	
+Compromis interprétation et précision
+Apprentissage supervisé vs non supervisé
+Régression vs catégorique
+
+Évaluer la précision d'un modèle
+	Qualité de l'ajustement
+	Compromis biais-variance
+	
+
+\columnbreak
 \section{Régression linéaire simple}
 
 \begin{definitionNOHFILL}[Modèle de régression linéaire simple]
@@ -2664,7 +2791,112 @@ On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" th
 	\item	Une erreur aléatoire $\varepsilon$ inconnue.
 \end{itemize}
 
+
 \section{Autres}
+%	https://www.youtube.com/watch?v=0XfXHYDYoBA
+\begin{tabular}{|	c	|	c	|}
+Régression	&	Type de variable réponse	\\\hline
+Linéaire		&	Continue	\\
+Logistique	&	Binaire	\\
+Poisson		&	Données de comptage	\\
+Analyse de survie	&	Temps jusqu'à un événement	\\
+\end{tabular}
+\begin{itemize}
+	\item	Logistique prédit la probabilité qu'un événement ait lieu.
+	\item	Poisson prédit le \og \textit{rate} \fg{} auquel des événements aient lieu.
+		\begin{itemize}
+		\item	C'est-à-dire, le nombre de fois, ou la fréquence, d'un événement sur une période de temps.
+		\item	Donc, le temps est fixé et on observe le nombre d'événements.
+		\item	On ne peut pas simplement appliquer un modèle linéaire car les données suivent une distribution de Poisson, pas une distribution normale! 
+		\item	Également, nous pouvons modéliser un \og \textit{offset} \fg{} pour considérer le temps d'exposition.
+		\end{itemize}
+	\item	Avec l'analyse de survie, on prédit le temps avant qu'un événement ait lieu.
+		\begin{itemize}
+		\item	Donc, le nombre d'événements est fixé à un et on veut savoir le temps avant qu'il ait lieu.
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Poisson}
+Il y a plusieurs façons de modéliser un même modèle de Poisson : 
+\begin{enumerate}
+	\item	Modéliser le taux comme une fonction log-linéaire des $x$ : $\lambda	=	\textrm{e}^{\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}}$.
+		\begin{itemize}
+		\item	Ceci puisque le taux $\lambda$ a une forme exponentielle.
+		\end{itemize}
+	\item	Modéliser le log du taux comme une fonction linéaire des $x$ : $\ln(\lambda)	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}$.
+		\begin{itemize}
+		\item	Ceci permet de traiter le taux $\lambda$ avec un modèle linéaire.
+		\item	L'avantage est la simplicité d'une ligne pour résumer le modèle.
+		\item	Mathématiquement, les deux première équations sont équivalentes.
+		\end{itemize}
+	\item	Modéliser le log de la fréquence espérée avec un \og \textit{offset} \fg{} : $\ln(\text{E}[Y])	=	\ln(\text{E}[\lambda t])	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}	+	\ln(t)$.
+		\begin{itemize}
+		\item	La deuxième équation représente ce que l'on fait en théorie alors que la troisième représente ce que l'on fait en pratique.
+		\end{itemize}
+\end{enumerate}
+
+Hypothèses du modèle :
+\begin{enumerate}
+	\item	Les observations sont indépendantes.
+		\begin{itemize}
+		\item	Si, par exemple, avoir un récidive augmente la probabilité d'une deuxième récidive, alors le modèle n'est pas adéquat.
+		\end{itemize}
+	\item	Le taux auquel les événements se produisent est une fonction log-linéaire de $x$.
+		\begin{itemize}
+		\item	C'est-à-dire, le log du taux est une fonction linéaire des $x$.
+		\end{itemize}
+	\item	Les variations dans les $x$'s ont des effets multiplicatifs sur le nombre d'événements.
+		\begin{itemize}
+		\item	Par exemple, si on modélise la fréquence d'accidents auto alors on s'attend à ce que le nombre d'accidents sur deux ans soit le double du nombre d'accidents sur un an.
+		\end{itemize}
+	\item	La moyenne = variance = $\lambda$.
+	\item	La taux est constant.
+		\begin{itemize}
+		\item	Donc, on pose que le taux est fixe.
+		\item	Par exemple, la probabilité d'une récidive pourrait diminuer dans le temps.
+		\end{itemize}
+\end{enumerate}
+
+Le modèle à deux gros problèmes, \underline{premièrement} la \textbf{sur-dispersion} où la variance est supérieure à la moyenne.
+\begin{itemize}
+		\item	C'est-à-dire que les données sont plus variables que ce qui est attendu.
+		\item	Contrairement à la régression linéaire où l'estimation de la moyenne et du SSE sont séparées, l'estimation est la même pour le modèle de Poisson.
+		\item	Il y a des multiples raisons pour lesquelles ceci peut arriver : 
+			\begin{enumerate}
+			\item	Nous n'avons pas inclus toutes les variables explicatives significatives dans le modèle.
+			\item	La forme fonctionnelle du modèle est inadéquate (p. ex., les données ne sont pas log-linéaires).
+			\item	Une variable est supposée d'être homogène alors qu'elle ne l'est pas.
+				\begin{itemize}
+				\item	P. ex., modéliser un groupe de fumeurs alors qu'il y a des sous-groupes (ceux qui font de l'exercice vs ceux qui n'en font pas, etc.)
+				\end{itemize}
+			\item	etc.
+			\end{enumerate}
+\end{itemize}
+
+On peut calculer la \textbf{dispersion} et on désire qu'elle soit environ de 1.\\
+Pour résoudre la sur-dispersion, on peut : 
+\begin{enumerate}
+	\item	On peut pondérer l'erreur type de tous les coefficients par la racine du paramètre de dispersion.
+		\begin{itemize}
+		\item	Ceci ne change pas les prévisions, plutôt ça augmente l'erreur type pour tenir compte du fait que la variabilité des données observées est plus élevée que ce à quoi on s'attendait.
+		\end{itemize}
+	\item	On peut ajuster un modèle avec une distribution binomiale négative.
+		\begin{itemize}
+		\item	Ceci permet d'estimer la fréquence et la variance séparément.
+		\item	La variance sera plus grande, mais proportionnelle à la moyenne.
+		\end{itemize}
+\end{enumerate}
+
+
+\underline{Deuxièmement}, \textbf{Données gonflées à zéro}. 
+\begin{itemize}
+	\item	L'idée est de modéliser la probabilité que l'événement ait lieu ou pas séparément de la fréquence.
+	\item	On peut modéliser la probabilité avec un modèle logistique est la fréquence avec un modèle de Poisson.
+\end{itemize}
+
+
+
+
 \textbf{Matrice de confusion : }
 \begin{center}
 
