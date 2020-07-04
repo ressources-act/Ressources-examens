@@ -5330,6 +5330,10 @@ Lorsqu'il y a plusieurs rendements possible pour un investissement, on calcule l
 	\text{E}[R]
 	&=	\sumz{n}{i	=	1} p_{i}R_{i}
 \end{align*}
+
+\begin{itemize}
+	\item	Pareillement, la variance espérée est $\text{Var}(R)	=	\sumz{n}{i	=	1} p_{i}(R_{i}	-	\text{E}[R])^{2}$.
+\end{itemize}
 \end{definitionNOHFILL}
 
 \paragraph*{Mesures de la variabilité des rendements :}
@@ -5400,7 +5404,7 @@ Puis, la volatilité est $SD(R)	=	\sqrt{\text{Var}(R)}	=	0.1082$.\\
 	\item[$w_{i}$]	Pourcentage du portefeuille investi dans l'actif $i$.
 		\begin{align*}
 		w_{i}
-		&=	\frac{\text{valeur de l'actif} i}{\text{valeur totale du ptf.}}
+		&=	\frac{\text{valeur de l'actif } i}{\text{valeur totale du ptf.}}
 		\end{align*}
 \end{description}
 \end{distributions}
@@ -5515,8 +5519,16 @@ Dans le cas plus général :
 \begin{align*}
 	\text{Var}(R_{p})	
 	&=	\text{Cov}(R_{p}, R_{p})
-	=	\sumz{n}{i	=	1}\sumz{n}{j	=	1} w_{i}w_{j} \text{Cov}(R_{i}, R_{j})
+	=	\text{Cov}\left(\sumz{n}{i	=	1}R_{i}, \sumz{n}{j	=	1}R_{j}\right)	\\
+	&=	\sumz{n}{i	=	1}\sumz{n}{j	=	1} w_{i}w_{j} \text{Cov}(R_{i}, R_{j})	\\
+	&=	\sumz{n}{i	=	1}\sumz{n}{j	=	1} w_{i}w_{j} \rho_{R_{i}, R_{j}} \sigma_{R_{i}}	\sigma_{R_{j}}	
 \end{align*}
+
+Ce qu'il faut retenir est que la \textbf{volatilité du portefeuille est pondéré par la corrélation}. 
+\begin{itemize}
+	\item	Il s'ensuit qu'un actif avec une \textit{volatilité faible} peut contribuer \textbf{plus} au risque d'un portefeuille qu'un actif avec une \textit{volatilité élevée} s'il est \textbf{fortement corrélé} avec le portefeuille.
+\end{itemize}
+
 
 
 \columnbreak
