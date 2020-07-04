@@ -873,10 +873,10 @@ Il n'y a aucun impact sur les profits et le \textbf{vendeur peut ne jamais avoir
 \begin{conceptgen}{Hypothèses}
 Pour tout le chapitre, nous posons les hypothèses suivantes:
 \begin{multicols*}{2}
-\begin{enumerate}[leftmargin = *]
-	\item	Taux d'intérêt $i$ constant;
-	\item	Aucuns frais de transaction;
-	\item	Aucun risque de défaut;
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
+	\item	Taux d'intérêt $i$ constant.
+	\item	Aucuns frais de transaction.
+	\item	Aucun risque de défaut.
 	\item	Aucun versement intermédiaire.
 \end{enumerate}
 \end{multicols*}
@@ -3291,7 +3291,7 @@ Le modèle n'est donc pas parfait, mais sert plutôt de bon point de départ.
 \begin{center}
 	\textbf{Sur la distribution de l'action sous-jacente}
 \end{center}
-\begin{enumerate}[leftmargin = *, label = \alph*)]
+\begin{enumerate}[label = \alph*)]
 	\item	Les rendements (composés continûment) sur l'action ont une distribution normale et sont indépendants à travers le temps.
 	\item	La volatilité $\sigma$ des rendements (composés continûment) est connue et constante.
 	\item	Les dividendes $\delta$ futurs sont connus.
@@ -3300,7 +3300,7 @@ Le modèle n'est donc pas parfait, mais sert plutôt de bon point de départ.
 \begin{center}
 	\textbf{Sur l'environnement économique}
 \end{center}
-\begin{enumerate}[leftmargin = *, label = \alph*)]
+\begin{enumerate}[label = \alph*)]
 	\item	Le taux (force $r$) sans risque est connu et constant.
 	\item	Il n'y a pas d'impôt	 ni de frais de transactions.
 	\item	Il n'y a pas de frais de vente à découvert.
@@ -4050,8 +4050,9 @@ Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbo
 
 \paragraph{Note sur $\theta$} Thêta mesure la \textit{variation du prix} à l'écoulement \textit{du temps} et n'a pas lié au risque de l'action. Il en résulte que le delta et le gamma d'un dépôt sans risque sont nuls, mais pas le thêta. Pour un dépôt de 1\$, la valeur accumulée $t$ années plus tard est $\textrm{e}^{rt}$. Le thêta de ce dépôt est $\theta_{\text{sans risque}}	=	\deriv{t}{r\textrm{e}^{rt}}	=	r\textrm{e}^{rt}$. 
 
-\begin{definitionNOHFILL}[Autofinançant]
-Portefeuille dont la couverture, même s'il y a un rééquilibrage, entraîne uniquement des flux monétaires intermédiaires nuls est dit autofinançant. 
+\begin{definitionNOHFILL}[\hypertarget{autofin-ptf}{Portefeuille autofinançant}]
+Portefeuille dont on emprunte le montant nécessaire pour établir le portefeuille au taux sans risque.
+%	Portefeuille dont la couverture, même s'il y a un rééquilibrage, entraîne uniquement des flux monétaires intermédiaires nuls est dit autofinançant. 
 \end{definitionNOHFILL}
 
 
@@ -5594,7 +5595,7 @@ L'analyse de portefeuille moyenne-variance pose que les investisseurs peuvent é
 \end{definitionNOHFILL}
 
 \begin{conceptgen}{Hypothèses sous-jacentes à l'analyse de portefeuille moyenne-variance}
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
 	\item	Tous les investisseurs ont une aversion au risque.
 	\item	Les rendements espérés, les variances et les covariances des actifs sont supposés connus.
 	\item	Pour déterminer un portefeuille optimal, les investisseurs n'ont qu'à connaitre les rendements espérés, les variances et les covariances des rendements.
@@ -6020,7 +6021,7 @@ rendement \\espéré
 \end{center}
 
 \begin{itemize}
-	\item	On l'appel aussi \textit{le portefeuille efficient} et \textit{le portefeuille tangent} ;
+	\item	On l'appelle aussi \textit{le portefeuille efficient} et \textit{le portefeuille tangent} ;
 	\item	Ce point correspond au maximum de la pente et donc maximise le ratio de Sharpe.
 \end{itemize}
 
@@ -6311,7 +6312,7 @@ L'équation du MÉDAF est \lfbox[formula]{$r_{i}	=	\text{E}[R_{i}]	=	r_{f} + \be
 \end{definitionNOHFILL}
 
 \begin{conceptgen}{Hypothèses du MÉDAF}
-\begin{enumerate}
+\begin{enumerate}[label = \circled{\arabic*}{lightgray}]
 	\item	Les investisseurs sont des preneurs de prix.
 		\begin{itemize}
 		\item	C'est à dire qu'ils transiger les titres aux prix compétitifs du marché sans pouvoir les influencer (concept de macro.) ;
@@ -6617,7 +6618,7 @@ On trouve que l'équation de l'APT est \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} 
 
 L'APT est semblable au CAPM mais comporte des hypothèses moins restrictives :
 \begin{conceptgen}{Hypothèses de l'APT}
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
 	\item	Un modèle multi-factoriel décrit les rendements d'un actif sans toutefois indiquer le nombre de facteurs.
 	\item	Le risque non systémique peut être éliminé avec de la diversification et n'est pas tarifé.
 	\item	Il n'y a pas d'arbitrage.
@@ -6625,48 +6626,80 @@ L'APT est semblable au CAPM mais comporte des hypothèses moins restrictives :
 \end{conceptgen}
 
 \begin{definitionNOHFILLprop}[Portefeuilles multi-factoriels autofinançants]
-Si les tous les portefeuilles multi-factoriels sont autofinançant, on peut récrire : \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \sum_{n = 1}^{N} \beta_{i}^{Fn}\text{E}[R_{Fn}]$}.
+Si les tous les portefeuilles multi-factoriels sont \hyperlink{autofin-ptf}{\color{trueblue}autofinançants}, on peut récrire : \lfbox[formula]{$\text{E}[R_{i}]	=	\sum_{n = 1}^{N} \beta_{i}^{Fn}\text{E}[R_{Fn}]$}.
 \begin{itemize}
-	\item	Les $\beta$s vont sommer à 0 au lieu de 1.
+	\item	Les betas vont sommer à 0 au lieu de 1.
 \end{itemize}
 \end{definitionNOHFILLprop}
 
 
+\columnbreak
 \subsubsection{Fama-French-Carhart (FFC)}
-\begin{definitionNOHFILL}[Notation]
-La spécification de facteurs FFC est la plus courante avec le \textbf{marché}, la \textbf{capitalisation boursière}, le \textbf{ratio cours / valeur comptable} et \textbf{l'élan} comme facteurs.
+\begin{rappel_enhanced}[Contexte]
+L'idée de construire un modèle avec la spécification de facteurs FFC est de tirer profit du fait que, empiriquement, ces portefeuilles semblent avoir des alpha positifs.\\
+C'est-à-dire, ils offrent des rendements qui semblent aller à l'encontre de l'hypothèse d'EM.
+\end{rappel_enhanced}
+
+La spécification de facteurs FFC est \textbf{la plus courante} avec les facteurs suivants :
+
+\begin{definitionGENERAL}{La capitalisation boursière}[\circled{1}{trueblue}]
+La capitalisation boursière sert à quantifier la taille d'entreprise.	\\
+
 \begin{itemize}
-	\item	L'idée de la stratégie avec la spécification de FFC est de tirer profit du fait que ces portefeuilles semblent avoir des $\alpha$ positifs.
+	\item	Les petites entreprises, c'est-à-dire les entreprise avec une faible capitalisation boursière, ont tendance à avoir des alphas positifs ;
+	\item	Malgré le fait qu'ils sont plus risqués que des grandes entreprises, ils offrent des rendements plus élevés que ceux suggérés par le MÉDAF.
 \end{itemize}
+\end{definitionGENERAL}
 
-\begin{description}
-	\item[$M$]	Portefeuille du marché.
-		\begin{itemize}
-		\item	Prend en considération le risque des capitaux propres.
-		\end{itemize}
-	\item[$GMP$]	Portefeuille gros-moins-petit.
-		\begin{itemize}
-		\item	En anglais, \og \textit{small-minus-big (SMB)} \fg{} ;
-		\item	Prends en considération la diversité de la taille des entreprises selon la capitalisation boursière ;
-		\item	On l'estime comme la différence entre le rendement d'entreprises avec une capitalisation boursière élevée et faible $\text{E}[R_{GMP}]	=	\text{E}[R_{G}]	-	\text{E}[R_{P}]$.
-		\end{itemize}
-	\item[$EMF$]	Portefeuille élevé moins faible.
-		\begin{itemize}
-		\item	En anglais, \og \textit{high-minus-low (HML)} \fg{} ;
-		\item	Prends en considération la diversité des rendements sur des actions de valeur et des actions de croissance ;
-		\item	Les action de valeur sont définies comme des actions avec un ratio cours-valeur comptable élevé alors que des actions de croissance ont un ratio cours-valeurs comptable faible ;
-		\item	On l'estime comme la différence entre le rendement d'entreprises avec un ratio élevé et faible $\text{E}[R_{EMF}]	=	\text{E}[R_{E}]	-	\text{E}[R_{F}]$.
-		\end{itemize}
-	\item[$AVE$]	Portefeuille de l'année avant l'élan d'une entreprise.
-		\begin{itemize}
-		\item	En anglais, \og \textit{prior 1-year momentum (PR1YR)} \fg{} ;
-		\item	Prends en considération l'élan d'une compagnie ;
-		\item	On l'estime comme la différence entre le rendements des gagnants et des perdants de l'année passée $\text{E}[R_{AVE}]	=	\text{E}[R_{GAVE}]	-	\text{E}[R_{PAVE}]$..
-		\end{itemize}
-\end{description}
+\begin{definitionGENERAL}{Le ratio cours / valeur comptable}[\circled{2}{trueblue}]
+\begin{itemize}
+	\item	Les entreprise dont la proportion des capitaux propres par rapport à la valeur marchande est \textbf{élevée} ont tendance à avoir des alphas positifs ;
+	\item	Ont surnomme les actions avec un ratio élevé des \textbf{actions de valeur} (\og \textit{value stocks} \fg{}) ;
+	\item	Ont surnomme les actions avec un ratio faible des \textbf{actions de croissance}.
+\end{itemize}
+\end{definitionGENERAL}
 
-On trouve que \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \beta_{i}^{M}\left(\text{E}[R_{M}] - r_{f}\right) + \beta_{i}^{GMP} \text{E}[R_{GMP}]$}	\lfbox[formula]{$+ \beta_{i}^{EMF} \text{E}[R_{EMF}]	 + \beta_{i}^{AVE} \text{E}[R_{AVE}]$}.
-\end{definitionNOHFILL}
+\begin{definitionGENERAL}{L'élan}[\circled{3}{trueblue}]
+\begin{itemize}
+	\item	Tire profit de l'anomalie d'un élan---des actions qui ont récemment eu des rendements anormalement élevés ont tendance a avoir des alphas positifs.
+\end{itemize}
+\end{definitionGENERAL}
+
+
+\subsubsection{Facteurs}
+\begin{definitionNOHFILLsub}[Portefeuille du marché ($M$)]
+Prend en considération le risque des capitaux propres.	
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Portefeuille gros-moins-petit ($GMP$)]
+Prends en considération la taille des entreprises en fonction de leurs capitalisation boursière.	\\
+
+\begin{itemize}
+	\item	On l'estime comme la différence entre le rendement d'entreprises avec une capitalisation boursière élevée et faible $\text{E}[R_{GMP}]	=	\text{E}[R_{G}]	-	\text{E}[R_{P}]$ ;
+	\item	En anglais, \og \textit{small-minus-big (SMB)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Portefeuille élevé moins faible ($EMF$)]
+Prends en considération la diversité des rendements sur des actions de valeur et des actions de croissance.	\\
+
+\begin{itemize}
+	\item	On l'estime comme la différence entre le rendement d'entreprises avec un ratio élevé et faible $\text{E}[R_{EMF}]	=	\text{E}[R_{E}]	-	\text{E}[R_{F}]$ ;
+	\item	En anglais, \og \textit{high-minus-low (HML)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Portefeuille de l'année avant l'élan d'une entreprise. ($AVE$)]
+Prends en considération l'élan d'une compagnie.	\\
+
+\begin{itemize}
+	\item	On l'estime comme la différence entre le rendements des gagnants et des perdants de l'année passée $\text{E}[R_{AVE}]	=	\text{E}[R_{GAVE}]	-	\text{E}[R_{PAVE}]$ ;
+	\item	En anglais, \og \textit{prior 1-year momentum (PR1YR)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+On trouve que \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \beta_{i}^{M}\left(\text{E}[R_{M}] - r_{f}\right) + \beta_{i}^{GMP} \text{E}[R_{GMP}]	+ \beta_{i}^{EMF} \text{E}[R_{EMF}]$}	\lfbox[formula]{$+ \beta_{i}^{AVE} \text{E}[R_{AVE}]$}.
 
 
 
@@ -6745,7 +6778,7 @@ Pose que les prix de titres financiers reflètent \textbf{toute l'information pu
 \end{definitionNOHFILLsub}
 
 \begin{conceptgen}{Pourquoi un marché ne serais-t'il pas efficient?}
-\begin{enumerate}
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	L'erreur de procuration (\og \textit{proxy error} \fg{}).
 		\begin{itemize}
 		\item	Il est impossible pour un indice (\og \textit{proxy} \fg{}) de considérer \textit{tous} les actions du marché.
@@ -6760,7 +6793,13 @@ Pose que les prix de titres financiers reflètent \textbf{toute l'information pu
 %%%	------------------------
 %%%	-	Qu'est-ce que ça veut dire?
 %%%	------------------------
-	\item	\og \textit{Non-tradeable wealth} \fg{}.
+	\item	\og \textit{Non-tradable wealth} \fg{}.
+		\begin{itemize}
+		\item	Les investisseurs sont exposés à des risques importants au-delà de leurs portefeuilles.
+		\item	Par exemple, un informaticien est exposé au risque du secteur de la technologie. 
+		\item	Il pourrait donc choisir d'investir moins dans des compagnies de son domaine afin de compenser son \textbf{risque inhérent}.
+		\item	Ceci mène à une divergence du portefeuille du marché et va à l'encontre de l'hypothèse d'EM.
+		\end{itemize}
 \end{enumerate}
 \end{conceptgen}
 
@@ -6819,7 +6858,7 @@ Pour tester le \og \textit{strong form} \fg{}, il faut évaluer toute l'informat
 
 \columnbreak
 \subsection{Preuves empiriques allant à l'encontre de l'hypothèse d'EM : Anomalies du marché}
-Historiquement, l'hypothèse de marchés efficients était supposée adéquate. Cependant, des anomalies du marché ont fourni des preuves allant à l'encontre de l'EM. Si une anomalie existe, alors un investisseur peut en tirer profit.\\
+Historiquement, l'hypothèse de marchés efficients était supposée adéquate. Cependant, des anomalies du marché \textbf{impactant les rendements du marché} ont fourni des preuves allant à l'encontre de l'hypothèse d'EM. Si une anomalie existe, alors un investisseur peut en tirer profit.\\
 
 Cela dit, plusieurs arguments peuvent être faits à l'encontre d'anomalies :
 \begin{itemize}
@@ -6966,6 +7005,8 @@ Les investisseurs se préoccupent principalement de la performance de leur porte
 \end{definitionNOHFILLprop}
 \end{definitionNOHFILLsub}
 
+Plus généralement, si un investisseur se construit un portefeuille en \textbf{se souciant de d'autres facteurs que le rendement espéré et la volatilité}, alors c'est un portefeuille qui n'est pas efficient---ceci impacte l'hypothèse d'EM.
+
 \begin{definitionNOHFILLsub}[Transactions excessives]
 En raison des frais de transactions, transiger des titres trop souvent diminue les rendements. 	\\
 
@@ -6975,6 +7016,7 @@ Notamment, en raison de :
 	\item	La recherche de sensations fortes.
 \end{itemize}
 \end{definitionNOHFILLsub}
+
 
 
 \subsubsection{Biais systémique}
@@ -6990,6 +7032,9 @@ Les investisseurs ont tendance d'être influencés par les médias où les évé
 	\item	Il a été démontré que les investisseurs ont tendance à acheter des actions récemment dans les nouvelles.
 	\item	Il a été démontré que les rendements d'actions ont tendance à être plus élevés les journées ensoleillées.
 	\item	Certains investisseurs ont tendance à surévaluer leur expérience financière.
+		\begin{itemize}
+		\item	Ceci est aussi lié au fait qu'un investisseur ayant vécu lors d'une récession a tendance à être plus conservatif.
+		\end{itemize}
 \end{itemize}
 \end{definitionNOHFILLsub}
 
