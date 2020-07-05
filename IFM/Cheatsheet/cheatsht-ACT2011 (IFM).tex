@@ -5267,7 +5267,7 @@ Permet au détenteur de choisir à un moment futur déterminé si l'option sera 
 \begin{multicols*}{2}
 
 \setcounter{section}{6}
-\section{Mean-Variance Portfolio Theory}
+\section{Théorie de l'analyse de portefeuille moyenne-variance}
 \subsection{Risque et rendement d'un actif}
 \begin{definitionNOHFILL}[Rendement effectif]
 Rendement réellement observé sur une période de temps. Mathématiquement, c'est le pourcentage d'augmentation de la valeur d'un titre proportionnellement au montant initialement investi.
@@ -5356,8 +5356,8 @@ Lorsqu'il y a plusieurs rendements possible pour un investissement, on calcule l
 		\end{itemize}
 	\item[Erreur type]	Mesure l'erreur d'estimation du vrai rendement espéré par le rendement moyen.
 		\begin{itemize}
-		\item	L'erreur type correspond à l'écart type du rendement moyen : \lfbox[formula]{$\text{Erreur type}	=	\tfrac{SD(\text{risque individuel})}{\sqrt{\text{nombre d'observations}}}$} ;
-		\item	On peut calculer un intervalle approximatif de confiance de 95\% avec $\text{rendement moyen empirique} \pm 2 \cdot \text{erreur type}$.
+		\item	L'erreur type correspond à l'écart type du rendement moyen : \lfbox[formula]{$\text{Erreur type}	=	\tfrac{SD(\text{risque individuel})}{\sqrt{\text{nombre d'observations $T$}}}$} ;
+		\item	On peut calculer un intervalle de confiance \textbf{approximatif} de 95\% approximatif avec \lfbox[formula]{$\bar{R} \pm 2 \cdot \frac{SD(R)}{\sqrt{T}}$}.
 		\end{itemize}
 \end{description}
 
@@ -5564,10 +5564,10 @@ Soit :
 La matrice de covariance du portefeuille est : 
 \begin{align*}
 	\begin{bmatrix}
-	\sigma_{1, 1}	&	\sigma_{1, 2}	&	\hdots	&	\sigma_{1, n}	\\
-	\sigma_{2, 1}	&	\sigma_{2, 2}	&	\hdots	&	\sigma_{2, n}	\\
+	\sigma_{1}^{2}	&	\sigma_{1, 2}	&	\hdots	&	\sigma_{1, n}	\\
+	\sigma_{2, 1}	&	\sigma_{2}^{2}	&	\hdots	&	\sigma_{2, n}	\\
 	\vdots	&	\vdots	&	\ddots	&	\vdots	\\
-	\sigma_{n, 1}	&	\sigma_{n, 2}	&	\hdots	&	\sigma_{n, n}	
+	\sigma_{n, 1}	&	\sigma_{n, 2}	&	\hdots	&	\sigma_{n}^{2}
 	\end{bmatrix}
 \end{align*}
 \begin{itemize}
@@ -5588,7 +5588,7 @@ On peut exprimer :
 
 
 \columnbreak
-\subsection{Mean-Variance Portfolio Theory}
+\subsection{Analyse de portefeuille moyenne-variance}
 \subsubsection{Portefeuilles efficients}
 \begin{definitionNOHFILL}[Analyse de portefeuille moyenne-variance]
 L'analyse de portefeuille moyenne-variance pose que les investisseurs peuvent évaluer les caractéristiques du risque-rendement d'un investissement avec les rendements espérés, les variances et les corrélations des actifs.
@@ -6128,7 +6128,7 @@ La règle générale est donc d'ajouter un investissement au portefeuille si \lf
 
 
 \newpage
-\section{Asset Pricing Models}
+\section{Modèles d'évaluation des actifs}
 \subsection{Modèle d'évaluation des actifs financiers}
 \begin{distributions}[Notation]
 \begin{description}
@@ -6705,7 +6705,7 @@ On trouve que \lfbox[formula]{$\text{E}[R_{i}]	=	r_{f} + \beta_{i}^{M}\left(\tex
 
 \newpage
 \setcounter{section}{38} % dut sauter 9 à cause d'un problème avec le toc
-\section{Market Efficiency and Behavioural Finance}
+\section{Efficience du marché et finance comportementale}
 \begin{definitionNOHFILL}[Marché efficient]
 Marché dont les prix des titres financiers s'ajustent rapidement à toutes nouvelles informations ; les prix reflètent toute l'information disponible.
 
@@ -7500,6 +7500,7 @@ Un investisseur a deux approches possibles :
 \end{description}
 
 
+\columnbreak
 \subsubsection{Financement par actions pour des compagnies publiques}
 Le premier APE (financement par action pour une compagnie publique) est la première fois qu'une entreprise vend ses actions au public. Il y a plusieurs avantages et désavantages pour une entreprise à devenir publique.\\
 
@@ -7542,15 +7543,15 @@ Les désavantages principaux :
 
 Il y a plusieurs mécanismes de vente :
 
-\begin{definitionNOHFILLpropos}[Meilleurs efforts]
+\begin{definitionNOHFILLsub}[Meilleurs efforts]
 Le souscripteur n'offre aucune garantie de vente des actions qui sont vendues au meilleur prix possible.
 \begin{itemize}
 	\item	Souvent ces ententes ont une clause tout ou rien comme quoi que l'entente est annulée s'il reste des actions qui ne sont pas vendues.
 	\item	Habituellement, ce mécanisme est utilisé pour de petits APE.
 \end{itemize}
-\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLpropos}[Vente garantie]
+\begin{definitionNOHFILLsub}[Vente garantie]
 Le souscripteur garantit que toutes les actions seront vendues au cours vendeur.
 \begin{itemize}
 	\item	Approche la plus courante.
@@ -7558,46 +7559,98 @@ Le souscripteur garantit que toutes les actions seront vendues au cours vendeur.
 	\item	Le souscripteur assume le risque qu'elles se vendent pour moins cher.
 	\item	Pour cette raison, ils vont souvent sous-évaluer le prix d'une action pour une vente garantie.
 \end{itemize}
-\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLpropos}[Vente aux enchères]
+\begin{definitionNOHFILLsub}[Vente aux enchères]
 Les actions se vendent à un même prix aux investisseurs les plus offrants afin qu’elles soient toutes vendues.
-\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLsub}
 
 
-\paragraph{Mécanisme de l'APE}
+\paragraph{Mécanisme de l'APE}\
+\begin{definitionGENERAL}{Un groupe de souscripteurs gère l'APE}[\circled{1}{trueblue}]
+C'est l'approche typique et ils sont importants car ils :
 \begin{itemize}
-	\item	Un groupe de souscripteurs gère l'APE avec un souscripteur principal.
-		\begin{itemize}
-		\item	Les plus petits souscripteurs reçoivent (\og \textit{syndicates} \fg{}) des conseils du souscripteur principal.
-		\end{itemize}
-	\item	Les entreprises doivent déposer une déclaration d'enregistrement à la commission réglementaire.
-	\item	La déclaration a 2 composantes principales :
-		\begin{enumerate}
-		\item	Prospectus provisoire avec l'information nécessaire aux investisseurs potentiels.
-		\item	Prospectus définitif avec des détails sur l'APE (quantité d'actions disponibles, prix, etc.)
-		\end{enumerate}
-	\item	Une évaluation de la compagnie est effectuée par le souscripteur.
-		\begin{itemize}
-		\item	Souvent, la valeur est établie selon la VAN des flux monétaires ou la valeur de compagnies semblables.
-		\item	Habituellement, l'entreprise a une conférence avec les clients les plus importants du souscripteur pour vendre l'entreprise.
-		\item	Par la suite, le souscripteur ajuste le prix de l'action selon a demande perçue pour maximiser la probabilité de succès (\og \textit{book building} \fg{}).
-		\end{itemize}
-	\item	L'entreprise paye au souscripteur l'écart de souscription (\og \textit{underwriting spread} \fg{}).
-		\begin{itemize}
-		\item	Ceci est un pourcentage du prix d'émission.
-		\item	P. ex., 5\% sur un prix de 10\$ engendre des frais de 0.5\$ par action permettant le souscripteur d'acheter l'action pour 9.50\$ puis de la vendre pour 10\$.
-		\end{itemize}
-	\item	Le souscripteur gère son risque.
-%%%	------------------------
-%%%	NOTES
-%%%	+	Pas clair ceci, faut améliorer.
-%%%	------------------------
-		\begin{itemize}
-		\item	Un souscripteur peut se protéger contre pertes avec une option d'attribution excédentaire (\og \textit{over-allotmentt} \fg{}) ou de couverture (\og \textit{greenshoe} \fg{}).
-		\item	Ces options permettent au souscripteur d'émettre un nombre limité d'options additionnelles au cours vendeur.
-		\end{itemize}
+	\item	font la promotion de l'APE.
+	\item	aident l'entreprise avec le coté législatif de l'APE.
+	\item	maximisent la probabilité de succès de l'action en ajustant le prix à la demande (\og \textit{book building} \fg{}).
 \end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{L'entreprise dépose une \textit{déclaration d'enregistrement}}[\circled{2}{trueblue}]
+La déclaration (\og \textit{registration statement} \fg{}) contient, entre autre, de l'information fiscale et a 2 composantes principales :
+\begin{description}
+	\item[Prospectus provisoire]	contient l'information nécessaire aux investisseurs potentiels.
+		\begin{itemize}
+		\item	Ce prospectus est distribué \textit{avant} l'APE et est utilisé avec le \og \textit{road show} \fg{}.
+		\item	Il contient des informations sur les opérations de l'entreprise, son état fiscal, les risques potentiels, etc.
+		\item	En anglais, on le surnomme aussi le \og \textit{red herring} \fg{}.
+		\end{itemize}
+	\item[Prospectus définitif]	contient les détails sur l'APE (nombre d'actions disponibles, cours vendeur, etc.)
+\end{description}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Le souscripteur évalue la valeur de l'entreprise}[\circled{3}{trueblue}]
+La valeur est établie selon une de ces méthodes :
+\begin{enumerate}
+	\item	En fonction de la VAN des flux monétaires futurs.
+	\item	En fonction de compagnies semblables.
+		\begin{itemize}
+		\item	Le souscripteur se base sur des multiples de ratios ;
+		\item	Par example, un multiple basé sur le ratio cours-bénéfices.
+		\end{itemize}
+\end{enumerate}
+
+\
+
+Également, une fois qu'une échelle de prix potentiels est établie, le souscripteur : 
+\begin{itemize}
+	\item	organise une conférence avec ses clients les plus importants pour vendre l'entreprise (\og \textit{road show} \fg{}).
+	\item	ajuste le prix de l'action selon la demande perçue pour maximiser la probabilité de succès (\og \textit{book building} \fg{}).
+\end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{L'entreprise paye le souscripteur}[\circled{4a}{trueblue}]
+L'entreprise paye l'écart de souscription (\og \textit{underwriting spread} \fg{}).
+
+\begin{itemize}
+	\item	Ceci est un pourcentage du prix d'émission.
+	\item	P. ex., 5\% sur un prix de 10\$ engendre des frais de 0.5\$ par action permettant le souscripteur d'acheter l'action pour 9.50\$ puis de la vendre pour 10\$.
+\end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Le souscripteur gère son risque}[\circled{4b}{trueblue}]
+Suite à l'APE, les souscripteurs peuvent se protéger davantage contre le risque de pertes, ils peuvent :
+\begin{itemize}
+	\item	se procurer une option d'attribution excédentaire (\og \textit{over-allotmentt} \fg{})
+	\item	se procurer une option de couverture (\og \textit{greenshoe provision} \fg{}).
+\end{itemize}
+Ces options permettent au souscripteur d'émettre un nombre limité d'options additionnelles au cours vendeur.
+\end{definitionGENERAL}
+
+\paragraph{Note}	Il peut avoir plusieurs souscripteurs qui gèrent l'APE dont un qui sera le souscripteur principal.
+\begin{itemize}
+	\item	Les plus petits souscripteurs (\og \textit{syndicates} \fg{}) reçoivent des conseils du souscripteur principal.
+\end{itemize}
+
+
+\begin{formula}{Exemple de profit sur un APE}
+Je suis un investisseur qui cherche à acheter 2000 actions pour un APE.
+\begin{itemize}
+	\item	Il y a 80\% de chance de sur-souscription à un ratio de 16:1, dans ce cas-ci le prix de l'action grimpe de 20\%.
+	\item	Sinon, le prix de l'action descend de 5\%.
+	\item	Le cours vendeur (\og \textit{offer price} \fg{}) est de 15\$.
+\end{itemize}
+
+Mon profit sera :
+\begin{align*}
+	2000 \times \frac{1}{16} \times (1.2 * 15 - 15) \times 0.8 + 
+	2000 \times (0.95 * 15 - 15) \times 0.2
+	&=	0
+\end{align*}
+\begin{itemize}
+	\item	Donc, dans le cas de sur-souscription il faut pondérer le nombre d'actions qu'on désire acheter par ce que l'on va réellement obtenir.
+\end{itemize}
+\end{formula}
 
 
 \paragraph{Énigmes d'APE}
@@ -7682,27 +7735,31 @@ Le niveau d'ancienneté d'une obligation corporative indique la priorité d'un d
 
 Les obligations internationales ont 4 catégories générales :
 \begin{definitionNOHFILLprop}[Obligations intérieures]
-Obligations émises par une entité interne avec une devise interne qui sont achetées par des investisseurs étrangers.
+Obligations émises par une \textbf{entité interne} dans la \textbf{devise interne} qui sont \textbf{achetées par des investisseurs étrangers}. Par exemple, une obligation avec une valeur de rachat de 100 CAD\$ émise par le gouvernement canadien achetée par un américain.
 \begin{itemize}
 	\item	En anglais, \og \textit{domestic bonds} \fg{}.
 \end{itemize}
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Obligations étrangères]
-Obligations émises par une entité étrangère avec une \textit{devise interne} qui sont achetées par des investisseurs locaux dans un marché interne.
+Obligations émises dans un marché interne par une \textbf{entité étrangère} dans la \textbf{devise interne} qui sont \textbf{achetées par des investisseurs locaux}. Par exemple, une obligation avec une valeur de rachat de 100 CAD\$ émise par une entreprise américaine achetée par un Canadien.
 \begin{itemize}
-	\item	En anglais, \og \textit{foreign bonds} \fg{}.
+	\item	En anglais, \og \textit{foreign bonds} \fg{} ;
+	\item	Plusieurs pays attribuent des noms particuliers aux obligations étrangères ;
+	\item	Par exemple, aux États-Unis on les surnomme des \og \textit{yankee bonds} \fg{}, au Japon les \og \textit{samurai bonds} \fg{} et au Canada les \og \textit{maple bonds} \fg{},
 \end{itemize}
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Euro-obligations]
-Obligations dont la devise n'est pas celle du pays d'origine pouvant être transigé n'importe où et émis par une entité interne ou étrangère.
+Obligations émise par une \textbf{entité interne ou étrangère} dans une \textbf{devise étrangère} pouvant être \textbf{transigé n'importe où}.
 \begin{itemize}
-	\item	En anglais, \og \textit{eurobonds} \fg{}.
+	\item	En anglais, \og \textit{eurobonds} \fg{} ;
+	\item	Le \textbf{risque additionnel} est la \textbf{dépréciation de la devise étrangère} relatif à la devise domestique, ainsi réduisant la valeur de l'obligation.
 \end{itemize}
 \end{definitionNOHFILLprop}
+
 \begin{definitionNOHFILLprop}[Obligations multimarchés]
-Obligations vendues sur plusieurs marchés en même temps.
+Obligations transigées sur plusieurs marchés en même temps.
 \begin{itemize}
 	\item	En anglais, \og \textit{global bonds} \fg{}.
 \end{itemize}
@@ -7710,23 +7767,25 @@ Obligations vendues sur plusieurs marchés en même temps.
 
 
 \paragraph{Dette privée}	Dette négociée directement avec une banque ou un petit groupe d'investisseurs.
-\begin{itemize}
-	\item	L'avantage est que l'émission est moins coûteuse puisqu'il n'y a pas de frais.
-	\item	Le désavantage est que le marché n'est pas liquide.
-\end{itemize}
+\begin{rappel_enhanced}[Contexte]
+L'\textit{avantage} de la dette privée est l'\textbf{émission moins coûteuse} car il n'y a pas de frais. Le \textit{désavantage} est que le marché \textbf{n'est pas liquide}.\\
+
+Le marché privé est \textit{plus grand} que le marché publique.
+\end{rappel_enhanced}
 
 \
 
 Il y a 2 types principaux de dette privée: 
 
-\begin{definitionNOHFILLpropos}[Prêt à terme]
+\begin{definitionNOHFILLpropos}[Prêt à terme (\og \textit{term loans} \fg{})]
 Emprunt d'une banque pour une période de temps fixée.
 \begin{itemize}
-	\item	Si plusieurs banques financent un même prêt, c'est un \og \textit{syndicated bank loan} \fg{}.
+	\item	Si plusieurs banques financent un même prêt, c'est un \og \textit{syndicated bank loan} \fg{} ;
+	\item	Si on emprunte jusqu'à un certain montant, c'est une \textbf{marge de crédit} (\og \textit{revolving line of credit} \fg{}).
 \end{itemize}
 \end{definitionNOHFILLpropos}
 
-\begin{definitionNOHFILLpropos}[Émission privée]
+\begin{definitionNOHFILLpropos}[Émission privée (\og \textit{private placement} \fg{})]
 Émission d'obligations à un petit groupe d'investisseurs directement.
 \begin{itemize}
 	\item	Cette émission est moins restrictive qu'un prêt à terme.
@@ -7734,6 +7793,7 @@ Emprunt d'une banque pour une période de temps fixée.
 \end{definitionNOHFILLpropos}
 
 
+\columnbreak
 \subsubsection{Autres}
 \paragraph{Obligations émises par des gouvernements}	Les gouvernement émettent de la dette pour financer leurs projets.
 
@@ -7741,34 +7801,52 @@ Emprunt d'une banque pour une période de temps fixée.
 Dette émise par le gouvernement national nommées des "titres du trésor".\\
 
 Il y a 4 types de titres du trésor :
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}l | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Type}}	&	\textcolor{white}{\textbf{Coupons}}	&	\textcolor{white}{\textbf{Échéance}}		\\\specialrule{0.1em}{0em}{0em} 
+Bon du trésor		&	zéro			&	< 1 ans\\\hline
+Certificat du trésor	&	semestriels	&	1 à 10 ans\\\hline
+Obligation du trésor	&	semestriels	&	> 10 ans\\\hline
+\end{tabular}
+\end{center}
+
 \begin{description}
-	\item[Bon du trésor]	Obligation \textbf{zéro coupon} avec une \textbf{échéance de moins d'un an}.
-	\item[Certificat du trésor]	Obligation avec des \textbf{coupons semestriels} et une \textbf{échéance de 1 à 10 ans}.
-	\item[Obligation du trésor]		Obligations avec des \textbf{coupons semestriels} et une \textbf{échéance au-dessus de 10 ans}.
-	\item[Titre du trésor protégé contre l'inflation]	Obligation avec des \textbf{coupons semestriels} dont \textbf{le capital et le paiement} sont \textbf{ajustés pour l'inflation}.
+	\item[Titre du trésor protégé contre l'inflation]	Obligation avec des coupons semestriels dont \textbf{le capital et le paiement sont \textit{ajustés pour l'inflation}}.
+		\begin{itemize}
+		\item	En anglais, \og \textit{Treasury inflation-protected securities (TIPS)} \fg{} ;
+		\item	Les \og \textit{TIPS} \fg{} sont émises avec des échéances de 5, 10 et 30 ans.
+		\end{itemize}
 \end{description}
 \end{definitionNOHFILLprop}
+
+Le processus de revendre la dette souveraine sans les coupons s'appelle le \og \textit{Separate Trading of Registered Interest and Principal of Securities (STRIPS)} \fg{}.
+\begin{itemize}
+	\item	Puisque les bons du trésor n'ont déjà pas de coupons, ceci s'applique seulement pour des échéances d'au moins 1 an.
+\end{itemize}
 
 \begin{definitionNOHFILLprop}[Obligations municipales]
 Dette émise par des gouvernements provinciales (de l'état aux É.-U.) ou municipales.
 
 \begin{itemize}
-	\item	Habituellement, les rendements sont libres d'impôts fédérales.
+	\item	Habituellement, les rendements sont \textbf{libres d'impôts} fédérales.
 	\item	Le taux peut être fixe ou variable.
 	\item	Le taux de défaillance des ses obligations est plus élevée que les obligations fédérales à environ 4\% depuis 1970 aux É.-U.
 \end{itemize}
 
 \
 
-Il y a quelques types dont des obligations : 
+Les obligations peuvent être : 
 \begin{description}
-	\item[Spécifiques]	Les rendements proviennent d'un projet en particulier de la ville pour lequel il faut lever des fonds.
-		\begin{itemize}
-		\item	En anglais, \og \textit{revenue bonds} \fg{}.
-		\end{itemize}
 	\item[À caractère général]	Les rendements sont adossés par la ville.
 		\begin{itemize}
 		\item	En anglais, \og \textit{general obligation bonds} \fg{}.
+		\end{itemize}
+	\item[Spécifiques]	Les rendements proviennent d'un projet en particulier de la ville pour lequel il faut lever des fonds.
+		\begin{itemize}
+		\item	En anglais, \og \textit{revenue bonds} \fg{}.
+		\item	Si les rendements provenant du projet spécifique sont \textit{en plus} des revenus généraux de la ville, c'est un \og \textit{double-barreled bond} \fg{}.
 		\end{itemize}
 \end{description}
 \end{definitionNOHFILLprop}
@@ -7946,7 +8024,76 @@ Avec $r_{U}	=	10\%$, on trouve que le coût des capitaux propres avec effet de l
 
 \paragraph{Betas avec et sans effet de levier}	On peut appliquer la formule du coût des capitaux propres sans effet de levier aux betas avec $\beta_{E}	=	\beta_{U} + \frac{D}{E}(\beta_{U}	-	\beta_{D})$ qui découle de l'équation $\beta_{U}	=	w_{E} \beta_{E} + w_{D} \beta_{D}$.
 
+\begin{formula}{Exemple de calcul du CMPC pour un projet}
+Soit : 
+\begin{itemize}
+	\item	un projet avec un coût initial de 800\$ et une chance équiprobable (50/50) de générer des revenus de 1400\$ ou de 900\$.
+	\item	un taux sans risque de 5\%.
+	\item	un coût du capital de 15\%.
+\end{itemize}
+On souhaite trouver la différence entre les coûts des capitaux avec et sans emprunt du montant d'investissement initial.
 
+\begin{enumerate}
+	\item	On trouve le rendement espéré sur les capitaux propres sans effet de levier.
+		\begin{itemize}
+		\item	Puisque l'on pose aucun emprunt, l'espérance du rendement sur les capitaux est égale au rendement de l'entreprise : 
+			\begin{align*}
+			r_{U}	
+			&=	r_{E}
+			=	0.15
+			\end{align*}
+		\end{itemize}
+	\item	On trouve la valeur des capitaux propres sans effet de levier $V_{U}$.
+		\begin{enumerate}
+		\item	On calcule l'espérance des rendements dans 1 an :
+			\begin{align*}
+			\text{E}[rendements]	
+			&=	50\% \times 1400\$ + 50\% \times 900\$
+			=	1150\$
+			\end{align*}
+		\item	Puisqu'il n'y a pas de dette, la valeur de l'entreprise sans effet de levier $E_{U}$ équivaut à la valeur des capitaux propres sans effet de levier.
+			\begin{align*}
+			E_{U}
+			=	V_{U}
+			&=	VAN(\text{E}[rendements])
+			=	1150 (1.15)^{-1}
+			=	1000\$
+			\end{align*}
+		\end{enumerate}
+	\item	On trouve la valeur des capitaux propres avec effet de levier $V_{L}$.
+		\begin{itemize}
+		\item	Selon la proposition $I$ de M.-M., la valeur d'une entreprise n'est pas liée à sa structure financière et donc :
+		\end{itemize}
+			\begin{align*}
+			V_{L}	
+			=	V_{U}
+			&=	1000\$	\\
+		\Rightarrow
+			E_{L} + D	=	1000\$	\\
+		\Rightarrow
+			E_{L} + 800\$	=	1000\$	\\
+		\Rightarrow
+			E_{L}	=	200\$
+			\end{align*}
+	\item	On trouve le rendement espéré sur les capitaux propres avec effet de levier.
+		\begin{align*}
+		r_{E*}
+		&=	r_{U} + \frac{D}{E_{L}} (r_{U} - r_{D})
+		=	0.15 + \frac{800}{200} (0.15 - 0.05)
+		=	0.55
+		\end{align*}
+	\item	On trouve la différence entre les coûts des capitaux avec et sans emprunt du montant d'investissement initial.
+		\begin{align*}
+		r_{E*}	-	r_{U}
+		&=	0.55	-	0.15
+		=	0.40
+		\end{align*}
+\end{enumerate}
+
+\end{formula}
+
+
+\columnbreak
 \subsubsection{Propositions avec impôts}
 \paragraph{Proposition I de MM}	Avec impôt, la structure du capital a un impact sur la valeur d'une entreprise puisque les paiements d'intérêt sont habituellement réductibles d'impôts.
 \begin{itemize}
@@ -8082,12 +8229,13 @@ La valeur actualisée des coûts de détresse financière a 3 composantes :
 \end{definitionNOHFILLpropos}
 
 
+\columnbreak
 \subsubsection{Coûts et avantages de \og \textit{agency costs} \fg{}}
 \hl{Ajouter plus de détails et pratiquer pour bien saisir. J'étais tanné et j'ai moins bien fait cette section qui n'est pas complétée}.
 
 La structure du capital peut influencer les décisions d'investissement des gestionnaires. 
 \begin{definitionNOHFILL}[\og \textit{agency costs} \fg{}]
-Coûts liés au conflits d'intérêt parmi les parties prenantes de l'entreprise (gestionnaires, actionnaires et créanciers). 
+Coûts liés aux conflits d'intérêt parmi les parties prenantes de l'entreprise (gestionnaires, actionnaires et créanciers). 
 \begin{itemize}
 	\item	C'est le problème qui survient en raison du partage inégale des coûts et des avantages des actions de l'entreprise.
 \end{itemize}
@@ -8133,6 +8281,8 @@ Les gestionnaires peuvent avoir des motivations qui diffèrent des actionnaires 
 		\end{itemize}
 \end{description}
 
+\
+
 Les leviers peuvent aussi motiver les gestionnaires à diriger l'entreprise d'une façon plus efficace en raison de : 
 \begin{itemize}
 	\item	La concentration accrue des actionnaires.
@@ -8150,6 +8300,22 @@ Les leviers peuvent aussi motiver les gestionnaires à diriger l'entreprise d'un
 		\end{itemize}
 \end{itemize}
 
+\
+
+Pour mitiger les \og \textit{agency costs} \fg{}, l'entreprise peut : 
+\begin{enumerate}
+	\item	Émettre de la dette à court-terme.
+		\begin{itemize}
+		\item	Ceci réduit la chance qu'une entreprise prenne des décisions non-optimales contre allant à l'encontre des intérêts des créanciers.
+		\item	Cependant, ceci peut augmenter le risque	de détresse financière.
+		\end{itemize}
+	\item	Inclure des \og \textit{debt covenants} \fg{} dans les obligations qui limitent les actions que peut prendre l'entreprise.
+		\begin{itemize}
+		\item	P. ex., restreindre l'habilitée de l'entreprise de verser des grosses dividendes, limiter les investissements qu'elle peut faire, etc.
+		\item	Cependant, ceci peut limiter la flexibilité de l'entreprise à poursuivre des investissements ayant une VAN positive.
+		\end{itemize}
+\end{enumerate}
+
 
 \subsubsection{Coûts d'information asymétrique}
 Il y a de l'\textbf{information asymétrique} lorsque les gestionnaires ont plus d'information sur l'entreprise que les actionnaires.
@@ -8164,6 +8330,7 @@ Signales
 \og \textit{pecking order hypothesis} \fg{}
 
 
+\columnbreak
 \subsubsection{Théorie de l'arbitrage}
 Cherche à balancer les effets qui augmente la valeur de la compagnie avec la dette (bouclier fiscale, \og \textit{agency benefits} \fg{}) avec les effet qui diminuent la valeur de la compagnie (détresse financière, \og \textit{agency costs} \fg{}).
 
@@ -8175,14 +8342,13 @@ Selon la théorie :
 \begin{align*}
 	V_{L}
 	&=	V_{U} 
-		+ VAN(\text{bouclier fiscale sur l'intérêt})
-	 	- VAN(\text{coûts de détresse financière})
-	 	- VAN(\text{\og \textit{agency costs} \fg{} de la dette})
-	 	+ VAN(\text{\og \textit{agency benefits} \fg{} de la dette})
+		+ VAN(\text{bouclier fiscale sur l'intérêt})	\\
+&\quad 	- VAN(\text{coûts de détresse financière})\\
+&\quad 	- VAN(\text{\og \textit{agency costs} \fg{} de la dette})\\
+&\quad 	+ VAN(\text{\og \textit{agency benefits} \fg{} de la dette})
 \end{align*}
 
 Visuellement : 
-
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 

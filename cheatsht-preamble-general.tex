@@ -226,22 +226,32 @@
 	colback			=	#3!5!white, 
 	arc				=	12pt,
 	sharp corners,
+%	watermark tikz	=	{
+%		\draw[line width = 2mm] circle (1cm) node{
+%			\fontfamily{ptm}
+%			\fontseries{b}
+%			\fontsize{20mm}{20mm}
+%			\selectfont 1
+%		};
+%	},
+%	watermark opacity	=	0.70,
 	rounded corners	=	uphill,
 	pad at break*	=	0mm, 						% to split the box
-%	title			=	{#1},
-	title	=	{\protect{\makebox[\linewidth/2][l]{#1}}},
+	title			=	{#1},
 	fonttitle		=	\bfseries,
 	before title		=	{#2 \quad},
+	minipage boxed title*	=	-3cm,
 	attach boxed title to top left	=	{
 %		xshift	=	\tcboxedtitlewidth/2,
 		yshift	=	-\tcboxedtitleheight/4
 	},
-	boxed title style	=	{%
+	boxed title style	=	{
+		size				=	small,
 		colback			=	#3!80,
 		colframe			=	#3,
-        arc	=	5pt,
+        arc				=	5pt,
         rounded corners,
-        rightrule = 0.5mm
+        rightrule 		=	0.5mm
 	},
 	frame style	=	{
 		left color	=	#3,
