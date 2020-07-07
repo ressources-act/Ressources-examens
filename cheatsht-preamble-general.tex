@@ -88,6 +88,16 @@
 		] (char) {#1};%
 	}%
 } 
+\DeclareRobustCommand*\rectangled[2]{%
+	\tikz[baseline = (char.base)]{%
+		\node[%
+			shape = rectangle,%
+			fill = #2!40,%	inner circle
+			draw = #2,%		outer rim
+			inner sep = 2pt%
+		] (char) {#1};%
+	}%
+} 
 \newcommand{\reels}{\mathbb{R}}
 \newcommand{\entiers}{\mathbb{Z}}
 \newcommand{\naturels}{\mathbb{N}}

@@ -2163,7 +2163,7 @@ Puisque le règlement des contrats à terme standardisé est quotidien alors que
 On suppose l'achat d'une action se transigeant au prix de 950\$ aujourd'hui ($S_{0}$) ayant 250 parts sous-jacentes. La force d'intérêt ($\delta$) est de 6\%, la marge initiale égale à 80\% de la valeur notionnelle et la marge de maintien 10\% de la marge initiale.	\\
 
 Au début, on doit établir la marge et sa balance initiale.
-\begin{enumerate}
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	Premièrement, on trouve la \textbf{valeur notionnelle} : 
 		\begin{align*}
 		\underset{\text{\shortstack{nombre\\ sous-jacent}}}{\underbrace{250}} \times
@@ -2187,7 +2187,7 @@ Au début, on doit établir la marge et sa balance initiale.
 
 
 Si nous désirons rebalancer le portefeuille dans une semaine avec $F_{1/52, T}	=	930\$$ : 
-\begin{enumerate}
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	On accumule la \textbf{balance de la marge} : 
 		\begin{align*}
 		\underbrace{237\ 500\$}_{\text{balance de la marge}} \times
@@ -2300,23 +2300,23 @@ Alors, on peut réécrire l'équation de parité :
 On peut généraliser toute option comme étant l'option d'échanger des actifs---l'\textit{actif sous-jacent} et l'\textit{actif d'exercice}---que l'on nomme des \textbf{options d'échange}.\\
 
 Les options d'achat et de vente sont donc des options d'échange avec de l'argent comme actif d'exercice. On généralise d'abord la notation au-delà du concept d'achat et de vente pour un certain prix:
-\begin{rappel_enhanced}[Notation]
+\begin{distributions}[Notation]
 \begin{description}
 	\item[$C(S, K)$:] Permet au détenteur de l'option d'achat de recevoir $S$ en échange de $K$;
 	\item[$P(S, K)$:] Permet au détenteur de l'option de vente de recevoir $K$ en échange de $S$.
 \end{description}
-\end{rappel_enhanced}
+\end{distributions}
 
 On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P(\text{Receive}, \text{Give up})$. Dans les deux cas, la valeur à l'échéance est $\max(0; \text{Receive} - \text{Give up})$.
 
-\begin{rappel_enhanced}[Notation Claire]
+\begin{distributions}[Notation Claire]
 \begin{description}
 	\item[$S_{t}$:] Prix à $t$ de l'actif sous-jacent---le titre $A$;
 	\item[$Q_{t}$:] Prix à $t$ du prix d'exercice---le titre $B$;
 	\item[$C_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, d'achat le titre $A$ au prix du titre $B$;
 	\item[$P_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, de vendre le titre $A$ au prix du titre $B$.
 \end{description}
-\end{rappel_enhanced}
+\end{distributions}
 
 \begin{rappel}{Équation de parité des options d'échange}
 \begin{align*}
@@ -2365,55 +2365,74 @@ On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P
 %%%	-----------------------------------
 
 \subsubsection*{Considérations différents types d'options}
-
 La première considération est que la valeur à l'échéance d'une option ne sera jamais négative puisqu'un investisseur \og rationnel \fg{} n'exercerait simplement pas l'option. L'émetteur de l'option va donc toujours demander une \textbf{prime positive} pour accepter ce risque de perte.\\
 
-Donc les options américaines et européennes vont toujours avoir une \textbf{valeur d'au moins 0\$}:
+Donc les options américaines et européennes vont toujours avoir une \textbf{valeur d'au moins $0\$$}:
 \begin{align*}
 	C(S, K, T) &\geq	0	&
 	P(S, K, T) &\geq	0	
 \end{align*}
 
-Une option européenne peut uniquement être exercée à l'échéance alors qu'une option américaine peut être exercée à n'importe quel moment d'ici l'échéance. Il s'ensuit qu'une \textbf{option américaine vaut au moins autant qu'une option européenne}:
-\begin{align*}
-	C_{\text{amer}}(S, K, T)	&\geq	C_{\text{euro}}(S, K, T)	&
-	P_{\text{amer}}(S, K, T)	&\geq	P_{\text{euro}}(S, K, T)	
-\end{align*}
 
 \subsubsection*{Bornes inférieures}
-\paragraph{Option européenne}	Avec l'équation de parité des options vente-achat et que le coût ne peut pas être négatif, on obtient:
-
+\paragraph{Option européenne}
 \begin{align*}
 	C_{\text{euro}}(S, K, T)	
 	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT} \textcolor{teal}{+ P_{\text{euro}}(S, K, T)}	\\
-	&\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)	\\
+	&\textcolor{teal}{\geq}	\max\{F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\}	\\
 	P_{\text{euro}}(S, K, T)	
-	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT} \textcolor{teal}{+ C_{\text{euro}}(S, K, T)}	\\
-	&\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
+	&=	K\textrm{e}^{-rT} - F_{0, T}^{P}(S) \textcolor{teal}{+ C_{\text{euro}}(S, K, T)}	\\
+	&\textcolor{teal}{\geq}	\max\{K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\}
 \end{align*}
 
-\paragraph{Option américaine}	Une option américaine aura une valeur d'au moins l'option européenne. Également, puisqu'une option américaine peut être exercée à tout moment, sa valeur doit être au moins la valeur d'un exercice immédiat.
+\paragraph{Option américaine}	L'avantage des options américaines aux options européennes est leur flexibilité additionnelle.
 
-\paragraph{En bref}
-\begin{rappel_enhanced}[Bornes inférieures options]
-\begin{align*}
-	C_{\text{amer}}(S, K, T)	\geq
-	C_{\text{euro}}(S, K, T)	
-	&\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)	\\
-	P_{\text{amer}}(S, K, T)	\geq
-	P_{\text{euro}}(S, K, T)	
-	&\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
-\end{align*}
-et
+\
+
+Il s'ensuit que la valeur d'une option américaine est d'\textbf{au moins la valeur d'une option européenne équivalente} : 
 \begin{align*}
 	C_{\text{amer}}(S, K, T)	
-	&\geq	S - K	&
-	P_{\text{amer}}(S, K, T)
-	&\geq	K - S
+	&\geq	C_{\text{euro}}(S, K, T)		&
+	P_{\text{amer}}(S, K, T)	
+	&\geq	P_{\text{euro}}(S, K, T)		\\
 \end{align*}
-\end{rappel_enhanced}
+
+Également, la flexibilité des options américaines permettent un \textbf{exercice immédiat}. Il s'ensuit que leurs valeur est d'\textbf{au moins la valeur d'un exercice immédiat} :
+\begin{align*}
+	C_{\text{amer}}(S, K, T)	
+	&\geq	S	-	K		&
+	P_{\text{amer}}(S, K, T)	
+	&\geq	K	-	S		\\
+\end{align*}
+
 
 \subsubsection*{Bornes supérieures}
+\begin{center}
+	\textbf{Option européenne}
+\end{center}
+
+\paragraph{Option d'achat}
+\begin{align*}
+	\text{Payoff}(C_{\text{euro}}(S, K, T))
+	&=	\max\{S_{T}	-	\textcolor{teal}{K}; 0\}	\\
+	&\textcolor{teal}{\leq}	\max\{S_{T}	-	\textcolor{teal}{0}; 0\}	\\
+	&=	S_{T}	
+	=	\text{Payoff}(F_{0, T}^{P}(S))
+\end{align*}
+Donc, \lfbox[formula]{$C_{\text{euro}}(S, K, T)	\leq	 F_{0, T}^{P}(S)$}.
+
+
+\paragraph{Option de vente}
+\begin{align*}
+	\text{Payoff}(P_{\text{euro}}(S, K, T)\}
+	&=	\max(K	-	\textcolor{teal}{S_{T}}; 0\}	\\
+	&\textcolor{teal}{\leq}	\max(K	-	\textcolor{teal}{0}; 0\}	\\
+	&=	K
+	=	\text{Payoff de l'emprunt de $K\textrm{e}^{-rT}$}
+\end{align*}
+Donc, \lfbox[formula]{$P_{\text{euro}}(S, K, T)	\leq	 K\textrm{e}^{-rT}$}.
+
+
 \begin{center}
 	\textbf{Option américaine}
 \end{center}
@@ -2440,28 +2459,6 @@ Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente améri
 	\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)	
 \end{align*}
 
-\begin{center}
-	\textbf{Option européenne}
-\end{center}
-
-\paragraph{Option d'achat}
-La valeur à l'échéance sera au plus $\max(S_{T} - 0; 0) = S_{T}$. Le prix aujourd'hui pour avoir $S_{T}$ à $T$ correspond à un contrat à terme de gré à gré prépayé $F_{0, T}^{P}(S)$.\\
-
-Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option d'achat américaine est ce contrat à terme de gré à gré prépayé}:
-\begin{align*}
-	F_{0, T}^{P}(S)
-	\geq	C_{\text{euro}}(S, K, T)
-	\geq	\max\left(F_{0, T}^{P}(S) - K\textrm{e}^{-rT}; 0\right)
-\end{align*}
-
-\paragraph{Option de vente}	La distinction avec la valeur maximale d'une option européenne est qu'elle est seulement reçue à $T$.\\
-
-Ce faisant, \textcolor{cobalt}{la borne supérieure d'une option de vente européenne est le prix d'exercice actualisé à 0}:
-\begin{align*}
-	K \textrm{e}^{-rT}
-	\geq	P_{\text{euro}}(S, K, T)
-	\geq	\max\left(K\textrm{e}^{-rT} - F_{0, T}^{P}(S); 0\right)
-\end{align*}
 
 \columnbreak
 \subsection{Exercice hâtif des options américaines}
@@ -2550,7 +2547,7 @@ Pour $K_{1}	<	K_{2}	<	K_{3}$ :
 \end{enumerate}
 \end{definitionNOHFILLsub}
 
-\paragraph{Note}	Si la différence entre les deux prix d'option serait supérieure à la différence entre les deux prix d'exercice, il y aurait arbitrage. Il serai possible d'avoir aucun risque de perte.
+\paragraph{Note}	Si la différence entre les deux prix d'option serait supérieure à la différence entre les deux prix d'exercice, il y aurait arbitrage. Il serait possible d'avoir aucun risque de perte.
 \begin{itemize}
 	\item	Comme visualisation, voir le graphique de la valeur à l'échéance d'un écart-baissier ;
 	\item	Si le profit est strictement positif, la ligne pointillée rouge est uniquement au-dessus de l'axe des $x$.
@@ -4035,7 +4032,7 @@ Pour un teneur de marché qui vend une option et couvre sa position en delta neu
 
 Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbox{$\Delta_{t}\left(S_{t + h} - S_{t}\right)	-	\left(V_{t + h}	-	V_{t}\right)	-	(\textrm{e}^{rh}	-	1)\left(\Delta_{t}S_{t}	-	V_{t}\right)$}.
 \begin{itemize}
-	\item	Pour \lfbox[conditions]{$\varepsilon	=	S_{t + h}	-	S_{t}$}, le profit est \lfbox[formula]{$\approx	-\frac{1}{2} \varepsilon^{2}\gamma_{t}	-	h\theta_{t}	-	(\textrm{e}^{rh}	-	1)\left(\delta_{t}S_{t}	-	V_{t}\right)$}.
+	\item	Pour \lfbox[conditions]{$\varepsilon	=	S_{t + h}	-	S_{t}$}, le profit est \lfbox[formula]{$\approx	-\frac{1}{2} \varepsilon^{2}\Gamma_{t}	-	h\theta_{t}	-	(\textrm{e}^{rh}	-	1)\left(\Delta_{t}S_{t}	-	V_{t}\right)$}.
 	\item	Si \lfbox[conditions]{$h$ est petit}, \lfbox[formula]{$(\textrm{e}^{rh}	-	1)	\approx	rh$}.
 \end{itemize}
 
@@ -5361,8 +5358,6 @@ Lorsqu'il y a plusieurs rendements possible pour un investissement, on calcule l
 		\end{itemize}
 \end{description}
 
-
-
 \begin{formula}{Exemple}
 Soit les rendements annuels effectifs (de fin d'année) suivants : 
 \begin{center}
@@ -5395,6 +5390,14 @@ La variance est :
 Puis, la volatilité est $SD(R)	=	\sqrt{\text{Var}(R)}	=	0.1082$.\\
 Également, l'erreur type de l'estimation du rendement espéré est $\frac{SD(R)}{\sqrt{T}}	=	\frac{0.1082}{\sqrt{5}}$
 \end{formula}
+
+\begin{rappel}{Note sur les distributions symétriques}
+Pour une distribution symétrique : 
+\begin{itemize}
+	\item	La moyenne est égale à la médiane ;
+	\item	La semi-variance équivaut à la moitié de la variance.
+\end{itemize}
+\end{rappel}
 
 
 \columnbreak
@@ -5881,7 +5884,7 @@ On trouve que le rendement espéré du portefeuille est \lfbox[formula]{$\text{E
 %%%	NOTES
 %%%	+	Clarifier cette définition.
 %%%	------------------------
-La droite d'allocation du capital (AC) décrit les rendements espérés et volatilités possibles des différentes combinaisons d'un portefeuille risqué et d'un actif sans risque :
+La droite d'allocation du capital (AC) illustre le risque (\textbf{volatilité}) et le \textbf{rendement} des combinaisons de \underline{n'importe quel portefeuille risqué} et de \underline{l'actif sans risque} :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -5940,6 +5943,8 @@ On trouve \lfbox[conditions]{$x	=	\frac{\sigma_{xP}}{\sigma_{P}}$} avec l'équat
 	\item	En anglais, \og \textit{capital allocation line (CAL)} \fg{} ;
 	\item	La pente de la droite d'AC représente le rendement additionnel disponible par incrément d'une unité de risque et équivaut au \textit{\textbf{ratio de Sharpe}}.
 \end{itemize}
+
+\paragraph{Note}	Le ratio de sharpe est maximisé pour le portefeuille du marché car tout autre portefeuille est en une \textit{combinaison}.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[Achat d'actions sur marge]
@@ -6046,7 +6051,7 @@ Portefeuille optimal du marché (PM).
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Droite du marché des capitaux]
-Droite d'AC du marché.
+La droite du marché des capitaux illustre le risque (\textbf{volatilité}) et le \textbf{rendement} des combinaisons du \underline{portefeuille du \textit{marché}} et d'un \underline{actif sans risque} :
 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -6108,7 +6113,8 @@ rendement \\espéré
 
 \end{center}
 \begin{itemize}
-	\item	En anglais, \og \textit{Capital Market line (CML)} \fg{}.
+	\item	En anglais, \og \textit{Capital Market line (CML)} \fg{} ;
+	\item	Ceci correspond à la droite d'AC avec le portefeuille du marché.
 \end{itemize}
 \end{definitionNOHFILL}
 
@@ -6321,8 +6327,9 @@ L'équation du MÉDAF est \lfbox[formula]{$r_{i}	=	\text{E}[R_{i}]	=	r_{f} + \be
 		\end{itemize}
 	\item	Les investisseurs détiennent uniquement des portefeuilles efficients.
 		\begin{itemize}
-		\item	Ceci implique que les investisseurs sont rationnels, qu’ils ont une aversion au risque et qu'ils cherchent à maximiser leurs investissements.
-		\item	C'est à dire que pour un niveau de risque (volatilité) donné, il n'y a pas de portefeuilles avec un rendement supérieur. 
+		\item	Ceci implique que les investisseurs sont rationnels, qu’ils ont une aversion au risque et qu'ils cherchent à maximiser leurs investissements ;
+		\item	C'est à dire que pour un niveau de risque (volatilité) donné, il n'y a pas de portefeuilles avec un rendement supérieur ;
+		\item	Il s'ensuit, dans un portefeuille efficient, le \textbf{rendement espéré} de chacun des actifs est \textbf{égale} au \textbf{rendement requis} pour cet actif.
 		\end{itemize}
 	\item	Les investisseurs ont des attentes homogènes pour les volatilités, les corrélations et les rendements espérés de titres financiers.
 		\begin{itemize}
@@ -6543,15 +6550,18 @@ Si on compare le projet à une entreprise :
 \begin{definitionNOHFILLsub}[Coût du capital et beta sans effet de levier]
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$r_{U}$]	Coût des capitaux propres sans effet de levier.
-	\item[$\beta_{U}$]	Beta sans effet de levier.
 	\item[$E$]	Valeur au marché de l'équité de l'entreprise.
 	\item[$D$]	Valeur au marché de la dette de l'entreprise.
 		\begin{itemize}
-		\item	S'il y a des capitaux propres, on calcule $D - CP$.
+		\item	S'il y a des capitaux propres, on calcule $D - E$.
 		\end{itemize}
+	\item[$\beta_{U}$]	Beta des capitaux propres sans effet de levier.
+		\begin{itemize}
+		\item	Alias, \og \textit{asset beta} \fg{}.
+		\end{itemize}
+	\item[$r_{U}$]	Coût des capitaux propres sans effet de levier.
 	\item[$r_{E}$]	Coût des capitaux propres avec levier.
-	\item[$r_{D}$]	Coût des capitaux d'emprunt.
+	\item[$r_{D}$]	Coût des capitaux d'emprunt (avec levier).
 	\item[$w_{E}$]	Proportion de l'entreprise financée par des capitaux propres.
 		\begin{itemize}
 		\item	\lfbox[formula]{$w_{E}	=	\frac{E}{E + D}$}.
@@ -6567,7 +6577,7 @@ Donc, on trouve :
 \begin{itemize}
 	\item	le coût des capitaux propres sans effet de levier \lfbox[formula]{$r_{U}	=	w_{E} \cdot r_{E} + w_{D} \cdot r_{D}$}, et 
 	\item	le beta sans effet de levier \lfbox[formula]{$\beta_{U}	=	w_{E} \cdot \beta_{E} + w_{D} \cdot \beta_{D}$} ;
-	\item	En anglais, \og \textit{unlevered cost of capital} \fg{}.
+	\item	En anglais, \og \textit{unlevered cost of capital} \fg{} ou \og \textit{asset cost of capital} \fg{}.
 \end{itemize}
 \end{definitionNOHFILLsub}
 
@@ -6575,7 +6585,9 @@ Donc, on trouve :
 Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\shortstack{prime de risque\\ du marché}\right)$}.\\
 \end{definitionNOHFILLprop}
 
-\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$ ; c'est à dire, $D - CP$.
+\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$ ; c'est à dire, $D - E$.
+\paragraph{Note}	Le beta de l'actif sans risque est nul puisqu'il n'y a aucun risque.
+
 
 %\columnbreak
 \subsubsection{Rendement requis pour un projet avec effet de levier}
@@ -6695,7 +6707,8 @@ Prends en considération l'élan d'une compagnie.	\\
 
 \begin{itemize}
 	\item	On l'estime comme la différence entre le rendements des gagnants et des perdants de l'année passée $\text{E}[R_{AVE}]	=	\text{E}[R_{GAVE}]	-	\text{E}[R_{PAVE}]$ ;
-	\item	En anglais, \og \textit{prior 1-year momentum (PR1YR)} \fg{}.
+	\item	En anglais, \og \textit{prior 1-year momentum (PR1YR)} \fg{} ;
+	\item	Construit en achetant le top 30\% des actions et en faisant une vente en découvert du bas 30\% des actions.
 \end{itemize}
 \end{definitionNOHFILLsub}
 
@@ -7832,6 +7845,9 @@ Dette émise par des gouvernements provinciales (de l'état aux É.-U.) ou munic
 \begin{itemize}
 	\item	Habituellement, les rendements sont \textbf{libres d'impôts} fédérales.
 	\item	Le taux peut être fixe ou variable.
+		\begin{itemize}
+		\item	Si l'obligation a un taux de coupon variable (\og \textit{floating rate} \fg{}) il est ajusté périodiquement (p. ex., à chaque jour, semaine, mois, etc.) selon les conditions du marché.
+		\end{itemize}
 	\item	Le taux de défaillance des ses obligations est plus élevée que les obligations fédérales à environ 4\% depuis 1970 aux É.-U.
 \end{itemize}
 
@@ -7874,30 +7890,29 @@ Titre dont les rendements proviennent d'actifs sous-jacent.
 \subsection{Propositions de Modigliani-Miller}
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$U$]	Valeur au marché de l'équité d'une entreprise sans levier.
-	\item[$E$]	Valeur au marché de l'équité d'une entreprise avec levier.
-	\item[$D$]	Valeur au marché de la dette d'une entreprise avec levier.
-	\item[$V_{U}$]	Valeur au marché d'une entreprise sans levier.
+	\item[$U$]	Valeur au marché de l'équité d'une entreprise \textbf{sans} levier.
+	\item[$E$]	Valeur au marché de l'équité d'une entreprise \textbf{avec} levier.
+	\item[$D$]	Valeur au marché de la dette d'une entreprise (avec levier).
+	\item[$V_{L}$]	Valeur au marché d'une entreprise \textbf{avec} levier.
 		\begin{itemize}
-		\item	\lfbox[formula]{$V_{U}	=	U$}.
+		\item	\lfbox[conditions]{$V_{L}	=	E	+	D$}.
 		\end{itemize}
-	\item[$V_{L}$]	Valeur au marché d'une entreprise avec levier.
+	\item[$V_{U}$]	Valeur au marché d'une entreprise \textbf{sans} levier.
 		\begin{itemize}
-		\item	\lfbox[formula]{$V_{L}	=	E	+	D$}.
+		\item	\lfbox[conditions]{$V_{U}	=	E	+	0	=	U$}.
 		\end{itemize}
 \end{description}
 \end{distributions}
 
 \subsubsection{Proposition I (sans impôts)}
-\textbf{La structure du capital n'a aucun impact sur la valeur d'une entreprise} sous les conditions suivantes :
-\begin{definitionNOHFILLpropos}[Conditions pour la proposition 1 de MM]
-\begin{enumerate}
+\textbf{La structure du capital n'a aucun impact sur la valeur d'une entreprise} et \lfbox[formula]{$V_{L}	=	V_{U}$} sous les conditions suivantes :
+\begin{definitionNOHFILLpropos}[Conditions pour la proposition 1 de M.-M.]
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
 	\item	Tous les investisseurs ont les mêmes attentes de rendements.
 	\item	Les marchés financiers sont parfaitement concurrentiels.
 		\begin{itemize}
-		\item	Concept de micro.
+		\item	Il n'y a pas de taxes, de frais de transaction, de coûts de faillite ;
 		\item	En anglais, \og \textit{perfect competition} \fg{}.
-		\item	Il n'y a pas de taxes, de frais de transaction, de coûts de faillite.
 		\end{itemize}
 	\item	Les investisseurs peuvent emprunter et prêter au taux sans risque.
 	\item	Il n'y a pas de conflits d'intérêts entre les gestionnaires et les actionnaires (aucun coût d'agence).
@@ -7911,29 +7926,38 @@ Titre dont les rendements proviennent d'actifs sous-jacent.
 \end{enumerate}
 \end{definitionNOHFILLpropos}
 
-Donc, la structure du capital d'une entreprise n'a aucune importance à sa valeur. 
-\begin{itemize}
-	\item	Selon MM I, une compagnie composée à 75\% de capitaux propres et 25\% de dette est équivalente à une entreprise composée à 75\% de dette et à 25\% de capitaux propres. 
-	\item	C'est à dire, $V_{L}	=	V_{U}$.
-	\item	Un investisseur peut augmenter ou diminuer le levier de son portefeuille aux taux sans risque (condition 3) et donc obtenir une structure de capital à son goût sans égard.
+Par exemple, selon M.-M. I, une compagnie composée à $w_{E} = 75\%$ de capitaux propres et $w_{D} = 25\%$ de dette est équivalente à une entreprise composée à $w_{D} = 75\%$ de dette et à $w_{E} = 25\%$ de capitaux propres. La structure d'une entreprise n'a donc aucun impact sur la décision d'investissement d'un investisseur---il peut augmenter ou diminuer le levier de son portefeuille au taux sans risque (condition \circled{3}{trueblue}) et donc obtenir une structure de capital à son goût sans égard. En anglais, ceci s'appelle du \og \textit{homemade leverage} \fg{}. \\
+
+Si un investisseur ajoute $x\$$ de dette à son portefeuille, il doit diminuer ses capitaux propres de $x\$$ afin que la valeur de son portefeuille demeure inchangée. Pour trouver le montant $x\$$ à emprunter, on pose : 
+
+\begin{align*}
+	\frac{D + x}{E - x}
+	&=	\left(\frac{D}{E}\right)_{\text{souhaité}}
+\end{align*}
+
+
+\columnbreak
+\subsubsection{Proposition II de M.-M. (sans impôts)}
+\textbf{Rappels} : 
+\begin{enumerate}
+	\item	Sous la proposition I de M.-M., \lfbox[conditions]{$V_{U}	=	V_{L}$}.
 		\begin{itemize}
-		\item	La structure de l'entreprise dans laquelle il investit n'a donc aucun impact sur sa décision d'investir.
-		\item	En anglais, ceci s'appelle du \og \textit{homemade leverage} \fg{}.
+		\item	Il s'ensuit que \lfbox[formula]{$U	=	E + D$}.
 		\end{itemize}
-\end{itemize}
+	\item	Sans impôts, \lfbox[conditions]{$r_{CMPC}	=	\frac{E}{E + D} r_{E} + \frac{D}{E + D} r_{D}$}.
+		\begin{itemize}
+		\item	Il s'ensuit que \lfbox[formula]{$r_{U}	=	r_{CMPC}$}.
+		\end{itemize}
+\end{enumerate}
 
+En réécrivant l'équation du $r_{CMPC}$, on trouve que \lfbox[formula]{$r_{E}	=	r_{U} + \frac{D}{E} (r_{U}	-	r_{D})$}.
 
-\subsubsection{Proposition II de MM (sans impôts)}
+\
+
+La préposition 2 de M.-M. stipule que \textbf{le coût des capitaux propres avec levier augmente avec le ratio d'endettement d'une entreprise}.
+
 \begin{itemize}
-	\item	Nous \hyperref[sec:wacc_def]{\textcolor{teal}{avons vu}} que \lfbox[rappel]{$r_{CMPC}	=	\frac{E}{E + D} r_{E} + \frac{D}{E + D} r_{D}$}.
-	\item	Également, puisque sous la proposition I de MM \lfbox[conditions]{$V_{U}	=	V_{L}$} alors \lfbox[formula]{$U	=	E + D$}.
-	\item	Sans impôts, on trouve que le CMPC et le coût du capital sans levier sont égaux : $r_{U}	=	r_{CMPC}$. 
-	\item	En réécrivant l'équation, \lfbox[formula]{$r_{E}	=	r_{U} + \frac{D}{E} (r_{U}	-	r_{D})$}.
-\end{itemize}
-
-On voit donc qu'une augmentation de la dette $D$ augmente le rendement sur les capitaux propres avec levier $r_{E}$.
-\begin{itemize}
-	\item	La préposition 2 de MM stipule que \textbf{le coût des capitaux propres avec levier augmente avec le ratio d'endettement d'une entreprise}.
+	\item	On peut voir que l'effet d'une augmentation de la dette $D$ est d'augmenter le rendement sur les capitaux propres avec effet de levier $r_{E}$.
 \end{itemize}
 
 %%%	------------------------
@@ -7944,10 +7968,11 @@ On voit donc qu'une augmentation de la dette $D$ augmente le rendement sur les c
 
 \begin{itemize}
 	\item	Initialement, le coût de la dette est plus faible que celui des capitaux propres puisque les rendements sont plus faibles et moins risqués. 
-	\item	Cependant, plus une entreprise a de la dette plus le risque que les actionnaires ne se fassent pas payer augmente. 
+	\item	Cependant, plus une entreprise a de la dette, plus le risque que les actionnaires ne se fassent pas payer augmente. 
 	\item	Alors, le coût croissant des capitaux propres contrebalance l'avantage d'utiliser davantage de dette ce qui mène à un CMPC constant.
-	\item	Visuellement : 
 \end{itemize}
+
+Visuellement : 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -8014,15 +8039,16 @@ Avec $r_{U}	=	10\%$, on trouve que le coût des capitaux propres avec effet de l
 \end{formula}
 
 
-\paragraph{CMPC avec plusieurs titres}	Les deux types de titres qui forment typiquement la structure du capital d'une entreprise sont les capitaux propres et la dette. 
+\paragraph{CMPC avec plusieurs titres}	Les deux types de titres qui forment typiquement la structure du capital d'une entreprise sont les capitaux propres et la dette. Cependant, Si une compagnie a plus de titres, il suffit de faire une moyenne pondérée des rendements.
+
+Pour $n$ types de rendements \lfbox[formula]{$r_{U}	=	\sum_{i	=	1}^{n} w_{i} r_{i}$}.
+
 \begin{itemize}
-	\item	Si une compagnie a plus de titres, il suffit de faire une moyenne pondérée des rendements. 
-	\item	Pour $n$ types de rendements \lfbox[formula]{$r_{U}	=	\sum_{i	=	1}^{n} w_{i} r_{i}$}.
 	\item	Par exemple, elle pourrait avoir des actions ordinaires et des actions privilégiées.
 \end{itemize}
 
 
-\paragraph{Betas avec et sans effet de levier}	On peut appliquer la formule du coût des capitaux propres sans effet de levier aux betas avec $\beta_{E}	=	\beta_{U} + \frac{D}{E}(\beta_{U}	-	\beta_{D})$ qui découle de l'équation $\beta_{U}	=	w_{E} \beta_{E} + w_{D} \beta_{D}$.
+\paragraph{Betas avec et sans effet de levier}	On peut appliquer la formule du coût des capitaux propres sans effet de levier aux betas avec \lfbox[formula]{$\beta_{E}	=	\beta_{U} + \frac{D}{E}(\beta_{U}	-	\beta_{D})$} qui découle de l'équation \lfbox[conditions]{$\beta_{U}	=	\frac{E}{E +  D} \beta_{E} + \frac{D}{E + D} \beta_{D}$}.
 
 \begin{formula}{Exemple de calcul du CMPC pour un projet}
 Soit : 
@@ -8033,7 +8059,7 @@ Soit :
 \end{itemize}
 On souhaite trouver la différence entre les coûts des capitaux avec et sans emprunt du montant d'investissement initial.
 
-\begin{enumerate}
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	On trouve le rendement espéré sur les capitaux propres sans effet de levier.
 		\begin{itemize}
 		\item	Puisque l'on pose aucun emprunt, l'espérance du rendement sur les capitaux est égale au rendement de l'entreprise : 
@@ -8089,17 +8115,15 @@ On souhaite trouver la différence entre les coûts des capitaux avec et sans em
 		=	0.40
 		\end{align*}
 \end{enumerate}
-
 \end{formula}
 
 
 \columnbreak
 \subsubsection{Propositions avec impôts}
-\paragraph{Proposition I de MM}	Avec impôt, la structure du capital a un impact sur la valeur d'une entreprise puisque les paiements d'intérêt sont habituellement réductibles d'impôts.
+\paragraph{Proposition I de M.-M.}	Avec impôts, la structure du capital \textbf{a un impact} sur la valeur d'une entreprise. Puisque les paiements d'intérêt sont habituellement déductibles d'impôts, emprunter offre des épargnes d'argent qui augmentent la valeur d'une entreprise. 
+
 \begin{itemize}
-	\item	Emprunter offre donc des épargnes qui augmentent la valeur d'une entreprise.
-	\item	On trouve que $$V_{L}		=	V_{U} + \shortstack{bouclier fiscale\\ sur l'intérêt}$$
-	\item	Également, $$\shortstack{bouclier fiscale\\ sur l'intérêt}	=	\tau_{C} \times \text{paiements d'intérêt}$$
+	\item	On trouve que \lfbox[formula]{$V_{L}		=	V_{U} + \text{bouclier fiscal sur l'intérêt}$} \\ où \lfbox[formula]{$\text{bouclier fiscal sur l'intérêt}	=	\tau_{C} \times \text{paiements d'intérêt}$}
 \end{itemize}
 
 \begin{formula}{Exemple de la valeur d'une entreprise avec effet de levier}
@@ -8112,23 +8136,33 @@ Soit :
 
 La compagnie décide de payer l'intérêt a chaque année puis de payer le principal à la fin de 10 ans.\\
 
-Alors, le bouclier fiscale est de $0.45 \times 2M \times 0.10	=	900k\$$ par année. 
-\begin{itemize}
-	\item	La valeur actualisée est $900k\$ \ax{\angl{10}5\%}	=	6.9M\$$. 
-	\item	Alors, $V_{L}	=	V_{U}	+	6.9M\$$.
-\end{itemize}
+\begin{enumerate}[label = \rectangled{\arabic*}{gray}]
+	\item	On trouve le bouclier fiscal annuel : 
+		\begin{align*}
+		\underbrace{0.45}_{\tau_{C}} \times \underbrace{2M \times 0.10}_{\text{paiements d'intérêt}}	
+		&=	900k\$
+		\end{align*}
+	\item	On trouve le bouclier fiscal comme la VAN des épargnes annuelles :
+		\begin{align*}
+		900 \ax{\angl{10}5\%}
+		&=	\underbrace{6.9M\$}_{\text{bouclier fiscal}}
+		\end{align*}
+	\item	On trouve que la valeur de l'entreprise avec levier $V_{L}	=	V_{U}	+	6.9M\$$
+\end{enumerate}
 \end{formula}
 
-\paragraph{Proposition II de MM}	Le CMPC après impôts calcule le coût des capitaux propres en considérant l'avantage du bouclier fiscale.
+\paragraph{Proposition II de M.-M.}	Le CMPC après impôts prend en considération l'avantage du bouclier fiscal pour calculer le coût des capitaux propres.	\\
 
-On trouve donc que \lfbox[formula]{$r_{CMPC}	=	w_{E} r_{E} + w_{D} r_{D} (1 - \tau_{C})$} ou de façon équivalente : 
+On trouve donc : 
 \begin{align*}
-	\underbrace{w_{E} r_{E} + w_{D} r_{D}}_{\text{CMPC avant impôts}} - \underbrace{\tau_{C} w_{D} r_{D}}_{\text{bouclier fiscale}}
+	r_{CMPC}	
+	&=	w_{E} r_{E} + w_{D} r_{D} (1 - \tau_{C})	\\
+	&=	\underbrace{w_{E} r_{E} + w_{D} r_{D}}_{\text{CMPC avant impôts}} - \underbrace{\tau_{C} w_{D} r_{D}}_{\text{bouclier fiscal}}
 \end{align*}
 
 \
 
-Également, le coût des capitaux propres avec effet de levier est \lfbox[formula]{$r_{E}	=	r_{U} + \frac{D}{E} (r_{U} - r_{D})(1 - \tau_{C})$}.
+Également, le coût des capitaux propres avec effet de levier est \lfbox[formula]{$r_{E}	=	r_{U} + \frac{D}{E} (r_{U} - r_{D})(1 - \tau_{C})$}.	\\
 
 Visuellement : 
 \begin{center}
@@ -8192,7 +8226,7 @@ Le désavantage d'utiliser un levier financier est le risque de pertes important
 
 La valeur actualisée des coûts de détresse financière a 3 composantes : 
 
-\begin{definitionNOHFILLpropos}[1.	Les coûts d'une détresse financière et de faillite]
+\begin{definitionGENERAL}{Les coûts d'une détresse financière et de faillite}[\circled{1}{trueblue}]
 \begin{itemize}
 	\item	Ceux-ci peuvent être des coûts :
 		\begin{description}
@@ -8208,16 +8242,16 @@ La valeur actualisée des coûts de détresse financière a 3 composantes :
 		\item[tangibles]	ont des coûts de détresse moins élevés puisqu'une plus grande proportion de leur valeur provient des biens (p. ex. des avions, des machines, etc.) qui sont plus facilement liquidables.	
 	\end{description}
 \end{itemize}
-\end{definitionNOHFILLpropos}
+\end{definitionGENERAL}
 
-\begin{definitionNOHFILLpropos}[2.	La probabilité d'une détresse financière et d'une faillite]
+\begin{definitionGENERAL}{La probabilité d'une détresse financière et d'une faillite}[\circled{2}{trueblue}]
 \begin{itemize}
 	\item	Plus une compagnie est endettée, plus sa probabilité de détresse financière augmente.
 	\item	Également, plus les rendements sont volatiles, plus la probabilité de détresse financière augmente.
 \end{itemize}
-\end{definitionNOHFILLpropos}
+\end{definitionGENERAL}
 
-\begin{definitionNOHFILLpropos}[3.	Le taux d'actualisation des coûts de détresse financière]
+\begin{definitionGENERAL}{Le taux d'actualisation des coûts de détresse financière}[\circled{3}{trueblue}]
 \begin{itemize}
 	\item	Ce taux varie selon le risque de marché de l'entreprise.
 	\item	Le beta des coûts de détresse financière a le signe opposé du beta de l'entreprise.
@@ -8226,7 +8260,7 @@ La valeur actualisée des coûts de détresse financière a 3 composantes :
 		\item	Plus un beta est \textit{faible} (négatif), plus le coût du capital \textit{décroît} et par conséquent la valeur actualisée des coûts de détresse \textit{augmente}.
 		\end{itemize}
 \end{itemize}
-\end{definitionNOHFILLpropos}
+\end{definitionGENERAL}
 
 
 \columnbreak
@@ -8246,93 +8280,122 @@ Coûts liés aux conflits d'intérêt parmi les parties prenantes de l'entrepris
 %%%	+	Distinguer les agency costs des agency benefits (AJvR).
 %%%	------------------------
 
-\paragraph{Coûts comme levier}	L'utilisation d'un levier financier par une entreprise implique un conflit d'intérêts si les décisions d'investissement ont des conséquences différentes pour les actionnaires et les créanciers.
+\paragraph{Coûts comme levier}	L'utilisation d'un levier financier par une entreprise implique un conflit d'intérêts si les décisions d'investissement ont des conséquences différentes pour les actionnaires et les créanciers.	\\
 
-P. ex. : 
+Les revenus des créanciers sont fixes alors que ceux des actionnaires sont liés à la performance de l'entreprise. Un problème découlant de ceci est :
+
+\begin{definitionNOHFILLprop}[Prise de risque excessive et remplacement d'actifs]
+Le \textbf{problème de remplacement d'actifs} se produit lorsqu'une entreprise remplace ses actifs de faible risque par des actifs risqués.	\\
+
+En raison de leurs \textbf{revenus fixes}, les créanciers préfèrent des investissements \textit{moins risqués}. En revanche, les actionnaires préfèrent des investissements \textit{risqués} ayant un \textbf{rendement potentiel élevé}. 
+\end{definitionNOHFILLprop}
+
+En cas de faillite, les actionnaires sont payés après les créanciers. Ceci peut mener à plusieurs problèmes dont : 
+
+\begin{definitionNOHFILLprop}[Excédent de dette ou sous-investissement]
+Les actionnaires pourraient ne pas financer des projets majoritairement avantageux pour les créanciers même si la VAN est positive. 
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Retrait d'investissement]
+Les actionnaires ont un incitatif à vendre les actifs de l'entreprise pour des prix inférieurs à leurs vraies valeurs afin de distribuer les revenus sous forme de dividendes.
+\end{definitionNOHFILLprop}
+
+
+\paragraph{Avantages comme levier}	
+Les gestionnaires peuvent avoir des motivations qui diffèrent des actionnaires et des créanciers.	\\
+
+Exemples de différences de motivation :
+\begin{definitionNOHFILLprop}[\og \textit{empire building} \fg{}]
+Les gestionnaires peuvent choisir d'investir dans des projets qui font grossir la taille de l'entreprise plutôt que sa rentabilité.  Ils peuvent donc choisir des projets avec une VAN négative.	\\
+
 \begin{itemize}
-	\item	Prise de risque excessive et remplacement d'actifs.
-		\begin{itemize}
-		\item	Une entreprise qui remplace ses actifs à risque faible par des actifs très risqués engendre le problème de remplacement d'actifs.
-		\item	Le rendement des actionnaires est lié à la performance de l'entreprise et donc ils préfèrent des investissements risqués avec un potentiel de rendements plus élevés.
-		\item	Les créanciers ont des revenus fixes et donc préfèrent des investissements moins risqués.
-		\end{itemize}
-	\item	Excédent de dette ou sous-investissement.
-		\begin{itemize}
-		\item	En cas de faillites, les créanciers se font payer avec les actionnaires.
-		\item	Les actionnaires pourrait donc ne pas financer des projets avec une VAN positive qui seraient majoritairement avantageux pour les créanciers. 
-		\end{itemize}
-	\item	Retrait d'investissement.
-		\begin{itemize}
-		\item	Les actionnaires ont un incitatif à vendre les actifs pour des prix inférieurs à leur valeur puisqu'ils seront payés après les créanciers.
-		\end{itemize}
+	\item	Sans de participation au rendement sur les capitaux propres, ils préfèrent être gestionnaires de grosses compagnies.
 \end{itemize}
+\end{definitionNOHFILLprop}
 
+\begin{definitionNOHFILLprop}[\og \textit{managerial entrenchment} \fg{}]
+Puisqu'il est peu probable que les gestionnaires soient remplacés, ils peuvent décider de faire comme ils souhaitent.	\\
 
-\paragraph{Avantages comme levier}
-Les gestionnaires peuvent avoir des motivations qui diffèrent des actionnaires et des créanciers, p. ex. : 
-\begin{description}
-	\item[\og \textit{empire building} \fg{}]	Les gestionnaires sans participation au capital peuvent choisir des projets avec un VAN négative.
-		\begin{itemize}
-		\item	Ils préfèrent être gestionnaires pour des grosses compagnies et donc choisissent des projets qui augmentent la taille de l'entreprise même si ceux-ci diminuent la rentabilité.
-		\end{itemize}
-	\item[\og \textit{managerial entrenchment} \fg{}]	Puisqu'il est peu probable que les gestionnaires soient remplacés, ils peuvent décider de faire ce qu'ils veulent.
-		\begin{itemize}
-		\item	Il s'ensuit qu'ils peuvent prendre des décisions qui sont avantageuses pour eux, et non les actionnaires.
-		\end{itemize}
-\end{description}
+\begin{itemize}
+	\item	Il s'ensuit qu'ils peuvent prendre des décisions avantageuses pour eux et \textit{dés}avantageuses pour les actionnaires.
+\end{itemize}
+\end{definitionNOHFILLprop}
 
 \
 
-Les leviers peuvent aussi motiver les gestionnaires à diriger l'entreprise d'une façon plus efficace en raison de : 
+L'utilisation d'un levier peut motiver les gestionnaires à diriger l'entreprise d'une façon plus efficace en raison de : 
 \begin{itemize}
-	\item	La concentration accrue des actionnaires.
+	\item	La \textbf{concentration accrue des actionnaires}.
 		\begin{itemize}
 		\item	Les gestionnaires ayant une plus grosse participation dans l'entreprise ont plus d'incitatifs à prendre les meilleurs décisions pour l'entreprise.
 		\end{itemize}
-	\item	La diminution des dépenses inutiles.
+	\item	La \textbf{diminution} des \textbf{dépenses inutiles}.
 		\begin{itemize}
 		\item	Moins de levier implique moins d'argent à dépenser et donc moins de dépends inutiles (\og \textit{free cash flow hypothesis} \fg{}).
 		\end{itemize}
-	\item	Diminution du \og \textit{managerial entrenchment} \fg{} et engagement accru.
+	\item	\textbf{Augmentation de la probabilité d'une détresse financière} et diminution du \og \textit{managerial entrenchment} \fg{}.
 		\begin{itemize}
-		\item	Il est plus probable qu'un gestionnaire soit renvoyé en détresse financière.
-		\item	Donc, les gestionnaires sont plus motivés à diminuer le levier et donc la probabilité de détresse financière.
+		\item	Il est plus probable qu'un gestionnaire soit renvoyé en détresse financière menant à un \textbf{engagement accru} à diminuer le levier et, par conséquent, leur probabilité d'être renvoyé.
 		\end{itemize}
 \end{itemize}
 
 \
 
 Pour mitiger les \og \textit{agency costs} \fg{}, l'entreprise peut : 
-\begin{enumerate}
-	\item	Émettre de la dette à court-terme.
-		\begin{itemize}
-		\item	Ceci réduit la chance qu'une entreprise prenne des décisions non-optimales contre allant à l'encontre des intérêts des créanciers.
-		\item	Cependant, ceci peut augmenter le risque	de détresse financière.
-		\end{itemize}
-	\item	Inclure des \og \textit{debt covenants} \fg{} dans les obligations qui limitent les actions que peut prendre l'entreprise.
-		\begin{itemize}
-		\item	P. ex., restreindre l'habilitée de l'entreprise de verser des grosses dividendes, limiter les investissements qu'elle peut faire, etc.
-		\item	Cependant, ceci peut limiter la flexibilité de l'entreprise à poursuivre des investissements ayant une VAN positive.
-		\end{itemize}
-\end{enumerate}
+\begin{definitionGENERAL}{Émettre de la dette à court-terme}[\circled{1}{trueblue}]
+Ceci réduit la chance qu'une entreprise prenne des décisions non optimales allant à l'encontre des intérêts des créanciers. Cependant, le risque de détresse financière peut augmenter.
+\end{definitionGENERAL}
 
-
-\subsubsection{Coûts d'information asymétrique}
-Il y a de l'\textbf{information asymétrique} lorsque les gestionnaires ont plus d'information sur l'entreprise que les actionnaires.
-
-Signales
-
+\begin{definitionGENERAL}{Utiliser des \og \textit{debt covenants} \fg{}}[\circled{2}{trueblue}]
+Inclure des \og \textit{debt covenants} \fg{} dans les obligations limite les décision que peut prendre l'entreprise.
 \begin{itemize}
-	\item	Émettre des actions est typiquement vu comme un signal négatif
-	\item	Emprunter de l'argent est typiquement vu comme un signal positif
+	\item	P. ex., empêcher l'entreprise de verser des grosses dividendes en temps de crise, limiter les investissements qu'elle peut faire, etc.
+	\item	Cependant, ceci peut limiter la flexibilité de l'entreprise à poursuivre des investissements ayant une VAN positive.
+\end{itemize}
+\end{definitionGENERAL}
+
+
+\columnbreak
+\subsubsection{Coûts d'information asymétrique}
+\begin{definitionNOHFILL}[Information asymétrique]
+Il y a de l'information asymétrique lorsque les gestionnaires ont plus d'information sur l'entreprise que les actionnaires.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[\og \textit{lemons principle} \fg{}]
+Lorsque les gestionnaires ont de l'information privée sur la valeur de l'entreprise, les investisseurs vont accepter d'émettre des nouvelles actions pour moins cher en raison de l'antisélection.
+\end{definitionNOHFILLsub}
+
+Lorsqu'un gestionnaire choisit la méthode de financement d'un projet, il doit prendre en compte les signales que cela peut envoyer. De façon générale, 
+\begin{itemize}
+	\item	émettre des actions est typiquement vu comme un signe négatif.
+		\begin{itemize}
+		\item	Typiquement, les actionnaires émettent des nouvelles actions lorsqu'ils croient que l'entreprise est surévaluée. 
+		\end{itemize}
+	\item	émettre davantage d'obligations de l'argent est typiquement vu comme un signe positif
+		\begin{itemize}
+		\item	Emprunter de l'argent implique un engagement à faire des paiements d'intérêt.
+		\end{itemize}
 \end{itemize}
 
-\og \textit{pecking order hypothesis} \fg{}
+\begin{definitionNOHFILL}[\og \textit{pecking order hypothesis} \fg{}]
+Les gestionnaires préfèrent faire des décisions d'investissement qui envoient des signes positifs aux investisseurs externes.\\
+
+En ordre (\og \textit{pecking order} \fg{}), les décisions ayant la meilleur à la pire perception sont :
+\begin{align*}
+	\shortstack{capitaux propres\\ internes}	
+	&>	
+	\shortstack{dette}	
+	&>	
+	\shortstack{capitaux propres\\ externes}	
+	&>	
+	\shortstack{l'émission de\\ nouvelles actions}
+\end{align*}
+\end{definitionNOHFILL}
 
 
 \columnbreak
 \subsubsection{Théorie de l'arbitrage}
-Cherche à balancer les effets qui augmente la valeur de la compagnie avec la dette (bouclier fiscale, \og \textit{agency benefits} \fg{}) avec les effet qui diminuent la valeur de la compagnie (détresse financière, \og \textit{agency costs} \fg{}).
+Cherche à balancer les effets qui augmente la valeur de la compagnie avec la dette (bouclier fiscal, \og \textit{agency benefits} \fg{}) avec les effet qui diminuent la valeur de la compagnie (détresse financière, \og \textit{agency costs} \fg{}).
 
 \begin{itemize}
 	\item	En anglais, \og \textit{trade-off theory} \fg{}.
@@ -8342,7 +8405,7 @@ Selon la théorie :
 \begin{align*}
 	V_{L}
 	&=	V_{U} 
-		+ VAN(\text{bouclier fiscale sur l'intérêt})	\\
+		+ VAN(\text{bouclier fiscal sur l'intérêt})	\\
 &\quad 	- VAN(\text{coûts de détresse financière})\\
 &\quad 	- VAN(\text{\og \textit{agency costs} \fg{} de la dette})\\
 &\quad 	+ VAN(\text{\og \textit{agency benefits} \fg{} de la dette})
@@ -8403,8 +8466,8 @@ $\displaystyle V_{L}$
 
 En bref : 
 \begin{itemize}
-	\item	Les proposition de MM sans taxes.
-	\item	Les proposition de MM avec taxes.
+	\item	Les proposition de M.-M. sans taxes.
+	\item	Les proposition de M.-M. avec taxes.
 	\item	La théorie de l'arbitrage.
 \end{itemize}
 
