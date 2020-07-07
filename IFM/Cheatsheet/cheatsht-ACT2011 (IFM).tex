@@ -7986,7 +7986,9 @@ Visuellement :
 %Straight Lines [id:da16442005234532675] 
 \draw [color={rgb, 255:red, 61; green, 131; blue, 213 }  ,draw opacity=1 ][line width=2.25]    (238.83,49) -- (118,126) ;
 %Straight Lines [id:da9188413160436577] 
-\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (256.83,154) -- (118,154) ;
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (220.83,154) -- (118,154) ;
+%Curve Lines [id:da0766880927779563] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (222.83,154) .. controls (243.83,154.33) and (252.83,154.33) .. (261.83,141.33) ;
 
 % Text Node
 \draw (184,185) node [anchor=north west][inner sep=0.75pt]   [align=left] {ratio d'endettement};
@@ -8005,9 +8007,9 @@ coût du \\capital
 
 \end{minipage}};
 % Text Node
-\draw (246.83,129) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{14.527928000000001pt}\setlength\topsep{0pt}
+\draw (232.83,130) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{14.527928000000001pt}\setlength\topsep{0pt}
 \begin{center}
-\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.5,0.5,0.5}{r_{D}}$}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.5,0.5,0.5}{r}\textcolor[rgb]{0.5,0.5,0.5}{_{D}}$}
 \end{center}
 
 \end{minipage}};
@@ -8021,7 +8023,6 @@ coût du \\capital
 
 
 \end{tikzpicture}
-
 \end{center}
 
 \begin{formula}{Exemple de calcul du CMPC et du coût des capitaux propres sans effet de levier}
@@ -8123,7 +8124,15 @@ On souhaite trouver la différence entre les coûts des capitaux avec et sans em
 \paragraph{Proposition I de M.-M.}	Avec impôts, la structure du capital \textbf{a un impact} sur la valeur d'une entreprise. Puisque les paiements d'intérêt sont habituellement déductibles d'impôts, emprunter offre des épargnes d'argent qui augmentent la valeur d'une entreprise. 
 
 \begin{itemize}
-	\item	On trouve que \lfbox[formula]{$V_{L}		=	V_{U} + \text{bouclier fiscal sur l'intérêt}$} \\ où \lfbox[formula]{$\text{bouclier fiscal sur l'intérêt}	=	\tau_{C} \times \text{paiements d'intérêt}$}
+	\item	On trouve que \lfbox[formula]{$V_{L}		=	V_{U} + \text{bouclier fiscal sur l'intérêt}$} \\ où \lfbox[formula]{$\text{bouclier fiscal sur l'intérêt}	=	\tau_{C} \times \text{paiements d'intérêt}$}.
+		\begin{itemize}
+		\item	Cette formule pour le bouclier fiscal avec un taux d'imposition de $\tau_{C}$ sur un emprunt de $D$ au taux sans risque suit de l'hypothèse que les paiements sont infinis.
+		\item	Ceci implique que la VAN correspond à la perpétuité suivante :
+			\begin{align*}
+			\frac{\tau_{C} \times r_{f} \times D}{r_{f}}
+			&=	\tau_{C} \times D
+			\end{align*}
+		\end{itemize}
 \end{itemize}
 
 \begin{formula}{Exemple de la valeur d'une entreprise avec effet de levier}
@@ -8166,19 +8175,23 @@ On trouve donc :
 
 Visuellement : 
 \begin{center}
+
+
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,208); %set diagram left start at 0, and has height of 208
 
-%Shape: Axis 2D [id:dp05665703449666082] 
+%Shape: Axis 2D [id:dp9299720215164984] 
 \draw  (102,180.95) -- (267.5,180.95)(118.55,32) -- (118.55,197.5) (260.5,175.95) -- (267.5,180.95) -- (260.5,185.95) (113.55,39) -- (118.55,32) -- (123.55,39)  ;
-%Straight Lines [id:da23527423296147232] 
+%Straight Lines [id:da5689586480260302] 
 \draw [color={rgb, 255:red, 61; green, 131; blue, 213 }  ,draw opacity=1 ][line width=2.25]    (238.83,49) -- (118,126) ;
-%Straight Lines [id:da33774173673680163] 
-\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (256.83,154) -- (118,154) ;
-%Curve Lines [id:da600116537886787] 
+%Straight Lines [id:da2812142634219641] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (256.83,162) -- (118,162) ;
+%Curve Lines [id:da018966057571452533] 
 \draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (118,126) .. controls (137.17,133) and (189.17,145) .. (255.17,144) ;
+%Curve Lines [id:da8614868319037388] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (259.83,162) .. controls (280.83,162.33) and (289.83,162.33) .. (298.83,149.33) ;
 
 % Text Node
 \draw (184,185) node [anchor=north west][inner sep=0.75pt]   [align=left] {ratio d'endettement};
@@ -8197,16 +8210,16 @@ coût du \\capital
 
 \end{minipage}};
 % Text Node
-\draw (251.83,153) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{14.527928000000001pt}\setlength\topsep{0pt}
+\draw (212.83,110) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{55.27835600000001pt}\setlength\topsep{0pt}
 \begin{center}
-\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.5,0.5,0.5}{r}\textcolor[rgb]{0.5,0.5,0.5}{_{D}}$}
+{\small \textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{CMPC}$}\textcolor[rgb]{0.96,0.65,0.14}{ }}\\\textcolor[rgb]{0.96,0.65,0.14}{{\small après impôts}}
 \end{center}
 
 \end{minipage}};
 % Text Node
-\draw (212.83,110) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{55.27835600000001pt}\setlength\topsep{0pt}
+\draw (268.83,138) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{14.527928000000001pt}\setlength\topsep{0pt}
 \begin{center}
-{\small \textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{CMPC}$}\textcolor[rgb]{0.96,0.65,0.14}{ }}\\\textcolor[rgb]{0.96,0.65,0.14}{{\small après impôts}}
+\textcolor[rgb]{0.24,0.51,0.84}{$\displaystyle \textcolor[rgb]{0.5,0.5,0.5}{r}\textcolor[rgb]{0.5,0.5,0.5}{_{D}}$}
 \end{center}
 
 \end{minipage}};
@@ -8218,8 +8231,6 @@ coût du \\capital
 
 \columnbreak
 \subsubsection{Coûts de détresse financière}
-\hl{Ajouter plus de détails et pratiquer pour bien saisir comment calculer les VAN. Section pas complétée}.\\
-
 Le désavantage d'utiliser un levier financier est le risque de pertes importantes en temps de crises.
 
 \
@@ -8265,8 +8276,6 @@ La valeur actualisée des coûts de détresse financière a 3 composantes :
 
 \columnbreak
 \subsubsection{Coûts et avantages de \og \textit{agency costs} \fg{}}
-\hl{Ajouter plus de détails et pratiquer pour bien saisir. J'étais tanné et j'ai moins bien fait cette section qui n'est pas complétée}.
-
 La structure du capital peut influencer les décisions d'investissement des gestionnaires. 
 \begin{definitionNOHFILL}[\og \textit{agency costs} \fg{}]
 Coûts liés aux conflits d'intérêt parmi les parties prenantes de l'entreprise (gestionnaires, actionnaires et créanciers). 
@@ -8293,7 +8302,12 @@ En raison de leurs \textbf{revenus fixes}, les créanciers préfèrent des inves
 En cas de faillite, les actionnaires sont payés après les créanciers. Ceci peut mener à plusieurs problèmes dont : 
 
 \begin{definitionNOHFILLprop}[Excédent de dette ou sous-investissement]
-Les actionnaires pourraient ne pas financer des projets majoritairement avantageux pour les créanciers même si la VAN est positive. 
+Les actionnaires pourraient ne pas financer des projets majoritairement avantageux pour les créanciers même si la VAN est positive. \\
+
+\begin{itemize}
+	\item	En anglais, \og \textit{debt overhang} \fg{} ;
+	\item	De façon générale, un nouvel investissement de $I$ est bénéfique pour les actionnaires si : \lfbox[conditions]{$\frac{VAN}{I}	>	\frac{\beta_{D}D}{\beta_{E}E}$}.	
+\end{itemize}
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Retrait d'investissement]
@@ -8395,7 +8409,7 @@ En ordre (\og \textit{pecking order} \fg{}), les décisions ayant la meilleur à
 
 \columnbreak
 \subsubsection{Théorie de l'arbitrage}
-Cherche à balancer les effets qui augmente la valeur de la compagnie avec la dette (bouclier fiscal, \og \textit{agency benefits} \fg{}) avec les effet qui diminuent la valeur de la compagnie (détresse financière, \og \textit{agency costs} \fg{}).
+Cherche à \textbf{balancer} les effets de la dette qui augmentent la valeur de l'entreprise (bouclier fiscal, \og \textit{agency benefits} \fg{}, etc.) avec ceux qui diminuent la valeur (coûts de détresse financière, \og \textit{agency costs} \fg{}, etc.).
 
 \begin{itemize}
 	\item	En anglais, \og \textit{trade-off theory} \fg{}.
@@ -8454,22 +8468,21 @@ $\displaystyle V_{L}$
 \end{center}
 
 \end{minipage}};
-
-
 \end{tikzpicture}
 \end{center}
 
 \begin{itemize}
-	\item	Niveau de dette optimal $D^{\ast}$
+	\item	Le niveau de dette optimal $D^{\ast}$ est trouvé en posant $\deriv{D}{V_{L}}	=	0$ ;
+	\item	Ce point \textbf{maximise la valeur de l'entreprise}.
 \end{itemize}
 
-
-En bref : 
+Le niveau de dette optimal dépend de l'entreprise et de ses particularités. Par exemple : 
 \begin{itemize}
-	\item	Les proposition de M.-M. sans taxes.
-	\item	Les proposition de M.-M. avec taxes.
-	\item	La théorie de l'arbitrage.
+	\item	Des entreprise de R. \& D. ont typiquement des niveaux de dette faibles en raison de leur risque élevé.
+	\item	Des entreprises établies et à faible croissance avec des rendements stables peuvent plus facilement profiter d'une dette élevée.
 \end{itemize}
+
+
 
 \end{multicols*}
 %% -----------------------------
