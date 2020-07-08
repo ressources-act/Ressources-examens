@@ -4796,24 +4796,34 @@ La distribution lognormale a 2 propriétés intéressantes:
 \subsubsection*{Introduction}
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$R(0, t)$]	Rendement composé continûment entre $0$ et $t$ sur un titre donné;
+	\item[$R(0, T)$]	Rendement composé continûment entre $0$ et $T$ sur un titre donné;
 		\begin{itemize}
-		\item	Par définition, \lfbox[formula]{$R(0, T)	=	\ln\left(\frac{S_{t}}{S_{0}}\right)$};
-		\item	On suppose que $R_{0, t}$ suit une loi normale et donc il s'ensuit que $S_{t}$ suit une loi lognormale.
+		\item	Par définition, \lfbox[formula]{$R(0, T)	=	\ln\left(\frac{S_{T}}{S_{0}}\right)$};
+		\item	On suppose que $R_{0, T}$ suit une loi normale et donc il s'ensuit que $S_{T}$ suit une loi lognormale.
 		\end{itemize}
 \end{description}
 \end{distributions}
 
 \begin{itemize}
 	\item	Avec les propriétés des exposants, on trouve que $S_{t_{2}}	=	S_{t_{1}}\textrm{e}^{R(t_{1}, t_{2})}	=	S_{t_{0}}\textrm{e}^{R(t_{0}, t_{1}) + R(t_{1}, t_{2})}$;
-	\item	Avec la propriété de la loi normale, on trouve que \lfbox[formula]{$R(0, T)	=	\sumz{n}{i	=	1}R\left((i	-	1)h, ih\right)$} où les rendements sont (i.i.d.) pour $i	=	1, 2, \dots, n$;
-	\item	Avec $R\left((i	-	1)h, ih\right) \sim \mathcal{N}(\mu_{h}, \sigma^{2}_{h})$ pour $i	=	1, 2, \dots, n$, $R(0, T) \sim \mathcal{N}(n\mu_{h}, n\sigma^{2}_{h})$.	\\
+\end{itemize}
+
+La sous-section \nameref{subsec:bintree-volatility} du chapitre \ref{sec:bintree-intro} qui introduit le modèle binomial d'évaluation sépare une année en périodes de $h$. Par exemple, pour $h	=	\frac{1}{2}$, on trouve le prix de l'action après 6 mois $S_{1/2}$ et le prix après 1 an $S_{1}$. \\
+
+La notation pour représenter ceci est de séparer une périodes de $T$ d'années en $n$ périodes de longueur $h$---\lfbox[conditions]{$h	=	\frac{T}{n}$}. Dans le cas ci-dessus, $h	=	\frac{1}{2}$.\\
+
+Avec les propriétés des exposants, on trouve que $S_{t_{2}}	=	S_{t_{1}}\textrm{e}^{R(t_{1}, t_{2})}	=	S_{t_{0}}\textrm{e}^{R(t_{0}, t_{1}) + R(t_{1}, t_{2})}$. Il s'ensuit que les rendements sont additifs et \lfbox[formula]{$R(0, T)	=	\sumz{n}{i	=	1}R\left((i	-	1)h, ih\right)$}.
+
+\begin{itemize}
+	\item	Avec \lfbox[conditions]{$R\left((i	-	1)h, ih\right) \sim \mathcal{N}(\mu_{h}, \sigma^{2}_{h})$} pour $i	=	1, 2, \dots, n$, \lfbox[formula]{$R(0, T) \sim \mathcal{N}(n\mu_{h}, n\sigma^{2}_{h})$}.	\\
 			C'est-à-dire que la moyenne et la variance des rendements sont \textit{proportionnels au temps};	
 	\item	Sous base annuelle, $\mu =	\frac{\mu_{h}}{h}$ et $\sigma =	\frac{\sigma_{h}}{\sqrt{h}}$ donc \lfbox[formula]{$R(0, T) \sim \mathcal{N}(\mu_{h}T, \sigma^{2}_{h}T)$}.
 \end{itemize}
 
-De façon générale, on suppose que le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{temps $t$ est mesuré en années}, que \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{la moyenne $\alpha$ et la volatilité (variance) $\sigma^{2}$ sont sous base annuelle} puis que le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{taux de dividendes sur l'action $\delta$ est sous base annuelle} aussi.
+De façon générale, on suppose que le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{temps $t$ est mesuré en années}, que \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{la moyenne $\alpha$ et la volatilité (variance) $\sigma^{2}$ sont sous base annuelle} puis que le \lfbox[tight, background-color = palechestnut!60!white, border-color = white]{taux de dividendes sur l'action $\delta$ est sous base annuelle}.
 
+
+\columnbreak
 \subsubsection*{Modèle}
 On cherche $\text{E}[S_{t}]	=	S_{0}\textrm{e}^{(\alpha - \delta)t}$
 
@@ -4856,7 +4866,7 @@ Avec cette distribution, on obtient:
 \end{definitionNOHFILLsub}
 
 \begin{distributions}[Trouver le $p$-ème percentile de $S_{t}$]
-\begin{enumerate}[leftmargin = *]
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
 	\item	Trouver le percentile correspondant $z_{\alpha}$ de la loi normale standard $Z$.
 	\item	Insérer le percentile correspondant de $Z$ dans l'équation pour $S_{t}$.
 \end{enumerate}
@@ -4868,10 +4878,6 @@ Avec cette distribution, on obtient:
 	\item	Alors, une action distribuée selon la loi lognormale aura des rendements inférieurs à la moyenne plus que la moité du temps;
 	\item	Il s'ensuit qu'augmenter $\sigma$ ne va pas impacter la moyenne mais va faire \textit{baisser la médiane}.
 \end{itemize}
-
-\textbf{Déplacement d'un écart type}:\\
-En posant $Z_{i}	=	\pm 1$, on trouve qu'un déplacement d'un écart type de $S_{(i - 1)h}$ est $S_{ih}	=	S_{(i - 1)h}\textrm{e}^{(\alpha	-	\delta	-	\frac{1}{2}\sigma^{2})h \pm \sigma \sqrt{h}}$
-
 
 \columnbreak
 \subsection*{Calculs de probabilités lognormales}
@@ -4889,64 +4895,54 @@ On pose:
 		\right)
 \end{align*}
 
-\begin{distributions}[Trouver une probabilité pour $S_{t}$]
+\begin{distributions}[Trouver une probabilité pour $S_{T}$]
 \begin{align*}
-	\Pr(S_{t}	\leq		K) 
+	\Pr(S_{T}	\leq		K) 
 	&=	N(-\hat{d_{2}})	&
-	\Pr(S_{t}	>		K) 
+	\Pr(S_{T}	>		K) 
 	&=	N(\hat{d_{2}})	\\
-	\text{Pr}^{*}(S_{t}	\leq		K) 
+	\text{Pr}^{*}(S_{T}	\leq		K) 
 	&=	N(-d_{2})	&
-	\text{Pr}^{*}(S_{t}	>		K) 
+	\text{Pr}^{*}(S_{T}	>		K) 
 	&=	N(d_{2})	
 \end{align*}
 \end{distributions}
 
-%%%	----------------------------------------------------------
-%%%	Je juge un peu trop pour le cadre de la cheathseet (AJVR)
-%\begin{algo}{Comment trouver une probabilité avec $S_{t}$}
-%\begin{enumerate}[leftmargin = *]
-%	\item	Isoler la distribution normale $\ln\left(\frac{S_{t}}{S_{0}}\right)$;
-%		\begin{align*}
-%		\Pr(S_{t} < K)
-%		&=	\Pr\left( \ln\frac{S_{t}}{S_{0}} < \ln\frac{S_{t}}{S_{0}} \right)
-%		\end{align*}
-%	\item	Centrer et réduire pour obtenir la distribution normale standard $Z$.
-%		\begin{align*}
-%		\Pr(S_{t} < K)
-%		&=	\Pr\left( \frac{\ln\frac{S_{t}}{S_{0}} - m}{v} < \frac{\ln\frac{K}{S_{0}} - (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)	\\
-%		&=	\Pr\left( Z < - {\color{teal}\left(
-%				\frac{\ln\frac{S_{0}}{K} + (\alpha - \delta - \frac{1}{2}\sigma^{2})t}{\sigma\sqrt{t}}\right)}
-%				\right)	\\
-%		&=	\Pr\left( Z < - {\color{teal}\hat{d_{2}}}\right)	\\
-%		&=	N(-\hat{d_{2}})
-%		\end{align*}
-%\end{enumerate}
-%\end{algo}
-%%%	----------------------------------------------------------
+\begin{algo}{Comment trouver une probabilité pour $S_{T}$}
+\begin{align*}
+	\Pr(S_{T}	\leq	K)
+	&=	\Pr\left(\frac{S_{T}}{\textcolor{teal}{S_{0}}}	\leq		\frac{K}{\textcolor{teal}{S_{0}}} \right)	\\
+	&=	\Pr\left(\textcolor{teal}{\ln}\left(\frac{S_{T}}{S_{0}}\right)	\leq		\textcolor{teal}{\ln}\left(\frac{K}{S_{0}}\right) \right)	
+	=	\Pr\left(\textcolor{teal}{R_{0, T}}	\leq		\ln\left(\frac{K}{S_{0}}\right) \right)	\\
+	&=	\Pr\left(\frac{R_{0, T}	-	\text{E}[R_{0, T}]}{\text{Var}(R_{0, T})}	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\text{E}[R_{0, T}]}{\text{Var}(R_{0, T})} \right)	\\
+	&=	\Pr\left(\textcolor{teal}{Z}	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\text{E}[R_{0, T}]}{\text{Var}(R_{0, T})} \right)	\\
+	&=	\Pr\left(Z	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\left(\alpha - \delta - \frac{1}{2}\sigma^{2}\right)T}{\sigma^{2}T} \right)	\\
+	&=	N(-\hat{d}_{2})
+\end{align*}
+\end{algo}
 
-\begin{distributions}[Trouver un intervalle de prévision de $S_{t}$ de niveau $1 - \alpha$]
+\begin{distributions}[Trouver un intervalle de prévision de $S_{T}$ de niveau $1 - \alpha$]
 \begin{enumerate}[leftmargin = *]
 	\item	Trouver le percentile correspondant de la loi normale standard $Z$ \lfbox[formula]{$\textcolor{burntorange}{z_{\alpha/2}}	=	N^{-1}\left(1		-	\frac{\alpha}{2}\right)$}.
-	\item	Insérer le percentile correspondant dans l'équation pour \lfbox[formula]{$S_{t}	\in	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t \textcolor{burntorange}{\pm z_{\alpha/2}}\sigma\sqrt{t}}$}.
+	\item	Insérer le percentile correspondant dans l'équation pour \lfbox[formula]{$S_{T}	\in	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})T \textcolor{burntorange}{\pm z_{\alpha/2}}\sigma\sqrt{T}}$}.
 \end{enumerate}
 \end{distributions}
 
 \begin{conceptgen_enhanced}[Espérance conditionnelle du prix de l'action]
 %Nous avons l'espérance du prix lorsque l'action est hors-du-cours et dans le cours
 \begin{align*}
-	\text{E}[S_{t} | S_{t} \leq K]
-	&=	\frac{\text{E}\left[S_{t} \times \bm{1}_{\{ S_{t} \leq K \}}\right]}{\Pr(S_{t} \leq K)}
-	=	S_{0}\textrm{e}^{(\alpha - \delta)t} \frac{N(-\hat{d}_{1})}{N(-\hat{d}_{2})}	\\
-	\text{E}[S_{t} | S_{t} > K]
-	&=	\frac{\text{E}\left[S_{t} \times \bm{1}_{\{ S_{t} > K \}}\right]}{\Pr(S_{t} > K)}
-	=	S_{0}\textrm{e}^{(\alpha - \delta)t} \frac{N(\hat{d}_{1})}{N(\hat{d}_{2})}		\\
+	\text{E}[S_{T} | S_{T} \leq K]
+	&=	\frac{\text{E}\left[S_{T} \times \bm{1}_{\{ S_{T} \leq K \}}\right]}{\Pr(S_{T} \leq K)}
+	=	S_{0}\textrm{e}^{(\alpha - \delta)T} \frac{N(-\hat{d}_{1})}{N(-\hat{d}_{2})}	\\
+	\text{E}[S_{T} | S_{T} > K]
+	&=	\frac{\text{E}\left[S_{T} \times \bm{1}_{\{ S_{T} > K \}}\right]}{\Pr(S_{T} > K)}
+	=	S_{0}\textrm{e}^{(\alpha - \delta)T} \frac{N(\hat{d}_{1})}{N(\hat{d}_{2})}		\\
 \end{align*}
 \begin{align*}
-	\text{E}^{*}[S_{t} | S_{t} \leq K]
-	&=	S_{0}\textrm{e}^{(r - \delta)t} \frac{N(-d_{1})}{N(-d_{2})}	&
-	\text{E}^{*}[S_{t} | S_{t} > K]
-	&=	S_{0}\textrm{e}^{(r - \delta)t} \frac{N(d_{1})}{N(d_{2})}	
+	\text{E}^{*}[S_{T} | S_{T} \leq K]
+	&=	S_{0}\textrm{e}^{(r - \delta)T} \frac{N(-d_{1})}{N(-d_{2})}	&
+	\text{E}^{*}[S_{T} | S_{T} > K]
+	&=	S_{0}\textrm{e}^{(r - \delta)T} \frac{N(d_{1})}{N(d_{2})}	
 \end{align*}
 \end{conceptgen_enhanced}
 
@@ -4966,8 +4962,8 @@ Avec ces espérances, on trouve maintenant:
 \begin{itemize}[leftmargin = *]
 	\item	Le modèle de Black-Scholes s'applique.
 	\item	Le prix de l'action suit un modèle lognormale.
-	\item	$\ln\left(\frac{S_{t}}{S_{0}}\right) \sim \mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)t, v^{2} = \sigma^{2}t\right)$.
-	\item	$S_{t} =	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})t + \sigma\sqrt{t}Z}$.
+	\item	$\ln\left(\frac{S_{T}}{S_{0}}\right) \sim \mathcal{N}\left(m = \Big(\alpha - \delta - \frac{1}{2}\sigma^{2}\Big)T, v^{2} = \sigma^{2}T\right)$.
+	\item	$S_{T} =	S_{0}\textrm{e}^{(\alpha - \delta - \frac{1}{2}\sigma^{2})T + \sigma\sqrt{T}Z}$.
 \end{itemize}
 \end{conceptgen}
 
@@ -5006,7 +5002,7 @@ Soit $n + 1$ prix observés $S_{0}, S_{1}, \dots, S_{n}$ à un intervalle régul
 		\end{align*}
 	\item	Mettre l'estimation du rendement espéré sous base annuelle.
 		\begin{align*}
-		\text{E}\left[\ln\left(\frac{S_{t + h}}{S_{t}}\right)\right]
+		\text{E}\left[\ln\left(\frac{S_{T + h}}{S_{T}}\right)\right]
 		&=
 		\left(\hat{\alpha} - \delta - \frac{1}{2} \hat{\sigma}^{2}\right)h	
 		=	\bar{r}	\\
