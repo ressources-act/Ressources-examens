@@ -2218,18 +2218,21 @@ Donc, l'investisseur débourse $237\ 500\$	-	187\ 774.1966\$	=	49\ 725.8034\$$ p
 % --- Chapitre 9 ---
 \setcounter{section}{8}
 \section{Parité et autres liens entre les options}
-\begin{rappel}{Équation de parité des options vente-achat}
+\begin{definitionNOHFILL}[Équation de parité des options vente-achat]
 \begin{align*}
 	C_{\text{Eur}}(K, T) - P_{\text{Eur}}(K, T)
 	&=	F_{0, T}^{P}(S) - K\textrm{e}^{-rT}\\
 \end{align*}
 
-En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}. Cette équation vaut pour les options européennes seulement puisque les américaines peuvent être exercées à n'importe quel moment.
-\end{rappel}
+\begin{itemize}
+	\item	Puisque les options américaines peuvent être exercées à n'importe quel moment, cette équation est seulement valide pour les options européennes ;
+	\item	En anglais c'est le \og \textit{\textbf{Put-Call Parity Equation}} \fg{}. 
+\end{itemize}
+\end{definitionNOHFILL}
+
 
 \subsection{Positions synthétiques}
-
-Avec l'équation de parité, on peut créer des options, actions ou obligations zéro-coupon synthétiques.
+Avec l'équation de parité, on peut créer des options, actions ou obligations zéro-coupon \textbf{synthétiques}.	\\
 
 \textbf{Option d'achat}
 \begin{align*}
@@ -2244,15 +2247,15 @@ Avec l'équation de parité, on peut créer des options, actions ou obligations 
 	-P(S, K)	
 	&=	\underset{\text{\shortstack{achat d'une option\\ d'achat équivalente}}}{\underbrace{-C(S, K)}} \;
 		\underset{\text{\shortstack{vente d'une part\\ de l'action}}}{\underbrace{+F_{0, T}^{P}(S)}} \;
-		\underset{\text{\shortstack{pret de $Ke^{-rT}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-rT}}}
+		\underset{\text{\shortstack{prêt de $K\textrm{e}^{-rT}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-rT}}}
 \end{align*}
 
 \textbf{Action}
 \begin{align*}
 	-S_{0}
-	&=	\underset{\text{\shortstack{vente de $e^{\delta T}$\\ options de vente}}}{\underbrace{+\textrm{e}^{\delta T} P(S. K)}} \;
-		\underset{\text{\shortstack{achat de $e^{\delta T}$\\ options d'achat}}}{\underbrace{-\textrm{e}^{\delta T} C(S, K)}} \;
-		\underset{\text{\shortstack{pret de $Ke^{-(r - \delta)T}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-(r - \delta)T}}}
+	&=	\underset{\text{\shortstack{vente de $\textrm{e}^{\delta T}$\\ options de vente}}}{\underbrace{+\textrm{e}^{\delta T} P(S. K)}} \;
+		\underset{\text{\shortstack{achat de $\textrm{e}^{\delta T}$\\ options d'achat}}}{\underbrace{-\textrm{e}^{\delta T} C(S, K)}} \;
+		\underset{\text{\shortstack{prêt de $K\textrm{e}^{-(r - \delta)T}$\\ au taux sans risque}}}{\underbrace{-K\textrm{e}^{-(r - \delta)T}}}
 \end{align*}
 
 \textbf{Bon du Trésor} (\og \textit{Treasury Bill (T-Bill)} \fg{})
@@ -2260,27 +2263,37 @@ Avec l'équation de parité, on peut créer des options, actions ou obligations 
 	-K \textrm{e}^{-r T}
 	&=	\underset{\text{\shortstack{vente d'une\\ option d'achat}}}{\underbrace{+C(S; K)}} \;
 		\underset{\text{\shortstack{achat d'une\\ option de vente}}}{\underbrace{-P(S; K)}} \;
-		\underset{\text{\shortstack{achat de $e^{-\delta T}$\\ parts de l'action}}}{\underbrace{-S_{0}\textrm{e}^{-\delta T}}}
+		\underset{\text{\shortstack{achat de $\textrm{e}^{-\delta T}$\\ parts de l'action}}}{\underbrace{-S_{0}\textrm{e}^{-\delta T}}}
 \end{align*}
+
 
 \columnbreak
 \subsection{Parité des options}
-
 \subsubsection*{Parité des options sur devises}
+\begin{distributions}[Notation]
 \begin{description}
-	\item[$C(x_0, K, T)$]	Option d'achat qui permet d'acheter une unité de DÉ pour K unités de DD à l'échéance $T$;
+	\item[$C(x_0, K, T)$]	Option d'achat qui permet d'acheter une unité de DÉ pour K unités de DD à l'échéance $T$.
 	\item[$P(x_0, K, T)$] 	Option de vente qui permet d'acheter une unité de DÉ pour K unités de DD à l'échéance $T$.
 \end{description}
+\end{distributions}
 
-Alors, on peut réécrire l'équation de parité : 
 \begin{align*}
 	C(x_0, K,T) - P(x_0, K, T) 
 	&= 	x_0 (1 + i_{\text{É}})^{-T} - K(1 + i_D)^{-T}
 \end{align*}
 
+Si le prix d'exercice est dans la même devise que le prix de l'option, on peut écrire :
+\begin{align*}
+	C^{DD}(x_0, K, T) 
+	&= 	K \cdot P^{DD}\left( \frac{1}{x_0}; \frac{1}{K}; T \right) 
+	= 	x_0	K \cdot P^{\text{DÉ}} \left( \frac{1}{x_0}; \frac{1}{K}; T \right) \\
+\end{align*}
+
+
 \subsubsection*{Parité des options sur obligation}
+\begin{distributions}[Notation]
 \begin{description}
-	\item[$B_{0}$]	Prix aujourd'hui ($t = 0$) d'une obligation avec coupons;
+	\item[$B_{0}$]	Prix aujourd'hui ($t = 0$) d'une obligation avec coupons.
 	\item[$F_{0, T}^{P}(B)$]	Prix d'un contrat à terme standardisé prépayé sur une obligation avec coupons.
 		\setlength{\mathindent}{-1cm}
 		\begin{align*}
@@ -2289,6 +2302,7 @@ Alors, on peut réécrire l'équation de parité :
 		\end{align*}
 		\setlength{\mathindent}{1cm}
 \end{description}
+\end{distributions}
 
 Alors, on peut réécrire l'équation de parité : 
 \begin{align*}
@@ -2296,13 +2310,14 @@ Alors, on peut réécrire l'équation de parité :
 	&= 	F_{0, T}^{P}(B) - F_{0, T}^{P}(K)
 \end{align*}
 
+
 \subsubsection*{Parité généralisée et option d'échange}
 On peut généraliser toute option comme étant l'option d'échanger des actifs---l'\textit{actif sous-jacent} et l'\textit{actif d'exercice}---que l'on nomme des \textbf{options d'échange}.\\
 
 Les options d'achat et de vente sont donc des options d'échange avec de l'argent comme actif d'exercice. On généralise d'abord la notation au-delà du concept d'achat et de vente pour un certain prix:
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$C(S, K)$:] Permet au détenteur de l'option d'achat de recevoir $S$ en échange de $K$;
+	\item[$C(S, K)$:] Permet au détenteur de l'option d'achat de recevoir $S$ en échange de $K$.
 	\item[$P(S, K)$:] Permet au détenteur de l'option de vente de recevoir $K$ en échange de $S$.
 \end{description}
 \end{distributions}
@@ -2311,19 +2326,19 @@ On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P
 
 \begin{distributions}[Notation Claire]
 \begin{description}
-	\item[$S_{t}$:] Prix à $t$ de l'actif sous-jacent---le titre $A$;
-	\item[$Q_{t}$:] Prix à $t$ du prix d'exercice---le titre $B$;
-	\item[$C_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, d'achat le titre $A$ au prix du titre $B$;
+	\item[$S_{t}$:] Prix à $t$ de l'actif sous-jacent---le titre $A$.
+	\item[$Q_{t}$:] Prix à $t$ du prix d'exercice---le titre $B$.
+	\item[$C_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, d'achat le titre $A$ au prix du titre $B$.
 	\item[$P_{\text{euro}}(S_{t}, Q_{t}, T - t)$:] Permet, à $T$, de vendre le titre $A$ au prix du titre $B$.
 \end{description}
 \end{distributions}
 
-\begin{rappel}{Équation de parité des options d'échange}
+\begin{definitionNOHFILL}[Équation de parité des options d'échange]
 \begin{align*}
 	C_{\text{euro}}(S_t, Q_t, T - t) - P_{\text{euro}}(S_t, Q_t, T-t) 
 	&= 	F_{t,T}^{P}(S) - F_{t,T}^{P}(Q)
 \end{align*}
-\end{rappel}
+\end{definitionNOHFILL}
 
 %%%	------------
 %%%	NOTE:
@@ -2336,14 +2351,6 @@ On peut penser à cette notation comme $C(\text{Receive}, \text{Give up})$ et $P
 %%%		Scaling Exchange Options
 %%%	------------
 
-\subsubsection*{Options sur devise}
-\begin{align*}
-	C^{DD}(x_0, K, T) 
-	&= 	K \cdot P^{DD}\left( \frac{1}{x_0}; \frac{1}{K}; T \right) 
-	= 	x_0	K \cdot P^{\text{DÉ}} \left( \frac{1}{x_0}; \frac{1}{K}; T \right) \\
-\end{align*}
-
-\paragraph{Note}	Si le prix d'exercice est dans la même devise que le prix de l'option.
 
 \columnbreak
 \subsection{Comparaison de différentes options}
@@ -2476,7 +2483,7 @@ Cependant, l'avantage de repousser l'exercice est \textbf{l'intérêt accumulé 
 
 Il est donc important de retenir:
 \begin{conceptgen}{}
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{dividendes}) > PV(\text{intérêt sur $K$}) - PV(\text{assurance})$;
  	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option de vente équivalente.
@@ -2487,6 +2494,7 @@ Il est donc important de retenir:
 \end{enumerate}
 \end{conceptgen}
 
+
 \subsubsection*{Options de vente américaines}
 L'avantage d'exercer l'option d'achat immédiatement est la réception de prix d'exercice $K$ et \textbf{l'intérêt qu'on peut accumuler avec}.\\
 
@@ -2494,7 +2502,7 @@ Cependant, l'avantage de repousser l'exercice est de \textbf{continuer à recevo
 
 Il est donc important de retenir:
 \begin{conceptgen}{}
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{intérêt sur $K$}) > PV(\text{dividendes}) + PV(\text{assurance})$;
  	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option d'achat équivalente.
@@ -2593,7 +2601,7 @@ sauf si :
 \end{description}
 
 \begin{distributions}[Notation de prix]
-\begin{description}[leftmargin = *]
+\begin{description}
 	\item[$u$]	facteur de hausse \og \textit{"up" factor} \fg{};
 	\item[$d$]	facteur de baisse \og \textit{"down" factor} \fg{};	
 	\item[$S_{u}$]	prix de l'action s'il y a une hausse;
@@ -2617,7 +2625,7 @@ sauf si :
 \subsection{Portefeuille réplicatif \og \textit{Replicating Portfolio} \fg{}}
 
 \begin{algo2}[Créer un portefeuille réplicatif]
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
 	\item	Acheter $\Delta	=	\textrm{e}^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
 	\item	Prêter $B	=	\textrm{e}^{-r h} \left[ V_{d}\left(	\frac{u}{u - d}\right) - V_{u} \left(\frac{d}{u - d}\right) \right]$ au taux sans risque;
 \end{enumerate}
@@ -2658,7 +2666,7 @@ $B$		&	$-$	&	$+$			\\
 \end{itemize}
 
 \begin{distributions}[Notation]
-\begin{description}[leftmargin = *]
+\begin{description}
 	\item[$p^{*}$]	la probabilité neutre au risque d'une hausse de l'actif.
 		\begin{align*}
 		p^{*}	&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}
@@ -2688,7 +2696,7 @@ Sinon, il y a arbitrage.
 L'intuition est de multiplier le prix à terme de l'action par un facteur variant selon la volatilité.
 
 \begin{distributions}[Notation]
-\begin{description}[leftmargin = *]
+\begin{description}
 	\item[$\sigma$]	la volatilité annuelle du rendement de l'action composée continûment;
 	\item[]	L'écart type de la volatilité sur une période de durée $h$ est donc $\sigma \sqrt{h}$.
 \end{description}
@@ -2709,7 +2717,7 @@ On isole:
 \subsection{Arbres binomiaux à plusieurs périodes}
 
 \begin{distributions}[Notation]
-\begin{description}[leftmargin = *]
+\begin{description}
 	\item[$n$]	nombre de périodes;
 	\item[$h$]	durée de chacune des périodes;
 		\begin{align*}
@@ -2735,13 +2743,13 @@ Il y a 2 approches:
 \end{description}
 
 \begin{algo2}[Approche directe]
-\begin{enumerate}[leftmargin = *]
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
 	\item	Calculer la valeur à l'échéance;
 	\item	La pondérer par la probabilité neutre au risque de l'atteindre;
 	\item	L'actualiser au taux sans risque.
 \end{enumerate}
 \tcbline
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	La probabilité d'atteindre un nœud terminal est calculée avec une distribution binomiale;
 	\item	Pour $n$ périodes, $k$ est le nombre de hausses $u$ pour atteindre le nœud;
 	\item	La probabilité est: \[\Pr(\text{atteindre un nœud ayant $k$ hausses})	=	\binom{n}{k} (p^{*})^{k} (1 - p^{*})^{n - k}\] pour $k = 0, 1, \dots, n$.
@@ -2798,7 +2806,7 @@ VSL	&=
 \end{distributions}
 
 \begin{algo2}[Processus de tarification]
-\begin{enumerate}[leftmargin = *]
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
 	\item	À partir du nœud le plus à droite de l'arbre décider à chaque nœud de l'arbre si l'exercice hâtif est optimal;
 		\begin{itemize}[leftmargin = *]
 		\item	Si $VSL > VEA$ alors il y a un exercice hâtif sinon on maintient l'option au moins une période de plus;
@@ -6190,8 +6198,6 @@ La règle générale est donc :
 
 Avec une régression, on peut estimer le beta de l'actif en le considérant comme la pente et en considérant le rendement en excès du taux sans risque de l'actif $\alpha$ comme l'erreur irréductible :
 \begin{center}
-
-
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -6314,7 +6320,6 @@ $\displaystyle r_{f}$
 
 
 \end{tikzpicture}
-
 \end{center}
 
 \begin{definitionNOHFILL}[Le modèle d'évaluation des actifs financiers (MÉDAF)]
@@ -7209,7 +7214,6 @@ Les étapes générales sont:
 
 \columnbreak
 \subsection{Options réelles}
-
 L'idée des options dites \og réelles \fg{} est de prendre les concepts d'options financières et les appliquer aux décisions d'investissement d'une entreprise.
 \begin{itemize}
 	\item	Donc on applique les techniques d'options financières pour décider si l'on devrait investir dans un nouveau projet, l'élargir, le réduire, etc.
@@ -7232,10 +7236,11 @@ L'arbre de décision est une approche graphique qui illustre les différentes d�
 	\item	Dans un arbre de décisions, les branches représentent les différents choix qui s'offrent  à un gestionnaire.
 \end{itemize}
 
-\begin{formula}{Exemple}
-Soit une compagnie aérienne qui pense acheter 20 avions commerciales au coût de 2M\$ chaque. L'ajout des avions permet des revenus additionnels de 50M\$.
+\begin{formula}{Exemple d'arbre de décision}
+Soit une compagnie aérienne qui pense acheter 20 avions commerciales au coût de 2M\$ chaque. L'ajout des avions permet des revenus additionnels de 50M\$. On souhaite savoir l'espérance de la valeur accumulée de l'investissement.
 
-Un arbre de décision est : 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On trace l'arbre de décision initial :
 \begin{center}
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -7271,11 +7276,8 @@ Un arbre de décision est :
 \end{tikzpicture}
 
 \end{center}
-
-Si on pose qu'il y a une chance sur deux d'avoir une forte demande, on obtient : 
+	\item	Si on pose qu'il y a une chance sur deux d'avoir une forte demande, on agrandit l'arbre : 
 \begin{center}
-
-
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -7331,49 +7333,232 @@ Si on pose qu'il y a une chance sur deux d'avoir une forte demande, on obtient :
 
 
 \end{tikzpicture}
-
 \end{center}
+	\begin{itemize}
+		\item	Les carrés sont des \textbf{nœuds de décisions} et les cercles des \textbf{nœuds d'information}.
+		\item	Les flux financiers sont indiqués au \textbf{moment qu'ils sont réalisés}.
+	\end{itemize}		
+	
+	\item	On trouve l'espérance de la valeur accumulée comme la moyenne pondérée des scénarios :
+		\begin{align*}
+		\text{E}[\text{valeur à l'échéance}]	
+		&=	0.5 \times (75 - 40) + 0.5 \times (25 - 40)
+		=	10
+		\end{align*}
+\end{enumerate}
 
+On peut continuer d'ajouter des possibilités et de complexifier l'arbre.
 \begin{itemize}
-	\item	Les carrés sont des \textbf{nœuds de décisions} et les cercles des \textbf{nœuds d'information}.
-	\item	Les flux financiers sont indiqués au moment qu'ils sont réalisés.
-	\item	$\text{E}[\text{valeur à l'échéance}]	=	0.5 \times (75 - 40) + 0.5 \times (25 - 40)=	10$.
-	\item	On peut continuer d'ajouter des possibilités et de complexifier l'arbre.
-		\begin{itemize}
-		\item	Par exemple, acheter 5 avions puis, si la demande est élevée, acheter 15 autres avions à un prix plus élevé de 2.2M\$ par avion.
-		\item	etc.
-		\end{itemize}
+	\item	Par exemple : acheter 5 avions puis, si la demande est élevée, acheter 15 avions additionnels à un prix plus élevé de 2.2M\$ par avion.
 \end{itemize}
 \end{formula}
 
-\subsubsection{Option de calendrier}
-\hl{Ajouter plus de détails et pratiquer pour bien saisir comment calculer les affaires avec Black-Scholes. Section pas complétée}.
 
-Les options de calendrier donnent un délai à une entreprise avant d'avoir à prendre une décision. L'avantage est que la compagnie pourrait avoir davantage d'information dans le futur et réduire l'incertitude de la décision.
-\begin{itemize}
-	\item	On peut utiliser formule de Black Scholes.
-\end{itemize}
+\columnbreak
+\subsubsection{Option de calendrier (\og \textit{timing option} \fg{})}
+\begin{rappel_enhanced}[Contexte]
+Les options de calendrier donnent un délai à une entreprise avant d'avoir à prendre une décision.\\
+
+L'avantage est, qu'en attendant avoir de faire une décision, l'entreprise pourrait avoir plus d'information et réduire l'incertitude de la décision. \\
+
+Le calcul de la valeur d'une option de calendrier peut se faire selon la structure de Black-Scholes.
+\end{rappel_enhanced}
 
 Il y a 3 facteurs qui ont une influence sur le calendrier de l'investissement :
-\begin{enumerate}
-	\item	La VAN de l'investissement.
-		\begin{itemize}
-		\item	On investit seulement si $VAN(\text{invest. aujourd'hui}) > VAN(\text{avec une option réelle})$ $\textbf{ OU } \text{ > valeur de prendre l'option d'attendre}$.
-		\item	Parfois prendre on considération l'option réelle cause une VAN négative à devenir positive.
-		\end{itemize}
-	\item	La volatilité.
-		\begin{itemize}
-		\item	La valeur d'une option d'achat augmente avec la volatilité.
-		\item	Donc, attendre est la meilleur option s'il y a beaucoup d'incertitude vis-à-vis un investissement.
-		\end{itemize}
-	\item	Les dividendes.
-		\begin{itemize}
-		\item	L'équivalent des dividendes pour une option réelle sont les flux monétaires qui auxquels on renonce en attendant.
-		\item	Il est souvent mieux d'attendre à moins qu'il y ait un coût associé.
-		\end{itemize}
+\begin{definitionGENERAL}{La VAN de l'investissement}[\circled{1}{trueblue}]
+On investit seulement si 
+\begin{align*}
+	VAN(\text{invest. aujourd'hui}) 
+	&> VAN(\text{avec une option réelle})	\\
+	\text{ou}	\\
+	&>	\text{valeur de prendre l'option d'attendre}
+\end{align*}
+			
+\begin{itemize}
+	\item	Parfois prendre on considération l'option réelle cause une VAN négative à devenir positive.
+\end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{La volatilité}[\circled{2}{trueblue}]
+La valeur d'une option d'achat augmente avec la volatilité. Donc, attendre est la meilleur option s'il y a beaucoup d'incertitude vis-à-vis un investissement.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Les dividendes}[\circled{3}{trueblue}]
+L'équivalent des dividendes pour une option réelle sont les flux monétaires qui auxquels on renonce en attendant. À moins qu'il y ait un coût associé, il est souvent mieux d'attendre.
+\end{definitionGENERAL}
+
+
+\begin{formula}{Exemple d'option de calendrier}
+Soit l'entreprise ABC qui songe à acheter 15 avions. ABC peut acheter une option réelle du fabricant d'avions qui permet d'acheter les avions dans un an au même prix qu'aujourd'hui, soit $2M\$$.\\
+
+ABC s'attend à ce que les avions génèrent 3.5M\$ de dollar dans la première année, puis que ce montant croit de 5\% par année. Également, on pose : 
+\begin{itemize}
+	\item	Le coût du capital requis est de 15\%.
+	\item	Le taux sans risque effectif est 5\%.
+	\item	La volatilité est de 45\%.
+\end{itemize}
+
+ABC souhaite donc savoir si elle devrait acheter les avions aujourd'hui ou attendre un an ?
+
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On trace l'arbre de décision : 
+\end{enumerate}
+	\begin{center}
+	\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,231); %set diagram left start at 0, and has height of 231
+
+%Straight Lines [id:da8445692657183368] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (146.3,87.7) -- (106.82,127.18) ;
+%Straight Lines [id:da9166356331844225] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (247.3,87.7) -- (146.3,87.7) ;
+%Straight Lines [id:da4991522195441225] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (146.3,173.48) -- (106.82,134) ;
+%Straight Lines [id:da2503268520630655] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (247.3,173.48) -- (146.3,173.48) ;
+%Shape: Circle [id:dp30138092529144833] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (247.3,87.7) .. controls (247.3,84.77) and (249.67,82.4) .. (252.6,82.4) .. controls (255.53,82.4) and (257.9,84.77) .. (257.9,87.7) .. controls (257.9,90.63) and (255.53,93) .. (252.6,93) .. controls (249.67,93) and (247.3,90.63) .. (247.3,87.7) -- cycle ;
+%Straight Lines [id:da8709040796513237] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (287.3,56.93) -- (258.52,85.7) ;
+%Straight Lines [id:da5332089789825916] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (375.17,56.93) -- (287.3,56.93) ;
+%Straight Lines [id:da6405760001199574] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (287.12,116.48) -- (258.35,87.7) ;
+%Shape: Square [id:dp20284153699983776] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (99.82,126) -- (107.82,126) -- (107.82,134) -- (99.82,134) -- cycle ;
+%Straight Lines [id:da24536483875031578] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (415.17,93.34) -- (381.82,60) ;
+%Straight Lines [id:da6465385280990659] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (505.17,92.68) -- (413.5,92.68) ;
+%Straight Lines [id:da06121105658917281] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (415.23,20) -- (381.3,53.93) ;
+%Straight Lines [id:da9622820541571984] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (505.5,116.48) -- (382.12,116.48) ;
+%Shape: Square [id:dp48818599908229254] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (375.3,52.93) -- (383.3,52.93) -- (383.3,60.93) -- (375.3,60.93) -- cycle ;
+%Straight Lines [id:da013512289051351711] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (374.99,116.48) -- (287.12,116.48) ;
+%Shape: Square [id:dp569038967926637] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (374.12,112.48) -- (382.12,112.48) -- (382.12,120.48) -- (374.12,120.48) -- cycle ;
+%Straight Lines [id:da8260274178937339] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=2.25]    (505.89,20) -- (414.23,20) ;
+
+% Text Node
+\draw (157,75) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{attendre un an}};
+% Text Node
+\draw (157,150) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{58.97585600000001pt}\setlength\topsep{0pt}
+\begin{center}
+\textbf{acheter les 15 }\\\textbf{avions}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (187.89,92.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 0\$$};
+% Text Node
+\draw (247.91,61.31) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\small $\displaystyle 50\%$}};
+% Text Node
+\draw (248.91,103.31) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\small $\displaystyle 50\%$}};
+% Text Node
+\draw (279.12,64) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{\textit{demande élevée}}};
+% Text Node
+\draw (278.12,97.48) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textit{\textbf{demande faible}}};
+% Text Node
+\draw (440,105) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{37.194572pt}\setlength\topsep{0pt}
+\begin{center}
+\textbf{rien faire}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (507.89,104.89) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 0\$$};
+% Text Node
+\draw (421,4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\textbf{exercer l'option}};
+% Text Node
+\draw (410.3,22.93) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {{\footnotesize $\displaystyle VAN\left(\substack{\text{flux monétaires pour}\\ \text{l'investissement} \\ \text{dans 1 an}}\right)$}};
+% Text Node
+\draw (507.89,80) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle 0\$$};
+% Text Node
+\draw (440,80) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{37.194572pt}\setlength\topsep{0pt}
+\begin{center}
+\textbf{rien faire}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (129.3,176.48) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {{\footnotesize $\displaystyle VAN\left(\substack{\text{flux monétaires pour}\\ \text{l'investissement} \\ \text{aujourd'hui}}\right)$}};
+\end{tikzpicture}
+	\end{center}
+	\begin{itemize}
+	\item	On voit qu'au temps 0, ABC doit choisir si elle va acheter les avions ou attendre un an.
+	\end{itemize}
+	
+On débute par trouver la valeur de l'investissement en achetant les avions aujourd'hui (à $t	=	0$) :
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+%	\setcounter{enumi}{1}
+	\item	Calculer la VAN des en supposant qu'ils vont croître de 5\% à chaque année, pour toujours (perpétuité) :
+		\begin{align*}
+		VAN(\text{rendements})
+		&=	\frac{3.5M\%}{0.15	-	0.05}
+		=	35M\$
+		\end{align*}
+	\item	Calculer la VAN des coûts :
+		\begin{align*}
+		VAN(\text{coûts})
+		&=	2M\$ \times 15
+		=	30M\$
+		\end{align*}
+	\item	La VAN nette est donc :
+		\begin{align*}
+		VAN(\text{rendements})	-	VAN(\text{coûts})
+		&=	35M\$	-	30M\$
+		=	5M\$
+		\end{align*}
 \end{enumerate}
 
+On continue par trouver la valeur de l'investissement en achetant les avions dans un an. 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On pose la structure de Black-Scholes en traitant l'option d'attendre comme une option d'achat tel que $C	=	F^{P}(S)N(d_{1})	-	F^{P}(K)N(d_{2})$ où :
+		\begin{description}
+		\item[$S_{T}$]	Valeur au marché de l'investissement au temps $T$.
+		\item[$K$]	Coût pour acheter les avions dans 1 an.
+			\begin{itemize}
+			\item	On peut le voir comme un analogue au prix d'exercice.
+			\end{itemize}
+		\end{description}
+	\item	Trouver $F^{P}(S)$ : 
+		\setlength{\mathindent}{-1cm}
+		\begin{align*}
+		&VAN(\text{revenus sur l'investissement})	-	VAN(\text{revenus de la première année})	\\
+		&=	35M\$	-	3.5M\$ (1.15)^{-1}
+		=	31\ 956\ 522\$
+		\end{align*}
+		\setlength{\mathindent}{1cm}
+		\begin{itemize}
+		\item	Lorsque nous avons des actions, nous recevons l'action dans un an et donc devons soustraire les dividendes payées avant que l'on reçoit l'action ;
+		\item	De façon semblable, on soustrait les revenus de la première année sur l'investissement que nous ne recevons pas.
+		\end{itemize}
+	\item	Trouver $F^{P}(K)$ :
+		\begin{align*}
+		30M\$ (1.15)^{-1}
+		&=	28\ 571\ 429\$
+		\end{align*}
+	\item	Calculer $N(d_{1})	=	N(0.4738)	=	0.6822$ et $N(d_{2})	=	N(0.0238)	=	0.5095$.
+	\item	Trouver la valeur de l'option : 
+		\begin{align*}
+		C	
+		&=	F^{P}(S)N(d_{1})	-	F^{P}(K)N(d_{2})		\\
+		&=	31\ 956\ 522\$\times 0.6822	-	28\ 571\ 429\$ \times 0.5095	\\
+		&=	7\ 243\ 090\$
+		\end{align*}
+\end{enumerate}
 
+Puisque la valeur de l'investissement avec l'option d'attendre est supérieur à la valeur de l'investissement en achetant les avions aujourd'hui, il est optimal d'attendre avant d'investir.
+\end{formula}
+
+
+\columnbreak
 \subsubsection{Sizing options}
 \hl{Ajouter plus de détails et pratiquer comment établir les équations}.
 
@@ -7385,11 +7570,14 @@ Lorsqu'une entreprise est optimiste pour le futur, une option de croissance lui 
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Options d'abandon]
-Lorsqu'une entreprise est pessimiste pour le futur, une option d'abandon lui donne l'option d'abandonner un projet.
+Lorsqu'une entreprise est pessimiste pour le futur, une option d'abandon lui donne l'option d'abandonner un projet. 
+
 \begin{itemize}
+	\item	La \lfbox[formula]{$\text{valeur de l'option d'abandon} = VAN(\text{projet avec l'option})$}		\lfbox[formula]{$-	VAN(\text{projet sans l'option})$} ;
 	\item	Habituellement, elle est exercée si la VAN des flux monétaires reliés à l'abandon d'un projet sont plus élevée que ceux reliés au maintient du projet.
 \end{itemize}
 \end{definitionNOHFILLsub}
+
 
 
 \pagebreak
