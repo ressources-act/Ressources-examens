@@ -88,6 +88,17 @@
 		] (char) {#1};%
 	}%
 } 
+\DeclareRobustCommand*\ellipsed[2]{%
+	\tikz[baseline = (char.base)]{%
+		\node[%
+			shape = rectangle,%
+			fill = #2!40,%	inner circle
+			draw = #2,%		outer rim
+			inner sep = 2pt,%
+			rounded corners = 4pt
+		] (char) {#1};%
+	}%
+} 
 \DeclareRobustCommand*\rectangled[2]{%
 	\tikz[baseline = (char.base)]{%
 		\node[%
@@ -523,7 +534,8 @@
 \definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
 \definecolor{eggshell}{rgb}{0.94, 0.92, 0.84}
 \definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
-\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}			
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}		
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}	
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}		% prertty apple dark pastel (light) green
 \definecolor{green_rectangle}{RGB}{131, 176, 84}		% ACT-2004
 \definecolor{red_rectangle}{RGB}{241,112,113}		% ACT-2004
