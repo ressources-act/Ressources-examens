@@ -354,8 +354,51 @@ L'\textbf{investisseur} est le \textit{short-seller} et le \textbf{prêteur} le 
 \end{description}
 \end{conceptgen}
 
-\newpage
+\begin{formula}{Exemple de calcul}
+Un investisseur vend une action (sans dividendes) pour $2 000\$$ aujourd'hui. L'année suivante, il achète l'action pour $2\ 600\$$ et ferme sa position. \\
 
+On pose : 
+\begin{itemize}
+	\item	Le \og \textit{haircut} \fg{} est de 300\$ ;
+	\item	Le taux d'intérêt pour accumuler les revenus de la vente à découvert (\og \textit{short rebate} \fg{}) est de 2\% ;
+	\item	Le taux sans risque annuel effectif est de 5\%.
+\end{itemize}
+
+On cherche à trouver le profit de la vente à découvert.
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Calculer les \og \textit{short-sale proceeds} \fg{} : 
+		\begin{align*}
+		2000 + 300
+		&=	2\ 300\$
+		\end{align*}
+		\begin{itemize}
+		\item	Le 300\$ est payé par le vendeur ;
+		\item	Pour le vendeur, les flux monétaires net à $t	=	0$ sont donc $+2\ 000\$ - 300\$$.
+		\end{itemize}
+	\item	Accumuler l'intérêt sur \og \textit{short-sale proceeds} \fg{} :
+		\begin{align*}
+		(2300) \times (1.02)
+		&=	2\ 346\$
+		\end{align*}
+		\begin{itemize}
+		\item	Ce montant est donné au vendeur lorsqu'il retourne l'action.
+		\end{itemize}
+	\item	Trouver le profit du vendeur à $t	=	1$ : 
+		\begin{align*}
+		+ 2\ 346\$
+		- 300 (1.05)
+		- 2600
+		= -569\$
+		\end{align*}
+\end{enumerate}
+
+L'investisseur a donc perdu $569\$$.
+\end{formula}
+
+
+
+\newpage
 \section{Introduction aux Forwards et aux options}
 
 \begin{distributions}[Terminologie]
@@ -2068,20 +2111,26 @@ L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré so
 \subsection{Contrats de change}
 \begin{distributions}[Notation de devises]
 \begin{description}
-	\item[DD] \textbf{Devise domestique} (ou de départ);
-	\item[DÉ] \textbf{Devise étrangère};
-	\item[$i_{D}$]	taux d'intérêt dans la DD;
-	\item[$i_{\text{É}}$]	taux d'intérêt dans la DÉ;
-	\item[$F_{0, T}^{P}$:]	est le prix d'un contrat de change à terme prépayé en DD;
+	\item[DD] \textbf{Devise domestique} (ou de \textit{départ});
+		\begin{itemize}
+		\item	Un actif peut avoir un prix défini dans n'importe quelle devise; on dit qu'il est \og \textit{\textbf{denominated}} \fg{} dans cette devise ; 
+		\item	Par exemple, si $DD	=	\$$ on dit que l'option est \og \hl{\textit{\textbf{dollar-denominated}}} \fg{}.
+		\end{itemize}
+	\item[DÉ] \textbf{Devise étrangère}.
+	\item[$r_{D}$]	\og \textit{continuously compounded domestic-denominated interest rate} \fg{}.
+	\item[$r_{\text{É}}$]	\og \textit{continuously compounded foreign-denominated interest rate} \fg{}.
+	\item[$F_{0, T}^{P}$:]	prix d'un contrat de change à terme prépayé en DD.
 	\begin{align*}
-	F_{0, T}^{P} &= x_{0}(1 + i_{\text{É}})^{-T}\text{DD}
+	F_{0, T}^{P} 
+	&= x_{0}\textrm{e}^{-r_{\text{É}}T}\ \text{DD}
 	\end{align*}		
-	\item[$F_{0, T}$:]	est le prix d'un contrat de change à terme en DD;
+	\item[$F_{0, T}$:]	prix d'un contrat de change à terme en DD.
 	\begin{align*}
-	F_{0, T} &= x_{0}(1 + i_{\text{É}})^{-T}(1 + i_{\text{D}})^{T}\text{DD}	
+	F_{0, T} 
+	&= x_{0}\textrm{e}^{-r_{\text{É}}T} \textrm{e}^{r_{\text{D}}T}\ \text{DD}	
 	\end{align*}		
-	\item[$x_{t}$]	taux de change au temps $t$ en DD/DÉ
-		\begin{itemize}[leftmargin = *]
+	\item[$x_{T}$]	taux de change au temps $T$ en DD/DÉ.
+		\begin{itemize}
 		\item	Par exemple, $x_{0} = \frac{2\$}{\text{1\euro}} = \left(2 \frac{\$}{\text{\euro}}\right) \equiv \frac{2\text{DD}}{1\text{DÉ}}$
 		\end{itemize}
 \end{description}
@@ -2089,20 +2138,20 @@ L'inverse arrive lorsque le marché offre un contrat à terme de gré à gré so
 La logique des formules des contrats à terme de gré à gré est:
 \begin{align*}
 	F_{0, T}^{P}(1 \text{DÉ})
-	&=	\left(1\text{DÉ} \cdot \textrm{e}^{-i_{\text{DÉ}}T}\right) \cdot \left( x_{0}\frac{\text{DD}}{\text{DÉ}} \right)	
-	=	x_{0} \cdot \textrm{e}^{-i_{\text{DÉ}}T}\text{DD}
+	&=	\left(1\text{DÉ} \cdot \textrm{e}^{-r_{\text{É}}T}\right) \cdot \left(x_{0} \frac{\text{DD}}{\text{DÉ}} \right)	
+	=	x_{0} \cdot \textrm{e}^{-r_{\text{É}}T}\ \text{DD}
 \end{align*}
 \end{distributions}
 
-Un actif peut avoir un prix défini dans n'importe quelle devise; on dit qu'il est \og \textit{denominated} \fg{} dans cette devise.
 
 \begin{definitionNOHFILL}[Contrat de change synthétique]
-\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
-	\item	Emprunt de $x_0(1 + i_{\text{É}})^{-T}\text{DD}$ au taux $i_D$;
-	\item 	Convertir les DD en DÉ;
-	\item	Dépôt de $(1 + i_{É})^{-T}\text{DÉ}$ (au taux $i_{É}$) de 0 à $T$.
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Emprunt de $x_{0} \textrm{e}^{-r_{\text{É}}T}\ \text{DD}$ au taux $r_{D}$.
+	\item 	Convertir les DD en DÉ.
+	\item	Dépôt de $\textrm{e}^{-r_{\text{É}}T}\ \text{DÉ}$ (au taux $r_{\text{É}}$) de 0 à $T$.
 \end{enumerate}
-La valeur à l'échéance sera $x_t - x_0 \left(\frac{1 + i_D}{1 + i_{\text{É}}}\right)^{T}$.
+
+La valeur à l'échéance sera $x_{T} - x_{0} \textrm{e}^{-r_{\text{É}}T} \textrm{e}^{r_{\text{D}}T}$.
 \end{definitionNOHFILL}
 
 %%%	------------------------------------------------------------
@@ -2210,13 +2259,17 @@ Si nous désirons rebalancer le portefeuille dans une semaine avec $F_{1/52, T}	
 		&=	-50\ 000\$
 		\end{align*}
 		\begin{itemize}
-		\item	\textbf{Note}: Si on vendais les actions au lieu de les acheter, le profit est $950 - 930$.
+		\item	\textbf{Note}: Si on vendait les actions au lieu de les acheter, le profit est $950 - 930$.
 		\end{itemize}
 \end{enumerate}
 
-En combinant la valeur accumulé de balance de la marge et le profit sur l'action, la \textbf{balance de la marge} dans une semaine est : $(237\ 774.20\$) + (-50\ 000\$)	=	187\ 774.1966\$$. Cependant, la balance est inférieure à la marge de maintien de $190\ 000\$$ ! Il y aura donc un \textbf{appel de marge} afin de remonter la balance de la marge à \textbf{la marge initiale} de $237\ 500\$$.	\\
+En combinant la valeur accumulé de balance de la marge et le profit sur l'action, la \textbf{balance de la marge} dans une semaine est : $(237\ 774.20\$) + (-50\ 000\$)	=	187\ 774.1966\$$.\\
 
-Donc, l'investisseur débourse $237\ 500\$	-	187\ 774.1966\$	=	49\ 725.8034\$$ pour remonter la balance de la marge à $237\ 500\$$.
+Cependant, la balance est inférieure à la marge de maintien de $190\ 000\$$ ! Il y aura donc un \textbf{appel de marge} afin de remonter la balance de la marge à \textbf{la marge initiale} de $237\ 500\$$.	\\
+
+Donc, l'investisseur débourse $237\ 500\$	-	187\ 774.1966\$	=	49\ 725.8034\$$ pour remonter la balance de la marge à $237\ 500\$$.\\
+
+Le profit de l'investisseur à la fin est $237\ 500\$	-	49\ 725.8034\$	-	237\ 500\$\textrm{e}^{0.06(1/52)}$.
 \end{formula}
 
 \paragraph*{Note}	Le S \& P 500 a 250 parts sous-jacentes.
@@ -2604,7 +2657,7 @@ sauf si :
 \begin{description}
 	\item[Modèle binomial d'évaluation des options]	le prix de l'actif sous-jacent au début d'une période devient un de deux prix possibles à la fin de la période.
 		\begin{itemize}
-		\item	en anglais c'est le \og \textit{Binomial Option Pricing Model} \fg{}.
+		\item	En anglais, \og \textit{Binomial Option Pricing Model} \fg{}.
 		\end{itemize}
 \end{description}
 
@@ -2625,72 +2678,95 @@ sauf si :
 	\item[$B$]	montant à prêter au taux sans risque;
 	\item[$V_{u}$]	valeur à la node supérieure \og \textit{value at upper node} \fg{};
 	\item[$V_{d}$]	valeur à la node inférieur \og \textit{value at lower node} \fg{};
-	\item[$V_{0}$]	valeur du portefeuille au temps $0$ alias \textbf{le prix}.
+	\item[$V_{0}$]	valeur du portefeuille au temps $0$.
+		\begin{itemize}
+		\item	 Alias, \textbf{le prix}.
+		\end{itemize}
 \end{description}
 \end{distributions}
 
-\columnbreak
-\subsection{Portefeuille réplicatif \og \textit{Replicating Portfolio} \fg{}}
-
-\begin{algo2}[Créer un portefeuille réplicatif]
+Il y a deux façons de calculer le prix : 
 \begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
-	\item	Acheter $\Delta	=	\textrm{e}^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action;
-	\item	Prêter $B	=	\textrm{e}^{-r h} \left[ V_{d}\left(	\frac{u}{u - d}\right) - V_{u} \left(\frac{d}{u - d}\right) \right]$ au taux sans risque;
+	\item	Le portefeuille réplicatif.
+	\item	L'évaluation neutre au risque.
 \end{enumerate}
 
-La valeur initiale du portefeuille réplicatif est donc $V_{0}	=	\Delta S_{0} + B$.
+Dans les deux cas, \textbf{le prix obtenu est identique}.
+
+
+\columnbreak
+\subsection{Portefeuille réplicatif \og \textit{Replicating Portfolio} \fg{}}
+\begin{algo2}[Créer un portefeuille réplicatif]
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Acheter $\Delta	=	\textrm{e}^{-\delta h} \left(\frac{V_{u} - V_{d}}{S_{0}(u - d)}\right)$ parts de l'action.
+	\item	Prêter $B	=	\textrm{e}^{-r h} \left[ V_{d}\left(	\frac{u}{u - d}\right) - V_{u} \left(\frac{d}{u - d}\right) \right]$ au taux sans risque.
+\end{enumerate}
+
+La coût du portefeuille réplicatif est donc $V_{0}	=	\Delta S_{0} + B$.
+\begin{itemize}
+	\item	Dans le contexte d'options, ce coût représente le prix $C(K)$ / $P(K)$.
+\end{itemize}
 \end{algo2}
 
-Selon les signes on observe :
+Pour répliquer des options, on obtient les signes suivants pour $\Delta$ et $B$ :
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
-\hline\rowcolor{airforceblue} 
-	\textcolor{white}{\textbf{}}	&	\textcolor{white}{$+$}	&	\textcolor{white}{$-$}	\\\specialrule{0.1em}{0em}{0.0em} 
-$\Delta$	&	achète des parts de l'action	&	vend des parts de l'action	\\\hline
-$B$		&	prête de l'argent			&	emprunte de l'argent			\\
 \hline
-\end{tabular}
-\end{center}
-
-Également, pour répliquer les options, les combinaisons sont:
-\begin{center}
-\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
-\hline\rowcolor{airforceblue} 
-	\textcolor{white}{\textbf{}}	&	\textcolor{white}{Option d'achat}	&	\textcolor{white}{Option de vente}	\\\specialrule{0.1em}{0em}{0.0em} 
+\rowcolor{airforceblue}	\multirow{2}{*}{}	&	\multicolumn{2}{c}{\textcolor{white}{option}}	\\\rowcolor{airforceblue} 
+		&	\textcolor{white}{d'achat}	&	\textcolor{white}{de vente}	\\\specialrule{0.1em}{0em}{0.0em} 
 $\Delta$	&	$+$	&	$-$			\\\hline
 $B$		&	$-$	&	$+$			\\
 \hline
 \end{tabular}
 \end{center}
 
-%\columnbreak
-\subsection{Évaluation neutre au risque}
+Les actions correspondantes à ces signes sont :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c |}
+\hline\rowcolor{airforceblue} 
+	\textcolor{white}{\textbf{}}	&	\textcolor{white}{$+$}	&	\textcolor{white}{$-$}	\\\specialrule{0.1em}{0em}{0.0em} 
+$\Delta$	&	achète	&	vend		\\\hline
+$B$		&	prête	&	emprunte	\\
+\hline
+\end{tabular}
+\end{center}
 
-\begin{itemize}
-	\item	Présume que $\text{E}[\text{rendement}] = r_{f}$;
-	\item	La technique pondère les possibilités de valeur à l'échéance des options avec des probabilités neutre au risque puis les actualise au taux sans risque;
-	\item	En raison de la simplicité des calculs, les options sont souvent tarifiées avec l'évaluation neutre au risque;
-	\item	Le prix est en fait identique à celui obtenu avec l'approche du portefeuille réplicatif.
-\end{itemize}
+
+On obtient les relations suivantes :
+\begin{align*}
+	\Delta_{C}	-	\Delta_{P}
+	&=	\textrm{e}^{-\delta T}	\\
+	B_{C}	-	B_{P}
+	&=	K\textrm{e}^{-r T}
+\end{align*}
+
+
+\columnbreak
+\subsection{Évaluation neutre au risque}
+L'évaluation neutre au risque présume que le rendement espéré est égale au taux sans risque $r_{f}$.
+
+\begin{rappel_enhanced}[Contexte]
+L'évaluation neutre au risque technique pondère les possibilités de valeur à l'échéance des options avec des probabilités neutre au risque, puis elle actualise au taux sans risque. \\
+
+En raison de la simplicité des calculs, les options sont souvent tarifiées avec l'évaluation neutre au risque.
+\end{rappel_enhanced}
+
 
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$p^{*}$]	la probabilité neutre au risque d'une hausse de l'actif.
+	\item[$p^{\ast}$]	la probabilité, neutre au risque, d'une hausse de l'actif.
 		\begin{align*}
-		p^{*}	&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}
+		p^{\ast}	&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}
 		\end{align*}
 \end{description}
-Le prix est donc :
-	\begin{align*}
-	V_{0}	&=	\textrm{e}^{-rh} \left[p^{*} V_{u} + (1 - p^{*})V_{d} \right]
-	\end{align*}
 \end{distributions}
 
-On déduit que $0 < p^{*} < 1$ ce qui mène à l'équation suivante:
-	\begin{align*}
-	d < \textrm{e}^{(r - \delta)h} < u
-	\end{align*}
-Sinon, il y a arbitrage.
+Le prix est donc \lfbox[formula]{$V_{0}	=	\textrm{e}^{-rh} \left[p^{\ast} V_{u} + (1 - p^{\ast})V_{d} \right]$}.
+
+\
+
+On déduit que $0 < p^{\ast} < 1$ ce qui implique que \lfbox[conditions]{$d < \textrm{e}^{(r - \delta)h} < u$}. Sinon, il y a arbitrage.
+
 
 \columnbreak
 \subsection{Construction d'un arbre binomial}
@@ -2849,7 +2925,7 @@ VSL	&=
 \end{description}
 \end{distributions}
 
-L'équation pour un arbre de contrats à terme standardisés suffit de remplacer les paramètres:
+L'équation pour un arbre de contrats à terme standardisés suffit de remplacer $\delta$ par $r$ en ignorant le vrai $\delta$ s'il est donné :
 \begin{align*}
 	p^{*}	
 		&=	\frac{\textrm{e}^{(r - \delta)h} - d}{u - d}	&
@@ -2909,6 +2985,142 @@ L'équation pour un arbre standard suffit de remplacer les paramètres:
 	d	&=	\textrm{e}^{(r_{\text{DD}} - r_{\text{DÉ}})h - \sigma \sqrt{h}}	
 \end{align*}
 	
+\begin{formula}{Exemple de calcul de prix d'une option sur devise}
+Nous devons construire un arbre binomial standard pour trouver le prix d'une option d'achat au cours du marché libellée en yen pour un dollar. Nous avons les informations suivantes : 
+\begin{itemize}
+	\item	Chaque période est d'une longueur de 4 mois---\lfbox[conditions]{$h	=	\frac{4}{12}$};
+	\item	Le taux de change est de 110 yen par dollar---\lfbox[conditions]{$x_{0}	=	\frac{110 \yen}{1\$}$};
+	\item	La volatilité du taux de change est de 10\%---\lfbox[conditions]{$\sigma	=	10\%$};
+	\item	Le rendement composé continûment sur le yen est de 1\%---\lfbox[conditions]{$r_{\yen}	=	1\%$};
+	\item	Le rendement composé continûment sur le dollar est de 6\%---\lfbox[conditions]{$r_{\$}	=	6\%$}.
+\end{itemize} 
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On défini quelle devise est domestique et étrangère.
+		\begin{itemize}
+		\item	Puisque l'option en \textbf{libellée en yen} (\og \textit{yen-denominated} \fg{}), $\text{DD}	=	\yen$ et $\text{DÉ}	=	\$$.
+		\item	Il s'ensuit que $r_{\text{D}}	=	r_{\yen}	=	1\%$ et que $r_{\text{É}}	=	r_{\$}	=	6\%$.
+		\end{itemize}
+	\item	On trouve $u$, $d$ et $p^{\ast}$ pour construire l'arbre binomiale.
+		\begin{enumerate}[label = \alph*)]
+		\item	On pose que $r_{f}	=	r_{\text{D}}	=	1\%$ et $\delta	=	r_{\text{É}}	=	6\%$.
+		\item	On trouve : 
+			\begin{align*}
+			u	
+			&=	\textrm{e}^{(r_{\text{D}}	-	r_{\text{É}})(h) + \sigma \sqrt{h}}	
+			=	\textrm{e}^{(0.01	-	0.06)(4/12) + \sigma \sqrt{4/12}}
+			=	1.04192	\\
+			d	
+			&=	\textrm{e}^{(r_{\text{D}}	-	r_{\text{É}})(h) - \sigma \sqrt{h}}	
+			=	\textrm{e}^{(0.01	-	0.06)(4/12) - \sigma \sqrt{4/12}}
+			=	0.92830	\\
+			p^{\ast}	
+			&=	\frac{\textrm{e}^{(r_{\text{D}}	-	r_{\text{É}})(h)}	-	d}{u	-	d}
+			=	\frac{\textrm{e}^{(0.01	-	0.06)(4/12)}	-	0.92830}{1.04192	-	0.92830}
+			=	0.48557	
+			\end{align*}
+		\end{enumerate}
+	\item	On trace l'arbre binomiale : 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,231); %set diagram left start at 0, and has height of 231
+
+%Straight Lines [id:da7700783022071049] 
+\draw [color={rgb, 255:red, 2; green, 5; blue, 60 }  ,draw opacity=1 ][fill={rgb, 255:red, 2; green, 5; blue, 60 }  ,fill opacity=1 ][line width=2.25]    (179.17,104.5) -- (144.9,120.2) ;
+%Straight Lines [id:da5972938129332348] 
+\draw [color={rgb, 255:red, 84; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (179.17,135.5) -- (145.9,120.2) ;
+%Shape: Circle [id:dp6931011586654583] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (135.3,120.2) .. controls (135.3,117.27) and (137.67,114.9) .. (140.6,114.9) .. controls (143.53,114.9) and (145.9,117.27) .. (145.9,120.2) .. controls (145.9,123.13) and (143.53,125.5) .. (140.6,125.5) .. controls (137.67,125.5) and (135.3,123.13) .. (135.3,120.2) -- cycle ;
+
+%Straight Lines [id:da15766975982168896] 
+\draw [color={rgb, 255:red, 2; green, 5; blue, 60 }  ,draw opacity=1 ][fill={rgb, 255:red, 2; green, 5; blue, 60 }  ,fill opacity=1 ][line width=2.25]    (259.17,80) -- (224.9,95.7) ;
+%Straight Lines [id:da8162059645266624] 
+\draw [color={rgb, 255:red, 84; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (259.17,111) -- (225.9,95.7) ;
+%Shape: Circle [id:dp21113452996952464] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (215.3,95.7) .. controls (215.3,92.77) and (217.67,90.4) .. (220.6,90.4) .. controls (223.53,90.4) and (225.9,92.77) .. (225.9,95.7) .. controls (225.9,98.63) and (223.53,101) .. (220.6,101) .. controls (217.67,101) and (215.3,98.63) .. (215.3,95.7) -- cycle ;
+
+%Straight Lines [id:da15369621804516176] 
+\draw [color={rgb, 255:red, 2; green, 5; blue, 60 }  ,draw opacity=1 ][fill={rgb, 255:red, 2; green, 5; blue, 60 }  ,fill opacity=1 ][line width=2.25]    (259.17,130) -- (224.9,145.7) ;
+%Straight Lines [id:da6173845591523666] 
+\draw [color={rgb, 255:red, 84; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (259.17,161) -- (225.9,145.7) ;
+%Shape: Circle [id:dp5884375795572823] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (215.3,145.7) .. controls (215.3,142.77) and (217.67,140.4) .. (220.6,140.4) .. controls (223.53,140.4) and (225.9,142.77) .. (225.9,145.7) .. controls (225.9,148.63) and (223.53,151) .. (220.6,151) .. controls (217.67,151) and (215.3,148.63) .. (215.3,145.7) -- cycle ;
+
+%Straight Lines [id:da7991753492518634] 
+\draw [color={rgb, 255:red, 2; green, 5; blue, 60 }  ,draw opacity=1 ][fill={rgb, 255:red, 2; green, 5; blue, 60 }  ,fill opacity=1 ][line width=2.25]    (344.17,55) -- (309.9,70.7) ;
+%Straight Lines [id:da740893128790926] 
+\draw [color={rgb, 255:red, 84; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (344.17,86) -- (310.9,70.7) ;
+%Shape: Circle [id:dp34258403189280884] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (300.3,70.7) .. controls (300.3,67.77) and (302.67,65.4) .. (305.6,65.4) .. controls (308.53,65.4) and (310.9,67.77) .. (310.9,70.7) .. controls (310.9,73.63) and (308.53,76) .. (305.6,76) .. controls (302.67,76) and (300.3,73.63) .. (300.3,70.7) -- cycle ;
+
+%Straight Lines [id:da24954805515819367] 
+\draw [color={rgb, 255:red, 2; green, 5; blue, 60 }  ,draw opacity=1 ][fill={rgb, 255:red, 2; green, 5; blue, 60 }  ,fill opacity=1 ][line width=2.25]    (344.17,104.5) -- (309.9,120.2) ;
+%Straight Lines [id:da8361098281153214] 
+\draw [color={rgb, 255:red, 84; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (344.17,135.5) -- (310.9,120.2) ;
+%Shape: Circle [id:dp4095235472774976] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (300.3,120.2) .. controls (300.3,117.27) and (302.67,114.9) .. (305.6,114.9) .. controls (308.53,114.9) and (310.9,117.27) .. (310.9,120.2) .. controls (310.9,123.13) and (308.53,125.5) .. (305.6,125.5) .. controls (302.67,125.5) and (300.3,123.13) .. (300.3,120.2) -- cycle ;
+
+%Straight Lines [id:da9588162358540175] 
+\draw [color={rgb, 255:red, 2; green, 5; blue, 60 }  ,draw opacity=1 ][fill={rgb, 255:red, 2; green, 5; blue, 60 }  ,fill opacity=1 ][line width=2.25]    (344.17,156) -- (309.9,171.7) ;
+%Straight Lines [id:da9494270654898624] 
+\draw [color={rgb, 255:red, 84; green, 0; blue, 0 }  ,draw opacity=1 ][line width=2.25]    (344.17,187) -- (310.9,171.7) ;
+%Shape: Circle [id:dp08528960667323382] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (300.3,171.7) .. controls (300.3,168.77) and (302.67,166.4) .. (305.6,166.4) .. controls (308.53,166.4) and (310.9,168.77) .. (310.9,171.7) .. controls (310.9,174.63) and (308.53,177) .. (305.6,177) .. controls (302.67,177) and (300.3,174.63) .. (300.3,171.7) -- cycle ;
+
+
+% Text Node
+\draw (181.17,100.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{u} =115$}};
+% Text Node
+\draw (181.17,125.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{d} =102$}};
+% Text Node
+\draw (262.17,77.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{uu} =119$}};
+% Text Node
+\draw (252.17,114.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{ud} =106$}};
+% Text Node
+\draw (262.17,150.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{dd} =95$}};
+% Text Node
+\draw (346.17,88) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{uud} =111$}};
+% Text Node
+\draw (346.17,137.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{udd} =99$}};
+% Text Node
+\draw (346.17,51) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{uuu} =124$}};
+% Text Node
+\draw (346.17,175.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{ddd} =88$}};
+% Text Node
+\draw (344.03,63.85) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle ( V_{uuu} =14)$}};
+% Text Node
+\draw (344.03,103.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle ( V_{uud} =0.8542)$}};
+% Text Node
+\draw (344.17,156) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle ( V_{udd} =0)$}};
+% Text Node
+\draw (344.17,190) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle ( V_{ddd} =0)$}};
+% Text Node
+\draw (261.17,164) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\scriptsize $\displaystyle ( 0)$}};
+% Text Node
+\draw (260.17,131) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\scriptsize $\displaystyle ( 0.4134)$}};
+% Text Node
+\draw (263.17,92) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\scriptsize \textcolor{teal}{$\displaystyle ( 9.4165)$}}};
+% Text Node
+\draw (179.17,137.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\scriptsize $\displaystyle ( 0.2001)$}};
+% Text Node
+\draw (180.17,111.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\scriptsize $\displaystyle ( 4.7691)$}};
+% Text Node
+\draw (97.17,129.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\scriptsize $\displaystyle ( 2.4106)$}};
+% Text Node
+\draw (92.17,112.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {{\footnotesize $\displaystyle x_{0} =120$}};
+\end{tikzpicture}
+		\end{center}
+		\begin{itemize}
+		\item	Le maximum entre la valeur à l'échéance actualisée et la valeur si levée est entre parenthèses ;
+		\item	On observe qu'il est optimal \textcolor{teal}{d'exercer l'option d'achat américaine au nœud $uu$}.
+		\end{itemize}
+\end{enumerate}
+\end{formula}
+
+	
+\columnbreak
 \subsection{Rendements composés continûment}
 \begin{itemize}
 	\item	La fonction \textbf{logarithmique} calcule des rendements composés continûment à partir des prix.
@@ -2970,8 +3182,9 @@ Pour changer d'une base annuelle avec $h	=	1$ à une base quelconque, on divise 
 
 Par exemple, sous base mensuelle $h = \frac{1}{12}$ on a $\sigma = s_{1/12}\sqrt{12}$ ou sous base hebdomadaire $h = \frac{1}{52}$ on a $\sigma = s_{1/52}\sqrt{52}$. 
 
-\newpage
 
+
+\newpage
 \section{Modèle binomial d’évaluation des options: sujets sélectionnés}
 
 \subsection{Compréhension de l'exercice hâtif}
@@ -4415,9 +4628,10 @@ On généralise l'équation de parité des options vente-achat:
 	\text{CallonCall}	-	\text{PutonCall}	
 	&=	C_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	\\
 	\text{CallonPut}	-	\text{PutonPut}	
-	&=	P_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	\\
+	&=	P_{\text{eur}}	-	x\textrm{e}^{-r t_{1}}	
 \end{align*}
 
+\paragraph{Note}	Les prix d'options sont calculées pour $T$ et non $T	-	t_{1}$.
 
 \columnbreak
 \subsection{Options avec écart}
@@ -4733,7 +4947,14 @@ Formule en format simple et selon la notation de Claire où l'on achète $k$ du 
 
 où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigma^{2} T}{\sigma \sqrt{T}}$, $d_{2}	=	d_{1} - \sigma \sqrt{T}$ et \icbox{$\sigma	=	\sqrt{\sigma^{2}_{A} + \sigma^{2}_{B}	-	2\rho\sigma_{A}\sigma_{B}}$}.
 \begin{itemize}
-	\item	On note que \textbf{l'on soustrait} la corrélation puisque le portefeuille est $A	-	B$.
+	\item	On note que \textbf{l'on soustrait} la corrélation puisque le portefeuille est $A	-	B$ : 
+	\begin{align*}
+	\sigma^{2}
+	&=	\text{Var}\left(\frac{\ln A}{\ln B}\right)	\\
+	&=	\text{Var}\left(\ln A	-	\ln B\right)	\\
+	&=	\text{Var}(\ln A)	+	\text{Var}(\ln B)	-	2\text{Cov}(A, B)	\\
+	&=	\sigma^{2}_{A}	+	\sigma^{2}_{B}	-	2\rho_{A, B} \sigma_{A} \sigma_{B}
+	\end{align*}
 \end{itemize}
 
 \pagebreak
@@ -6248,7 +6469,7 @@ Mesure du risque systémique d'un actif calculé en mesurant la sensibilité du 
 
 \tcbline
 
-Le beta de l'actif $i$ est calculé par \lfbox[formula]{$\beta_{i}	=	\frac{\sigma_{i, M}}{\sigma^{2}_{M}}	=	\rho_{i, M}\frac{\sigma_{i}}{\sigma_{M}}$}.
+Le beta de l'actif $i$ au portefeuille du marché est calculé par \lfbox[formula]{$\beta_{i, M}	=	\frac{\sigma_{i, M}}{\sigma^{2}_{M}}	=	\rho_{i, M}\frac{\sigma_{i}}{\sigma_{M}}$}.
 
 La règle générale est donc :
 \begin{description}
@@ -6258,6 +6479,32 @@ La règle générale est donc :
 	\item[$\beta = 0$]	le rendement de l'actif n'est pas corrélé à celui du marché.
 \end{description}
 \end{definitionNOHFILLsub}
+
+\paragraph{Note}	On peut avoir le beta d'un portefeuille $P$ par rapport à un actif $i$ qui correspond à $\beta_{P, i}	=	\frac{\sigma_{P, i}}{\sigma^{2}_{P}}$.
+\begin{itemize}
+	\item	Il est donc important de voir le beta comme une mesure de risque entre un actif et un portefeuille le contenant ;
+	\item	Dans le MÉDAF, on l'utilise comme une mesure du risque systémique entre l'actif $i$ et le marché ;
+	\item	Plusieurs questions d'examens font appel à cette nuance.
+\end{itemize}
+
+\begin{definitionNOHFILLpropos}[Mesures du risque d'un actif]
+Pour un actif $i$, son :
+\begin{description}
+	\item[risque total]	Correspond à sa volatilité $\sigma_{i}$.
+	\item[risque systémique]	Par $\rho_{i, M} \sigma_{i}$.
+		\begin{itemize}
+		\item	Alias, risque du marché, risque non-diversifiable, etc.
+		\item	Le beta est donc une \textbf{mesure} du risque systémique et non \textit{le} risque systémique.
+		\item	De façon semblable, la volatilité est une \textbf{mesure} de dispersion et non \textit{la} dispersion.
+		\end{itemize}
+	\item[risque non systémique]	Par $\sigma_{i}	-	\rho_{i, M} \sigma_{i}$.
+		\begin{itemize}
+		\item	Alias, risque spécifique à une entreprise, risque diversifiable, etc.
+		\end{itemize}
+\end{description}
+On considère  comme son \textbf{risque total}.
+\end{definitionNOHFILLpropos}
+
 
 Avec une régression, on peut estimer le beta de l'actif en le considérant comme la pente et en considérant le rendement en excès du taux sans risque de l'actif $\alpha$ comme l'erreur irréductible :
 \begin{center}
@@ -7098,8 +7345,6 @@ Les investisseurs se préoccupent principalement de la performance de leur porte
 \end{definitionNOHFILLprop}
 \end{definitionNOHFILLsub}
 
-Plus généralement, si un investisseur se construit un portefeuille en \textbf{se souciant de d'autres facteurs que le rendement espéré et la volatilité}, alors c'est un portefeuille qui n'est pas efficient---ceci impacte l'hypothèse d'EM.
-
 \begin{definitionNOHFILLsub}[Transactions excessives]
 En raison des frais de transactions, transiger des titres trop souvent diminue les rendements. 	\\
 
@@ -7110,6 +7355,9 @@ Notamment, en raison de :
 \end{itemize}
 \end{definitionNOHFILLsub}
 
+Plus généralement, si \textbf{un} investisseur \textit{individuel} se construit un portefeuille en \textbf{se souciant de d'autres facteurs que le rendement espéré et la volatilité}, alors l'hypothèse d'EM n'est pas affectée même si son portefeuille n'est pas efficient. \\
+
+Ce qui va affecter l'hypothèse est une tendance générale qui va influencer plusieurs investisseurs comme explique cette prochaine sous-section.
 
 
 \subsubsection{Biais systémique}
@@ -7273,6 +7521,8 @@ Les étapes générales sont:
 	\item	Répéter les 2 étapes précédentes un grand nombre de fois (e.g. 10 000 itérations);
 	\item	Calculer des mesures d'intérêt (moyenne, variance, etc.) puis tracer les valeurs simulées comme une distribution de probabilité.
 \end{enumerate}
+
+\paragraph{Note}	Si il y a un taux d'imposition, il est appliqué aux flux monétaires nets futurs.
 
 
 \columnbreak
@@ -8396,6 +8646,7 @@ On souhaite trouver la différence entre les coûts des capitaux avec et sans em
 			&=	\tau_{C} \times D
 			\end{align*}
 		\end{itemize}
+	\item	Si les dettes ne sont pas fixes, il faut isoler le bouclier avec $V_{L}	-	V_{U}$.
 \end{itemize}
 
 \begin{formula}{Exemple de la valeur d'une entreprise avec effet de levier}
