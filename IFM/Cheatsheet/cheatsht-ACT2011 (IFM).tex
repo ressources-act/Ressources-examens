@@ -210,7 +210,7 @@ Il s'ensuit que le \textbf{marché des actions} est plus actif (a un volume tota
 \begin{definitionNOHFILL}[\textbf{Écart acheteur-vendeur} \og \textit{Bid-Ask Spread} \fg{} ]
 Écart entre le prix de vente (\textbf{ask}) et d'achat (\textbf{bid}).\\
 
-Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve. En l'absence d'arbitrage, on aura $Ask - Bid > 0$.
+Ceci correspond à la \textbf{marge de profit} que le teneur de marché conserve. En l'absence d'arbitrage, on aura \lfbox[conditions]{$Ask > Bid$}.
 
 \begin{conceptgen}{Prix}
 \begin{description}
@@ -2894,7 +2894,7 @@ VSL	&=
 	\item	À partir du nœud le plus à droite de l'arbre décider à chaque nœud de l'arbre si l'exercice hâtif est optimal;
 		\begin{itemize}[leftmargin = *]
 		\item	Si $VSL > VEA$ alors il y a un exercice hâtif sinon on maintient l'option au moins une période de plus;
-		\item	Donc $\text{valeur au nœud} = \max\left(\text{\shortstack{valeur pour un\\ maintien de l'option}}, \text{\shortstack{valeur pour un\\ exercice immédiat}}\right)$.
+		\item	Donc $\text{valeur au nœud} = \max\left(\substack{\text{valeur pour un}\\ \text{maintien de l'option}}, \substack{\text{valeur pour un}\\ \text{exercice immédiat}}\right)$.
 		\end{itemize}
 	\item	Répéter jusqu'au nœud initial.
 \end{enumerate}
@@ -4198,8 +4198,65 @@ On peut également le calculer avec les paramètres du portefeuille $\Omega_{\te
 %	(\Delta_{\eta d} - \Delta_{\eta})S_{\eta d} + (B_{\eta d} - B_{\eta}\textrm{e}^{rh})
 %\end{align*}
 
-\newpage
 
+\newpage
+\begin{definitionNOHFILL}[Variable annuity]
+It is not an "annuity" with garanteed payments, it is a variable savings product with the option to convert a variable accumulation amount to an annuity.\\
+
+Given the accumulation amount is variable and not known in advance, payment amounts are not known in advance.
+\end{definitionNOHFILL}
+
+However, in practice companies typically \textit{\textbf{guarantee}} some \textit{\textbf{minimum}} rate of return. \\
+
+There's four types of guarantees to know :
+
+\begin{definitionNOHFILLsub}[Guaranteed minimum death benefit (GMDB)]
+Guarantees a minimum amount will be paid to the policyholder when they die.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Guaranteed minimum accumulation benefit (GMAB)]
+Guarantees a minimum value for the underlying account after some period of time, even if the account vaue is less.
+
+\begin{itemize}
+	\item	Also known as the \textbf{guaranteed minimum maturity benefit (GMMB)}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Guaranteed minimum withdrawal benefit (GMWB)]
+Guarantees that, upon the policyholder reaching a certain age, a minimum withdrawal amount over a specified period of time will be provided.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Guaranteed minimum income benefit (GMIB)]
+Guarantees the purchase price of a traditionnal annuity at a future time. Thus, a policyholder can guarantee the minimum amount of income they will have.
+\end{definitionNOHFILLsub}
+
+We define : 
+\begin{description}
+	\item[return of premium guarantee]	Guarantee which returns the greater of the account value and the original amount invested.
+\end{description}
+
+\begin{definitionNOHFILLprop}[Guaranteed Minimum Death Benefit with a Return of Premium Guarantee]
+\begin{align*}
+	\max(S_{T}; K)
+	&=	S_{T}	+	\max(K	-	S_{T}; 0)
+\end{align*}
+\begin{itemize}
+	\item	Embedded \textbf{put} option.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+\textbf{Use of exotic options }: 
+\begin{description}
+	\item[Forward start]	For hedging guarantees that will come into effect during the payout period of a GMWB while the variable annuity is still in the accumulation period.
+	\item[Chooser]	For hedging variable annuities with two-sided guarantees. (e.g. GMDB with a return-of-premium guarantee and an earnings-enhanced death benefit)
+	\item[Lookback]	For hedging variable annuity guarantees where the guarantee value is periodically recalculated as the greater of the account value and the existing guarantee value.
+	\item[Shout]	For hedging variable annuity guarantees in situations where the guarantee value is recalculated at the discretion of the policyholder.
+	\item[Rainbow]	For hedging when policyholders can hold multiple assets in their accounts and the guarantee applies to the account as a whole rather than individual assets in the account.
+\end{description}
+
+
+\newpage
 \section{Tenue de marché et couverture en delta neutre}
 
 \begin{definitionNOHFILL}[Opérations pour compte propre]
@@ -5135,9 +5192,9 @@ On pose:
 	&=	\Pr\left(\frac{S_{T}}{\textcolor{teal}{S_{0}}}	\leq		\frac{K}{\textcolor{teal}{S_{0}}} \right)	\\
 	&=	\Pr\left(\textcolor{teal}{\ln}\left(\frac{S_{T}}{S_{0}}\right)	\leq		\textcolor{teal}{\ln}\left(\frac{K}{S_{0}}\right) \right)	
 	=	\Pr\left(\textcolor{teal}{R_{0, T}}	\leq		\ln\left(\frac{K}{S_{0}}\right) \right)	\\
-	&=	\Pr\left(\frac{R_{0, T}	-	\text{E}[R_{0, T}]}{\text{Var}(R_{0, T})}	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\text{E}[R_{0, T}]}{\text{Var}(R_{0, T})} \right)	\\
-	&=	\Pr\left(\textcolor{teal}{Z}	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\text{E}[R_{0, T}]}{\text{Var}(R_{0, T})} \right)	\\
-	&=	\Pr\left(Z	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\left(\alpha - \delta - \frac{1}{2}\sigma^{2}\right)T}{\sigma^{2}T} \right)	\\
+	&=	\Pr\left(\frac{R_{0, T}	-	\text{E}[R_{0, T}]}{\sqrt{\text{Var}(R_{0, T})}}	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\text{E}[R_{0, T}]}{\sqrt{\text{Var}(R_{0, T})}} \right)	\\
+	&=	\Pr\left(\textcolor{teal}{Z}	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\text{E}[R_{0, T}]}{\sqrt{\text{Var}(R_{0, T})}} \right)	\\
+	&=	\Pr\left(Z	\leq		\frac{\ln\left(\frac{K}{S_{0}}\right)	-	\left(\alpha - \delta - \frac{1}{2}\sigma^{2}\right)T}{\sigma \sqrt{T}} \right)	\\
 	&=	N(-\hat{d}_{2})
 \end{align*}
 \end{algo}
@@ -6851,7 +6908,7 @@ Donc, on trouve avec une moyenne pondérée des rendements \lfbox[formula]{$r_{d
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLprop}[MÉDAF avec les betas de dette]
-Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{d}	=	r_{f} + \beta_{d}\left(\shortstack{prime de risque\\ du marché}\right)$}.\\
+Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{d}	=	r_{f} + \beta_{d}\left(\substack{\text{prime de risque}\\ \text{du marché}}\right)$}.\\
 \end{definitionNOHFILLprop}
 
 
@@ -6909,10 +6966,10 @@ Donc, on trouve :
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLprop}[MÉDAF d'un projet pour une comparaison à une entreprise avec effet de levier]
-Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\shortstack{prime de risque\\ du marché}\right)$}.\\
+Avec le MÉDAF, on réécrit \lfbox[formula]{$r_{U}	=	r_{f} + \beta_{U}\left(\substack{\text{prime de risque}\\ \text{du marché}}\right)$}.\\
 \end{definitionNOHFILLprop}
 
-\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$ ; c'est à dire, $D - E$.
+%\paragraph{Note}	La valeur d'une entreprise correspond à sa dette nette = $\text{dette}	-	\text{investissements à CT et l'encaisse}$ ; c'est à dire, $D - E$.
 \paragraph{Note}	Le beta de l'actif sans risque est nul puisqu'il n'y a aucun risque.
 
 
@@ -6945,7 +7002,10 @@ Utilisé pour évaluer un projet financé sans emprunt ayant le même risque que
 \subsection{Modèles multi-factoriels}
 \begin{rappel_enhanced}[Contexte]
 Le MÉDAF pose que la volatilité des rendements du marché sont expliqué par \textbf{\textit{un seul facteur}}---le rendement sur le portefeuille du marché.\\
-Le MÉDAF multi-factoriel prend plusieurs facteurs en considération pour estimer le rendement espéré. Ce modèle muti-factoriel est aussi connu comme la théorie de l'arbitrage de prix (\og \textit{arbitrage pricing theory (APT)} \fg{}).
+
+Le MÉDAF multi-factoriel prend plusieurs facteurs en considération pour estimer le rendement espéré. Ce modèle muti-factoriel est aussi connu comme la théorie de l'arbitrage de prix (\og \textit{arbitrage pricing theory (APT)} \fg{}).\\
+
+Donc, pour le MÉDAF le portefeuille du marché est \underline{\textbf{\textit{le}}} portefeuille efficient. Pour les modèles multi-factoriels, on pose que l'on peut construire un portefeuille efficient \textbf{à partir de portefeuilles qui sont bien diversifiés}.
 \end{rappel_enhanced}
 \begin{distributions}[Notation]
 \begin{description}
