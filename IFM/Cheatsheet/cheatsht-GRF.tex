@@ -2274,11 +2274,11 @@ Le profit de l'investisseur à la fin est $237\ 500\$	-	49\ 725.8034\$	-	237\ 50
 
 \paragraph*{Note}	Le S \& P 500 a 250 parts sous-jacentes.
 
-\newpage
 
-% --- Chapitre 9 ---
+\newpage
 \setcounter{section}{8}
 \section{Parité et autres liens entre les options}
+\label{sec:parity}
 \begin{definitionNOHFILL}[Équation de parité des options vente-achat]
 \begin{align*}
 	C_{\text{Eur}}(K, T) - P_{\text{Eur}}(K, T)
@@ -2373,7 +2373,8 @@ Alors, on peut réécrire l'équation de parité :
 
 
 \subsubsection*{Parité généralisée et option d'échange}
-On peut généraliser toute option comme étant l'option d'échanger des actifs---l'\textit{actif sous-jacent} et l'\textit{actif d'exercice}---que l'on nomme des \textbf{options d'échange}.\\
+\label{subsec:exchoptionsParity}
+On peut généraliser toute option comme étant l'option d'échanger des actifs---l'\textit{actif sous-jacent} et l'\textit{actif d'exercice}---que l'on nomme des \textbf{options d'échange}. Voir la sous-section \underline{\textbf{\nameref{subsec:exchoptions}}} du chapitre \ref{sec:exoticOptionsI} sur les options exotiques pour plus de détails.  \\
 
 Les options d'achat et de vente sont donc des options d'échange avec de l'argent comme actif d'exercice. On généralise d'abord la notation au-delà du concept d'achat et de vente pour un certain prix:
 \begin{distributions}[Notation]
@@ -2547,9 +2548,9 @@ Il est donc important de retenir:
 \begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
 	\item	Il est rationnel d'effectuer un exercice hâtif si\\
 	 $PV(\text{dividendes}) > PV(\text{intérêt sur $K$}) - PV(\text{assurance})$;
- 	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option de vente équivalente.
+ 	\item[]	$PV(\text{assurance})$ sera donc égal au coût de l'option de vente implicite.
 	\item	Il n'est \textbf{jamais rationnel} d'effectuer un \textbf{exercice hâtif} sur une option d'achat américaine \textbf{sans dividendes};
-	\item[]	Il s'ensuit qu'une \textbf{option d'achat américaine} sur une action \textbf{sans dividendes} a le \textbf{même prix} qu'une \textbf{option d'achat européenne} équivalente.
+	\item[]	Il s'ensuit qu'avec $\delta	=	0$, $C_{\text{amer}}	=	C_{\text{euro}}$.
 	\item	Il est \textbf{\textit{possiblement} rationnel} d'effectuer un exercice hâtif si \\
 	$PV(\text{dividendes}) > PV(\text{intérêt sur $K$})$.
 \end{enumerate}
@@ -3558,7 +3559,7 @@ Lorsque le nombre de périodes $n$ d'un arbre binomial augmente, le prix de l'op
 			\frac{\ln\frac{F^{P}(S)}{F^{P}(K)} {\color{red}{-}} \frac{1}{2} \sigma^{2} T}
 	 			 {\sigma\sqrt{T}}
 		\right)	
-	=	d_{1} - \sigma \sqrt{t}	\\
+	=	d_{1} - \sigma \sqrt{T}	\\
 \end{align*}
 
 Prix d'options \textbf{européennes} selon la formule de Black-Scholes:
@@ -3727,9 +3728,7 @@ $\psi/100$	&	$\deriv{\delta}{V}$	&	de l'option par une augmentation (de 1\%) de 
 \end{distributions}
 
 \columnbreak
-
 \subsection{Grecs}
-
 \begin{definitionNOHFILL}[Delta $\Delta	=	\deriv{S_{0}}{V}$]
 Mesure la variation du prix de l'option correspondante à une augmentation du prix de l'action.
 
@@ -3782,6 +3781,7 @@ Lien entre le delta pour une options de vente et d'achat:
 \end{itemize}
 \end{definitionNOHFILL}
 
+\columnbreak
 \begin{definitionNOHFILL}[Gamma $\Gamma = \deriv{S_{0}}{\Delta} = \deriv[2]{S_{0}}{V}$]
 Mesure la variation du Delta de l'option correspondante à une augmentation du prix de l'action.
 
@@ -3863,13 +3863,15 @@ Mesure la variation du Delta de l'option correspondante à une augmentation du p
 \end{itemize}
 \end{definitionNOHFILL}
 
+\columnbreak
 \begin{definitionNOHFILL}[Theta $\theta	=	\deriv{t}{V}$]
 Mesure la variation du prix de l'option correspondante à l'écoulement du temps.
 
-\paragraph{Note}	Selon si on dérive par rapport au point de départ $t$ ou à l'échéance $T$ on a que \icbox[red][palechestnut]{$\theta	=	\deriv{t}{V}	=	-\deriv{T}{V}$}
+\paragraph{Note}	Selon si on dérive par rapport au point de départ $t$ ou à l'échéance $T$ on a que \icbox[red][palechestnut]{$\theta	=	\deriv{t}{V}	=	-\deriv{T}{V}$} car augmenter $t$ diminue $T	-	t$.
 
 \tcbline
-Lien entre le delta pour une options de vente et d'achat:
+
+Lien entre le delta pour une options de vente et d'achat :
 \begin{align*}
 	\theta_{C} - \theta_{P}	&=	\delta S \textrm{e}^{-\delta (T - t)}	-	r K \textrm{e}^{-r (T - t)}
 \end{align*}
@@ -3905,8 +3907,10 @@ Lien entre le delta pour une options de vente et d'achat:
 \end{itemize}
 \end{definitionNOHFILL}
 
+\columnbreak
 \begin{definitionNOHFILL}[Vega alias Lambda $\Lambda	=	\deriv{\sigma}{V}$]
 Mesure la variation du prix de l'option correspondante à une augmentation de la volatilité de l'action.
+
 \tcbline
 
 \begin{minipage}[ht]{0.5\linewidth}
@@ -3945,6 +3949,7 @@ Mesure la variation du prix de l'option correspondante à une augmentation de la
 \end{itemize}
 \end{definitionNOHFILL}
 
+\columnbreak
 \begin{definitionNOHFILL}[Rho $\rho	=	\deriv{r}{V}$]
 Mesure la variation du prix de l'option correspondante à une augmentation du taux sans risque.
 
@@ -3990,6 +3995,7 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 \end{itemize}
 \end{definitionNOHFILL}
 
+\columnbreak
 \begin{definitionNOHFILL}[Psi $\psi	=	\deriv{\delta}{V}$]
 Mesure la variation du prix de l'option correspondante à une augmentation du taux de dividendes.
 
@@ -4034,9 +4040,9 @@ Mesure la variation du prix de l'option correspondante à une augmentation du ta
 \end{itemize}
 \end{definitionNOHFILL}
 
-\subsubsection*{Portefeuille}
 
-Le grec d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme des grecques:
+\subsubsection*{Portefeuille}
+Le grec d'un portefeuille composé de $N$ options sur une même action, avec $n_{i}$ options de chaque type, est simplement la somme arithmétique des grecques:
 \begin{align*}
 	\text{Grec}_{\text{ptf.}}
 	&=	\overset{N}{\underset{i = 1}{\sum}} n_{i} \text{Grec}_{i}	
@@ -4125,7 +4131,7 @@ Une \textbf{prime de risque} est l'excès du rendement espéré d'un actif au ta
 \end{description}
 \begin{itemize}[leftmargin = *]
 	\item	Avec la définition du rendement $\gamma$ espéré instantané sur l'option on trouve: \icbox{$	\gamma - r = \Omega (\alpha - r)$};
-	\item	Dans le modèle d'évaluation des actifs financiers, \icbox{$\alpha - r = \beta_{\text{action}}(\mu_{m} - r)$} alias $\beta_{\text{option}}	=	\beta_{\text{action}} \Omega_{\text{option}}$;
+	\item	Dans le modèle d'évaluation des actifs financiers, \icbox{$\alpha - r = \beta_{\text{action}}(\text{E}[R_{M}]	 - r)$} où $\text{E}[R_{M}]$ est l'espérance du rendement du marché;
 	\item	Si $\alpha > r$ alors $\gamma_{C} \geq \alpha$ et $\gamma_{P} \leq r$.
 \end{itemize}
 \end{definitionNOHFILLsub}
@@ -4165,7 +4171,7 @@ On peut également le calculer avec les paramètres du portefeuille $\Omega_{\te
 
 \subsection{Approximation}
 
-\begin{itemize}[leftmargin = *]
+\begin{itemize}
 	\item	On peut approximer la variation du prix de l'option avec les grecques;
 	\item	Le Delta \textit{varie avec le prix}: 
 		\begin{itemize}
@@ -4197,6 +4203,9 @@ On peut également le calculer avec les paramètres du portefeuille $\Omega_{\te
 %	(\Delta_{\eta u} - \Delta_{\eta})S_{\eta u} + (B_{\eta u} - B_{\eta}\textrm{e}^{rh})	\\
 %	(\Delta_{\eta d} - \Delta_{\eta})S_{\eta d} + (B_{\eta d} - B_{\eta}\textrm{e}^{rh})
 %\end{align*}
+
+
+\paragraph{Note}	Avec $C(S_{t} + \varepsilon)	-	C(S_{t})$ on peut voir que les deux premières composantes correspondent au développement de Taylor de la fonction $C$ de $S_{t}$ avec $\Delta	=	\deriv{C}{S_{t}}$ et $\Gamma	=	\deriv[2]{C}{S_{t}}$ puis $\varepsilon_{t}	=	(S_{t}	+	\varepsilon	-	S_{t})$.
 
 
 \newpage
@@ -4328,7 +4337,7 @@ Pour un teneur de marché qui vend une option et couvre sa position en delta neu
 Son profit de $t$ à $t + h$ est la somme des variations des composantes : \icbox{$\Delta_{t}\left(S_{t + h} - S_{t}\right)	-	\left(V_{t + h}	-	V_{t}\right)	-	(\textrm{e}^{rh}	-	1)\left(\Delta_{t}S_{t}	-	V_{t}\right)$}.
 \begin{itemize}
 	\item	Pour \lfbox[conditions]{$\varepsilon	=	S_{t + h}	-	S_{t}$}, le profit est \lfbox[formula]{$\approx	-\frac{1}{2} \varepsilon^{2}\Gamma_{t}	-	h\theta_{t}	-	(\textrm{e}^{rh}	-	1)\left(\Delta_{t}S_{t}	-	V_{t}\right)$}.
-	\item	Si \lfbox[conditions]{$h$ est petit}, \lfbox[formula]{$(\textrm{e}^{rh}	-	1)	\approx	rh$}.
+	\item	Si \lfbox[conditions]{$h$ est petit}, \lfbox[formula]{$(\textrm{e}^{rh}	-	1)	\approx	rh$} par l'expansion de Taylor.
 \end{itemize}
 
 \paragraph{Note sur les autres grecs}	Si un teneur de marché souhaite couvrir avec de multiples grecs, il suffit de poser les grecs du portefeuille égaux à 0. Cependant, puisque tous les grecques autre que le $\Delta$ d'une action sont 0, on nécessite une deuxième option. Par exemple pour l'achat de 100 options d'achat de type 1, on achète $y$ options d'achat de type 2 et x actions pour obtenir un portefeuille couvert en delta et gamma neutre:
@@ -4352,8 +4361,8 @@ Portefeuille dont on emprunte le montant nécessaire pour établir le portefeuil
 \subsubsection{Analyse de Black-Scholes}
 \textbf{Équation de Black-Scholes}:
 \begin{align*}
-	r S_{t} \deriv{S_{t}}{C_{t}} + \frac{1}{2}\sigma^{2}S_{t}^{2}\deriv[2]{S_{t}}{C_{t}} + \deriv{t}{C_{t}}	
-	&=	r C_{t}	
+	r\Delta S_{t} + \frac{\Gamma}{2}\sigma^{2}S_{t}^{2} +	\theta
+	&=	r C
 \end{align*}
 \begin{itemize}
 	\item	Valide pour les options d'achat et de vente;
@@ -4393,6 +4402,7 @@ Portefeuille dont on emprunte le montant nécessaire pour établir le portefeuil
 
 \setcounter{section}{13}
 \section{Options exotiques: I}
+\label{sec:exoticOptionsI}
 \subsection{Options asiatiques}
 \begin{definitionNOHFILL}[Options asiatiques]
 La valeur à l'échéance dépend du prix moyen du sous-jacent sur une certaine période de temps.
@@ -4949,11 +4959,11 @@ Dans la formule de Black-Scholes, on remplace le $K$ de :
 \begin{description}[font = \itshape]
 	\item[l'équation principale]	par le prix d'exercice $K_{1}$ ;
 		\begin{itemize}
-		\item	Le prix d'exercice $K_{1}$ détermine le montant de la valeur à l'échéance et est donc associé avec $K\textrm{e}^{-rT}$ dans l'équation principale.
+		\item	Le prix d'exercice $K_{1}$ détermine le montant de la valeur à l'échéance et est donc associé au montant à actualiser $K\textrm{e}^{-rT}$ dans l'équation principale.
 		\end{itemize}
 	\item[$d_{1}$]	par le prix déclencheur $K_{2}$.
 		\begin{itemize}
-		\item	Le prix déclencheur $K_{2}$ détermine si l'exercice a lieu et est donc associé avec le calcul d'une probabilité $N(d_{2})$.
+		\item	Le prix déclencheur $K_{2}$ détermine si l'exercice a lieu et est donc associé avec le calcul d'une probabilité $N(d_{2})	=	\Pr^{\ast}(S_{T}	>	K_{2})$ (voir le chapitre \ref{sec:lognorm} sur la loi lognormale).
 		\end{itemize}
 \end{description}
 
@@ -4982,6 +4992,7 @@ où $d_{1}	=	\frac{\ln\left(\frac{S_{0}}{K_{2}}\right) + \left( r - \delta + \fr
 
 \columnbreak
 \subsection{Options d'échange}
+\label{subsec:exchoptions}
 \begin{definitionNOHFILL}[Options d'échange]
 Permet au détenteur d'échanger un actif pour un autre.
 
@@ -4991,6 +5002,8 @@ Permet au détenteur d'échanger un actif pour un autre.
 	\item	En anglais, \og \textit{exchange option} \fg{}.
 \end{itemize}
 \end{definitionNOHFILL}
+
+\paragraph{Note}	Voir la sous-section \underline{\textbf{\nameref{subsec:exchoptionsParity}}} du chapitre \ref{sec:parity} sur la parité des options.
 
 \subsubsection*{Formule de Black-Scholes}
 Formule en format simple et selon la notation de Claire où l'on achète $k$ du titre $Q$ par unité du titre $S$
@@ -5010,7 +5023,7 @@ où $d_{1}	=	\frac{\ln\left(\frac{F^{P}(A)}{F^{P}(B)}\right) + \frac{1}{2} \sigm
 	\sigma^{2}
 	&=	\text{Var}\left(\frac{\ln A}{\ln B}\right)	\\
 	&=	\text{Var}\left(\ln A	-	\ln B\right)	\\
-	&=	\text{Var}(\ln A)	+	\text{Var}(\ln B)	-	2\text{Cov}(A, B)	\\
+	&=	\text{Var}(\ln A)	+	\text{Var}(\ln B)	-	2\text{Cov}(\ln A, \ln B)	\\
 	&=	\sigma^{2}_{A}	+	\sigma^{2}_{B}	-	2\rho_{A, B} \sigma_{A} \sigma_{B}
 	\end{align*}
 \end{itemize}
@@ -5613,7 +5626,7 @@ Permet au détenteur de choisir à un moment futur déterminé si l'option sera 
 \part{Gestion des risques financiers I (ACT-1006)}
 \begin{multicols*}{2}
 
-\setcounter{section}{6}
+\setcounter{section}{36}
 \section{Théorie de l'analyse de portefeuille moyenne-variance}
 \subsection{Risque et rendement d'un actif}
 \begin{definitionNOHFILL}[Rendement effectif]
