@@ -62,8 +62,9 @@ Inspiré par la chaîne de vidéos YouTube \href{https://www.youtube.com/user/jo
 L'objectif est d'expliquer les concepts statistiques de façon claire et concise. Je vous prie de me faire part de tous commentaires et de me signaler toute erreur que vous trouvez! 
 \end{rappel_enhanced}
 
-\newpage
 
+
+\newpage
 \raggedcolumns
 \begin{multicols*}{2}
 
@@ -2512,8 +2513,7 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 
 \section{Apprentissage statistique}
 \begin{definitionNOHFILL}[Apprentissage statistique]
-L'utilisation des statistiques pour estimer les relations entre des variables. \\
-L'apprentissage statistique estime une relation fonctionnelle entre des variables explicatives et un résultat.
+L'apprentissage statistique est l'utilisation de statistiques pour estimer les relations entre des variables « \textit{\textbf{explicatives}} » et un résultat (une variable « \textbf{\textit{réponse}} »). 
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[Variable réponse]
@@ -2525,78 +2525,88 @@ Variables utilisées pour les prévisions de la variable réponse.
 \end{definitionNOHFILLsub}
 
 Les modèles d'apprentissage statistique ont deux utilités principales : 
-\begin{description}
-	\item[prévision]	Prévoir la valeur de la variable réponse pour des valeurs spécifiques des variables réponse.
-	\item[inférence]	Comprendre quelles variables explicatives sont liées à la variable réponse et le degré de leurs relations.
-\end{description}
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
+	\item	Faire des \textbf{prévisions} de la valeur de la variable réponse pour des valeurs spécifiques des variables réponse.
+	\item	Faire de l'\textbf{inférence} afin de comprendre quelles variables explicatives sont liées à la variable réponse, et à quel degré.
+\end{enumerate}
+
+Il y a une multitude de modèles d'apprentissage statistique différents. Entre autres, ces modèles varient en \textbf{flexibilité}; c'est-à-dire, certains modèles s'\textit{ajustent} mieux aux données.\\
+
+Par exemple, une régression linéaire correspond à une ligne droite (peu flexible). En réalité, il est peu probable que les données soient situées sur une droite. En contraste, une \og \textit{spline} \fg{} va passer à travers tous les points (très flexible).
+
 
 \begin{definitionNOHFILLprop}[Flexibilité du modèle]
-Les modèles varient en \og flexibilité \fg{}. C'est-à-dire que certains modèles s'ajustent mieux aux données.\\
-
-Par exemple, une régression linéaire correspond à une ligne droite. En réalité, il est peut probable que les données soient situées sur une droite. En contraste, une \og \textit{spline} \fg{} va passer à travers tous les points.\\
-
-Il y a cependant un compromis entre la flexibilité d'un modèle et sa facilité d'interprétation :
+Il y a un compromis à faire entre la flexibilité d'un modèle et sa facilité d'interprétation :
 \begin{itemize}
-	\item	Les modèles \textit{moins flexibles} sont plus facilement interprétables au coût de moins bonnes prévisions. Ils sont généralement mieux pour l'inférence. 
-	\item	Les modèles \textit{plus flexibles} plus difficilement interprétables au bénéfice de meilleures prévisions. Ils sont généralement mieux pour faire des prévisions.
+	\item	Les modèles \textit{moins flexibles} sont plus facilement interprétables au coût de moins bonnes prévisions. 
+		\begin{itemize}
+		\item	Ils sont généralement mieux pour l'inférence. 
+		\end{itemize}
+	\item	Les modèles \textit{plus flexibles} sont plus difficilement interprétables, mais ont l'avantage d'offrir de meilleures prévisions. 
+		\begin{itemize}
+		\item	Ils sont généralement mieux pour faire des prévisions.
+		\end{itemize}
 \end{itemize}
 
-Cependant, si un modèle est sur ajusté aux données (e.g., un \og \textit{spline} \fg{}) il pourrait avoir des mauvaises prévisions pour des nouvelles données.
+En revanche, si un modèle est \textit{\textbf{sur ajusté}} aux données alors il pourrait être biaisé envers les données avec lesquelles il est entraîné et offrir des mauvaises prévisions pour des \textbf{nouvelles} données.
 \end{definitionNOHFILLprop}
 
-Il y a 2 types d'apprentissage statistique : 
+De façon générale, on sépare l'apprentissage statistique en deux types :
 \begin{description}
-	\item[apprentissage supervisé]	Comporte une variable réponse.
-	\item[apprentissage non supervisé]	Ne comporte pas de variable réponse.
+	\item[apprentissage supervisé]	comporte une variable réponse.
+	\item[apprentissage non supervisé]	ne comporte pas de variable réponse.
 \end{description}
 
- 
-Il y existe plusieurs types de variables :
+
+\columnbreak
+\subsection{Types de variables explicatives}
+Les variables explicatives prennent plusieurs formes :
+
 \begin{definitionNOHFILLpropos}[Variable continue]
 Définie sur les nombres réels.	\\
 
 Par exemple :
 \begin{itemize}
-	\item	Le montant de perte.
-	\item	Le temps avant qu'une réclamation soit réglé.
+	\item	Les montants de perte d'accidents d'automobile.
+	\item	Le temps avant qu'une réclamation d'assurance soit réglé.
 \end{itemize}
 \end{definitionNOHFILLpropos}
 
 \begin{definitionNOHFILLpropos}[Variable catégorielle]
-Définie sur un petit nombre de valeurs catégorielles.	\\
+Définie sur un petit nombre de valeurs catégorielles. On dit aussi \textit{variable qualitative}.	\\
 
 Par exemple : 
 \begin{itemize}
-	\item	Une variable binaire. 
+	\item	Une \textbf{variable binaire} (seulement deux niveaux). 
 		\begin{itemize}
-		\item	P. ex., une variable "Maison a un système d'alarme" prenant comme valeur "oui" ou "non".
-		\item	P. ex., le sexe d'un individu prenant comme valeur "homme" ou "femme".
+		\item	P. ex., une variable \textit{"Maison a un système d'alarme"} prenant comme valeur \textit{"oui"} ou \textit{"non"}.
+		\item	P. ex., le \textit{sexe} d'un individu prenant comme valeur \textit{"homme"} ou \textit{"femme"}.
 		\end{itemize}
 	\item	Une variable avec plusieurs niveaux.
 		\begin{itemize}
-		\item	P. ex., la marque d'une voiture assuré prenant comme valeurs "Toyota", "Honda", etc.
+		\item	P. ex., la \textit{marque d'une voiture} assuré prenant comme valeurs \textit{"Toyota"}, \textit{"Honda"}, etc.
 		\end{itemize}
 \end{itemize}
 
 \
 
 Une variable catégorielle peut être :
-\begin{description}
-	\item[nominale]	Il n'y a pas d'ordre aux catégories.
-		\begin{itemize}
-		\item	P. ex., le programme d'étude d'un étudiant "actuariat", "comptabilité", etc.
-		\end{itemize}
-	\item[ordinale]	Il y a une d'ordre aux catégories.
-		\begin{itemize}
-		\item	P. ex., la sévérité d'un incendie allant de 1 à 5.
-		\end{itemize}
-\end{description}
+\begin{definitionGENERAL}{Nominale}[\circled{1}{trueblue}]
+Il n'y a pas d'ordre aux catégories.\\
 
-\
-
+Par exemple :
 \begin{itemize}
-	\item	On dit aussi \textit{variable qualitative}.
+	\item	Le \textit{programme d'étude} d'un étudiant prenant comme valeur \textit{"actuariat"}, \textit{"comptabilité"}, etc.
 \end{itemize}
+\end{definitionGENERAL}
+\begin{definitionGENERAL}{Ordinale}[\circled{2}{trueblue}]
+Il y a une d'ordre aux catégories.\\
+
+Par exemple :
+\begin{itemize}                                           
+	\item	La \textit{sévérité d'un incendie} allant de \textit{1} à \textit{5}.
+\end{itemize}    
+\end{definitionGENERAL}
 \end{definitionNOHFILLpropos}
 
 \begin{definitionNOHFILLpropos}[Variable de comptage]
@@ -2609,189 +2619,368 @@ Par exemple :
 \end{definitionNOHFILLpropos}
 
 
+%%%	----------------------------------------	%%%
+%%%		Serait à ajouter pour compléter		%%%
+%Variable vs prédicteur vs ...
+%Explication des composantes de la régression linéaire
+%	terme d'erreur / erreur irréductible / systémique
+%	supposer une relation linéaire
+%	réponse quantitative 
+%
+%Pourquoi estimer la fonction
+%	prévision
+%	inférence
+%		relation entre les prédicteurs
+%		relation entre la variable réponse et chacun des prédicteurs
+%		relation plus compliquée qu'une relation linéaire?
+%
+%Comment estimer la fonction
+%	Méthodes paramétriques
+%	Méthodes non-paramétriques
+%	
+%Compromis interprétation et précision
+%Apprentissage supervisé vs non supervisé
+%Régression vs catégorique
+%
+%Évaluer la précision d'un modèle
+%	Qualité de l'ajustement
+%	Compromis biais-variance
+%%%	----------------------------------------	%%%
 
-Variable vs prédicteur vs ...
-Explication des composantes de la régression linéaire
-	terme d'erreur / erreur irréductible / systémique
-	supposer une relation linéaire
-	réponse quantitative 
-
-Pourquoi estimer la fonction
-	prévision
-	inférence
-		relation entre les prédicteurs
-		relation entre la variable réponse et chacun des prédicteurs
-		relation plus compliquée qu'une relation linéaire?
-
-Comment estimer la fonction
-	Méthodes paramétriques
-	Méthodes non-paramétriques
-	
-Compromis interprétation et précision
-Apprentissage supervisé vs non supervisé
-Régression vs catégorique
-
-Évaluer la précision d'un modèle
-	Qualité de l'ajustement
-	Compromis biais-variance
-	
+%%%	----------------------------------------	%%%
+%%%	NOTE: 
+%%%	+	Je ne trouvais pas que ça fit assez pour 
+%%%		l'inclure mais j'aime quand même la section
+%%%		:/ (AJvR).	
+%\columnbreak
+%\section{Régression linéaire simple}
+%
+%\begin{definitionNOHFILL}[Modèle de régression linéaire simple]
+%\begin{align*}
+%	Y_{i} 
+%	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}	\\
+%	\hat{Y}_{i} 
+%	&=	\hat{\beta}_{0} + \hat{\beta}_{1} x_{i} 
+%\end{align*}
+%\end{definitionNOHFILL}
+%
+%\subsection{Exemple de compréhension}
+%
+%On illustre le concept et la signification des paramètres de régression avec cet exemple illustratif
+%
+%\paragraph{Objectif}	On veut deviner le coût d'une télévision (télé) selon la taille de son écran.
+%
+%\
+%
+%L'idée de la "régression" est de deviner, ou "prédire" du mieux qu'on peut le coût d'une télé en fonction de la taille de son écran.
+%
+%Deviner le coût \textit{exact} d'une télé \textit{seulement} en fonction de la taille de son écran est impossible. Il y a de nombreuses raisons qui déterminent le prix d'une télé et un bon exercice est de réfléchir à ce qu'elles pourraient être. 
+%J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont survenus:
+%\begin{itemize}[leftmargin = *]
+%	\item	La compagnie qui la produit (Sony vs LG, etc.).
+%	\item	La résolution (4K vs 360p).
+%	\item	L'année de fabrication (1990 vs 2020).
+%	\item	L'endroit de l'achat (Amazon vs BestBuy, Mexique vs Canada, etc.).
+%	\item	Le temps de l'année (été vs hiver, Boxing Day, etc.).
+%\end{itemize}
+%
+%Maintenant supposons que tu joues à un jeu avec tes amis où qu'ils doivent deviner le coût d'une télé en fonction de sa taille. Ils vont probablement tous te donner des différentes réponses.
+%
+%Si tu crées un modèle de prévision, il doit être systématique et toujours deviner le même prix pour la même taille d'écran---même si la prévision est erronée. 
+%
+%Alors, supposons que tu changes le jeu un peu et stipules que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de tes amis vont probablement se ressembler un peu plus, mais il y a un problème qui demeure---tu veux que les prévisions soient proportionnelles à la taille de l'écran. C'est-à-dire, si ton ami devine qu'une télé de 25" coûte 100\$, tu t'attends à ce qu'il devine qu'une télé de 50" coûte 200\$.
+%
+%La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une ligne droite:
+%\begin{center}
+%
+%\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+%
+%\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+%
+%%Shape: Axis 2D [id:dp3720388407437436] 
+%\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
+%%Straight Lines [id:da45260329028360524] 
+%\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+%
+%% Text Node
+%\draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
+%% Text Node
+%\draw (48,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
+%
+%
+%\end{tikzpicture}
+%
+%\end{center}
+%
+%L'intuition est que ton ami se base uniquement sur la taille de l'écran comme information pour deviner le coût. Une régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que plus grand l'écran est grand, plus le prix va augmenter---ceci serait plutôt une régression avec un paramètre \textbf{exponentiel}. 
+%
+%On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" pour le coût $\beta_{0}$ et un "multiplicateur" de la taille d'écran $\beta_{1}$:
+%\begin{center}
+%\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+%
+%\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+%
+%%Shape: Axis 2D [id:dp3720388407437436] 
+%\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
+%%Straight Lines [id:da45260329028360524] 
+%\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+%
+%% Text Node
+%\draw (246,142.67) node   [align=left] {taille de\\ l'écran $x$};
+%% Text Node
+%\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
+%
+%% Text Node
+%\draw (64,115) node  [font=\footnotesize] [align=left] {$\beta _{0}$};
+%% Text Node
+%\draw (161,72) node  [font=\small,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\hat{Y} =\ \beta _{0} \ +\ \beta _{1} x$};
+%
+%
+%\end{tikzpicture}
+%
+%\end{center}
+%
+%On suppose qu'une télé doit coûter au moins un certain prix. Ce "niveau de base" est l'intercepte sur le graphique ci-dessus surnommé l'ordonnée $\beta_{0}$. De ton gré, tu supposes au moins $\beta_{0} = 200\$$ pour cet exemple. 
+%
+%Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De ton gré, tu suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
+%
+%Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. La taille (l'axe des $x$) est la variable que l'on connaît indépendamment du coût---c'est la variable "indépendante" $x$. 
+%
+%Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le chapeau signifie que c'est une estimation, ou "prévision".
+%
+%Par exemple, le modèle devine que le prix d'une télé de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la télé est de 300\$.
+%
+%Supposons que tu connais le \textit{vrai} coût $Y$, alors tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
+%
+%Graphiquement:
+%
+%
+%\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+%
+%\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+%
+%%Shape: Axis 2D [id:dp0590336014536994] 
+%\draw  (50,141.82) -- (234.5,141.82)(77.7,28.33) -- (77.7,169.33) (227.5,136.82) -- (234.5,141.82) -- (227.5,146.82) (72.7,35.33) -- (77.7,28.33) -- (82.7,35.33) (102.7,136.82) -- (102.7,146.82)(127.7,136.82) -- (127.7,146.82)(152.7,136.82) -- (152.7,146.82)(177.7,136.82) -- (177.7,146.82)(202.7,136.82) -- (202.7,146.82)(72.7,116.82) -- (82.7,116.82)(72.7,91.82) -- (82.7,91.82)(72.7,66.82) -- (82.7,66.82) ;
+%\draw   ;
+%%Straight Lines [id:da6064475343931128] 
+%\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
+%%Flowchart: Connector [id:dp8477117117153217] 
+%\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (173.73,93.81) .. controls (171.68,92.14) and (171.38,89.12) .. (173.05,87.07) .. controls (174.72,85.02) and (177.74,84.71) .. (179.79,86.39) .. controls (181.84,88.06) and (182.15,91.08) .. (180.48,93.13) .. controls (178.8,95.18) and (175.79,95.49) .. (173.73,93.81) -- cycle ;
+%%Flowchart: Connector [id:dp4707804099581703] 
+%\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (173.73,66.81) .. controls (171.68,65.14) and (171.38,62.12) .. (173.05,60.07) .. controls (174.72,58.02) and (177.74,57.71) .. (179.79,59.39) .. controls (181.84,61.06) and (182.15,64.08) .. (180.48,66.13) .. controls (178.8,68.18) and (175.79,68.49) .. (173.73,66.81) -- cycle ;
+%%Shape: Brace [id:dp37242003440355953] 
+%\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (171.5,63.33) .. controls (167.93,63.4) and (166.18,65.22) .. (166.25,68.79) -- (166.25,68.79) .. controls (166.35,73.89) and (164.61,76.47) .. (161.04,76.54) .. controls (164.61,76.47) and (166.45,78.99) .. (166.54,84.08)(166.5,81.79) -- (166.54,84.08) .. controls (166.61,87.65) and (168.43,89.4) .. (172,89.33) ;
+%
+%% Text Node
+%\draw (275,142.67) node   [align=center] {taille de\\ l'écran $x$};
+%% Text Node
+%\draw (45,34.67) node   [align=center] {coût de la \\ télé $Y$};
+%
+%% Text Node
+%\draw (262,99) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
+%% Text Node
+%\draw (55,117.33) node   [align=left] {$\displaystyle 200$};
+%% Text Node
+%\draw (56,92.33) node   [align=left] {$\displaystyle 300$};
+%% Text Node
+%\draw (55,66.33) node   [align=left] {$\displaystyle 400$};
+%% Text Node
+%\draw (211,50) node  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle Y\ =400\$$};
+%% Text Node
+%\draw (129,72.33) node  [font=\scriptsize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+%\varepsilon =400-300\\
+%\ \ =100
+%\end{array}$};
+%% Text Node
+%\draw (178,159.33) node   [align=left] {$\displaystyle 50$};
+%
+%
+%\end{tikzpicture}
+%
+%On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" théorique pour obtenir une variable dépendante $Y$ en fonction de: 
+%\begin{itemize}
+%	\item	Une variable indépendante $x$ multipliée par un facteur $\beta_{1}$.
+%	\item	Un niveau de base l'intercepte $\beta_{0}$.
+%	\item	Une erreur aléatoire $\varepsilon$ inconnue.
+%\end{itemize}
+%%%	----------------------------------------	%%%
 
 \columnbreak
-\section{Régression linéaire simple}
-
-\begin{definitionNOHFILL}[Modèle de régression linéaire simple]
-\begin{align*}
-	Y_{i} 
-	&=	\beta_{0} + \beta_{1} x_{i} + \varepsilon_{i}	\\
-	\hat{Y}_{i} 
-	&=	\hat{\beta}_{0} + \hat{\beta}_{1} x_{i} 
-\end{align*}
-\end{definitionNOHFILL}
-
-\subsection{Exemple de compréhension}
-
-On illustre le concept et la signification des paramètres de régression avec cet exemple illustratif
-
-\paragraph{Objectif}	On veut deviner le coût d'une télévision (télé) selon la taille de son écran.
-
-\
-
-L'idée de la "régression" est de deviner, ou "prédire" du mieux qu'on peut le coût d'une télé en fonction de la taille de son écran.
-
-Deviner le coût \textit{exact} d'une télé \textit{seulement} en fonction de la taille de son écran est impossible. Il y a de nombreuses raisons qui déterminent le prix d'une télé et un bon exercice est de réfléchir à ce qu'elles pourraient être. 
-J'inclus ci-dessous une liste de quelques raisons, ou "facteurs", qui me sont survenus:
-\begin{itemize}[leftmargin = *]
-	\item	La compagnie qui la produit (Sony vs LG, etc.).
-	\item	La résolution (4K vs 360p).
-	\item	L'année de fabrication (1990 vs 2020).
-	\item	L'endroit de l'achat (Amazon vs BestBuy, Mexique vs Canada, etc.).
-	\item	Le temps de l'année (été vs hiver, Boxing Day, etc.).
-\end{itemize}
-
-Maintenant supposons que tu joues à un jeu avec tes amis où qu'ils doivent deviner le coût d'une télé en fonction de sa taille. Ils vont probablement tous te donner des différentes réponses.
-
-Si tu crées un modèle de prévision, il doit être systématique et toujours deviner le même prix pour la même taille d'écran---même si la prévision est erronée. 
-
-Alors, supposons que tu changes le jeu un peu et stipules que la personne qui devine le prix le plus éloigné doit prendre une gorgée de sa bière. Les réponses de tes amis vont probablement se ressembler un peu plus, mais il y a un problème qui demeure---tu veux que les prévisions soient proportionnelles à la taille de l'écran. C'est-à-dire, si ton ami devine qu'une télé de 25" coûte 100\$, tu t'attends à ce qu'il devine qu'une télé de 50" coûte 200\$.
-
-La raison est qu'une régression \textbf{linéaire} \textit{simple} est simplement une ligne droite:
-\begin{center}
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
-
-%Shape: Axis 2D [id:dp3720388407437436] 
-\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
-%Straight Lines [id:da45260329028360524] 
-\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
-
-% Text Node
-\draw (246,142.67) node   [align=left] {\shortstack{taille de\\ l'écran $x$}};
-% Text Node
-\draw (48,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
-
-
-\end{tikzpicture}
-
-\end{center}
-
-L'intuition est que ton ami se base uniquement sur la taille de l'écran comme information pour deviner le coût. Une régression \textbf{linéaire} simple applique un facteur \textbf{multiplicatif}. Il ne peut pas se dire que plus grand l'écran est grand, plus le prix va augmenter---ceci serait plutôt une régression avec un paramètre \textbf{exponentiel}. 
-
-On crée donc un facteur surnommé "paramètre". Dans le cas d'une régression linéaire simple, on a deux paramètres d'intérêts: un "niveau de base" pour le coût $\beta_{0}$ et un "multiplicateur" de la taille d'écran $\beta_{1}$:
-\begin{center}
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
-
-%Shape: Axis 2D [id:dp3720388407437436] 
-\draw  (50,144.67) -- (219.83,144.67)(75.83,33) -- (75.83,165) (212.83,139.67) -- (219.83,144.67) -- (212.83,149.67) (70.83,40) -- (75.83,33) -- (80.83,40)  ;
-%Straight Lines [id:da45260329028360524] 
-\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
-
-% Text Node
-\draw (246,142.67) node   [align=left] {taille de\\ l'écran $x$};
-% Text Node
-\draw (54,34.67) node   [align=left] {\shortstack{coût de la \\ télé $Y$}};
-
-% Text Node
-\draw (64,115) node  [font=\footnotesize] [align=left] {$\beta _{0}$};
-% Text Node
-\draw (161,72) node  [font=\small,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\hat{Y} =\ \beta _{0} \ +\ \beta _{1} x$};
-
-
-\end{tikzpicture}
-
-\end{center}
-
-On suppose qu'une télé doit coûter au moins un certain prix. Ce "niveau de base" est l'intercepte sur le graphique ci-dessus surnommé l'ordonnée $\beta_{0}$. De ton gré, tu supposes au moins $\beta_{0} = 200\$$ pour cet exemple. 
-
-Ensuite, le multiplicateur va multiplier la taille de l'écran pour obtenir un prix. Ce paramètre représente donc la pente $\beta_{1}$. De ton gré, tu suppose une pente de $\beta_{1} = 2\$$ pour cet exemple. 
-
-Le coût (l'axe des $Y$) est la variable qui dépend de la taille---c'est la variable "dépendante" $Y$. La taille (l'axe des $x$) est la variable que l'on connaît indépendamment du coût---c'est la variable "indépendante" $x$. 
-
-Finalement la droite elle-même est le coût que le modèle devine $\hat{Y}$. Le chapeau signifie que c'est une estimation, ou "prévision".
-
-Par exemple, le modèle devine que le prix d'une télé de 50" est de 300\$; soit, $\hat{Y} = \beta_{0} + \beta_{1} x = 200 + (2) \cdot (50) = 300$. Selon le modèle, on estime que le coût de la télé est de 300\$.
-
-Supposons que tu connais le \textit{vrai} coût $Y$, alors tu peux mesurer à quel point tu est dans le champ. Supposons que le vrai coût est de $Y = 400\$$. Alors, l'erreur dans ta prédiction est de $\varepsilon = 400 - 300 = 100\$$. 
-
-Graphiquement:
-
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
-
-%Shape: Axis 2D [id:dp0590336014536994] 
-\draw  (50,141.82) -- (234.5,141.82)(77.7,28.33) -- (77.7,169.33) (227.5,136.82) -- (234.5,141.82) -- (227.5,146.82) (72.7,35.33) -- (77.7,28.33) -- (82.7,35.33) (102.7,136.82) -- (102.7,146.82)(127.7,136.82) -- (127.7,146.82)(152.7,136.82) -- (152.7,146.82)(177.7,136.82) -- (177.7,146.82)(202.7,136.82) -- (202.7,146.82)(72.7,116.82) -- (82.7,116.82)(72.7,91.82) -- (82.7,91.82)(72.7,66.82) -- (82.7,66.82) ;
-\draw   ;
-%Straight Lines [id:da6064475343931128] 
-\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (76.05,116.98) -- (219.41,76.48) ;
-%Flowchart: Connector [id:dp8477117117153217] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (173.73,93.81) .. controls (171.68,92.14) and (171.38,89.12) .. (173.05,87.07) .. controls (174.72,85.02) and (177.74,84.71) .. (179.79,86.39) .. controls (181.84,88.06) and (182.15,91.08) .. (180.48,93.13) .. controls (178.8,95.18) and (175.79,95.49) .. (173.73,93.81) -- cycle ;
-%Flowchart: Connector [id:dp4707804099581703] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (173.73,66.81) .. controls (171.68,65.14) and (171.38,62.12) .. (173.05,60.07) .. controls (174.72,58.02) and (177.74,57.71) .. (179.79,59.39) .. controls (181.84,61.06) and (182.15,64.08) .. (180.48,66.13) .. controls (178.8,68.18) and (175.79,68.49) .. (173.73,66.81) -- cycle ;
-%Shape: Brace [id:dp37242003440355953] 
-\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (171.5,63.33) .. controls (167.93,63.4) and (166.18,65.22) .. (166.25,68.79) -- (166.25,68.79) .. controls (166.35,73.89) and (164.61,76.47) .. (161.04,76.54) .. controls (164.61,76.47) and (166.45,78.99) .. (166.54,84.08)(166.5,81.79) -- (166.54,84.08) .. controls (166.61,87.65) and (168.43,89.4) .. (172,89.33) ;
-
-% Text Node
-\draw (275,142.67) node   [align=center] {taille de\\ l'écran $x$};
-% Text Node
-\draw (45,34.67) node   [align=center] {coût de la \\ télé $Y$};
-
-% Text Node
-\draw (262,99) node  [font=\footnotesize,color={rgb, 255:red, 189; green, 16; blue, 224 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y} \ =\ 200\ +\ 2\cdot 50=300\$$};
-% Text Node
-\draw (55,117.33) node   [align=left] {$\displaystyle 200$};
-% Text Node
-\draw (56,92.33) node   [align=left] {$\displaystyle 300$};
-% Text Node
-\draw (55,66.33) node   [align=left] {$\displaystyle 400$};
-% Text Node
-\draw (211,50) node  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle Y\ =400\$$};
-% Text Node
-\draw (129,72.33) node  [font=\scriptsize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
-\varepsilon =400-300\\
-\ \ =100
-\end{array}$};
-% Text Node
-\draw (178,159.33) node   [align=left] {$\displaystyle 50$};
-
-
-\end{tikzpicture}
-
-On voit donc que $Y = \beta_{0} + \beta_{1} x + \varepsilon$ est un "modèle" théorique pour obtenir une variable dépendante $Y$ en fonction de: 
+\section{Régression}
+\subsection{Famille exponentielle}
+La famille exponentielle est de la forme : \lfbox[formula]{$f(y; \theta)	=	\textrm{e}^{a(y)b(\theta) + c(\theta) + d(y)}$}.
 \begin{itemize}
-	\item	Une variable indépendante $x$ multipliée par un facteur $\beta_{1}$.
-	\item	Un niveau de base l'intercepte $\beta_{0}$.
-	\item	Une erreur aléatoire $\varepsilon$ inconnue.
+	\item	Le GLM requiert que \lfbox[conditions]{$a(y)	=	y$} que l'on nomme la \textbf{forme canonique}.
+	\item	Sous cette paramétrisation, $b(\theta)$ est le paramètre canonique (\og \textit{natural parameter} \fg{}).
 \end{itemize}
 
+Sous cette forme, on déduit que \lfbox[formula]{$\text{E}[a(Y)]	=	-\frac{c'(\theta)}{b'(\theta)}$} et \lfbox[formula]{$\text{Var}(a(Y))	=	\frac{b''(\theta)c'(\theta)	-	c''(\theta)b'(\theta)}{\left(b'(\theta)\right)^{3}}$}.
 
+%\begin{formula}{Résidus de Pearson}
+%\begin{align*}
+%	r_{P_i} 
+%		&=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} 
+%\end{align*}
+%\end{formula}
+%\begin{formula}{Résidus de déviance}
+%\begin{equation*}
+%	r_{D_i} =	\text{signe}(y_{i} - \hat{\mu}_{i}) \sqrt{d_{i}}
+%\end{equation*}
+%\end{formula}
+%\begin{formula}{Résidus d'Anscombe}
+%\begin{align*}
+%	r_{A_i} 
+%		&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
+%\end{align*}
+%\end{formula}
+%
+%
+%Transformations si :
+%\begin{description}
+%	\item[$\text{Var}(\varepsilon_{i}) \propto \text{E}\lbrack Y_{i} \rbrack$]	Et que les données sont de type Poisson alors \lfbox[formula]{$g(y)	=	\sqrt{Y}$}.
+%	\item[$\text{Var}(\varepsilon_{i}) \propto \left(\text{E}\lbrack Y_{i} \rbrack\right)^{2}$]		alors \lfbox[formula]{$g(y)	=	\ln Y$}.
+%	\item[$\text{Var}(\varepsilon_{i}) \propto \left(\text{E}\lbrack Y_{i} \rbrack\right)^{4}$]		alors \lfbox[formula]{$g(y)	=	1 / Y$}.
+%	\item[$\text{Var}(\varepsilon_{i}) \propto \text{E}\lbrack Y_{i} \rbrack(1 - \text{E}\lbrack Y_{i} \rbrack)$]	, que $Y	\in [0, 1]$ et que $Y	\sim	 \text{Bern}$ alors \lfbox[formula]{$g(y)	=	\arcsin \sqrt{Y}$}.
+%\end{description}
+
+
+\columnbreak
+\section{Classification}
+On fait de la \textbf{classification} lorsque nous voulons prédire une variable \textit{catégorielle}. Il y a 3 trois types de variables : nominal, ordinal et binomial. Les deux premières ont été définies plus haut, une variable réponse binomiale est simplement une variable ayant 2 catégories.
+
+\subsection{Binomial}
+Soit $\eta	=	\beta_{0} + \sum_{j = 1}^{p} \beta_{j}x_{j}$.
+Soit la probabilité $\pi$ que $Y	=	1$.
+\begin{itemize}
+	\item	Alors, on veut une fonction de lien $g(\pi)	=	\eta$ tel que $g(\pi): [0, 1] \mapsto (-\infty, \infty)$.
+	\item	Par exemple, la fonction quantile d'une distribution $X$.
+		\begin{itemize}
+		\item	On appelle cette distribution la \og \textit{tolerance distribution} \fg{}.
+		\item	Ce nom provient de l'utilité du modèle pour évaluer si un médicament a un effet ou pas.
+		\item	Une valeur élevée de $\eta$ est plus probable de mener à une probabilité $\pi$ élevée de oui ($Y	=	1$).
+		\end{itemize}
+\end{itemize}
+
+Les 3 fonctions de lien les plus utilisées pour $\pi \in [0, 1]$ sont les suivantes :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Nom}}	&	\textcolor{white}{$\mu	=	\pi$}		&	\textcolor{white}{$\eta$}		\\\hline
+Logit	&	$\frac{\textrm{e}^{\eta}}{1 + \textrm{e}^{\eta}}$	&	$\ln\left(\frac{\pi}{1	-	\pi}\right)$	\\\hline
+Probit	&	$\Phi(\eta)$	&	$\Phi^{-1}(\mu)$	\\\hline
+Log-log complémentaire	&	$1	-	\textrm{e}^{-\textrm{e}^{\eta}}$	&	$\ln\left(-\ln(1	-	\pi)\right)$	\\\hline
+\end{tabular}
+\end{center}
+
+Comme on peut observer ci-dessous, les fonctions de lien logit et probit sont \textbf{symétriques} à 0 mais pas la fonction de lien log-log complémentaire.
+\begin{center}
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp48000806956401476] 
+\draw  (98.17,148.64) -- (338.17,148.64)(98.5,10) -- (98.5,148.64) (331.17,143.64) -- (338.17,148.64) -- (331.17,153.64) (93.5,17) -- (98.5,10) -- (103.5,17)  ;
+%Curve Lines [id:da6911332547105664] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (98.5,148.64) .. controls (236.5,146.64) and (225.5,30.64) .. (330.5,31.3) ;
+%Curve Lines [id:da5236167901193742] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (99.5,148.64) .. controls (139.5,148.64) and (155.5,149.64) .. (181.5,145.64) .. controls (207.5,141.64) and (244.5,40.64) .. (268.5,35.64) .. controls (292.5,30.64) and (282.5,31.64) .. (330.5,31.3) ;
+%Curve Lines [id:da7105130930164139] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (99.17,148) .. controls (196.5,148.3) and (227.5,31.64) .. (247.5,31.64) .. controls (267.5,31.64) and (231.5,31.64) .. (330.5,31.3) ;
+%Shape: Rectangle [id:dp3994976422081038] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (363.54,26.08) -- (524.5,26.08) -- (524.5,63.64) -- (363.54,63.64) -- cycle ;
+%Straight Lines [id:da8147114892565948] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (366.27,33.85) -- (408.99,33.85) ;
+%Straight Lines [id:da8363691109245619] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (366.27,44.85) -- (408.99,44.85) ;
+%Straight Lines [id:da07649571164976332] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (366.27,55.86) -- (408.99,55.86) ;
+
+% Text Node
+\draw (466.22,32.77) node  [font=\small] [align=left] {{\footnotesize log-log complémentaire}};
+% Text Node
+\draw (423.72,43.27) node  [font=\small] [align=left] {{\footnotesize probit}};
+% Text Node
+\draw (420.72,54.77) node  [font=\small] [align=left] {{\footnotesize logit}};
+% Text Node
+\draw (343,146) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \eta $}};
+% Text Node
+\draw (78,2) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \pi $}};
+% Text Node
+\draw (221,151) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 0$}};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+\paragraph{Note}	La cote, alias le \og \textit{odds ratio} \fg{}, est \lfbox[formula]{$\frac{\pi}{1	-	\pi}$}.
+
+
+\subsection{Nominal}
+On suppose qu'il y a $J$ catégories possibles pour la variable réponse. 
+Pour modéliser avec la régression logistique, on :
+\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
+	\item	Choisit une catégorie comme catégorie de base $1$.
+	\item	Pour chacune des autres catégories, on trouve les cotes relatives (\og \textit{relative odds} \fg{}).
+\end{enumerate}
+
+Le logarithme de la cote de la catégorie $j$ relatif à la catégorie de base $1$ est :
+\begin{align*}
+	\ln \frac{\pi_{j}}{\pi_{1}}
+	&=	\sum_{i	=	1}^{p} \beta_{ij} X_{i}
+	=	\eta_{j}, \quad j	=	2, 3, \dots, J
+\end{align*}
+
+Alors, $\pi_{j}	=	\pi_{1}\textrm{e}^{\eta_{j}}$ et puisque les probabilités doivent sommer jusqu'à 1 :
+\begin{align*}
+	\pi_{1}
+	&=	\frac{1}{1 + \sum_{k	=	2}^{J} \textrm{e}^{\eta_{k}}}	\\
+	\pi_{j}
+	&=	\frac{\textrm{e}^{\eta_{j}}}{1 + \sum_{k	=	2}^{J} \textrm{e}^{\eta_{k}}}, \quad j	=	2, 3, \dots, J
+\end{align*}
+
+
+\subsection{Ordinal}
+\textbf{Modèle logit cumulatif}
+
+\begin{align*}
+	\frac{\Pr(Y \leq j)}{1	-	\Pr(Y \leq j)}
+	&=	\frac{\sum_{k	=	1}^{j} \pi_{k}}{1	-	\sum_{k	=	1}^{j} \pi_{k}}	
+	=	\frac{\pi_{1} + \hdots + \pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}	\\
+\end{align*}
+
+Alors, avec les paramètres $\beta$ qui varient par catégorie $j$, :
+\begin{align*}
+	\ln\left(\frac{\pi_{1} + \hdots + \pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}\right)
+	&=	\sum_{i	=	1}^{p}\beta_{ij}X_{i}	\\
+\end{align*}
+
+\textbf{Modèle de cotes proportionnelles}	\\
+Excepté l'intercepte, les paramètres $\beta$ ne varient pas par catégorie $j$ :
+\begin{align*}
+	\ln\left(\frac{\pi_{1} + \hdots + \pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}\right)
+	&=	\beta_{1j} + \sum_{i	=	2}^{p}\beta_{i}X_{i}	\\
+\end{align*}
+
+\textbf{Modèle logit de catégories adjacentes}
+\begin{align*}
+	\ln\left(\frac{\pi_{j}}{\pi_{j + 1}}\right)
+	&=	\sum_{i	=	1}^{p}\beta_{ij}X_{i}	\\
+\end{align*}
+
+\textbf{Modèle logit de ratio continu}
+\begin{align*}
+	\frac{\Pr(Y	=	j)}{\Pr(Y	>	j)}
+	&=	\frac{\pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}
+\end{align*}
+
+
+\pagebreak
 \section{Autres}
 %	https://www.youtube.com/watch?v=0XfXHYDYoBA
 \begin{tabular}{|	c	|	c	|}
@@ -3290,6 +3479,319 @@ TP
 \pagebreak
 
 \part{Mathématiques IARD I}
+\section{Probabilité}
+\subsection{Fonctions de variables aléatoires}
+\begin{definitionNOHFILL}[Fonction de masse de probabilité (PMF)]
+Pour une variable aléatoire discrète $X$, on dénote sa fonction de masse de probabilité \lfbox[formula]{$p_{X}(x)	=	\Pr(X	=	x)$} tel que \lfbox[conditions]{$0	\leq	p(x)	\leq	1$} et \lfbox[conditions]{$\sum_{x} p(x)	=	1$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonction de densité (PDF)]
+Pour une variable aléatoire continue $X$, on dénote sa fonction de densité par $f_{X}(x)$ où \lfbox[conditions]{$f_{X}(x)	\neq	\Pr(X	=	x)$}. 
+\begin{itemize}
+	\item	La fonction de densité est évaluée sur des \textbf{intervalles de valeurs} pour obtenir la probabilité d'y être contenu, mais ne \textbf{représente pas une probabilité explicitement}.
+\end{itemize}
+
+De façon semblable à la PMF, \lfbox[conditions]{$f(x)	\geq	0$} et \lfbox[conditions]{$\int_{-\infty}^{\infty} f(x)dx	=	1$}.
+\begin{itemize}
+	\item	La différence entre les conditions pour la PMF et la PDF est que la fonction de densité peut être supérieure à $1$.
+	\item	Puisqu'elle ne représente pas une probabilité, elle ne doit pas être inférieure (ou égale) à 1.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Fonction de répartition (CDF)]
+La fonction de répartition \lfbox[formula]{$F_{X}(x)	=	\Pr(X	\leq	x)$} tel que \lfbox[conditions]{$F(-\infty)	=	0$} et \lfbox[conditions]{$F(\infty)	=	1$}.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{cumulative distribution function} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonction de survie]
+La fonction de survie \lfbox[formula]{$S_{X}(x)	=	\Pr(X	>	x)$} tel que \lfbox[conditions]{$S(-\infty)	=	1$} et \lfbox[conditions]{$S(\infty)	=	0$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonction de hasard]
+La fonction de hasard \lfbox[formula]{$h_{X}(x)	=	\frac{f(x)}{S(x)}$} tel que \lfbox[conditions]{$h(x)	\geq	0$}.
+
+\begin{itemize}
+	\item	Par la définition, on déduit qu'elle est \textbf{seulement applicable pour les v.a. continues}.
+	\item	La fonction de hasard mesure la \textbf{vraisemblance} que la v.a. soit égale à $x$ en gonflant la PDF moins il devient vraisemblable qu'elle soit supérieure à $x$.
+\end{itemize}
+
+\begin{itemize}
+	\item	En anglais, \og \textit{hazard function} \fg{}, \og \textit{hazard rate} \fg{}, \og \textit{failure rate function} \fg{} ou même \og \textit{force of mortality} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonction de hasard cumulative]
+La fonction de hasard \lfbox[formula]{$H_{X}(x)	=	\int_{-\infty}^{x}h(t)dt$}.
+\begin{itemize}
+	\item	Également, \lfbox[formula]{$H(x)	=	-\ln S(x)$} ou \lfbox[formula]{$S(x)	=	\textrm{e}^{-H(x)}$}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsection{Moments}
+Pour une v.a. $X$  \lfbox[conditions]{non-négative} et une fonction $g(x)$ tel que  \lfbox[conditions]{$g(0)	=	0$}, \lfbox[formula]{$\text{E}[g(X)]	=	\int_{0}^{\infty}g'(x) S(x)dx$}.
+
+\begin{definitionNOHFILL}[Fonction génératrice des moments (MGF)]
+La fonction génératrice des moments (MGF) d'une v.a. $X$ est dénoté comme \lfbox[formula]{$M_{X}(t)	=	\text{E}[\textrm{e}^{tX}]$}.\\
+
+Entre autres, la MGF sert à générer les moments d'une distribution avec \lfbox[formula]{$\text{E}[X^{n}]	=	\deriv[n]{t}{M_{X}(t)}\big|_{t	=	0}$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Fonction génératrice des probabilités (PGF)]
+La fonction génératrice des moments (PGF) d'une v.a. $X$ est dénoté comme \lfbox[formula]{$P_{X}(t)	=	\text{E}[t^{X}]$}.\\
+
+Entre autres, la PGF sert à :  
+\begin{enumerate}
+	\item	Générer les masses de probabilité d'une distribution discrète avec \lfbox[formula]{$p(n)	=	\frac{1}{n!}\deriv[n]{t}{P_{X}(t)}\big|_{t	=	0}$}.
+	\item	Générer des espérances avec \lfbox[formula]{$\deriv[n]{t}{P_{X}(t)}\big|_{t	=	1}	=	\text{E}\left[X (X - 1) \hdots (X - (n - 1))\right]$}.
+\end{enumerate}
+\end{definitionNOHFILL}
+
+
+\columnbreak
+\subsection{Percentiles, mode et statistiques}
+\begin{definitionNOHFILL}[Percentile]
+Le $100q^{\text{e}}$ \textbf{\textit{percentile}} d'une v.a. $X$ est la valeur $\pi_{q}$ tel que \lfbox[conditions]{$\Pr(X	<	\pi_{q})	 \leq	q$} \textbf{et} \lfbox[conditions]{$\Pr(X	\leq	\pi_{q})	 \geq	q$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Mode]
+Le mode est la réalisation qui a lieu le plus souvent. Par exemple, en anglais la lettre E est la lettre la plus utilisée dans le dictionnaire et représente donc le mode de la langue anglaise.\\
+
+En termes mathématiques, le mode est le point qui maximise la PMF/PDF.\\
+
+Dans le cas continu, si la distribution : 
+on peut simplement dériver la PDF et trouver le point qui la rend égale à zéro.
+\begin{itemize}
+	\item	est unimodal, c'est-à-dire qu'elle a une « bosse », alors \lfbox[formula]{$\text{mode}	=	x \text{ tel que } f'(x)	=	0$}.
+	\item	est strictement croissante ou décroissante, le mode sera une des deux extrémités.
+		\begin{itemize}
+		\item	Par exemple, la loi exponentielle est strictement décroissante et a toujours un mode à $0$ peu importe les paramètres.
+		\end{itemize}
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Skewness]
+\lfbox[formula]{$\text{Skewness}	=	\frac{\mu_{3}}{\sigma^{3}}		=	\frac{\mu'_{3} - 3\mu'_{2}\mu + 2\mu^{3}}{\sigma^{3}}$}.
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Curve Lines [id:da2688874623271533] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.39 ][line width=3]  [dash pattern={on 7.88pt off 4.5pt}]  (80.5,138.67) .. controls (132.5,138.67) and (117.5,43.67) .. (151.5,43.67) .. controls (185.5,43.67) and (178.5,139.67) .. (229.5,138.67) ;
+
+
+%Curve Lines [id:da9147539678395264] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=0.64 ][line width=3]    (49,139) .. controls (163.5,131.67) and (184.83,55) .. (201.5,42.67) .. controls (218.17,30.33) and (212.5,140) .. (263.5,139) ;
+
+
+%Curve Lines [id:da8124483083453555] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.6 ][line width=3]    (49,139) .. controls (87.5,139.67) and (80.17,24.33) .. (98.5,43.67) .. controls (116.83,63) and (152.5,129.67) .. (263.5,139) ;
+
+%Straight Lines [id:da7586443312018019] 
+\draw [line width=2.25]    (49,139) -- (263.5,139) ;
+
+
+% Text Node
+\draw (151,15) node [scale=0.8,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {No Skewness\\\textit{(symmétrique)}};
+% Text Node
+\draw (252,40) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {Negative Skewness\\\textit{ \ \ \ \ (right-modal)}};
+% Text Node
+\draw (54,40) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.29,0.56,0.89}{Positive Skewness}\\\textit{\textcolor[rgb]{0.29,0.56,0.89}{ \ \ \ \ (left-modal)}}};
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Kurtosis]
+\lfbox[formula]{$\text{Kurtosis}	=	\frac{\mu_{4}}{\sigma^{4}}		=	\frac{\mu'_{4} - 4\mu'_{3}\mu + 6\mu'_{2}\mu^{2} - 3\mu^{4}}{\sigma^{3}}$}.\\
+
+Le kurtosis mesure l'aplatissement d'une distribution et peut aider à juger la vraisemblance qu'une distribution produise des valeurs extrêmes (ou \og \textit{outliers} \fg{}).\\
+
+Le kurtosis de la distribution normale est de 3. On pose qu'il est plus vraisemblable pour une distribution dont le kurtosis supérieur à 3 de produire des valeurs extrêmes.
+
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%Curve Lines [id:da18622021578279613] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (219.17,255.33) .. controls (252.17,270) and (304.17,273) .. (319.17,271.33) ;
+%Curve Lines [id:da37988280307937217] 
+\draw [color={rgb, 255:red, 0; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3]    (219.17,254.33) .. controls (235.17,285) and (300.17,282) .. (318.17,282.33) ;
+%Straight Lines [id:da5412137305076621] 
+\draw [line width=2.25]    (159.17,169) -- (159.17,286) ;
+%Curve Lines [id:da11948970250620294] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=3]    (35.17,276) .. controls (61.17,276) and (106.17,272) .. (121.17,244) .. controls (136.04,220.92) and (143.5,190.67) .. (160.5,190.67) .. controls (177.5,190.67) and (185.87,234.17) .. (219.17,255.33) .. controls (249.17,279) and (309.17,277) .. (319.17,277) ;
+%Straight Lines [id:da09355877210927566] 
+\draw [line width=2.25]    (34.17,287) -- (322.17,287) ;
+
+
+% Text Node
+\draw (230,206) node [scale=0.8,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle  \begin{array}{{>{\displaystyle}l}}
+\textcolor[rgb]{0.96,0.65,0.14}{k\  >3}\\
+\textcolor[rgb]{0.82,0.01,0.11}{k\ =3}\\
+\textcolor[rgb]{0.0,0.65,0.14}{k\ < 3}
+\end{array}$};
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+
+
+\columnbreak
+\subsection{Distributions}
+\begin{definitionNOHFILLprop}[Loi Pareto]
+\begin{rappel_enhanced}[Contexte]
+La distribution Pareto est un mélange de deux distributions exponentielles originalement conçue pour étudier des distributions de revenus. 
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Paramètres}}		&	\textcolor{white}{\textbf{Domaine}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Pareto}(\alpha, \theta)$	&	$\alpha, \theta	>	0$	&	$x \geq 0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[=	\frac{\alpha\theta^{\alpha}}{(x + \theta)^{\alpha + 1}}\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$F(x)$}	&	 \[=1 -	\left(\frac{\theta}{x + \theta}\right)^{\alpha}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	Si $X \sim \text{Pareto}(\alpha, \theta)$ alors \lfbox[formula]{$Y	=	(X	-	d	|	X	>	d)	\sim \text{Pareto}(\alpha, \theta + d)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Loi Beta]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Paramètres}}		&	\textcolor{white}{\textbf{Domaine}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Beta}(a, b, \theta)$	&	$a, b	>	0 \text{ et } \theta \geq 0$	&	$x \in [0, \theta]$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[= \frac{\theta}{\text{B}(a, b)}	\bigg(\frac{x}{\theta}\bigg)^{a - 1} \bigg(1 - \frac{x}{\theta}\bigg)^{b - 1}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	$X	\sim \text{Beta}(a = 1, b = 1, \theta) \sim \text{Unif}(0, \theta)$.
+	\item	Si $X \sim \text{Unif}(a, b)$ alors  \lfbox[formula]{$(X	|	X	>	d)	\sim \text{Unif}(d, b)$} et \lfbox[formula]{$(X	-	d	|	X	>	d)	\sim \text{Unif}(0, b - d)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Loi Gamma]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Paramètres}}		&	\textcolor{white}{\textbf{Domaine}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Gamma}(\alpha, \theta)$	&	$\alpha, \theta > 0$	&	$x \geq	0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[= \frac{x^{\alpha - 1} \textrm{e}^{-x/\theta}}{\Gamma(\alpha)\theta^{\alpha}}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	On appelle $\theta$ la moyenne et $\lambda	=	\frac{1}{\theta}$ le paramètre de fréquence (\og \textit{rate} \fg{}).
+	\item	Soit n v.a. indépendantes \lfbox[conditions]{$X_{i}	\sim \text{Gamma}(\alpha_{i}, \theta)$} alors \lfbox[formula]{$\sum_{i = 1}^{n} X_{i} \sim \text{Gamma}(\sum_{i = 1}^{n} \alpha_{i}, \theta)$}.
+	\item	Soit n v.a. indépendantes \lfbox[conditions]{$X_{i}	\sim \text{Exp}(\lambda_{i})$} alors \lfbox[formula]{$Y	=	\min(X_{1}, \dots, X_{n})	\sim	\text{Exp}(\frac{1}{\sum_{i = 1}^{n} \lambda_{i})}$}.
+	\item	Si $X \sim \text{Exp}(\theta)$ alors \lfbox[formula]{$(X	-	d	|	X	>	d)	\sim \text{Exp}(\theta)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+\columnbreak
+\subsection{Transformation}
+\begin{definitionNOHFILLsub}[Changement d'échelle pour des v.a. continues]
+Toutes les distributions continues (sauf pour la lognormale, l'inverse gaussienne et la log-t) ont $\theta$ comme paramètre d'échelle. Alors, multiplier la v.a. par une constante $c$ change uniquement le paramètre $\theta^{\ast}	=	c\theta$.
+\end{definitionNOHFILLsub}
+
+\begin{algo2}[Trouver la PDF d'une v.a. transformée]
+Soit $n$ v.a. $X_{1}, \dots, X_{n}$ que l'on veut transformer en $n$ autres variables aléatoires $W_{1}	=	g_{1}(X_{1}, \dots, X_{n}), \dots, W_{n}	=	g_{n}(X_{1}, \dots, X_{n})$.
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Trouver les inverses des équations de la transformation : 
+		\begin{align*}
+		x_{1}	
+		&=	g^{-1}_{1}(w_{1}, \dots, w_{n})	\\
+		\vdots	\\
+		x_{n}	
+		&=	g^{-1}_{n}(w_{1}, \dots, w_{n})	
+		\end{align*}
+	\item	Calculer le déterminant de la matrice Jacobienne $J$ : 
+		\begin{align*}
+		J
+		&=	\det \begin{bmatrix}
+		\deriv{w_{1}}{x_{1}}	&	\hdots	&	\deriv{w_{n}}{x_{1}}	\\
+		\vdots	&	\ddots	&	\vdots	\\
+		\deriv{w_{1}}{x_{n}}		&	\hdots	&	\deriv{w_{n}}{x_{n}}
+		\end{bmatrix}
+		\end{align*}
+	\item	Trouver la fonction de densité conjointe avec \lfbox[formula]{$f_{W_{1}, \dots, W_{n}}(w_{1}, \dots, w_{n})	=	f_{X_{1}, \dots, X_{n}}\left(g^{-1}_{1}(w_{1}, \dots, w_{n}), \dots, g^{-1}_{n}(w_{1}, \dots, w_{n})\right) |J|$}.
+\end{enumerate}
+
+\paragraph{Note}	Dans le cas univarié, \lfbox[formula]{$f_{W}(w)	=	f_{X}\left(g^{-1}(w)\right) \left|\deriv{w}{g^{-1}(w)}\right|$}.
+\end{algo2}
+
+
+\columnbreak
+\subsection{Mesures de risque et queues de distributions}
+\begin{definitionNOHFILL}[\og \textit{Conditionnal Tail Expectation (\textbf{CTE})} \fg{}]
+\begin{align*}
+	CTE_{q}(X)
+	&=	\text{E}[X | X > \pi_{q}]	\\
+	&=	\pi_{q} + \text{E}[X - \pi_{q} | X > \pi_{q}]		\\
+	&=	\pi_{q} + \frac{\text{E}[X]	- \text{E}[X \wedge \pi_{q}]	}{1 - q}	\\
+\end{align*}
+
+\begin{itemize}
+	\item	On surnomme $1	-	q$ la \og \textit{tolerance probability} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+On peut comparer les queues de distributions en évaluant:
+\begin{definitionGENERAL}{Nombre de moments (positifs) qui existent}[\circled{1}{trueblue}]
+\textit{Plus} la queue est \textbf{\textbf{lourde}}, \textit{moins} il est probable que l'intégrale de $x^{k}f(x)$ va converger.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Ratio des fonctions de survie (ou PDF)}[\circled{2}{trueblue}]
+\textit{Plus} la queue est \textbf{\textbf{légère}}, \textit{plus} la fonction de survie va tendre vers 0 rapidement.\\
+
+\begin{itemize}
+	\item	Si $\limz{x}{\infty} \frac{S_{1}(x)}{S_{2}(x)}	=	0$ alors $X_{1}$ a une queue plus légère que $X_{2}$, et vice-versa si la limite tend vers $\infty$.
+	\item	Par la règle de l'hôpital, ceci est équivalent pour le ratio des PDF.
+\end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Fonctions de hasard}[\circled{3}{trueblue}]
+Si la fonction de hasard est \textit{décroissante}, il y a une probabilité plus élevée de pertes extrêmes et donc une queue \textit{\textbf{lourde}}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{CTEs (ou quantiles)}[\circled{4}{trueblue}]
+Plus le CTE est large, plus les montants de pertes extrêmes sont larges et donc plus la queue est \textit{\textbf{lourde}}.
+\end{definitionGENERAL}
+
+
+
+\pagebreak
 \section{Estimations et types de données}
 \subsection{Distributions empiriques}
 \begin{distributions}[Notation]
@@ -3394,7 +3896,451 @@ Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le cherch
 \end{description}
 \end{distributions}
 
+
 \columnbreak
+\section{Applications en assurance}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X$]	Variable aléatoire du montant de perte.
+\end{description}
+\end{distributions}
+
+
+\subsection{Limite de police}
+\begin{definitionNOHFILL}[Limite de police]
+Une \textbf{limite de police} \lfbox[formula]{$u$} est le montant maximal qu'un assureur va payer pour une perte.\\
+
+
+Visuellement : 
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,154); %set diagram left start at 0, and has height of 154
+
+%Shape: Rectangle [id:dp02803686274972339] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (311,17.67) -- (457.83,17.67) -- (457.83,126) -- (311,126) -- cycle ;
+%Shape: Rectangle [id:dp6650428705496374] 
+\draw  [fill={rgb, 255:red, 228; green, 228; blue, 228 }  ,fill opacity=1 ] (311,93) -- (457.83,93) -- (457.83,126) -- (311,126) -- cycle ;
+%Shape: Rectangle [id:dp011257611005494716] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (311,17.67) -- (457.83,17.67) -- (457.83,41) -- (311,41) -- cycle ;
+%Shape: Rectangle [id:dp9403819194026608] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (370,46) -- (437.5,46) -- (437.5,78) -- (370,78) -- cycle ;
+%Shape: Rectangle [id:dp48392000225673093] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (331.33,46) -- (370,46) -- (370,78) -- (331.33,78) -- cycle ;
+%Shape: Rectangle [id:dp7277326812364118] 
+\draw   (331.33,46) -- (437.5,46) -- (437.5,78) -- (331.33,78) -- cycle ;
+%Straight Lines [id:da8740810297553647] 
+\draw [line width=1.5]    (370,46) -- (370,78) ;
+%Shape: Rectangle [id:dp4533678374731276] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (333.83,94.97) -- (346.17,94.97) -- (346.17,107.7) -- (333.83,107.7) -- cycle ;
+%Shape: Rectangle [id:dp2562930482964858] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (333.83,110.13) -- (346.17,110.13) -- (346.17,122.87) -- (333.83,122.87) -- cycle ;
+
+% Text Node
+\draw (344.92,20.67) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize limite de police}};
+% Text Node
+\draw (351,91.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\scriptsize payé par l'assuré}};
+% Text Node
+\draw (350,107) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\scriptsize payé par l'assureur}};
+% Text Node
+\draw (364,79) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize] [align=left] {$\displaystyle u$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Montant de perte limité]
+La variable aléatoire du \textbf{montant de perte limité} \lfbox[formula]{$X \wedge u$} correspond au montant du paiement de l'assureur pour une police d'assurance ayant une limite de $u$ :
+
+\begin{align*}
+	X \wedge u
+	&=	\begin{cases}
+		X,	&	X < u	\\
+		u,	&	X \geq u	\\
+		\end{cases}
+\end{align*}
+\begin{itemize}
+	\item	Il s'ensuit que \lfbox[formula]{$X \wedge d	=	\min(X; d)$}.
+\end{itemize}
+
+Visuellement : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,174); %set diagram left start at 0, and has height of 174
+
+%Shape: Axis 2D [id:dp6598259573253495] 
+\draw  (313.5,139) -- (452.5,139)(313.5,61.33) -- (313.5,139) -- cycle (445.5,134) -- (452.5,139) -- (445.5,144) (308.5,68.33) -- (313.5,61.33) -- (318.5,68.33)  ;
+%Straight Lines [id:da2579967683196891] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (313.5,139) -- (370,82.5) ;
+%Straight Lines [id:da18638822683919853] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (369,83.5) -- (436.46,83.5) ;
+%Straight Lines [id:da08876956095236466] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (313.5,82.5) -- (370,82.5) ;
+
+% Text Node
+\draw (460,140) node  [font=\footnotesize] [align=left] {$\displaystyle X$};
+% Text Node
+\draw (403,74) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle X\land u$};
+% Text Node
+\draw (301,77) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle u$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[L'espérance limitée du montant de perte]
+\textbf{L'espérance limitée du montant de perte} \lfbox[formula]{$\text{E}[X \wedge u]$} correspond à l'espérance du paiement de l'assureur pour une police d'assurance ayant une limite de $u$ :
+
+\begin{align*}
+	\text{E}[X \wedge u]	
+	&=	\int_{0}^{u} x f(x) dx + u S(u)
+\end{align*}
+\end{definitionNOHFILLsub}
+
+
+\columnbreak
+\subsection{Déductibles}
+\begin{definitionNOHFILL}[Déductible]
+Le \textbf{déductible d'une police} est le montant que l'assuré doit payer de sa poche avant que l'assureur débourse pour une perte. \\
+
+Il y a 2 types de déductibles : 
+\begin{description}
+	\item[déductible ordinaire]	Une fois que le montant de perte surpasse le déductible, l'assureur va payer le montant de la perte \textbf{en excès du déductible}.
+	\item[déductible de franchise]	Une fois que le montant de perte surpasse le déductible, l'assureur va payer le montant \textbf{total} de la perte.
+\end{description}
+
+Par défaut, on suppose le déductible ordinaire.\\
+
+Visuellement :
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,217); %set diagram left start at 0, and has height of 217
+
+%Shape: Rectangle [id:dp588617566986505] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (128.75,134.92) -- (128.75,113.33) -- (152.99,113.33) -- (152.99,134.92) -- cycle ;
+%Shape: Rectangle [id:dp003856682054647287] 
+\draw   (128.75,134.92) -- (128.75,113.33) -- (152.99,113.33) -- (152.99,134.92) -- cycle ;
+%Shape: Rectangle [id:dp700556830555261] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (301.83,56.92) -- (317.17,56.92) -- (317.17,72.75) -- (301.83,72.75) -- cycle ;
+%Shape: Rectangle [id:dp7089085688842631] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (301.83,79) -- (317.33,79) -- (317.33,95) -- (301.83,95) -- cycle ;
+%Shape: Rectangle [id:dp40057299526008183] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (166.75,107.14) -- (166.75,58.67) -- (190.99,58.67) -- (190.99,107.14) -- cycle ;
+%Shape: Rectangle [id:dp7752631736808828] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (166.75,134.92) -- (166.75,107.14) -- (190.99,107.14) -- (190.99,134.92) -- cycle ;
+%Shape: Rectangle [id:dp8322518421090499] 
+\draw   (166.75,134.92) -- (166.75,58.67) -- (190.99,58.67) -- (190.99,134.92) -- cycle ;
+%Straight Lines [id:da21204533122634284] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (124.17,107) -- (200.17,107) ;
+%Shape: Rectangle [id:dp10210761313509842] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (223.75,134.92) -- (223.75,113.33) -- (247.99,113.33) -- (247.99,134.92) -- cycle ;
+%Shape: Rectangle [id:dp1422285500093443] 
+\draw   (223.75,134.92) -- (223.75,113.33) -- (247.99,113.33) -- (247.99,134.92) -- cycle ;
+%Shape: Rectangle [id:dp3614273531351382] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (261.75,134.92) -- (261.75,58.67) -- (285.99,58.67) -- (285.99,134.92) -- cycle ;
+%Shape: Rectangle [id:dp4016556775232154] 
+\draw   (261.75,134.92) -- (261.75,58.67) -- (285.99,58.67) -- (285.99,134.92) -- cycle ;
+%Straight Lines [id:da9540437083363307] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (219.17,107) -- (295.17,107) ;
+%Shape: Rectangle [id:dp7792912132142298] 
+\draw   (117,43) -- (207.83,43) -- (207.83,141.33) -- (117,141.33) -- cycle ;
+%Shape: Rectangle [id:dp19600907651515787] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (117,34.33) -- (207.83,34.33) -- (207.83,54.85) -- (117,54.85) -- cycle ;
+%Shape: Rectangle [id:dp25767783018946355] 
+\draw   (207.83,43) -- (298.67,43) -- (298.67,141.33) -- (207.83,141.33) -- cycle ;
+%Shape: Rectangle [id:dp6656766828727914] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (207.83,34.33) -- (298.67,34.33) -- (298.67,54.85) -- (207.83,54.85) -- cycle ;
+%Shape: Rectangle [id:dp932544307028238] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (117,13.82) -- (298.67,13.82) -- (298.67,34.33) -- (117,34.33) -- cycle ;
+
+% Text Node
+\draw (137.92,35.76) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize ordinaire}};
+% Text Node
+\draw (322,56.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize payé par l'assuré}};
+% Text Node
+\draw (321,78.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize payé par l'assureur}};
+% Text Node
+\draw (219.75,35.76) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize de franchise}};
+% Text Node
+\draw (179.33,15.05) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize déductible}};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+
+\subsubsection{Déductible ordinaire}
+\begin{definitionNOHFILLsub}[Montant de perte avec un déductible \textbf{ordinaire}]
+La variable aléatoire du montant de perte pour une police ayant un \textbf{déductible ordinaire} de $d$. \\
+
+\begin{minipage}[ht]{0.5\columnwidth}
+\begin{center}
+	Assureur
+\end{center}
+\begin{align*}
+	(X - d)_{+}
+	&=	\begin{cases}
+		0,	  	&	X \leq d	\\
+		X - d,	&	X > d	
+		\end{cases}
+\end{align*}
+\end{minipage}%
+\begin{minipage}[ht]{0.5\columnwidth}
+\begin{center}
+	Assuré
+\end{center}
+\begin{align*}
+	X \wedge d
+	&=	\begin{cases}
+		X,  &	X < d	\\
+		d,	&	X \geq d	
+		\end{cases}
+\end{align*}
+\end{minipage}
+
+\
+
+\begin{itemize}
+	\item	Il s'ensuit que \lfbox[formula]{$(X - d)_{+}	=	\max(X - d; 0)$}.
+	\item	On observe que le montant de perte est la somme des contributions \lfbox[conditions]{$X	=	X \wedge d + (X - d)_{+}$}.
+\end{itemize}
+
+Visuellement :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,155); %set diagram left start at 0, and has height of 155
+
+%Straight Lines [id:da2658768489155079] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (429,118.33) -- (485.5,61.83) ;
+%Straight Lines [id:da11698723071359618] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (363.54,118.62) -- (429.67,118.62) ;
+%Straight Lines [id:da326418494508391] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (363.17,119.33) -- (429.5,53) ;
+%Straight Lines [id:da8149304204229495] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (429.5,52) -- (484.5,52) ;
+%Straight Lines [id:da6292319909047852] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (429.5,51) -- (429.5,117.62) ;
+%Straight Lines [id:da12597396522940518] 
+\draw    (429,122.33) -- (429,113.33) ;
+%Straight Lines [id:da048934088668804776] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (361.17,117.33) -- (452.5,26) ;
+%Shape: Axis 2D [id:dp3636642155394634] 
+\draw  (361.5,119) -- (500.5,119)(361.5,38.33) -- (361.5,119) -- cycle (493.5,114) -- (500.5,119) -- (493.5,124) (356.5,45.33) -- (361.5,38.33) -- (366.5,45.33)  ;
+
+% Text Node
+\draw (513,118) node   [align=left] {$\displaystyle X$};
+% Text Node
+\draw (500,73) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle ( X-d)_{+}$};
+% Text Node
+\draw (465,41) node  [font=\scriptsize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle X\land d$};
+% Text Node
+\draw (428,18) node  [font=\scriptsize,color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {$\displaystyle ( X\land d) +( X-d)_{+} =X$};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[L'espérance du montant de perte avec un déductible ordinaire]
+\textbf{L'espérance du montant de perte}, pour l'assureur, \textbf{avec un déductible \textit{ordinaire}} \lfbox[formula]{$\text{E}[(X - d)_{+}]$} correspond à :
+
+\begin{align*}
+	\text{E}[(X - d)_{+}]
+	&=	\int_{d}^{\infty} (x - d) f(x) dx
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[\og \textit{Loss Elimination Ratio (LER)} \fg{}]
+Le \og \textit{Loss Elimination Ratio (LER)} \fg{} évalue combien qu'épargne l'assureur en imposant un déductible \textit{ordinaire} de $d$,
+\lfbox[formula]{$LER	=	\frac{\text{E}[X \wedge d]}{\text{E}[X]}$}.
+\end{definitionNOHFILLprop}
+
+
+\subsubsection{\og \textit{payment \textbf{per loss}} \fg{} et \og \textit{payment \textbf{per payment}} \fg{}}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Y^{L}$]	Montant de perte.
+		\begin{itemize}
+		\item	\og \textit{payment per \textbf{l}oss} \fg{}
+		\end{itemize}
+	\item[$Y^{P}$]	Montant de paiement.
+		\begin{itemize}
+		\item	\og \textit{payment per \textbf{p}ayment} \fg{}
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{description}
+	\item[$\text{E}\lbrack Y^{L} \rbrack$]	Montant espéré de paiement \textbf{par perte \textit{subie}}.
+	\item[$\text{E}\lbrack Y^{P}\rbrack$]	Montant espéré de paiement \textbf{par paiement \textit{effectué}}.
+		\begin{itemize}
+		\item	Par exemple, lorsqu'une police a un déductible, les pertes dont le coût est inférieur au déductible ne seront pas reportées à l'assureur.
+		\item	Le montant de paiement est donc le montant que l'assureur va payer conditionnel à ce qu'il y ait un paiement.
+		\item	Il s'ensuit que \lfbox[conditions]{$\text{E}[Y^{L}] \geq \text{E}[Y^{L}]$}.
+		\end{itemize}
+\end{description}
+
+
+Pour un déductible ordinaire de $d$, 
+
+\begin{minipage}[ht]{0.5\columnwidth}
+\begin{align*}
+	\text{E}[Y^{L}]
+	&=	\text{E}[(X - d)_{+}]
+\end{align*}
+\end{minipage}%
+\begin{minipage}[ht]{0.5\columnwidth}
+\begin{align*}
+	\text{E}[Y^{P}]
+	&=	\text{E}[X - d | X > d]
+\end{align*}
+\end{minipage}
+
+\begin{itemize}
+	\item	On trouve que \lfbox[formula]{$\text{E}[Y^{P}]	=	\frac{\text{E}[Y^{L}]}{S(d)}$}.
+	\item	Également, le montant espéré de paiement par paiement effectué \textit{est} la fonction d'excès moyen \lfbox[formula]{$\text{E}[Y^{P}]	=	e(d)$}.
+	\item	Si la police d'assurance comporte uniquement une limite, \lfbox[conditions]{$Y^{P}	=	Y^{L}$}.
+\end{itemize}
+
+\
+
+\textbf{Relations pour quelques distributions} :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{$X$}	&	\textcolor{white}{$(X - d | X > d)$}		\\\specialrule{0.1em}{0em}{0em} 
+$\text{Exp}(\theta)$&	$\text{Exp}(\theta)$	\\\hline
+$\text{Unif}(a, b)$&	$\text{Unif}(0, b - d)$	\\\hline
+$\text{Pareto}(\alpha, \theta)$&	$\text{Pareto}(\alpha, \theta + d)$	\\\hline
+$\text{Beta}(1, b, \theta)$&	$\text{Beta}(1, b, \theta - d)$	\\\hline
+\end{tabular}
+\end{center}
+
+
+\subsubsection{Déductible de franchise}
+\begin{definitionNOHFILLsub}[Montant de perte avec un déductible \textbf{de franchise}]
+La variable aléatoire du montant de perte pour une police ayant un \textbf{déductible de franchise} de $d$. 
+
+\begin{align*}
+	(X | X > d)
+	&=	\begin{cases}
+		0,	  	&	X \leq d	\\
+		X,	&	X > d	
+		\end{cases}
+\end{align*}
+
+Visuellement : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,253); %set diagram left start at 0, and has height of 253
+
+%Shape: Axis 2D [id:dp399710789539935] 
+\draw  (351.5,163) -- (490.5,163)(351.5,50) -- (351.5,163) -- cycle (483.5,158) -- (490.5,163) -- (483.5,168) (346.5,57) -- (351.5,50) -- (356.5,57)  ;
+%Straight Lines [id:da18461968529502748] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (419,162.33) -- (475.5,105.83) ;
+%Straight Lines [id:da11220757181905738] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=0.82 ][line width=2.25]    (351.54,161.62) -- (419,161.62) ;
+%Straight Lines [id:da8242096756691861] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (419.5,123) -- (419.5,161.62) ;
+%Straight Lines [id:da1498600133265573] 
+\draw    (419,166.33) -- (419,157.33) ;
+%Straight Lines [id:da6809260076607797] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (352.83,123) -- (419.5,123) ;
+%Straight Lines [id:da1340783435710058] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (351.88,159.33) -- (419,159.33) ;
+%Straight Lines [id:da3630038280649066] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (419.5,123) -- (476,66.5) ;
+%Shape: Rectangle [id:dp11226543371936115] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (353.75,181.33) -- (510.25,181.33) -- (510.25,214.33) -- (353.75,214.33) -- cycle ;
+%Straight Lines [id:da23606671704725968] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=3.75]    (357.92,190.33) -- (393.25,190.33) ;
+%Straight Lines [id:da48441164047430596] 
+\draw [color={rgb, 255:red, 142; green, 19; blue, 254 }  ,draw opacity=1 ][line width=3.75]    (357.92,205.33) -- (393.25,205.33) ;
+
+
+% Text Node
+\draw (498,164) node  [font=\footnotesize] [align=left] {$\displaystyle X$};
+% Text Node
+\draw (490,117) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {$\displaystyle ( X-d)_{+}$};
+% Text Node
+\draw (340,118) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle d$};
+% Text Node
+\draw (414,166) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle d$};
+% Text Node
+\draw (505,59) node  [font=\scriptsize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle ( X-d)_{+} +d$};
+% Text Node
+\draw (345,47) node  [font=\footnotesize] [align=left] {$\displaystyle Y^{L}$};
+% Text Node
+\draw (443.75,204) node  [font=\small] [align=left] {{\footnotesize déductible ordinaire}};
+% Text Node
+\draw (451.75,188) node  [font=\small] [align=left] {{\footnotesize déductible de franchise}};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[L'espérance du montant de perte avec un déductible de franchise]
+\textbf{L'espérance du montant de perte}, pour l'assureur, \textbf{avec un déductible \textit{de franchise}} \lfbox[formula]{$\text{E}[X | X > d]$} correspond à :
+
+\begin{align*}
+	\text{E}[X | X > d]
+	&=	\int_{d}^{\infty} x f(x) dx
+	=	\int_{d}^{\infty} (x - d) f(x) dx + d \int_{d}^{\infty} f(x) dx \\
+	&=	\text{E}[(X - d)_{+}] + dS(d)	 
+\end{align*}
+\end{definitionNOHFILLsub}
+
+
+\subsubsection{Impacts du déductible sur la fréquence}
+\textbf{Pour la classe $(a, b, 0)$ de distributions, on trouve les relations suivantes} :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Nombre de \textbf{pertes} ($N$)}}	&	\textcolor{white}{\textbf{Nombre de \textbf{paiements} ($N'$)}}		\\\specialrule{0.1em}{0em}{0em} 
+$\text{Pois}(\lambda)$&	$\text{Pois}(S(d)\lambda)$	\\\hline
+$\text{Binom}(n, p)$&	$\text{Binom}(n, S(d)p)$	\\\hline
+$\text{BinNeg}(r, \beta)$&	$\text{BinNeg}(r, S(d)\beta)$	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+\columnbreak
+\subsection{Coassurance}
+\paragraph{Lorsque les 4 items sont présent (déductible \textit{ordinaire}, limite, inflation et coassurance.}
+
+\begin{align*}
+Y^{(L\textcolor{blue}{|P)}}_{(O)} 
+	&=	\begin{cases}
+			(0 {\color{blue}{| \text{Non-défini})}},	&	\ x  < \frac{d}{1 + r} \\
+			\alpha \Big((1 + r) x - d \Big),	&	\ \frac{d}{1 + r} \leq x < \frac{u}{1 + r} \\
+			\alpha (u - d),	&	\ x \geq \frac{u}{1 + r} \\
+		\end{cases}	\\
+	\esp{Y^{(L\textcolor{blue}{|P)}}_{(O)}} 
+	&=	\frac{\alpha (1 + r) \left( 
+			\text{E}\left[X \wedge \frac{u}{1 + r}\right] -  
+			\text{E}\left[X \wedge \frac{d}{1 + r}\right]  
+		\right)}{{\color{blue}{S_{X} \left(\frac{d}{1 + r}\right)}}} 
+\end{align*}
+
+\columnbreak
+\subsection{Inflation}
+
+
+\pagebreak
 \section{Estimation de modèles non paramétriques}
 \subsection{Données complètes}
 \hl{Section à compléter avec mes notes de IARD et 11.2 de Nonlife Actuariel Models (tse).}
@@ -3882,7 +4828,88 @@ Le BIC pénalise plus sévèrement les modèles ayant plus de paramètres : \lfb
 Le BIC est \og \textit{consistent} \fg{} et règle le désavantage de l'AIC avec une probabilité de 1 d'éviter une erreur de type I lorsque la taille de l'échantillon tend vers l'infini. \\
 
 Dans les deux cas, la probabilité de rejeter le modèle plus simple lorsque le vrai modèle est entre les deux tend vers 1. 
- 
+
+
+\pagebreak
+\part{Sujets divers}
+\section{Optimisation numérique}
+\begin{definitionNOHFILLsub}[Algorithmes \og \textit{Greedy} \fg{}]
+Méthode de résolution de problèmes qui prend la décision optimale \textbf{à chaque étape} d'obtenir la solution optimale d'un problème. \\
+
+On dit que ces algorithmes sont \og \textit{greedy} \fg{} car, à chaque étape, ils prennent la meilleure décision sans tenir compte des choix futurs qui pourraient être plus optimales. Donc, la solution trouvée n'est pas nécessairement la solution optimale. \\
+
+Ces algorithmes ont l'avantage d'être \textbf{plus rapide} au coût d'être \textbf{moins précis}.
+\end{definitionNOHFILLsub}
+
+
+
+
+
+\pagebreak
+\part{Processus stochastiques}
+\section{Introduction}
+\begin{definitionNOHFILL}[Processus stochastique]
+Soit le processus stochastique \lfbox[formula]{$\{X_{n}, n	=	0, 1, 2, \dots\}$}.
+\end{definitionNOHFILL}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X_{n}$]	État du processus au temps $n$.
+		\begin{itemize}
+		\item	Par exemple, si $X_{n}	=	i$ alors le processus est dit d'être dans l'état $i$ au temps $n$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+
+\columnbreak
+\section{Chaines de Markov}
+Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seulement du dernier état à $n	-	1$ : 
+\begin{align*}
+	\Pr(X_{n}	=	j | X_{n - 1}	=	i_{n - 1}, X_{n - 2} = i_{n - 2}, \dots, X_{0}	=	i_{0})
+	&=	\Pr(X_{n}	=	j | X_{n - 1}	=	i)
+	=	P_{ij}
+\end{align*}
+
+\subsection{Équation de Chapman-Kolmogorov}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$P_{ij}$]	Probabilité de la transition de l'état $i$ à l'état $j$.
+		\begin{itemize}
+		\item	\lfbox[formula]{$P_{ij}	=	\Pr(X_{n}	=	j | X_{n - 1}	=	i_{n - 1})$}
+		\end{itemize}
+	\item[$P_{ij}^{n}$]	Probabilité de la transition de l'état $i$ à l'état $j$ dans $n$ étapes.
+		\begin{itemize}
+		\item	\lfbox[formula]{$P_{ij}^{n}	=	\Pr(X_{n + k}	=	j | X_{k}	=	i)$}
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+L'équation de Chapman-Kolmogorov trouve la probabilité d'être dans l'état $j$ au temps $t$ sachant qu'au temps $0$ on était à l'état $i$ : \lfbox[formula]{$P^{n + m}_{ij}	=	\sum_{k	=	0}^{\infty}P_{ik}^{n}P_{kj}^{m}$}.
+
+
+\subsection{Temps inter}
+Soit 2 v.a. exponentielles indépendantes avec paramètres de fréquence $\lambda_{1}, \lambda_{2}$, alors :
+\begin{align*}
+	\Pr(X_{1}	<	X_{2})
+	&=	\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
+\end{align*}
+
+Soit $n$ v.a. exponentielles indépendantes avec paramètres de fréquence $\lambda_{1}, \dots, \lambda_{n}$, alors :
+\begin{align*}
+	\Pr(X_{i}	=	\min(X_{1}, \dots, X_{n})
+	&=	\frac{\lambda_{i}}{\sum_{i = 1}^{n} \lambda_{i}}
+\end{align*}
+
+
+
+\pagebreak
+\part{Séries chronologiques}
+
+
+
 \end{multicols*}
+
+
 
 \end{document}
