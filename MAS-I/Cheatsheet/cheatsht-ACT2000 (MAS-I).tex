@@ -3556,8 +3556,37 @@ Entre autres, la PGF sert à :
 \columnbreak
 \subsection{Percentiles, mode et statistiques}
 \begin{definitionNOHFILL}[Percentile]
-Le $100q^{\text{e}}$ \textbf{\textit{percentile}} d'une v.a. $X$ est la valeur $\pi_{q}$ tel que \lfbox[conditions]{$\Pr(X	<	\pi_{q})	 \leq	q$} \textbf{et} \lfbox[conditions]{$\Pr(X	\leq	\pi_{q})	 \geq	q$}.
+\begin{rappel_enhanced}[Contexte]
+Les percentiles aident à quantifier la \textit{vraisemblance} de pertes extrêmes. Bien que les actuaires se servent des percentiles pour évaluer la \textit{\textbf{fréquence}} des pertes extrêmes, ils ne sont \textbf{pas} utiles pour évaluer la \textit{sévérité} de ces pertes.
+\end{rappel_enhanced}
+
+Le $100q^{\text{e}}$ \textbf{\textit{percentile}} d'une v.a. $X$ est la valeur $\pi_{q}$ tel que \lfbox[conditions]{$\Pr(X	<	\pi_{q})	 \leq	q$} \textbf{et} \lfbox[conditions]{$\Pr(X	\leq	\pi_{q})	 \geq	q$}.\\
+
+\begin{itemize}
+	\item	Dans le cas continu, $F_{X}(\pi_{\textcolor{teal}{q}})	=	\textcolor{teal}{q}$ et $\pi_{\textcolor{teal}{q}}	=	F^{-1}_{X}(\textcolor{teal}{q})$.
+\end{itemize}
 \end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\og \textit{Conditionnal Tail Expectation (\textbf{CTE})} \fg{}]
+\begin{rappel_enhanced}[Contexte]
+La CTE sert à évaluer la \textit{\textbf{sévérité}} des pertes extrêmes. \\
+
+Par exemple, si la $CTE_{0.95}(X)	=	5000$ cela veut dire que la moyenne des pertes dans le top 5\% est de 5 000\$.
+\end{rappel_enhanced}
+
+\begin{align*}
+	CTE_{q}(X)
+	&=	\text{E}[X | X > \pi_{q}]	\\
+	&=	\pi_{q} + \text{E}[X - \pi_{q} | X > \pi_{q}]		\\
+	&=	\pi_{q} + \frac{\text{E}[X]	- \text{E}[X \wedge \pi_{q}]	}{1 - q}	\\
+\end{align*}
+
+\begin{itemize}
+	\item	On surnomme $1	-	q$ la \og \textit{tolerance probability} \fg{}.
+	\item	La CTE est le cas continu de la \og \textit{Tail-Value-at-Risk (TVaR)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
 
 \begin{definitionNOHFILL}[Mode]
 Le mode est la réalisation qui a lieu le plus souvent. Par exemple, en anglais la lettre E est la lettre la plus utilisée dans le dictionnaire et représente donc le mode de la langue anglaise.\\
@@ -3744,36 +3773,31 @@ Soit $n$ v.a. $X_{1}, \dots, X_{n}$ que l'on veut transformer en $n$ autres vari
 		\deriv{w_{1}}{x_{n}}		&	\hdots	&	\deriv{w_{n}}{x_{n}}
 		\end{bmatrix}
 		\end{align*}
-	\item	Trouver la fonction de densité conjointe avec \lfbox[formula]{$f_{W_{1}, \dots, W_{n}}(w_{1}, \dots, w_{n})	=	f_{X_{1}, \dots, X_{n}}\left(g^{-1}_{1}(w_{1}, \dots, w_{n}), \dots, g^{-1}_{n}(w_{1}, \dots, w_{n})\right) |J|$}.
+	\item	Trouver la fonction de densité conjointe avec 
 \end{enumerate}
+\lfbox[formula]{$f_{W_{1}, \dots, W_{n}}(w_{1}, \dots, w_{n})	=	f_{X_{1}, \dots, X_{n}}\left(g^{-1}_{1}(w_{1}, \dots, w_{n}), \dots, g^{-1}_{n}(w_{1}, \dots, w_{n})\right) |J|$}.
 
 \paragraph{Note}	Dans le cas univarié, \lfbox[formula]{$f_{W}(w)	=	f_{X}\left(g^{-1}(w)\right) \left|\deriv{w}{g^{-1}(w)}\right|$}.
 \end{algo2}
 
 
 \columnbreak
-\subsection{Mesures de risque et queues de distributions}
-\begin{definitionNOHFILL}[\og \textit{Conditionnal Tail Expectation (\textbf{CTE})} \fg{}]
-\begin{align*}
-	CTE_{q}(X)
-	&=	\text{E}[X | X > \pi_{q}]	\\
-	&=	\pi_{q} + \text{E}[X - \pi_{q} | X > \pi_{q}]		\\
-	&=	\pi_{q} + \frac{\text{E}[X]	- \text{E}[X \wedge \pi_{q}]	}{1 - q}	\\
-\end{align*}
+\subsection{Queues de distributions}
+\begin{rappel_enhanced}[Contexte]
+Si une distribution a une queue de droite qui est lourde, \og \textit{thick} \fg{} ou \og \textit{fat} \fg{}, alors elle a des probabilités élevées de pertes extrêmes.
+\end{rappel_enhanced}
+
+En situation d'examen nous ne pouvons pas visuellement évaluer la queue et donc nous utilisons un des 4 tests suivants :
+\begin{definitionGENERAL}{Nombre de moments (positifs) qui existent}[\circled{1}{trueblue}]
+\textit{Plus} la queue est \textbf{\textbf{\textcolor{teal}{lourde}}}, \textit{\textcolor{teal}{moins}} il y a de moments qui existent.\\
 
 \begin{itemize}
-	\item	On surnomme $1	-	q$ la \og \textit{tolerance probability} \fg{}.
+	\item	Il devient de moins en moins probable que l'intégrale de $x^{k}f(x)$ va converger.
 \end{itemize}
-\end{definitionNOHFILL}
-
-
-On peut comparer les queues de distributions en évaluant:
-\begin{definitionGENERAL}{Nombre de moments (positifs) qui existent}[\circled{1}{trueblue}]
-\textit{Plus} la queue est \textbf{\textbf{lourde}}, \textit{moins} il est probable que l'intégrale de $x^{k}f(x)$ va converger.
 \end{definitionGENERAL}
 
 \begin{definitionGENERAL}{Ratio des fonctions de survie (ou PDF)}[\circled{2}{trueblue}]
-\textit{Plus} la queue est \textbf{\textbf{légère}}, \textit{plus} la fonction de survie va tendre vers 0 rapidement.\\
+\textit{Plus} la queue est \textbf{\textbf{\textcolor{teal}{lourde}}}, \textit{\textcolor{teal}{plus}} la fonction de \textcolor{teal}{survie va tendre vers 0 \textit{\textbf{lentement}}}.\\
 
 \begin{itemize}
 	\item	Si $\limz{x}{\infty} \frac{S_{1}(x)}{S_{2}(x)}	=	0$ alors $X_{1}$ a une queue plus légère que $X_{2}$, et vice-versa si la limite tend vers $\infty$.
@@ -3782,11 +3806,11 @@ On peut comparer les queues de distributions en évaluant:
 \end{definitionGENERAL}
 
 \begin{definitionGENERAL}{Fonctions de hasard}[\circled{3}{trueblue}]
-Si la fonction de hasard est \textit{décroissante}, il y a une probabilité plus élevée de pertes extrêmes et donc une queue \textit{\textbf{lourde}}.
+Si la \textcolor{teal}{fonction de hasard} est \textit{\textcolor{teal}{décroissante}}, il y a une probabilité plus élevée de pertes extrêmes et donc une queue \textit{\textbf{\textcolor{teal}{lourde}}}.
 \end{definitionGENERAL}
 
 \begin{definitionGENERAL}{CTEs (ou quantiles)}[\circled{4}{trueblue}]
-Plus le CTE est large, plus les montants de pertes extrêmes sont larges et donc plus la queue est \textit{\textbf{lourde}}.
+\textbf{\textit{\textcolor{teal}{Plus}}} le \textcolor{teal}{CTE (ou les quantiles) est large}, plus les montants de pertes extrêmes sont larges et donc \textit{plus} la queue est \textit{\textbf{\textcolor{teal}{lourde}}}.
 \end{definitionGENERAL}
 
 
@@ -4463,23 +4487,42 @@ Visuellement :
 \end{tikzpicture}
 \end{center}
 
-\begin{align*}
-Y^{(L\textcolor{blue}{|P)}}_{(O)} 
-	&=	\begin{cases}
-			(0 {\color{blue}{| \text{Non-défini})}},	&	\ x  < \frac{d}{1 + r} \\
-			\alpha \Big((1 + r) x - d \Big),	&	\ \frac{d}{1 + r} \leq x < \frac{u}{1 + r} \\
-			\alpha (u - d),	&	\ x \geq \frac{u}{1 + r} \\
-		\end{cases}	\\
-	\esp{Y^{(L\textcolor{blue}{|P)}}_{(O)}} 
-	&=	\frac{\alpha (1 + r) \left( 
-			\text{E}\left[X \wedge \frac{u}{1 + r}\right] -  
-			\text{E}\left[X \wedge \frac{d}{1 + r}\right]  
-		\right)}{{\color{blue}{S_{X} \left(\frac{d}{1 + r}\right)}}} 
-\end{align*}
+%\begin{align*}
+%Y^{(L\textcolor{blue}{|P)}}_{(O)} 
+%	&=	\begin{cases}
+%			(0 {\color{blue}{| \text{Non-défini})}},	&	\ x  < \frac{d}{1 + r} \\
+%			\alpha \Big((1 + r) x - d \Big),	&	\ \frac{d}{1 + r} \leq x < \frac{u}{1 + r} \\
+%			\alpha (u - d),	&	\ x \geq \frac{u}{1 + r} \\
+%		\end{cases}	\\
+%	\esp{Y^{(L\textcolor{blue}{|P)}}_{(O)}} 
+%	&=	\frac{\alpha (1 + r) \left( 
+%			\text{E}\left[X \wedge \frac{u}{1 + r}\right] -  
+%			\text{E}\left[X \wedge \frac{d}{1 + r}\right]  
+%		\right)}{{\color{blue}{S_{X} \left(\frac{d}{1 + r}\right)}}} 
+%\end{align*}
 
 
 \columnbreak
 \subsection{Inflation}
+\begin{definitionNOHFILL}[Inflation $r$]
+L'inflation de \lfbox[formula]{$r$} augmente les coûts mais, de façon générale, ils sont couverts par la compagnie d'assurance et ne cause pas de changements à la police.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[L'espérance du montant de perte avec inflation]
+\textbf{L'espérance du montant de perte}, pour l'assureur, \textbf{avec de l'inflation de $r$} est \lfbox[formula]{$\text{E}[(1 + r) X]	=	(1 + r) \text{E}[X]$}.\\
+
+Combiné avec les autres facteurs :
+
+\begin{align*}
+	\text{E}\left[Y^{L}\right]		
+	&=	\alpha(1 + r) \left(\text{E}\left[X \wedge \frac{m}{1 + r}\right]	-	\text{E}\left[X \wedge \frac{d}{1 + r}\right]\right)	\\
+	\text{E}\left[Y^{P}\right]	
+	&=	\frac{\text{E}[Y^{L}]}{S_{X}\left(\frac{d}{1 + r}\right)}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Si la distribution de $X$ comporte un paramètre d'échelle $\theta$, on peut simplifier les équations en posant \lfbox[formula]{$\theta'	=	(1 + r)\theta$}.
+
 
 
 \pagebreak
