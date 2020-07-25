@@ -3674,6 +3674,7 @@ Le kurtosis de la distribution normale est de 3. On pose qu'il est plus vraisemb
 
 \columnbreak
 \subsection{Distributions}
+\label{subsec:distrIARD}
 \begin{definitionNOHFILLprop}[Loi Pareto]
 \begin{rappel_enhanced}[Contexte]
 La distribution Pareto est un mélange de deux distributions exponentielles originalement conçue pour étudier des distributions de revenus. 
@@ -3744,6 +3745,45 @@ $X \sim \text{Gamma}(\alpha, \theta)$	&	$\alpha, \theta > 0$	&	$x \geq	0$	\\\hli
 	\item	Soit n v.a. indépendantes \lfbox[conditions]{$X_{i}	\sim \text{Exp}(\lambda_{i})$} alors \lfbox[formula]{$Y	=	\min(X_{1}, \dots, X_{n})	\sim	\text{Exp}(\frac{1}{\sum_{i = 1}^{n} \lambda_{i})}$}.
 	\item	Si $X \sim \text{Exp}(\theta)$ alors \lfbox[formula]{$(X	-	d	|	X	>	d)	\sim \text{Exp}(\theta)$}.
 \end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Loi Erlang]
+\begin{rappel_enhanced}[Contexte]
+La loi Erlang est un cas spécial de la loi Gamma avec un paramètre de forme $\alpha$ entier. Elle est utile dans le contexte de \textbf{\nameref{sec:procPois}} car nous pouvons trouver une forme explicite de la fonction de répartition (survie).
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Paramètres}}		&	\textcolor{white}{\textbf{Domaine}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Erlang}(n, \lambda)$	&	$\lambda > 0$ et $n \in \mathbb{N}^{+}$	&	$x \geq	0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[= \frac{x^{n - 1} \lambda^{n} \textrm{e}^{-\lambda x}}{\Gamma(n)}\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$S(x)$}	&	 \[= \sum_{k = 0}^{n - 1}\frac{(\lambda x)^{k - 1} \textrm{e}^{-\lambda x}}{k!}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Loi de Poisson]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Paramètres}}		&	\textcolor{white}{\textbf{Domaine}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Poisson}(\lambda)$	&	$\lambda	>	0$	&	$x = 0, 1, 2, \dots$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(X = x)$}	&	 \[=\frac{\textrm{e}^{-\lambda} \lambda^{x}}{x!}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
 \end{definitionNOHFILLprop}
 
 
@@ -5033,10 +5073,6 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide} au coût d'être \te
 \pagebreak
 \part{Processus stochastiques}
 \section{Introduction}
-\begin{definitionNOHFILL}[Processus stochastique]
-Soit le processus stochastique \lfbox[formula]{$\{X_{n}, n	=	0, 1, 2, \dots\}$}.
-\end{definitionNOHFILL}
-
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$X_{n}$]	État du processus au temps $n$.
@@ -5046,8 +5082,202 @@ Soit le processus stochastique \lfbox[formula]{$\{X_{n}, n	=	0, 1, 2, \dots\}$}.
 \end{description}
 \end{distributions}
 
+\begin{definitionNOHFILL}[Processus stochastique]
+Soit le processus stochastique \lfbox[formula]{$\{X_{n}, n	=	0, 1, 2, \dots\}$}.
+\end{definitionNOHFILL}
+
 
 \columnbreak
+\section{Processus de Poisson}
+\label{sec:procPois}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\lambda(t)$]	Fonction d'intensité d'un processus de Poisson.
+		\begin{itemize}
+		\item	En anglais, \og \textit{rate function} \fg{}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+\begin{definitionNOHFILL}[Processus stochastique]
+Une collection de variables aléatoires.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Processus de comptage]
+On dénote le processus de comptage par \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$}. Le processus \textbf{compte le nombre d'événements} qui se produisent dans l'intervalle de temps $(0, t]$ où \lfbox[conditions]{$t > 0$}.\\
+
+En termes mathématiques, c'est un processus stochastique dont les variables aléatoires prennent des valeurs non décroissantes et non négatives sous les conditions suivantes :
+\begin{enumerate}
+	\item	$N(0) = 0$ ;
+	\item	$N(t) \geq 0$ \textit{(valeurs non négatives)};
+	\item	$N(t)$ est entier ;
+	\item	$N(t + h) \geq N(h)$ pour $h	>	0$ \textit{(valeurs non décroissantes)}.
+\end{enumerate}
+
+\
+
+Visuellement, on voir que l'\textbf{accroissement} $N(t + h) - N(t)$ représente le nombre d'événements produits sur l'intervalle $(t, t + h]$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,163); %set diagram left start at 0, and has height of 163
+
+%Straight Lines [id:da8473597783790416] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (82.36,63.61) -- (462.17,63.61) (239.36,56.11) -- (239.36,71.11)(396.36,56.11) -- (396.36,71.11) ;
+\draw [shift={(465.17,63.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(82.36,63.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Shape: Brace [id:dp9118751878351816] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (83,97) .. controls (83,101.67) and (85.33,104) .. (90,104) -- (229.58,104) .. controls (236.25,104) and (239.58,106.33) .. (239.58,111) .. controls (239.58,106.33) and (242.91,104) .. (249.58,104)(246.58,104) -- (389.17,104) .. controls (393.84,104) and (396.17,101.67) .. (396.17,97) ;
+%Shape: Brace [id:dp6636434796853381] 
+\draw  [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ] (395.83,44) .. controls (395.83,39.33) and (393.5,37) .. (388.83,37) -- (327.83,37) .. controls (321.16,37) and (317.83,34.67) .. (317.83,30) .. controls (317.83,34.67) and (314.5,37) .. (307.83,37)(310.83,37) -- (246.83,37) .. controls (242.16,37) and (239.83,39.33) .. (239.83,44) ;
+%Shape: Brace [id:dp2842213365224564] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (239.83,44) .. controls (239.83,39.33) and (237.5,37) .. (232.83,37) -- (171.33,37) .. controls (164.66,37) and (161.33,34.67) .. (161.33,30) .. controls (161.33,34.67) and (158,37) .. (151.33,37)(154.33,37) -- (89.83,37) .. controls (85.16,37) and (82.83,39.33) .. (82.83,44) ;
+
+% Text Node
+\draw (234,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (380,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t+h$};
+% Text Node
+\draw (469,53) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (77,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (209,116) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{N( t+h)}$};
+% Text Node
+\draw (260,11) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{N}\textcolor[rgb]{0.96,0.65,0.14}{(}\textcolor[rgb]{0.96,0.65,0.14}{t+h}\textcolor[rgb]{0.96,0.65,0.14}{)}\textcolor[rgb]{0.29,0.29,0.29}{-}\textcolor[rgb]{0.29,0.56,0.89}{N( t)}$};
+% Text Node
+\draw (144,9) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{N( t)}$};
+\end{tikzpicture}
+\end{center}
+
+\tcbline
+
+\begin{itemize}
+	\item	Alias, processus de dénombrement.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Processus de Poisson]
+Processus de comptage dont :
+\begin{enumerate}
+	\item	chaque accroissement est une variable aléatoire de Poisson,
+	\item	les accroissement qui ne se \textbf{chevauchent pas} sont indépendantes.
+\end{enumerate}
+
+\
+
+Pour un processus de Poisson avec \textbf{fonction d'intensité} $\lambda(t)$, l'accroissement \lfbox[formula]{$N(t + h) - N(t)	\sim	\text{Poisson}\left(\lambda	=	\int_{t}^{t + h}\lambda(u)du\right)$}. 
+\begin{itemize}
+	\item	On pose donc que le paramètre de la fréquence des accroissement $\lambda$ est la \textit{moyenne} de la fonction d'intensité des accroissements $\lambda(t)$ sur l'intervalle de temps $(t, t + h]$.
+\end{itemize}
+
+\begin{definitionNOHFILLprop}[Processus de Poisson homogène]
+Si la fonction d'intensité est constante, \lfbox[conditions]{$\lambda(t)	=	\lambda$}, le processus $\underline{N}$ est un \textbf{processus de Poisson homogène} et \lfbox[formula]{$N(t + h)	-	N(t)	\sim	\text{Poisson}(\lambda t)$}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Processus de Poisson non-homogène]
+Si la fonction d'intensité varie avec le temps $t$, le processus $\underline{N}$ est un \textbf{processus de Poisson non-homogène}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILLsub}
+
+
+\columnbreak
+\subsection{Temps d'occurrence}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$T_{k}$]	Temps d'occurrence du $k^{e}$ événement.
+		\begin{itemize}
+		\item	\lfbox[formula]{$T_{k}	=	V_{1} + V_{2} + \dots + V_{k}$}.
+		\end{itemize}
+	\item[$V_{k}$]	Intervalle de temps entre la réalisation du $(k - 1)^{e}$ et du $k^{e}$ événement.
+		\begin{itemize}
+		\item	Alias, le temps inter-arrivé.
+		\item	\lfbox[formula]{$V_{k}	=	T_{k} - T_{k - 1}$}.
+		\item	On pose que \lfbox[conditions]{$T_{0} = 0$}, \lfbox[conditions]{$V_{0} = 0$} et que \lfbox[conditions]{$V_{1}	=	T_{1}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+Visuellement : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,218); %set diagram left start at 0, and has height of 218
+
+%Straight Lines [id:da8473597783790416] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (82.36,83.61) -- (462.17,83.61) (204.36,76.11) -- (204.36,91.11)(326.36,76.11) -- (326.36,91.11)(448.36,76.11) -- (448.36,91.11) ;
+\draw [shift={(465.17,83.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(82.36,83.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Shape: Brace [id:dp9118751878351816] 
+\draw  [color={rgb, 255:red, 44; green, 109; blue, 184 }  ,draw opacity=1 ] (83,117) .. controls (83,121.67) and (85.33,124) .. (90,124) -- (133.75,124) .. controls (140.42,124) and (143.75,126.33) .. (143.75,131) .. controls (143.75,126.33) and (147.08,124) .. (153.75,124)(150.75,124) -- (197.5,124) .. controls (202.17,124) and (204.5,121.67) .. (204.5,117) ;
+%Rounded Rect [id:dp11465036181300836] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (188,43) .. controls (188,39.41) and (190.91,36.5) .. (194.5,36.5) -- (214,36.5) .. controls (217.59,36.5) and (220.5,39.41) .. (220.5,43) -- (220.5,65) .. controls (220.5,68.59) and (217.59,71.5) .. (214,71.5) -- (194.5,71.5) .. controls (190.91,71.5) and (188,68.59) .. (188,65) -- cycle ;
+
+%Rounded Rect [id:dp5256044584805744] 
+\draw  [color={rgb, 255:red, 99; green, 64; blue, 6 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 164; blue, 29 }  ,fill opacity=1 ] (309,43) .. controls (309,39.41) and (311.91,36.5) .. (315.5,36.5) -- (335,36.5) .. controls (338.59,36.5) and (341.5,39.41) .. (341.5,43) -- (341.5,65) .. controls (341.5,68.59) and (338.59,71.5) .. (335,71.5) -- (315.5,71.5) .. controls (311.91,71.5) and (309,68.59) .. (309,65) -- cycle ;
+%Rounded Rect [id:dp08392234396619447] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (431,43) .. controls (431,39.41) and (433.91,36.5) .. (437.5,36.5) -- (457,36.5) .. controls (460.59,36.5) and (463.5,39.41) .. (463.5,43) -- (463.5,65) .. controls (463.5,68.59) and (460.59,71.5) .. (457,71.5) -- (437.5,71.5) .. controls (433.91,71.5) and (431,68.59) .. (431,65) -- cycle ;
+%Shape: Brace [id:dp26377470569710515] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (205,117) .. controls (205,121.67) and (207.33,124) .. (212,124) -- (255.75,124) .. controls (262.42,124) and (265.75,126.33) .. (265.75,131) .. controls (265.75,126.33) and (269.08,124) .. (275.75,124)(272.75,124) -- (319.5,124) .. controls (324.17,124) and (326.5,121.67) .. (326.5,117) ;
+%Shape: Brace [id:dp2470075020847542] 
+\draw  [color={rgb, 255:red, 120; green, 201; blue, 32 }  ,draw opacity=1 ] (327,117) .. controls (327,121.67) and (329.33,124) .. (334,124) -- (377.75,124) .. controls (384.42,124) and (387.75,126.33) .. (387.75,131) .. controls (387.75,126.33) and (391.08,124) .. (397.75,124)(394.75,124) -- (441.5,124) .. controls (446.17,124) and (448.5,121.67) .. (448.5,117) ;
+%Shape: Brace [id:dp44214970032790535] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (83,152) .. controls (83,156.67) and (85.33,159) .. (90,159) -- (255.75,159) .. controls (262.42,159) and (265.75,161.33) .. (265.75,166) .. controls (265.75,161.33) and (269.08,159) .. (275.75,159)(272.75,159) -- (441.5,159) .. controls (446.17,159) and (448.5,156.67) .. (448.5,152) ;
+
+% Text Node
+\draw (200,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{1}$};
+% Text Node
+\draw (469,73) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (77,94) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (198.75,45) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle 1$}};
+% Text Node
+\draw (319.75,45) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle 2$}};
+% Text Node
+\draw (441.75,45) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle 3$}};
+% Text Node
+\draw (323,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{2}$};
+% Text Node
+\draw (444,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{3}$};
+% Text Node
+\draw (136,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{V_{1}}$};
+% Text Node
+\draw (258,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{V_{2}}$};
+% Text Node
+\draw (378,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.45,0.76,0.11}{V_{3}}$};
+% Text Node
+\draw (197,172) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{T_{3} =}\textcolor[rgb]{0.29,0.56,0.89}{V}\textcolor[rgb]{0.29,0.56,0.89}{_{1}}\textcolor[rgb]{0.29,0.29,0.29}{+}\textcolor[rgb]{0.96,0.65,0.14}{V}\textcolor[rgb]{0.96,0.65,0.14}{_{2}}\textcolor[rgb]{0.29,0.29,0.29}{+}\textcolor[rgb]{0.45,0.76,0.11}{V}\textcolor[rgb]{0.45,0.76,0.11}{_{3}}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{definitionNOHFILL}[Temps d'occurrence]
+On peut définir le processus de comptage en fonction du temps d'occurrence des événements au lieu nombre de sinistres : \lfbox[formula]{$N(t)	=	\sup\{k \geq 1 : T_{k} \leq t\}$}, \lfbox[conditions]{$\forall t \geq 0$}. 
+
+On trouve que \lfbox[formula]{$\Pr(T_{k} > s)	=	\Pr(N(s) < k)$}. C'est-à-dire, $\Pr\left(\substack{\text{le $k^{e}$ événement se produise}\\ \text{après le temps $s$}}\right)	=	\Pr\left(\substack{\text{moins de $k$ événements se}\\ \text{produisent d'ici le temps $s$}}\right)$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Temps d'occurrence pour des processus de Poisson homogènes]
+Si \lfbox[conditions]{$N(t) \sim \text{Poisson}(\lambda t)$} alors \lfbox[formula]{$V_{k} \sim \text{Exp}\left(\theta	=	\frac{1}{\lambda}\right)$} et \lfbox[formula]{$T_{k} \sim \text{Gamma}\left(\alpha = k, \theta	=	\frac{1}{\lambda}\right) \sim \text{Erlang}\left(n = k, \lambda\right)$}.\\
+
+\paragraph{Note}	La loi Gamma avec un paramètre de forme $\alpha$ entier correspond à la loi Erlang. L'avantage de la loi Erlang est qu'elle a une fonction de répartition explicite qui découle de la relation entre les processus de Poisson et les temps d'occurrences. Voir la sous-section sur les \textbf{\nameref{subsec:distrIARD}} du chapitre d'IARD I.
+\end{definitionNOHFILLprop}
+
+
+\subsubsection{Temps d'occurrence conditionnels}
+stats d'ordre
+
+\columnbreak
+\subsection{Propriétés des processus de Poisson}
+Thinning
+
+Superposition
+
+Joint probabilities
+
+
+
+
+\pagebreak
 \section{Chaines de Markov}
 Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seulement du dernier état à $n	-	1$ : 
 \begin{align*}
