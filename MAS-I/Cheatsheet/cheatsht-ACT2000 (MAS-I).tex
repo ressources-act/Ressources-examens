@@ -5738,11 +5738,56 @@ Dernièrement, la probabilité que seulement un bus soit passé entre 8h et 8h30
 
 \columnbreak
 \subsection{Propriétés des processus de Poisson}
-Thinning
+\subsubsection{Décomposition de processus de Poisson}
+\begin{definitionNOHFILL}[Décomposition de processus de Poisson (\og \textit{Thinning} \fg{})]
+Si un processus de Poisson peut être décomposé en plusieurs sous-processus distincts, alors ces sous-processus distincts sont également des processus de Poisson avec une intensité proportionnelle. Ce processus de décomposition s'appelle le \og \textit{thinning} \fg{}.	\\
 
-Superposition
+Soit :
+\begin{itemize}
+	\item	le processus de Poisson $N$ avec fonction d'intensité $\lambda(t)$,
+	\item	les sous-processus distincts $N_{1}, N_{2}, \dots, N_{n}$ de $N$ dont les proportions sont $\pi_{1}, \pi_{2}, \dots, \pi_{n}$.
+\end{itemize}
+Alors, $N_{1}, N_{2}, \dots, N_{n}$ sont des processus de Poisson indépendants avec paramètre de fréquence $\pi_{1}\lambda(t), \pi_{2}\lambda(t), \dots, \pi_{n}\lambda(t)$.
+\end{definitionNOHFILL}
 
-Joint probabilities
+
+\subsubsection{Superposition}
+\begin{definitionNOHFILL}[Somme de processus de Poisson (\og \textit{Superposition} \fg{})]
+La somme de plusieurs processus de Poisson s'appelle la \og \textit{superposition} \fg{}.	 Si les processus de Poisson sont indépendants, leur somme est également un processus de Poisson.	\\
+
+Soit :
+\begin{itemize}
+	\item	les processus de Poisson indépendants $N_{1}, N_{2}, \dots, N_{n}$ avec paramètres de fréquence $\lambda_{1}(t), \lambda_{2}(t), \dots, \lambda_{n}(t)$.
+\end{itemize}
+Alors, $N_{1} + N_{2} + \cdots + N_{n}$ est un processus de Poisson avec paramètre de fréquence $\lambda	=	\lambda_{1}(t) + \lambda_{2}(t) + \cdots + \lambda_{n}(t)$.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Probabilités conjointes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$N_{1}, N_{2}$]	Processus de Poisson indépendants avec paramètres de fréquence $\lambda_{1}, \lambda_{2}$.
+	\item[$T_{1, n}$]	Le temps jusqu'au $n^{e}$ événement de $N_{1}$.
+	\item[$T_{2, m}$]	Le temps jusqu'au $m^{e}$ événement de $N_{2}$.
+\end{description}
+\end{distributions}
+
+\begin{align*}
+	\Pr\left(\substack{\text{d'observer 1 événement de $N_{1}$ avant}\\ \text{d'observer 1 événement de $N_{2}$}}\right)
+	&=	\Pr(T_{1, 1}	 < T_{2, 1})
+	=	\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
+\end{align*}
+
+On peut généraliser ceci pour trouver une distribution binomiale négative ou binomiale :	\\
+\begin{align*}
+	\Pr&\left(\substack{\text{d'observer $n$ événements de $N_{1}$ avant}\\ \text{d'observer $m$ événement de $N_{2}$}}\right)
+	=	\Pr(T_{1, n}	 < T_{2, m})	\\
+	&=	\Pr\left(\substack{\text{d'observer au plus $\textcolor{teal}{m - 1}$ événements de $N_{2}$ avant}\\ \text{d'observer le $\textcolor{amethyst}{n}^{e}$ événement de $N_{1}$}}\right)	\\
+	&=	\sum_{k = 0}^{\textcolor{teal}{m - 1}} \binom{\textcolor{amethyst}{n} + \textcolor{teal}{k - 1}}{n - 1} \left(\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{amethyst}{n}} \left(\frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{teal}{k}}	\\
+	&=	\Pr\left(\substack{\text{parmis les $n + m - 1$ premiers événements}\\ \text{au \textbf{moins} $\textcolor{amethyst}{n}$ proviennent de $N_{1}$ et}\\ \text{au \textbf{plus} $\textcolor{teal}{m - 1}$ proviennent de $N_{2}$}}\right)	
+	=	\Pr\left(\substack{\text{$n^{e}$ événement de $N_{1}$ se produise avant}\\ \text{le $m^{e}$ événement de $N_{2}$}}\right)	\\
+	&=	\sum_{k = \textcolor{amethyst}{n}}^{n + \textcolor{teal}{m - 1}} \binom{n + m - 1}{k} \left(\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{k} \left(\frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{(n + m - 1) - k}	\\
+\end{align*}
 
 
 
@@ -5774,12 +5819,6 @@ L'équation de Chapman-Kolmogorov trouve la probabilité d'être dans l'état $j
 
 
 \subsection{Temps inter}
-Soit 2 v.a. exponentielles indépendantes avec paramètres de fréquence $\lambda_{1}, \lambda_{2}$, alors :
-\begin{align*}
-	\Pr(X_{1}	<	X_{2})
-	&=	\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
-\end{align*}
-
 Soit $n$ v.a. exponentielles indépendantes avec paramètres de fréquence $\lambda_{1}, \dots, \lambda_{n}$, alors :
 \begin{align*}
 	\Pr(X_{i}	=	\min(X_{1}, \dots, X_{n})
