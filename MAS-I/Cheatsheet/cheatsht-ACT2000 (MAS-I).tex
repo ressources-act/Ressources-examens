@@ -69,7 +69,7 @@ L'objectif est d'expliquer les concepts statistiques de façon claire et concise
 \begin{multicols*}{2}
 
 \part{Analyse statistique des risques actuariels}
-
+\label{chapt:stats}
 \section{Échantillonnage et statistiques}
 \begin{distributions}[Notation]
 \begin{description}
@@ -1822,14 +1822,15 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 
 \columnbreak
 \section{Statistiques d'ordre}
+\label{subsec:orderStats}
 %%%	NOTES :
 %%%	+	Ajouter des détails sur l arelation avec la loi Béta
 
 Soit un échantillon aléatoire de taille $n$.
 Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
 \begin{itemize}
-	\item	Les crochets sont utilisés pour différencier la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
-	\item	La $k^{\text{e}}$ statistique d'ordre correspond au $\frac{k}{(n + 1)}^{\text{e}}$ quantile.
+	\item	Les crochets sont utilisés pour distinguer la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
+	\item	La $k^{\text{e}}$ statistique d'ordre correspond au $\frac{k}{n + 1}^{\text{e}}$ quantile.
 \end{itemize}
 
 \
@@ -1870,7 +1871,7 @@ De façon plus générale, on défini:
 	f_{X_{(k)}}(x)
 	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
 	F_{X_{(k)}}(x)
-	&=	\underset{\text{Probabilité qu'au moins } k \text{ des } n \text{ observations } X_{k} \text{ sont } \le \ x}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
+	&=	\underset{\substack{\text{Probabilité qu'au moins $k$ des $n$}\\ \text{ observations $X_{k}$  sont $\le x$}}}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
 \end{align*}
 
 \begin{itemize}
@@ -2510,7 +2511,7 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 \pagebreak
 
 \part{Modèles linéaires en actuariat}
-
+\label{chapt:modLin}
 \section{Apprentissage statistique}
 \begin{definitionNOHFILL}[Apprentissage statistique]
 L'apprentissage statistique est l'utilisation de statistiques pour estimer les relations entre des variables « \textit{\textbf{explicatives}} » et un résultat (une variable « \textbf{\textit{réponse}} »). 
@@ -3478,7 +3479,8 @@ TP
 
 \pagebreak
 
-\part{Mathématiques IARD I}
+\part{Mathématiques actuarielles IARD I}
+\label{chapt:mathIARD}
 \section{Probabilité}
 \subsection{Fonctions de variables aléatoires}
 \begin{definitionNOHFILL}[Fonction de masse de probabilité (PMF)]
@@ -4603,7 +4605,7 @@ Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabil
 	\hat{f}(y)
 	&=	\begin{cases}
 		\frac{w_{j}}{n},	&	\text{si } y = y_{j} \, \forall j	\\
-		0,	\text{sinon}
+		0,	&	\text{sinon}
 		\end{cases}	\\
 		\hat{F}(y)
 	&=	\begin{cases}
@@ -4759,41 +4761,36 @@ Par exemple, soit des données groupées en $k$ intervalles :
 
 
 \setlength{\mathindent}{-0.75cm}
-\begin{algo}{Fonction de vraisemblance}
+\subsection{Fonction de vraisemblance}
+\begin{definitionNOHFILLprop}[Données complètes]
 \begin{align*}
 	\mathcal{L}(\theta; \bm{x})
-	&=	\prod^{k}_{j	=	1} \underbrace{f(x_{j}; \theta)}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}}	&
-	\shortstack{données complètes}	
+	&=	\prod^{k}_{j	=	1} \underbrace{f(x_{j}; \theta)}_{\substack{\text{probabilité que chaque}\\ \text{observation soit égale à}\\ \text{la valeur observée}}}
 \end{align*}
+\end{definitionNOHFILLprop}
 
-\tcbline
-
-Données groupées en $k$ intervalles:\\
-\begin{align*}
-	\mathcal{L}(\theta; \bm{n})
-	&=	\prod^{k}_{j	=	1} \underbrace{\left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}}_{\shortstack{probabilité d'une\\ observation dans\\ l'intervalle}}		&
-	\shortstack{données groupées}	
-\end{align*}
-
-\tcbline
-
-Données censurées vers la droite avec $n_{1}$ observations complètes et $n_{2}$ observations censurées à la limite de $u$:\\
-\begin{align*}
-	\mathcal{L}(\theta; \bm{x}, n_{2})
-	&=	\underbrace{\left[\prod^{n_{1}}_{i	=	1} f(x_{i}; \theta) \right]}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}} \overbrace{\left[1	-	F(u; \theta)\right]^{n_{2}}}^{\shortstack{probabilité qu'une\\ observation soit\\ d'au moins $u$}}		&
-	\shortstack{données censurées\\ vers la droite}	\\
-\end{align*}
-
-\tcbline
-
-Données tronquées vers la gauche avec un déductible de $d$:\\
+\begin{definitionNOHFILLprop}[Données groupées en $k$ intervalles]
 \begin{align*}
 	\mathcal{L}(\theta; \bm{x})
-	&=	\underbrace{\frac{1}{\left[1	-	F(d; \theta)\right]^{n}}}_{\shortstack{pondère par la\\ probabilité d'être\\ supérieur au déductible}} \prod^{n}_{i	=	1} f(x_{i}; \theta)	&
-	\shortstack{données censurées\\ vers la droite}	\\
+	&=	\prod^{k}_{j	=	1} \underbrace{\left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}}_{\substack{\text{probabilité qu'une observation}\\ \text{soit contenue dans l'intervalle}}}
 \end{align*}
-\end{algo}
-\setlength{\mathindent}{1cm}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Données censurées vers la droite]
+On pose que $n_{1}$ observations sont complètes et que $n_{2}$ observations sont censurées à la limite de $u$ :
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x})
+	&=	\underbrace{\left[\prod^{n_{1}}_{i	=	1} f(x_{i}; \theta) \right]}_{\shortstack{probabilité de chaque\\ observation à la\\ valeur observée}} \overbrace{\left[1	-	F(u; \theta)\right]^{n_{2}}}^{\substack{\text{probabilité qu'une observation}\\ \text{soit supérieure, ou égale, à $u$}}}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[tronquées vers la gauche]
+On pose un déductible de $d$ : 
+\begin{align*}
+	\mathcal{L}(\theta; \bm{x})
+	&=	\underbrace{\frac{1}{\left[1	-	F(d; \theta)\right]^{n}}}_{\substack{\text{pondère la vraisemblance par}\\ \text{la probabilité d'être supérieur}\\ \text{au déductible}}} \prod^{n}_{i	=	1} f(x_{i}; \theta)
+\end{align*}
+\end{definitionNOHFILLprop}
 
 
 
@@ -5072,6 +5069,7 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide} au coût d'être \te
 
 \pagebreak
 \part{Processus stochastiques}
+\label{chapt:procStoch}
 \section{Introduction}
 \begin{distributions}[Notation]
 \begin{description}
@@ -5259,12 +5257,484 @@ On trouve que \lfbox[formula]{$\Pr(T_{k} > s)	=	\Pr(N(s) < k)$}. C'est-à-dire, 
 \begin{definitionNOHFILLprop}[Temps d'occurrence pour des processus de Poisson homogènes]
 Si \lfbox[conditions]{$N(t) \sim \text{Poisson}(\lambda t)$} alors \lfbox[formula]{$V_{k} \sim \text{Exp}\left(\theta	=	\frac{1}{\lambda}\right)$} et \lfbox[formula]{$T_{k} \sim \text{Gamma}\left(\alpha = k, \theta	=	\frac{1}{\lambda}\right) \sim \text{Erlang}\left(n = k, \lambda\right)$}.\\
 
-\paragraph{Note}	La loi Gamma avec un paramètre de forme $\alpha$ entier correspond à la loi Erlang. L'avantage de la loi Erlang est qu'elle a une fonction de répartition explicite qui découle de la relation entre les processus de Poisson et les temps d'occurrences. Voir la sous-section sur les \textbf{\nameref{subsec:distrIARD}} du chapitre d'IARD I.
+\paragraph{Note}	La loi Gamma avec un paramètre de forme $\alpha$ entier correspond à la loi Erlang. L'avantage de la loi Erlang est qu'elle a une fonction de répartition explicite qui découle de la relation entre les processus de Poisson et les temps d'occurrences. Voir la sous-section sur les \textbf{\nameref{subsec:distrIARD}} du chapitre de \nameref{chapt:mathIARD}.
 \end{definitionNOHFILLprop}
 
 
 \subsubsection{Temps d'occurrence conditionnels}
-stats d'ordre
+\paragraph{Note}	Voir la sous-section des \textbf{\nameref{subsec:orderStats}} du chapitre de \nameref{chapt:stats}.
+
+\
+
+Lorsque nous savons qu'un certain nombre d'événements se produit d'ici un temps $t$, les temps d'occurrences $T_{1}, T_{2}, \dots, T_{n}$ ne \textbf{suivent plus une distribution Gamma}. Ceci est puisque \textbf{leurs domaines sont \textit{bornés} à $t$} au lieu d'être \textit{\textbf{infinis}}. \\
+
+Par exemple, $N(t) = n$ implique que $T_{1}, T_{2}, \dots, T_{n} \leq t$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,163); %set diagram left start at 0, and has height of 163
+
+%Straight Lines [id:da7067911474403936] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (82.36,63.61) -- (396.17,63.61) (239.36,56.11) -- (239.36,71.11) ;
+\draw [shift={(399.17,63.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(82.36,63.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Shape: Brace [id:dp44073656005149386] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (239.83,44) .. controls (239.83,39.33) and (237.5,37) .. (232.83,37) -- (171.33,37) .. controls (164.66,37) and (161.33,34.67) .. (161.33,30) .. controls (161.33,34.67) and (158,37) .. (151.33,37)(154.33,37) -- (89.83,37) .. controls (85.16,37) and (82.83,39.33) .. (82.83,44) ;
+%Straight Lines [id:da4478875067752026] 
+\draw [color={rgb, 255:red, 111; green, 18; blue, 193 }  ,draw opacity=1 ][line width=1.5]    (82.36,63.61) -- (240.17,63.61) (239.36,56.11) -- (239.36,71.11) ;
+\draw [shift={(82.36,63.61)}, rotate = 180] [color={rgb, 255:red, 111; green, 18; blue, 193 }  ,draw opacity=1 ][line width=1.5]    (0,6.71) -- (0,-6.71)   ;
+%Rounded Rect [id:dp29009509835708336] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 111; green, 18; blue, 193 }  ,fill opacity=1 ] (126,108.5) .. controls (126,104.63) and (129.13,101.5) .. (133,101.5) -- (335.17,101.5) .. controls (339.03,101.5) and (342.17,104.63) .. (342.17,108.5) -- (342.17,129.5) .. controls (342.17,133.37) and (339.03,136.5) .. (335.17,136.5) -- (133,136.5) .. controls (129.13,136.5) and (126,133.37) .. (126,129.5) -- cycle ;
+%Shape: Triangle [id:dp8326527885637682] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (238.67,90.75) -- (248.17,101.61) -- (229.17,101.61) -- cycle ;
+
+% Text Node
+\draw (235,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (402,52) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (77,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (131,10) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{N}\textcolor[rgb]{0.29,0.56,0.89}{(}\textcolor[rgb]{0.29,0.56,0.89}{t}\textcolor[rgb]{0.29,0.56,0.89}{) =n}$};
+% Text Node
+\draw (152.58,110) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle ( T_{1} ,T_{2} ,\dotsc ,T_{n} |N( t) =n) \leq t$}};
+\end{tikzpicture}
+\end{center}
+
+\
+
+On en déduit que les temps d'occurrences sont en fait des \textbf{\nameref{subsec:orderStats}} avec $0 < T_{1} \leq T_{2} \leq \dots \leq T_{n} \leq t$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,163); %set diagram left start at 0, and has height of 163
+
+%Straight Lines [id:da7067911474403936] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (82.36,63.61) -- (262.5,63.61) (113.36,56.11) -- (113.36,71.11)(144.36,56.11) -- (144.36,71.11)(175.36,56.11) -- (175.36,71.11)(206.36,56.11) -- (206.36,71.11)(237.36,56.11) -- (237.36,71.11) ;
+\draw [shift={(82.36,63.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Shape: Brace [id:dp44073656005149386] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (239.83,44) .. controls (239.83,39.33) and (237.5,37) .. (232.83,37) -- (171.33,37) .. controls (164.66,37) and (161.33,34.67) .. (161.33,30) .. controls (161.33,34.67) and (158,37) .. (151.33,37)(154.33,37) -- (89.83,37) .. controls (85.16,37) and (82.83,39.33) .. (82.83,44) ;
+%Straight Lines [id:da0009276033218008628] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (262.5,63.61) -- (318.5,63.61) ;
+\draw [shift={(321.5,63.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+% Text Node
+\draw (232,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (331,54) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (77,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (131,10) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{N}\textcolor[rgb]{0.29,0.56,0.89}{(}\textcolor[rgb]{0.29,0.56,0.89}{t}\textcolor[rgb]{0.29,0.56,0.89}{) =n}$};
+% Text Node
+\draw (105,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{1}$};
+% Text Node
+\draw (136,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{2}$};
+% Text Node
+\draw (197,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{n}$};
+% Text Node
+\draw (163,74) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \cdots $};
+\end{tikzpicture}
+\end{center}
+
+Pour déterminer la distribution de $T_{i}$, $i	=	1, 2, \dots, n$, on rappel ces deux propriétés des processus de Poisson homogènes :
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Les intervalles qui ne se chevauchent pas sont indépendantes.
+	\item	Le paramètre de fréquence $\lambda$ est proportionnel à la longueur d'un intervalle, ce qui implique qu'il est identique pour des intervalles de la même longueur.
+\end{enumerate}
+
+\
+
+On en déduit que les temps d'occurrences des événements devraient être \textbf{\textcolor{armygreen}{uniformément} distribués} en \lfbox[conditions]{$n + 1$} sous-intervalles : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,97); %set diagram left start at 0, and has height of 97
+
+%Straight Lines [id:da7067911474403936] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (82.36,63.61) -- (312.5,63.61) (125.36,56.11) -- (125.36,71.11)(168.36,56.11) -- (168.36,71.11)(211.36,56.11) -- (211.36,71.11)(254.36,56.11) -- (254.36,71.11)(297.36,56.11) -- (297.36,71.11) ;
+\draw [shift={(82.36,63.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da0009276033218008628] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (312.5,63.61) -- (368.5,63.61) ;
+\draw [shift={(371.5,63.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da23999886027597528] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ]   (84.36,46.61) -- (123.83,46.61) ;
+\draw [shift={(125.83,46.61)}, rotate = 180] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-3.92) .. controls (5.56,-1.84) and (2.65,-0.53) .. (0,0) .. controls (2.65,0.53) and (5.56,1.84) .. (8.74,3.92)   ;
+\draw [shift={(82.36,46.61)}, rotate = 0] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-2.63) .. controls (5.56,-1.12) and (2.65,-0.24) .. (0,0) .. controls (2.65,0.24) and (5.56,1.12) .. (8.74,2.63)   ;
+%Straight Lines [id:da10074173800998643] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ]   (128.83,46.61) -- (167.31,46.61) ;
+\draw [shift={(169.31,46.61)}, rotate = 180] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-3.92) .. controls (5.56,-1.84) and (2.65,-0.53) .. (0,0) .. controls (2.65,0.53) and (5.56,1.84) .. (8.74,3.92)   ;
+\draw [shift={(126.83,46.61)}, rotate = 0] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-2.63) .. controls (5.56,-1.12) and (2.65,-0.24) .. (0,0) .. controls (2.65,0.24) and (5.56,1.12) .. (8.74,2.63)   ;
+%Straight Lines [id:da6208942393439956] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ]   (212.78,46.61) -- (251.25,46.61) ;
+\draw [shift={(253.25,46.61)}, rotate = 180] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-3.92) .. controls (5.56,-1.84) and (2.65,-0.53) .. (0,0) .. controls (2.65,0.53) and (5.56,1.84) .. (8.74,3.92)   ;
+\draw [shift={(210.78,46.61)}, rotate = 0] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-2.63) .. controls (5.56,-1.12) and (2.65,-0.24) .. (0,0) .. controls (2.65,0.24) and (5.56,1.12) .. (8.74,2.63)   ;
+%Straight Lines [id:da40782131188172444] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ]   (256.25,46.61) -- (295.73,46.61) ;
+\draw [shift={(297.73,46.61)}, rotate = 180] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-3.92) .. controls (5.56,-1.84) and (2.65,-0.53) .. (0,0) .. controls (2.65,0.53) and (5.56,1.84) .. (8.74,3.92)   ;
+\draw [shift={(254.25,46.61)}, rotate = 0] [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=0.75]    (8.74,-2.63) .. controls (5.56,-1.12) and (2.65,-0.24) .. (0,0) .. controls (2.65,0.24) and (5.56,1.12) .. (8.74,2.63)   ;
+
+% Text Node
+\draw (292,73.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (381,54) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (77,73.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (105,73.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \text{E}[ T_{1}]$};
+% Text Node
+\draw (197,73.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \cdots $};
+% Text Node
+\draw (148,73.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \text{E}[ T_{2}]$};
+% Text Node
+\draw (234,73.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \text{E}[ T_{n}]$};
+% Text Node
+\draw (94,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{{\footnotesize $\displaystyle t/n$}}};
+% Text Node
+\draw (137,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{{\footnotesize $\displaystyle t/n$}}};
+% Text Node
+\draw (177,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{{\footnotesize $\displaystyle \cdots $}}};
+% Text Node
+\draw (222,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{{\footnotesize $\displaystyle t/n$}}};
+% Text Node
+\draw (262,26) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{{\footnotesize $\displaystyle t/n$}}};
+\end{tikzpicture}
+\end{center}
+
+Donc, $T_{1}, T_{2}, \dots, T_{n}$ sont les statistiques d'ordre d'une distribution \lfbox[formula]{$U(0, t)$} :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,215); %set diagram left start at 0, and has height of 215
+
+%Rounded Rect [id:dp6456196757723991] 
+\draw  [color={rgb, 255:red, 35; green, 101; blue, 177 }  ,draw opacity=1 ][line width=2.25]  (138,25.07) .. controls (138,18.4) and (143.4,13) .. (150.07,13) -- (286.43,13) .. controls (293.1,13) and (298.5,18.4) .. (298.5,25.07) -- (298.5,61.27) .. controls (298.5,67.93) and (293.1,73.33) .. (286.43,73.33) -- (150.07,73.33) .. controls (143.4,73.33) and (138,67.93) .. (138,61.27) -- cycle ;
+
+%Straight Lines [id:da7551644078844939] 
+\draw [line width=2.25]    (171,76.33) -- (171,119.33) ;
+\draw [shift={(171,124.33)}, rotate = 270] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (14.29,-6.86) -- (0,0) -- (14.29,6.86) -- cycle    ;
+
+%Rounded Rect [id:dp6849392448013709] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  (138,132.9) .. controls (138,130.1) and (140.27,127.83) .. (143.07,127.83) -- (293.43,127.83) .. controls (296.23,127.83) and (298.5,130.1) .. (298.5,132.9) -- (298.5,148.1) .. controls (298.5,150.9) and (296.23,153.17) .. (293.43,153.17) -- (143.07,153.17) .. controls (140.27,153.17) and (138,150.9) .. (138,148.1) -- cycle ;
+
+%Rounded Rect [id:dp9232470424242403] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]  (138,132.9) .. controls (138,130.1) and (140.27,127.83) .. (143.07,127.83) -- (293.43,127.83) .. controls (296.23,127.83) and (298.5,130.1) .. (298.5,132.9) -- (298.5,148.1) .. controls (298.5,150.9) and (296.23,153.17) .. (293.43,153.17) -- (143.07,153.17) .. controls (140.27,153.17) and (138,150.9) .. (138,148.1) -- cycle ;
+
+
+% Text Node
+\draw (148,51) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{1}$};
+% Text Node
+\draw (189,51) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{2}$};
+% Text Node
+\draw (270,51) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{n}$};
+% Text Node
+\draw (220.5,51) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \cdots $};
+% Text Node
+\draw (143,16) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{(1)}$};
+% Text Node
+\draw (184,16) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{(2)}$};
+% Text Node
+\draw (265,16) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{(n)}$};
+% Text Node
+\draw (220.5,17) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \cdots $};
+% Text Node
+\draw (310,25.67) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{75.03392pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize temps d'occurences}\\{\footnotesize \textbf{\textcolor[rgb]{0.29,0.56,0.89}{ordonnés}}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (146,35.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle =$};
+% Text Node
+\draw (187,35.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle =$};
+% Text Node
+\draw (268.5,35.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle =$};
+% Text Node
+\draw (143,131) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{1}$};
+% Text Node
+\draw (184,131) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{2}$};
+% Text Node
+\draw (265,131) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{n}$};
+% Text Node
+\draw (220.5,134) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \cdots $};
+% Text Node
+\draw (308,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{75.03392pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize temps d'occurences}\\{\footnotesize \textbf{\textcolor[rgb]{0.96,0.65,0.14}{non ordonnés}}}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (182,87.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{73.22036000000001pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize statistiques d'ordre }\\{\footnotesize de}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (308,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{75.03392pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize temps d'occurences}\\{\footnotesize \textbf{\textcolor[rgb]{0.96,0.65,0.14}{non ordonnés}}}
+\end{center}
+\end{minipage}};
+\draw (127,166) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize où \lfbox[formula]{$\displaystyle X_{i} \sim U(0, t)$} pour $\displaystyle i=1, 2, \dots, n$}};
+\end{tikzpicture}
+\end{center}
+
+En bref :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Rounded Rect [id:dp35300860453985905] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 211; green, 211; blue, 211 }  ,fill opacity=1 ] (191.17,31.93) .. controls (191.17,29.17) and (193.41,26.93) .. (196.17,26.93) -- (464.17,26.93) .. controls (466.93,26.93) and (469.17,29.17) .. (469.17,31.93) -- (469.17,181.67) .. controls (469.17,184.43) and (466.93,186.67) .. (464.17,186.67) -- (196.17,186.67) .. controls (193.41,186.67) and (191.17,184.43) .. (191.17,181.67) -- cycle ;
+%Rounded Same Side Corner Rect [id:dp6177356655582213] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 225; green, 238; blue, 254 }  ,fill opacity=1 ] (201.83,122.95) .. controls (201.83,119.85) and (204.34,117.33) .. (207.44,117.33) -- (306.56,117.33) .. controls (309.66,117.33) and (312.17,119.85) .. (312.17,122.95) -- (312.17,181.33) .. controls (312.17,181.33) and (312.17,181.33) .. (312.17,181.33) -- (201.83,181.33) .. controls (201.83,181.33) and (201.83,181.33) .. (201.83,181.33) -- cycle ;
+%Rounded Rect [id:dp8524308727702301] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (201.83,122.8) .. controls (201.83,119.78) and (204.27,117.33) .. (207.29,117.33) -- (306.53,117.33) .. controls (309.54,117.33) and (311.99,119.78) .. (311.99,122.8) -- (311.99,139.2) .. controls (311.99,142.22) and (309.54,144.67) .. (306.53,144.67) -- (207.29,144.67) .. controls (204.27,144.67) and (201.83,142.22) .. (201.83,139.2) -- cycle ;
+
+%Rounded Same Side Corner Rect [id:dp6823856129955577] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 225; green, 238; blue, 254 }  ,fill opacity=1 ] (205.83,65.33) .. controls (205.83,62.57) and (208.07,60.33) .. (210.83,60.33) -- (303.18,60.33) .. controls (305.94,60.33) and (308.18,62.57) .. (308.18,65.33) -- (308.18,117.33) .. controls (308.18,117.33) and (308.18,117.33) .. (308.18,117.33) -- (205.83,117.33) .. controls (205.83,117.33) and (205.83,117.33) .. (205.83,117.33) -- cycle ;
+%Rounded Rect [id:dp8564429434022778] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (205.83,65.8) .. controls (205.83,62.78) and (208.28,60.33) .. (211.3,60.33) -- (302.43,60.33) .. controls (305.45,60.33) and (307.9,62.78) .. (307.9,65.8) -- (307.9,82.2) .. controls (307.9,85.22) and (305.45,87.67) .. (302.43,87.67) -- (211.3,87.67) .. controls (208.28,87.67) and (205.83,85.22) .. (205.83,82.2) -- cycle ;
+
+%Rounded Same Side Corner Rect [id:dp8030166222302713] 
+\draw  [color={rgb, 255:red, 113; green, 7; blue, 20 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 235; blue, 237 }  ,fill opacity=1 ] (327.86,122.95) .. controls (327.86,119.85) and (330.37,117.33) .. (333.47,117.33) -- (457.38,117.33) .. controls (460.48,117.33) and (463,119.85) .. (463,122.95) -- (463,181.33) .. controls (463,181.33) and (463,181.33) .. (463,181.33) -- (327.86,181.33) .. controls (327.86,181.33) and (327.86,181.33) .. (327.86,181.33) -- cycle ;
+%Rounded Rect [id:dp7658649199295773] 
+\draw  [color={rgb, 255:red, 113; green, 7; blue, 20 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (327.86,122.8) .. controls (327.86,119.78) and (330.3,117.33) .. (333.32,117.33) -- (457.31,117.33) .. controls (460.33,117.33) and (462.78,119.78) .. (462.78,122.8) -- (462.78,139.2) .. controls (462.78,142.22) and (460.33,144.67) .. (457.31,144.67) -- (333.32,144.67) .. controls (330.3,144.67) and (327.86,142.22) .. (327.86,139.2) -- cycle ;
+
+%Rounded Same Side Corner Rect [id:dp5104584590622041] 
+\draw  [color={rgb, 255:red, 113; green, 7; blue, 20 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 235; blue, 237 }  ,fill opacity=1 ] (333.18,65.33) .. controls (333.18,62.57) and (335.42,60.33) .. (338.18,60.33) -- (451.83,60.33) .. controls (454.59,60.33) and (456.83,62.57) .. (456.83,65.33) -- (456.83,117.33) .. controls (456.83,117.33) and (456.83,117.33) .. (456.83,117.33) -- (333.18,117.33) .. controls (333.18,117.33) and (333.18,117.33) .. (333.18,117.33) -- cycle ;
+%Rounded Rect [id:dp8399817210685001] 
+\draw  [color={rgb, 255:red, 113; green, 7; blue, 20 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (333.18,65.8) .. controls (333.18,62.78) and (335.63,60.33) .. (338.65,60.33) -- (451.02,60.33) .. controls (454.04,60.33) and (456.49,62.78) .. (456.49,65.8) -- (456.49,82.2) .. controls (456.49,85.22) and (454.04,87.67) .. (451.02,87.67) -- (338.65,87.67) .. controls (335.63,87.67) and (333.18,85.22) .. (333.18,82.2) -- cycle ;
+
+%Rounded Rect [id:dp9760830958449782] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (191.17,32.4) .. controls (191.17,29.38) and (193.61,26.93) .. (196.63,26.93) -- (463.7,26.93) .. controls (466.72,26.93) and (469.17,29.38) .. (469.17,32.4) -- (469.17,48.8) .. controls (469.17,51.82) and (466.72,54.27) .. (463.7,54.27) -- (196.63,54.27) .. controls (193.61,54.27) and (191.17,51.82) .. (191.17,48.8) -- cycle ;
+
+% Text Node
+\draw (225.51,93.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle N(\textcolor[rgb]{0.96,0.65,0.14}{t}) =\textcolor[rgb]{0.29,0.56,0.89}{n}$};
+% Text Node
+\draw (371.51,93.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T_{\textcolor[rgb]{0.29,0.56,0.89}{n}} =\textcolor[rgb]{0.96,0.65,0.14}{t}$};
+% Text Node
+\draw (202,147.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{77.67572pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize $\displaystyle X_{i} \sim U( 0,\ \textcolor[rgb]{0.96,0.65,0.14}{t})$ }\\{\footnotesize pour $\displaystyle i=1,2,\dotsc ,n$ }
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (329.93,147.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{91.58784pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize $\displaystyle X_{i} \sim U( 0,\ \textcolor[rgb]{0.96,0.65,0.14}{t})$ }\\{\footnotesize pour $\displaystyle i=1,2,\dotsc ,n-1$ }
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (370.4,66.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {sachant};
+% Text Node
+\draw (379.82,123.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {alors};
+% Text Node
+\draw (232.42,66.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {sachant};
+% Text Node
+\draw (241.41,123.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {alors};
+% Text Node
+\draw (235.67,33.1) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {Distribution de $\displaystyle T_{1} ,T_{2} ,\dotsc ,T_{n}$};
+\end{tikzpicture}
+\end{center}
+
+Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{n + 1}$}.
+
+
+\begin{formula}{Exemple}
+Des autobus arrivent à un arrêt d'autobus selon une distribution de Poisson avec un paramètre de fréquence de $\lambda = 4$ par heure. Les autobus commencent à arriver dès 8h du matin.\\
+
+On sait qu'aujourd'hui, trois autobus sont passés entre 8h et 9h du matin.\\
+
+Calculer : 
+\begin{enumerate}
+	\item	L'espérance du temps d'arrivé du $5^{e}$ bus,
+	\item	L'espérance du temps d'arrivé du $2^{e}$ bus,
+	\item	La probabilité que seulement un bus soit passé entre 8h et 8h30 du matin.
+\end{enumerate}
+
+\
+
+Premièrement, l'espérance du temps d'arrivé du $5^{e}$ bus :
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On connait l'intervalle de temps durant laquelle les 3 premiers autobus arrivent. \\
+			Ceci implique que le $5^{e}$ autobus peut arriver à tout moment passé 9AM---alias, $T_{5}$ est n'a \textbf{pas encore eu lieu} et \textbf{n'est \textit{pas} borné}.
+	\item	On peut donc récrire l'espérance conditionnelle :
+		\begin{align*}
+		 \text{E}[T_{5} | N(8, 9] = 3] 
+		 &=	\text{E}[T_{2}]
+		\end{align*}
+\end{enumerate}
+Visuellement, on peut voir pourquoi ces deux écritures sont équivalentes :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} % set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.72pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,229); %set diagram left start at 0, and has height of 229
+%Straight Lines [id:da4574612331606236] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (84.36,108.61) -- (373.83,108.61) (246.36,101.11) -- (246.36,116.11) ;
+\draw [shift={(376.83,108.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(84.36,108.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Rounded Rect [id:dp5815585778250778] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (111,73) .. controls (111,69.41) and (113.91,66.5) .. (117.5,66.5) -- (137,66.5) .. controls (140.59,66.5) and (143.5,69.41) .. (143.5,73) -- (143.5,95) .. controls (143.5,98.59) and (140.59,101.5) .. (137,101.5) -- (117.5,101.5) .. controls (113.91,101.5) and (111,98.59) .. (111,95) -- cycle ;
+%Rounded Rect [id:dp021210598473135223] 
+\draw  [color={rgb, 255:red, 99; green, 64; blue, 6 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 164; blue, 29 }  ,fill opacity=1 ] (152,73) .. controls (152,69.41) and (154.91,66.5) .. (158.5,66.5) -- (178,66.5) .. controls (181.59,66.5) and (184.5,69.41) .. (184.5,73) -- (184.5,95) .. controls (184.5,98.59) and (181.59,101.5) .. (178,101.5) -- (158.5,101.5) .. controls (154.91,101.5) and (152,98.59) .. (152,95) -- cycle ;
+%Rounded Rect [id:dp2046600160753842] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (194,73) .. controls (194,69.41) and (196.91,66.5) .. (200.5,66.5) -- (220,66.5) .. controls (223.59,66.5) and (226.5,69.41) .. (226.5,73) -- (226.5,95) .. controls (226.5,98.59) and (223.59,101.5) .. (220,101.5) -- (200.5,101.5) .. controls (196.91,101.5) and (194,98.59) .. (194,95) -- cycle ;
+
+%Shape: Brace [id:dp05891824142134694] 
+\draw  [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ] (224.83,63) .. controls (224.83,58.33) and (222.5,56) .. (217.83,56) -- (179.17,56) .. controls (172.5,56) and (169.17,53.67) .. (169.17,49) .. controls (169.17,53.67) and (165.84,56) .. (159.17,56)(162.17,56) -- (120.5,56) .. controls (115.83,56) and (113.5,58.33) .. (113.5,63) ;
+%Rounded Rect [id:dp13552467926992984] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (281,68) .. controls (281,64.41) and (283.91,61.5) .. (287.5,61.5) -- (307,61.5) .. controls (310.59,61.5) and (313.5,64.41) .. (313.5,68) -- (313.5,90) .. controls (313.5,93.59) and (310.59,96.5) .. (307,96.5) -- (287.5,96.5) .. controls (283.91,96.5) and (281,93.59) .. (281,90) -- cycle ;
+%Rounded Rect [id:dp6596233362097637] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 41; green, 174; blue, 100 }  ,fill opacity=1 ] (328,68) .. controls (328,64.41) and (330.91,61.5) .. (334.5,61.5) -- (354,61.5) .. controls (357.59,61.5) and (360.5,64.41) .. (360.5,68) -- (360.5,90) .. controls (360.5,93.59) and (357.59,96.5) .. (354,96.5) -- (334.5,96.5) .. controls (330.91,96.5) and (328,93.59) .. (328,90) -- cycle ;
+%Straight Lines [id:da5914557895795196] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (247.83,189.61) -- (373.83,189.61)  ;
+\draw [shift={(376.83,189.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+\draw [shift={(247.83,189.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Rounded Rect [id:dp9592448806158951] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (281,149) .. controls (281,145.41) and (283.91,142.5) .. (287.5,142.5) -- (307,142.5) .. controls (310.59,142.5) and (313.5,145.41) .. (313.5,149) -- (313.5,171) .. controls (313.5,174.59) and (310.59,177.5) .. (307,177.5) -- (287.5,177.5) .. controls (283.91,177.5) and (281,174.59) .. (281,171) -- cycle ;
+%Rounded Rect [id:dp24225382366579828] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 41; green, 174; blue, 100 }  ,fill opacity=1 ] (328,149) .. controls (328,145.41) and (330.91,142.5) .. (334.5,142.5) -- (354,142.5) .. controls (357.59,142.5) and (360.5,145.41) .. (360.5,149) -- (360.5,171) .. controls (360.5,174.59) and (357.59,177.5) .. (354,177.5) -- (334.5,177.5) .. controls (330.91,177.5) and (328,174.59) .. (328,171) -- cycle ;
+%Straight Lines [id:da25821311382112766] 
+\draw [color={rgb, 255:red, 74; green, 74; blue, 74 }  ,draw opacity=1 ][line width=2.25]    (504.5,81.33) -- (532.5,81.33) -- (532.5,159.33) -- (508.5,159.33) ;
+\draw [shift={(503.5,159.33)}, rotate = 360] [fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (14.29,-6.86) -- (0,0) -- (14.29,6.86) -- cycle    ;
+%Straight Lines [id:da232255727846425] 
+\draw [color={rgb, 255:red, 128; green, 128; blue, 128 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (246,34.33) -- (246,109) ;
+%Rounded Rect [id:dp06554218832736303] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 254; green, 245; blue, 138 }  ,fill opacity=1 ] (407.44,146.58) .. controls (407.44,142.17) and (411.02,138.58) .. (415.44,138.58) -- (494.94,138.58) .. controls (499.36,138.58) and (502.94,142.17) .. (502.94,146.58) -- (502.94,170.58) .. controls (502.94,175) and (499.36,178.58) .. (494.94,178.58) -- (415.44,178.58) .. controls (411.02,178.58) and (407.44,175) .. (407.44,170.58) -- cycle ;
+
+%Rounded Rect [id:dp3901899437719196] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 254; green, 245; blue, 138 }  ,fill opacity=1 ] (407.44,65.93) .. controls (407.44,61.52) and (411.02,57.93) .. (415.44,57.93) -- (494.94,57.93) .. controls (499.36,57.93) and (502.94,61.52) .. (502.94,65.93) -- (502.94,89.93) .. controls (502.94,94.35) and (499.36,97.93) .. (494.94,97.93) -- (415.44,97.93) .. controls (411.02,97.93) and (407.44,94.35) .. (407.44,89.93) -- cycle ;
+
+
+% Text Node
+\draw (230,119) node [anchor=north west][inner sep=0.75pt]   [align=left] {9AM};
+% Text Node
+\draw (384,99) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (68,119) node [anchor=north west][inner sep=0.75pt]   [align=left] {8AM};
+% Text Node
+\draw (153,32) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize connu}};
+% Text Node
+\draw (287.75,70) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{4}$}};
+% Text Node
+\draw (334.75,70) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{5}$}};
+% Text Node
+\draw (230,200) node [anchor=north west][inner sep=0.75pt]   [align=left] {9AM};
+% Text Node
+\draw (384,180) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (287.75,151) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{1}$}};
+% Text Node
+\draw (334.75,151) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{2}$}};
+% Text Node
+\draw (117.75,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{1}$}};
+% Text Node
+\draw (158.75,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{2}$}};
+% Text Node
+\draw (200.75,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{3}$}};
+% Text Node
+\draw (469,104) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{42.181216pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\footnotesize même }\\{\footnotesize distribution}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (417.69,65.43) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{52.629144pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize distribution}\\{\footnotesize conditionnelle}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (409,143.08) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{68.069144pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize distribution non}\\{\footnotesize conditionnelle}
+\end{center}
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\setcounter{enumi}{1}
+	\item	Puisque $T_{5}$ n'est pas borné, il suit une distribution $\text{Gamma}(2, 1/4)$. Donc, $\text{E}[T_{2}] = \frac{2}{4} = 0.50$ ce qui équivaut à 9h30AM.
+\end{enumerate}
+
+\
+
+Deuxièmement, l'espérance du temps d'arrivé du $2^{e}$ bus :
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On connait l'intervalle de temps durant laquelle les 3 premiers autobus arrivent. \\
+			Ceci implique que le temps d'arrivé du $2^{e}$ doit être à, ou avant, 9AM---alias, $T_{2}$ a \textbf{eu lieu} et \textbf{\textit{est} borné}.
+	\item	Il s'ensuit que $T_{2}$ ne suit pas une distribution Gamma et que l'espérance conditionnelle de son temps d'arrivé, $T_{2}$, équivaut à l'espérance de la $2^{e}$ statistique d'ordre, $X_{(2)}$, des temps d'arrivés non ordonnés $X_{k}$ distribués \textbf{uniformément} entre 8AM et 9AM ($U(8, 9)$) pour $k = 1, 2, 3$ :
+		\begin{align*}
+		\text{E}[T_{2} | N(8, 9] = 3]
+		&=	\text{E}[X_{(2)}]
+		=	8 + \frac{2 \times (9 - 8)}{3 + 1}
+		=	8.5
+		\end{align*}
+	qui équivaut à 8h30AM.
+\end{enumerate}
+
+\
+
+Dernièrement, la probabilité que seulement un bus soit passé entre 8h et 8h30 du matin.
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On observe la probabilité qu'on désire calculer : 
+\end{enumerate}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,229); %set diagram left start at 0, and has height of 229
+
+%Straight Lines [id:da45375277702975914] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (84.36,108.61) -- (220.17,108.61) (154.36,101.11) -- (154.36,116.11) ;
+\draw [shift={(84.36,108.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Rounded Rect [id:dp2011612933121283] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (111,73) .. controls (111,69.41) and (113.91,66.5) .. (117.5,66.5) -- (137,66.5) .. controls (140.59,66.5) and (143.5,69.41) .. (143.5,73) -- (143.5,95) .. controls (143.5,98.59) and (140.59,101.5) .. (137,101.5) -- (117.5,101.5) .. controls (113.91,101.5) and (111,98.59) .. (111,95) -- cycle ;
+%Rounded Rect [id:dp7948232314940678] 
+\draw  [color={rgb, 255:red, 99; green, 64; blue, 6 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 164; blue, 29 }  ,fill opacity=1 ] (173,73) .. controls (173,69.41) and (175.91,66.5) .. (179.5,66.5) -- (199,66.5) .. controls (202.59,66.5) and (205.5,69.41) .. (205.5,73) -- (205.5,95) .. controls (205.5,98.59) and (202.59,101.5) .. (199,101.5) -- (179.5,101.5) .. controls (175.91,101.5) and (173,98.59) .. (173,95) -- cycle ;
+%Rounded Rect [id:dp3729452674741367] 
+\draw  [color={rgb, 255:red, 39; green, 70; blue, 3 }  ,draw opacity=1 ][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ] (215,73) .. controls (215,69.41) and (217.91,66.5) .. (221.5,66.5) -- (241,66.5) .. controls (244.59,66.5) and (247.5,69.41) .. (247.5,73) -- (247.5,95) .. controls (247.5,98.59) and (244.59,101.5) .. (241,101.5) -- (221.5,101.5) .. controls (217.91,101.5) and (215,98.59) .. (215,95) -- cycle ;
+%Straight Lines [id:da3487924106400073] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (220.17,108.61) -- (287.17,108.61) (256.17,101.11) -- (256.17,116.11) ;
+\draw [shift={(290.17,108.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+% Text Node
+\draw (240,119) node [anchor=north west][inner sep=0.75pt]   [align=left] {9AM};
+% Text Node
+\draw (299,97) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle T$};
+% Text Node
+\draw (68,119) node [anchor=north west][inner sep=0.75pt]   [align=left] {8AM};
+% Text Node
+\draw (117.75,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{1}$}};
+% Text Node
+\draw (179.75,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{2}$}};
+% Text Node
+\draw (221.75,75) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle T_{3}$}};
+% Text Node
+\draw (126,119) node [anchor=north west][inner sep=0.75pt]   [align=left] {8:30 AM};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\setcounter{enumi}{1}
+	\item	La \og \textit{twist} \fg{} pour calculer la probabilité est de la voir comme une binomiale.
+	\item	D'abord, puisque $X_{k}	\sim \text{U}(8, 9)$ alors la probabilité que n'importe quel des autobus arrivent dans la première demi-heure est $\Pr(X_{k} \leq 0.5) = \frac{1}{9 - 8 + 1} = 0.50$ pour $k = 1, 2, 3$.
+	\item	Puis, on défini un « succès » comme « un autobus qui arrive dans la première demi-heure » ce qui implique que $\Pr(\text{succès})	=	\Pr(X_{k} \leq 0.50) = 0.50$.
+	\item	Finalement, $\Pr(N(8, 8.5] = 1 | N(8, 9] = 3)	=	\Pr\Big(\substack{\text{\textcolor{amethyst}{un} autobus arrive}\\ \text{entre 8h00 et 8h30}} \bigcap \substack{\text{\textcolor{teal}{2} autobus arrivent}\\ \text{entre 8h30 et 9h00}}\Big)	=	\Pr(\text{1 succès})	=$
+		\begin{align*}
+		\binom{3}{\textcolor{amethyst}{1}} 0.5^{\textcolor{amethyst}{1}} (1 - 0.5)^{\textcolor{teal}{2}}
+		&=	0.375
+		\end{align*}
+\end{enumerate}
+\end{formula}
+
 
 \columnbreak
 \subsection{Propriétés des processus de Poisson}
@@ -5320,7 +5790,7 @@ Soit $n$ v.a. exponentielles indépendantes avec paramètres de fréquence $\lam
 
 \pagebreak
 \part{Séries chronologiques}
-
+\label{chapt:seriesChrono}
 
 
 \end{multicols*}
