@@ -5869,7 +5869,8 @@ Il s'ensuit que :
 	\Pr(S(t) < s)
 	&=	\Phi\left(\frac{s - \text{E}[S(t)]}{\sqrt{\text{Var}(S(t))}}\right)
 \end{align*}
-Cependant, puisque nous utilisons une distribution continue (normale) pour approximer une distribution discrète (Poisson), il faut appliquer une correction de continuité.
+
+Cependant, dans le cas où nous utilisons une distribution continue (normale) pour approximer une distribution \textbf{de sévérité} discrète, il faut appliquer une correction de continuité.
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLpropos}[Correction de continuité]
@@ -5877,6 +5878,8 @@ La correction de continuité s'applique lorsqu'une distribution continue approxi
 
 Une distribution discrète est seulement définie sur les nombres entiers alors qu'une distribution continue est définie sur tous les nombres réels. La correction améliore donc l'estimation en remplaçant $s$ par le point milieu entre $s$ et la plus proche valeur de $S(t)$ qui est inférieure à $s$.
 \end{definitionNOHFILLpropos}
+
+Sommer des processus de Poisson résulte en un processus de Poisson dont la v.a. de sévérité est la moyenne des v.a. de sévérités de chacun des processus. C'est-à-dire que $f_{X}(x) = \frac{\textcolor{amethyst}{\lambda_{1}}}{\textcolor{amethyst}{\lambda_{1}} + \textcolor{teal}{\lambda_{2}}} f_{\textcolor{amethyst}{X_{1}}}(x) + \frac{\textcolor{teal}{\lambda_{2}}}{\textcolor{amethyst}{\lambda_{1}} + \textcolor{teal}{\lambda_{2}}} f_{\textcolor{teal}{X_{2}}}(x)$.
 
 
 
