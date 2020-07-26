@@ -154,7 +154,7 @@ En bref:
 	\item[$\theta$]	Paramètre inconnu à estimer ;
 	\item[$\Theta$]	Ensemble des valeurs possibles pour $\theta$ ;
 		\begin{itemize}
-		\item	Dans le cas multivarié, on a un vecteur $\bm{\theta}$ et on défini un ensemble des valeurs possibles $\bm{\Theta}$;
+		\item	Dans le cas multivarié, on a un vecteur $\bm{\theta}$ et on définit un ensemble des valeurs possibles $\bm{\Theta}$;
 		\item	Par exemple, une loi Gamma a $\bm{\theta}	=	\{\alpha, \beta\}$ et, puisque ces paramètres sont strictement positif, $\bm{\Theta}	=	\{\mathbb{R}^{+}, \mathbb{R}^{+}\}$.
 		\end{itemize}
 	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$ basé sur $n$ observations;
@@ -185,7 +185,7 @@ où :
 		 \[
 		 	\text{B}(\hat{\theta}_{n}) = 0
 		 \]
-	\item[Estimateur asymptotiquement sans biais]	lorsque le biais d'un estimateur tends vers 0 alors que le nombre d'observations sur lequel il est basé tends vers l'infini: 
+	\item[Estimateur asymptotiquement sans biais]	lorsque le biais d'un estimateur tend vers 0 alors que le nombre d'observations sur lequel il est basé tend vers l'infini: 
 		\[
 			\limz{n}{\infty}\text{B}(\hat{\theta}_{n}) = 0
 		\]
@@ -271,11 +271,11 @@ Par exemple, on trace ci-dessous \textcolor{amethyst}{la fonction de vraisemblan
 
 \end{tikzpicture}
 
-On peut donc voir que la forme de la fonction de vraisemblance est plus comprimée, alias que la concavité est plus forte, que l'autre fonction qui se maximise au même point. C'est-à-dire. la fonction de vraisemblance correspond à la fonction avec \textit{la plus forte concavité} dont le maximum est à $\hat{\theta}^{\text{EMV}}_{n}$.	\\
+On peut donc voir que la forme de la fonction de vraisemblance est plus comprimée, alias que la concavité est plus forte, que l'autre fonction qui se maximise au même point. C'est-à-dire, la fonction de vraisemblance correspond à la fonction avec \textit{la plus forte concavité} dont le maximum est à $\hat{\theta}^{\text{EMV}}_{n}$.	\\
 
-On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendue de valeurs possibles et moins de points près de $\hat\theta^{\text{EMV}}$. En bref, \lfbox[imphl]{la deuxième dérivée assure que}, parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$, \lfbox[imphl]{la fonction de vraisemblance est celle dont la variabilité des prévisions est minimisée}.	\\
+On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendue de valeurs possibles et moins de points près de $\hat\theta^{\text{EMV}}$. En bref, \lfbox[imphl]{la deuxième dérivée assure que} parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$, \lfbox[imphl]{la fonction de vraisemblance est celle dont la variabilité des prévisions est minimisée}.	\\
 
-L'information de Fisher permet de quantifier cette fonction de la deuxième dérivée. Puis, la borne de Cramér-Rao se défini comme son réciproque $1 / \bm{I}(\theta)$. L'intuition est que plus la concavité est faible, plus l'étendue est grand. Prendre le réciproque de l'information de Fisher permet donc de quantifier l'agrandissement de l'étendu.\\
+L'information de Fisher permet de quantifier cette fonction de la deuxième dérivée. Puis, la borne de Cramér-Rao se définit comme son réciproque $1 / \bm{I}(\theta)$. L'intuition est que plus la concavité est faible, plus l'étendue est grand. Prendre le réciproque de l'information de Fisher permet donc de quantifier l'agrandissement de l'étendu.\\
 
 Lorsque l'information de Fisher tend vers l'infini (alias la force de la concavité croît infiniment), on dit que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
 
@@ -288,7 +288,7 @@ Lorsque l'information de Fisher tend vers l'infini (alias la force de la concavi
 \end{description}
 \end{distributions}
 
-Avec le concept de l'information de Fisher, on défini \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramér-Rao sur la variance de l'estimateur:
+Avec le concept de l'information de Fisher, on définit \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramér-Rao sur la variance de l'estimateur:
 \begin{algo}{Efficacité d'un estimateur}
 \begin{align*}
 	\text{eff}(\hat{\theta}_{n})
@@ -302,7 +302,7 @@ Avec le concept de l'information de Fisher, on défini \textbf{l'efficacité d'u
 		\text{eff}(\hat{\theta}_{n}) = 1
 		\end{align*}
 	\begin{itemize}[leftmargin = *]
-	\item	Étant égale à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais.\\
+	\item	Étant égal à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais.\\
 	 		On dit qu'il est le \og \textbf{\textit{Minimum Variance Unbiased Estimator (MVUE)}} \fg{}. 
 	\end{itemize}
 \end{description}
@@ -353,7 +353,7 @@ Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arriv
 De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de la choisir malicieusement afin de faire parler les données comme on le souhaite. 
 
 \subsubsection*{Détails sur la convergence}
-On reprend les résultats de la section précédente en expliquant plus en détails la mathématique sous-jacente.\\
+On reprend les résultats de la section précédente en expliquant plus en détail la mathématique sous-jacente.\\
 
 \begin{definitionNOHFILLsub}[Convergence en probabilité]
 \begin{distributions}[Notation]
@@ -453,7 +453,7 @@ Le type principal d'estimateur par intervalle est l'\textbf{intervalle de confia
 \begin{algo}{Intervalle de confiance}
 Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que le paramètre inconnu $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$. 
 
-De façon équivalente, nous sommes confiant à un seuil de $\alpha$\% que $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$.\\
+De façon équivalente, nous sommes confiants à un seuil de $\alpha$\% que $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$.\\
 
 Donc, \icbox{$\theta \in (\hat{\theta}_{L}, \hat{\theta}_{U})$} et nous pouvons dire que \icbox{$\Pr( \hat{\theta}_{L} \le \theta \le  \hat{\theta}_{U}) \ge (1 - \alpha)$} \icbox[red][palechestnut]{pour tout $\theta$}.
 \end{algo}
@@ -517,7 +517,7 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 \end{itemize}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILLprop}[Moyenne échantillonale $\bar{X}$]
+\begin{definitionNOHFILLprop}[Moyenne échantillonnale $\bar{X}$]
 \lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
 
 \begin{itemize}
@@ -528,7 +528,7 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 \end{itemize}
 \end{definitionNOHFILLprop}
 
-\begin{definitionNOHFILLprop}[Variance échantillonale $S^{2}_{n}$]
+\begin{definitionNOHFILLprop}[Variance échantillonnale $S^{2}_{n}$]
 \lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
 
 \begin{itemize}
@@ -553,7 +553,7 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 \end{itemize}
 \end{definitionNOHFILLprop}
 
-\paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscule lorsqu'elle sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
+\paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscules lorsqu'elles sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
 Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
 
 \columnbreak
@@ -758,7 +758,7 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \end{definitionNOHFILLsub}
 
-On défini le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
+On définit le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
 
 
 \begin{definitionNOHFILLsub}[Intervalle de confiance pour une différence de moyennes]
@@ -856,18 +856,18 @@ Puis, on spécifie une \textcolor{orange-red}{expérience} et un \textcolor{oran
 \end{distributions}
 
 \begin{formula}{Exemple du laissez-passer universitaire (LPU)}
-\textcolor{orange-red}{Par exemple}, on veut savoir si le monde utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
+\textcolor{orange-red}{Par exemple}, on veut savoir si les étudiants utilisent l'autobus (oui ou non) avant et après l'implantation du LPU.\\ 
 On \textcolor{burntorange}{pose} que la proportion des gens qui utilisent l'autobus est $q	=	0.44$.\\
 Il y a deux types de \textcolor{orange}{tests} qu'on peut faire,
 \begin{itemize}
-	\item	Tester si l'utilisation est différente est un test "\textbf{bilatéral}", car on test si elle a augmentée \textit{ou} diminuée;
+	\item	Tester si l'utilisation est différente est un test "\textbf{bilatéral}", car on teste si elle a augmenté \textit{ou} diminuée;
 		\begin{align*}
 		\textrm{H}_{0}
 		&:	q	=	0.44	&
 		\textrm{H}_{1}
 		&:	q	\neq	0.44
 		\end{align*}
-	\item	Tester si l'utilisation a augmentée est un test "\textbf{unilatéral}", car on test uniquement si elle a augmentée.
+	\item	Tester si l'utilisation a augmenté est un test "\textbf{unilatéral}", car on teste uniquement si elle a augmenté.
 		\begin{align*}
 		\textrm{H}_{0}
 		&:	q	=	0.44	&
@@ -990,7 +990,7 @@ On souhaite tester si, en obtenant deux piles sur deux lancers, nous avons une p
 Étapes du calcul de la valeur $p$:
 \begin{enumerate}
 	\item	On calcule la probabilité d'obtenir 2 piles: $0.5 \times 0.5 = 0.25$.
-	\item	Puis, on calcule la probabilité d'obtenir 2 faces (un événement autant rare): $0.5 \times 0.5 = 0.25$.
+	\item	Puis, on calcule la probabilité d'obtenir 2 faces (un événement tout aussi rare): $0.5 \times 0.5 = 0.25$.
 	\item	Finalement, il n'y a pas d'autres séquences plus rares.
 \end{enumerate}
 Donc, la valeur $p$ du test est de $0.50$.
@@ -1016,7 +1016,7 @@ Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \begin{description}
 	\item[$p$]	La \textbf{valeur $p$} du test.
 		\begin{itemize}
-		\item	On peut la définir comme la probabilité d'un événement autant (ou plus) rare sous l'hypothèse nulle ;
+		\item	On peut la définir comme la probabilité d'un événement tout aussi (ou plus) rare sous l'hypothèse nulle ;
 		\item	On peut la définir comme la \textbf{taille} de la région critique $\mathcal{C}$ ; c'est-à-dire, l'\textit{aire} de la région de rejet de l'hypothèse nulle $\text{H}_{0}$ alors qu'elle est vraie ;
 		\item	On peut la définir comme le \textbf{seuil de signifiance} ; c'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie ;
 		\item	Elle correspond donc également à la \textbf{probabilité d'une erreur de type I}.
@@ -1030,7 +1030,7 @@ Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \end{description}
 \end{distributions}
 
-Formellement, on défini \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} ; {\color{amethyst}\theta} \right\}$}. \\
+Formellement, on définit \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} ; {\color{amethyst}\theta} \right\}$}. \\
 C'est-à-dire :
 \begin{itemize}
 	\item	on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$), 
@@ -1127,8 +1127,8 @@ Si les deux distributions sont:
 \end{tikzpicture}
 		\end{center}
 		\begin{itemize}
-		\item	 La probabilité de \textbf{incorrectement} rejeter l'hypothèse nulle (que les deux échantillons proviennent d'une même distribution) est élevée;
-		\item	On peut aussi dire qu'il y a une forte probabilité de \textbf{incorrectement} obtenir une faible valeur $p$;
+		\item	 La probabilité \textbf{d’incorrectement} rejeter l'hypothèse nulle (que les deux échantillons proviennent d'une même distribution) est élevée;
+		\item	On peut aussi dire qu'il y a une forte probabilité \textbf{d’incorrectement} obtenir une faible valeur $p$;
 		\item	Cependant, la puissance peut être augmentée avec plus d'observations.
 		\end{itemize}
 \end{itemize}
@@ -1218,7 +1218,7 @@ Puissance faible\\{\footnotesize variabilité élevée}
 
 Il existe plusieurs mesures qui permettent de considérer la variabilité des données ainsi que la forme de la distribution. Entres autre, il y a le \og \textit{\textbf{effect size ($d$)}} \fg{} où \lfbox[formula]{$d	=	\frac{\bar{x} - \bar{y}}{s^{2}_{p}}$}.
 
-\begin{definitionNOHFILLsub}[Le taille de l'échantillon de données]
+\begin{definitionNOHFILLsub}[La taille de l'échantillon de données]
 Un grand échantillon de données peut compenser pour des distributions qui se chevauchent ou une variabilité élevée. Ça permet d'augmenter notre \textit{confiance} qu'il y a bel et bien une différence entre les échantillons. \\
 
 En contraste, nous n'avons pas besoin d'un grand échantillon de données pour des distributions très distinctes ou avec une faible variabilité; nous sommes déjà confiants que les distributions sont différentes.
@@ -1247,7 +1247,7 @@ La fonction de puissance est \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1},
 		\end{description}
 \end{itemize}
 
-Si, par exemple, on rejette l'hypothèse nulle on pourrait tracer la fonction de puissance pour toutes les valeurs possibles de l'ensemble $\Theta_{1}$.
+Si, par exemple, on rejette l'hypothèse nulle, on pourrait tracer la fonction de puissance pour toutes les valeurs possibles de l'ensemble $\Theta_{1}$.
 
 
 %%	
@@ -1271,7 +1271,7 @@ Si, par exemple, on rejette l'hypothèse nulle on pourrait tracer la fonction de
 \end{description}
 
 \end{distributions}
-Pour mettre en contexte cette notation, revoici le tableau des types d'erreur pour un test $\delta$ :
+Pour mettre en contexte cette notation, revoici le tableau des types d'erreurs pour un test $\delta$ :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -1342,7 +1342,7 @@ Pour mettre en contexte cette notation, revoici le tableau des types d'erreur po
 Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on :
 \begin{enumerate}
 	\item	Fixe l'erreur de type I à un seuil, alias une taille de région critique, $k$.
-	\item	Trouve parmi tout les sous-ensembles de taille $k$ celui qui minimise l'erreur de type II.
+	\item	Trouve parmi tous les sous-ensembles de taille $k$ celui qui minimise l'erreur de type II.
 \end{enumerate}
 
 \begin{definitionNOHFILLprop}[Tests optimaux]
@@ -1366,7 +1366,7 @@ La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille 
 		\begin{itemize}
 		\item	C'est-à-dire, \lfbox[conditions]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	\alpha$}.
 		\item	Cependant, ce critère n'identifie par un sous-ensemble unique ;
-		\item	Il y a une multitude de sous-ensemble $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $\alpha$ ;
+		\item	Il y a une multitude de sous-ensembles $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $\alpha$ ;
 		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}; \theta	=	\theta_{0}	\right\}	=	\alpha$.
 		\end{itemize}
 	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$.
@@ -1391,7 +1391,7 @@ Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathc
 
 En bref, on pose fixe à un seuil $\alpha$ la fonction de puissance posant que le vrai paramètre $\theta	=	\theta_{0}$ puis on trouve la région critique qui maximise la puissance posant que le vrai paramètre $\theta	=	\theta_{1}$.
 
-\begin{formula}{Exemple avec une distribution Binomiale}
+\begin{formula}{Exemple avec une distribution binomiale}
 Soit :
 \begin{itemize}
 	\item	La variable aléatoire $X \sim Binom(n = 3, p = \theta)$.
@@ -1431,7 +1431,7 @@ On trouve que $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.75)	=	0.015625$ alors que 
 		&=	0.125	
 		\end{align*}
 		\setlength{\mathindent}{1cm}
-	\item	Le premier sous-ensemble $\mathcal{A}_{1}$ n'est pas désirable car on serait plus probable de incorrectement rejeter $\mathrm{H}_{0}$ lorsqu'elle est vraie (erreur de type I) que de correctement la rejeter lorsqu'elle est fausse ! 
+	\item	Le premier sous-ensemble $\mathcal{A}_{1}$ n'est pas désirable, car on serait plus probable de incorrectement rejeter $\mathrm{H}_{0}$ lorsqu'elle est vraie (erreur de type I) que de correctement la rejeter lorsqu'elle est fausse ! 
 	\item	Alors, on choisit $\mathcal{C}	=	\mathcal{A}_{2}	=	\{x: x = 3\}$.
 \end{itemize}
 
@@ -1463,7 +1463,7 @@ Soit une constante $k > 0$ et le sous-ensemble $\mathcal{C} \in \mathcal{S}$ tel
 	\item	\lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\leq	k$} pour tout \lfbox[conditions]{$x \in \mathcal{C}$}.
 	\item	\lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$} pour tout \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}.
 		\begin{itemize}
-		\item	En réécrivant les équations comme $\mathcal{L}(\theta_{1} ; \bm{x})	\leq\textcolor{teal}{(\geq)}\	k\mathcal{L}(\theta_{0} ; \bm{x})$ on peut l'interpréter comme qu'il doit être plus vraisemblable que $\theta	=	\theta_{0}\textcolor{teal}{(\theta_{1})}$ que $\theta_{1}\textcolor{teal}{(\theta_{0})}$ lorsque $x \in \mathcal{C}^{\textcolor{teal}{\complement}}$ et que l'on rejette \textcolor{teal}{(accepte)} $\mathrm{H}_{0}$.
+		\item	En récrivant les équations comme $\mathcal{L}(\theta_{1} ; \bm{x})	\leq\textcolor{teal}{(\geq)}\	k\mathcal{L}(\theta_{0} ; \bm{x})$ on peut l'interpréter comme qu'il doit être plus vraisemblable que $\theta	=	\theta_{0}\textcolor{teal}{(\theta_{1})}$ que $\theta_{1}\textcolor{teal}{(\theta_{0})}$ lorsque $x \in \mathcal{C}^{\textcolor{teal}{\complement}}$ et que l'on rejette \textcolor{teal}{(accepte)} $\mathrm{H}_{0}$.
 		\end{itemize}
 	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
 \end{enumerate}
@@ -1489,10 +1489,10 @@ Soit les mêmes hypothèses que dans la définition du théorème de Neymann-Pea
 
 Un test $\delta$ est non biaisé si sa puissance est toujours d'au moins $\alpha$ ; c'est-à-dire, \lfbox[formula]{$\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta \right\} \geq \alpha$}.\\
 
-Le meilleur test obtenue par le théorème de Neymann-Pearson est non biaisé.
+Le meilleur test obtenu par le théorème de Neymann-Pearson est non biaisé.
 \end{definitionNOHFILLsub}
 
-\begin{formula}{Exemple avec une distribution Normale}
+\begin{formula}{Exemple avec une distribution normale}
 Soit :
 \begin{itemize}
 	\item	L'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ d'une distribution normale $\mathcal{N}(\mu = \theta, \sigma^{2} = 0)$.
@@ -1530,7 +1530,7 @@ Alors, la région critique $\mathcal{C}$ optimale est composée des points $(x_{
 	&\geq	\underbrace{\frac{1}{2}	-	\frac{\ln(k)}{\color{teal}n}}_{\color{amethyst}c}	
 \end{align*}
 
-Alors, la région critique optimale $\mathcal{C}	=	\left\{(x_{1}, x_{2}, \dots, x_{n})	:	\frac{1}{n}\sum_{i	=	1}^{n} x_{i}	\geq	 {\color{amethyst}c}  \right\}$ où $\color{amethyst}c$ est une constante choisie tel que la taille de $\mathcal{C}$ est $\alpha$.\\
+Alors, la région critique optimale $\mathcal{C}	=	\left\{(x_{1}, x_{2}, \dots, x_{n})	:	\frac{1}{n}\sum_{i	=	1}^{n} x_{i}	\geq	 {\color{amethyst}c}  \right\}$ où $\color{amethyst}c$ est une constante choisie telle que la taille de $\mathcal{C}$ est $\alpha$.\\
 
 Par exemple, puisque $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \mathcal{N}(0, 1 / n)$ on peut trouver $c$ avec $\Pr\left\{\bar{X}	\geq	c ; \theta	=	\theta_{0} \right\}	=	\alpha$.	\\
 Puis, on peut trouver la puissance du test quand $\mathrm{H}_{1}$ est vraie avec $\Pr\left\{\bar{X}	\geq	c ; \theta	=	\theta_{1} \right\}$.
@@ -1652,7 +1652,7 @@ On pose :
 	\item	L'espace d'échantillon des expériences $\mathcal{A}$ qui représente l'union de $k$ différents ensembles (disjoints) $\mathcal{A}	=	\left\{A_{1} \cup A_{2} \cup \dots \cup A_{k} \right\}$ ;
 	\item	On pose que pour $i	=	1, 2, \dots, k$, $\Pr(A_{i})	=	p_{i}$ où $p_{k}	=	1	-	p_{1}	-	\hdots	-	p_{k - 1}$ et $O_{k}	=	n	-	O_{1}	-	\hdots	-	O_{k - 1}$ ;
 		\begin{itemize}
-		\item	$p_{i}$ représente donc la \textit{probabilité} que le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$ ;
+		\item	$p_{i}$ représente donc la \textit{probabilité} que le résultat de l'expérience aléatoire fasse partie de l'ensemble $A_{i}$ ;
 		\item	$O_{i}$	représente le \textit{nombre d'observations} (la \textit{fréquence}) pour lesquelles le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$.
 		\end{itemize}
 	\item	On pose que la distribution conjointe de $O_{1}, O_{2}, \dots, O_{k - 1} \sim MultiNom(n, p_{1}, \dots, p_{k - 1})$.
@@ -1668,7 +1668,7 @@ où $p_{k}	=	p_{k,0}	=	1	-	p_{1,0}	-	\hdots	-	p_{k - 1,0}$.
 Alors, sous l'hypothèse nulle : \lfbox[formula]{$Q	=	\sumz{k}{i = 1} \frac{(O_{i}	-	np_{i,0})^{2}}{np_{i,0}}	\approx	\chi_{(k - 1)}^{2}$}.
 \begin{itemize}
 %	\item	Si $O_{i} \sim \mathcal{N}$ alors le distribution du khi carrée n'est pas une approximation ;
-	\item	Il y a seulement $k - 1$ degrés de liberté car on estime seulement $k - 1$ paramètres.
+	\item	Il y a seulement $k - 1$ degrés de liberté, car on estime seulement $k - 1$ paramètres.
 		\begin{itemize}
 		\item	Le nombre $n$ total d'observations est fixe et on déduit $n_{k}$ par la somme ;
 		\item	Si on avait à 
@@ -1677,7 +1677,7 @@ Alors, sous l'hypothèse nulle : \lfbox[formula]{$Q	=	\sumz{k}{i = 1} \frac{(O_{
 
 
 \subsubsection{Tableau de contingence}
-Dans le cas de données à deux dimensions, alias un tableau de contingence, on défini :
+Dans le cas de données à deux dimensions, alias un tableau de contingence, on définit :
 \begin{description}
 	\item[$E_{ij}$]	L'espérance du nombre d'observations dans la cellule $i, j$ ;
 	\item[$O_{ij}$]	Le nombre observé d'observations dans la cellule $i, j$.
@@ -1700,7 +1700,7 @@ En fonction des observations, calculer :
 \end{enumerate}
 La région critique correspond à la région pour laquelle le ratio des vraisemblances est en dessous d'une constante $k$.
 \begin{itemize}
-	\item	Si les deux hypothèses sont simple, ceci équivaut à utiliser le théorème de Neymann-Pearson.
+	\item	Si les deux hypothèses sont simples, ceci équivaut à utiliser le théorème de Neymann-Pearson.
 \end{itemize}
 \
 
@@ -1721,7 +1721,7 @@ Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si la dist
 
 \begin{formula}{Exemple Bernoulli}
 Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.\\
-Alors $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est exhaustive pour $p$ car : 
+Alors $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est exhaustive pour $p$, car : 
 
 \setlength{\mathindent}{-1cm}
 \begin{align*}
@@ -1729,7 +1729,7 @@ Alors $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est exhaustive pour $p$ car :
 	&=	p^{{\color{teal}x_{1} + \dots + x_{n}}}(1 - p)^{n - {\color{teal}(x_{1} + \dots + x_{n})}}	\\
 	&=	p^{\color{teal}t} (1 - p)^{n  -{\color{teal}t}}
 \end{align*}
-Dépend seulement de l'échantillon par la valeur ${\color{teal}t}$ de la statistique $T_{n}$.
+Dépends seulement de l'échantillon par la valeur ${\color{teal}t}$ de la statistique $T_{n}$.
 \end{formula}
 \setlength{\mathindent}{1cm}
 \end{definitionNOHFILL}
@@ -1762,12 +1762,12 @@ où :
 \end{itemize}	
 \end{definitionNOHFILLprop}
 
-Le théorème de factorisation permet d'identifier des statistiques exhaustives. Cependant, il peut y avoir plusieurs statistiques exhaustives ! Certaines offrent une plus grand réduction des données ; par exemple, $\bar{X}_{n}$ réduit les données plus que $(X_{(1)}, \dots, X_{(n)})$. 
+Le théorème de factorisation permet d'identifier des statistiques exhaustives. Cependant, il peut y avoir plusieurs statistiques exhaustives ! Certaines offrent une plus grande réduction des données ; par exemple, $\bar{X}_{n}$ réduit les données plus que $(X_{(1)}, \dots, X_{(n)})$. 
 
 On cherche donc la statistique exhaustive qui offre la \textbf{réduction maximale} tout en retenant toute l'information sur le paramètre visé.
 
 \begin{definitionNOHFILL}[Statistique exhaustive minimale]
-Une statistique exhaustive $T_{n}	=	T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour tout autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ tel que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
+Une statistique exhaustive $T_{n}	=	T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour toute autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ telle que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
 
 \begin{definitionNOHFILLprop}[Critère de Lehmann-Scheffé]
 Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
@@ -1882,7 +1882,7 @@ De façon plus générale, on défini:
 \
 
 Nous pouvons également définir quelques autres statistiques d'intérêt :
-\begin{definitionNOHFILLsub}[L'étendue (\og \textit{rangee} \fg{})]
+\begin{definitionNOHFILLsub}[L'étendue (\og \textit{range} \fg{})]
 \textbf{L'étendue} (range) est la différence entre le minimum et le maximum d'un échantillon : \lfbox[formula]{$R = X_{(n)} - X_{(1)}$}.\\
 
 \begin{itemize}
@@ -1891,7 +1891,7 @@ Nous pouvons également définir quelques autres statistiques d'intérêt :
 		\begin{itemize}
 		\item	En moyenne, la température est de $16\degree C$.
 		\item	Il y a un cas extrême de $-60\degree C$ en 1745.
-		\item	L'étendue sera de $86\degree C$ ce qui n'est très représentatif des données.
+		\item	L'étendue sera de $86\degree C$ ce qui n'est pas très représentatif des données.
 		\item	Donc, dans ce contexte, l'étendue n'est pas une mesure très utile.
 		\end{itemize}
 \end{itemize}
@@ -1922,7 +1922,7 @@ Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne a
 \end{definitionNOHFILLsub}
 
 \begin{formula}{Exemple sur les statistiques d'ordre}
-Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (celsius).
+Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (Celsius).
 
 Je suppose que ce sont des températures du 4 février observées lors des dernières années.
 \begin{itemize}
@@ -2056,9 +2056,9 @@ Proportion \\des données
 \end{center}
 
 \begin{itemize}
-	\item	La médiane est la ligne contenu dans la boîte.
+	\item	La médiane est la ligne contenue dans la boîte.
 		\begin{itemize}
-		\item	La moitié des données sont au-dessus, et l'autre moitié en-dessous, de la ligne.
+		\item	La moitié des données sont au-dessus, et l'autre moitié en dessous, de la ligne.
 		\end{itemize}
 	\item	La boîte est délimitée par le premier et le troisième quartile.
 		\begin{itemize}
@@ -2163,7 +2163,7 @@ En bref, le diagramme en boîte permet d'évaluer comment les données sont dist
 \subsubsection{Diagramme quantile-quantile (\og \textit{Q-Q plot} \fg{})}
 En pratique, on pose souvent que les données suivent une distribution. Un diagramme quantile-quantile permet de comparer les quantiles théoriques de la distribution aux quantiles empiriques des données. \\
 
-Dans un tel cas, on connait la distribution, mais pas les paramètres.
+Dans un tel cas, on connaît la distribution, mais pas les paramètres.
 \begin{itemize}
 	\item	Si les données sont normalement distribuées, on peut centrer et réduire pour obtenir la loi normale standard $Z$ ; 
 		\begin{itemize}
@@ -2277,7 +2277,7 @@ Par exemple :
 
 \end{center}
 
-Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autre, évaluer la queue de la distribution. Selon la distribution, les quantiles « normaux » varient. Ci-dessous est une image de \href{https://mgimond.github.io/ES218/Week06a.html}{ce site} qui montre quantiles selon la distribution avec une droite pour la normale :
+Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autres, évaluer la queue de la distribution. Selon la distribution, les quantiles « normaux » varient. Ci-dessous est une image de \href{https://mgimond.github.io/ES218/Week06a.html}{ce site} qui montre quantiles selon la distribution avec une droite pour la normale :
 \begin{center}
 	\includegraphics[scale=0.5]{../../src/ACT-2000/qqplot-skeweing.png}
 \end{center}
@@ -2290,13 +2290,13 @@ Précédemment, nous avons décrit les méthodes utilisées pour évaluer la \te
 Cependant, comment obtenons-nous des estimateurs à évaluer?
 
 Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs méthodes existent pour estimer des paramètres.
-La méthode vu dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
+La méthode vue dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
 
 Avant de le faire, nous présentons quelques concepts:
 \begin{distributions}[Terminologie]
 \begin{description}
 	\item[$\mu_{k}'(\hat{\theta})$]	$k^{\text{e}}$ moment centré à 0, \icbox{$\mu_{k}' = \text{E}[X^{k}]$};
-	\item[$\pi_{g}(\theta)$]	$100g^{\text{e}}$ pourcentile, \icbox{$\pi_{g}(\theta) = F^{-1}_{\theta}(g)$}, \icbox[red][palechestnut]{$g \in [0, 1]$};
+	\item[$\pi_{g}(\theta)$]	$100g^{\text{e}}$ centile, \icbox{$\pi_{g}(\theta) = F^{-1}_{\theta}(g)$}, \icbox[red][palechestnut]{$g \in [0, 1]$};
 	\item[$F_{e}(x)$]	Fonction de répartition \textbf{e}mpirique;
 	\item[]	$\equalhat$	Notation pour poser une égalité.
 \end{description}
@@ -2308,7 +2308,7 @@ Cette distinction devient particulièrement importante dans le cas d'une distrib
 
 Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution. Sinon, les moments et quantiles ne seraient pas clairs.
 
-Finalement, sous les deux premières méthodes la décision de quels moments et percentiles à utiliser est arbitraire.
+Finalement, sous les deux premières méthodes la décision de quels moments et centiles à utiliser est arbitraire.
 
 \subsection{Méthode des moments (MoM)}
 
@@ -2328,19 +2328,19 @@ La raison pour cet estimateur est que la distribution empirique aura les mêmes 
 \subsection{Méthode du \guillemotleft Percentile Matching \guillemotright}
 
 \begin{algo}{Estimation de $\theta$ par la méthode du \og \textit{Percentile Matching} \fg{}}
-Pour ajuster une distribution de $p$ paramètres, on pose égale $p$ pourcentiles $\hat{\pi}_{g}(\hat{\theta})$ de l'échantillon à ceux de la distribution $\pi_{g}(\theta)$.\\
+Pour ajuster une distribution de $p$ paramètres, on pose égale $p$ centiles $\hat{\pi}_{g}(\hat{\theta})$ de l'échantillon à ceux de la distribution $\pi_{g}(\theta)$.\\
 L'estimation de $\theta$ est alors toute solution des $p$ équations:
 \begin{equation*}
 	F_{e}(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
 \end{equation*}
 \end{algo}
 
-La raison pour cet estimateur est que le modèle produit aura $p$ percentiles qui vont \og \textit{matcher} \fg{} les données.
+La raison pour cet estimateur est que le modèle produit aura $p$ centiles qui vont \og \textit{matcher} \fg{} les données.
 
-Il peut arriver que les percentiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
+Il peut arriver que les centiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
 Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en existe pas une d'officielle).
 
-Soit le \og \textit{smoothed empirical estimate} \fg{} d'un pourcentile:
+Soit le \og \textit{smoothed empirical estimate} \fg{} d'un centile:
 
 \begin{algo}{Smoothed empirical estimate}
 On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'\textbf{interpolation} suivant:
@@ -2419,7 +2419,7 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 \begin{definitionNOHFILLsub}[\hypertarget{reg_cond}{Conditions de régularité}]
 \begin{description}
 	\item[R0]	Les variables $X_{i}$ sont iid avec densité $f(x_{i}; \theta)$ pour $i	=	1, 2, \dots$.
-	\item[R1]	Les fonctions de densité ont tous le même support pour tout $\theta$.
+	\item[R1]	Les fonctions de densité ont toutes le même support pour tout $\theta$.
 		\begin{itemize}
 		\item	C'est-à-dire que le support de $X_{i}$ ne dépend pas de $\theta$;
 		\item	C'est une condition restrictive que certains modèles ne respectent pas.
@@ -2569,7 +2569,7 @@ Définie sur les nombres réels.	\\
 Par exemple :
 \begin{itemize}
 	\item	Les montants de perte d'accidents d'automobile.
-	\item	Le temps avant qu'une réclamation d'assurance soit réglé.
+	\item	Le temps avant qu'une réclamation d'assurance soit réglée.
 \end{itemize}
 \end{definitionNOHFILLpropos}
 
@@ -2585,7 +2585,7 @@ Par exemple :
 		\end{itemize}
 	\item	Une variable avec plusieurs niveaux.
 		\begin{itemize}
-		\item	P. ex., la \textit{marque d'une voiture} assuré prenant comme valeurs \textit{"Toyota"}, \textit{"Honda"}, etc.
+		\item	P. ex., la \textit{marque d'une voiture} assurée prenant comme valeurs \textit{"Toyota"}, \textit{"Honda"}, etc.
 		\end{itemize}
 \end{itemize}
 
@@ -2876,7 +2876,7 @@ Log-log complémentaire	&	$1	-	\textrm{e}^{-\textrm{e}^{\eta}}$	&	$\ln\left(-\ln
 \end{tabular}
 \end{center}
 
-Comme on peut observer ci-dessous, les fonctions de lien logit et probit sont \textbf{symétriques} à 0 mais pas la fonction de lien log-log complémentaire.
+Comme on peut observer ci-dessous, les fonctions de lien logit et probit sont \textbf{symétriques} à 0, mais pas la fonction de lien log-log complémentaire.
 \begin{center}
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -2997,7 +2997,7 @@ Analyse de survie	&	Temps jusqu'à un événement	\\
 		\begin{itemize}
 		\item	C'est-à-dire, le nombre de fois, ou la fréquence, d'un événement sur une période de temps.
 		\item	Donc, le temps est fixé et on observe le nombre d'événements.
-		\item	On ne peut pas simplement appliquer un modèle linéaire car les données suivent une distribution de Poisson, pas une distribution normale! 
+		\item	On ne peut pas simplement appliquer un modèle linéaire, car les données suivent une distribution de Poisson, pas une distribution normale! 
 		\item	Également, nous pouvons modéliser un \og \textit{offset} \fg{} pour considérer le temps d'exposition.
 		\end{itemize}
 	\item	Avec l'analyse de survie, on prédit le temps avant qu'un événement ait lieu.
@@ -3017,7 +3017,7 @@ Il y a plusieurs façons de modéliser un même modèle de Poisson :
 		\begin{itemize}
 		\item	Ceci permet de traiter le taux $\lambda$ avec un modèle linéaire.
 		\item	L'avantage est la simplicité d'une ligne pour résumer le modèle.
-		\item	Mathématiquement, les deux première équations sont équivalentes.
+		\item	Mathématiquement, les deux premières équations sont équivalentes.
 		\end{itemize}
 	\item	Modéliser le log de la fréquence espérée avec un \og \textit{offset} \fg{} : $\ln(\text{E}[Y])	=	\ln(\text{E}[\lambda t])	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}	+	\ln(t)$.
 		\begin{itemize}
@@ -3029,7 +3029,7 @@ Hypothèses du modèle :
 \begin{enumerate}
 	\item	Les observations sont indépendantes.
 		\begin{itemize}
-		\item	Si, par exemple, avoir un récidive augmente la probabilité d'une deuxième récidive, alors le modèle n'est pas adéquat.
+		\item	Si, par exemple, avoir une récidive augmente la probabilité d'une deuxième récidive, alors le modèle n'est pas adéquat.
 		\end{itemize}
 	\item	Le taux auquel les événements se produisent est une fonction log-linéaire de $x$.
 		\begin{itemize}
@@ -3040,7 +3040,7 @@ Hypothèses du modèle :
 		\item	Par exemple, si on modélise la fréquence d'accidents auto alors on s'attend à ce que le nombre d'accidents sur deux ans soit le double du nombre d'accidents sur un an.
 		\end{itemize}
 	\item	La moyenne = variance = $\lambda$.
-	\item	La taux est constant.
+	\item	Le taux est constant.
 		\begin{itemize}
 		\item	Donc, on pose que le taux est fixe.
 		\item	Par exemple, la probabilité d'une récidive pourrait diminuer dans le temps.
@@ -3050,11 +3050,11 @@ Hypothèses du modèle :
 Le modèle à deux gros problèmes, \underline{premièrement} la \textbf{sur-dispersion} où la variance est supérieure à la moyenne.
 \begin{itemize}
 		\item	C'est-à-dire que les données sont plus variables que ce qui est attendu.
-		\item	Contrairement à la régression linéaire où l'estimation de la moyenne et du SSE sont séparées, l'estimation est la même pour le modèle de Poisson.
+		\item	Contrairement à la régression linéaire où l'estimation de la moyenne et du SSE est séparée, l'estimation est la même pour le modèle de Poisson.
 		\item	Il y a des multiples raisons pour lesquelles ceci peut arriver : 
 			\begin{enumerate}
 			\item	Nous n'avons pas inclus toutes les variables explicatives significatives dans le modèle.
-			\item	La forme fonctionnelle du modèle est inadéquate (p. ex., les données ne sont pas log-linéaires).
+			\item	La forme fonctionnelle du modèle est inadéquate (p. ex., les données ne sont pas log linéaires).
 			\item	Une variable est supposée d'être homogène alors qu'elle ne l'est pas.
 				\begin{itemize}
 				\item	P. ex., modéliser un groupe de fumeurs alors qu'il y a des sous-groupes (ceux qui font de l'exercice vs ceux qui n'en font pas, etc.)
@@ -3556,13 +3556,13 @@ Entre autres, la PGF sert à :
 
 
 \columnbreak
-\subsection{Percentiles, mode et statistiques}
-\begin{definitionNOHFILL}[Percentile]
+\subsection{Centiles, mode et statistiques}
+\begin{definitionNOHFILL}[Centile]
 \begin{rappel_enhanced}[Contexte]
-Les percentiles aident à quantifier la \textit{vraisemblance} de pertes extrêmes. Bien que les actuaires se servent des percentiles pour évaluer la \textit{\textbf{fréquence}} des pertes extrêmes, ils ne sont \textbf{pas} utiles pour évaluer la \textit{sévérité} de ces pertes.
+Les centiles aident à quantifier la \textit{vraisemblance} de pertes extrêmes. Bien que les actuaires se servent des centiles pour évaluer la \textit{\textbf{fréquence}} des pertes extrêmes, ils ne sont \textbf{pas} utiles pour évaluer la \textit{sévérité} de ces pertes.
 \end{rappel_enhanced}
 
-Le $100q^{\text{e}}$ \textbf{\textit{percentile}} d'une v.a. $X$ est la valeur $\pi_{q}$ tel que \lfbox[conditions]{$\Pr(X	<	\pi_{q})	 \leq	q$} \textbf{et} \lfbox[conditions]{$\Pr(X	\leq	\pi_{q})	 \geq	q$}.\\
+Le $100q^{\text{e}}$ \textbf{\textit{centile}} d'une v.a. $X$ est la valeur $\pi_{q}$ tel que \lfbox[conditions]{$\Pr(X	<	\pi_{q})	 \leq	q$} \textbf{et} \lfbox[conditions]{$\Pr(X	\leq	\pi_{q})	 \geq	q$}.\\
 
 \begin{itemize}
 	\item	Dans le cas continu, $F_{X}(\pi_{\textcolor{teal}{q}})	=	\textcolor{teal}{q}$ et $\pi_{\textcolor{teal}{q}}	=	F^{-1}_{X}(\textcolor{teal}{q})$.
@@ -3591,7 +3591,7 @@ Par exemple, si la $CTE_{0.95}(X)	=	5000$ cela veut dire que la moyenne des pert
 
 
 \begin{definitionNOHFILL}[Mode]
-Le mode est la réalisation qui a lieu le plus souvent. Par exemple, en anglais la lettre E est la lettre la plus utilisée dans le dictionnaire et représente donc le mode de la langue anglaise.\\
+Le mode est la réalisation qui a lieu le plus souvent. Par exemple en anglais la lettre E est la lettre la plus utilisée dans le dictionnaire et représente donc le mode de la langue anglaise.\\
 
 En termes mathématiques, le mode est le point qui maximise la PMF/PDF.\\
 
@@ -3599,7 +3599,7 @@ Dans le cas continu, si la distribution :
 on peut simplement dériver la PDF et trouver le point qui la rend égale à zéro.
 \begin{itemize}
 	\item	est unimodal, c'est-à-dire qu'elle a une « bosse », alors \lfbox[formula]{$\text{mode}	=	x \text{ tel que } f'(x)	=	0$}.
-	\item	est strictement croissante ou décroissante, le mode sera une des deux extrémités.
+	\item	est strictement croissant ou décroissant, le mode sera une des deux extrémités.
 		\begin{itemize}
 		\item	Par exemple, la loi exponentielle est strictement décroissante et a toujours un mode à $0$ peu importe les paramètres.
 		\end{itemize}
@@ -3751,7 +3751,7 @@ $X \sim \text{Gamma}(\alpha, \theta)$	&	$\alpha, \theta > 0$	&	$x \geq	0$	\\\hli
 
 \begin{definitionNOHFILLprop}[Loi Erlang]
 \begin{rappel_enhanced}[Contexte]
-La loi Erlang est un cas spécial de la loi Gamma avec un paramètre de forme $\alpha$ entier. Elle est utile dans le contexte de \textbf{\nameref{sec:procPois}} car nous pouvons trouver une forme explicite de la fonction de répartition (survie).
+La loi Erlang est un cas spécial de la loi Gamma avec un paramètre de forme $\alpha$ entier. Elle est utile dans le contexte de \textbf{\nameref{sec:procPois}}, car nous pouvons trouver une forme explicite de la fonction de répartition (survie).
 \end{rappel_enhanced}
 
 \begin{center}
@@ -3887,7 +3887,7 @@ Si la \textcolor{teal}{fonction de hasard} est \textit{\textcolor{teal}{décrois
 	\item	Si $\theta$ est connu, la distribution de $X$ est complètement spécifiée;\\
 			En pratique, $\theta$ est inconnu et doit être estimé avec les données observées.
 	\item	On peut estimer $F_{X}(x)$ et $f_{X}(x)$ directement pour toute valeur $x$ sans présumer une forme paramétrique;\\
-			Par exemple, un histogramme est une estimation \textit{non-paramétrique}.
+			Par exemple, un histogramme est une estimation \textit{non paramétrique}.
 \end{itemize}
 
 
@@ -3895,13 +3895,13 @@ Si la \textcolor{teal}{fonction de hasard} est \textit{\textcolor{teal}{décrois
 \subsection{Données complètes}
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$X$]	Variable d'intérêt (e.g., la durée de vie ou la perte);
+	\item[$X$]	Variable d'intérêt (p. ex., la durée de vie ou la perte);
 	\item[$\{X_{1}, \dots, X_{n}\}$]	Valeurs de $X$ pour n individus;
 	\item[$\{x_{1}, \dots, x_{n}\}$]	$n$ valeurs observées de l'échantillon;
 		\begin{itemize}[leftmargin = *]
 		\item	Il peut y avoir des valeurs dupliquées dans les valeurs observées.
 		\end{itemize}
-	\item[$0	<	y_{1}	<	\hdots	<	y_{m}$]	$m$ valeurs distincts où \icbox[red][palechestnut]{$m \leq n$};
+	\item[$0	<	y_{1}	<	\hdots	<	y_{m}$]	$m$ valeurs distinctes où \icbox[red][palechestnut]{$m \leq n$};
 	\item[$w_{j}$]	Nombre de fois que la valeur $y_{j}$ apparaît dans l'échantillon pour \icbox[red][palechestnut]{$j = 1, \dots, m$};
 		\begin{itemize}[leftmargin = *]
 		\item	Il s'ensuit que \icbox[red][palechestnut]{$\sumz{m}{j = 1}w_{j}	=	n$};
@@ -3911,7 +3911,7 @@ Si la \textcolor{teal}{fonction de hasard} est \textit{\textcolor{teal}{décrois
 	\item[$r_{j}$]	\og \textit{risk set} \fg{} au \textit{temps} $y_{j}$;
 		\begin{itemize}[leftmargin = *]
 		\item	Le nombre d'individus exposés à la possibilité de mourir au temps $y_{j}$;
-		\item	Par exemple, $r_{1}	=	n$ car tous les individus sont exposés à la risque de décéder juste avant le temps $y_{1}$;
+		\item	Par exemple, $r_{1}	=	n$, car tous les individus sont exposés au risque de décéder juste avant le temps $y_{1}$;
 		\item	On déduit que \icbox[red][palechestnut]{$r_{j}	=	\sumz{m}{i = j}w_{i}$}, alias le nombre d'individus qui survivent juste avant le temps $y_{j}$.
 		\end{itemize}
 \end{description}
@@ -3925,7 +3925,7 @@ Soit une étude sur le nombre d'années nécessaire pour obtenir un diplôme uni
 
 Si un étudiant a commencé son cursus scolaire avant l'étude et suit présentement des cours, le chercheur a de l'information sur le nombre d'années qu'il a déjà investi. Cependant, d'autres étudiants qui se sont inscrits en même temps, mais ont cessé leurs études ne seront pas observés dans cet échantillon. Alors, l'individu est observé d'une population \lfbox[imphl]{\textbf{tronquée à la gauche}} puisque l'information sur les étudiants qui ont quitté l'université avant le début de l'étude n'est \textit{pas disponible}.\\
 
-Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le chercheur ne peut pas savoir combien d'années supplémentaire seront nécessaires. Cet individu fait donc partie d'une population \lfbox[imphl]{\textbf{censurée à la droite}} puisque le chercheur a de l'information \textit{partielle} (le nombre d'années minimale) sans savoir le nombre exact.
+Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le chercheur ne peut pas savoir combien d'années supplémentaires seront nécessaires. Cet individu fait donc partie d'une population \lfbox[imphl]{\textbf{censurée à la droite}} puisque le chercheur a de l'information \textit{partielle} (le nombre d'années minimal) sans savoir le nombre exact.
 \end{rappel_enhanced}
 
 \begin{distributions}[Notation]
@@ -3933,13 +3933,13 @@ Si un étudiant n'est pas encore diplômé lorsque l'étude prend fin, le cherch
 	\item[$d_{i}$]	État de troncature de l'individu $i$ de l'échantillon;
 		\begin{itemize}[leftmargin = *]
 		\item	$d_{i}	=	0$ s'il n'y a pas de troncature;
-		\item	Par exemple, un étudiant à commencé son programme universitaire $d_{i}$ années avant le début de l'étude.
+		\item	Par exemple, un étudiant a commencé son programme universitaire $d_{i}$ années avant le début de l'étude.
 		\end{itemize}
 	\item[$x_{i}$]	Temps de "survie" de l'individu $i$;
 		\begin{itemize}[leftmargin = *]
 		\item	Par exemple, le nombre d'années avant d'obtenir son diplôme;
 		\item	Si l'étude prend fin avant que $x_{i}$ soit observé, on dénote le temps de survie jusqu'à ce moment \icbox{$u_{i}$};
-		\item	Donc chaque individu a \textit{soit} une valeur $x_{i}$ \underline{ou} $u_{i}$ mais \textit{pas les deux}.
+		\item	Donc chaque individu a \textit{soit} une valeur $x_{i}$ \underline{ou} $u_{i}$, mais \textit{pas les deux}.
 		\end{itemize}
 \end{description}
 \end{distributions}
@@ -4547,7 +4547,7 @@ Visuellement :
 \columnbreak
 \subsection{Inflation}
 \begin{definitionNOHFILL}[Inflation $r$]
-L'inflation de \lfbox[formula]{$r$} augmente les coûts mais, de façon générale, ils sont couverts par la compagnie d'assurance et ne cause pas de changements à la police.
+L'inflation de \lfbox[formula]{$r$} augmente les coûts, mais, de façon générale, ils sont couverts par la compagnie d'assurance et ne causent pas de changements à la police.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[L'espérance du montant de perte avec inflation]
@@ -4570,7 +4570,7 @@ Combiné avec les autres facteurs :
 \pagebreak
 \section{Estimation de modèles non paramétriques}
 \subsection{Données complètes}
-\hl{Section à compléter avec mes notes de IARD et 11.2 de Nonlife Actuariel Models (tse).}
+\hl{Section à compléter avec mes notes d’ IARD et 11.2 de Nonlife Actuariel Models (tse).}
 \subsubsection{Distribution empirique}
 \begin{definitionNOHFILL}[Distribution empirique]
 Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
@@ -4586,7 +4586,7 @@ Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabil
 	\item[$\tilde{F}()$]	Fonction de répartition lissée;
 		\begin{itemize}
 		\item	En anglais, \og \textit{smoothed empirical distribution function} \fg{}.
-		\item	On appel parfois la fonction de répartition \textit{la fonction distribution} (\og \textit{distribution function} \fg{}).
+		\item	On appelle parfois la fonction de répartition \textit{la fonction distribution} (\og \textit{distribution function} \fg{}).
 		\end{itemize}
 %	\item[Moyenne de la distribution empirique]
 %		\begin{align*}
@@ -4622,7 +4622,7 @@ On peut estimer la valeur de $\hat{F}()$ pour un une valeur de $y$ pas dans l'en
 		\frac{y_{j + 1}	-	y_{j	}}{y_{j + 1}	-	y_{j}}\hat{F}(y_{j})
 \end{align*}
 
-\begin{definitionNOHFILLprop}[Distribution Binomiale de la fonction de répartition empirique]
+\begin{definitionNOHFILLprop}[Distribution binomiale de la fonction de répartition empirique]
 On peut écrire la fonction de répartition empirique comme \lfbox[formula]{$\hat{F}(y)	=	\frac{Y}{n}$} où $Y$ est le nombre d'observations qui sont inférieures ou égales à $y$ tel que \lfbox[formula]{$Y \sim \text{Bin}(n, p = F(y))$}.\\
 
 On trouve :
@@ -4653,7 +4653,7 @@ Si l'on souhaite distribuer cette masse de façon égale, on le fait sur l'inter
 \end{align*}
 \begin{itemize}[leftmargin = *]
 	\item	Cette fonction est rectangulaire avec une base de longueur $2b$ et une hauteur de $0.5/b$ pour avoir une aire de 1.
-	\item	On peut l'interpréter comme la fonction de densité contribué par l'observation $x_{i}$;
+	\item	On peut l'interpréter comme la fonction de densité contribuée par l'observation $x_{i}$;
 	\item	On note que ceci correspond à la fonction de densité d'une distribution uniforme $U(x_{i} -  b, x_{i} + b)$;
 	\item	Alors, seulement les valeurs de $x$ contenues dans l'intervalle $(x_{i} -  b, x_{i} + b)$ reçoivent une "contribution" de $x_{i}$;
 	\item	La fonction de densité de $X$ est donc la somme des masses de probabilité contribuées \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{n} \sumz{n}{i = 1}(x)$}.
@@ -4675,7 +4675,7 @@ On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
 \begin{description}
 	\item[$b$]	\og \textit{bandwith} \fg{} où \icbox[red][palechestnut]{$b > 0$};
 	\item[$K_{R}(\phi)$]	\og \textit{rectangular (box, uniform) kernel function} \fg{};
-	\item[$\tilde{f}(x)$]	Estimation de la fonction de densité selon le noyaux rectangulaire;
+	\item[$\tilde{f}(x)$]	Estimation de la fonction de densité selon le noyau rectangulaire;
 	\item[$K_{T}(\phi)$]	\og \textit{triangular kernel} \fg{};
 	\begin{align*}
 		K_{R}(\phi)
@@ -4697,7 +4697,7 @@ On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
 
 \columnbreak
 \subsection{Données incomplètes}
-\hl{Section à compléter avec mes notes de IARD et 11.2 de Nonlife Actuariel Models (tse).}
+\hl{Section à compléter avec mes notes d’ IARD et 11.2 de Nonlife Actuariel Models (tse).}
 \subsubsection{Estimateur de Kaplan-Meier}
 Soit : 
 \begin{align*}
@@ -4737,14 +4737,14 @@ Avec l'approximation \lfbox[conditions]{$-\ln\left(1	-	\frac{w_{h}}{r_{h}}\right
 
 \columnbreak
 \subsection{Données groupées}
-\hl{Section à compléter avec mes notes de IARD et 11.3 de Nonlife Actuariel Models (tse).}
+\hl{Section à compléter avec mes notes d’ IARD et 11.3 de Nonlife Actuariel Models (tse).}
 
 
 
 \pagebreak
 \section{Estimation de modèles paramétriques}
 \subsection*{Estimation par maximum de vraisemblance pour des données incomplètes et groupées}
-Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid mais on peut quand même formuler la fonction de vraisemblance et trouver l'EMV.
+Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid, mais on peut quand même formuler la fonction de vraisemblance et trouver l'EMV.
 
 La première étape est d'écrire la fonction de (log) vraisemblance adéquate pour la méthode d'échantillonnage des données.\\
 
@@ -4811,7 +4811,7 @@ Avec les méthodes d'évaluation visuelles, on peut détecter si les données di
 	\item	On peut tracer l'histogramme des données et superposer la densité théorique pour évaluer l'ajustement.
 \end{itemize}
 
-Le désavantage de ces méthodes est qu'elle ne fournissent pas des mesures quantitatives sur l'ajustement du modèle.
+Le désavantage de ces méthodes est qu'elles ne fournissent pas des mesures quantitatives sur l'ajustement du modèle.
 
 
 \subsection{Tests pour la qualité de l'ajustement}
@@ -4827,7 +4827,7 @@ Test de signifiance dont l'objectif est d'évaluer les hypothèses de distributi
 \end{description}
 \end{distributions}
 
-Les tests de Kolmogorov-Smirnov (K.-S.) et de Anderson-Darling sont idéales lorsque l'on désire comparer les fonctions de répartition. \\
+Les tests de Kolmogorov-Smirnov (K.-S.) et de Anderson-Darling sont idéaux lorsque l'on désire comparer les fonctions de répartition. \\
 
 Le test de K.-S. compare la fonction de distribution (répartition) empirique à celle d'une distribution théorique. L'idée du test est donc de quantifier l'évaluation visuelle que l'on peut faire de l'ajustement.
 
@@ -4847,7 +4847,7 @@ On peut donc récrire\\ \lfbox[formula]{$D	=	\underset{i \in \{1, \dots, n\}}{\m
 
 \begin{itemize}
 	\item	Si les données sont bien ajustées, on s'attend à ce que $D$ soit très petit.
-	\item	Lorsque la distribution est entièrement spécifiée (aucun paramètres sont estimés) une table avec les valeurs critiques est donnée.
+	\item	Lorsque la distribution est entièrement spécifiée (aucun paramètre n’est estimé), une table avec les valeurs critiques est donnée.
 	\item	S'il faut estimer des paramètres, la simulation Monte-Carlo est utilisée pour trouver des nouvelles valeurs critiques.
 \end{itemize}
 \end{definitionNOHFILLsub}
@@ -4990,7 +4990,7 @@ Lorsque les paramètres sont connus, le test de K.-S. n'est pas spécifique à a
 	&=	n \int  \frac{(\hat{F}(x)	-	F^{\ast}(x))^{2}}{F^{\ast}(x) S^{\ast}(x)}f^{\ast}(x) dx	\\
 \end{align*}
 
-Donc, lorsque $F^{\ast}(x)$ ou $S^{\ast}(x)$ est petit, la différence est attribué plus de poids.\\
+Donc, lorsque $F^{\ast}(x)$ ou $S^{\ast}(x)$ est petit, la différence est attribuée plus de poids.\\
 
 Il s'ensuit que le test de A.-D. est « spécifique par distribution » dans le sens que les valeurs critiques sont différentes selon la distribution sous-jacente---il y a une table de valeurs critiques pour une distribution normale, Weibull, exponentielle, etc.
 
@@ -5010,7 +5010,7 @@ Le test du khi carré sert à tester les hypothèses d'une distribution en compa
 
 \end{definitionNOHFILLsub}
 
-Le test du rapport de vraisemblance test la validité des restrictions d'un modèle et peut décider si un modèle peut être simplifié.
+Le test du rapport de vraisemblance teste la validité des restrictions d'un modèle et peut décider si un modèle peut être simplifié.
 \begin{definitionNOHFILLsub}[Test du rapport de vraisemblance]
 
 \end{definitionNOHFILLsub}
@@ -5037,9 +5037,9 @@ L'AIC pénalise les modèles ayant plus de paramètres en soustrayant le nombre 
 %%%	+	Faire lien à la consistency.
 %%%	------------------------
 
-Le désavantage de l'AIC est que, pour deux modèles emboîtés, la probabilité de choisir le modèle plus simple (p. ex., un modèle basé sur la distribution exponentielle au lieu de la distribution gamma) \textit{alors qu'il est vrai} )erreur de type I) ne tend pas vers 1 lorsque le nombre d'observations tend vers l'infini. On dit donc que c'est une mesure \og \textit{inconsistent} \fg{}. 
+Le désavantage de l'AIC est que, pour deux modèles emboîtés, la probabilité de choisir le modèle plus simple (p. ex., un modèle basé sur la distribution exponentielle au lieu de la distribution gamma) \textit{alors qu'il est vrai} )erreur de type I) ne tends pas vers 1 lorsque le nombre d'observations tend vers l'infini. On dit donc que c'est une mesure \og \textit{inconsistent} \fg{}. 
 
-\begin{definitionNOHFILLsub}[Critère d'information Bayésien (BIC)]
+\begin{definitionNOHFILLsub}[Critère d'information bayésien (BIC)]
 Le BIC pénalise plus sévèrement les modèles ayant plus de paramètres : \lfbox[formula]{$BIC	=	\log \mathcal{L}(\hat{\theta}^{\text{EMV}}_{n} ; \bm{x})	-	\frac{p}{2} \log (n)$}.
 
 \begin{itemize}
@@ -5058,9 +5058,9 @@ Dans les deux cas, la probabilité de rejeter le modèle plus simple lorsque le 
 \begin{definitionNOHFILLsub}[Algorithmes \og \textit{Greedy} \fg{}]
 Méthode de résolution de problèmes qui prend la décision optimale \textbf{à chaque étape} d'obtenir la solution optimale d'un problème. \\
 
-On dit que ces algorithmes sont \og \textit{greedy} \fg{} car, à chaque étape, ils prennent la meilleure décision sans tenir compte des choix futurs qui pourraient être plus optimales. Donc, la solution trouvée n'est pas nécessairement la solution optimale. \\
+On dit que ces algorithmes sont \og \textit{greedy} \fg{}, car, à chaque étape, ils prennent la meilleure décision sans tenir compte des choix futurs qui pourraient être plus optimaux. Donc, la solution trouvée n'est pas nécessairement la solution optimale. \\
 
-Ces algorithmes ont l'avantage d'être \textbf{plus rapide} au coût d'être \textbf{moins précis}.
+Ces algorithmes ont l'avantage d'être \textbf{plus rapide}s au coût d'être \textbf{moins précis}.
 \end{definitionNOHFILLsub}
 
 
@@ -5158,22 +5158,22 @@ Visuellement, on voir que l'\textbf{accroissement} $N(t + h) - N(t)$ représente
 Processus de comptage dont :
 \begin{enumerate}
 	\item	chaque accroissement est une variable aléatoire de Poisson,
-	\item	les accroissement qui ne se \textbf{chevauchent pas} sont indépendantes.
+	\item	les accroissements qui ne se \textbf{chevauchent pas} sont indépendants.
 \end{enumerate}
 
 \
 
 Pour un processus de Poisson avec \textbf{fonction d'intensité} $\lambda(t)$, l'accroissement \lfbox[formula]{$N(t + h) - N(t)	\sim	\text{Poisson}\left(\lambda	=	\int_{t}^{t + h}\lambda(u)du\right)$}. 
 \begin{itemize}
-	\item	On pose donc que le paramètre de la fréquence des accroissement $\lambda$ est la \textit{moyenne} de la fonction d'intensité des accroissements $\lambda(t)$ sur l'intervalle de temps $(t, t + h]$.
+	\item	On pose donc que le paramètre de la fréquence des accroissements $\lambda$ est la \textit{moyenne} de la fonction d'intensité des accroissements $\lambda(t)$ sur l'intervalle de temps $(t, t + h]$.
 \end{itemize}
 
 \begin{definitionNOHFILLprop}[Processus de Poisson homogène]
 Si la fonction d'intensité est constante, \lfbox[conditions]{$\lambda(t)	=	\lambda$}, le processus $\underline{N}$ est un \textbf{processus de Poisson homogène} et \lfbox[formula]{$N(t + h)	-	N(t)	\sim	\text{Poisson}(\lambda t)$}.
 \end{definitionNOHFILLprop}
 
-\begin{definitionNOHFILLprop}[Processus de Poisson non-homogène]
-Si la fonction d'intensité varie avec le temps $t$, le processus $\underline{N}$ est un \textbf{processus de Poisson non-homogène}.
+\begin{definitionNOHFILLprop}[Processus de Poisson non homogène]
+Si la fonction d'intensité varie avec le temps $t$, le processus $\underline{N}$ est un \textbf{processus de Poisson non homogène}.
 \end{definitionNOHFILLprop}
 \end{definitionNOHFILLsub}
 
@@ -5188,7 +5188,7 @@ Si la fonction d'intensité varie avec le temps $t$, le processus $\underline{N}
 		\end{itemize}
 	\item[$V_{k}$]	Intervalle de temps entre la réalisation du $(k - 1)^{e}$ et du $k^{e}$ événement.
 		\begin{itemize}
-		\item	Alias, le temps inter-arrivé.
+		\item	Alias, le temps inter arrivé.
 		\item	\lfbox[formula]{$V_{k}	=	T_{k} - T_{k - 1}$}.
 		\item	On pose que \lfbox[conditions]{$T_{0} = 0$}, \lfbox[conditions]{$V_{0} = 0$} et que \lfbox[conditions]{$V_{1}	=	T_{1}$}.
 		\end{itemize}
@@ -5339,7 +5339,7 @@ On en déduit que les temps d'occurrences sont en fait des \textbf{\nameref{subs
 
 Pour déterminer la distribution de $T_{i}$, $i	=	1, 2, \dots, n$, on rappel ces deux propriétés des processus de Poisson homogènes :
 \begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
-	\item	Les intervalles qui ne se chevauchent pas sont indépendantes.
+	\item	Les intervalles qui ne se chevauchent pas sont indépendants.
 	\item	Le paramètre de fréquence $\lambda$ est proportionnel à la longueur d'un intervalle, ce qui implique qu'il est identique pour des intervalles de la même longueur.
 \end{enumerate}
 
@@ -5440,7 +5440,7 @@ Donc, $T_{1}, T_{2}, \dots, T_{n}$ sont les statistiques d'ordre d'une distribut
 % Text Node
 \draw (310,25.67) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{75.03392pt}\setlength\topsep{0pt}
 \begin{center}
-{\footnotesize temps d'occurences}\\{\footnotesize \textbf{\textcolor[rgb]{0.29,0.56,0.89}{ordonnés}}}
+{\footnotesize temps d'occurrences}\\{\footnotesize \textbf{\textcolor[rgb]{0.29,0.56,0.89}{ordonnés}}}
 \end{center}
 
 \end{minipage}};
@@ -5461,7 +5461,7 @@ Donc, $T_{1}, T_{2}, \dots, T_{n}$ sont les statistiques d'ordre d'une distribut
 % Text Node
 \draw (308,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{75.03392pt}\setlength\topsep{0pt}
 \begin{center}
-{\footnotesize temps d'occurences}\\{\footnotesize \textbf{\textcolor[rgb]{0.96,0.65,0.14}{non ordonnés}}}
+{\footnotesize temps d'occurrences}\\{\footnotesize \textbf{\textcolor[rgb]{0.96,0.65,0.14}{non ordonnés}}}
 \end{center}
 
 \end{minipage}};
@@ -5475,7 +5475,7 @@ Donc, $T_{1}, T_{2}, \dots, T_{n}$ sont les statistiques d'ordre d'une distribut
 % Text Node
 \draw (308,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{75.03392pt}\setlength\topsep{0pt}
 \begin{center}
-{\footnotesize temps d'occurences}\\{\footnotesize \textbf{\textcolor[rgb]{0.96,0.65,0.14}{non ordonnés}}}
+{\footnotesize temps d'occurrences}\\{\footnotesize \textbf{\textcolor[rgb]{0.96,0.65,0.14}{non ordonnés}}}
 \end{center}
 \end{minipage}};
 \draw (127,166) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize où \lfbox[formula]{$\displaystyle X_{i} \sim U(0, t)$} pour $\displaystyle i=1, 2, \dots, n$}};
@@ -5563,7 +5563,7 @@ Calculer :
 
 Premièrement, l'espérance du temps d'arrivé du $5^{e}$ bus :
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
-	\item	On connait l'intervalle de temps durant laquelle les 3 premiers autobus arrivent. \\
+	\item	On connaît l'intervalle de temps durant laquelle les 3 premiers autobus arrivent. \\
 			Ceci implique que le $5^{e}$ autobus peut arriver à tout moment passé 9AM---alias, $T_{5}$ est n'a \textbf{pas encore eu lieu} et \textbf{n'est \textit{pas} borné}.
 	\item	On peut donc récrire l'espérance conditionnelle :
 		\begin{align*}
@@ -5670,7 +5670,7 @@ Visuellement, on peut voir pourquoi ces deux écritures sont équivalentes :
 
 Deuxièmement, l'espérance du temps d'arrivé du $2^{e}$ bus :
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
-	\item	On connait l'intervalle de temps durant laquelle les 3 premiers autobus arrivent. \\
+	\item	On connaît l'intervalle de temps durant laquelle les 3 premiers autobus arrivent. \\
 			Ceci implique que le temps d'arrivé du $2^{e}$ doit être à, ou avant, 9AM---alias, $T_{2}$ a \textbf{eu lieu} et \textbf{\textit{est} borné}.
 	\item	Il s'ensuit que $T_{2}$ ne suit pas une distribution Gamma et que l'espérance conditionnelle de son temps d'arrivé, $T_{2}$, équivaut à l'espérance de la $2^{e}$ statistique d'ordre, $X_{(2)}$, des temps d'arrivés non ordonnés $X_{k}$ distribués \textbf{uniformément} entre 8AM et 9AM ($U(8, 9)$) pour $k = 1, 2, 3$ :
 		\begin{align*}
@@ -5724,8 +5724,8 @@ Dernièrement, la probabilité que seulement un bus soit passé entre 8h et 8h30
 \end{center}
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\setcounter{enumi}{1}
-	\item	La \og \textit{twist} \fg{} pour calculer la probabilité est de la voir comme une binomiale.
-	\item	D'abord, puisque $X_{k}	\sim \text{U}(8, 9)$ alors la probabilité que n'importe quel des autobus arrivent dans la première demi-heure est $\Pr(X_{k} \leq 0.5) = \frac{1}{9 - 8 + 1} = 0.50$ pour $k = 1, 2, 3$.
+	\item	Le \og \textit{twist} \fg{} pour calculer la probabilité est de la voir comme une binomiale.
+	\item	D'abord, puisque $X_{k}	\sim \text{U}(8, 9)$ alors la probabilité que n'importe lequel des autobus arrive dans la première demi-heure est $\Pr(X_{k} \leq 0.5) = \frac{1}{9 - 8 + 1} = 0.50$ pour $k = 1, 2, 3$.
 	\item	Puis, on défini un « succès » comme « un autobus qui arrive dans la première demi-heure » ce qui implique que $\Pr(\text{succès})	=	\Pr(X_{k} \leq 0.50) = 0.50$.
 	\item	Finalement, $\Pr(N(8, 8.5] = 1 | N(8, 9] = 3)	=	\Pr\Big(\substack{\text{\textcolor{amethyst}{un} autobus arrive}\\ \text{entre 8h00 et 8h30}} \bigcap \substack{\text{\textcolor{teal}{2} autobus arrivent}\\ \text{entre 8h30 et 9h00}}\Big)	=	\Pr(\text{1 succès})	=$
 		\begin{align*}
@@ -5740,7 +5740,7 @@ Dernièrement, la probabilité que seulement un bus soit passé entre 8h et 8h30
 \subsection{Propriétés des processus de Poisson}
 \subsubsection{Décomposition de processus de Poisson}
 \begin{definitionNOHFILL}[Décomposition de processus de Poisson (\og \textit{Thinning} \fg{})]
-Si un processus de Poisson peut être décomposé en plusieurs sous-processus distincts, alors ces sous-processus distincts sont également des processus de Poisson avec une intensité proportionnelle. Ce processus de décomposition s'appelle le \og \textit{thinning} \fg{}.	\\
+Si un processus de Poisson peut être décomposé en plusieurs sous-processus distincts, alors ces sous-processus distincts sont également des processus de Poisson avec une fonction d'intensité proportionnelle. Ce processus de décomposition s'appelle le \og \textit{thinning} \fg{}.	\\
 
 Soit :
 \begin{itemize}
@@ -5749,6 +5749,8 @@ Soit :
 \end{itemize}
 Alors, $N_{1}, N_{2}, \dots, N_{n}$ sont des processus de Poisson indépendants avec paramètre de fréquence $\pi_{1}\lambda(t), \pi_{2}\lambda(t), \dots, \pi_{n}\lambda(t)$.
 \end{definitionNOHFILL}
+
+Si le processus $N$ est homogène et que les \textbf{proportions} $\pi_{i}$ sont \textbf{constantes}, pour $i = 1, 2, \dots, n$, alors les sous-processus sont \textbf{homogènes}. Cependant, si les \textbf{proportions} ne sont \textbf{\textit{pas} constantes} alors les sous-processus ne sont \textbf{\textit{pas} homogènes}.
 
 
 \subsubsection{Superposition}
@@ -5763,6 +5765,7 @@ Alors, $N_{1} + N_{2} + \cdots + N_{n}$ est un processus de Poisson avec paramè
 \end{definitionNOHFILL}
 
 
+\columnbreak
 \subsubsection{Probabilités conjointes}
 \begin{distributions}[Notation]
 \begin{description}
@@ -5778,22 +5781,107 @@ Alors, $N_{1} + N_{2} + \cdots + N_{n}$ est un processus de Poisson avec paramè
 	=	\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}
 \end{align*}
 
-On peut généraliser ceci pour trouver une distribution binomiale négative ou binomiale :	\\
+On peut généraliser ceci pour trouver une distribution \textbf{binomiale négative} \textit{ou} \textbf{binomiale} :	\\
 \begin{align*}
-	\Pr&\left(\substack{\text{d'observer $n$ événements de $N_{1}$ avant}\\ \text{d'observer $m$ événement de $N_{2}$}}\right)
+	\Pr&\left(\substack{
+			\text{d'observer $n$ événements de $N_{1}$ avant}\\ 
+			\text{d'observer $m$ événement de $N_{2}$}}
+		\right)
 	=	\Pr(T_{1, n}	 < T_{2, m})	\\
-	&=	\Pr\left(\substack{\text{d'observer au plus $\textcolor{teal}{m - 1}$ événements de $N_{2}$ avant}\\ \text{d'observer le $\textcolor{amethyst}{n}^{e}$ événement de $N_{1}$}}\right)	\\
-	&=	\sum_{k = 0}^{\textcolor{teal}{m - 1}} \binom{\textcolor{amethyst}{n} + \textcolor{teal}{k - 1}}{n - 1} \left(\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{amethyst}{n}} \left(\frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{teal}{k}}	\\
-	&=	\Pr\left(\substack{\text{parmis les $n + m - 1$ premiers événements}\\ \text{au \textbf{moins} $\textcolor{amethyst}{n}$ proviennent de $N_{1}$ et}\\ \text{au \textbf{plus} $\textcolor{teal}{m - 1}$ proviennent de $N_{2}$}}\right)	
-	=	\Pr\left(\substack{\text{$n^{e}$ événement de $N_{1}$ se produise avant}\\ \text{le $m^{e}$ événement de $N_{2}$}}\right)	\\
-	&=	\sum_{k = \textcolor{amethyst}{n}}^{n + \textcolor{teal}{m - 1}} \binom{n + m - 1}{k} \left(\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{k} \left(\frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{(n + m - 1) - k}	\\
+	&=	\Pr\left(\substack{
+			\text{d'observer au plus $\textcolor{teal}{m - 1}$ événements de $N_{2}$ avant}\\
+			\text{d'observer le $\textcolor{amethyst}{n}^{e}$ événement de $N_{1}$}}
+		\right)	\\
+	&=	\sum_{\textcolor{teal}{k} = 0}^{m - 1}
+			\binom{\textcolor{amethyst}{n} + \textcolor{teal}{k} - 1}{\textcolor{amethyst}{n} - 1}
+			\left(\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{amethyst}{n}}
+			\left(\frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{teal}{k}}	\\
+	&=	\Pr\left(\substack{
+			\text{parmis les $n + m - 1$ premiers événements}\\ 
+			\text{au \textbf{moins} $\textcolor{amethyst}{n}$ proviennent de $N_{1}$ et}\\ 
+			\text{au \textbf{plus} $\textcolor{teal}{m - 1}$ proviennent de $N_{2}$}}
+		\right)	
+	=	\Pr\left(\substack{
+			\text{$n^{e}$ événement de $N_{1}$ se produise avant}\\ 
+			\text{le $m^{e}$ événement de $N_{2}$}}
+		\right)	\\
+	&=	\sum_{\textcolor{amethyst}{k} = \textcolor{amethyst}{n}}^{n + m - 1}
+			\binom{n + m - 1}{\textcolor{amethyst}{k}} 
+			\left(\frac{\lambda_{1}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{amethyst}{k}} 
+			\left(\frac{\lambda_{2}}{\lambda_{1} + \lambda_{2}}\right)^{\textcolor{teal}{(n + m - 1) - k}}	\\
 \end{align*}
 
+Notes sur la représentation sous la forme \textbf{binomiale négative} :
+\begin{itemize}
+	\item	Dans l'équation, on traite une réalisation de $N_{1}$ comme un « \textcolor{amethyst}{succès} » et une réalisation de $N_{2}$ comme un « \textcolor{teal}{échec} ».
+	\item	« \textit{Au plus} $m - 1$ », implique tout nombre d'événements du $2^{e}$ processus allant de $0$ à $m - 1$. 
+	\item	L'approche est donc de fixer $n$ réalisations de $N_{1}$, puis de traiter tous les autres cas possibles en faisant varier le nombre de réalisations $N_{2}$ de $0$ à $m - 1$.
+	\item	Au total, il y aura au moins $n$ événements ($N_{2} = 0$) et au plus $n + m - 1$ événements  ($N_{2} = m - 1$) qui vont se réaliser.
+	\item	Ceci résulte en $m$ différents scénarios possibles. 
+\end{itemize}
+
+Notes sur la représentation sous la forme \textbf{binomiale} :
+\begin{itemize}
+	\item	Dans l'équation, on traite une réalisation de $N_{1}$ comme un « \textcolor{amethyst}{succès} ».
+	\item	L'approche est donc de fixer le nombre de réalisations total à $n + m - 1$ puis, d'attribuer le nombre d'événements aux deux processus en assurant \textit{au moins} $\textcolor{amethyst}{n}$ réalisations de $N_{1}$.
+\end{itemize}
+
+
+\columnbreak
+\subsection{Mélanges de processus de Poisson}
+Lorsque la fonction d'intensité \textit{est} une variable aléatoire, nous obtenons un mélange de processus de Poisson. Ce \textbf{mélange} est un nouveau processus qui \textbf{n'est pas un processus de Poisson}.
+
+\begin{rappel}{Identité Poisson-Gamma}
+Si la v.a. conditionnelle \lfbox[conditions]{$(N | \Lambda) \sim \text{Poisson}(\Lambda)$} et que \lfbox[conditions]{$\Lambda	\sim \text{Gamma}(n, \theta)$} alors la v.a. inconditionnelle \lfbox[formula]{$N \sim \text{Binomiale Négative}(r = n, \theta)$}.
+\end{rappel}
+
+
+\subsection{Processus de Poisson composés}
+\begin{definitionNOHFILL}[Processus de Poisson composé]
+\begin{rappel_enhanced}[Contexte]
+Les distributions composées permettent aux compagnies d'assurance de conjointement modéliser la fréquence et la sévérité de sinistres.
+\end{rappel_enhanced}
+Si la fréquence d'accidents est distribuée selon une loi de Poisson et que les montants sont iid, la somme des montants des sinistres est un \textbf{processus de Poisson composé}.	\\
+
+Soit :
+\begin{itemize}
+	\item	le processus de Poisson $N$,
+	\item	la suite de v.a. iid $X_{1}, X_{2}, \dots, X_{N(t)}$.
+\end{itemize}
+
+Alors \lfbox[formula]{$S(t)	=	\sum_{i = 1}^{N(t)} X_{i}$} est un \textbf{processus de Poisson composé} où \lfbox[conditions]{$S(0) = 0$} et \lfbox[conditions]{si $N(t) = 0$ alors $S(t) = 0$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Fonctions du processus de Poisson composé]
+\begin{align*}
+	\text{E}[S(t)]	
+	&=	\text{E}[N(t)] \text{E}[X]		&
+	\text{Var}(S(t))
+	&=	\text{E}[N(t)] \text{E}[X^{2}]		
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[Approximation de la distribution]
+Puisque la distribution de $S(t)$ est difficile à déterminer, elle peut être approximée avec le \textbf{théorème limite centrale} où \lfbox[formula]{$S(t) \approx \mathcal{N}\left(\text{E}[S(t)], \text{Var}(S(t))\right)$}.\\
+
+Il s'ensuit que :
+\begin{align*}
+	\Pr(S(t) < s)
+	&=	\Phi\left(\frac{s - \text{E}[S(t)]}{\sqrt{\text{Var}(S(t))}}\right)
+\end{align*}
+Cependant, puisque nous utilisons une distribution continue (normale) pour approximer une distribution discrète (Poisson), il faut appliquer une correction de continuité.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLpropos}[Correction de continuité]
+La correction de continuité s'applique lorsqu'une distribution continue approxime une distribution discrète. \\
+
+Une distribution discrète est seulement définie sur les nombres entiers alors qu'une distribution continue est définie sur tous les nombres réels. La correction améliore donc l'estimation en remplaçant $s$ par le point milieu entre $s$ et la plus proche valeur de $S(t)$ qui est inférieure à $s$.
+\end{definitionNOHFILLpropos}
 
 
 
 \pagebreak
-\section{Chaines de Markov}
+\section{Chaînes de Markov}
 Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seulement du dernier état à $n	-	1$ : 
 \begin{align*}
 	\Pr(X_{n}	=	j | X_{n - 1}	=	i_{n - 1}, X_{n - 2} = i_{n - 2}, \dots, X_{0}	=	i_{0})
