@@ -5069,28 +5069,188 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide}s au coût d'être \t
 
 \pagebreak
 \section{Théorie de la fiabilité}
-%\subsection{Introduction aux systèmes}
-%
-%
-%\subsection{Minimal path and minimal cut sets}
-%
-%
-%\subsection{Structure Functions}
-%
-%
-%\subsection{Reliability of Systems}
-%
-%
-%\subsection{Bounds of Reliability Functions}
-%
-%
-%\subsection{Random Graphs}
-%
-%
-%\subsection{Lifetime of Systems}
-%
-%
-%\subsection{Miscellaneous}
+\subsection{Introduction aux systèmes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$x_{i}$]	\textbf{État} de la composante $i$.
+	\item[$\phi(\bm{x})$]	\og \textit{\textbf{Structure function}} \fg{} d'un système représentant son état.
+\end{description}
+\end{distributions}
+
+\
+
+Un système consiste de plusieurs composantes dont chacune consiste :
+\begin{enumerate}
+	\item	d'une durée de vie qui y est propre(\og \textit{lifetime} \fg{}),
+	\item	d'une variable aléatoire sous-jacente à sa durée de vie,
+	\item	de son état.
+\end{enumerate}
+
+\begin{definitionNOHFILLsub}[L'état d'une composante]
+L'état $x_{i}$ d'une composante est binaire---soit la composante fonctionne, ou elle ne fonctionne pas :
+\begin{align*}
+	x_{i}
+	&=	\begin{cases}
+		1,	&	\text{si la composante fonctionne}	\\
+		0,	&	\text{si la composante ne fonctionne pas}	
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Vecteur des états d'un système]
+Le vecteur des états d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système et indique donc quelles composantes fonctionnent ou ne fonctionnent pas. Il est représentée sous la forme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n}$}.\\
+
+\paragraph{Note}	Un système ayant $n$ composantes et le vecteur des états peut être un de $2^{n}$ différentes combinaisons.
+\begin{itemize}
+	\item	Puisque les composantes du système sont binaires, chacune a deux valeurs possibles. Ceci résulte en $2 \times 2 \times \cdots 2 = 2^{n}$ différentes combinaisons possibles.
+\end{itemize}
+\end{definitionNOHFILLsub}
+\begin{definitionNOHFILLsub}[L'état d'un système]
+L'état d'un système dépend des états de ses composantes. L'état du système est représentée sous la forme d'une fonction $\phi(\bm{x})$ binaire :
+\begin{align*}
+	\phi(\bm{x})
+	&=	\begin{cases}
+		1,	&	\text{si le système fonctionne}	\\
+		0,	&	\text{si le système ne fonctionne pas}	
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+
+\subsubsection{Systèmes communs}
+\begin{definitionNOHFILL}[Système parallèle]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,181); %set diagram left start at 0, and has height of 181
+
+%Shape: Resistor [id:dp9041851120502824] 
+\draw   (135.67,43) -- (262.5,43) -- (262.5,148) -- (135.67,148) -- (135.67,43) -- cycle (100,95.5) -- (135.67,95.5) (262.5,95.5) -- (298.17,95.5) ;
+%Shape: Rectangle [id:dp7404277637291381] 
+\draw   (135.67,72) -- (262.5,72) -- (262.5,118.67) -- (135.67,118.67) -- cycle ;
+%Flowchart: Connector [id:dp5328715828334836] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (194.64,124.62) .. controls (191.63,122.16) and (191.18,117.73) .. (193.63,114.72) .. controls (196.09,111.71) and (200.52,111.26) .. (203.53,113.72) .. controls (206.54,116.17) and (206.99,120.6) .. (204.53,123.61) .. controls (202.08,126.62) and (197.65,127.07) .. (194.64,124.62) -- cycle ;
+%Flowchart: Connector [id:dp7204615964492069] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (194.64,48.48) .. controls (191.63,46.03) and (191.18,41.6) .. (193.63,38.59) .. controls (196.09,35.58) and (200.52,35.13) .. (203.53,37.58) .. controls (206.54,40.04) and (206.99,44.46) .. (204.53,47.47) .. controls (202.08,50.48) and (197.65,50.93) .. (194.64,48.48) -- cycle ;
+%Flowchart: Connector [id:dp3810241352299426] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ][line width=3]  (194.64,152.31) .. controls (191.63,149.86) and (191.18,145.43) .. (193.63,142.42) .. controls (196.09,139.41) and (200.52,138.96) .. (203.53,141.41) .. controls (206.54,143.87) and (206.99,148.29) .. (204.53,151.3) .. controls (202.08,154.31) and (197.65,154.76) .. (194.64,152.31) -- cycle ;
+%Flowchart: Connector [id:dp2801918528278706] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (194.64,76.01) .. controls (191.63,73.55) and (191.18,69.12) .. (193.63,66.11) .. controls (196.09,63.11) and (200.52,62.65) .. (203.53,65.11) .. controls (206.54,67.56) and (206.99,71.99) .. (204.53,75) .. controls (202.08,78.01) and (197.65,78.46) .. (194.64,76.01) -- cycle ;
+
+
+% Text Node
+\draw (194.58,125.81) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle n$}};
+% Text Node
+\draw (194.58,49.48) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 2$}};
+% Text Node
+\draw (194.58,20.57) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1$}};
+% Text Node
+\draw (192.58,87.81) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \vdots $}};
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Système de série]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,75); %set diagram left start at 0, and has height of 75
+
+%Straight Lines [id:da021488622482164876] 
+\draw    (98,41) -- (294.83,41) ;
+%Flowchart: Connector [id:dp05796532763815576] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (226.64,46.45) .. controls (223.63,44) and (223.18,39.57) .. (225.63,36.56) .. controls (228.09,33.55) and (232.52,33.1) .. (235.53,35.55) .. controls (238.54,38.01) and (238.99,42.44) .. (236.53,45.45) .. controls (234.08,48.45) and (229.65,48.91) .. (226.64,46.45) -- cycle ;
+%Flowchart: Connector [id:dp06089365703547989] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (116.64,46.45) .. controls (113.63,44) and (113.18,39.57) .. (115.63,36.56) .. controls (118.09,33.55) and (122.52,33.1) .. (125.53,35.55) .. controls (128.54,38.01) and (128.99,42.44) .. (126.53,45.45) .. controls (124.08,48.45) and (119.65,48.91) .. (116.64,46.45) -- cycle ;
+%Flowchart: Connector [id:dp2598526793406035] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ][line width=3]  (252.64,46.45) .. controls (249.63,44) and (249.18,39.57) .. (251.63,36.56) .. controls (254.09,33.55) and (258.52,33.1) .. (261.53,35.55) .. controls (264.54,38.01) and (264.99,42.44) .. (262.53,45.45) .. controls (260.08,48.45) and (255.65,48.91) .. (252.64,46.45) -- cycle ;
+%Flowchart: Connector [id:dp554938168736538] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (142.64,46.45) .. controls (139.63,44) and (139.18,39.57) .. (141.63,36.56) .. controls (144.09,33.55) and (148.52,33.1) .. (151.53,35.55) .. controls (154.54,38.01) and (154.99,42.44) .. (152.53,45.45) .. controls (150.08,48.45) and (145.65,48.91) .. (142.64,46.45) -- cycle ;
+
+
+% Text Node
+\draw (252.58,15.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle n$}};
+% Text Node
+\draw (143.58,15.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 2$}};
+% Text Node
+\draw (118.58,15.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1$}};
+% Text Node
+\draw (179.58,15.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \dotsc $}};
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Système de $k$ parmi $n$]
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Système de pont]
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,181); %set diagram left start at 0, and has height of 181
+
+%Shape: Diamond [id:dp8978465211281834] 
+\draw   (202.92,31) -- (257.83,85.92) -- (202.92,140.83) -- (148,85.92) -- cycle ;
+%Straight Lines [id:da3389217580976256] 
+\draw    (104.5,85.92) -- (148,85.92) ;
+%Flowchart: Connector [id:dp7317707231673509] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (226.64,66.45) .. controls (223.63,64) and (223.18,59.57) .. (225.63,56.56) .. controls (228.09,53.55) and (232.52,53.1) .. (235.53,55.55) .. controls (238.54,58.01) and (238.99,62.44) .. (236.53,65.45) .. controls (234.08,68.45) and (229.65,68.91) .. (226.64,66.45) -- cycle ;
+%Flowchart: Connector [id:dp7843904669196486] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (169.88,65.45) .. controls (166.87,63) and (166.41,58.57) .. (168.87,55.56) .. controls (171.32,52.55) and (175.75,52.1) .. (178.76,54.55) .. controls (181.77,57.01) and (182.22,61.44) .. (179.77,64.45) .. controls (177.31,67.45) and (172.88,67.91) .. (169.88,65.45) -- cycle ;
+%Flowchart: Connector [id:dp6258365901565626] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 126; green, 211; blue, 33 }  ,fill opacity=1 ][line width=3]  (226.64,120.45) .. controls (223.63,118) and (223.18,113.57) .. (225.63,110.56) .. controls (228.09,107.55) and (232.52,107.1) .. (235.53,109.55) .. controls (238.54,112.01) and (238.99,116.44) .. (236.53,119.45) .. controls (234.08,122.45) and (229.65,122.91) .. (226.64,120.45) -- cycle ;
+%Flowchart: Connector [id:dp10191422091926472] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (169.88,119.45) .. controls (166.87,117) and (166.41,112.57) .. (168.87,109.56) .. controls (171.32,106.55) and (175.75,106.1) .. (178.76,108.55) .. controls (181.77,111.01) and (182.22,115.44) .. (179.77,118.45) .. controls (177.31,121.45) and (172.88,121.91) .. (169.88,119.45) -- cycle ;
+%Straight Lines [id:da20805937733630953] 
+\draw    (202.92,31) -- (202.92,66.33) -- (202.92,140.83) ;
+%Straight Lines [id:da7606256354019021] 
+\draw    (257.83,85.92) -- (301.33,85.92) ;
+%Flowchart: Connector [id:dp6042507902492678] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=3]  (198.88,91.45) .. controls (195.87,89) and (195.41,84.57) .. (197.87,81.56) .. controls (200.32,78.55) and (204.75,78.1) .. (207.76,80.55) .. controls (210.77,83.01) and (211.22,87.44) .. (208.77,90.45) .. controls (206.31,93.45) and (201.88,93.91) .. (198.88,91.45) -- cycle ;
+
+% Text Node
+\draw (169.82,37.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1$}};
+% Text Node
+\draw (169.82,88.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 2$}};
+% Text Node
+\draw (227.58,88.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 5$}};
+% Text Node
+\draw (205.82,63.03) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 3$}};
+% Text Node
+\draw (227.58,37.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 4$}};
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILL}
+
+\textbf{Autres systèmes}
+
+
+
+\columnbreak
+\subsection{Minimal path and minimal cut sets}
+\begin{definitionNOHFILLsub}[\og \textit{Minimal path sets} \fg{}]
+Si le système fonctionne, un vecteur d'états $\bm{x}$ est un \og \textit{path vector} \fg{}.
+Si le système cesse de fonctionner dès qu'une des composantes qui fonctionne échoue, c'est à dire qu'il n'y a pas de composantes de \og \textit{backup} \fg{}, alors le vecteur d'états $\bm{x}$ est un \og \textit{minimal path vector} \fg{}.
+\end{definitionNOHFILLsub}
+
+
+\subsection{Structure Functions}
+
+
+\subsection{Reliability of Systems}
+
+
+\subsection{Bounds of Reliability Functions}
+
+
+\subsection{Random Graphs}
+
+
+\subsection{Lifetime of Systems}
+
+
+\subsection{Miscellaneous}
 
 
 
