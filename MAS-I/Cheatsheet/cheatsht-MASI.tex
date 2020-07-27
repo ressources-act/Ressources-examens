@@ -5069,49 +5069,52 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide}s au coût d'être \t
 
 \pagebreak
 \section{Théorie de la fiabilité}
+\begin{definitionNOHFILL}[Théorie de la fiabilité]
+\textbf{Contexte} : Un \textit{système} ayant plusieurs \textit{composantes}.	 \\
+\textbf{Idée} : Le fonctionnement du système dépend du fonctionnement des composantes.
+
+La \textbf{théorie de la fiabilité} sert à quantifier la probabilité qu'un \textit{système} fonctionne selon la fiabilité de ses composantes, et selon le rôle qu'elles ont dans le système.
+\end{definitionNOHFILL}
+
 \subsection{Introduction aux systèmes}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$x_{i}$]	\textbf{État} de la composante $i$.
-	\item[$\phi(\bm{x})$]	\og \textit{\textbf{Structure function}} \fg{} d'un système représentant son état.
+	\item[$\phi(\bm{x})$]	\og \textit{\textbf{Structure function}} \fg{} d'un système représentant son \textbf{état}.
 \end{description}
 \end{distributions}
 
 \
 
-Un système consiste de plusieurs composantes dont chacune consiste :
-\begin{enumerate}
-	\item	d'une durée de vie qui y est propre(\og \textit{lifetime} \fg{}),
-	\item	d'une variable aléatoire sous-jacente à sa durée de vie,
-	\item	de son état.
-\end{enumerate}
-
 \begin{definitionNOHFILLsub}[L'état d'une composante]
-L'état $x_{i}$ d'une composante est binaire---soit la composante fonctionne, ou elle ne fonctionne pas :
+Chacune des composantes du sys tème a sa propre durée de vie (\og \textit{lifetime} \fg{}). Cette durée de vie est dénotée par la variable aléatoire binaire \lfbox[formula]{$x_{i}$} représentant son état.\\
+
+Soit la composante \textbf{\textcolor{teal}{fonctionne}}, ou elle \textbf{\textcolor{burntorange}{ne fonctionne pas}} :
 \begin{align*}
 	x_{i}
 	&=	\begin{cases}
-		1,	&	\text{si la composante fonctionne}	\\
-		0,	&	\text{si la composante ne fonctionne pas}	
+		\textcolor{teal}{1},	&	\text{si la composante \textcolor{teal}{fonctionne}}	\\
+		\textcolor{burntorange}{0},	&	\text{si la composante \textcolor{burntorange}{ne fonctionne pas}}	
 		\end{cases}
 \end{align*}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Vecteur des états d'un système]
-Le vecteur des états d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système et indique donc quelles composantes fonctionnent ou ne fonctionnent pas. Il est représentée sous la forme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n}$}.\\
+Le vecteur des états d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système. Il indique donc quelles composantes fonctionnent ou ne fonctionnent pas. Il est représentée sous la forme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n}$}.\\
 
 \paragraph{Note}	Un système ayant $n$ composantes et le vecteur des états peut être un de $2^{n}$ différentes combinaisons.
 \begin{itemize}
 	\item	Puisque les composantes du système sont binaires, chacune a deux valeurs possibles. Ceci résulte en $2 \times 2 \times \cdots 2 = 2^{n}$ différentes combinaisons possibles.
 \end{itemize}
 \end{definitionNOHFILLsub}
+
 \begin{definitionNOHFILLsub}[L'état d'un système]
-L'état d'un système dépend des états de ses composantes. L'état du système est représentée sous la forme d'une fonction $\phi(\bm{x})$ binaire :
+L'état d'un système dépend des états de ses composantes. L'état du système est représentée sous la forme d'une fonction \lfbox[formula]{$\phi(\bm{x})$} binaire :
 \begin{align*}
 	\phi(\bm{x})
 	&=	\begin{cases}
-		1,	&	\text{si le système fonctionne}	\\
-		0,	&	\text{si le système ne fonctionne pas}	
+		\textcolor{teal}{1},	&	\text{si le système \textcolor{teal}{fonctionne}}	\\
+		\textcolor{burntorange}{0},	&	\text{si le système \textcolor{burntorange}{ne fonctionne pas}}	
 		\end{cases}
 \end{align*}
 \end{definitionNOHFILLsub}
@@ -5119,6 +5122,7 @@ L'état d'un système dépend des états de ses composantes. L'état du système
 
 \subsubsection{Systèmes communs}
 \begin{definitionNOHFILL}[Système parallèle]
+Fonctionne tant qu'au moins une des composantes du système fonctionne.
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -5151,6 +5155,7 @@ L'état d'un système dépend des états de ses composantes. L'état du système
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Système de série]
+Fonctionne seulement si toutes les composantes du système fonctionnent.
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -5181,10 +5186,15 @@ L'état d'un système dépend des états de ses composantes. L'état du système
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Système de $k$ parmi $n$]
+Fonction si au moins $k$ des $n$ composantes du système fonctionnent.\\
 
+\begin{itemize}
+	\item	Un système parallèle est donc un système de $1$ parmi $n$ et un système de série un système de $n$ parmi $n$.
+\end{itemize}
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Système de pont]
+Il y a deux branches connectées par un pont dans le milieu.
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -5223,8 +5233,8 @@ L'état d'un système dépend des états de ses composantes. L'état du système
 \end{center}
 \end{definitionNOHFILL}
 
-\textbf{Autres systèmes}
-
+\textbf{Autres systèmes}	\\
+En bref, il y a une infinité de systèmes qui peuvent être construits comme des combinaisons des systèmes précédents.
 
 
 \columnbreak
