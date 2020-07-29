@@ -5099,8 +5099,8 @@ Soit la composante \textbf{\textcolor{teal}{fonctionne}}, ou elle \textbf{\textc
 \end{align*}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Vecteur des états d'un système]
-Le vecteur des états d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système. Il indique donc quelles composantes fonctionnent ou ne fonctionnent pas. Il est représentée sous la forme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n}$}.\\
+\begin{definitionNOHFILLsub}[Vecteur des états d'un système (\og \textit{path vector} \fg{})]
+Le vecteur des états d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système. Il indique donc quelles composantes fonctionnent ou ne fonctionnent pas. Il est représentée sous la forme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n})$}.\\
 
 \paragraph{Note}	Un système ayant $n$ composantes et le vecteur des états peut être un de $2^{n}$ différentes combinaisons.
 \begin{itemize}
@@ -5118,6 +5118,47 @@ L'état d'un système dépend des états de ses composantes. L'état du système
 		\end{cases}
 \end{align*}
 \end{definitionNOHFILLsub}
+
+Nous verrons le type de vecteur d'état selon l'état de fonctionnement du système : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Rounded Rect [id:dp26160248048613566] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (139.33,25.8) .. controls (139.33,22.78) and (141.77,20.33) .. (144.79,20.33) -- (244.03,20.33) .. controls (247.04,20.33) and (249.49,22.78) .. (249.49,25.8) -- (249.49,42.2) .. controls (249.49,45.22) and (247.04,47.67) .. (244.03,47.67) -- (144.79,47.67) .. controls (141.77,47.67) and (139.33,45.22) .. (139.33,42.2) -- cycle ;
+
+%Rounded Rect [id:dp2721991232596781] 
+\draw  [color={rgb, 255:red, 135; green, 91; blue, 19 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ] (79.33,103.8) .. controls (79.33,100.78) and (81.77,98.33) .. (84.79,98.33) -- (184.03,98.33) .. controls (187.04,98.33) and (189.49,100.78) .. (189.49,103.8) -- (189.49,120.2) .. controls (189.49,123.22) and (187.04,125.67) .. (184.03,125.67) -- (84.79,125.67) .. controls (81.77,125.67) and (79.33,123.22) .. (79.33,120.2) -- cycle ;
+
+%Rounded Rect [id:dp5388212851958989] 
+\draw  [color={rgb, 255:red, 76; green, 16; blue, 128 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ] (199.08,103.8) .. controls (199.08,100.78) and (201.53,98.33) .. (204.55,98.33) -- (303.78,98.33) .. controls (306.8,98.33) and (309.25,100.78) .. (309.25,103.8) -- (309.25,120.2) .. controls (309.25,123.22) and (306.8,125.67) .. (303.78,125.67) -- (204.55,125.67) .. controls (201.53,125.67) and (199.08,123.22) .. (199.08,120.2) -- cycle ;
+
+%Straight Lines [id:da8790339481399667] 
+\draw    (194.41,48.67) -- (184.64,95.4) ;
+\draw [shift={(184.03,98.33)}, rotate = 281.81] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da5443992444630641] 
+\draw    (194.41,48.67) -- (203.95,95.39) ;
+\draw [shift={(204.55,98.33)}, rotate = 258.46] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+% Text Node
+\draw (147.41,26.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {« state vector »};
+% Text Node
+\draw (88.91,104.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {« path vector »};
+% Text Node
+\draw (212.66,104.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {« cut vector »};
+% Text Node
+\draw (7,126) node [anchor=north west][inner sep=0.75pt]   [align=left] {système};
+% Text Node
+\draw (98.91,127) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{fonctionne}};
+% Text Node
+\draw (205.16,127) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.56,0.07,1}{ne fonctionne pas}};
+% Text Node
+\draw (133,60) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.96,0.65,0.14}{$\displaystyle \phi ( x) =1$}}};
+% Text Node
+\draw (206,60) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \textcolor[rgb]{0.56,0.07,1}{\phi ( x) =0}$}};
+\end{tikzpicture}
+\end{center}
 
 
 \subsubsection{Systèmes communs}
@@ -5486,7 +5527,7 @@ En termes mathématiques, $\bm{x}$ est un \og \textit{minimal cut vector} \fg{} 
 \end{definitionNOHFILLsub}
 
 
-\begin{definitionNOHFILLsub}[\og \textit{Minimal cut sets} \fg{} \lfbox[formula]{$\mathcal{C}$}]
+\begin{definitionNOHFILLsub}[\og \textit{Minimal cut sets} \fg{}]
 Ensembles minimaux des composantes \lfbox[formula]{$\mathcal{C}$} dont l'échec garanti l'échec du système. Donc, le système cesse de fonctionner uniquement si toutes les composantes d'au moins un des \og \textit{minimal cut sets} \fg{} cessent de fonctionner.		\\
 
 En termes mathématiques, un \og \textit{minimal cut set} \fg{} $C$ étant donné un \og \textit{minimal cut vector $\bm{x}$} \fg{} est $\{i: x_{i} = 0\}$.
@@ -5498,6 +5539,15 @@ On peut visualiser ci-dessous que les \og \textit{minimal cut vectors} \fg{} son
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,181); %set diagram left start at 0, and has height of 181
+%Shape: Resistor [id:dp16370193622546414] 
+\draw   (28.81,45.67) -- (95.69,45.67) -- (95.69,90.83) -- (28.81,90.83) -- (28.81,45.67) -- cycle (10,68.25) -- (28.81,68.25) (95.69,68.25) -- (114.5,68.25) ;
+
+%Flowchart: Connector [id:dp7044092578793344] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 251; green, 132; blue, 252 }  ,fill opacity=1 ][line width=3]  (58.62,95.29) .. controls (56.36,93.26) and (56.02,89.59) .. (57.87,87.1) .. controls (59.71,84.61) and (63.05,84.24) .. (65.32,86.27) .. controls (67.58,88.3) and (67.92,91.96) .. (66.07,94.45) .. controls (64.23,96.94) and (60.89,97.32) .. (58.62,95.29) -- cycle ;
+%Flowchart: Connector [id:dp8624899692078893] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (44.64,50.45) .. controls (41.63,48) and (41.18,43.57) .. (43.63,40.56) .. controls (46.09,37.55) and (50.52,37.1) .. (53.53,39.55) .. controls (56.54,42.01) and (56.99,46.44) .. (54.53,49.45) .. controls (52.08,52.45) and (47.65,52.91) .. (44.64,50.45) -- cycle ;
+%Flowchart: Connector [id:dp7206038017198402] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (70.64,50.45) .. controls (67.63,48) and (67.18,43.57) .. (69.63,40.56) .. controls (72.09,37.55) and (76.52,37.1) .. (79.53,39.55) .. controls (82.54,42.01) and (82.99,46.44) .. (80.53,49.45) .. controls (78.08,52.45) and (73.65,52.91) .. (70.64,50.45) -- cycle ;
 
 %Rounded Rect [id:dp6267729648524285] 
 \draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 211; green, 211; blue, 211 }  ,fill opacity=1 ] (118.27,21.51) .. controls (118.27,20.13) and (119.38,19.02) .. (120.75,19.02) -- (195.17,19.02) .. controls (196.54,19.02) and (197.66,20.13) .. (197.66,21.51) -- (197.66,141.18) .. controls (197.66,142.55) and (196.54,143.67) .. (195.17,143.67) -- (120.75,143.67) .. controls (119.38,143.67) and (118.27,142.55) .. (118.27,141.18) -- cycle ;
@@ -5538,6 +5588,12 @@ On peut visualiser ci-dessous que les \og \textit{minimal cut vectors} \fg{} son
 \draw (209.25,64.11) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$, $\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$};
 % Text Node
 \draw (223.49,145) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {{\footnotesize \textcolor[rgb]{1,1,1}{$\displaystyle \psi (\bm{y}) = 1$ pour tous les vecteurs}}};
+% Text Node
+\draw (58.22,70.75) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 3$}};
+% Text Node
+\draw (45.58,18.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1$}};
+% Text Node
+\draw (71.58,18.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 2$}};
 
 
 \end{tikzpicture}
@@ -5579,19 +5635,202 @@ Pour un système composé de plusieurs systèmes, le nombre de vecteurs dépend 
 \columnbreak
 \subsection{Structure Functions}
 
+Système en parallèle :
+\begin{align*}
+	\phi(\bm{x})
+	&=	\max\{x_{1}, \dots, x_{n}\}		\\
+	&=	1 - \prod_{i = 1}^{n} (1 - x_{i})
+\end{align*}
 
-\subsection{Reliability of Systems}
+Système en série :
+\begin{align*}
+	\phi(\bm{x})
+	&=	\min\{x_{1}, \dots, x_{n}\}	\\
+	&=	\prod_{i = 1}^{n} x_{i}
+\end{align*}
+
+\subsubsection{Approche par les \og \textit{minimal path sets} \fg{}}
+\begin{enumerate}
+	\item	Un système fonctionne ssi toutes les composantes d'au moins un des \og \textit{minimal path sets} \fg{} fonctionnent.
+	\item	Un système en parallèle fonctionne ssi au moins une des composantes fonctionnent.
+\end{enumerate}
+
+Donc, tout système peut être traité comme le système en parallèle de ses \og \textit{minimal path sets} \fg{}.
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,181); %set diagram left start at 0, and has height of 181
+
+%Shape: Resistor [id:dp8683144921932384] 
+\draw   (135.67,43) -- (262.5,43) -- (262.5,148) -- (135.67,148) -- (135.67,43) -- cycle (100,95.5) -- (135.67,95.5) (262.5,95.5) -- (298.17,95.5) ;
+%Shape: Rectangle [id:dp49231279059573696] 
+\draw   (135.67,72) -- (262.5,72) -- (262.5,118.67) -- (135.67,118.67) -- cycle ;
+%Flowchart: Connector [id:dp07800444389002736] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (169.7,124.08) .. controls (166.69,121.62) and (166.24,117.2) .. (168.69,114.19) .. controls (171.14,111.18) and (175.57,110.73) .. (178.58,113.18) .. controls (181.59,115.63) and (182.04,120.06) .. (179.59,123.07) .. controls (177.14,126.08) and (172.71,126.53) .. (169.7,124.08) -- cycle ;
+%Flowchart: Connector [id:dp6448168497930598] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (231.2,124.08) .. controls (228.19,121.62) and (227.74,117.2) .. (230.19,114.19) .. controls (232.64,111.18) and (237.07,110.73) .. (240.08,113.18) .. controls (243.09,115.63) and (243.54,120.06) .. (241.09,123.07) .. controls (238.64,126.08) and (234.21,126.53) .. (231.2,124.08) -- cycle ;
+%Flowchart: Connector [id:dp030346118463447036] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (152.64,124.08) .. controls (149.63,121.62) and (149.18,117.2) .. (151.63,114.19) .. controls (154.09,111.18) and (158.52,110.73) .. (161.53,113.18) .. controls (164.54,115.63) and (164.99,120.06) .. (162.53,123.07) .. controls (160.08,126.08) and (155.65,126.53) .. (152.64,124.08) -- cycle ;
+%Flowchart: Connector [id:dp08541890561200871] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (152.64,48.4) .. controls (149.63,45.94) and (149.18,41.51) .. (151.63,38.5) .. controls (154.09,35.49) and (158.52,35.04) .. (161.53,37.5) .. controls (164.54,39.95) and (164.99,44.38) .. (162.53,47.39) .. controls (160.08,50.4) and (155.65,50.85) .. (152.64,48.4) -- cycle ;
+%Flowchart: Connector [id:dp1989646111425234] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (231.2,48.4) .. controls (228.19,45.94) and (227.74,41.51) .. (230.19,38.5) .. controls (232.64,35.49) and (237.07,35.04) .. (240.08,37.5) .. controls (243.09,39.95) and (243.54,44.38) .. (241.09,47.39) .. controls (238.64,50.4) and (234.21,50.85) .. (231.2,48.4) -- cycle ;
+%Flowchart: Connector [id:dp35617798386228294] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (169.7,48.4) .. controls (166.69,45.94) and (166.24,41.51) .. (168.69,38.5) .. controls (171.14,35.49) and (175.57,35.04) .. (178.58,37.5) .. controls (181.59,39.95) and (182.04,44.38) .. (179.59,47.39) .. controls (177.14,50.4) and (172.71,50.85) .. (169.7,48.4) -- cycle ;
+%Flowchart: Connector [id:dp56251012988241] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (152.64,77.4) .. controls (149.63,74.94) and (149.18,70.51) .. (151.63,67.5) .. controls (154.09,64.49) and (158.52,64.04) .. (161.53,66.5) .. controls (164.54,68.95) and (164.99,73.38) .. (162.53,76.39) .. controls (160.08,79.4) and (155.65,79.85) .. (152.64,77.4) -- cycle ;
+%Flowchart: Connector [id:dp9191589506239592] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (231.2,77.4) .. controls (228.19,74.94) and (227.74,70.51) .. (230.19,67.5) .. controls (232.64,64.49) and (237.07,64.04) .. (240.08,66.5) .. controls (243.09,68.95) and (243.54,73.38) .. (241.09,76.39) .. controls (238.64,79.4) and (234.21,79.85) .. (231.2,77.4) -- cycle ;
+%Flowchart: Connector [id:dp0674909847030205] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (169.7,77.4) .. controls (166.69,74.94) and (166.24,70.51) .. (168.69,67.5) .. controls (171.14,64.49) and (175.57,64.04) .. (178.58,66.5) .. controls (181.59,68.95) and (182.04,73.38) .. (179.59,76.39) .. controls (177.14,79.4) and (172.71,79.85) .. (169.7,77.4) -- cycle ;
+%Flowchart: Connector [id:dp8551077995820422] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=3]  (152.64,153.6) .. controls (149.63,151.14) and (149.18,146.71) .. (151.63,143.71) .. controls (154.09,140.7) and (158.52,140.24) .. (161.53,142.7) .. controls (164.54,145.15) and (164.99,149.58) .. (162.53,152.59) .. controls (160.08,155.6) and (155.65,156.05) .. (152.64,153.6) -- cycle ;
+%Flowchart: Connector [id:dp9904144062400568] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=3]  (231.2,153.6) .. controls (228.19,151.14) and (227.74,146.71) .. (230.19,143.71) .. controls (232.64,140.7) and (237.07,140.24) .. (240.08,142.7) .. controls (243.09,145.15) and (243.54,149.58) .. (241.09,152.59) .. controls (238.64,155.6) and (234.21,156.05) .. (231.2,153.6) -- cycle ;
+%Flowchart: Connector [id:dp20218671328806814] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=3]  (169.7,153.6) .. controls (166.69,151.14) and (166.24,146.71) .. (168.69,143.71) .. controls (171.14,140.7) and (175.57,140.24) .. (178.58,142.7) .. controls (181.59,145.15) and (182.04,149.58) .. (179.59,152.59) .. controls (177.14,155.6) and (172.71,156.05) .. (169.7,153.6) -- cycle ;
+
+% Text Node
+\draw (113.58,137.81) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.25,0.46,0.02}{$\displaystyle A_{s}$}}};
+% Text Node
+\draw (113.58,61.48) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.96,0.65,0.14}{$\displaystyle A_{2}$}}};
+% Text Node
+\draw (113.58,32.57) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.29,0.56,0.89}{$\displaystyle A_{1}$}}};
+% Text Node
+\draw (110.58,109) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.49,0.83,0.13}{$\displaystyle \textcolor[rgb]{0.56,0.07,1}{A_{s-1}}$}}};
+% Text Node
+\draw (192,30) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \cdots $}};
+% Text Node
+\draw (192,58) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \cdots $}};
+% Text Node
+\draw (192,105) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \cdots $}};
+% Text Node
+\draw (192,135) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \cdots $}};
+% Text Node
+\draw (197,82) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \vdots $}};
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+	\phi(\bm{x})
+	&=	\max\left\{\underset{i \in A_{1}}{\min}\ x_{i}, \underset{i \in A_{2}}{\min}\ x_{i}, \dots, \underset{i \in A_{s}}{\min}\ x_{i}\right\}
+	=	\underset{j}{\min} \prod_{i \in A_{j}} x_{i}
+\end{align*}
 
 
+\subsubsection{Approche par les \og \textit{minimal cut sets} \fg{}}
+\begin{enumerate}
+	\item	Un système cesse de fonctionner ssi toutes les composantes d'au moins un des \og \textit{minimal cut sets} \fg{} cessent de fonctionner.
+	\item	Un système en série cesse de fonctionner ssi au moins une des composantes cesse de fonctionner.
+\end{enumerate}
+
+Donc, tout système peut être traité comme le système en série de ses \og \textit{minimal cut sets} \fg{}.
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,181); %set diagram left start at 0, and has height of 181
+
+%Shape: Resistor [id:dp031041827587751092] 
+\draw   (104.54,46.67) -- (171.63,46.67) -- (171.63,122.89) -- (104.54,122.89) -- (104.54,46.67) -- cycle (85.67,84.78) -- (104.54,84.78) (171.63,84.78) -- (190.5,84.78) ;
+
+%Shape: Resistor [id:dp9977426182626892] 
+\draw   (190.54,46.67) -- (257.63,46.67) -- (257.63,122.89) -- (190.54,122.89) -- (190.54,46.67) -- cycle (171.67,84.78) -- (190.54,84.78) (257.63,84.78) -- (276.5,84.78) ;
+
+%Shape: Resistor [id:dp4412566731431071] 
+\draw   (327.54,46.67) -- (394.63,46.67) -- (394.63,122.89) -- (327.54,122.89) -- (327.54,46.67) -- cycle (308.67,84.78) -- (327.54,84.78) (394.63,84.78) -- (413.5,84.78) ;
+
+%Flowchart: Connector [id:dp006687567958338025] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (355.93,118.47) .. controls (358.38,115.45) and (362.81,114.99) .. (365.82,117.43) .. controls (368.84,119.88) and (369.3,124.3) .. (366.86,127.32) .. controls (364.41,130.34) and (359.99,130.8) .. (356.97,128.36) .. controls (353.95,125.91) and (353.49,121.48) .. (355.93,118.47) -- cycle ;
+%Flowchart: Connector [id:dp3432893660753784] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ][line width=3]  (355.7,39.91) .. controls (358.15,36.89) and (362.57,36.43) .. (365.59,38.87) .. controls (368.61,41.32) and (369.07,45.75) .. (366.63,48.76) .. controls (364.18,51.78) and (359.75,52.24) .. (356.74,49.8) .. controls (353.72,47.35) and (353.26,42.93) .. (355.7,39.91) -- cycle ;
+%Flowchart: Connector [id:dp04374413071027017] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (131.38,40.69) .. controls (133.83,37.67) and (138.26,37.21) .. (141.27,39.65) .. controls (144.29,42.09) and (144.75,46.52) .. (142.31,49.54) .. controls (139.86,52.56) and (135.44,53.02) .. (132.42,50.57) .. controls (129.4,48.13) and (128.94,43.7) .. (131.38,40.69) -- cycle ;
+%Flowchart: Connector [id:dp39100303910521084] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (131.62,119.24) .. controls (134.06,116.23) and (138.49,115.76) .. (141.51,118.21) .. controls (144.52,120.65) and (144.99,125.08) .. (142.54,128.1) .. controls (140.1,131.11) and (135.67,131.58) .. (132.65,129.13) .. controls (129.64,126.69) and (129.17,122.26) .. (131.62,119.24) -- cycle ;
+%Flowchart: Connector [id:dp5332744563223488] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (218.38,40.77) .. controls (220.83,37.76) and (225.26,37.29) .. (228.27,39.74) .. controls (231.29,42.18) and (231.75,46.61) .. (229.31,49.63) .. controls (226.86,52.64) and (222.44,53.11) .. (219.42,50.66) .. controls (216.4,48.22) and (215.94,43.79) .. (218.38,40.77) -- cycle ;
+%Flowchart: Connector [id:dp15304137669616913] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (218.62,119.33) .. controls (221.06,116.31) and (225.49,115.85) .. (228.51,118.29) .. controls (231.52,120.74) and (231.99,125.17) .. (229.54,128.18) .. controls (227.1,131.2) and (222.67,131.66) .. (219.65,129.22) .. controls (216.64,126.77) and (216.17,122.35) .. (218.62,119.33) -- cycle ;
+%Straight Lines [id:da4371326826928572] 
+\draw    (259.5,84.78) -- (327.54,84.78) ;
+
+% Text Node
+\draw (216.58,18.48) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.96,0.65,0.14}{$\displaystyle C_{2}$}}};
+% Text Node
+\draw (128.58,18.57) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.29,0.56,0.89}{$\displaystyle C_{1}$}}};
+% Text Node
+\draw (352.58,16) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.49,0.83,0.13}{$\displaystyle \textcolor[rgb]{0.56,0.07,1}{C_{m}}$}}};
+% Text Node
+\draw (355,77) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \vdots $}};
+% Text Node
+\draw (218,77) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \vdots $}};
+% Text Node
+\draw (132,77) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \vdots $}};
+% Text Node
+\draw (283,65) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \dotsc $}};
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+	\phi(\bm{x})
+	&=	\min\left\{\underset{i \in C_{1}}{\max}\ x_{i}, \underset{i \in C_{2}}{\max}\ x_{i}, \dots, \underset{i \in C_{s}}{\max}\ x_{i}\right\}
+	=	\prod_{i \in C_{j}}^{m} x_{i}
+\end{align*}
+
+
+\columnbreak
+\subsection{Fiabilité des systèmes}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X_{i}$]	Variable aléatoire suivant une distribution Bernoulli : \lfbox[conditions]{$X_{i} \sim \text{Bernoulli}(p_{i})$}.
+		\begin{itemize}
+		\item	$\bm{X}$ vecteur des v.a. Bernoulli.
+		\end{itemize}
+	\item[$p_{i}$]	Fiabilité de la $i^{\text{e}}$ composante.
+		\begin{itemize}
+		\item	$\bm{p}$ vecteur des fiabilités.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Fiabilité]
+La fiabilité d'une \textbf{\underline{composante}} est la \textbf{probabilité que la composante fonctionne}.\\
+
+La fiabilité d'un \textbf{\underline{système}} est la \textbf{probabilité que le système fonctionne}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Fonction de fiabilité]
+\lfbox[formula]{$r(\bm{p}) = \Pr(\phi(\bm{X}) = 1)$}.
+
+\begin{itemize}
+	\item	Puisque $\phi$ est fonction du vecteur de v.a. Bernoulli $\bm{X}$, $\phi$ est également une v.a. Bernoulli. 
+	\item	Il s'ensuit que $r(\bm{p}) = 0 \times \Pr(\phi(\bm{X}) = 0) + 1 \times \Pr(\phi(\bm{X}) = 1) = \text{E}[\phi(\bm{X})]$.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{align*}
+	X_{i}
+	&=	\begin{cases}
+		1,	&	p_{i}	\\
+		0,	&	1 - p_{i}
+		\end{cases}
+\end{align*}
+
+
+\columnbreak
 \subsection{Bounds of Reliability Functions}
 
 
+\columnbreak
 \subsection{Random Graphs}
 
 
+\columnbreak
 \subsection{Lifetime of Systems}
 
 
+\columnbreak
 \subsection{Miscellaneous}
 
 
