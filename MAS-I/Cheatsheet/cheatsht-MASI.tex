@@ -5634,29 +5634,56 @@ Pour un système composé de plusieurs systèmes, le nombre de vecteurs dépend 
 
 \columnbreak
 \subsection{Structure Functions}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$A_{1}, \dots, A_{s}$]	\og \textit{Minimal path sets} \fg{}.
+	\item[$C_{1}, \dots, C_{m}$]	\og \textit{Minimal cut sets} \fg{}.
+\end{description}
+\end{distributions}
+La \og \textit{structure function} \fg{} d'un système peut être déduite par deux approches : 
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Approche par les \og \textit{minimal path sets} \fg{}.
+	\item	Approche par les \og \textit{minimal cut sets} \fg{}.
+\end{enumerate}
 
-Système en parallèle :
+\
+
+Cela dit, la fonction de base est fonction de la méthode d'organisation du système : 
+\begin{definitionGENERAL}{Système en parallèle}[\circled{1}{trueblue}]
+Un système en parallèle fonctionne tant qu'au moins une des composantes fonctionne. Alors, tant qu'au moins une des composantes $i$ a un état de $x_{i} = 1$, l'état du système est de $\phi(\bm{x}) = 1$.	\\
 \begin{align*}
 	\phi(\bm{x})
 	&=	\max\{x_{1}, \dots, x_{n}\}		\\
 	&=	1 - \prod_{i = 1}^{n} (1 - x_{i})
 \end{align*}
 
-Système en série :
+\begin{itemize}
+	\item	La deuxième formulation découle du fait que les états sont des variables binaires.
+\end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Système en série}[\circled{2}{trueblue}]
+Un système en parallèle fonctionne ssi toutes les composantes fonctionnent. Alors, dès qu'une composante $i$ a un état de $x_{i} = 0$, l'état du système est de $\phi(\bm{x}) = 0$.	\\
 \begin{align*}
 	\phi(\bm{x})
 	&=	\min\{x_{1}, \dots, x_{n}\}	\\
 	&=	\prod_{i = 1}^{n} x_{i}
 \end{align*}
 
+\begin{itemize}
+	\item	La deuxième formulation découle du fait que les états sont des variables binaires.
+\end{itemize}
+\end{definitionGENERAL}
+
+
 \subsubsection{Approche par les \og \textit{minimal path sets} \fg{}}
+Soit ces deux constats : 
 \begin{enumerate}
 	\item	Un système fonctionne ssi toutes les composantes d'au moins un des \og \textit{minimal path sets} \fg{} fonctionnent.
 	\item	Un système en parallèle fonctionne ssi au moins une des composantes fonctionnent.
 \end{enumerate}
 
-Donc, tout système peut être traité comme le système en parallèle de ses \og \textit{minimal path sets} \fg{}.
-
+Alors, tout système peut être traité comme le système en parallèle de ses \og \textit{minimal path sets} \fg{} :\\
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -5711,6 +5738,8 @@ Donc, tout système peut être traité comme le système en parallèle de ses \o
 \draw (197,82) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \vdots $}};
 \end{tikzpicture}
 \end{center}
+
+Il s'ensuit qu'on peut réécrire le système comme : 
 \begin{align*}
 	\phi(\bm{x})
 	&=	\max\left\{\underset{i \in A_{1}}{\min}\ x_{i}, \underset{i \in A_{2}}{\min}\ x_{i}, \dots, \underset{i \in A_{s}}{\min}\ x_{i}\right\}
@@ -5719,13 +5748,13 @@ Donc, tout système peut être traité comme le système en parallèle de ses \o
 
 
 \subsubsection{Approche par les \og \textit{minimal cut sets} \fg{}}
+Soit ces deux constats : 
 \begin{enumerate}
 	\item	Un système cesse de fonctionner ssi toutes les composantes d'au moins un des \og \textit{minimal cut sets} \fg{} cessent de fonctionner.
 	\item	Un système en série cesse de fonctionner ssi au moins une des composantes cesse de fonctionner.
 \end{enumerate}
 
-Donc, tout système peut être traité comme le système en série de ses \og \textit{minimal cut sets} \fg{}.
-
+Alors, tout système peut être traité comme le système en série de ses \og \textit{minimal cut sets} \fg{} :	
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -5771,6 +5800,8 @@ Donc, tout système peut être traité comme le système en série de ses \og \t
 \draw (283,65) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \dotsc $}};
 \end{tikzpicture}
 \end{center}
+
+Il s'ensuit qu'on peut réécrire le système comme : 
 \begin{align*}
 	\phi(\bm{x})
 	&=	\min\left\{\underset{i \in C_{1}}{\max}\ x_{i}, \underset{i \in C_{2}}{\max}\ x_{i}, \dots, \underset{i \in C_{s}}{\max}\ x_{i}\right\}
