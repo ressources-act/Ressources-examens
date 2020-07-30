@@ -5678,12 +5678,12 @@ Un système en parallèle fonctionne ssi toutes les composantes fonctionnent. Al
 
 \subsubsection{Approche par les \og \textit{minimal path sets} \fg{}}
 Soit ces deux constats : 
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
 	\item	Un système fonctionne ssi toutes les composantes d'au moins un des \og \textit{minimal path sets} \fg{} fonctionnent.
 	\item	Un système en parallèle fonctionne ssi au moins une des composantes fonctionnent.
 \end{enumerate}
 
-Alors, tout système peut être traité comme le système en parallèle de ses \og \textit{minimal path sets} \fg{} :\\
+Alors, tout système peut être traité comme le système en parallèle de ses \og \textit{minimal path sets} \fg{} :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -5749,7 +5749,7 @@ Il s'ensuit qu'on peut réécrire le système comme :
 
 \subsubsection{Approche par les \og \textit{minimal cut sets} \fg{}}
 Soit ces deux constats : 
-\begin{enumerate}
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
 	\item	Un système cesse de fonctionner ssi toutes les composantes d'au moins un des \og \textit{minimal cut sets} \fg{} cessent de fonctionner.
 	\item	Un système en série cesse de fonctionner ssi au moins une des composantes cesse de fonctionner.
 \end{enumerate}
@@ -5805,8 +5805,10 @@ Il s'ensuit qu'on peut réécrire le système comme :
 \begin{align*}
 	\phi(\bm{x})
 	&=	\min\left\{\underset{i \in C_{1}}{\max}\ x_{i}, \underset{i \in C_{2}}{\max}\ x_{i}, \dots, \underset{i \in C_{s}}{\max}\ x_{i}\right\}
-	=	\prod_{i \in C_{j}}^{m} x_{i}
+	=	\prod_{j = 1}^{m} \max_{i \in C_{j}} x_{i}
 \end{align*}
+
+\paragraph{Note}	Puisque l'état est une variable binaire, \lfbox[formula]{$x_{i}^{k} = x_{i}$}.
 
 
 \columnbreak
@@ -5817,7 +5819,7 @@ Il s'ensuit qu'on peut réécrire le système comme :
 		\begin{itemize}
 		\item	$\bm{X}$ vecteur des v.a. Bernoulli.
 		\end{itemize}
-	\item[$p_{i}$]	Fiabilité de la $i^{\text{e}}$ composante.
+	\item[$p_{i}$]	Fiabilité de la composante $i$.
 		\begin{itemize}
 		\item	$\bm{p}$ vecteur des fiabilités.
 		\end{itemize}
@@ -5831,7 +5833,7 @@ La fiabilité d'un \textbf{\underline{système}} est la \textbf{probabilité que
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[Fonction de fiabilité]
-\lfbox[formula]{$r(\bm{p}) = \Pr(\phi(\bm{X}) = 1)$}.
+Fonction de la fiabilité des composantes où \lfbox[formula]{$r(\bm{p}) = \Pr(\phi(\bm{X}) = 1)$}. La fonction quantifie la probabilité que le système fonctionne.
 
 \begin{itemize}
 	\item	Puisque $\phi$ est fonction du vecteur de v.a. Bernoulli $\bm{X}$, $\phi$ est également une v.a. Bernoulli. 
