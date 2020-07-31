@@ -5816,13 +5816,21 @@ Il s'ensuit qu'on peut réécrire le système comme :
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$X_{i}$]	Variable aléatoire suivant une distribution Bernoulli : \lfbox[conditions]{$X_{i} \sim \text{Bernoulli}(p_{i})$}.
+		\begin{align*}
+		X_{i}
+		&=	\begin{cases}
+			1,	&	p_{i}	\\
+			0,	&	1 - p_{i}
+			\end{cases}
+		\end{align*}
 		\begin{itemize}
-		\item	$\bm{X}$ vecteur des v.a. Bernoulli.
+		\item	$\bm{X} = (X_{1}, X_{2}, \dots, X_{n})$ vecteur des v.a. Bernoulli.
 		\end{itemize}
 	\item[$p_{i}$]	Fiabilité de la composante $i$.
 		\begin{itemize}
-		\item	$\bm{p}$ vecteur des fiabilités.
+		\item	$\bm{p} = (p_{1}, p_{2}, \dots, p_{n})$ vecteur des fiabilités.
 		\end{itemize}
+	\item[$r(\bm{p})$]	Fonction de fiabilité du système.
 \end{description}
 \end{distributions}
 
@@ -5833,7 +5841,15 @@ La fiabilité d'un \textbf{\underline{système}} est la \textbf{probabilité que
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[Fonction de fiabilité]
-Fonction de la fiabilité des composantes où \lfbox[formula]{$r(\bm{p}) = \Pr(\phi(\bm{X}) = 1)$}. La fonction quantifie la probabilité que le système fonctionne.
+Fonction de la fiabilité des composantes \lfbox[formula]{$r(\bm{p})$} qui quantifie la probabilité que le système fonctionne.
+
+\begin{align*}
+	r(\bm{p})
+	&=	\underbrace{\Pr(\phi(\bm{X}) = 1)}_{\substack{\text{somme des probabilités}\\ \text{des \og \textit{path vectors} \fg{}}}}
+	=	1 - \underbrace{\Pr(\phi(\bm{X}) = 0)}_{\substack{\text{somme des probabilités}\\ \text{des \og \textit{cut vectors} \fg{}}}}	\\
+	&=	0 \times \Pr(\phi(\bm{X}) = 0) + 1 \times \Pr(\phi(\bm{X}) = 1) 
+	= \text{E}[\phi(\bm{X})]
+\end{align*}
 
 \begin{itemize}
 	\item	Puisque $\phi$ est fonction du vecteur de v.a. Bernoulli $\bm{X}$, $\phi$ est également une v.a. Bernoulli. 
@@ -5841,14 +5857,80 @@ Fonction de la fiabilité des composantes où \lfbox[formula]{$r(\bm{p}) = \Pr(\
 \end{itemize}
 \end{definitionNOHFILLsub}
 
+\begin{formula}{Exemple de calcul de la fonction de fiabilité}
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,181); %set diagram left start at 0, and has height of 181
 
+%Rounded Rect [id:dp8878409106243981] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 211; green, 211; blue, 211 }  ,fill opacity=1 ] (118.27,21.51) .. controls (118.27,20.13) and (119.38,19.02) .. (120.75,19.02) -- (195.17,19.02) .. controls (196.54,19.02) and (197.66,20.13) .. (197.66,21.51) -- (197.66,116.18) .. controls (197.66,117.55) and (196.54,118.67) .. (195.17,118.67) -- (120.75,118.67) .. controls (119.38,118.67) and (118.27,117.55) .. (118.27,116.18) -- cycle ;
+%Rounded Rect [id:dp5883608057634968] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (118.45,23.38) .. controls (118.45,20.97) and (120.4,19.02) .. (122.8,19.02) -- (193.48,19.02) .. controls (195.88,19.02) and (197.83,20.97) .. (197.83,23.38) -- (197.83,36.45) .. controls (197.83,38.86) and (195.88,40.81) .. (193.48,40.81) -- (122.8,40.81) .. controls (120.4,40.81) and (118.45,38.86) .. (118.45,36.45) -- cycle ;
+%Shape: Resistor [id:dp6289583123756435] 
+\draw   (28.81,45.67) -- (95.69,45.67) -- (95.69,90.83) -- (28.81,90.83) -- (28.81,45.67) -- cycle (10,68.25) -- (28.81,68.25) (95.69,68.25) -- (114.5,68.25) ;
+%Flowchart: Connector [id:dp7521329945820521] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 251; green, 132; blue, 252 }  ,fill opacity=1 ][line width=3]  (58.62,95.29) .. controls (56.36,93.26) and (56.02,89.59) .. (57.87,87.1) .. controls (59.71,84.61) and (63.05,84.24) .. (65.32,86.27) .. controls (67.58,88.3) and (67.92,91.96) .. (66.07,94.45) .. controls (64.23,96.94) and (60.89,97.32) .. (58.62,95.29) -- cycle ;
+%Flowchart: Connector [id:dp13395193394214777] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=3]  (44.64,50.45) .. controls (41.63,48) and (41.18,43.57) .. (43.63,40.56) .. controls (46.09,37.55) and (50.52,37.1) .. (53.53,39.55) .. controls (56.54,42.01) and (56.99,46.44) .. (54.53,49.45) .. controls (52.08,52.45) and (47.65,52.91) .. (44.64,50.45) -- cycle ;
+%Flowchart: Connector [id:dp8385135179446919] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=3]  (70.64,50.45) .. controls (67.63,48) and (67.18,43.57) .. (69.63,40.56) .. controls (72.09,37.55) and (76.52,37.1) .. (79.53,39.55) .. controls (82.54,42.01) and (82.99,46.44) .. (80.53,49.45) .. controls (78.08,52.45) and (73.65,52.91) .. (70.64,50.45) -- cycle ;
+
+%Rounded Rect [id:dp1846867648395587] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 211; green, 211; blue, 211 }  ,fill opacity=1 ] (202.27,21.26) .. controls (202.27,19.88) and (203.38,18.77) .. (204.75,18.77) -- (279.17,18.77) .. controls (280.54,18.77) and (281.66,19.88) .. (281.66,21.26) -- (281.66,164.18) .. controls (281.66,165.55) and (280.54,166.67) .. (279.17,166.67) -- (204.75,166.67) .. controls (203.38,166.67) and (202.27,165.55) .. (202.27,164.18) -- cycle ;
+%Rounded Rect [id:dp17089258875209756] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (202.45,23.13) .. controls (202.45,20.72) and (204.4,18.77) .. (206.8,18.77) -- (277.48,18.77) .. controls (279.88,18.77) and (281.83,20.72) .. (281.83,23.13) -- (281.83,36.2) .. controls (281.83,38.61) and (279.88,40.56) .. (277.48,40.56) -- (206.8,40.56) .. controls (204.4,40.56) and (202.45,38.61) .. (202.45,36.2) -- cycle ;
+
+% Text Node
+\draw (126.96,69.25) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{0})$};
+% Text Node
+\draw (126.96,44.25) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{0})$};
+% Text Node
+\draw (126.64,21.42) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize Cut vectors}};
+% Text Node
+\draw (126.96,93.25) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{0})$};
+% Text Node
+\draw (58.22,70.75) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 3$}};
+% Text Node
+\draw (45.58,18.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1$}};
+% Text Node
+\draw (71.58,18.54) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 2$}};
+% Text Node
+\draw (210.96,93) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$};
+% Text Node
+\draw (210.96,46) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$};
+% Text Node
+\draw (210.64,21.17) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize Cut vectors}};
+% Text Node
+\draw (210.96,70) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{0})$};
+% Text Node
+\draw (210.96,117) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$};
+% Text Node
+\draw (210.96,142) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$};
+\end{tikzpicture}
+\end{center}
+
+On pose que les composante sont indépendantes, puis : 
 \begin{align*}
-	X_{i}
-	&=	\begin{cases}
-		1,	&	p_{i}	\\
-		0,	&	1 - p_{i}
-		\end{cases}
+	r(\bm{p})
+	&=	\Pr(\phi(\bm{X}) = 1)	\\
+	&=	\Pr(\bm{X} = (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})) + 
+		\Pr(\bm{X} = (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{0})) + 
+		\Pr(\bm{X} = (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})) + \\
+	&\quad	\Pr(\bm{X} = (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})) + 
+		\Pr(\bm{X} = (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})) 	\\
+	&=	\textcolor[rgb]{0.29,0.56,0.89}{(1 - p_{1})}  \textcolor[rgb]{0.96,0.65,0.14}{(1 - p_{2})}  \textcolor[rgb]{0.98,0.52,0.99}{p_{3}} + 
+		\textcolor[rgb]{0.29,0.56,0.89}{p_{1}} \textcolor[rgb]{0.96,0.65,0.14}{p_{2}}  \textcolor[rgb]{0.98,0.52,0.99}{(1 - p_{3})} + 
+		\textcolor[rgb]{0.29,0.56,0.89}{p_{1}}  \textcolor[rgb]{0.96,0.65,0.14}{(1 - p_{2})}  \textcolor[rgb]{0.98,0.52,0.99}{p_{3}} + \\
+	&\quad	\textcolor[rgb]{0.29,0.56,0.89}{(1 - p_{1})} \textcolor[rgb]{0.96,0.65,0.14}{p_{2}} \textcolor[rgb]{0.98,0.52,0.99}{p_{3}} + 
+		\textcolor[rgb]{0.29,0.56,0.89}{p_{1}} \textcolor[rgb]{0.96,0.65,0.14}{p_{2}}  \textcolor[rgb]{0.98,0.52,0.99}{p_{3}} \\
+	&=	p_{3} - p_{2}p_{3} - p_{1}p_{3} + p_{1}p_{2}p_{3}  +  p_{1}p_{2} - p_{1}p_{2}p_{3} + 
+		p_{1}p_{3} - p_{1}p_{2}p_{3} + \\
+	&\quad	p_{2}p_{3} - p_{1}p_{2}p_{3} + p_{1} p_{2} p_{3} \\
+	&=	p_{3} +  p_{1}p_{2} - p_{1}p_{2}p_{3}
 \end{align*}
+\end{formula}
+
 
 
 \columnbreak
