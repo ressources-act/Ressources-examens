@@ -5900,7 +5900,7 @@ Fonction de la fiabilité des composantes \lfbox[formula]{$r(\bm{p})$} qui quant
 % Text Node
 \draw (210.96,46) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{0} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1})$};
 % Text Node
-\draw (210.64,21.17) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize Cut vectors}};
+\draw (210.64,21.17) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize Path vectors}};
 % Text Node
 \draw (210.96,70) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{0})$};
 % Text Node
@@ -5935,6 +5935,128 @@ On pose que les composante sont indépendantes, puis :
 
 \columnbreak
 \subsection{Bounds of Reliability Functions}
+\begin{rappel_enhanced}[Contexte]
+Parfois il peut ne pas être nécessaire de trouver la fonction de fiabilité exacte. En lieu, on peut  l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes suivantes.
+\end{rappel_enhanced}
+
+\subsubsection{Méthode d'inclusion et d'exclusion}
+\begin{rappel}{Rappel: Probabilités conjointes}
+\begin{align*}
+	\Pr(E_{1} \cup E_{2})
+	&=	\Pr(E_{1}) + \Pr(E_{2}) - \Pr(E_{1} \cap E_{2})	\\
+	\Pr\left(\bigcup_{j = 1}^{n} E_{j}\right)
+	&=	\sum_{j = 1}^{n} \Pr(E_{j}) -
+		\sum_{j = 1}^{n} \sum_{k > j} \Pr(E_{j} \cap E_{k}) + \\
+&\quad		\sum_{j = 1}\sum_{k > j}\sum_{l > k} \Pr(E_{j} \cap E_{k} \cap E_{l}) - 
+		\dots + (-1)^{n + 1}	\\
+\end{align*}
+\end{rappel}
+
+Si on utilisait seulement la première somme de l'équation, on \textit{sur}-estime la probabilité. \\
+Si on utilise seulement les deux premières sommes, alors on \textit{sous}-estime.\\
+Ce qu'on en déduit est que la probabilité est \textbf{contenue entre ces deux estimations} et donc on peut établir des inégalités.
+
+
+\paragraph{Minimal path sets}
+On a que $\sum_{j = 1}^{n} \Pr(E_{j})	=	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)$.
+
+Pour les \og \textit{minimal path sets} \fg{} $A_{1}, \dots, A_{s}$, on établit : 
+\begin{align*}
+	r(\bm{p})	
+	&\leq	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)	\\
+	r(\bm{p})	
+	&\geq	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)	-	\sum_{j = 1}^{s} \sum_{k > j} \left(\prod_{i \in A_{j} \cup A_{k}} p_{i}\right)	\\
+	\vdots
+\end{align*}
+
+\begin{formula}{Exemple bornes avec minimal path sets}
+On reprend l'exemple de la sous-section sur les fonctions de fiabilité avec le système en parallèle ayant 3 composantes. \\
+
+Ici, on pose que toutes les composantes ont une fiabilité de $p$, puis avec $A_{1} = (0, 0, 1)$ et $A_{2} = (1, 1, 0)$ : \\
+\begin{align*}
+	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)
+	&=	\prod_{i \in A_{1}} p_{i} + \prod_{i \in A_{2}} p_{i}	
+	=	p + p^{2}	
+\end{align*}
+\begin{align*}
+	\sum_{j = 1}^{s} \sum_{k > j} \left(\prod_{i \in A_{j} \cup A_{k}} p_{i}\right)	
+	&=	\prod_{i \in A_{1} \cup A_{2}} p_{i}	
+	=	p^{3}	\\
+\end{align*}
+
+Donc $p + p^{2} - p^{3}	\leq r(\bm{p}) \leq p + p^{2}$.\\
+
+Si $p = 0.2$, $r(\bm{p}) \in [0.232, 0.24]$ mais si $p = 0.6$ alors $r(\bm{p}) \in [0.744, 0.96]$. On voit donc que plus $p$ est petit, mieux l'intervalle approxime la fiabilité.
+\end{formula}
+
+
+\paragraph{Minimal cut sets}
+Pour les \og \textit{minimal cut sets} \fg{} $C_{1}, \dots, C_{m}$, on établit :
+\begin{align*}
+	1 - r(\bm{p})	
+	&\leq	\sum_{j = 1}^{m} \left(\prod_{i \in C_{j}} (1 - p_{i})\right)	\\
+	1 - r(\bm{p})	
+	&\geq	\sum_{j = 1}^{m} \left(\prod_{i \in C_{j}} (1 - p_{i})\right)	-	\sum_{j = 1}^{m} \sum_{k > j} \left(\prod_{i \in C_{j} \cup C_{k}} (1 - p_{i})\right)	\\
+	\vdots
+\end{align*}
+
+\begin{formula}{Exemple bornes avec minimal cut sets}
+On reprend l'exemple de la sous-section sur les fonctions de fiabilité avec le système en parallèle ayant 3 composantes. \\
+
+Ici, on pose que toutes les composantes ont une fiabilité de $p$, puis avec $C_{1} = (1, 0, 0)$ et $C_{2} = (0, 1, 0)$ : \\
+\begin{align*}
+	\sum_{j = 1}^{m} \left(\prod_{i \in C_{j}} (1 - p_{i})\right)
+	&=	\prod_{i \in C_{1}} (1 - p_{i}) + \prod_{i \in C_{2}} (1 - p_{i})
+	=	(1 - p)^{2} + (1 - p)^{2}	\\
+	&=	2(1 - p)^{2}
+\end{align*}
+\begin{align*}
+	\sum_{j = 1}^{m} \sum_{k > j} \left(\prod_{i \in C_{j} \cup C_{k}} (1 - p_{i})\right)
+	&=	\prod_{i \in C_{1} \cup C_{2}} (1 - p_{i})
+	=	(1 - p)^{3}	\\
+\end{align*}
+
+Donc $2(1 - p)^{2} - (1 - p)^{3}	\leq r(\bm{p}) \leq 2(1 - p)^{2}$.\\
+
+Si $p = 0.2$, $1 - r(\bm{p}) \in [0.768, 1.28]$ mais si $p = 0.6$ alors $1 - r(\bm{p}) \in [0.256, 0.32]$. On voit donc que plus $p$ est large, mieux l'intervalle approxime la fiabilité.\\
+
+C'est donc l'inverse que l'approche par \og \textit{minimal path sets} \fg{}.
+\end{formula}
+
+
+\subsubsection{Méthode d'intersection}
+\begin{rappel_enhanced}[Contexte]
+Au lieu d'utiliser les probabilités d'union des événements, on utilise les probabilités d'intersection des événements.
+\end{rappel_enhanced}
+
+Sous la méthode d'intersection, 
+\begin{align*}
+	&\underbrace{\prod_{j = 1}^{m} \left[1 - \prod_{i \in C_{j}} (1 - p_{i}) \right]}_{\substack{\text{probabilité qu'au moins une composante de}\\	\text{chacun des \og \textit{minimal cut sets} \fg{} fonctionne}}}
+	&\leq	r(\bm{p})	&\leq	
+	&\underbrace{1 - \prod_{j = 1}^{s} \left[1 - \prod_{i \in A_{j}} p_{i} \right]}_{\substack{\text{probabilité que toutes les composante}\\	\text{d'au moins un des \og \textit{minimal path sets} \fg{}}\\ \text{fonctionnent}}}
+\end{align*}
+
+
+\begin{formula}{Exemple bornes avec la méthode d'intersection}
+On reprend l'exemple de la sous-section sur les fonctions de fiabilité avec le système en parallèle ayant 3 composantes. \\
+
+Ici, on pose que toutes les composantes ont une fiabilité de $p$, puis avec $C_{1} = (1, 0, 0)$ et $C_{2} = (0, 1, 0)$ : \\
+\begin{align*}
+	\prod_{j = 1}^{m} \left[1 - \prod_{i \in C_{j}} (1 - p_{i}) \right]
+	&=	\left(1 - (1 - p)^{2}\right) \left(1 - (1 - p)^{2}\right)
+	&=	\left(1 - (1 - p)^{2}\right)^{2}
+\end{align*}
+
+Avec $A_{1} = (0, 0, 1)$ et $A_{2} = (1, 1, 0)$,
+\begin{align*}
+	1 - \prod_{j = 1}^{s} \left[1 - \prod_{i \in A_{j}} p_{i} \right]
+	&=	1 - (1 - p) \left(1 - p^{2}\right)
+\end{align*}
+
+Donc $\left(1 - (1 - p)^{2}\right)^{2}	\leq r(\bm{p}) \leq 1 - (1 - p) \left(1 - p^{2}\right)$.\\
+
+Si $p = 0.2$, $r(\bm{p}) \in [0.1296, 0.232]$ et si $p = 0.6$ alors $1 - r(\bm{p}) \in [0.7056, 0.744]$. On voit donc que peut importe la valeur de $p$, l'intervalle approxime bien la fiabilité.
+\end{formula}
 
 
 \columnbreak
