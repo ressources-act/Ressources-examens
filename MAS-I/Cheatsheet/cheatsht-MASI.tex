@@ -5934,9 +5934,9 @@ On pose que les composante sont indépendantes, puis :
 
 
 \columnbreak
-\subsection{Bounds of Reliability Functions}
+\subsection{Bornes des fonctions de fiabilité}
 \begin{rappel_enhanced}[Contexte]
-Parfois il peut ne pas être nécessaire de trouver la fonction de fiabilité exacte. En lieu, on peut  l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes suivantes.
+Parfois, il n'est pas pratique ni nécessaire de trouver la fonction de fiabilité exacte. En lieu, on peut l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes suivantes.
 \end{rappel_enhanced}
 
 \subsubsection{Méthode d'inclusion et d'exclusion}
@@ -5946,15 +5946,17 @@ Parfois il peut ne pas être nécessaire de trouver la fonction de fiabilité ex
 	&=	\Pr(E_{1}) + \Pr(E_{2}) - \Pr(E_{1} \cap E_{2})	\\
 	\Pr\left(\bigcup_{j = 1}^{n} E_{j}\right)
 	&=	\sum_{j = 1}^{n} \Pr(E_{j}) -
-		\sum_{j = 1}^{n} \sum_{k > j} \Pr(E_{j} \cap E_{k}) + \\
-&\quad		\sum_{j = 1}\sum_{k > j}\sum_{l > k} \Pr(E_{j} \cap E_{k} \cap E_{l}) - 
-		\dots + (-1)^{n + 1}	\\
+		\sum_{j = 1}^{n} \sum_{k > j} \Pr(E_{j} \cap E_{k}) + \sum_{j = 1}\sum_{k > j}\sum_{l > k} \Pr(E_{j} \cap E_{k} \cap E_{l}) - \\
+&\quad		
+		\dots + (-1)^{n + 1}\Pr(E_{1} \cap E_{2} \cap \dots \cap E_{n})	\\
 \end{align*}
 \end{rappel}
 
 Si on utilisait seulement la première somme de l'équation, on \textit{sur}-estime la probabilité. \\
 Si on utilise seulement les deux premières sommes, alors on \textit{sous}-estime.\\
-Ce qu'on en déduit est que la probabilité est \textbf{contenue entre ces deux estimations} et donc on peut établir des inégalités.
+Ce qu'on en déduit est que la probabilité est \textbf{contenue entre ces deux estimations} et donc on peut établir des inégalités.\\
+
+On peut établir les inégalités soit pour la probabilité que le système fonctionne ($r(\bm{p})$) ou pour la probabilité que le système ne fonctionne pas ($1 - r(\bm{p})$).
 
 
 \paragraph{Minimal path sets}
@@ -6029,11 +6031,21 @@ C'est donc l'inverse que l'approche par \og \textit{minimal path sets} \fg{}.
 Au lieu d'utiliser les probabilités d'union des événements, on utilise les probabilités d'intersection des événements.
 \end{rappel_enhanced}
 
-Sous la méthode d'intersection, 
+Sous la méthode d'intersection, \\
 \begin{align*}
-	&\underbrace{\prod_{j = 1}^{m} \left[1 - \prod_{i \in C_{j}} (1 - p_{i}) \right]}_{\substack{\text{probabilité qu'au moins une composante de}\\	\text{chacun des \og \textit{minimal cut sets} \fg{} fonctionne}}}
+	&\underbrace{\prod_{j = 1}^{m} 
+		\overbrace{		
+		\left[
+			1 - \overbrace{\prod_{i \in C_{j}} (1 - p_{i})}^{\substack{\text{probabilité que toutes}\\ \text{les composantes du $C_{j}$}\\ \text{échouent}}}
+		\right]}^{\substack{\text{probabilité qu'au moins une}\\ \text{des composantes du $C_{j}$}\\ \text{fonctionne}}}
+	}_{\substack{\text{probabilité qu'au moins une composante}\\	\text{de chacun des \og \textit{minimal cut sets} \fg{}}\\ \text{fonctionne}}}
 	&\leq	r(\bm{p})	&\leq	
-	&\underbrace{1 - \prod_{j = 1}^{s} \left[1 - \prod_{i \in A_{j}} p_{i} \right]}_{\substack{\text{probabilité que toutes les composante}\\	\text{d'au moins un des \og \textit{minimal path sets} \fg{}}\\ \text{fonctionnent}}}
+	&\underbrace{1 - \prod_{j = 1}^{s} 
+		\overbrace{
+		\left[
+			1 - \overbrace{\prod_{i \in A_{j}} p_{i}}^{\substack{\text{probabilité que toutes}\\ \text{les composantes du $A_{j}$}\\ \text{fonctionnent}}}
+		\right]}^{\substack{\text{probabilité qu'au moins une}\\ \text{des composantes du $A_{j}$}\\ \text{échoue}}}
+	}_{\substack{\text{probabilité que toutes les composantes}\\	\text{d'au moins un des \og \textit{minimal path sets} \fg{}}\\ \text{fonctionnent}}}
 \end{align*}
 
 
@@ -6057,6 +6069,23 @@ Donc $\left(1 - (1 - p)^{2}\right)^{2}	\leq r(\bm{p}) \leq 1 - (1 - p) \left(1 -
 
 Si $p = 0.2$, $r(\bm{p}) \in [0.1296, 0.232]$ et si $p = 0.6$ alors $1 - r(\bm{p}) \in [0.7056, 0.744]$. On voit donc que peut importe la valeur de $p$, l'intervalle approxime bien la fiabilité.
 \end{formula}
+
+En bref :
+\begin{center}
+\begin{tabular}{|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|}
+\hline\rowcolor{airforceblue} 
+ & \textcolor{white}{\textbf{avec un petit $p$}}  & \textcolor{white}{\textbf{avec un gros $p$}}  \\
+\cline{2-3}\rowcolor{airforceblue} 
+\multirow{-2}{*}{\textcolor{white}{\textbf{Approche}}} & \multicolumn{2}{c|}{\textcolor{white}{\textbf{Intervalle}}} \\\specialrule{0.1em}{0em}{0em} 
+\hline 
+\og \textit{minimal path sets} \fg{}	&	large	&	\textbf{étroit}	\\ 
+\hline 
+\og \textit{minimal cut sets} \fg{}	&	\textbf{étroit}	&	large	\\ 
+\hline 
+intersection	&	\textbf{étroit}	&	\textbf{étroit}	\\ 
+\hline
+\end{tabular} 
+\end{center}
 
 
 \columnbreak
