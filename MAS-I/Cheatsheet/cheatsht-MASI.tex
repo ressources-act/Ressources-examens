@@ -6089,7 +6089,350 @@ intersection	&	\textbf{étroit}	&	\textbf{étroit}	\\
 
 
 \columnbreak
-\subsection{Random Graphs}
+\subsection{Graphiques aléatoires}
+\begin{definitionNOHFILL}[Graphique]
+Ensemble de nœuds connectés par des arcs.
+\end{definitionNOHFILL}
+
+\begin{distributions}[Composantes des graphiques]
+\begin{description}
+	\item[$N$]	Ensemble des nœuds.
+	\item[$A$]	Ensemble des arcs connectant les nœuds.
+		\begin{itemize}
+		\item	Le nombre d'arcs est au plus $\binom{n}{2}$. 
+		\item	C'est-à-dire, le nombre possibles de groupes de deux nœuds.
+		\end{itemize}
+\end{description}
+
+\
+
+Également, un graphique peut être décomposé en sous-graphiques qu'on nomme les \textbf{\textit{composantes}}. 
+\begin{itemize}
+	\item	Les composantes ne se chevauchent pas.
+	\item	Les composantes sont composées de nœuds connectés.
+	\item	Un graphique est \textbf{\textit{connecté}} s'il a une seule composante.
+	\item	En autres mots, on peut aller d'un nœud à tout autre nœud du graphique via les arcs.
+\end{itemize}
+\end{distributions}
+
+\begin{formula}{Exemple de graphique}
+Soit le graphique suivant : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Rounded Rect [id:dp727244756598393] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (29,137.61) .. controls (29,131.07) and (34.3,125.77) .. (40.84,125.77) -- (40.84,125.77) .. controls (47.38,125.77) and (52.68,131.07) .. (52.68,137.61) -- (52.68,139.43) .. controls (52.68,145.97) and (47.38,151.27) .. (40.84,151.27) -- (40.84,151.27) .. controls (34.3,151.27) and (29,145.97) .. (29,139.43) -- cycle ;
+%Rounded Rect [id:dp693573369980472] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (88,106.61) .. controls (88,100.07) and (93.3,94.77) .. (99.84,94.77) -- (99.84,94.77) .. controls (106.38,94.77) and (111.68,100.07) .. (111.68,106.61) -- (111.68,108.43) .. controls (111.68,114.97) and (106.38,120.27) .. (99.84,120.27) -- (99.84,120.27) .. controls (93.3,120.27) and (88,114.97) .. (88,108.43) -- cycle ;
+%Rounded Rect [id:dp6295362393544817] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (122,58.61) .. controls (122,52.07) and (127.3,46.77) .. (133.84,46.77) -- (133.84,46.77) .. controls (140.38,46.77) and (145.68,52.07) .. (145.68,58.61) -- (145.68,60.43) .. controls (145.68,66.97) and (140.38,72.27) .. (133.84,72.27) -- (133.84,72.27) .. controls (127.3,72.27) and (122,66.97) .. (122,60.43) -- cycle ;
+%Rounded Rect [id:dp04815667436062654] 
+\draw  [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][line width=1.5]  (144,117.61) .. controls (144,111.07) and (149.3,105.77) .. (155.84,105.77) -- (155.84,105.77) .. controls (162.38,105.77) and (167.68,111.07) .. (167.68,117.61) -- (167.68,119.43) .. controls (167.68,125.97) and (162.38,131.27) .. (155.84,131.27) -- (155.84,131.27) .. controls (149.3,131.27) and (144,125.97) .. (144,119.43) -- cycle ;
+%Rounded Rect [id:dp6930305311487936] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][line width=1.5]  (192,87.61) .. controls (192,81.07) and (197.3,75.77) .. (203.84,75.77) -- (203.84,75.77) .. controls (210.38,75.77) and (215.68,81.07) .. (215.68,87.61) -- (215.68,89.43) .. controls (215.68,95.97) and (210.38,101.27) .. (203.84,101.27) -- (203.84,101.27) .. controls (197.3,101.27) and (192,95.97) .. (192,89.43) -- cycle ;
+%Rounded Rect [id:dp6372901419282468] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]  (249,119.61) .. controls (249,113.07) and (254.3,107.77) .. (260.84,107.77) -- (260.84,107.77) .. controls (267.38,107.77) and (272.68,113.07) .. (272.68,119.61) -- (272.68,121.43) .. controls (272.68,127.97) and (267.38,133.27) .. (260.84,133.27) -- (260.84,133.27) .. controls (254.3,133.27) and (249,127.97) .. (249,121.43) -- cycle ;
+%Rounded Rect [id:dp37697559304492145] 
+\draw  [color={rgb, 255:red, 80; green, 227; blue, 194 }  ,draw opacity=1 ][line width=1.5]  (274,71.61) .. controls (274,65.07) and (279.3,59.77) .. (285.84,59.77) -- (285.84,59.77) .. controls (292.38,59.77) and (297.68,65.07) .. (297.68,71.61) -- (297.68,73.43) .. controls (297.68,79.97) and (292.38,85.27) .. (285.84,85.27) -- (285.84,85.27) .. controls (279.3,85.27) and (274,79.97) .. (274,73.43) -- cycle ;
+%Rounded Rect [id:dp5534521526806271] 
+\draw  [color={rgb, 255:red, 248; green, 231; blue, 28 }  ,draw opacity=1 ][line width=1.5]  (312,113.61) .. controls (312,107.07) and (317.3,101.77) .. (323.84,101.77) -- (323.84,101.77) .. controls (330.38,101.77) and (335.68,107.07) .. (335.68,113.61) -- (335.68,115.43) .. controls (335.68,121.97) and (330.38,127.27) .. (323.84,127.27) -- (323.84,127.27) .. controls (317.3,127.27) and (312,121.97) .. (312,115.43) -- cycle ;
+%Straight Lines [id:da03331792259453903] 
+\draw [line width=1.5]    (52.68,134.61) -- (88,111.43) ;
+%Straight Lines [id:da9651033060530065] 
+\draw [line width=1.5]    (152.84,105.77) -- (136.84,71.27) ;
+%Straight Lines [id:da26193068858450497] 
+\draw [line width=1.5]    (193.17,83) -- (145.68,60.43) ;
+%Straight Lines [id:da5121704900801909] 
+\draw [line width=1.5]    (167.68,117.61) -- (196.17,98) ;
+%Straight Lines [id:da04948505045903029] 
+\draw [line width=1.5]    (249.17,117) -- (214.84,94.27) ;
+
+% Text Node
+\draw (35.34,129.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+% Text Node
+\draw (94.34,98.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (128.34,50.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (150.34,109.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle 4$}};
+% Text Node
+\draw (198.34,79.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle 5$}};
+% Text Node
+\draw (255.34,111.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle 6$}};
+% Text Node
+\draw (281.34,63.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle 7$}};
+% Text Node
+\draw (319.34,105.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle 8$}};
+\end{tikzpicture}
+\end{center}
+On trouve que : 
+\begin{itemize}
+	\item	8 nœuds : $N	=	\{1, 2, 3, 4, 5, 6, 7, 8\}$.
+	\item	5 arcs : $A	=	\{\{1, 2\}, \{3, 4\}, \{3, 5\}, \{4, 5\}, \{5, 6\}\}$.
+	\item	4 composantes : $\{\{1, 2\}, \{3, 4, 5\}, \{7\}, \{8\}\}$.
+\end{itemize}
+
+Également, puisqu'il y a plusieurs composantes, le graphique n'est pas connecté.
+\end{formula}
+
+\begin{definitionNOHFILL}[Graphique aléatoire]
+Graphique avec $n$ nœuds pour lequel deux composantes $i$ et $j$ ne sont pas reliées avec certitude, mais plutôt avec probabilité $P_{i, j}$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112); %set diagram left start at 0, and has height of 112
+
+%Straight Lines [id:da633468194869987] 
+\draw [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][line width=1.5]    (167.68,37.02) -- (219,37.02) ;
+%Rounded Rect [id:dp6580738501830994] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (144,36.11) .. controls (144,29.57) and (149.3,24.27) .. (155.84,24.27) -- (155.84,24.27) .. controls (162.38,24.27) and (167.68,29.57) .. (167.68,36.11) -- (167.68,37.93) .. controls (167.68,44.47) and (162.38,49.77) .. (155.84,49.77) -- (155.84,49.77) .. controls (149.3,49.77) and (144,44.47) .. (144,37.93) -- cycle ;
+
+%Rounded Rect [id:dp18402671624270361] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (219,36.11) .. controls (219,29.57) and (224.3,24.27) .. (230.84,24.27) -- (230.84,24.27) .. controls (237.38,24.27) and (242.68,29.57) .. (242.68,36.11) -- (242.68,37.93) .. controls (242.68,44.47) and (237.38,49.77) .. (230.84,49.77) -- (230.84,49.77) .. controls (224.3,49.77) and (219,44.47) .. (219,37.93) -- cycle ;
+
+
+% Text Node
+\draw (180.34,12.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,opacity=1 ] [align=left] {$\displaystyle P_{i,j}$};
+% Text Node
+\draw (150.34,28.02) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle i$}};
+% Text Node
+\draw (225.34,28.02) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{1,1,1}{j}$}};
+\end{tikzpicture}
+\end{center}
+
+Soit la v.a. \lfbox[formula]{$X_{i, j}$} représentant l'existence d'un arc entre les nœuds $i$ et $j $ avec probabilité $\Pr(X_{i, j} = 1) = P_{i, j}$ alors : 
+\begin{align*}
+	X_{i, j}
+	&=	\begin{cases}
+		1,	&	\text{si $\{i, j\}$ est un arc}	\\
+		0,	&	\text{sinon}	
+		\end{cases}
+\end{align*}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Connectivité des graphiques aléatoiress]
+\begin{rappel_enhanced}[Contexte]
+La connectivité des graphiques aléatoires est semblable à la fiabilité des systèmes. \\
+
+Pour un système, il n'est pas nécessaire que toutes les composantes fonctionnent pour que le système fonctionne. De façon semblable, il n'est pas nécessaire que tous les nœuds d'un graphique aléatoire soient reliés pour qu'il soit connecté.\\
+
+Alors, on peut appliquer les mêmes concepts de \og \textit{minimal path sets} \fg{} et de \og \textit{minimal cut sets} \fg{} des systèmes aux graphiques aléatoires.
+\end{rappel_enhanced}
+
+Un graphique \textit{aléatoire} est connecté tant que tous les arcs d'au moins un \og \textit{minimal path sets} \fg{} existent.\\
+
+Un graphique aléatoire de $n$ nœuds a :
+\begin{itemize}
+	\item	\lfbox[formula]{$n^{n - 2}$} \og \textit{minimal path sets} \fg{}, et 
+	\item	\lfbox[formula]{$2^{n - 1} - 1$} \og \textit{minimal cut sets} \fg{}, 
+	\item	\lfbox[formula]{$2^{\binom{n}{2}}$} graphiques possibles.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{formula}{Exemple de connectivité}
+Soit un graphique aléatoire avec 3 nœuds.\\
+
+Les $3^{3 - 2} = 3$ \og \textit{minimal path sets} \fg{} sont les suivants :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112); %set diagram left start at 0, and has height of 112
+
+%Straight Lines [id:da757165276440054] 
+\draw [line width=1.5]    (72.5,72) -- (49.5,49) ;
+%Straight Lines [id:da2901151971785225] 
+\draw [line width=1.5]    (92.5,72) -- (115.5,49) ;
+%Rounded Rect [id:dp18977091150381975] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (34,35.61) .. controls (34,29.07) and (39.3,23.77) .. (45.84,23.77) -- (45.84,23.77) .. controls (52.38,23.77) and (57.68,29.07) .. (57.68,35.61) -- (57.68,37.43) .. controls (57.68,43.97) and (52.38,49.27) .. (45.84,49.27) -- (45.84,49.27) .. controls (39.3,49.27) and (34,43.97) .. (34,37.43) -- cycle ;
+
+%Rounded Rect [id:dp9935301867557762] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (71,79.61) .. controls (71,73.07) and (76.3,67.77) .. (82.84,67.77) -- (82.84,67.77) .. controls (89.38,67.77) and (94.68,73.07) .. (94.68,79.61) -- (94.68,81.43) .. controls (94.68,87.97) and (89.38,93.27) .. (82.84,93.27) -- (82.84,93.27) .. controls (76.3,93.27) and (71,87.97) .. (71,81.43) -- cycle ;
+
+%Rounded Rect [id:dp013391070155128748] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (109,35.61) .. controls (109,29.07) and (114.3,23.77) .. (120.84,23.77) -- (120.84,23.77) .. controls (127.38,23.77) and (132.68,29.07) .. (132.68,35.61) -- (132.68,37.43) .. controls (132.68,43.97) and (127.38,49.27) .. (120.84,49.27) -- (120.84,49.27) .. controls (114.3,49.27) and (109,43.97) .. (109,37.43) -- cycle ;
+
+%Straight Lines [id:da8975400796076565] 
+\draw [line width=1.5]    (167.68,35.43) -- (219,35.43) ;
+%Straight Lines [id:da167284122584747] 
+\draw [line width=1.5]    (202.5,72) -- (225.5,49) ;
+%Rounded Rect [id:dp13577760592528776] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (144,35.61) .. controls (144,29.07) and (149.3,23.77) .. (155.84,23.77) -- (155.84,23.77) .. controls (162.38,23.77) and (167.68,29.07) .. (167.68,35.61) -- (167.68,37.43) .. controls (167.68,43.97) and (162.38,49.27) .. (155.84,49.27) -- (155.84,49.27) .. controls (149.3,49.27) and (144,43.97) .. (144,37.43) -- cycle ;
+
+%Rounded Rect [id:dp046842562867378534] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (181,79.61) .. controls (181,73.07) and (186.3,67.77) .. (192.84,67.77) -- (192.84,67.77) .. controls (199.38,67.77) and (204.68,73.07) .. (204.68,79.61) -- (204.68,81.43) .. controls (204.68,87.97) and (199.38,93.27) .. (192.84,93.27) -- (192.84,93.27) .. controls (186.3,93.27) and (181,87.97) .. (181,81.43) -- cycle ;
+
+%Rounded Rect [id:dp05685675073164731] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (219,35.61) .. controls (219,29.07) and (224.3,23.77) .. (230.84,23.77) -- (230.84,23.77) .. controls (237.38,23.77) and (242.68,29.07) .. (242.68,35.61) -- (242.68,37.43) .. controls (242.68,43.97) and (237.38,49.27) .. (230.84,49.27) -- (230.84,49.27) .. controls (224.3,49.27) and (219,43.97) .. (219,37.43) -- cycle ;
+
+%Straight Lines [id:da15700560076822256] 
+\draw [line width=1.5]    (277.68,35.43) -- (329,35.43) ;
+%Straight Lines [id:da5100726311758725] 
+\draw [line width=1.5]    (292.5,72) -- (269.5,49) ;
+%Rounded Rect [id:dp9633502813554886] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (254,35.61) .. controls (254,29.07) and (259.3,23.77) .. (265.84,23.77) -- (265.84,23.77) .. controls (272.38,23.77) and (277.68,29.07) .. (277.68,35.61) -- (277.68,37.43) .. controls (277.68,43.97) and (272.38,49.27) .. (265.84,49.27) -- (265.84,49.27) .. controls (259.3,49.27) and (254,43.97) .. (254,37.43) -- cycle ;
+
+%Rounded Rect [id:dp43956572400381333] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (291,79.61) .. controls (291,73.07) and (296.3,67.77) .. (302.84,67.77) -- (302.84,67.77) .. controls (309.38,67.77) and (314.68,73.07) .. (314.68,79.61) -- (314.68,81.43) .. controls (314.68,87.97) and (309.38,93.27) .. (302.84,93.27) -- (302.84,93.27) .. controls (296.3,93.27) and (291,87.97) .. (291,81.43) -- cycle ;
+
+%Rounded Rect [id:dp4418103150222692] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (329,35.61) .. controls (329,29.07) and (334.3,23.77) .. (340.84,23.77) -- (340.84,23.77) .. controls (347.38,23.77) and (352.68,29.07) .. (352.68,35.61) -- (352.68,37.43) .. controls (352.68,43.97) and (347.38,49.27) .. (340.84,49.27) -- (340.84,49.27) .. controls (334.3,49.27) and (329,43.97) .. (329,37.43) -- cycle ;
+
+
+% Text Node
+\draw (40.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+% Text Node
+\draw (77.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (115.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (225.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (187.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (150.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+% Text Node
+\draw (335.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (297.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (260.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+\end{tikzpicture}
+\end{center}
+
+Les $2^{3 - 1} - 1 = 3$ \og \textit{minimal cut sets} \fg{} sont les suivants :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112); %set diagram left start at 0, and has height of 112
+
+%Straight Lines [id:da7347161419448469] 
+\draw [line width=1.5]    (92.5,72) -- (115.5,49) ;
+%Rounded Rect [id:dp52812847367501] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (34,35.61) .. controls (34,29.07) and (39.3,23.77) .. (45.84,23.77) -- (45.84,23.77) .. controls (52.38,23.77) and (57.68,29.07) .. (57.68,35.61) -- (57.68,37.43) .. controls (57.68,43.97) and (52.38,49.27) .. (45.84,49.27) -- (45.84,49.27) .. controls (39.3,49.27) and (34,43.97) .. (34,37.43) -- cycle ;
+
+%Rounded Rect [id:dp5617743459291145] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (71,79.61) .. controls (71,73.07) and (76.3,67.77) .. (82.84,67.77) -- (82.84,67.77) .. controls (89.38,67.77) and (94.68,73.07) .. (94.68,79.61) -- (94.68,81.43) .. controls (94.68,87.97) and (89.38,93.27) .. (82.84,93.27) -- (82.84,93.27) .. controls (76.3,93.27) and (71,87.97) .. (71,81.43) -- cycle ;
+
+%Rounded Rect [id:dp008376903551648773] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (109,35.61) .. controls (109,29.07) and (114.3,23.77) .. (120.84,23.77) -- (120.84,23.77) .. controls (127.38,23.77) and (132.68,29.07) .. (132.68,35.61) -- (132.68,37.43) .. controls (132.68,43.97) and (127.38,49.27) .. (120.84,49.27) -- (120.84,49.27) .. controls (114.3,49.27) and (109,43.97) .. (109,37.43) -- cycle ;
+
+%Straight Lines [id:da7905063435136956] 
+\draw [line width=1.5]    (167.68,35.43) -- (219,35.43) ;
+%Rounded Rect [id:dp2938655868030775] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (144,35.61) .. controls (144,29.07) and (149.3,23.77) .. (155.84,23.77) -- (155.84,23.77) .. controls (162.38,23.77) and (167.68,29.07) .. (167.68,35.61) -- (167.68,37.43) .. controls (167.68,43.97) and (162.38,49.27) .. (155.84,49.27) -- (155.84,49.27) .. controls (149.3,49.27) and (144,43.97) .. (144,37.43) -- cycle ;
+
+%Rounded Rect [id:dp8911373398860187] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (181,79.61) .. controls (181,73.07) and (186.3,67.77) .. (192.84,67.77) -- (192.84,67.77) .. controls (199.38,67.77) and (204.68,73.07) .. (204.68,79.61) -- (204.68,81.43) .. controls (204.68,87.97) and (199.38,93.27) .. (192.84,93.27) -- (192.84,93.27) .. controls (186.3,93.27) and (181,87.97) .. (181,81.43) -- cycle ;
+
+%Rounded Rect [id:dp11220105471499431] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (219,35.61) .. controls (219,29.07) and (224.3,23.77) .. (230.84,23.77) -- (230.84,23.77) .. controls (237.38,23.77) and (242.68,29.07) .. (242.68,35.61) -- (242.68,37.43) .. controls (242.68,43.97) and (237.38,49.27) .. (230.84,49.27) -- (230.84,49.27) .. controls (224.3,49.27) and (219,43.97) .. (219,37.43) -- cycle ;
+
+%Straight Lines [id:da5084894535194546] 
+\draw [line width=1.5]    (292.5,72) -- (269.5,49) ;
+%Rounded Rect [id:dp14491739390865632] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (254,35.61) .. controls (254,29.07) and (259.3,23.77) .. (265.84,23.77) -- (265.84,23.77) .. controls (272.38,23.77) and (277.68,29.07) .. (277.68,35.61) -- (277.68,37.43) .. controls (277.68,43.97) and (272.38,49.27) .. (265.84,49.27) -- (265.84,49.27) .. controls (259.3,49.27) and (254,43.97) .. (254,37.43) -- cycle ;
+
+%Rounded Rect [id:dp8766875618692331] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (291,79.61) .. controls (291,73.07) and (296.3,67.77) .. (302.84,67.77) -- (302.84,67.77) .. controls (309.38,67.77) and (314.68,73.07) .. (314.68,79.61) -- (314.68,81.43) .. controls (314.68,87.97) and (309.38,93.27) .. (302.84,93.27) -- (302.84,93.27) .. controls (296.3,93.27) and (291,87.97) .. (291,81.43) -- cycle ;
+
+%Rounded Rect [id:dp40232492134805176] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (329,35.61) .. controls (329,29.07) and (334.3,23.77) .. (340.84,23.77) -- (340.84,23.77) .. controls (347.38,23.77) and (352.68,29.07) .. (352.68,35.61) -- (352.68,37.43) .. controls (352.68,43.97) and (347.38,49.27) .. (340.84,49.27) -- (340.84,49.27) .. controls (334.3,49.27) and (329,43.97) .. (329,37.43) -- cycle ;
+
+
+% Text Node
+\draw (40.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+% Text Node
+\draw (77.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (115.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (225.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (187.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (150.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+% Text Node
+\draw (335.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (297.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (260.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+\end{tikzpicture}
+\end{center}
+
+Les deux autres graphiques possibles qui ne sont pas optimaux sont : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,112); %set diagram left start at 0, and has height of 112
+
+%Rounded Rect [id:dp026022160743957468] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (34,35.61) .. controls (34,29.07) and (39.3,23.77) .. (45.84,23.77) -- (45.84,23.77) .. controls (52.38,23.77) and (57.68,29.07) .. (57.68,35.61) -- (57.68,37.43) .. controls (57.68,43.97) and (52.38,49.27) .. (45.84,49.27) -- (45.84,49.27) .. controls (39.3,49.27) and (34,43.97) .. (34,37.43) -- cycle ;
+
+%Rounded Rect [id:dp05719591207338426] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (71,79.61) .. controls (71,73.07) and (76.3,67.77) .. (82.84,67.77) -- (82.84,67.77) .. controls (89.38,67.77) and (94.68,73.07) .. (94.68,79.61) -- (94.68,81.43) .. controls (94.68,87.97) and (89.38,93.27) .. (82.84,93.27) -- (82.84,93.27) .. controls (76.3,93.27) and (71,87.97) .. (71,81.43) -- cycle ;
+
+%Rounded Rect [id:dp36049870395542616] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (109,35.61) .. controls (109,29.07) and (114.3,23.77) .. (120.84,23.77) -- (120.84,23.77) .. controls (127.38,23.77) and (132.68,29.07) .. (132.68,35.61) -- (132.68,37.43) .. controls (132.68,43.97) and (127.38,49.27) .. (120.84,49.27) -- (120.84,49.27) .. controls (114.3,49.27) and (109,43.97) .. (109,37.43) -- cycle ;
+
+%Straight Lines [id:da9797441095435544] 
+\draw [line width=1.5]    (167.68,35.43) -- (219,35.43) ;
+%Rounded Rect [id:dp6836288115751512] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  (144,35.61) .. controls (144,29.07) and (149.3,23.77) .. (155.84,23.77) -- (155.84,23.77) .. controls (162.38,23.77) and (167.68,29.07) .. (167.68,35.61) -- (167.68,37.43) .. controls (167.68,43.97) and (162.38,49.27) .. (155.84,49.27) -- (155.84,49.27) .. controls (149.3,49.27) and (144,43.97) .. (144,37.43) -- cycle ;
+
+%Rounded Rect [id:dp29789997781466515] 
+\draw  [color={rgb, 255:red, 242; green, 153; blue, 5 }  ,draw opacity=1 ][line width=1.5]  (181,79.61) .. controls (181,73.07) and (186.3,67.77) .. (192.84,67.77) -- (192.84,67.77) .. controls (199.38,67.77) and (204.68,73.07) .. (204.68,79.61) -- (204.68,81.43) .. controls (204.68,87.97) and (199.38,93.27) .. (192.84,93.27) -- (192.84,93.27) .. controls (186.3,93.27) and (181,87.97) .. (181,81.43) -- cycle ;
+
+%Rounded Rect [id:dp5750339472332271] 
+\draw  [color={rgb, 255:red, 255; green, 110; blue, 236 }  ,draw opacity=1 ][line width=1.5]  (219,35.61) .. controls (219,29.07) and (224.3,23.77) .. (230.84,23.77) -- (230.84,23.77) .. controls (237.38,23.77) and (242.68,29.07) .. (242.68,35.61) -- (242.68,37.43) .. controls (242.68,43.97) and (237.38,49.27) .. (230.84,49.27) -- (230.84,49.27) .. controls (224.3,49.27) and (219,43.97) .. (219,37.43) -- cycle ;
+
+%Straight Lines [id:da2732284992251657] 
+\draw [line width=1.5]    (182.5,72) -- (159.5,49) ;
+%Straight Lines [id:da787308110865319] 
+\draw [line width=1.5]    (203.84,72.27) -- (217.51,58.6) -- (226.84,49.27) ;
+
+% Text Node
+\draw (40.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+% Text Node
+\draw (77.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (115.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (225.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{3}$}};
+% Text Node
+\draw (187.34,71.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0,0,0}{$\displaystyle \textcolor[rgb]{0,0,0}{2}$}};
+% Text Node
+\draw (150.34,27.52) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{1,1,1}{$\displaystyle \textcolor[rgb]{0,0,0}{1}$}};
+\end{tikzpicture}
+\end{center}
+\end{formula}
+
+\begin{definitionNOHFILLprop}[Probabilités de connectivité des graphiques]
+On pose que chaque v.a. est iid avec \lfbox[conditions]{$P_{i, j} = p$}. \\
+
+Alors, on trouve la probabilité \lfbox[formula]{$P_{n}$} qu'un graphique aléatoire de $n$ nœuds soit connecté avec la formule récursive :
+\begin{align*}
+	P_{n}
+	&=	1 - \sum_{k = 1}^{n - 1}\binom{n - 1}{k - 1} (1 - p)^{k(n - k)}P_{k}, \quad n = 2, 3, \dots
+\end{align*}
+où \lfbox[conditions]{$P_{1} = 1, P_{2} = p$}.
+
+\tcbline
+
+On peut également trouver les \textbf{bornes} pour la probabilité pour simplifier la tâche : 
+\begin{align*}
+	n(1 - p)^{n - 1} - \binom{n}{2} (1 - p)^{2n - 3}	
+	\leq	1 - P_{n}		\leq	
+	(n + 1) (1 - p)^{n - 1}
+\end{align*}
+
+\tcbline
+
+Finalement, on peut \textbf{approximer} la probabilité avec \lfbox[formula]{$P_{n} \approx 1 - n(1 - p)^{n - 1}$}.
+\end{definitionNOHFILLprop}
+
 
 
 \columnbreak
