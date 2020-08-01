@@ -3483,6 +3483,7 @@ TP
 \label{chapt:mathIARD}
 \section{Probabilité}
 \subsection{Fonctions de variables aléatoires}
+\label{subsec:rvfunct}
 \begin{definitionNOHFILL}[Fonction de masse de probabilité (PMF)]
 Pour une variable aléatoire discrète $X$, on dénote sa fonction de masse de probabilité \lfbox[formula]{$p_{X}(x)	=	\Pr(X	=	x)$} tel que \lfbox[conditions]{$0	\leq	p(x)	\leq	1$} et \lfbox[conditions]{$\sum_{x} p(x)	=	1$}.
 \end{definitionNOHFILL}
@@ -3527,11 +3528,13 @@ La fonction de hasard \lfbox[formula]{$h_{X}(x)	=	\frac{f(x)}{S(x)}$} tel que \l
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Fonction de hasard cumulative]
-La fonction de hasard \lfbox[formula]{$H_{X}(x)	=	\int_{-\infty}^{x}h(t)dt$}.
+La fonction de hasard cumulative \lfbox[formula]{$H_{X}(x)	=	\int_{-\infty}^{x}h(t)dt$}.
 \begin{itemize}
 	\item	Également, \lfbox[formula]{$H(x)	=	-\ln S(x)$} ou \lfbox[formula]{$S(x)	=	\textrm{e}^{-H(x)}$}.
 \end{itemize}
 \end{definitionNOHFILL}
+
+\paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsec:reliabilityVaria}}} de la section sur la \textit{\underline{\nameref{sec:reliability}}} du chapitre \textit{\underline{\nameref{chapt:varia}}} pour l'interprétation de la distribution en fonction de la fonction de hasard et de la fonction de hasard cumulative.
 
 
 \columnbreak
@@ -3751,6 +3754,31 @@ $X \sim \text{Gamma}(\alpha, \theta)$	&	$\alpha, \theta > 0$	&	$x \geq	0$	\\\hli
 	\item	Si $X \sim \text{Exp}(\theta)$ alors \lfbox[formula]{$(X	-	d	|	X	>	d)	\sim \text{Exp}(\theta)$}.
 \end{itemize}
 \end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLprop}[Loi de Weibull]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Paramètres}}		&	\textcolor{white}{\textbf{Domaine}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Weibull}(\tau, \beta)$	&	$\tau, \beta > 0$	&	$x \geq	0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[= \frac{\tau (x/\theta)^{\tau} \textrm{e}^{-(x/\theta)^{\tau}}}{x}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	La loi de Weibull est une transformation de la loi exponentielle; pour \lfbox[conditions]{$Y \sim \text{Exp}(\mu)$}, alors \lfbox[formula]{$X = Y^{1/tau} \sim \text{Weibull}(\theta = \mu^{1/\tau}, \tau)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsec:reliabilityVaria}}} de la section sur la \textit{\underline{\nameref{sec:reliability}}} du chapitre \textit{\underline{\nameref{chapt:varia}}} pour l'interprétation de la fonction de hasard dans le contexte de la loi gamma, la loi exponentielle et la loi de Weibull.
+
 
 \begin{definitionNOHFILLprop}[Loi Erlang]
 \begin{rappel_enhanced}[Contexte]
@@ -5057,6 +5085,7 @@ Dans les deux cas, la probabilité de rejeter le modèle plus simple lorsque le 
 
 \pagebreak
 \part{Sujets divers}
+\label{chapt:varia}
 \section{Optimisation numérique}
 \begin{definitionNOHFILLsub}[Algorithmes \og \textit{Greedy} \fg{}]
 Méthode de résolution de problèmes qui prend la décision optimale \textbf{à chaque étape} d'obtenir la solution optimale d'un problème. \\
@@ -5067,14 +5096,17 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide}s au coût d'être \t
 \end{definitionNOHFILLsub}
 
 
+
 \pagebreak
 \section{Théorie de la fiabilité}
+\label{sec:reliability}
 \begin{definitionNOHFILL}[Théorie de la fiabilité]
 \textbf{Contexte} : Un \textit{système} ayant plusieurs \textit{composantes}.	 \\
 \textbf{Idée} : Le fonctionnement du système dépend du fonctionnement des composantes.
 
 La \textbf{théorie de la fiabilité} sert à quantifier la probabilité qu'un \textit{système} fonctionne selon la fiabilité de ses composantes, et selon le rôle qu'elles ont dans le système.
 \end{definitionNOHFILL}
+
 
 \subsection{Introduction aux systèmes}
 \begin{distributions}[Notation]
@@ -5932,7 +5964,6 @@ On pose que les composante sont indépendantes, puis :
 \end{formula}
 
 
-
 \columnbreak
 \subsection{Bornes des fonctions de fiabilité}
 \begin{rappel_enhanced}[Contexte]
@@ -6434,16 +6465,144 @@ Finalement, on peut \textbf{approximer} la probabilité avec \lfbox[formula]{$P_
 \end{definitionNOHFILLprop}
 
 
+\columnbreak
+\subsection{Durée de vie des systèmes}
+\begin{rappel_enhanced}[Contexte]
+Nous avons évalué la \textbf{\textit{fiabilité}} d'un système et comment qu'elle est impactée par la fiabilité de ses composantes.\\
+
+Nous évaluons maintenant la \textbf{durée de vie} d'un système et comment qu'elle est impactée par la durée de vie de ses composantes.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$T_{i}$]	Durée de vie de la composante $i$.
+	\item[$S_{i}(t)$]	Fonction de survie de la durée de vie de la composante $i$.
+		\begin{itemize}
+		\item	$\bm{S}(t)	=	\left(S_{1}(t), \dots, S_{n}(t)\right)$ est le vecteur des fonctions de survie des $n$ composantes.
+		\end{itemize}
+	\item[$T$]	Durée de vie du système.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLprop}[Calcul de probabilités de durée de vie]
+La probabilité que le système fonctionne passé $t$ équivaut à la fonction de fiabilité évaluée au vecteur des fonctions de survie : \lfbox[formula]{$\Pr(T > t) = r[\bm{S}(t)]$}.\\
+
+Donc, on pose $p_{i}	=	S_{i}(t)$ pour $i = 1, 2, \dots, n$.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Espérance de durée de vie]
+La durée de vie espérée équivaut à \lfbox[formula]{$\text{E}[T]	 = \int_{0}^{\infty} r[\bm{S}(t)] dt$}.
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Exemple du calcul de la durée de vie espérée}
+On reprend l'exemple de la sous-section sur les fonctions de fiabilité avec le système en parallèle ayant 3 composantes. \\
+
+On pose que les 3 composantes sont indépendantes et que la durée de vie est uniformément distribuée sur $(0, 2)$.
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Trouver la fonction de survie de la composante $i$ :
+		\begin{align*}
+		S_{i}(t)
+		&=	\frac{2 - t}{2 - 0}
+		=	\frac{2 - t}{2}
+		\end{align*}
+	\item	Trouver la fonction de fiabilité.
+		\begin{itemize}
+		\item	Précédemment, nous avons trouvé que $r(\bm{p}) = p_{3} + p_{1}p_{2} - p_{1}p_{2}p_{3}$.
+		\end{itemize}
+	\item	Remplacer $\bm{p}$ par $\bm{S}(t)$ :
+		\begin{align*}
+		r(\bm{p}) 
+		&=	\bm{S}_{3}(t) + \bm{S}_{1}(t)\bm{S}_{2}(t) - \bm{S}_{1}(t)\bm{S}_{2}(t)\bm{S}_{3}(t)	\\
+		&=	\left(\frac{2 - t}{2}\right) + \left(\frac{2 - t}{2}\right)^{2} - \left(\frac{2 - t}{2}\right)^{3}	\\
+		&=	\frac{t^{3} - 4t^{2} + 8}{8}
+		\end{align*}
+	\item	Trouver $\text{E}[T]	$ : 
+		\begin{align*}
+		\text{E}[T]
+		&=	\int_{0}^{2} \frac{t^{3} - 4t^{2} + 8}{8} dt	\\
+		&=	1.1667
+		\end{align*}
+\end{enumerate}
+\end{formula}
+
+\begin{definitionNOHFILLpropos}[Étapes du calcul de probabilités, ou de l'espérance, de la durée de vie]
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Déterminer la fonction de la structure du système $\phi(\bm{X})$.
+		\begin{itemize}
+		\item	Soit avec les \og \textit{minimal path sets} \fg{} ou les \og \textit{minimal cut sets} \fg{}.
+		\end{itemize}
+	\item	Déduire la fonction de fiabilité.
+		\begin{itemize}
+		\item	Soit en trouvant $r(\bm{p}) = \text{E}[\phi(\bm{X})]$, ou avec $r(\bm{p}) = Pr(\phi(\bm{X}) = 1)$.
+		\end{itemize}
+	\item	Développer la fonction de survie $\Pr(T > t)$ de la fonction de fiabilité $r(\bm{S}(t))$.
+	\item	Trouver la probabilité désirée ou l'espérance.
+\end{enumerate}
+\end{definitionNOHFILLpropos}
+
+\paragraph{Raccourci}	Pour un système de $k$ parmi $n$ avec des durées de vie iid suivant une loi exponentielle de moyenne $\mu$, \lfbox[formula]{$\text{E}[T]	=	\mu \sum_{i = k}^{n} \frac{1}{i}$}. Cette formule découle du coût espéré total pour les algorithmes \og \textit{greedy} \fg{} A et B.
+
 
 \columnbreak
-\subsection{Lifetime of Systems}
+\subsection{Divers}
+\label{subsec:reliabilityVaria}
+\begin{rappel}{Rappel : fonction de hasard}
+Dans le chapitre de \textit{\underline{\nameref{chapt:mathIARD}}} à la sous-section \textit{\underline{\nameref{subsec:rvfunct}}} on a : 
+\begin{itemize}
+	\item	La fonction de hasard \lfbox[formula]{$h_{X}(x)	=	\frac{f(x)}{S(x)}$}
+	\item	La fonction de hasard cumulative \lfbox[formula]{$H_{X}(x)	=	\int_{-\infty}^{x}h(t)dt$}
+\end{itemize}
+\end{rappel}
+
+\begin{rappel}{Système monotone}
+La fiabilité du système augmente lorsque la fiabilité de toute composante augmente.
+\end{rappel}
+
+\begin{distributions}[Terminologie]
+\begin{description}
+	\item[IFR]	\og \textit{Increasing failure rate distribution} \fg{}.
+	\item[DFR]	\og \textit{Decreasing failure rate distribution} \fg{}.
+	\item[IFRA]	\og \textit{Increasing failure rate on the average distribution} \fg{}.
+		\begin{itemize}
+		\item	La distribution IFRA est une généralisation de la distribution IFR.
+		\item	Il s'ensuit que si une distribution est IFR elle est également IFRA.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 	
+\rowcolor{airforceblue}\textcolor{white}{\textbf{Distribution}}	&	\textcolor{white}{$h(x)$ est une fonction $\rule{1cm}{0.15mm}$ de $x$}	\\\specialrule{0.1em}{0em}{0em} 
+IFR			&	croissante		\\\hline
+DFR			&	décroissante		\\\hline
+IFR et DFR	&	constante		\\\hline
+\end{tabular}
+\end{center}
+
+Une distribution est IFRA si $\frac{H(x)}{x}$ est une fonction \textit{croissante} de $x$, pour tout $x \geq 0$.
+\paragraph{Note} Si les distribution de durées de vies de toutes les composantes (\textit{indépendantes}) d'un \textit{système monotone} sont IFRA, alors la distribution de la durée de vie du système le sera aussi. 
 
 
-\columnbreak
-\subsection{Miscellaneous}
 
+\subsubsection{Distributions particulières}
+Puisque la fonction de hasard de la distribution exponentielle est fixe, elle est à la fois IFR et DFR. \\
 
+Cependant, lorsque la fonction de hasard varie, le type de distribution peut varier aussi. Par exemple, pour la loi gamma et la loi de Weibull : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+	&	\textcolor{white}{Weibull$(\tau, \theta)$}	&	\textcolor{white}{Gamma$(\alpha, \beta)$}		\\\cline{2-3}
+\rowcolor{airforceblue}\multirow{-2}{*}{\textcolor{white}{\textbf{Distribution}}}	&	\multicolumn{2}{c|}{\textcolor{white}{\textbf{Condition}}}	\\\specialrule{0.1em}{0em}{0em} 
+IFR			&	$\tau \geq 1$		&	$\alpha \geq 1$		\\\hline
+DFR			&	$0 < \tau \leq 1$	&	$0 < \alpha \leq 1$	\\\hline
+IFR et DFR	&	$\tau = 1$			&	$\alpha = 1$			\\\hline
+\end{tabular}
+\end{center}
+\paragraph{Note}	Une loi gamma avec $\alpha = 1$, tout comme une loi de Weibull avec $\tau = 1$, revient à une distribution exponentielle.
 
+\paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsec:distrIARD}}} du chapitre de \textit{\underline{\nameref{chapt:mathIARD}}} pour une description de la loi gamma et de la loi de Weibull.
 
 \pagebreak
 \part{Processus stochastiques}
