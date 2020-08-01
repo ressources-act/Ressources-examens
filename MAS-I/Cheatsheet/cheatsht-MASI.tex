@@ -7422,6 +7422,8 @@ Sommer des processus de Poisson résulte en un processus de Poisson dont la v.a.
 
 \pagebreak
 \section{Chaînes de Markov}
+\subsection{Introduction}
+
 Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seulement du dernier état à $n	-	1$ : 
 \begin{align*}
 	\Pr(X_{n}	=	j | X_{n - 1}	=	i_{n - 1}, X_{n - 2} = i_{n - 2}, \dots, X_{0}	=	i_{0})
@@ -7429,6 +7431,9 @@ Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seuleme
 	=	P_{ij}
 \end{align*}
 
+
+
+\subsection{Multiple-Step Transition Probabilities}
 \subsection{Équation de Chapman-Kolmogorov}
 \begin{distributions}[Notation]
 \begin{description}
@@ -7445,13 +7450,24 @@ Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seuleme
 
 L'équation de Chapman-Kolmogorov trouve la probabilité d'être dans l'état $j$ au temps $t$ sachant qu'au temps $0$ on était à l'état $i$ : \lfbox[formula]{$P^{n + m}_{ij}	=	\sum_{k	=	0}^{\infty}P_{ik}^{n}P_{kj}^{m}$}.
 
+\subsection{Classification of States}
 
-\subsection{Temps inter}
-Soit $n$ v.a. exponentielles indépendantes avec paramètres de fréquence $\lambda_{1}, \dots, \lambda_{n}$, alors :
-\begin{align*}
-	\Pr(X_{i}	=	\min(X_{1}, \dots, X_{n})
-	&=	\frac{\lambda_{i}}{\sum_{i = 1}^{n} \lambda_{i}}
-\end{align*}
+
+\subsection{Long-Run Proportions and Limiting Probabilities}
+
+
+\subsection{Time Spent in Transient States}
+
+
+\subsection{Time Reversibility}
+
+
+\subsection{Applications of Markov Chains}
+
+
+\subsection{Branching Process}
+
+
 
 
 
