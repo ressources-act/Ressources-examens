@@ -7423,16 +7423,66 @@ Sommer des processus de Poisson résulte en un processus de Poisson dont la v.a.
 \pagebreak
 \section{Chaînes de Markov}
 \subsection{Introduction}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X_{m}$]	État du processus au temps $m$.
+	\item[$P_{i, j}$]	Probabilité de transition de l'état $i$ à l'état $j$ (en une période).
+\end{description}
+\end{distributions}
+\begin{rappel_enhanced}[Contexte]
+Une chaîne de Markov est utilisée lorsqu'il y a un processus prenant une valeur précise dans chaque intervalle de temps.\\
 
-Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seulement du dernier état à $n	-	1$ : 
+Les \textbf{\textit{états}} du processus sont les valeurs possibles qu'il peut prendre.
+\begin{itemize}
+	\item	Typiquement, les états sont dénotes par des nombres entiers.
+	\item	Le processus peut seulement être dans un seul état par intervalle de temps.
+\end{itemize}
+
+Par exemple, un pourrait avoir une chaîne de Markov dont les états correspondent au nombre de vélos qu'une boutique de sport a en stock à chaque jour au moment de la fermeture du magasin.	
+
+\
+
+Souvent, nous sommes intéressés aux \textit{\textbf{probabilités de transition}} d'un état à un autre. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Chaîne de Markov]
+Une chaîne de Markov est un type de processus stochastique dénoté comme \lfbox[formula]{$\{X_{m}, m = 0, 1, 2, \dots\}$}. Le processus prend un ensemble (fini ou infini) de valeurs \textit{dénombrable} représentant l'état du processus à différents moments dans le temps.
+\begin{itemize}
+	\item	$X_{m} = i$ signifie que le processus est dans l'état $i$ au temps $m$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Homogénéité de la chaîne de Markov]
+Si les probabilités de transition sont :
+\begin{description}
+	\item[fixes]	le processus est une chaîne de Markov \textbf{\textit{homogène}}, ou \textbf{\textit{stationnaire}}.
+	\item[variables]	le processus est une chaîne de Markov \textbf{\textit{non-homogène}}.
+\end{description}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Propriété sans-mémoire des chaînes de Markov]
+Une chaîne de Markov est un processus stochastique dont la distribution conditionnelle de l'état futur $X_{m + 1}$ dépend seulement du dernier état $X_{m}$ et non de ceux avant. \\
+
+En autres mots, le prochain état est indépendant des états passés et \lfbox[formula]{$P_{i, j} = \Pr(X_{m + 1} = j | X_{m} = i)$}.
+\end{definitionNOHFILLsub}
+
+On représente la \textbf{matrice des probabilités de transition} \lfbox[formula]{$\bm{P}$} : 
 \begin{align*}
-	\Pr(X_{n}	=	j | X_{n - 1}	=	i_{n - 1}, X_{n - 2} = i_{n - 2}, \dots, X_{0}	=	i_{0})
-	&=	\Pr(X_{n}	=	j | X_{n - 1}	=	i)
-	=	P_{ij}
+	\bm{P}
+	&=	\begin{bmatrix}
+		P_{1, 1}	&	P_{1, 2}	&	\dots	&	P_{1, j}		&	\dots	\\
+		P_{2, 1}	&	P_{2, 2}	&	\dots	&	P_{2, j}		&	\dots	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots		&	\cdots	\\
+		P_{i, 1}	&	P_{i, 2}	&	\dots	&	P_{i, j}		&	\dots	\\
+		\vdots	&	\vdots	&	\vdots	&	\vdots		&	\ddots	
+		\end{bmatrix}
 \end{align*}
+\begin{itemize}
+	\item	Chaque rangée somme à 1, mais pas nécessairement les colonnes.
+\end{itemize}
 
 
-
+\columnbreak
 \subsection{Multiple-Step Transition Probabilities}
 \subsection{Équation de Chapman-Kolmogorov}
 \begin{distributions}[Notation]
@@ -7450,21 +7500,28 @@ Une chaîne de Markov pose que l'état du processus au temps $n$ dépend seuleme
 
 L'équation de Chapman-Kolmogorov trouve la probabilité d'être dans l'état $j$ au temps $t$ sachant qu'au temps $0$ on était à l'état $i$ : \lfbox[formula]{$P^{n + m}_{ij}	=	\sum_{k	=	0}^{\infty}P_{ik}^{n}P_{kj}^{m}$}.
 
+
+\columnbreak
 \subsection{Classification of States}
 
 
+\columnbreak
 \subsection{Long-Run Proportions and Limiting Probabilities}
 
 
+\columnbreak
 \subsection{Time Spent in Transient States}
 
 
+\columnbreak
 \subsection{Time Reversibility}
 
 
+\columnbreak
 \subsection{Applications of Markov Chains}
 
 
+\columnbreak
 \subsection{Branching Process}
 
 
