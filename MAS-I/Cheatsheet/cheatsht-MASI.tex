@@ -7423,12 +7423,6 @@ Sommer des processus de Poisson résulte en un processus de Poisson dont la v.a.
 \pagebreak
 \section{Chaînes de Markov}
 \subsection{Introduction}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$X_{m}$]	État du processus au temps $m$.
-	\item[$P_{i, j}$]	Probabilité de transition de l'état $i$ à l'état $j$ (en une période).
-\end{description}
-\end{distributions}
 \begin{rappel_enhanced}[Contexte]
 Une chaîne de Markov est utilisée lorsqu'il y a un processus prenant une valeur précise dans chaque intervalle de temps.\\
 
@@ -7444,6 +7438,13 @@ Par exemple, un pourrait avoir une chaîne de Markov dont les états corresponde
 
 Souvent, nous sommes intéressés aux \textit{\textbf{probabilités de transition}} d'un état à un autre. 
 \end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X_{m}$]	État du processus au temps $m$.
+	\item[$P_{i, j}$]	Probabilité de transition de l'état $i$ à l'état $j$ (en une période).
+\end{description}
+\end{distributions}
 
 \begin{definitionNOHFILL}[Chaîne de Markov]
 Une chaîne de Markov est un type de processus stochastique dénoté comme \lfbox[formula]{$\{X_{m}, m = 0, 1, 2, \dots\}$}. Le processus prend un ensemble (fini ou infini) de valeurs \textit{dénombrable} représentant l'état du processus à différents moments dans le temps.
@@ -7484,25 +7485,264 @@ On représente la \textbf{matrice des probabilités de transition} \lfbox[formul
 
 \columnbreak
 \subsection{Multiple-Step Transition Probabilities}
-\subsection{Équation de Chapman-Kolmogorov}
+\begin{rappel_enhanced}[Contexte]
+Lorsque nous désirons savoir l'état plus qu'une étape dans le futur, nous devons généraliser les chaînes de Markov. \\
+
+Par exemple, s'il pleut aujourd'hui, quel est la probabilité qu'il va pleuvoir dans 2 jours ? 
+\end{rappel_enhanced}
+
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$P_{ij}$]	Probabilité de la transition de l'état $i$ à l'état $j$.
+	\item[$P_{i, j}^{n}$]	Probabilité de transition de l'état $i$ à l'état $j$ en $n$ périodes.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLprop}[Équation de Chapman-Kolmogorov]
+L'équation de Chapman-Kolmogorov trouve la probabilité $P_{i, j}^{n + m}$ d'être dans l'état $j$ au temps $n + m$ sachant qu'au temps $0$ on était à l'état $i$.	\\
+
+Pour trouver cette probabilité, on considère tous les chemins possibles pour se rendre de $i$ à $j$ en $n + m$ étapes, puis on somme leurs probabilités : \lfbox[formula]{$P^{n + m}_{ij}	=	\sum_{k	=	0}^{\infty}P_{ik}^{n}P_{kj}^{m}$}.	\\
+
+\begin{itemize}
+	\item	Cette équation équivaut à la \textbf{multiplication matricielle} de la matrice des transitions de probabilité.
+	\item	En forme matricielle, \lfbox[formula]{$\bm{P}^{(n + m)} = \bm{P}^{(n)} \bm{P}^{(m)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{rappel}{Rappel: Multiplication matricielle}
+Soit $\bm{A}_{m \times n}$ et $\bm{B}_{p \times q}$. Si $n = p$ alors $\bm{A}_{m \times n} \bm{B}_{p \times q} = \bm{AB}_{m \times q}$.\\
+
+Par exemple, pour :
+\begin{align*}
+	\bm{A}
+	&=	\begin{bmatrix}
+		a_{1, 1}	&	a_{1, 2}	\\
+		a_{2, 1}	&	a_{2, 2}	
+		\end{bmatrix}	&
+	\bm{B}
+	&=	\begin{bmatrix}
+		b_{1, 1}	&	b_{1, 2}	\\
+		b_{2, 1}	&	b_{2, 2}	\\
+		\end{bmatrix}	\\	
+\end{align*}
+
+Alors : 
+\begin{align*}
+	\bm{AB}
+	&=	\begin{bmatrix}
+		a_{1, 1}b_{1, 1} + a_{1, 2}b_{2, 1}	&	a_{1, 1}b_{1, 2} + a_{1, 2}b_{2, 2}	\\
+		a_{2, 1}b_{1, 1} + a_{2, 2}b_{2, 1}	&	a_{2, 1}b_{1, 2} + a_{2, 2}b_{2, 2}	
+		\end{bmatrix}	
+\end{align*}
+\end{rappel}
+
+
+\paragraph{Raccourci}	On peut éviter deux multiplications de matrices en multipliant uniquement la rangée $i$ et la colonne $j$ : \lfbox[formula]{$P_{i, j}^{n} = \bm{P}_{i, } \cdot \bm{P}^{n - 2} \cdot \bm{P}_{, j}$}.
+
+
+\subsubsection{États absorbants}
+\begin{definitionNOHFILLsub}[État absorbant]
+État dont on ne peut pas sortir un fois rentrée. Il s'ensuit que pour un état absorbant $i$, $P_{i, i} = 1$.
+
+\begin{itemize}
+	\item	Par exemple, un état pour décédé sera absorbant.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+Soit la probabilité qu'une chaîne de Markov débute à l'état $i$ et se rend à l'état $j$ au temps $m$ sans avoir été dans les états d'un ensemble $\mathcal{A}$. \\
+
+Pour calculer la probabilité, on défini une nouvelle chaîne de Markov qui contient tous les états ne faisant \textbf{pas} parti de l'ensemble $\mathcal{A}$ en plus d'un état absorbant représentant tous les états de $\mathcal{A}$. \\
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\mathcal{A}$]	L'ensemble des états à éviter.
+	\item[$A$]	L'état absorbant qui combine tous les états de l'ensemble $\mathcal{A}$.
+	\item[$Q_{i, j}$]	Probabilité de transition de l'état $i$ à l'état $j$ (en une période) sans avoir accédé aux états de l'ensemble $\mathcal{A}$.
+\end{description}
+\end{distributions}
+
+\begin{formula}{Exemple de regroupement}
+Par exemple, pour 4 états où on souhaite regrouper les états $0$ et $1$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,152); %set diagram left start at 0, and has height of 152
+
+%Rounded Rect [id:dp7490053074453316] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (145,36.11) .. controls (145,29.57) and (150.3,24.27) .. (156.84,24.27) -- (156.84,24.27) .. controls (163.38,24.27) and (168.68,29.57) .. (168.68,36.11) -- (168.68,37.93) .. controls (168.68,44.47) and (163.38,49.77) .. (156.84,49.77) -- (156.84,49.77) .. controls (150.3,49.77) and (145,44.47) .. (145,37.93) -- cycle ;
+%Rounded Rect [id:dp7802853236177405] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (203,36.11) .. controls (203,29.57) and (208.3,24.27) .. (214.84,24.27) -- (214.84,24.27) .. controls (221.38,24.27) and (226.68,29.57) .. (226.68,36.11) -- (226.68,37.93) .. controls (226.68,44.47) and (221.38,49.77) .. (214.84,49.77) -- (214.84,49.77) .. controls (208.3,49.77) and (203,44.47) .. (203,37.93) -- cycle ;
+%Rounded Rect [id:dp7624927283176202] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (262,36.09) .. controls (262,29.55) and (267.3,24.25) .. (273.84,24.25) -- (273.84,24.25) .. controls (280.38,24.25) and (285.68,29.55) .. (285.68,36.09) -- (285.68,37.91) .. controls (285.68,44.45) and (280.38,49.75) .. (273.84,49.75) -- (273.84,49.75) .. controls (267.3,49.75) and (262,44.45) .. (262,37.91) -- cycle ;
+%Rounded Rect [id:dp12147262750100563] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (318,36.09) .. controls (318,29.55) and (323.3,24.25) .. (329.84,24.25) -- (329.84,24.25) .. controls (336.38,24.25) and (341.68,29.55) .. (341.68,36.09) -- (341.68,37.91) .. controls (341.68,44.45) and (336.38,49.75) .. (329.84,49.75) -- (329.84,49.75) .. controls (323.3,49.75) and (318,44.45) .. (318,37.91) -- cycle ;
+%Rounded Rect [id:dp5766251867587167] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (174,76.11) .. controls (174,69.57) and (179.3,64.27) .. (185.84,64.27) -- (185.84,64.27) .. controls (192.38,64.27) and (197.68,69.57) .. (197.68,76.11) -- (197.68,77.93) .. controls (197.68,84.47) and (192.38,89.77) .. (185.84,89.77) -- (185.84,89.77) .. controls (179.3,89.77) and (174,84.47) .. (174,77.93) -- cycle ;
+%Rounded Rect [id:dp9673790536024525] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (262,76.09) .. controls (262,69.55) and (267.3,64.25) .. (273.84,64.25) -- (273.84,64.25) .. controls (280.38,64.25) and (285.68,69.55) .. (285.68,76.09) -- (285.68,77.91) .. controls (285.68,84.45) and (280.38,89.75) .. (273.84,89.75) -- (273.84,89.75) .. controls (267.3,89.75) and (262,84.45) .. (262,77.91) -- cycle ;
+%Rounded Rect [id:dp2523895672770382] 
+\draw  [color={rgb, 255:red, 32; green, 106; blue, 194 }  ,draw opacity=1 ][fill={rgb, 255:red, 32; green, 106; blue, 194 }  ,fill opacity=1 ][line width=1.5]  (318,76.09) .. controls (318,69.55) and (323.3,64.25) .. (329.84,64.25) -- (329.84,64.25) .. controls (336.38,64.25) and (341.68,69.55) .. (341.68,76.09) -- (341.68,77.91) .. controls (341.68,84.45) and (336.38,89.75) .. (329.84,89.75) -- (329.84,89.75) .. controls (323.3,89.75) and (318,84.45) .. (318,77.91) -- cycle ;
+%Shape: Brace [id:dp4417162136317585] 
+\draw  [color={rgb, 255:red, 11; green, 73; blue, 145 }  ,draw opacity=1 ] (140.3,49.13) .. controls (140.3,53.8) and (142.63,56.13) .. (147.3,56.13) -- (175.3,56.13) .. controls (181.97,56.13) and (185.3,58.46) .. (185.3,63.13) .. controls (185.3,58.46) and (188.63,56.13) .. (195.3,56.13)(192.3,56.13) -- (223.3,56.13) .. controls (227.97,56.13) and (230.3,53.8) .. (230.3,49.13) ;
+
+% Text Node
+\draw (151,28.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (209,28.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (268,28.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 2$};
+% Text Node
+\draw (325,28.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 3$};
+% Text Node
+\draw (178,68.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle A$};
+% Text Node
+\draw (268,68.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 2$};
+% Text Node
+\draw (325,68.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 3$};
+% Text Node
+\draw (147,97) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 19; green, 77; blue, 144 }  ,opacity=1 ] [align=left] {$\displaystyle \mathcal{A} =\{0,\ 1\}$};
+\end{tikzpicture}
+\end{center}
+\end{formula}
+
+
+\begin{definitionNOHFILLprop}[Construction de la matrice $\bm{Q}$]
+On construit $\bm{Q}$ de $\bm{P}$ selon les conditions suivantes : 
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	Pour la transition entre des états qui ne font pas partie de l'ensemble $\mathcal{A}$, la probabilité de transition demeure inchangée : \lfbox[conditions]{$Q_{i, j} = P_{i, j}$} pour \lfbox[conditions]{$i, j \notin \mathcal{A}$}.
+	\item	Pour la transition \textbf{de l'état non-absorbant} $i$ \textbf{vers l'état absorbant} $A$, on somme les probabilités de transition de l'état $i$ vers tous les états de l'ensemble $\mathcal{A}$ : \lfbox[conditions]{$Q_{i, A} = \sum_{k \in \mathcal{A}} P_{i, k}$} pour \lfbox[conditions]{$i \notin \mathcal{A}$}.
+	\item	Par définition, $\Pr\left(\substack{\text{transition d'un état absorbant}\\ \text{vers tout autre état}}\right) = 0$ : \lfbox[conditions]{$Q_{A, i} = 0$} pour \lfbox[conditions]{$i \notin \mathcal{A}$}.
+	\item	Par définition, $\Pr(\text{demeurer dans un état absorbant}) = 1$ : \lfbox[conditions]{$Q_{A, A} = 1$}.
+\end{enumerate}
+
+Finalement, on vérifie que change rangée de $\bm{Q}$ somme à 1.
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Exemple de matrice de transition avec état absorbant}
+Soit la matrice des probabilités de transition suivante avec 4 états (1, 2, 3, 4) : 
+\begin{align*}
+	\bm{P}
+	&=	\begin{bmatrix}
+		0.5	&	0.3	&	0.2	&	0	\\
+		0	&	0.7	&	0.2	&	0.1	\\
+		0.6	&	0.2	&	0	&	0.2	\\
+		0.8	&	0.1	&	0.1	&	0	\\
+		\end{bmatrix}	
+\end{align*}
+
+On sait qu'au temps $0$, la chaîne de Markov est dans l'état 1. On souhaite trouver la probabilité d'atteindre l'état 2 au temps 4 sans jamais avoir été dans l'état 3 ni 4.
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On défini l'ensemble $\mathcal{A} = \{3, 4\}$.
+	\item	On défini la nouvelle chaîne de Markov $\bm{Q}$ : 
 		\begin{itemize}
-		\item	\lfbox[formula]{$P_{ij}	=	\Pr(X_{n}	=	j | X_{n - 1}	=	i_{n - 1})$}
+		\item	De la première condition, \textcolor{teal}{le carré 2x2 en haut à gauche} de la matrice des transitions demeure inchangée.
+		\item	\textcolor{amethyst}{La troisième colonne} découle de la $2^{e}$ condition qui somme les probabilités de transitions vers les états faisant partie de $\mathcal{A}$.
+		\item	\textcolor{burntorange}{La troisième ligne} découle des $4^{e}$ et $3^{e}$ conditions que l'état $A$ est absorbant.
 		\end{itemize}
-	\item[$P_{ij}^{n}$]	Probabilité de la transition de l'état $i$ à l'état $j$ dans $n$ étapes.
+		\begin{align*}
+		\bm{Q}
+		&=	\begin{bmatrix}
+		\textcolor{teal}{0.5}	&	\textcolor{teal}{0.3}	&	\textcolor{amethyst}{0.2}	\\
+		\textcolor{teal}{0}		&	\textcolor{teal}{0.7}	&	\textcolor{amethyst}{0.3}	\\
+		\textcolor{burntorange}{0}	&	\textcolor{burntorange}{0}	&	\textcolor{burntorange}{1}	\\
+		\end{bmatrix}	
+		\end{align*}
+	\item	On trouve la matrice de transitions en 2 étapes : 
+		\begin{align*}
+		\bm{Q}
+		&=	\begin{bmatrix}
+			0.25	&	0.36	&	0.39	\\
+			0	&	0.49	&	0.51	\\
+			0	&	0	&	1	\\
+			\end{bmatrix}	
+		\end{align*}
+	\item	Finalement, on trouve $Q^{4}_{1, 2} = \bm{Q}_{1, }\bm{Q}^{(2)}\bm{Q}_{, 2}$ : 
+		\begin{align*}
+		Q^{4}_{1, 2}
+		&=	\begin{bmatrix}
+			0.5	&	0.3	&	0.2
+			\end{bmatrix}
+			\begin{bmatrix}
+			0.25	&	0.36	&	0.39	\\
+			0	&	0.49	&	0.51	\\
+			0	&	0	&	1	\\
+			\end{bmatrix}	
+			\begin{bmatrix}
+			0.3	\\
+			0.7	\\
+			0
+			\end{bmatrix}	\\
+		&=	0.2664
+		\end{align*}
+\end{enumerate}
+\end{formula}
+
+
+\subsubsection{Transitions de (ou vers) un état absorbant}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Q_{i, j}^{m}$]	Probabilité de transition de l'état $i$ à l'état $j$ en $m$ périodes sans avoir accédé aux états de l'ensemble $\mathcal{A}$.
+\end{description}
+\end{distributions}
+
+Nous pouvons généraliser l'approche pour les cas où l'état de départ $i$ ou l'état d'arrivé $j$ peuvent faire partie de l'ensemble d'états $\mathcal{A}$. 
+\begin{itemize}
+	\item	Dans ces cas-ci la transition \textbf{de} (\textcolor{teal}{\textbf{vers}}) l'état $\mathcal{A}$ doit être la \textbf{première} (\textcolor{teal}{\textbf{dernière}}) transition.
+	\item	On utilise donc la matrice des probabilités de transition $\textcolor{amethyst}{\bm{P}}$ pour la \textbf{première} (\textcolor{teal}{\textbf{dernière}}) transition où l'on \textbf{sort de} (\textcolor{teal}{\textbf{entre dans}}) un état de l'ensemble $\mathcal{A}$, puis la matrice \textcolor{burntorange}{$\bm{Q}$ pour le restant des transitions}.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{État} $i$}	&	\textcolor{white}{\textbf{État} $j$}	&	\textcolor{white}{\textbf{Probabilité}}		\\\specialrule{0.1em}{0em}{0em} 
+$\textcolor{burntorange}{i \notin \mathcal{A}}$	&	$\textcolor{burntorange}{j \notin \mathcal{A}}$	&	$\textcolor{burntorange}{Q^{m}_{i, j}}$	\\\hline
+$\textcolor{burntorange}{i \notin \mathcal{A}}$	&	$\textcolor{amethyst}{j \in \mathcal{A}}$	&	$\sum_{r \notin \mathcal{A}} \textcolor{burntorange}{Q^{m - 1}_{i, r}} \textcolor{amethyst}{P_{r, j}}$	\\\hline
+$\textcolor{amethyst}{i \in \mathcal{A}}$	&	$\textcolor{burntorange}{j \notin \mathcal{A}}$	&	$\sum_{r \notin \mathcal{A}} \textcolor{amethyst}{P_{i, r}} \textcolor{burntorange}{Q^{m - 1}_{r, j}}$	\\\hline
+$\textcolor{amethyst}{i \in \mathcal{A}}$	&	$\textcolor{amethyst}{j \in \mathcal{A}}$	&	$\sum_{r \notin \mathcal{A}}\sum_{k \notin \mathcal{A}} \textcolor{amethyst}{P_{i, r}} \textcolor{burntorange}{Q^{m - 2}_{r, k}} \textcolor{amethyst}{P_{k, j}}$	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+\subsubsection{Probabilités inconditionnelles}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\alpha_{i}$]	Probabilité d'être à l'état $i$ au temps 0.
 		\begin{itemize}
-		\item	\lfbox[formula]{$P_{ij}^{n}	=	\Pr(X_{n + k}	=	j | X_{k}	=	i)$}
+		\item	\lfbox[formula]{$\alpha_{i} = \Pr(X_{0} = i)$}.
+		\end{itemize}
+	\item[$\Pr(X_{n} = j)$]	Probabilité "inconditionnelle" d'être dans l'état $j$ au temps $n$. C'est-à-dire, la probabilité d'être dans l'état $j$ au temps $n$ peu importe l'état initial.
+		\begin{itemize}
+		\item	\lfbox[formula]{$\Pr(X_{n} = j) = \sum_{i = 1}^{\infty} \alpha_{i} P^{n}_{i, j}$}.
 		\end{itemize}
 \end{description}
 \end{distributions}
 
-L'équation de Chapman-Kolmogorov trouve la probabilité d'être dans l'état $j$ au temps $t$ sachant qu'au temps $0$ on était à l'état $i$ : \lfbox[formula]{$P^{n + m}_{ij}	=	\sum_{k	=	0}^{\infty}P_{ik}^{n}P_{kj}^{m}$}.
+\begin{rappel}{Rappel: Loi des probabilités totales}
+\lfbox[formula]{$\Pr(X = x) = \sum_{y} \Pr(X = x | Y = y) \Pr(Y = y)$}.
+\end{rappel}
+
 
 
 \columnbreak
 \subsection{Classification of States}
+\begin{definitionNOHFILLsub}[État absorbant]
+
+\end{definitionNOHFILLsub}
+
+Communiquent
+
+Classe
+	Propriété de classe
+
+Irréductible
+Finie 
+Récurrente
+Finie
+Infinie
+Transiente
+
+
 
 
 \columnbreak
