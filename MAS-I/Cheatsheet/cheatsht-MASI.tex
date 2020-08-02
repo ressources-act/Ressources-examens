@@ -7484,7 +7484,7 @@ On représente la \textbf{matrice des probabilités de transition} \lfbox[formul
 
 
 \columnbreak
-\subsection{Multiple-Step Transition Probabilities}
+\subsection{Probabilités de transitions en plusieurs étapes}
 \begin{rappel_enhanced}[Contexte]
 Lorsque nous désirons savoir l'état plus qu'une étape dans le futur, nous devons généraliser les chaînes de Markov. \\
 
@@ -7725,24 +7725,124 @@ $\textcolor{amethyst}{i \in \mathcal{A}}$	&	$\textcolor{amethyst}{j \in \mathcal
 
 
 \columnbreak
-\subsection{Classification of States}
-\begin{definitionNOHFILLsub}[État absorbant]
+\subsection{Classification des états}
+\begin{definitionNOHFILLprop}[Accessibilité d'états]
+Un état $j$ est \textbf{\textit{accessible}} de l'état $i$ si \lfbox[conditions]{$P^{n}_{i, j} > 0$} pour \lfbox[conditions]{$n \geq 0$} : \lfbox[formula]{$i \rightarrow j$}.\\
 
+C'est-à-dire qu'il est possible de faire la transition vers l'état $j$ au moins une fois dans le futur ayant commencé dans l'état $i$.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Communication d'états]
+L'état $i$ et l'état $j$ se \textit{\textbf{communiquent}} si l'état $j$ est \textit{accessible} de l'état $i$ et que l'état $i$ est \textit{accessible} de l'état $j$ : \lfbox[formula]{$i \leftrightarrow j$} si \lfbox[conditions]{$i \rightarrow j$} et \lfbox[conditions]{$j \rightarrow i$}.
+\end{definitionNOHFILLprop}
+
+\paragraph{Note}	Un état absorbant communique seulement avec lui-même.
+ 
+\begin{definitionNOHFILLpropos}[Propriétés des états qui se communiquent]
+\begin{enumerate}[label	=	\circled{\arabic*}{trueblue}]
+	\item	$i \leftrightarrow i$
+		\begin{itemize}
+		\item	L'état $i$ communique avec lui-même.
+		\end{itemize}
+	\item	$i \leftrightarrow j \Rightarrow j \leftrightarrow i$
+		\begin{itemize}
+		\item	Si l'état $i$ communique avec l'état $j$, alors l'état $j$ communique avec l'état $i$.
+		\end{itemize}
+	\item	$i \leftrightarrow j, j \leftrightarrow k \Rightarrow i \leftrightarrow k$
+		\begin{itemize}
+		\item	Si l'état $i$ communique avec l'état $j$ et que l'état $j$ communique avec l'état $k$, alors l'état $i$ communique avec l'état $k$.
+		\end{itemize}
+\end{enumerate}
+\end{definitionNOHFILLpropos}
+
+
+\begin{definitionNOHFILL}[Classe d'états]
+Des états qui se communiquent entre-eux font partie de la même classe.
+
+\begin{definitionNOHFILLsub}[Propriétés de classe]
+Propriétés s'appliquant à tous les états de la classe.
 \end{definitionNOHFILLsub}
-
-Communiquent
-
-Classe
-	Propriété de classe
-
-Irréductible
-Finie 
-Récurrente
-Finie
-Infinie
-Transiente
+\end{definitionNOHFILL}
 
 
+\begin{definitionNOHFILL}[Chaîne de Markov irréductible]
+Chaîne de Markov dont tous les états se communiquent entre-eux ayant donc \textbf{une seule classe}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[Nombre d'états d'une chaîne de Markov]
+Une chaîne de Markov ayant un nombre \textbf{fini} (\textcolor{teal}{\textbf{infini}}) d'états est dite d'être \textbf{fini} (\textcolor{teal}{\textbf{infini}}).
+\end{definitionNOHFILLprop}
+
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$f_{i}$]	Probabilité de retourner dans l'état $i$ à tout point dans le future sachant que le processus débute dans l'état $i$.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLprop}[Récurrence d'états]
+Un état est \textbf{\textit{récurrent}} s'il est toujours possible d'y retourner un jour : \lfbox[formula]{$f_{i} = 1$}. \\
+
+Il s'ensuit que si un état $i$ est récurrent, alors le nombre de fois que nous y retournons est \textbf{infini}. De cette interprétation, on déduit qu'un état est récurrent si \lfbox[formula]{$\sum_{n = 1}^{\infty} P^{n}_{i, i} = \infty$}.
+
+\begin{itemize}
+	\item	Il s'ensuit qu'il est toujours possible de retourner dans l'état $i$ à partir de tout autre état dans le futur.
+	\item	
+\end{itemize}	
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Transitivité d'états]
+Un état est \textit{\textbf{transitoire}} s'il est possible de ne pas y retourner un jour : \lfbox[formula]{$f_{i} < 1$}.\\
+
+Il s'ensuit que si un état $i$ est transitoire, alors le nombre de fois que nouss y retournons est \textbf{fini}. De cette interprétation, on déduit qu'un état est transitoire si \lfbox[formula]{$\sum_{n = 1}^{\infty} P^{n}_{i, i} < \infty$}.
+
+\begin{itemize}
+	\item	On déduit que si un état $i$ est transitoire, alors il existe au moins un état duquel on ne peut pas retourner à l'état $i$. 
+\end{itemize}
+
+\begin{definitionNOHFILLpropos}[Distribution géométrique]
+Si un processus débute dans un état transitoire $i$, il y a une probabilité de $1 - f_{i}$ de ne jamais y retourner. Il s'ensuit que la probabilité d'être dans l'état $i$ $n$ fois, sachant que nous y sommes initialement, est $f_{i}^{n - 1}(1 - f_{i})$ pour $n \geq 1$.	\\
+
+Donc, pour un processus qui débute dans l'état transitoire $i$, le nombre de fois que le processus est dans l'état $i$ suit une \textbf{distribution géométrique} de paramètre \lfbox[formula]{$p = 1 - f_{i}$}.
+\begin{itemize}
+	\item	Il s'ensuit que l'espérance du nombre de visites est \lfbox[formula]{$\frac{1}{1 - f_{i}}$}.
+	\item	On voit donc que pour \lfbox[conditions]{$n \geq 1$}, la probabilité désiré correspond à la fonction de masse des probabilités \lfbox[formula]{$p_{n} = p(1 - p)^{n - 1} = f_{i}^{n - 1}(1 - f_{i})$}.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLprop}
+
+\begin{formula}{Exemple de transitivité et de récurrence}
+Soit la chaîne de Markov ayant la matrice des probabilité de transition suivante : \\
+\begin{align*}
+	\bm{P}
+	&=	\begin{bmatrix}
+		0.7	&	0.3	&	0	\\
+		0	&	0.4	&	0.6	\\
+		0	&	0.5	&	0.5	\\
+		\end{bmatrix}
+\end{align*}
+
+\
+
+On trouve : 
+\begin{itemize}
+	\item	Aucun état est absorbant.
+	\item	L'état $1$ est \textit{transitoire} et seulement l'état $2$ est accessible de l'état $1$ ($1 \rightarrow 2$).
+	\item	L'état $2$ et l'état $3$ se \textit{communiquent} ($2 \leftrightarrow 3$).
+\end{itemize}
+\end{formula}
+
+Les propriétés de \textit{récurrence} et de \textit{transitivité} sont des \textbf{propriétés de classes}.
+\begin{itemize}
+	\item	Puisque tous les états d'une classe se communiquent, dès qu'un état est récurrent tous les états sont récurrents.
+	\item	Pareillement, dès qu'un état est transitoire tous les états sont transitoires.
+\end{itemize}
+
+Donc, tous les états d'une classe sont soit transitoires ou récurrents.
+
+\
+ 
+Dans une chaîne de Markov finie, il doit y avoir au moins un état récurrent. Puis, puisqu'une chaîne de Markov irréductible n'a qu'une seule classe, \textbf{tous les états d'une chaîne de Markov finie irréductible sont récurrents}.
 
 
 \columnbreak
