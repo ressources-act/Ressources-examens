@@ -7846,8 +7846,123 @@ Dans une chaîne de Markov finie, il doit y avoir au moins un état récurrent. 
 
 
 \columnbreak
-\subsection{Long-Run Proportions and Limiting Probabilities}
+\subsection{Probabilités stationnaires et limites}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$m_{j}$]	Espérance du nombre de transitions pour qu'une chaîne de Markov ayant commencé dans l'état $j$ y retourne.
+	\item[$\pi_{j}$]	\textbf{Proportion de temps à long-terme} qu'une chaîne de Markov \textit{\underline{irréductible}} est dans l'état $j$.
+		\begin{itemize}
+		\item	En anglais, \og \textit{long-run proportion} \fg{}.
+		\item	Alias, \textbf{probabilité stationnaire} d'être dans l'état $j$.
+		\end{itemize}
+\end{description}
+\end{distributions}
 
+\begin{definitionNOHFILLprop}[Types de récurrence]
+Soit l'état récurrent $j$, 
+\begin{enumerate}
+	\item	si \lfbox[formula]{$m_{j} < \infty$}, alors l'état $j$ est \textbf{récurrent positif}.
+	\item	si \lfbox[formula]{$m_{j} = \infty$}, alors l'état $j$ est \textbf{récurrent nul}.
+\end{enumerate}
+
+\
+
+\begin{itemize} 
+	\item	La récurrence nulle peut seulement arriver dans une chaîne de Markov infinie ce qui implique que \textbf{les états d'une chaîne de Markov finie doivent être récurrent positifs}.
+	\item	Puisque la récurrence est une propriété de classe, une classe est soit récurrente positive ou nulle.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLprop}[Probabilités stationnaires]
+La probabilité stationnaire $\pi_{j}$ de l'état $j$ correspond au réciproque de l'espérance du nombre transitions pour qu'une chaîne de Markov ayant débuté dans l'état $j$ y retourne : \lfbox[formula]{$\frac{1}{m_{j}}$}.\\
+
+Cependant, on \underline{isole} habituellement les probabilités stationnaires à partir du système d'équations suivant : 
+\begin{align*}
+	\pi_{j}
+	&=	\sum_{i = 1}^{\infty} \pi_{i} P_{i, j}	\\
+	\sum_{j = 1}^{\infty} \pi_{j}
+	&=	1
+\end{align*}
+
+\begin{itemize}
+	\item	Pour une chaîne de Markov composé de $n$ états, il y aura $n + 1$ équations.
+	\item	Si aucune solution unique existe, la chaîne de Markov \textbf{n'est pas récurrente positive} (donc soit transitive ou récurrente nulle) et $\pi_{i} = 0$ pour tout $i$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\paragraph{Note}	Tous les états d'une chaîne de Markov irréductible finie sont récurrent positifs.
+
+%%%	Inclure exemple où l'on trouve les probabilités limites
+
+
+\subsubsection{Chaînes de Markov avec bénéfices}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$r(j)$]	Montant de bénéfice dans l'état $j$.
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+On cherche à généraliser les chaînes de Markov pour le cas où un montant est transigé selon la classe dans laquelle le processus se situe.\\
+
+Par exemple, pour une chaîne de Markov représentant le risque d'un assuré $r(j)$ pourrait représenter le montant de prime payable en fonction de classe dont l'assuré fait partie. Par exemple, il pourrait avoir une plus grosse prime payable pour une classe de risque risquée que standard.
+\end{rappel_enhanced}
+
+En moyenne, le bénéfice sera \lfbox[formula]{$\sum_{j = 1}^{\infty} r(j) \pi_{j}$}.
+
+%%	Inclure exemple avec des montants de prestations selon classe de risque et les probabilités limites.
+
+
+\subsubsection{Probabilités limites}
+\begin{definitionNOHFILLprop}[Périodicité des chaînes de Markov]
+La matrice des probabilités de transition tend vers des \textbf{\textit{probabilités limites}} lorsque le nombre de périodes tend vers l'infini. Ces probabilités limites correspondent aux probabilités stationnaires.	\\
+
+Si une chaîne de Markov \textbf{a des} (\textcolor{teal}{\textbf{n'a pas de}}) probabilités limites, elle est \textbf{apériodique} (\textcolor{teal}{\textbf{périodique}}).
+\end{definitionNOHFILLprop}
+
+\paragraph{Note}	Une chaîne de Markov peut avoir des probabilités stationnaires sans avoir de probabilités limites.
+
+\begin{formula}{Exemple de chaîne de Markov périodique}
+Soit la chaîne de Markov suivante : \\
+\begin{align*}
+	\bm{A}
+	&=	\begin{bmatrix}
+		0	&	1	\\
+		1	&	0	\\
+		\end{bmatrix}
+\end{align*}
+
+Cette chaîne de Markov ne converge pas vers des probabilités limites, à chaque période elle va inverser : 
+\begin{align*}
+	\bm{A}^{(2)}
+	&=	\begin{bmatrix}
+		1	&	0	\\
+		0	&	1	\\
+		\end{bmatrix}	&
+	\bm{A}^{(3)}
+	&=	\begin{bmatrix}
+		0	&	1	\\
+		1	&	0	\\
+		\end{bmatrix}	&
+	\bm{A}^{(4)}
+	&=	\begin{bmatrix}
+		1	&	0	\\
+		0	&	1	\\
+		\end{bmatrix}
+\end{align*}
+
+La chaîne de Markov est donc \textbf{\textit{périodique}}.
+\end{formula}
+
+
+\begin{definitionNOHFILLsub}[Chaîne de Markov ergodique]
+Une chaîne de Markov \textbf{irréductible}, \textbf{récurrente positive} et \textbf{apériodique} est \textbf{\textit{ergodique}}.
+\end{definitionNOHFILLsub}
+
+
+%%	Inclure exemple où l'on trouve la matrice pour 2, 4, 8, etc. pour voir que ça tend vers quelque-chose
+%%	Remarque que chaque colonne prend la même valeur
 
 \columnbreak
 \subsection{Time Spent in Transient States}
