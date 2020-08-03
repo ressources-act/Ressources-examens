@@ -7966,6 +7966,132 @@ Une chaîne de Markov \textbf{irréductible}, \textbf{récurrente positive} et \
 
 \columnbreak
 \subsection{Time Spent in Transient States}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\bm{P}_{T}$]Matrice des probabilités de transition contentant uniquement les états transitoires.
+		\begin{itemize}
+		\item	Les rangées ne somment donc pas nécessairement à $1$.
+		\end{itemize}
+	\item[$s_{i, j}$]	Espérance du nombre de périodes que le processus est dans l'état transitoire $j$ sachant que le processus a débuté dans l'état transitoire $i$.
+	\item[$\bm{S}$]	Matrice des valeurs de $s_{i, j}$.
+		\begin{itemize}
+		\item	\lfbox[formula]{$\bm{S} = (\bm{I} - \bm{P}_{T})^{-1}$}.
+		\item	\textbf{Note}: Les indices de la matrice représentent les états et non la position dans la matrice. 
+		\item	Par exemple, si on retire la deuxième colonne alors les indices seront $s_{i, 1}, s_{i, 3}, s_{i, 4}, \dots$	.
+		\end{itemize}
+	\item[$f_{i, j}$]	Probabilité d'aller dans l'état $j$ à tout point dans le futur sachant que le processus débute dans l'état $i$.
+		\begin{itemize}
+		\item	\lfbox[formula]{$f_{\textcolor{teal}{i}, \textcolor{amethyst}{j}} = \frac{s_{\textcolor{teal}{i}, \textcolor{amethyst}{j}} - \delta_{\textcolor{teal}{i}, \textcolor{amethyst}{j}}}{s_{\textcolor{amethyst}{j}, \textcolor{amethyst}{j}}}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{rappel}{Rappel : Matrice d'identité}
+La matrice d'identité $\bm{I}$ est la suivante : \\
+\begin{align*}
+	\bm{I}
+	&=	\begin{bmatrix}
+		1	&	0	&	0	&	\cdots	\\
+		0	&	1	&	0	&	\cdots	\\
+		0	&	0	&	1	&	\cdots	\\
+		\vdots	&	\vdots	&	\vdots	&	\ddots	\\
+	\end{bmatrix}
+\end{align*}
+
+\
+
+On exprime les valeurs de $\bm{I}$ avec la variable binaire $\delta_{i, j}$ : 
+\begin{align*}
+	\delta_{\textcolor{teal}{i}, \textcolor{amethyst}{j}}
+	&=	\begin{cases}
+		1,	&	\text{si } \textcolor{teal}{i} = \textcolor{amethyst}{j}	\\
+		0,	&	\text{si } \textcolor{teal}{i} \neq \textcolor{amethyst}{j}
+		\end{cases}
+\end{align*}
+\end{rappel}
+
+\begin{rappel}{Rappel : Inverse d'une matrice}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\bm{A}^{-1}$]	Inverse de la matrice $\bm{A}$ tel que \lfbox[formula]{$\bm{A}^{-1}\bm{A} = \bm{A}\bm{A}^{-1} = I$}.
+\end{description}
+\end{distributions}
+
+Soit la matrice $2 \times 2$ $\bm{A}$ où : \\
+\begin{align*}
+	\bm{A}
+	&=	\begin{bmatrix}
+		a	&	b	\\
+		c	&	d	\\
+		\end{bmatrix}
+\end{align*}
+
+\
+
+Alors son inverse $\bm{A}^{-1}$ est : \\
+\begin{align*}
+	\bm{A}^{-1}
+	&=	\frac{1}{ad - bc} \begin{bmatrix}
+		d	&	-b	\\
+		-c	&	a	\\
+		\end{bmatrix}
+\end{align*}
+
+\begin{itemize}
+	\item	Pour plus de 3 dimensions, c'est long et peu probable d'être dans l'examen.
+\end{itemize}
+%%%	Ajouter exemple de 3 x 3 ? 
+\end{rappel}
+
+\begin{formula}{Exemple du calcul du temps espéré}
+Soit la chaîne de Markov à trois états (1, 2, 3) avec la matrice de transition suivante : 
+
+\begin{align*}
+	\bm{P}
+	&=	\begin{bmatrix}
+		0.5	&	0.5	&	0	\\
+		0	&	0.8	&	0.2	\\
+		0	&	0	&	1	\\
+		\end{bmatrix}
+\end{align*}
+
+\
+
+On souhaite trouver l'espérance du nombre de périodes passées dans l'état $2$ sachant qu'on débute dans l'état $1$.
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Trouver la matrice de transitions pour les états transitoires : 
+		\begin{align*}
+		\bm{P}_{T}
+		&=	\begin{bmatrix}
+			0.5	&	0.5	\\
+			0	&	0.8	\\
+			\end{bmatrix}
+		\end{align*}
+	\item	Trouver $\bm{I} - \bm{P}_{T}$ : 
+		\begin{align*}
+		\bm{I} - \bm{P}_{T}
+		&=	\begin{bmatrix}
+			0.5	&	-0.5	\\
+			0	&	0.2	\\
+			\end{bmatrix}
+		\end{align*}
+	\item	Trouver l'inverse $(\bm{I} - \bm{P}_{T})^{-1}$ : 
+		\begin{align*}
+		(\bm{I} - \bm{P}_{T})^{-1}
+		&=	\begin{bmatrix}
+			0.2	&	0.5	\\
+			0	&	0.5	\\
+			\end{bmatrix}	\times
+			\frac{1}{0.10 - 0}	
+		=	\begin{bmatrix}
+			2	&	5	\\
+			0	&	5	\\
+			\end{bmatrix}
+		\end{align*}
+	\item	Trouver l'élément $s_{1, 2}$ de la matrice $\bm{S} = (\bm{I} - \bm{P}_{T})^{-1}$ et donc $s_{1, 2} = 5$.
+\end{enumerate}
+\end{formula}
+
 
 
 \columnbreak
