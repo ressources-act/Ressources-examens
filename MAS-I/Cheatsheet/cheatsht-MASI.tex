@@ -7787,7 +7787,6 @@ Il s'ensuit que si un état $i$ est récurrent, alors le nombre de fois que nous
 
 \begin{itemize}
 	\item	Il s'ensuit qu'il est toujours possible de retourner dans l'état $i$ à partir de tout autre état dans le futur.
-	\item	
 \end{itemize}	
 \end{definitionNOHFILLprop}
 
@@ -8096,6 +8095,20 @@ On souhaite trouver l'espérance du nombre de périodes passées dans l'état $2
 
 \columnbreak
 \subsection{Time Reversibility}
+\begin{rappel_enhanced}[Contexte]
+Lorsque l'on désire trouver la séquence des états à partir du dernier, on veut le processus inverse de la chaîne de Markov.
+\end{rappel_enhanced}
+
+Soit la chaîne de Markov stationnaire \textbf{ergodique} $\{X_{m}, m \geq 0\}$. Alors, le processus inverse est lui-même une chaîne de Markov avec probabilités de transition \lfbox[formula]{$R_{i, j} = \frac{\pi_{j}P_{j, i}}{\pi_{i}}$}.
+
+\begin{definitionNOHFILLsub}[Chaîne de Markov \og \textit{time reversible} \fg{}]
+Si \lfbox[conditions]{$R_{i, j} = P_{i, j}$} pour tout \lfbox[conditions]{$i$ et $j$}, la chaîne de Markov est \og \textit{time reversible} \fg{} et \lfbox[formula]{$\pi_{i}P_{i, j} = \pi_{j}P_{j, i}
+$}.\\
+
+Il s'ensuit qu'elle a la même probabilité d'aller d'un état $i$ à un état $j$ que d'aller d'un état $j$ à un état $i$ peu importe le chemin. C'est à dire, \lfbox[formula]{$P_{i, j}P_{j, k}P_{k, i} = P_{i, k}P_{k, j}P_{j, i}$}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Un truc pour déterminer si une chaîne de Markov est réversible est de vérifier si pour un $i$ et $j$ que $P_{i, j} = 0$ alors $P_{j, i} = 0$.
 
 
 \columnbreak
