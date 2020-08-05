@@ -7874,7 +7874,7 @@ Soit l'état récurrent $j$,
 
 
 \begin{definitionNOHFILLprop}[Probabilités stationnaires]
-La probabilité stationnaire $\pi_{j}$ de l'état $j$ correspond au réciproque de l'espérance du nombre transitions pour qu'une chaîne de Markov ayant débuté dans l'état $j$ y retourne : \lfbox[formula]{$\frac{1}{m_{j}}$}.\\
+La probabilité stationnaire $\pi_{j}$ de l'état $j$ correspond au réciproque de l'espérance du nombre transitions pour qu'une chaîne de Markov ayant débuté dans l'état $j$ y retourne : \lfbox[formula]{$\pi_{j} = \frac{1}{m_{j}}$}.\\
 
 Cependant, on \underline{isole} habituellement les probabilités stationnaires à partir du système d'équations suivant : 
 \begin{align*}
@@ -8095,20 +8095,102 @@ On souhaite trouver l'espérance du nombre de périodes passées dans l'état $2
 
 \columnbreak
 \subsection{Time Reversibility}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$R_{i, j}$]	Probabilité de transition de l'état $i$ à l'état $j$ (en une période) pour la chaîne de Markov inverse.
+		\begin{itemize}
+		\item	On dénote la matrice des probabilités de transition de la chaîne de Markov inverse par $\bm{R}$.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
 \begin{rappel_enhanced}[Contexte]
 Lorsque l'on désire trouver la séquence des états à partir du dernier, on veut le processus inverse de la chaîne de Markov.
 \end{rappel_enhanced}
 
-Soit la chaîne de Markov stationnaire \textbf{ergodique} $\{X_{m}, m \geq 0\}$. Alors, le processus inverse est lui-même une chaîne de Markov avec probabilités de transition \lfbox[formula]{$R_{i, j} = \frac{\pi_{j}P_{j, i}}{\pi_{i}}$}.
+\begin{definitionNOHFILL}[Chaîne de Markov inverse]
+Soit la chaîne de Markov \textbf{stationnaire} et \textbf{ergodique} $\{X_{m}, m \geq 0\}$. Alors, le processus inverse ($X_{m}, X_{m - 1}, \dots$) est lui-même une chaîne de Markov avec probabilités de transition \lfbox[formula]{$R_{\textcolor{teal}{i}, \textcolor{amethyst}{j}} = P_{\textcolor{amethyst}{j}, \textcolor{teal}{i}} \times \frac{\pi_{\textcolor{amethyst}{j}}}{\pi_{\textcolor{teal}{i}}}$}.
+
+\paragraph{Note}	On pose que la chaîne de Markov est \textit{stationnaire} afin qu'elle soit "\textbf{homogène}" et que les probabilités de transition ne changent pas dans le temps.
+\end{definitionNOHFILL}
+
 
 \begin{definitionNOHFILLsub}[Chaîne de Markov \og \textit{time reversible} \fg{}]
 Si \lfbox[conditions]{$R_{i, j} = P_{i, j}$} pour tout \lfbox[conditions]{$i$ et $j$}, la chaîne de Markov est \og \textit{time reversible} \fg{} et \lfbox[formula]{$\pi_{i}P_{i, j} = \pi_{j}P_{j, i}
 $}.\\
 
-Il s'ensuit qu'elle a la même probabilité d'aller d'un état $i$ à un état $j$ que d'aller d'un état $j$ à un état $i$ peu importe le chemin. C'est à dire, \lfbox[formula]{$P_{i, j}P_{j, k}P_{k, i} = P_{i, k}P_{k, j}P_{j, i}$}
+Il s'ensuit que la probabilité que le processus fasse la transition d'un état $i$ vers un état $j$ est la même que pour la probabilité de la transition d'un état $j$ vers un état $i$, et cela peu importe le chemin. C'est à dire, \lfbox[formula]{$P_{i, j}P_{j, k}P_{k, i} = P_{i, k}P_{k, j}P_{j, i}$}
 \end{definitionNOHFILLsub}
 
 \paragraph{Note}	Un truc pour déterminer si une chaîne de Markov est réversible est de vérifier si pour un $i$ et $j$ que $P_{i, j} = 0$ alors $P_{j, i} = 0$.
+
+\begin{formula}{Exemple de chaîne de Markov inverse}
+Soit la chaîne de Markov à 2 états (1, 2) avec la matrice des probabilités de transition suivante : 
+\begin{align*}
+	\bm{P}
+	&=	\begin{bmatrix}
+		0.3	&	0.2	&	0.5	\\
+		0.1	&	0.6	&	0.3	\\
+		0.2	&	0.1	&	0.7	\\
+		\end{bmatrix}
+\end{align*}
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Trouver les probabilités limites :
+		\begin{align*}
+		\pi_{1} 
+		&=	0.3\pi_{1} + 0.1\pi_{2} + 0.2\pi_{3}	
+		\Rightarrow
+		\pi_{1}
+		=	\frac{1}{7} \pi_{2} + \frac{2}{7} \pi_{3}	\\
+		\pi_{2} 
+		&=	0.2\pi_{1} + 0.6\pi_{2} + 0.1\pi_{3}	
+		\Rightarrow
+		\pi_{2}
+		=	\frac{1}{2} \pi_{1} + \frac{1}{4} \pi_{3}	\\
+	\therefore	\pi_{2}
+		&=	\frac{1}{2} \left(\frac{1}{7} \pi_{2} + \frac{2}{7} \pi_{3}\right) + \frac{1}{4} \pi_{3}
+		=	\frac{\frac{1}{7} \pi_{3} + \frac{1}{4} \pi_{3}}{13/14}	\\
+		&=	\frac{2}{13} \pi_{3} + \frac{7}{26} \pi_{3} 
+		=	\frac{11}{26} \pi_{3} \\
+		\pi_{1} + \pi_{2} + \pi_{3}
+		&= 1
+		\Rightarrow
+		\frac{1}{7}\left(\frac{11}{26} \pi_{3}\right) + \frac{11}{26} \pi_{3} + \pi_{3}
+		=	1	
+		\Rightarrow
+		\pi_{3}
+		=	\frac{182}{270}	\\
+		\pi_{2}
+		&=	\frac{11}{26} \times \frac{182}{270}
+		=	\frac{77}{270}	\\
+		\pi_{1}
+		&=	\frac{1}{7} \frac{77}{270} + \frac{2}{7} \frac{182}{270}
+		=	\frac{7}{30}
+		\end{align*}
+	\item	Trouver probabilités de transition de la chaîne de Markov inverse $\bm{R}$ : 
+		\begin{enumerate}
+		\item	$\bm{R}_{11}	=	\bm{P}_{11} \frac{\pi_{1}}{\pi_{1}}	=	0.3$
+		\item	$\bm{R}_{22}	=	\bm{P}_{22} \frac{\pi_{2}}{\pi_{2}}	=	0.6$
+		\item	$\bm{R}_{33}	=	\bm{P}_{33} \frac{\pi_{3}}{\pi_{3}}	=	0.7$
+		\item	$\bm{R}_{12}	=	\bm{P}_{21} \frac{\pi_{2}}{\pi_{1}}	=	0.1 \times \frac{77/270}{7/30} = 0.12$
+		\item	$\bm{R}_{13}	=	\bm{P}_{31} \frac{\pi_{3}}{\pi_{1}}	=	0.2 \times \frac{182/270}{7/30} = 0.58$
+		\item	$\bm{R}_{21}	=	\bm{P}_{12} \frac{\pi_{1}}{\pi_{2}}	=	0.2 \times \frac{7/30}{77/270} = 0.16$
+		\item	$\bm{R}_{23}	=	\bm{P}_{32} \frac{\pi_{3}}{\pi_{2}}	=	0.1 \times \frac{182/270}{77/270} = 0.24$
+		\item	$\bm{R}_{31}	=	\bm{P}_{13} \frac{\pi_{1}}{\pi_{3}}	=	0.5 \times \frac{7/30}{182/270} = 0.17$
+		\item	$\bm{R}_{32}	=	\bm{P}_{23} \frac{\pi_{2}}{\pi_{3}}	=	0.3 \times \frac{77/270}{182/270} = 0.13$
+		\end{enumerate}
+	\item	Construire la matrice des probabilités de transition inverse : 
+		\begin{align*}
+		\bm{R}
+		&=	\begin{bmatrix}
+			0.30	&	0.12	&	0.58		\\
+			0.16	&	0.60	&	0.24		\\
+			0.17	&	0.13	&	0.70		\\
+		\end{bmatrix}
+		\end{align*}
+\end{enumerate}
+\end{formula}
 
 
 \columnbreak
