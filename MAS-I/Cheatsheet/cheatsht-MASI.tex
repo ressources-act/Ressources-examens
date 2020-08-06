@@ -8195,13 +8195,223 @@ Soit la chaîne de Markov à 2 états (1, 2) avec la matrice des probabilités d
 
 \columnbreak
 \subsection{Applications of Markov Chains}
+\subsubsection{Random Walk}
+\begin{definitionNOHFILL}[Marche aléatoire]
+\begin{definitionGENERAL}{À une dimension}[\circled{1}{trueblue}]
+Une \textit{marche aléatoire} à une dimension équivaut à une chaîne de Markov qui, de l'état $i$, peut seulement aller soit à l'état $\textcolor{blue}{i + 1}$ avec probabilité $P_{i, \textcolor{blue}{i + 1}} = p$ ou l'état $\textcolor{red}{i - 1}$ avec probabilité $P_{i, \textcolor{red}{i - 1}} = 1 - p$ où $p \in [0, 1]$.\\
+
+On peut donc visualiser une ligne : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,86); %set diagram left start at 0, and has height of 86
+
+%Straight Lines [id:da5174666889204569] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (84.36,18.61) -- (348.5,18.61) (128.36,11.11) -- (128.36,26.11)(172.36,11.11) -- (172.36,26.11)(216.36,11.11) -- (216.36,26.11)(260.36,11.11) -- (260.36,26.11)(304.36,11.11) -- (304.36,26.11)(348.36,11.11) -- (348.36,26.11) ;
+\draw [shift={(84.36,18.61)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Rounded Rect [id:dp28615579835939964] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]  (169.18,18.72) .. controls (169.18,16.7) and (170.82,15.06) .. (172.84,15.06) -- (172.84,15.06) .. controls (174.86,15.06) and (176.5,16.7) .. (176.5,18.72) -- (176.5,19.28) .. controls (176.5,21.3) and (174.86,22.94) .. (172.84,22.94) -- (172.84,22.94) .. controls (170.82,22.94) and (169.18,21.3) .. (169.18,19.28) -- cycle ;
+%Rounded Rect [id:dp34812206968458104] 
+\draw  [draw opacity=0][fill={rgb, 255:red, ; green, 117; blue, 255}  ,fill opacity=1 ][line width=1.5]  (257.18,18.72) .. controls (257.18,16.7) and (258.82,15.06) .. (260.84,15.06) -- (260.84,15.06) .. controls (262.86,15.06) and (264.5,16.7) .. (264.5,18.72) -- (264.5,19.28) .. controls (264.5,21.3) and (262.86,22.94) .. (260.84,22.94) -- (260.84,22.94) .. controls (258.82,22.94) and (257.18,21.3) .. (257.18,19.28) -- cycle ;
+%Straight Lines [id:da2658347631397815] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255}  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (246.7,57.16) -- (277.7,57.16) ;
+\draw [shift={(281.7,57.16)}, rotate = 180] [fill={rgb, 255:red, 0; green, 117; blue, 255}  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da2162053513712867] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255}  ,draw opacity=1 ][line width=1.5]    (225.94,57.16) -- (246.7,57.16) ;
+
+%Straight Lines [id:da3931757786575094] 
+\draw [color={rgb, 255:red, 255; green, 0; blue, 0}  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (179.94,57.16) -- (148.94,57.16) ;
+\draw [shift={(144.94,57.16)}, rotate = 360] [fill={rgb, 255:red, 255; green, 0; blue, 0}  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da8263883141986912] 
+\draw [color={rgb, 255:red, 255; green, 0; blue, 0}  ,draw opacity=1 ][line width=1.5]    (200.7,57.16) -- (179.94,57.16) ;
+
+
+% Text Node
+\draw (211,37.66) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle i$};
+% Text Node
+\draw (243,33.66) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 117; blue, 255}  ,opacity=1 ] [align=left] {$\displaystyle i+1$};
+% Text Node
+\draw (287,31) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle i+2$};
+% Text Node
+\draw (335,27) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \dotsc $};
+% Text Node
+\draw (156,31) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 0; blue, 0}  ,opacity=1 ] [align=left] {$\displaystyle i-1$};
+% Text Node
+\draw (112,31) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle i-2$};
+% Text Node
+\draw (71,27) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \dotsc $};
+\end{tikzpicture}
+\end{center}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{À deux dimensions}[\circled{2}{trueblue}]
+Une marche aléatoire de deux dimensions représente chaque état comme une paire de chiffres $(i, j)$ et donc le prochain état peut être un des quatre états suivants : $(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)$.\\
+
+On peut donc visualiser un carré en représentant l'état comme des coordonnées : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,312); %set diagram left start at 0, and has height of 312
+
+%Shape: Grid [id:dp10633260528299604] 
+\draw  [draw opacity=0] (137.31,86.32) -- (273.31,86.32) -- (273.31,222.32) -- (137.31,222.32) -- cycle ; \draw   (205.31,86.32) -- (205.31,222.32) ; \draw   (137.31,154.32) -- (273.31,154.32) ; \draw   (137.31,86.32) -- (273.31,86.32) -- (273.31,222.32) -- (137.31,222.32) -- cycle ;
+%Rounded Rect [id:dp585970634827438] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 117; blue, 255 }  ,fill opacity=1 ][line width=1.5]  (133.34,154.22) .. controls (133.34,152.2) and (134.98,150.56) .. (137,150.56) -- (137,150.56) .. controls (139.02,150.56) and (140.66,152.2) .. (140.66,154.22) -- (140.66,154.78) .. controls (140.66,156.8) and (139.02,158.44) .. (137,158.44) -- (137,158.44) .. controls (134.98,158.44) and (133.34,156.8) .. (133.34,154.78) -- cycle ;
+%Rounded Rect [id:dp6792939183252213] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]  (269.34,154.22) .. controls (269.34,152.2) and (270.98,150.56) .. (273,150.56) -- (273,150.56) .. controls (275.02,150.56) and (276.66,152.2) .. (276.66,154.22) -- (276.66,154.78) .. controls (276.66,156.8) and (275.02,158.44) .. (273,158.44) -- (273,158.44) .. controls (270.98,158.44) and (269.34,156.8) .. (269.34,154.78) -- cycle ;
+%Straight Lines [id:da5102555807290681] 
+\draw [color={rgb, 255:red, 255; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (232.7,147.5) -- (263.7,147.5) ;
+\draw [shift={(267.7,147.5)}, rotate = 180] [fill={rgb, 255:red, 255; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da908838895300385] 
+\draw [color={rgb, 255:red, 255; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (211.94,147.5) -- (232.7,147.5) ;
+
+%Straight Lines [id:da25225041559157013] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (176.94,160.5) -- (145.94,160.5) ;
+\draw [shift={(141.94,160.5)}, rotate = 360] [fill={rgb, 255:red, 0; green, 117; blue, 255 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da08617709063734624] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,draw opacity=1 ][line width=1.5]    (197.7,160.5) -- (176.94,160.5) ;
+
+%Rounded Rect [id:dp2379097083993147] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=1.5]  (201.84,154.22) .. controls (201.84,152.2) and (203.48,150.56) .. (205.5,150.56) -- (205.5,150.56) .. controls (207.52,150.56) and (209.16,152.2) .. (209.16,154.22) -- (209.16,154.78) .. controls (209.16,156.8) and (207.52,158.44) .. (205.5,158.44) -- (205.5,158.44) .. controls (203.48,158.44) and (201.84,156.8) .. (201.84,154.78) -- cycle ;
+%Rounded Rect [id:dp13917873661773728] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=1.5]  (205.31,88.96) .. controls (203.29,88.98) and (201.64,87.35) .. (201.63,85.33) -- (201.63,85.33) .. controls (201.61,83.31) and (203.24,81.66) .. (205.26,81.64) -- (205.82,81.64) .. controls (207.84,81.62) and (209.49,83.25) .. (209.51,85.27) -- (209.51,85.27) .. controls (209.53,87.29) and (207.9,88.94) .. (205.88,88.96) -- cycle ;
+%Straight Lines [id:da2941629233302072] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (197.9,128.6) -- (197.66,97.6) ;
+\draw [shift={(197.63,93.6)}, rotate = 449.56] [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da8197122224568756] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ][line width=1.5]    (198.06,149.36) -- (197.9,128.6) ;
+
+%Rounded Rect [id:dp8296718085121231] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=1.5]  (205.84,219) .. controls (207.86,218.98) and (209.51,220.61) .. (209.53,222.63) -- (209.53,222.63) .. controls (209.55,224.65) and (207.92,226.3) .. (205.9,226.32) -- (205.34,226.32) .. controls (203.32,226.34) and (201.66,224.72) .. (201.65,222.69) -- (201.65,222.69) .. controls (201.63,220.67) and (203.26,219.02) .. (205.28,219) -- cycle ;
+%Straight Lines [id:da09895455360213834] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (212.23,181.36) -- (212.49,212.36) ;
+\draw [shift={(212.52,216.36)}, rotate = 269.52] [fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da6687670399262444] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ][line width=1.5]    (212.05,160.6) -- (212.23,181.36) ;
+
+
+% Text Node
+\draw (209,122.66) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle ( i,j)$};
+% Text Node
+\draw (275,157.5) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle ( i+1,\ j)$};
+% Text Node
+\draw (74,158) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle ( i-1,\ j)$};
+% Text Node
+\draw (206,65) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 223; green, 139; blue, 1 }  ,opacity=1 ] [align=left] {$\displaystyle ( i,\ j+1)$};
+% Text Node
+\draw (206.65,225.69) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle ( i,\ j-1)$};
+\end{tikzpicture}
+\end{center}
+\end{definitionGENERAL}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Marche aléatoire symétrique]
+S'il y a une probabilité égale d'aller dans toute direction, la marche aléatoire est \textit{symétrique}. Par exemple, dans le cas d'une dimension $p = 0.5$ et dans 2 dimensions $p = 0.25$.
+\end{definitionNOHFILLsub}
+
+Les marches aléatoires sont seulement \textit{\textbf{récurrentes}} si elles ont une ou deux dimensions et qu'elles sont symétriques. Autrement, elles sont \textit{\textbf{transitoires}}.
+
+
+\subsubsection{Gambler's ruin}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$P_{i}$]	Probabilité de commencer $i$ jetons et terminer avec $j$ jetons.
+		\begin{itemize}
+		\item	Le complément $1 - P_{i}$ est la probabilité de commencer avec $i$ jetons et de terminer avec aucun ($0$).
+		\end{itemize}
+	\item[$X$]	Variable aléatoire du nombre de jetons que le \og \textit{gambler} \fg{} a à la fin.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Gambler's ruin problem]
+Soit un jeu où, à chaque ronde, un \og \textit{gambler} \fg{} \textit{gagne} un jeton avec probabilité $p$ ou \textit{perd} un jeton avec probabilité $1 - p$. L'objectif est de se rendre à $j$ jetons.\\
+
+Le \og \textit{gambler's ruin problem} \fg{} est de calculer la probabilité qu'un \og \textit{gambler} \fg{} qui commence avec $i$ jetons va terminer le jeu avec $j$ jetons.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Gambling model]
+Le modèle qu'on utilise pour modéliser le \og \textit{gambler's ruin problem} \fg{} se nomme le \og \textit{gambling model} \fg{}. Il s'apparente à la marche aléatoire sauf qu'il comporte un nombre \textbf{\textit{fini}} d'états. Les états correspondent au nombre de jetons.\\
+
+\begin{definitionNOHFILLpropos}[Propriétés du \og \textit{gambling model} \fg{}]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Puisque le \og \textit{gambler} \fg{} arrête lorsqu'il a soit $0$ ou $j$ jetons, $P_{0, 0} = P_{j, j} = 1$.
+		\begin{itemize}
+		\item	Il s'ensuit que les états $0$ et $j$ sont \textcolor{teal}{absorbants}.
+		\end{itemize}
+	\item	La probabilité de gagner $P_{i, i + 1} = p$ et la probabilité de perdre $P_{i, i - 1} = 1 - p$ où $i \in \{1, 2, \dots, j - 1\}$.
+	\item	Il y a 3 classes : $\{0\}, \{1, 2, \dots, j - 1\}, \{j\}$.
+	\item	Les états $\{0\}$ et $\{j\}$ son récurrents puisqu'ils sont \textcolor{teal}{absorbants} et les états $\{1, 2, \dots, j - 1\}$ sont transitoires.
+\end{enumerate}
+\end{definitionNOHFILLpropos}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[Distribution du nombre de jetons]
+La variable aléatoire $X$ suit une distribution avec deux valeurs possibles : $0$ ou $j$ avec probabilités de $P_{i}$ et $1 - P_{i}$ respectivement. Il s'ensuit que $X$ suit une loi de Bernoulli : \\
+\begin{align*}
+	\Pr(X = x)
+	&=	\begin{cases}
+		P_{i},		&	x = j	\\
+		1 - P_{i},	&	x = 0
+	\end{cases}
+\end{align*}
+
+\
+
+La probabilité d'un succès $P_{i}$ est définie comme suit : 
+\begin{align*}
+	P_{i}
+	&=	\begin{cases}
+		\frac{1 - \left(\frac{q}{p}\right)^{i}}{1 - \left(\frac{q}{p}\right)^{j}},	&	p \neq \frac{1}{2}	\\
+		\frac{i}{j},	&	p = \frac{1}{2}	\\
+	\end{cases}
+\end{align*}
+\end{definitionNOHFILLprop}
+
+Pour calculer la variance, on rappelle le raccourci de Bernoulli :
+\begin{rappel}{Rappel : Raccourci de Bernoulli}
+Soit la variable aléatoire $X$ prenant une de deux valeurs : \\
+\begin{align*}
+	X
+	&=	\begin{cases}
+		a,	&	p	\\
+		b,	&	1 - p	\\
+	\end{cases}	\\
+\end{align*}
+
+Alors, \lfbox[formula]{$\text{Var}(X) = (b - a)^{2}p(1 - p)$}.
+\end{rappel}
 
 
 \columnbreak
 \subsection{Branching Process}
 
+$\mu = \sum_{j = 0}^{\infty} jP_{j}$
+$\sigma^{2} = \sum_{j = 0}^{\infty} (j - \mu)^{2} P_{j}$
 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$X_{n}$]	Size of the $n^{th}$ generation
+\end{description}
+\end{distributions}
 
+\begin{align*}
+	\text{E}[X_{n}]
+	&=	\mu^{n}	\\
+	\text{Var}(X_{n})	
+	&=	\begin{cases}
+		\sigma^{2} \mu^{n - 1} \left(\frac{1 - \mu^{n}}{1 - \mu}\right),	&	\mu \neq 1	\\
+		n\sigma^{2},	&	\mu = 1	\\
+	\end{cases}
+\end{align*}
+
+\begin{align*}
+	\pi_{0}
+	&=	\begin{cases}
+		1,	&	\mu \leq 1	\\
+		\sum_{j = 0}^{\infty}\pi_{0}^{j}P_{j},	&	\mu > 1
+	\end{cases}
+\end{align*}
 
 
 \pagebreak
