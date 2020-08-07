@@ -8385,16 +8385,21 @@ Alors, \lfbox[formula]{$\text{Var}(X) = (b - a)^{2}p(1 - p)$}.
 
 \columnbreak
 \subsection{Branching Process}
+\begin{rappel_enhanced}[Contexte]
+On pose que nous avons une population d'individus dont chacun produit $j$ descendants d'ici la fin de leur durée de vie avec probabilité $P_{j}$.\\
 
-$\mu = \sum_{j = 0}^{\infty} jP_{j}$
-$\sigma^{2} = \sum_{j = 0}^{\infty} (j - \mu)^{2} P_{j}$
+Le nombre moyen de nouveaux descendants qu'un individu produit est \lfbox[formula]{$\mu = \sum_{j = 0}^{\infty} jP_{j}$}.\\
+
+La variance du nombre de nouveaux descendants qu'un individu produit est \lfbox[formula]{$\sigma^{2} = \sum_{j = 0}^{\infty} (j - \mu)^{2} P_{j}$}.
+\end{rappel_enhanced}
 
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$X_{n}$]	Size of the $n^{th}$ generation
+	\item[$X_{n}$]	Taille de la $n^{e}$ génération.
 \end{description}
 \end{distributions}
 
+Si l'on pose une population initiale de 1 (\lfbox[conditions]{$X_{0} = 1$}) : 
 \begin{align*}
 	\text{E}[X_{n}]
 	&=	\mu^{n}	\\
@@ -8402,9 +8407,47 @@ $\sigma^{2} = \sum_{j = 0}^{\infty} (j - \mu)^{2} P_{j}$
 	&=	\begin{cases}
 		\sigma^{2} \mu^{n - 1} \left(\frac{1 - \mu^{n}}{1 - \mu}\right),	&	\mu \neq 1	\\
 		n\sigma^{2},	&	\mu = 1	\\
-	\end{cases}
+	\end{cases}	
 \end{align*}
+\begin{itemize}
+	\item	Si la population initiale est de $k$ (\lfbox[conditions]{$X_{0} = k$}) alors la moyenne est de $k\text{E}[X_{n}]$ et la variance de $k\text{Var}(X_{n})$.
+\end{itemize}
 
+On s'attend donc à ce que la population croît si $\mu > 1$ et décroît sinon : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp13836534369090048] 
+\draw  (150.16,224.52) -- (331.7,224.52)(150.16,93.52) -- (150.16,224.52) -- cycle (324.7,219.52) -- (331.7,224.52) -- (324.7,229.52) (145.16,100.52) -- (150.16,93.52) -- (155.16,100.52)  ;
+%Curve Lines [id:da9102300594643127] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (158.7,200.52) .. controls (245.7,187.52) and (287.7,155.52) .. (322.7,120.52) ;
+%Straight Lines [id:da8415966663394907] 
+\draw    (143.55,200.52) -- (158.7,200.52) ;
+%Curve Lines [id:da43743104586375225] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,draw opacity=1 ]   (158.7,200.52) .. controls (191.7,211.52) and (251.7,221.52) .. (319.7,220.52) ;
+%Straight Lines [id:da409598164191755] 
+\draw [color={rgb, 255:red, 255; green, 159; blue, 0 }  ,draw opacity=1 ]   (158.7,200.52) -- (322.7,200.52) ;
+%Shape: Rectangle [id:dp3327033439587017] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (165,96.07) -- (214.3,96.07) -- (214.3,150.73) -- (165,150.73) -- cycle ;
+
+% Text Node
+\draw (130,67) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \text{E}[ X_{n}]$};
+% Text Node
+\draw (132,192) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (189.68,106) node  [font=\footnotesize,color={rgb, 255:red, 255; green, 0; blue, 31 }  ,opacity=1 ] [align=left] {$\displaystyle \mu =1.2$};
+% Text Node
+\draw (189.65,121.4) node  [font=\footnotesize,color={rgb, 255:red, 240; green, 150; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle \mu =1$};
+% Text Node
+\draw (189.65,137.4) node  [font=\footnotesize,color={rgb, 255:red, 0; green, 117; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle \mu =0.8$};
+\end{tikzpicture}
+\end{center}
+
+
+
+On défini la probabilité que la population disparaisse $\pi_{0}$ si $X_{0} = 1$ comme suit : 
 \begin{align*}
 	\pi_{0}
 	&=	\begin{cases}
@@ -8412,6 +8455,10 @@ $\sigma^{2} = \sum_{j = 0}^{\infty} (j - \mu)^{2} P_{j}$
 		\sum_{j = 0}^{\infty}\pi_{0}^{j}P_{j},	&	\mu > 1
 	\end{cases}
 \end{align*}
+\begin{itemize}
+	\item	Dans le cas où $\mu > 1$, il peut y avoir plusieurs solutions et donc on choisit la solution minimale.
+	\item	Si la population initiale est de $k$ (\lfbox[conditions]{$X_{0} = k$}) alors la la probabilité que la population disparaisse est $\pi_{0}^{k}$.
+\end{itemize}
 
 
 \pagebreak
