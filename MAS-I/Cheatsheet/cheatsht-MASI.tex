@@ -6861,46 +6861,117 @@ Cependant, si le détenteur de police \og \textit{lapses} \fg{} ou ne renouvelle
 
 \newpage	
 \section{Simulation}
-Appel les variables aléatoires indépendantes simulées d'une distribution les \textit{nombres aléatoires}
+On simule des réalisations de variables aléatoires à partir de nombres aléatoires distribués uniformément dans $[0, 1)$.
 
-\subsection{Uniform number generation}
-méthode
-	conventionnelle
-	computationelle	
-\begin{algo2}[Simulation d'une variable aléatoire uniforme]
-Pour une variable aléatoire $U(0, 1)$, 
+\begin{algo2}[Générer des nombres pseudo-aléatoires]
+On génère des nombres pseudo-aléatoires qui \textit{simulent} des nombres réellement aléatoires.
+
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	Choisir l'ancrage : un nombre initial $x_{0}$.
-	\item	Générer des nombres pseudo-aléatoires avec \lfbox[formula]{$x_{j + 1} = (ax_{j} + c)\mod m$}, \lfbox[conditions]{$n \geq 0$}.
 		\begin{itemize}
-		\item	Les valeurs $a, c, m$ sont spécifiées en avance pour imiter une simulation aléatoire.
+		\item	En anglais, \og \textit{seed} \fg{}.
+		\end{itemize}
+	\item	Générer les nombres pseudo-aléatoires avec \lfbox[formula]{$x_{j + 1} = (ax_{j} + c)\mod m$}, \lfbox[conditions]{$j \geq 0$}.
+		\begin{itemize}
+		\item	Les valeurs $a, c, m$ sont spécifiées en avance pour \textbf{\textit{imiter}} une simulation aléatoire.
+		\item	L'opérateur modulo revient à prendre le restant d'une division comme un nombre entier.
+		\item	Le nombre n'est pas fractionnaire, plutôt \lfbox[conditions]{$x_{j + 1} \in [0, m)$}.
 		\end{itemize}
 	\item	Calculer la réalisation \lfbox[formula]{$u_{j + 1}  = x_{j + 1} / m$}.
+	\item	Répéter les étapes $1$ à $3$ le nombre de fois désiré.
 \end{enumerate}
+
+\paragraph{Note}	Il est rare de devoir nous même simuler les nombres, habituellement ils sont donnés. Cependant, si c'est le cas, les nombres $a, c, m$ seront donnés dans la question.
 \end{algo2}
 
 
 \subsection{Méthode de l'inverse}
 \begin{algo2}[Simulation par la méthode de l'inverse]
-Pour une variable aléatoire $X$, 
+Pour une variable aléatoire $X$ avec fonction de répartition $F_{X}(x)$, 
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	Simuler une réalisation $u_{j}$ de la v.a. $U(0, 1)$.
 	\item	Poser $x_{j} = F_{X}^{-1}(u_{j})$.
+	\item	Répéter les étapes $1$ et $2$ le nombre de fois désiré.
 \end{enumerate}
 \end{algo2}
 
-\subsection{Méthode d'acceptation-rejet}
-visuel
 
+\subsection{Méthode d'acceptation-rejet}
+\begin{rappel_enhanced}[Contexte]
+Lorsqu'il est difficile, ou impossible, de trouver la fonction quantile on peut utiliser la méthode d'acceptation de rejet.
+\end{rappel_enhanced}
+
+Supposons que nous pouvons simuler des réalisations d'une distribution ayant la fonction de densité $g$ et que l'on veut simuler des réalisations d'une autre distribution ayant la fonction de densité $f$. 
+Par exemple : 
 
 \begin{algo2}[Simulation par la méthode d'acceptation-rejet]
 Pour une variable aléatoire $X$, 
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
-	\item	Trouver une constante $c$ telle que \lfbox[formula]{$\frac{f(x)}{g(x)} \leq c$}, \lfbox[conditions]{$\forall x$}.
-	\item	Simuler une réalisation $y_{j}$ de la variable aléatoire $Y$ ayant la fonction de densité $g$.
+	\item	Trouver une constante $c$ telle que \lfbox[formula]{$\frac{f(x)}{g(x)} \leq c$}, \lfbox[conditions]{$\forall x$}.\\
+		Par exemple, 
+		\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,195); %set diagram left start at 0, and has height of 195
+
+%Shape: Axis 2D [id:dp04454782868493701] 
+\draw  (48,169.8) -- (292.17,169.8)(72.42,51) -- (72.42,183) (285.17,164.8) -- (292.17,169.8) -- (285.17,174.8) (67.42,58) -- (72.42,51) -- (77.42,58)  ;
+%Shape: Wave [id:dp3551881077157548] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (282.17,170) .. controls (264.07,170) and (248.47,137.57) .. (232.17,103.5) .. controls (215.86,69.43) and (200.26,37) .. (182.17,37) .. controls (164.07,37) and (148.47,69.43) .. (132.17,103.5) .. controls (116.77,135.67) and (102,166.38) .. (85.17,169.7) ;
+%Curve Lines [id:da9058629039644694] 
+\draw [color={rgb, 255:red, 0; green, 110; blue, 238 }  ,draw opacity=1 ]   (72.42,169.8) .. controls (151.5,171.13) and (121.5,108.13) .. (137.5,98.13) .. controls (153.5,88.13) and (147.5,149.13) .. (179.5,130.13) .. controls (211.5,111.13) and (193.5,173.13) .. (278.5,170.13) ;
+
+% Text Node
+\draw (302,167) node  [font=\footnotesize] [align=left] {$\displaystyle x$};
+% Text Node
+\draw (215,48) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,opacity=1 ] [align=left] {$\displaystyle c\cdotp g( x)$};
+% Text Node
+\draw (157,96) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle f( x)$};
+\end{tikzpicture}
+		\end{center}
+	\item	Simuler une réalisation $y_{j}$ de la variable aléatoire $Y$ ayant la fonction de densité $g$ et calculer $\frac{f(y_{j})}{c g(y_{j})}$.	
 	\item	Simuler une réalisation $u_{j}$ de la variable aléatoire $U(0, 1)$.
 	\item	Comparer la réalisation $u_{j}$ à $\frac{f(y_{j})}{c g(y_{j})}$, si \lfbox[formula]{$u_{j} \leq \frac{f(y_{j})}{c g(y_{j})}$} alors accepter la réalisation $y_{j}$, sinon la refuser et retourner à l'étape 2.
+	\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,247); %set diagram left start at 0, and has height of 247
+
+%Shape: Axis 2D [id:dp9159544224440075] 
+\draw  (48,169.8) -- (292.17,169.8)(72.42,51) -- (72.42,183) (285.17,164.8) -- (292.17,169.8) -- (285.17,174.8) (67.42,58) -- (72.42,51) -- (77.42,58)  ;
+%Shape: Wave [id:dp7772804532155415] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (282.17,170) .. controls (264.07,170) and (248.47,137.57) .. (232.17,103.5) .. controls (215.86,69.43) and (200.26,37) .. (182.17,37) .. controls (164.07,37) and (148.47,69.43) .. (132.17,103.5) .. controls (116.77,135.67) and (102,166.38) .. (85.17,169.7) ;
+%Curve Lines [id:da5198385313052689] 
+\draw [color={rgb, 255:red, 0; green, 110; blue, 238 }  ,draw opacity=1 ]   (72.42,169.8) .. controls (151.5,171.13) and (121.5,108.13) .. (137.5,98.13) .. controls (153.5,88.13) and (147.5,149.13) .. (179.5,130.13) .. controls (211.5,111.13) and (193.5,173.13) .. (278.5,170.13) ;
+%Straight Lines [id:da15724953888704207] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (186.5,39) -- (186.5,128) ;
+%Straight Lines [id:da2978344643989861] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (186.5,128) -- (186.5,171) ;
+%Shape: Circle [id:dp23396862805085927] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (181.5,38) .. controls (181.5,35.24) and (183.74,33) .. (186.5,33) .. controls (189.26,33) and (191.5,35.24) .. (191.5,38) .. controls (191.5,40.76) and (189.26,43) .. (186.5,43) .. controls (183.74,43) and (181.5,40.76) .. (181.5,38) -- cycle ;
+%Shape: Circle [id:dp056157791101330234] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (181.5,127) .. controls (181.5,124.24) and (183.74,122) .. (186.5,122) .. controls (189.26,122) and (191.5,124.24) .. (191.5,127) .. controls (191.5,129.76) and (189.26,132) .. (186.5,132) .. controls (183.74,132) and (181.5,129.76) .. (181.5,127) -- cycle ;
+%Shape: Circle [id:dp7790187571587763] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (181.5,170) .. controls (181.5,167.24) and (183.74,165) .. (186.5,165) .. controls (189.26,165) and (191.5,167.24) .. (191.5,170) .. controls (191.5,172.76) and (189.26,175) .. (186.5,175) .. controls (183.74,175) and (181.5,172.76) .. (181.5,170) -- cycle ;
+
+% Text Node
+\draw (302,167) node  [font=\footnotesize] [align=left] {$\displaystyle x$};
+% Text Node
+\draw (159.5,13) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 166; blue, 35 }, opacity=1 ] [align=left] {$\displaystyle c\cdotp g(\textcolor[rgb]{1, 0, 0}{y_{j}}\textcolor[rgb]{0.96, 0.65, 0.14}{)}$};
+% Text Node
+\draw (188,104) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle f(\textcolor[rgb]{1, 0, 0}{y_{j}}\textcolor[rgb]{0.29, 0.56, 0.88}{)}$};
+% Text Node
+\draw (186.5,180.33) node  [font=\footnotesize] [align=left] {$\displaystyle \textcolor[rgb]{1, 0, 0}{y_{j}}$};
+% Text Node
+\draw (130,144) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.25,0.46,0.02}{accept}};
+% Text Node
+\draw (150,64) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textcolor[rgb]{0.61,0.61,0.61}{rejet}};
+\end{tikzpicture}
+	\end{center}
 \end{enumerate}
+
+Les nombres simulés vont suivre la distribution associée à la fonction de densité $f$.
+\paragraph{Note}	Le nombre d'itérations nécessaires pour obtenir un nombre aléatoire simulé suit une distribution géométrique de moyenne $c$.
 \end{algo2}
 
 
@@ -6915,7 +6986,48 @@ Pour une variable aléatoire $X$,
 \end{enumerate}
 \end{algo2}
 
-visuel
+Visuellement : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,168); %set diagram left start at 0, and has height of 168
+
+
+%Rounded Rect [id:dp942454310600852] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (253.61,34.92) .. controls (256.63,34.92) and (259.08,37.36) .. (259.08,40.38) -- (259.08,139.62) .. controls (259.08,142.64) and (256.63,145.08) .. (253.61,145.08) -- (237.21,145.08) .. controls (234.19,145.08) and (231.74,142.64) .. (231.74,139.62) -- (231.74,40.38) .. controls (231.74,37.36) and (234.19,34.92) .. (237.21,34.92) -- cycle ;
+
+%Rounded Rect [id:dp12379698936527883] 
+\draw  [color={rgb, 255:red, 76; green, 16; blue, 128 }  ,draw opacity=1 ][fill={rgb, 255:red, 243; green, 162; blue, 28 }  ,fill opacity=1 ] (392.08,75.8) .. controls (392.08,72.78) and (394.53,70.33) .. (397.55,70.33) -- (424.03,70.33) .. controls (427.05,70.33) and (429.5,72.78) .. (429.5,75.8) -- (429.5,92.2) .. controls (429.5,95.22) and (427.05,97.67) .. (424.03,97.67) -- (397.55,97.67) .. controls (394.53,97.67) and (392.08,95.22) .. (392.08,92.2) -- cycle ;
+
+%Straight Lines [id:da8321642773139506] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (119.5,80.27) -- (216.65,53.34) ;
+\draw [shift={(220.5,52.27)}, rotate = 524.51] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da4555457784342194] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (119.5,80.27) -- (219.5,75.47) ;
+\draw [shift={(223.5,75.27)}, rotate = 537.25] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da5524460861328313] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (119.5,80.27) -- (218.93,130.47) ;
+\draw [shift={(222.5,132.27)}, rotate = 206.79] [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+%Straight Lines [id:da19756141741178124] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (270.5,83.27) -- (377.5,83.27) ;
+\draw [shift={(381.5,83.27)}, rotate = 180] [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (11.61,-5.58) -- (0,0) -- (11.61,5.58) -- cycle    ;
+
+% Text Node
+\draw (236.41,40) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle x_{1}$};
+% Text Node
+\draw (236.41,63) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle x_{2}$};
+% Text Node
+\draw (235.91,121) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle x_{n}$};
+% Text Node
+\draw (236.91,91) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle \vdots $};
+% Text Node
+\draw (8.66,79.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle f( x_{1} ,x_{2} ,\dotsc ,x_{n})$};
+% Text Node
+\draw (268.66,57.5) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{g}( x_{1} ,x_{2} ,\dotsc ,x_{n})$};
+% Text Node
+\draw (404.79,76) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle Y$};
+\end{tikzpicture}
+\end{center}
 
 
 
