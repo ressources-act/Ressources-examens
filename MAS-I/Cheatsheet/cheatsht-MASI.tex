@@ -5084,7 +5084,10 @@ Le BIC est \og \textit{consistent} \fg{} et règle le désavantage de l'AIC avec
 Dans les deux cas, la probabilité de rejeter le modèle plus simple lorsque le vrai modèle est entre les deux tend vers 1. 
 
 
-\pagebreak
+
+
+
+\newpage
 \part{Sujets divers}
 \label{chapt:varia}
 \section{Optimisation numérique}
@@ -5098,7 +5101,9 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide}s au coût d'être \t
 
 
 
-\pagebreak
+
+
+\newpage
 \section{Théorie de la fiabilité}
 \label{sec:reliability}
 \begin{definitionNOHFILL}[Théorie de la fiabilité]
@@ -6606,10 +6611,11 @@ IFR et DFR	&	$\tau = 1$			&	$\alpha = 1$			\\\hline
 \paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsec:distrIARD}}} du chapitre de \textit{\underline{\nameref{chapt:mathIARD}}} pour une description de la loi gamma et de la loi de Weibull.
 
 
+
+
+
 \newpage
 \section{Assurance vie}
-ILT
-
 \subsection{Probabilités}
 \begin{distributions}[Notation]
 \begin{description}
@@ -6678,7 +6684,7 @@ Sous l'hypothèse d'une distribution uniforme des décès (DUD), \lfbox[formula]
 
 
 \columnbreak
-\subsection{Assurance vie}
+\subsection{Contrats d'assurance vie}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$Z_{x}$]	Variable aléatoire du contrat d'assurance pour un assuré d'âge $x$.
@@ -6778,7 +6784,7 @@ Assurance :
 
 
 \columnbreak
-\subsection{Rentes}
+\subsection{Contrats de rentes}
 \subsubsection{Rentes de base}
 \begin{definitionNOHFILLsub}[Rente viagère de début de période $\ddot{Y}_{x}$]
 Pour $K = 0, 1, 2,\dots$ on obtient que $\ddot{Y}_{x} = \ddot{a}_{\angl{K + 1}}$. Puis, $\text{E}[\ddot{Y}_{x}] = \ddot{a}_{x}$.
@@ -6839,6 +6845,7 @@ Pour l'examen cependant, on les ignores et se restreint aux prestations et aux p
 \end{definitionNOHFILL}
 
 
+
 \subsubsection{Assurance nivelée}
 \begin{rappel_enhanced}[Contexte]
 Typiquement, la mortalité n'est pas constante. En assurance vie, elle est moins élevée lorsqu'un assuré est jeune et augmente avec l'âge. En assurance dommages cependant, elle est plus élevée lorsqu'un assuré est jeune que lorsqu'il est âgé.	\\
@@ -6850,30 +6857,71 @@ Cependant, si le détenteur de police \og \textit{lapses} \fg{} ou ne renouvelle
 
 
 
+
+
 \newpage	
 \section{Simulation}
+Appel les variables aléatoires indépendantes simulées d'une distribution les \textit{nombres aléatoires}
+
 \subsection{Uniform number generation}
 méthode
 	conventionnelle
-	computationelle
-		étapes
-	
+	computationelle	
+\begin{algo2}[Simulation d'une variable aléatoire uniforme]
+Pour une variable aléatoire $U(0, 1)$, 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Choisir l'ancrage : un nombre initial $x_{0}$.
+	\item	Générer des nombres pseudo-aléatoires avec \lfbox[formula]{$x_{j + 1} = (ax_{j} + c)\mod m$}, \lfbox[conditions]{$n \geq 0$}.
+		\begin{itemize}
+		\item	Les valeurs $a, c, m$ sont spécifiées en avance pour imiter une simulation aléatoire.
+		\end{itemize}
+	\item	Calculer la réalisation \lfbox[formula]{$u_{j + 1}  = x_{j + 1} / m$}.
+\end{enumerate}
+\end{algo2}
+
 
 \subsection{Méthode de l'inverse}
-étapes
+\begin{algo2}[Simulation par la méthode de l'inverse]
+Pour une variable aléatoire $X$, 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Simuler une réalisation $u_{j}$ de la v.a. $U(0, 1)$.
+	\item	Poser $x_{j} = F_{X}^{-1}(u_{j})$.
+\end{enumerate}
+\end{algo2}
 
 \subsection{Méthode d'acceptation-rejet}
 visuel
-étapes
+
+
+\begin{algo2}[Simulation par la méthode d'acceptation-rejet]
+Pour une variable aléatoire $X$, 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Trouver une constante $c$ telle que \lfbox[formula]{$\frac{f(x)}{g(x)} \leq c$}, \lfbox[conditions]{$\forall x$}.
+	\item	Simuler une réalisation $y_{j}$ de la variable aléatoire $Y$ ayant la fonction de densité $g$.
+	\item	Simuler une réalisation $u_{j}$ de la variable aléatoire $U(0, 1)$.
+	\item	Comparer la réalisation $u_{j}$ à $\frac{f(y_{j})}{c g(y_{j})}$, si \lfbox[formula]{$u_{j} \leq \frac{f(y_{j})}{c g(y_{j})}$} alors accepter la réalisation $y_{j}$, sinon la refuser et retourner à l'étape 2.
+\end{enumerate}
+\end{algo2}
 
 
 \subsection{Simulation Monte-Carlo}
-étapes
+\begin{algo2}[Simulation Monte-Carlo]
+Pour une variable aléatoire $X$, 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Simuler un vecteur de réalisation $(x_{1}, x_{2}, \dots, x_{n})$ d'une distribution dont la fonction de densité est $f(x_{1}, x_{2}, \dots, x_{n})$.
+	\item	Appliquer une fonction $g$ au vecteur des réalisations pour trouver $y_{j} = g(x_{1}, x_{2}, \dots, x_{n})$.
+	\item	Répéter les étapes 1 et 2 $r$ fois où $r$ est grand.
+	\item	Calculer la valeur désiré (espérance, variance, etc.) avec les réalisations $(y_{1}, y_{2}, \dots, y_{r})$.
+\end{enumerate}
+\end{algo2}
+
 visuel
 
 
 
-\pagebreak
+
+
+\newpage
 \part{Processus stochastiques}
 \label{chapt:procStoch}
 \section{Introduction}
