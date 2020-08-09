@@ -46,6 +46,7 @@
 %%
 \newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
 
 \begin{document}
 
@@ -6603,6 +6604,274 @@ IFR et DFR	&	$\tau = 1$			&	$\alpha = 1$			\\\hline
 \paragraph{Note}	Une loi gamma avec $\alpha = 1$, tout comme une loi de Weibull avec $\tau = 1$, revient à une distribution exponentielle.
 
 \paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsec:distrIARD}}} du chapitre de \textit{\underline{\nameref{chapt:mathIARD}}} pour une description de la loi gamma et de la loi de Weibull.
+
+
+\newpage
+\section{Assurance vie}
+ILT
+
+\subsection{Probabilités}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\ell_{\textcolor{teal}{a}}$]	Nombre d'individus initial dans une cohorte où $\textcolor{teal}{a = 0}$ habituellement.
+	\item[$\ell_{x + \textcolor{teal}{a}}$]	Nombre d'individus de la cohorte ayant survécu $x$ années de $\textcolor{teal}{a}$ (donc âgés de $x + \textcolor{teal}{a}$ années).
+	\item[$\prescript{}{t}d_{x}$]	Nombre de décès entre les âges $x$ et $x + t$.
+		\begin{itemize}
+		\item	\lfbox[formula]{$\actsymb[t]{d}{x} = l_{x} - l_{x + t}$}.
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILLsub}[Probabilité de survie]
+La probabilité qu'un assuré de $x$ ans survie au moins $t$ années est \lfbox[formula]{$\px[t]{x} = \frac{l_{x + t}}{l_{x}}$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Probabilité de décès]
+La probabilité qu'un assuré de $x$ ans décède d'ici $t$ années est \lfbox[formula]{$\qx[t]{x} = \frac{l_{x} - l_{x + t}}{l_{x}}$}.
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILL}[Variable aléatoire du nombre de décédés entre les âges $x$ et $x + t$ $\prescript{}{t}{\mathcal{D}}_{x}$]
+On a que \lfbox[formula]{$\Dx[t]{x} \sim \text{Bin}(\ell_{x}, \qx[t]{x})$}.
+
+\begin{itemize}
+	\item	Il s'ensuit que $\text{E}[\Dx[t]{x}] = \dx[t]{x}$.
+	\item	Également, $\Dx[t]{x} = \mathscr{L}_{x} - \mathscr{L}_{x + t}$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\subsubsection{Espérances de vie}
+\setlength{\mathindent}{-1cm}
+\begin{definitionNOHFILLsub}[Espérance de vie \textbf{\underline{abrégée}} pour un individu d'âge $x$]
+\begin{align*}
+	e_{x}
+	&=	\sum_{k = 0}^{\omega - x - 1} k \ \qx[k | ]{x}	\\
+\end{align*}
+puis, si $\limz{k}{\infty} (k + 1) \px[k + 1]{x} = 0$, 
+\begin{align*}
+	&=	\sum_{k = 1}^{\omega - x} \px[k]{x}
+\end{align*}
+
+\begin{itemize}
+	\item	En anglais, \og \textit{\textbf{curtate life expectancy}} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+\setlength{\mathindent}{1cm}
+
+
+
+\setlength{\mathindent}{-1cm}
+\begin{definitionNOHFILLsub}[Espérance de vie \textbf{\underline{complète}} pour un individu d'âge $x$]
+\begin{align*}
+	\eringx{x}
+	&=	\int_{0}^{\omega - x} t \px[t]{x} \mu_{x + t} dt	\\
+	&=	\int_{0}^{\omega - x} \px[t]{x} dt	\qquad\qquad\quad\quad	\text{si } \limz{t}{\infty} t \px[t]{x} = 0
+\end{align*}
+
+Sous l'hypothèse d'une distribution uniforme des décès (DUD), \lfbox[formula]{$\eringx{x} \overset{DUD}{=} e_x + \frac{1}{2}$}.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{\textbf{complete expectation of life}} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\columnbreak
+\subsection{Assurance vie}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Z_{x}$]	Variable aléatoire du contrat d'assurance pour un assuré d'âge $x$.
+	\item[$Y_{x}$]	Variable aléatoire de la rente pour un rentier d'âge $x$.
+\end{description}
+\end{distributions}
+
+
+\begin{definitionNOHFILL}[Valeur présente actuarielle]
+On nomme l'actualisation de paiements conditionnels à la mortalité la \textit{\textbf{valeur présente actuarielle (VPA)}}. \\
+
+Pour des contrats d'assurance, on la dénote par $A_{x}$ et pour des contrats de rentes, par $a_{x}$.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{Actuarial Present Value (APV)} \fg{}
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLsub}[Assurance-vie entière $Z_{x}$]
+Est en vigueur tant que l'assuré est en vie et verse une prestation à la fin moment de l'année de son décès.
+
+\begin{align*}
+	\Ax{x}	
+	&=	\sum_{k = 0}^{\omega - x - 1} v^{k + 1} \px[k]{x} \qx{x + k} \\
+	&=	v\qx{x} + v^{2}\px{x}\qx{x + 1} + v^{3}\px[2]{x}\qx{x + 2} + \dots
+%	=	v\qx{x} + v\px{x}\Ax{x + 1}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Capital différé de $t$ années $\Ex[t]{x}$]
+Si l'assuré \textbf{\textit{ne décède pas}} dans les $t$ années suivant l'émission du contrat, le capital différé $\Ex[t]{x}$ paye une prestation de survie.
+
+\begin{align*}
+	\Ex[t]{x}
+	&= v^{t} \px[t]{x} 
+\end{align*}
+
+\begin{itemize}
+	\item	Alias, le \textbf{facteur d'actualisation actuariel}.
+	\item	En anglais, \og \textit{mortality discount factor} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Assurance différée de $m$ années $\actsymb[m|]{Z}{x}$]
+Si l'assuré décède \textbf{après} les $m$ années suivant l'émission du contrat, paye une prestation de décès.
+
+\begin{align*}
+\Ax[m|]{x}
+	&=	\sum_{k = m}^{\omega - x - 1} v^{k + 1} \px[k]{x} \qx{x + k}
+%	=	\sum_{k = 0}^{\omega - x - m - 1} v^{k + 1 + m} \qx[k + m|]{x} \\
+%	&=	v^{m} \px[m]{x} \sum_{k = 0}^{\omega - (x + m) - 1} v^{k + 1} \px[k]{x + m} \qx[]{x + m + k} \\
+%	&=	\Ex[m]{x} \Ax{x + m} 
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Assurance-vie temporaire $Z_{\termxn}$]
+Si l'assuré décède dans les $n$ années suivant l'émission du contrat, paye une prestation de décès.
+
+\begin{align*}
+	\Ax{\termxn}		
+	&=	\sum_{k = 0}^{n - 1} v^{k + 1} \px[k]{x} \qx{x + k}			
+%	\Ax[{\color{teal}{m|}}]{\termxn}
+%	&=	\sum_{k = 0 \textcolor{teal}{ + m}}^{\textcolor{teal}{m +} n -1} v^{k + 1} \qx[k|]{x} 	
+\end{align*}
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Assurance mixte $Z_{x:\angln}$]
+Si l'assuré \textbf{\textit{décède}} dans les $n$ années suivant l'émission du contrat, paye une prestation de décès. S'il est toujours en vie, paye une prestation de survie.
+
+\begin{align*}
+	\Ax{x:\angln}
+	&=	\sum_{k = 0}^{n - 1} v^{k + 1} \px[k]{x} \qx{x + k} + \Ex[n]{x}
+\end{align*}
+
+\begin{itemize}
+	\item	En anglais, \og \textit{endowment insurance} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Si le contrat d'assurance est à double, ou $j$, force on remplace le facteur d'actualisation $v$ par $v^{j}$.
+
+
+\begin{definitionNOHFILLprop}[Relations entre les contrats d'assurance]
+Assurance :
+\begin{description}
+	\item[vie]	$\Ax{x} = v\qx{x} + v\px{x}\Ax{x + 1}$.
+	\item[différée]	$\Ax[m|]{x} = \Ex[m]{x} \Ax{x + m}$.
+	\item[temporaire]	$\Ax{\termxn} = \Ax{x} - \Ax[n|]{x}$.
+	\item[mixte]	$\Ax{x:\angln} = \Ax{\termxn} - \Ex[n]{x}$.
+\end{description}
+\end{definitionNOHFILLprop}
+
+
+
+\columnbreak
+\subsection{Rentes}
+\subsubsection{Rentes de base}
+\begin{definitionNOHFILLsub}[Rente viagère de début de période $\ddot{Y}_{x}$]
+Pour $K = 0, 1, 2,\dots$ on obtient que $\ddot{Y}_{x} = \ddot{a}_{\angl{K + 1}}$. Puis, $\text{E}[\ddot{Y}_{x}] = \ddot{a}_{x}$.
+
+\begin{align*}
+	\ddot{a}_{x}
+%	&=	\sum_{k = 0}^{\omega - x - 1} \ddot{a}_{\angl{k + 1}} \ \px[k]{x} \ \qx{x + k}	\\
+	&=	\sum_{k = 0}^{\omega - x - 1} v^{k} \ \px[k]{x}	\\
+	&=	1 + v \px{x} + v^{2} \px[2]{x} + \dots	\\
+	&=	\frac{1 - A_{x}}{d}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[Relations]
+Rente
+\begin{description}
+	\item[viagère]	$\ddot{a}_{x} = 1 + v\px{x} \ddot{a}_{x + 1}$.
+\end{description}
+\end{definitionNOHFILLprop}
+
+
+
+\subsubsection{Vies conjointes}
+\begin{definitionNOHFILLsub}[Rente vie entière du premier décès]
+La rente \lfbox[formula]{$\ax**{xy}$} effectue des paiements jusqu'au premier décès du couple $(x, y)$.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{joint life annuity} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Rente vie entière du dernier survivant]
+La rente \lfbox[formula]{$\ax**{\overline{xy}}$} effectue des paiements jusqu'au dernier décès du couple $(x, y)$.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{last survivor annuity} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{si le premier décès est}}	&	\textcolor{white}{\textbf{alors}}		\\\specialrule{0.1em}{0em}{0em} 
+$x$	&	$\ax**{xy} = \ax**{x}$ et $\ax**{\overline{xy}} = \ax**{y}$ 	\\\hline
+$y$	&	$\ax**{xy} = \ax**{y}$ et $\ax**{\overline{xy}} = \ax**{x}$ 	\\\hline
+\end{tabular}
+\end{center}
+
+Il s'ensuit que \lfbox[formula]{$\ax**{x} + \ax**{y} = \ax**{xy} + \ax**{\overline{xy}}$}.
+
+
+\columnbreak
+\subsection{Principe d'équivalence}
+\begin{definitionNOHFILL}[Principe d'équivalence]
+Pose égale la VPA des primes aux prestations pour que les assurés reçoivent une couverture « équitable ». Du point de vue d'une compagnie d'assurance, on devrait aussi tenir en compte les dépenses et le profit pour la tarification. \\
+
+Pour l'examen cependant, on les ignores et se restreint aux prestations et aux primes pour trouver que la prime nette est la prime telle que \lfbox[formula]{$VPA_{\text{primes}} = VPA_{\text{prestations}}$}.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Assurance nivelée}
+\begin{rappel_enhanced}[Contexte]
+Typiquement, la mortalité n'est pas constante. En assurance vie, elle est moins élevée lorsqu'un assuré est jeune et augmente avec l'âge. En assurance dommages cependant, elle est plus élevée lorsqu'un assuré est jeune que lorsqu'il est âgé.	\\
+
+Charger une prime fixe dans le premier cas implique que l'assuré paye trop au début mais pas assez à la fin du contrat d'assurance. Dans le deuxième cas, il ne paye pas assez au début et trop à la fin. Si la prime est fixe, on peut équilibrer les paiements sur la durée de vie de l'assuré pour que ce soit équitable.	\\
+
+Cependant, si le détenteur de police \og \textit{lapses} \fg{} ou ne renouvelle pas sa police, alors les prestations reçues ne seront pas égales aux primes payées. Ceci est pourquoi \textbf{les assureurs chargent rarement des primes fixes lorsque la mortalité n'est pas constante}.
+\end{rappel_enhanced}
+
+
+
+\newpage	
+\section{Simulation}
+\subsection{Uniform number generation}
+méthode
+	conventionnelle
+	computationelle
+		étapes
+	
+
+\subsection{Méthode de l'inverse}
+étapes
+
+\subsection{Méthode d'acceptation-rejet}
+visuel
+étapes
+
+
+\subsection{Simulation Monte-Carlo}
+étapes
+visuel
+
+
 
 \pagebreak
 \part{Processus stochastiques}
