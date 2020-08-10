@@ -468,6 +468,9 @@ Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ a
 
 Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
 
+
+
+\columnbreak
 \subsubsection{Statistiques}
 \begin{rappel_enhanced}[Rappel : Loi du khi-carré]
 Soit un échantillon aléatoire $(X_{1}, X_{2}, \dots, X_{n})$ de variables aléatoires normales de moyenne $\mu$ et variance $\sigma^{2}$.\\
@@ -556,6 +559,8 @@ $T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$
 
 \paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscules lorsqu'elles sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
 Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
+
+
 
 \columnbreak
 \subsubsection{Intervalles de confiance}
@@ -2286,80 +2291,107 @@ Le diagramme quantile-quantile évalue si la distribution empirique est semblabl
 
 \columnbreak
 \section{Construction d'estimateurs}
+\subsection{Introduction}
+\begin{rappel_enhanced}[Contexte]
+Plus tôt, nous avons décrit les méthodes utilisées pour évaluer la \textbf{qualité} d'un estimateur. Cependant, nous n'avons pas décrit comment obtenir ces estimateurs. Non seulement il y a une panoplie de façons de construire un estimateur, mais aussi de façons d'estimer des paramètres. \\
 
-Précédemment, nous avons décrit les méthodes utilisées pour évaluer la \textbf{qualité} de l'estimateur. 
-Cependant, comment obtenons-nous des estimateurs à évaluer?
+La méthode vue dans le cadre du cours de statistique (et de l'examen MAS-I) est la méthode dite « \textbf{fréquentiste} ». Le cours de \nameref{chapt:mathIARD} présente \textbf{l'estimation bayésienne}.
+\end{rappel_enhanced}
 
-Plusieurs méthodes existent pour établir des estimateurs, de plus plusieurs méthodes existent pour estimer des paramètres.
-La méthode vue dans le cadre du cours de statistique est la \textbf{méthode fréquentiste}, le cours de mathématiques IARD 1 (ACT-2005) présente \textbf{l'estimation bayésienne}.
 
-Avant de le faire, nous présentons quelques concepts:
+Dans le contexte de l'examen, nous voyons 3 méthodes. Les deux premières (méthode des moments et du « percentile matching ») sont les plus faciles à obtenir. Cependant, elles sont aussi les méthodes d'estimation les moins précises car elles utilisent seulement une \textit{portion} des données. En revanche, la méthode du maximum de vraisemblance utilise \textit{toutes} les données.	\\
+
+Cette distinction devient particulièrement importante dans le cas d'une distribution avec une queue de droite lourde (e.g. Pareto, Weibull, etc.). Pour ces distributions, il est essentiel de connaître  précisément les valeurs extrêmes afin de bien estimer le(s) paramètre(s) de forme.	\\
+
+Les deux premières méthodes comporte également la limitation que les données doivent toutes provenir de la même distribution. Autrement, il ne serait pas clair ce que sont les moments et quantiles. Finalement, les deux premières méthodes peuvent être manipulées car car la décision de quels moments et centiles à utiliser est \textit{arbitraire}.
+
+
+
+\columnbreak
+\subsection{Méthode des moments (MoM)}
 \begin{distributions}[Terminologie]
 \begin{description}
-	\item[$\mu_{k}'(\hat{\theta})$]	$k^{\text{e}}$ moment centré à 0, \icbox{$\mu_{k}' = \text{E}[X^{k}]$};
-	\item[$\pi_{g}(\theta)$]	$100g^{\text{e}}$ centile, \icbox{$\pi_{g}(\theta) = F^{-1}_{\theta}(g)$}, \icbox[red][palechestnut]{$g \in [0, 1]$};
-	\item[$F_{e}(x)$]	Fonction de répartition \textbf{e}mpirique;
+	\item[$\mu_{k}'(\hat{\theta})$]	$k^{\text{e}}$ moment centré à 0, \icbox{$\mu_{k}' = \text{E}[X^{k}]$}.
 	\item[]	$\equalhat$	Notation pour poser une égalité.
 \end{description}
 \end{distributions}
 
-Les deux premiers estimateurs ci-dessous sont les plus faciles à obtenir, mais sont aussi les moins performants puisqu'ils n'utilisent que quelques traits des données au lieu de l'entièreté des données comme la troisième méthode.
 
-Cette distinction devient particulièrement importante dans le cas d'une distribution avec une queue lourde à la droite (Pareto, Weibull, etc.) où il devient plus essentiel de connaître les valeurs extrêmes pour bien estimer le paramètre de forme ($\alpha$ pour une Pareto).
+\begin{definitionNOHFILL}[Méthode des moments (MoM)]
+\begin{rappel_enhanced}[Contexte]
+La méthode des moments applique l'idée, ou « hypothèse », qu'un échantillon de données devrait être semblable à sa distribution posée. Elle estime les paramètres avec les moments empiriques sous l'hypothèse que les moments empiriques devraient, en théorie, être égaux aux moments théoriques.
+\end{rappel_enhanced}
 
-Un autre désavantage est que les deux premières méthodes nécessitent que les données proviennent toutes de la même distribution. Sinon, les moments et quantiles ne seraient pas clairs.
+On \textcolor{teal}{pose} les $r$ premiers \textcolor{amethyst}{moments empiriques} de l'échantillon égaux aux $r$ premiers \textcolor{trueblue}{moments théoriques} d'une distribution $X$ ayant $r$ paramètres $\bm{\theta}$. \\
 
-Finalement, sous les deux premières méthodes la décision de quels moments et centiles à utiliser est arbitraire.
-
-\subsection{Méthode des moments (MoM)}
-
-\begin{algo}{Estimation de $\theta$ par la méthode des moments}
-Pour ajuster une distribution de $p$ paramètres, on pose égale les $p$ premiers moments empiriques $\hat\mu_{k}'$ au $p$ premiers moments de la distribution $\mu_{k}'$.\\
-L'estimation de $\theta$ est alors toute solution des $p$ équations:
+L'estimation de $\bm{\theta}$ est donc la solution aux $r$ équations suivantes : 
 \begin{equation*}
-	\hat{\mu}_{k}' 
-	=	\frac{1}{n}\sum_{i = 1}^{n} x_{i}^{k}
-	\equalhat	\esp{X^{k}}
-	=	\mu_{k}'(\theta), \quad	k = 1, 2, \dots, p
+	\textcolor{amethyst}{\hat{\mu}_{k}'} 
+	=	\frac{1}{n}\sum_{i = 1}^{n} x_{i}^{k}\
+	\textcolor{teal}{\equalhat}\	\esp{X^{k}}
+	=	\textcolor{trueblue}{\mu_{k}'(\theta)}, \quad	k = 1, 2, \dots, r
 \end{equation*}
-\end{algo}
+\end{definitionNOHFILL}
 
-La raison pour cet estimateur est que la distribution empirique aura les mêmes $p$ premiers moments centrés à 0 que la distribution paramétrique.
 
+
+\columnbreak
 \subsection{Méthode du \guillemotleft Percentile Matching \guillemotright}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\pi_{q}(\bm{\theta})$]	$100q^{\text{e}}$ centile, \lfbox[formula]{$\pi_{q}(\bm{\theta}) = F^{-1}_{\bm{\theta}}(q)$}, \lfbox[conditions]{$q \in [0, 1]$}.
+\end{description}
+\end{distributions}
 
-\begin{algo}{Estimation de $\theta$ par la méthode du \og \textit{Percentile Matching} \fg{}}
-Pour ajuster une distribution de $p$ paramètres, on pose égale $p$ centiles $\hat{\pi}_{g}(\hat{\theta})$ de l'échantillon à ceux de la distribution $\pi_{g}(\theta)$.\\
-L'estimation de $\theta$ est alors toute solution des $p$ équations:
+\begin{definitionNOHFILL}[Méthode du \og \textit{percentile matching} \fg{}]
+\begin{rappel_enhanced}[Contexte]
+La méthode du \og \textit{percentile matching} \fg{} estime les paramètres avec les centiles empiriques sous l'hypothèse que les centiles empiriques devraient, en théorie, être égaux aux centiles théoriques.\\
+
+Un désavantage de cette méthode est le choix des centiles à utiliser arbitraire. Ceci peut mener à des manipulations des données. Dans le contexte d'un examen cependant, les centiles à utiliser seront spécifiés.
+\end{rappel_enhanced}
+
+On \textcolor{teal}{pose} $r$ \textcolor{amethyst}{centiles empiriques} de l'échantillon égaux aux $r$ \textcolor{trueblue}{centiles théoriques} correspondants d'une distribution $X$ ayant $r$ paramètres $\bm{\theta}$. \\
+
+L'estimation de $\bm{\theta}$ est donc la solution aux $r$ équations suivantes : 
 \begin{equation*}
-	F_{e}(\hat\pi_{g_{k}} | \theta)	=	g_{k}, \quad	k = 1, 2, \dots, p
+	\textcolor{amethyst}{\hat{\pi}_{q_{k}} | \theta)}\
+	\textcolor{teal}{\equalhat}\	
+	\textcolor{trueblue}{\pi_{q_{k}}}, \quad	k = 1, 2, \dots, r
 \end{equation*}
-\end{algo}
+\end{definitionNOHFILL}
 
-La raison pour cet estimateur est que le modèle produit aura $p$ centiles qui vont \og \textit{matcher} \fg{} les données.
 
-Il peut arriver que les centiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
-Il est alors utile de définir une méthode d'interpolation des quantiles (bien qu'il n'en existe pas une d'officielle).
+Cependant, nous devons calculer ces centiles ! Il y existe une myriade de façons de le faire, mais pour l'examen on utilise le  \og \textit{smoothed empirical estimate} \fg{} d'un centile. Entre autres, cette méthode permet d'interpoler des quantiles s'il n'existe pas.
 
-Soit le \og \textit{smoothed empirical estimate} \fg{} d'un centile:
+%Il peut arriver que les centiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
 
-\begin{algo}{Smoothed empirical estimate}
-On utilise les statistiques d'ordre de l'échantillon $x_{(1)} \le x_{(2)} \le \dots \le x_{(n)}$ pour l'\textbf{interpolation} suivant:
-\begin{align*}
-	\hat\pi_{g}
-	&=	(1 - h)x_{(j)} + h x_{(j + 1)}, \quad \text{ où }	\\
-	j
-	&=	\lfloor (n + 1) g \rfloor	\quad
-	\text{ et }	\quad
-	h
-	=	(n + 1) g - j
-\end{align*}
-\end{algo}
+\begin{definitionNOHFILLsub}[\og \textit{smoothed empirical estimate} \fg{}]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$x_{(i)}$]	La $i^{e}$ statistique d'ordre de l'échantillon.
+	\item[$b = \lfloor q (n + 1) \rfloor$]	Arrondi vers le bas du centile.
+\end{description}
+\end{distributions}
+
+Étapes pour trouver les centiles : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Calculer $q(n + 1)$.
+	\item	Si 
+		\begin{enumerate}[label = \alph*)]
+		\item	$q(n + 1)$ est fractionnaire, calculer $\hat{\pi}_{q}$ comme l'interpolation linéaire de $x_{(b)}$ et $x_{(b + 1)}$.
+		\item	$q(n + 1)$ est entier, poser $\hat{\pi}_{q} = x_{(b)}$.
+		\end{enumerate}
+\end{enumerate}
+
+En bref, pour $h = q(n + 1) - b$, \lfbox[formula]{$\hat{\pi}_{q} = (1 - h)x_{(b)} + hx_{(b + 1)}$}.
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Pour des valeurs répétées (deux observations de l'échantillon ont la même valeur), on ignore les observations ayant le plus gros indice. Si $x_{(2)} = x_{(3)}$ alors on ignore $x_{(3)}$ pour les interpolations.
+
 
 
 \columnbreak
 \subsection{Méthode du maximum de vraisemblance}
-
 Nous cherchons à maximiser la probabilité d'observer les données.
 Ceci est fait par la vraisemblance $\mathcal{L}(\theta; \bm{x})$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
 
