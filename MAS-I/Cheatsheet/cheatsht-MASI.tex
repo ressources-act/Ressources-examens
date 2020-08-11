@@ -2333,6 +2333,8 @@ L'estimation de $\bm{\theta}$ est donc la solution aux $r$ équations suivantes 
 \end{equation*}
 \end{definitionNOHFILL}
 
+\paragraph{Note}	Pour des données incomplètes, on utilise le moment qui y correspond. Par exemple, si nous avons des données avec une limite de $u$ alors on utilise $\text{E}[X \wedge u]$.
+
 
 
 \columnbreak
@@ -2354,14 +2356,14 @@ On \textcolor{teal}{pose} $r$ \textcolor{amethyst}{centiles empiriques} de l'éc
 
 L'estimation de $\bm{\theta}$ est donc la solution aux $r$ équations suivantes : 
 \begin{equation*}
-	\textcolor{amethyst}{\hat{\pi}_{q_{k}} | \theta)}\
+	\textcolor{amethyst}{\hat{\pi}_{q_{k}}}\
 	\textcolor{teal}{\equalhat}\	
-	\textcolor{trueblue}{\pi_{q_{k}}}, \quad	k = 1, 2, \dots, r
+	\textcolor{trueblue}{\pi_{q_{k}}(\bm{\theta})}, \quad	k = 1, 2, \dots, r
 \end{equation*}
 \end{definitionNOHFILL}
 
 
-Cependant, nous devons calculer ces centiles ! Il y existe une myriade de façons de le faire, mais pour l'examen on utilise le  \og \textit{smoothed empirical estimate} \fg{} d'un centile. Entre autres, cette méthode permet d'interpoler des quantiles s'il n'existe pas.
+Cependant, nous devons calculer ces centiles ! Il y existe une myriade de façons de le faire, mais pour l'examen on utilise le  \og \textit{smoothed empirical estimate} \fg{} d'un centile. Entre autres, cette méthode permet d'interpoler des quantiles s'il y en a qui n'existent pas.
 
 %Il peut arriver que les centiles de distributions ne soient pas uniques, par exemple dans le cas de données discrètes lorsque le quantile recherché peut tomber entre 2 \emph{marches} de la fonction empirique, ou mal-définis.
 
@@ -2375,18 +2377,51 @@ Cependant, nous devons calculer ces centiles ! Il y existe une myriade de façon
 
 Étapes pour trouver les centiles : 
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
-	\item	Calculer $q(n + 1)$.
+	\item	Trier les observations en ordre croissante pour obtenir les statistiques d'ordre.
+	\item	Calculer $q(n + 1)$ et $b = \lfloor q (n + 1) \rfloor$.
 	\item	Si 
 		\begin{enumerate}[label = \alph*)]
 		\item	$q(n + 1)$ est fractionnaire, calculer $\hat{\pi}_{q}$ comme l'interpolation linéaire de $x_{(b)}$ et $x_{(b + 1)}$.
-		\item	$q(n + 1)$ est entier, poser $\hat{\pi}_{q} = x_{(b)}$.
+		\item	$q(n + 1)$ est entier, simplement poser $\hat{\pi}_{q} = x_{(b)}$.
 		\end{enumerate}
 \end{enumerate}
 
 En bref, pour $h = q(n + 1) - b$, \lfbox[formula]{$\hat{\pi}_{q} = (1 - h)x_{(b)} + hx_{(b + 1)}$}.
 \end{definitionNOHFILLsub}
 
-\paragraph{Note}	Pour des valeurs répétées (deux observations de l'échantillon ont la même valeur), on ignore les observations ayant le plus gros indice. Si $x_{(2)} = x_{(3)}$ alors on ignore $x_{(3)}$ pour les interpolations.
+\paragraph{Note}	Pour des valeurs répétées (deux observations de l'échantillon ont la même valeur), on conserve uniquement le plus gros indice parmi les doublons. Si $x_{(2)} = x_{(3)}$ alors on conserve $x_{(3)}$ pour les interpolations. 
+
+\begin{formula}{Exemple \og \textit{smoothed percentile matching} \fg{} avec doublons}
+Soit l'échantillon de nombres $\{1, 1, 1, 2, 3, 3, 7, 7, 8, 9, 9, 9\}$, quel est le $40^{e}$ centile?
+
+\begin{enumerate}
+	\item	$0.40 \times (12 + 1) = 5.2$.
+	\item	On récrit un tableau des indices et des valeurs : \\
+	\begin{tabular}{|c|c|}
+	\hline 
+	Indice & Nombre \\ 
+	\hline 
+	3 & 1 \\ 
+	\hline 
+	4 & 2 \\ 
+	\hline 
+	6 & 3 \\ 
+	\hline 
+	8 & 7 \\ 
+	\hline 
+	9 & 8 \\ 
+	\hline 
+	12 & 9 \\ 
+	\hline 
+	\end{tabular} 
+	\item	Puisque $5$ est retiré comme doublon, on obtient que 
+		\begin{align*}
+		\hat{\pi}_{0.4} 
+		&=	\left(1 - \frac{5.2 - 4}{6 - 4}\right) x_{(4)} + \left(\frac{5.2 - 4}{6 - 4}\right) x_{(6)}
+		=	2.6
+		\end{align*}
+\end{enumerate}
+\end{formula}
 
 
 
