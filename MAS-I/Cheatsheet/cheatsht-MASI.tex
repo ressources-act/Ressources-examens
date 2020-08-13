@@ -105,7 +105,7 @@ L'objectif est d'expliquer les concepts d'une façon claire, concise et visuelle
 %		Théorème centrale limite
 
 \columnbreak
-\section{Vraisemblance}
+\section{Vraisemblance}\label{sec:likelihood}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\mathcal{L}(\theta; \bm{x})$]	Fonction de vraisemblance de $\theta$ en fonction des observations $\bm{x}$;
@@ -125,7 +125,7 @@ L'objectif est d'expliquer les concepts d'une façon claire, concise et visuelle
 Pour bien saisir ce que représente la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$, il faut songer à ce que représente $f(x; \theta)$. \\
 La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une différente façon de voir la fonction de densité $f(x ; \theta)$. 
 \begin{itemize}
-	\item	Au lieu de faire varier $x$ pour un (ou des) paramètre $\theta$ fixe, on fait varier $\theta$ pour un échantillon d'observations $\bm{x}$ fixé ; 
+	\item	Au lieu de faire varier $x$ pour un (ou des) paramètre $\theta$ fixe, on fait varier $\theta$ pour un échantillon d'observations $\bm{x}$ fixé.
 \end{itemize}
 
 
@@ -224,8 +224,8 @@ Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de 
 où
 \begin{align*}
 	\bm{I}(\theta) 
-	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln f(\theta; x)\Big)^{2}\right]	
-	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(\theta; x)}	\right]	\\
+	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln f(x; \theta)\Big)^{2}\right]	
+	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(x; \theta)}	\right]	\\
 	\bm{I}_{n}(\theta) 
 	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; \bm{x})\Big)^{2}\right]	
 	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln \mathcal{L}(\theta; \bm{x})}\right]	
@@ -2426,25 +2426,24 @@ Soit l'échantillon de nombres $\{1, 1, 1, 2, 3, 3, 7, 7, 8, 9, 9, 9\}$, quel es
 
 
 \columnbreak
-\subsection{Méthode du maximum de vraisemblance}
-Nous cherchons à maximiser la probabilité d'observer les données.
-Ceci est fait par la vraisemblance $\mathcal{L}(\theta; \bm{x})$ ou, puisque le logarithme ne change pas le maximum, la log-vraisemblance $\ell(\theta; x)$ où:
+\subsection{Méthode du maximum de vraisemblance}\label{subsec:MLEConstruction}
+\begin{rappel_enhanced}[Contexte]
+La méthode du maximum de vraisemblance trouve le(s) paramètre(s) $\bm{x}$ qui maximise(nt) la probabilité d'avoir observé l'échantillon de données. On maximise la fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$  ou, puisque le logarithme ne change pas le maximum, la fonction de log-vraisemblance $\ell(\theta; x)$. \\
 
-\begin{algo}{Maximum de vraisemblance}
-\begin{align*}
-	\mathcal{L}(\theta; \bm{x})
-	&=	\prod_{i = 1}^{n}	f(x_{i}; \theta)	&
-	&\text{et}	&
-	\ell(\theta; \bm{x})
-	&=	\sum_{i = 1}^{n} \ln	f(x_{i}; \theta)	&
-\end{align*}
-et l'\textbf{estimateur du maximum de vraisemblance} de $\bm\theta$ est celui qui maximise la fonction de vraisemblance.
-\end{algo}
+Voir la section \underline{\textit{\nameref{sec:likelihood}}} pour plus de détails sur la distinction de la fonction de vraisemblance à la fonction de densité. Également, la section \underline{\textit{\nameref{sec:paramModelEstimLikelihood}}} du chapitre \underline{\textit{\nameref{chapt:mathIARD}}} explique la méthode du maximum de vraisemblance pour des données incomplètes.
+\end{rappel_enhanced}
 
-De façon formelle, on dit que \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	=	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$.}
+\begin{definitionNOHFILL}[Méthode du maximum de vraisemblance]
+On défini $\mathcal{L}(\theta; \bm{x}) = \prod_{i = 1}^{n}	f(x_{i}; \theta)$ et $\ell(\theta; \bm{x}) = \sum_{i = 1}^{n} \ln	f(x_{i}; \theta)$, puis on calcule \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	=	\underset{\theta}{\max}\{\mathcal{L}(\theta; \bm{x})\}	=	\underset{\theta}{\max}\{\ln\mathcal{L}(\theta; \bm{x})\}$}.
+
+\begin{itemize}
+	\item	Habituellement, on trouve la dérivée de la fonction de (log-)vraisemblance et trouve le paramètre $\theta$ tel que $\frac{d}{d\theta}\mathcal{L}(\theta; \bm{x}) = 0$.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
 
 \subsubsection{Raccourcis}
-
 Si la fonction de vraisemblance est de la forme :
 \begin{itemize}
 	\item	\lfbox[formula]{$\mathcal{L}(\gamma)	=	\gamma^{-a}\textrm{e}^{-b/\gamma}$} alors \lfbox[formula]{$\hat{\gamma}^{\text{MLE}}	=	\frac{b}{a}$}.
@@ -2453,15 +2452,16 @@ Si la fonction de vraisemblance est de la forme :
 \end{itemize}
 
 
+
 \subsubsection{Propriétés}
-\begin{definitionNOHFILL}[Propriété d'invariance]
-Soit une fonction bijective $g(\cdot)$ et l'estimateur du maximum de vraisemblance (EMV) $\hat{\theta}^{\text{EMV}}$ de $\theta$.\\
-Alors, selon la propriété d'invariance \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$.}\\
+\begin{definitionNOHFILLsub}[Propriété d'invariance]
+La propriété d'invariance implique que l'estimateur du maximum de vraisemblance d'une fonction $g(\cdot)$ du paramètre $\theta$ est la fonction évaluée à $\hat{\theta}^{\text{EMV}}$ : \lfbox[formula]{$g(\hat{\theta}^{\text{EMV}})$ est l'EMV de $g(\theta)$}.
 
-L'EMV satisfait cette propriété.
-\end{definitionNOHFILL}
+%Soit une fonction bijective $g(\cdot)$ et l'estimateur du maximum de vraisemblance (EMV) $\hat{\theta}^{\text{EMV}}$ de $\theta$. 
+\end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILL}[Convergence en distribution de l'EMV]
+
+\begin{definitionNOHFILLsub}[Convergence en distribution de l'EMV]
 \textbf{Théorème}:	\lfbox[formula]{$\hat{\theta}^{\text{EMV}}	\approx	\mathcal{N}\left(0, \frac{1}{\bm{I}_{n}(\theta)}\right)$.}
 
 \tcbline
@@ -2480,30 +2480,31 @@ Ce qui implique:
 	\item	$\hat{\theta}$ est \lfbox[imphl]{approximativement normalement distribué avec moyenne $\theta$ et} \lfbox[imphl]{variance $1/\bm{I}_{n}(\theta)$ pour des grands échantillons.}
 	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement efficace} puisque sa variance tend vers la borne Cramér-Rao.
 \end{enumerate}
-\end{definitionNOHFILL}
+\end{definitionNOHFILLsub}
 	
-Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliquées. Alors, ne vous en faites pas si vous ne les comprenez pas complètement.
+\paragraph{Note}	Souvent ces conditions ne sont pas vues en classe puisqu'elles sont compliquées. Alors, ne vous en faites pas si vous ne les comprenez pas complètement.
 
-\begin{definitionNOHFILLsub}[\hypertarget{reg_cond}{Conditions de régularité}]
+\begin{definitionNOHFILLprop}[\hypertarget{reg_cond}{Conditions de régularité}]
 \begin{description}
-	\item[R0]	Les variables $X_{i}$ sont iid avec densité $f(x_{i}; \theta)$ pour $i	=	1, 2, \dots$.
-	\item[R1]	Les fonctions de densité ont toutes le même support pour tout $\theta$.
+	\item[R0]	Les variables aléatoires $X_{i}$ sont iid ayant comme fonction de densité $f(x_{i}; \theta)$, pour $i	=	1, 2, \dots$.
+	\item[R1]	Le support des variables aléatoires $X_{i}$ ne dépend pas des paramètres .
 		\begin{itemize}
-		\item	C'est-à-dire que le support de $X_{i}$ ne dépend pas de $\theta$;
+		\item	C'est-à-dire que, pour tout $\theta$, le support des fonctions de densité reste le même.
+		\item	Ceci permet entre autres de garantir que la vraisemblance sera maximisée à la vraie valeur $\theta_{0}$ du paramètre.
 		\item	C'est une condition restrictive que certains modèles ne respectent pas.
 		\end{itemize}
-	\item[R2]	La "vraie valeur" de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
+	\item[R2]	La "vraie valeur" $\theta_{0}$ de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
+\end{description}
 \tcbline
 \begin{description}
 	\item[R3]	La fonction de densité $f(x; \theta)$ est différentiable deux fois comme fonction de $\theta$.
 		\begin{itemize}
-		\item	Cette condition additionnelle assure que les deux premières dérivées existent pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+		\item	Cette condition additionnelle assure que les deux premières dérivées existent pour calculer l'information de Fisher.
 		\end{itemize}
 	\item[R4]	L'intégrale $\int f(x; \theta) dx$ est différentiable deux fois sous l'intégrale comme fonction de $\theta$.
 		\begin{itemize}
-		\item	Cette condition additionnelle assure que l'on peut utiliser la deuxième dérivée pour \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}la borne de Cramér-Rao}.
+		\item	Cette condition additionnelle assure que l'on peut utiliser la deuxième dérivée pour calculer l'information de Fisher.
 		\end{itemize}
-\end{description}
 \end{description}
 %%%	--------------------------------
 %%%	NOTES:
@@ -2511,64 +2512,62 @@ Souvent les professeurs ne montrent pas ces conditions puisqu'elles sont compliq
 %%%	+	Ajouter des détails sur l'efficacité asymptotique;
 %%%	+	Intervalles de confiance
 %%%	--------------------------------
-%\begin{description}
-%	\item[R5]	La fonction de densité $f(x; \theta)$ est différentiable trois fois comme fonction de $\theta$. De plus, $\forall \theta \in \Theta$ il existe une constante $c$ and une fonction $g(x)$ tel que $\big| \deriv[3]{\theta}{} \ln f(x; \theta) \big| \leq g(x)$.
-%\end{description}
+\tcbline
+\begin{description}
+	\item[R5]	La fonction de densité $f(x; \theta)$ est différentiable trois fois comme fonction de $\theta$. De plus, $\forall \theta \in \Theta$ il existe une constante $c$ and une fonction $M(x)$ tel que $\big| \deriv[3]{\theta}{} \ln f(x; \theta) \big| \leq M(x)$ où $\text{E}_{\theta_{0}}[M(X)] < \infty$ et $|\theta - \theta_{0}| < c$.
+		\begin{itemize}
+		\item	Celle-ci est la plus compliquée et assure la normalité asymptotique de l'EMV.
+		\end{itemize}
+\end{description}
 %%%	Impliquent que l'on peut interchanger l'intégration et la différention wrt/ \theta
-\end{definitionNOHFILLsub}
+\end{definitionNOHFILLprop}
 	
 
+
 \subsubsection{Cas multivarié}
-On généralise du cas où $\theta$ est un scalaire (un seul paramètre) au cas multivarié avec $k$ paramètres et le vecteur $\bm{\theta}	=	(\theta_{1}, \cdots, \theta_{k})^{\top}$.\\
+Lorsqu'une distributions a plusieurs paramètres, $\theta$ ne sera plus un scalaire (un seul paramètre) mais plutôt un vecteur. Pour le cas multivarié où une distribution a $r$ paramètres, on dénote le vecteur $\bm{\theta}	=	(\theta_{1}, \cdots, \theta_{r})^{\top}$.\\
 
 
-\begin{distributions}[Notation]
-En notation matricielle, on multiple le vecteur $\bm{\theta}$ par la transposée $\bm{\theta}^{\top}$ au lieu de mettre $\theta$ au carré. 
-\begin{itemize}
-	\item	La matrice d'information Fisher \underline{d'\textit{une} observation} est donc une matrice $k \times k$:
+\begin{definitionNOHFILLprop}[Matrice d'information de Fisher]
+\begin{rappel_enhanced}[Contexte]
+Dans la sous-section sur la \underline{\textit{\nameref{sec:cramer_rao}}}, nous avons utilisé la "matrice" d'information de Fisher pour un distribution ayant un paramètre $\theta$. Le calcul de la matrice est le même pour plusieurs paramètres, sauf que l'on représente $\theta^{2}$ comme $\bm{\theta} \bm{\theta}^{\top}$.
+\end{rappel_enhanced}
+
 \begin{align*}
 	\bm{I}(\bm{\theta})
 	&=	\text{E}\left[	
-			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}}
-			\frac{\partial \ln f(X; \bm{\theta})}{\partial \bm{\theta}^{\top}}
+			\frac{\partial \ln f(x; \bm{\theta})}{\partial \bm{\theta}}
+			\frac{\partial \ln f(x; \bm{\theta})}{\partial \bm{\theta}^{\top}}
 		\right]
 	\overset{iid}{=}	\text{E}\left[	
-			\frac{\partial^{2} \ln f(X; \bm{\theta})}{\partial \bm{\theta}\bm{\theta}^{\top}}
+			\frac{\partial^{2} \ln f(x; \bm{\theta})}{\partial \bm{\theta}\bm{\theta}^{\top}}
 		\right]
 \end{align*}
-%%%	------------------------
-%%%	NOTES
-%%%	+	Vérifier les X pour voir où les majuscules vont avec matrice d'information Fisher!!! vs f(x; \theta), f(X; \theta) ,,......\bm{X}?
-%%%	------------------------
-	\item	Pour la matrice d'information Fisher d'un échantillon aléatoire de $n$ observation, on utilise la relation $\bm{I}_{n}(\bm{\theta})	=	n\bm{I}(\bm{\theta})$.
-\end{itemize}
-\begin{description}
-	\item[$\bm{I}^{-1}_{n}(\bm{\theta})$]	Inverse de la matrice d'information Fisher $\bm{I}_{n}(\bm{\theta})$.
-\end{description}
-\end{distributions}
-
-Soit $\tilde{\bm{\theta}}$ un estimateur sans bais de $\bm{\theta}$. 
-
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\text{Var}(\tilde{\bm{\theta}})$]	Matrice de variance de $\tilde{\bm{\theta}}$.
-		\begin{itemize}
-		\item	Le $(i, j)^{\text{e}}$ élément est donc $\text{Cov}(\tilde{\bm{\theta}}_{i}, \tilde{\bm{\theta}}_{j})$.
-		\end{itemize}
-\end{description}
-\end{distributions}
-
-La version multivariée de l'inégalité Cramér-Rao stipule que \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	-	\bm{I}^{-1}_{n}(\bm{\theta})$} est une \lfbox[conditions]{matrice \og \textit{nonnegative definite} \fg{}.}
 \begin{itemize}
-	\item	Puisque les éléments de la diagonale doivent être positifs, la borne inférieure de $\text{Var}(\tilde{\bm{\theta}}_{i})$ est le $i^{\text{e}}$ élément de la diagonale de $\bm{I}^{-1}_{n}(\bm{\theta})$.
+	\item	Cette définition est pour une seule observation $x$, pour plusieurs observations l'échantillon de données sera typiquement un échantillon aléatoire et donc $\bm{I}_{n}(\bm{\theta})	=	n\bm{I}(\bm{\theta})$.
+	\item	On dénote l'inverse de la matrice d'information de Fisher par $\bm{I}^{-1}_{n}(\bm{\theta})$.
 \end{itemize}
+\end{definitionNOHFILLprop}
+
+
+%Soit $\tilde{\bm{\theta}}$ un estimateur sans bais de $\bm{\theta}$. 
+
+%\begin{distributions}[Notation]
+%\begin{description}
+%	\item[$\text{Var}(\tilde{\bm{\theta}})$]	Matrice de variance de $\tilde{\bm{\theta}}$.
+%		\begin{itemize}
+%		\item	Le $(i, j)^{\text{e}}$ élément est donc $\text{Cov}(\tilde{\bm{\theta}}_{i}, \tilde{\bm{\theta}}_{j})$.
+%		\end{itemize}
+%\end{description}
+%\end{distributions}
+
+%La version multivariée de l'inégalité Cramér-Rao stipule que \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	=	\bm{I}^{-1}_{n}(\bm{\theta})$} est une \lfbox[conditions]{matrice \og \textit{nonnegative definite} \fg{}.}
+%\begin{itemize}
+%	\item	Puisque les éléments de la diagonale doivent être positifs, la borne inférieure de $\text{Var}(\tilde{\bm{\theta}}_{i})$ est le $i^{\text{e}}$ élément de la diagonale de $\bm{I}^{-1}_{n}(\bm{\theta})$.
+%\end{itemize}
 	
-En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la distribution de $\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)$ converge en distribution vers une distribution normale multivariée (de $k$ dimensions) avec une moyenne nulle et une variance égale à la borne de Cramér-Rao.
-\begin{align*}
-	\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)
-	&\overset{D}{\rightarrow}
-	\mathcal{N}_{k}\left( 0, \bm{I}^{-1}_{n}(\bm{\theta}) \right)
-\end{align*}
+%En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la distribution de $\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)$ converge en distribution vers une distribution normale multivariée (de $k$ dimensions) avec une moyenne nulle et une variance égale à la borne de Cramér-Rao.
+Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	=	\bm{I}^{-1}_{n}(\bm{\theta})$} et \lfbox[formula]{$\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right) \overset{D}{\rightarrow} \mathcal{N}_{k}\left( 0, \bm{I}^{-1}_{n}(\bm{\theta}) \right)$}.
 
 
 %\subsection{Autres critères}
@@ -2576,8 +2575,9 @@ En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}c
 %	AIC
 %	BIC
 
-\pagebreak
 
+
+\pagebreak
 \part{Modèles linéaires en actuariat}
 \label{chapt:modLin}
 \section{Apprentissage statistique}
@@ -4841,22 +4841,15 @@ Avec l'approximation \lfbox[conditions]{$-\ln\left(1	-	\frac{w_{h}}{r_{h}}\right
 
 
 \pagebreak
-\section{Estimation de modèles paramétriques}
+\section{Estimation de modèles paramétriques} \label{sec:paramModelEstimLikelihood}
+\paragraph{Note}	Cette section ce veut une continuation de \underline{\nameref{subsec:MLEConstruction}} du chapitre \underline{\nameref{chapt:stats}}.
+
 \subsection*{Estimation par maximum de vraisemblance pour des données incomplètes et groupées}
-Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid, mais on peut quand même formuler la fonction de vraisemblance et trouver l'EMV.
+\begin{rappel_enhanced}[Contexte]
+Lorsque les données sont groupées et/ou incomplètes, les observations ne sont plus iid. Cependant, on peut quand même formuler la fonction de vraisemblance et trouver l'estimateur du maximum de vraisemblance (EMV).	\\
 
-La première étape est d'écrire la fonction de (log) vraisemblance adéquate pour la méthode d'échantillonnage des données.\\
-
-Par exemple, soit des données groupées en $k$ intervalles : 
-\begin{itemize}
-	\item	On trouve avec la fonction de répartition $F(\cdot; \theta)$ que la probabilité d'être dans l'intervalle $(c_{j - 1}, c_{j}]$ est $F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)$;
-	\item	On pose que les observations individuelles sont iid;
-	\item	Donc, la vraisemblance d'avoir $n_{j}$ observations dans l'intervalle $(c_{j - 1}, c_{j}]$, \lfbox[conditions]{pour $j	=	1, \dots, k$ et $\bm{n}	=	(n_{1}, \cdots, n_{k})$} est :
-		\begin{align*}
-		\mathcal{L}(\theta; \bm{n})
-		&=	\prod^{k}_{j	=	1} \left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}
-		\end{align*}
-\end{itemize}
+La première étape est d'écrire la fonction de (log) vraisemblance adéquate pour la méthode d'échantillonnage des données.
+\end{rappel_enhanced}
 
 
 \setlength{\mathindent}{-0.75cm}
@@ -4869,8 +4862,11 @@ Par exemple, soit des données groupées en $k$ intervalles :
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Données groupées en $k$ intervalles]
+La probabilité qu'une observation soit contenue dans l'intervalle $(c_{j - 1}, c_{j}]$ est $F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)$. \\
+
+On pose que les observations \textit{individuelles} sont iid afin d'obtenir que la vraisemblance d'avoir $n_{j}$ observations dans l'intervalle $(c_{j - 1}, c_{j}]$, \lfbox[conditions]{pour $j	=	1, \dots, k$ et $\bm{n}	=	(n_{1}, \cdots, n_{k})$}, est :
 \begin{align*}
-	\mathcal{L}(\theta; \bm{x})
+	\mathcal{L}(\theta; \bm{n})
 	&=	\prod^{k}_{j	=	1} \underbrace{\left[F(c_{j}; \theta)	-	F(c_{j - 1}; \theta)\right]^{n_{j}}}_{\substack{\text{probabilité qu'une observation}\\ \text{soit contenue dans l'intervalle}}}
 \end{align*}
 \end{definitionNOHFILLprop}
