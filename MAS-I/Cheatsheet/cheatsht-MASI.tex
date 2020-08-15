@@ -4669,28 +4669,35 @@ Combiné avec les autres facteurs :
 \pagebreak
 \section{Estimation de modèles non paramétriques}
 \begin{rappel_enhanced}[Contexte]
-En lieu de supposer une distribution continue pour $f(x)$ puis d'estimer ses paramètres, on peut choisir de \underline{directement} estimer la fonction de densité avec un \textbf{estimateur à noyau de la densité}.
+Si on pose une distribution discrète, on utilise la fonction de répartition empirique pour l'estimer à partir d'un échantillon d'observations. Pour une observation $x_{i}$, la fonction de répartition empirique assigne une masse de probabilité de $1/n$ au point $x_{i}$. \\
+
+Cependant, si l'on suppose une distribution continue, on désire \underline{\textit{distribuer}} cette masse \textit{\underline{autour}} de $x_{i}$. En lieu de supposer une distribution continue pour $f(x)$, puis d'estimer ses paramètres, on peut choisir de \underline{directement} estimer la fonction de densité avec un \textbf{estimateur à noyau de la densité}.
 \end{rappel_enhanced}
 
+
+On débute avec le cas continu en expliquant la \underline{\textit{\nameref{subsec:kernelDistr}}}, puis on explique le cas discret avec la \underline{\textit{\nameref{subsec:empirDistr}}}.
+
+
+\columnbreak
+\subsection{Distribution par noyau}\label{subsec:kernelDistr}
 \begin{definitionNOHFILL}[Fonction noyau $k()$]
-La fonction noyau $k()$ est une \textit{fonction de densité} à deux paramètres ($x_{i}$ et $b$).\\
+La fonction noyau $k()$ est une \textit{fonction de densité} à deux paramètres ($x_{i}$ et $b$).	Chaque observation a sa propre fonction noyau $k_{i}(x)$\\
 
 \begin{rappel_enhanced}[Contexte]
-Les fonctions noyaux faisant partie de l'examen sont \textbf{symétriques} avec $x_{i}$ comme point milieu. \\
-
-On dénote donc la fonction \lfbox[formula]{$k_{i}()$} comme la fonction noyau dont le domaine est centrée autour de l'observation $x_{i}$.
+Les fonctions noyau faisant partie de l'examen sont \textbf{symétriques} avec $x_{i}$ comme point milieu. 
 \end{rappel_enhanced}
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[$i^{\text{e}}$ valeur observée $x_{i}$]
+La réalisation $x_{i}$ est un paramètre pour la fonction noyau $k_{i}(x)$. Il est important de ne \underline{pas confondre} \textbf{le paramètre $x_{i}$} avec le \textbf{point auquel on évalue la fonction de densité $x$}.
+
 \begin{rappel_enhanced}[Contexte]
 Puisque la fonction noyau est symétrique et centrée sur l'observation $x_{i}$, la $i^{\text{e}}$ valeur observée $x_{i}$ \textbf{représente la moyenne de la distribution} liée à la fonction noyau.
 \end{rappel_enhanced}
-
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Largeur de la bande $b$]
-L'interprétation de la largeur de la bande $b$ varie selon la fonction noyau.
+L'interprétation de la largeur de la bande $b$ varie selon la fonction noyau, mais de façon générale ça représente l'étendu de la densité.
 
 \bigskip
 
@@ -4703,7 +4710,7 @@ L'interprétation de la largeur de la bande $b$ varie selon la fonction noyau.
 \begin{definitionNOHFILLprop}[Estimer une fonction de densité par une fonction noyau]
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	Choisir un type de fonction de densité pour $k()$.
-	\item	Estimer la fonction de densité $f(x)$ comme la moyenne de $k_{1}(x), \dots, k_{n}(x)$ : 
+	\item	Estimer la fonction de densité $f(x)$ comme la moyenne des fonctions noyau des $n$ observations $k_{1}(x), \dots, k_{n}(x)$ : 
 		\begin{align*}
 		\tilde{f}(x)
 		&=	\frac{1}{n} \sum_{i = 1}^{n} k_{i}(x)
@@ -4712,7 +4719,7 @@ L'interprétation de la largeur de la bande $b$ varie selon la fonction noyau.
 \end{definitionNOHFILLprop}
 	
 
-\subsection{Noyau rectangulaire (uniforme)}
+\subsubsection{Noyau rectangulaire (uniforme)}
 \begin{definitionNOHFILLsub}[Noyau rectangulaire ou uniforme]
 Le noyau rectangulaire, ou uniforme, suppose une densité distribuée uniformément : 
 \begin{center}
@@ -4964,11 +4971,89 @@ Si on désire trouver la probabilité que la réclamation soit inférieure à 5.
 		=	0.567
 		\end{align*}
 \end{enumerate}
+
+\bigskip
+
+Visuellement, la densité par noyau est : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,182); %set diagram left start at 0, and has height of 182
+
+%Straight Lines [id:da9069684636131432] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (188.7,66.93) -- (188.7,123.93) ;
+%Shape: Rectangle [id:dp3366673238384912] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (51.45,100.58) -- (117.63,100.58) -- (117.63,123.39) -- (51.45,123.39) -- cycle ;
+%Straight Lines [id:da20533507475235901] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (51.1,100.58) -- (118.1,100.58) ;
+%Straight Lines [id:da3775820583380596] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (118.1,100.58) -- (118.1,124.13) ;
+%Straight Lines [id:da3441318361181174] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (51.1,100.58) -- (51.1,124.13) ;
+
+%Shape: Rectangle [id:dp42162902171182615] 
+\draw  [color={rgb, 255:red, 255; green, 144; blue, 144 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (143.27,99.93) -- (176.1,99.93) -- (176.1,122.74) -- (143.27,122.74) -- cycle ;
+%Straight Lines [id:da9561435701769003] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (143.1,99.93) -- (176.1,99.93) ;
+%Straight Lines [id:da48494774842416866] 
+\draw [line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (143.1,99.93) -- (143.1,123.47) ;
+%Shape: Rectangle [id:dp3289303990651531] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (176.27,66.93) -- (187.7,66.93) -- (187.7,123.93) -- (176.27,123.93) -- cycle ;
+%Straight Lines [id:da16555736426907597] 
+\draw [line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (209.1,66.93) -- (209.1,99.93) ;
+%Straight Lines [id:da6934536767389496] 
+\draw [line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (176.1,66.93) -- (176.1,99.93) ;
+%Straight Lines [id:da8362829261816491] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (209.1,99.93) -- (242.1,99.93) ;
+%Straight Lines [id:da8478570952982933] 
+\draw [line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (242.1,99.93) -- (242.1,123.47) ;
+%Shape: Axis 2D [id:dp8585148916891712] 
+\draw [line width=1.5]  (32.5,123.13) -- (264.5,123.13)(32.5,31.13) -- (32.5,123.13) -- cycle (257.5,118.13) -- (264.5,123.13) -- (257.5,128.13) (27.5,38.13) -- (32.5,31.13) -- (37.5,38.13)  ;
+%Straight Lines [id:da46025394930226904] 
+\draw    (84,120.13) -- (84,131) ;
+%Straight Lines [id:da31132533614896674] 
+\draw    (143.27,119.74) -- (143.27,130.61) ;
+%Straight Lines [id:da6671088493550525] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (176.1,66.93) -- (209.1,66.93) ;
+%Straight Lines [id:da705070090553497] 
+\draw    (28.7,51) -- (38,51) ;
+%Straight Lines [id:da24778736247084976] 
+\draw    (28.7,71) -- (38,71) ;
+%Straight Lines [id:da36847908431517373] 
+\draw    (28.7,101) -- (38,101) ;
+%Straight Lines [id:da9782894678778153] 
+\draw    (209.1,118.74) -- (209.1,129.61) ;
+%Straight Lines [id:da6279619980458317] 
+\draw    (252.1,119.6) -- (252.1,130.47) ;
+
+% Text Node
+\draw (11,3) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \tilde{f}( x)$};
+% Text Node
+\draw (3,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1/6$}};
+% Text Node
+\draw (3,62) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1/3$}};
+% Text Node
+\draw (3,42) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1/2$}};
+% Text Node
+\draw (79,129.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 2$};
+% Text Node
+\draw (137,128.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 4$};
+% Text Node
+\draw (204.27,128.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 6$};
+% Text Node
+\draw (247,128.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 8$};
+% Text Node
+\draw (268,112) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (177,45.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{5.2}$};
+\end{tikzpicture}
+\end{center}
 \end{formula}
 
 
+
 \columnbreak
-\subsection{Noyau triangulaire}
+\subsubsection{Noyau triangulaire}
 \begin{definitionNOHFILLsub}[Noyau triangulaire]
 Le noyau triangulaire prend la forme d'un triangle isocèle : 
 \begin{center}
@@ -5025,11 +5110,78 @@ En termes mathématiques :
 \end{align*}
 \end{definitionNOHFILLsub}
 
-\paragraph{Note}	Pour calculer des probabilités, il est \underline{bien mieux} de se \textbf{faire un dessin} et \textbf{utiliser la géométrie} que de mémoriser les formules.
+\paragraph{Note}	Pour calculer des probabilités, il est \underline{bien mieux} de se \textbf{faire un dessin} et \textbf{utiliser la géométrie} que de mémoriser les formules. 
+
+\begin{formula}{Exemple noyau rectangulaire}
+Une propriété des triangles isocèles est que la ratio des hauteurs doit être égale au ratio des bases du triangle. \\
+
+Pour le même exemple qu'avant, mais avec un noyau rectangulaire ce coups-ci, on trouve visuellement $k_{1}(5.2)$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,272); %set diagram left start at 0, and has height of 272
+
+%Shape: Right Triangle [id:dp5284415706090482] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 109; green, 173; blue, 250 }  ,fill opacity=1 ] (112.5,10.13) -- (183,90.13) -- (112.5,90.13) -- cycle ;
+%Shape: Right Triangle [id:dp6240824123422837] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 245; green, 154; blue, 35 }  ,fill opacity=1 ] (131.63,31.13) -- (183.63,90.13) -- (131.63,90.13) -- cycle ;
+%Straight Lines [id:da7211482776502178] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (131.63,31.13) -- (131.63,90.13) ;
+%Straight Lines [id:da3918170901894933] 
+\draw    (112,88.13) -- (112,99) ;
+%Straight Lines [id:da4639316842567751] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (202.5,32.73) -- (202.5,90.13) ;
+\draw [shift={(202.5,90.13)}, rotate = 270] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(202.5,32.73)}, rotate = 270] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da9935854584067654] 
+\draw [color={rgb, 255:red, 109; green, 173; blue, 250 }  ,draw opacity=1 ]   (182.5,146.13) -- (112,146.13) ;
+\draw [shift={(112,146.13)}, rotate = 360] [color={rgb, 255:red, 109; green, 173; blue, 250 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(182.5,146.13)}, rotate = 360] [color={rgb, 255:red, 109; green, 173; blue, 250 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da4290486361729675] 
+\draw    (42,90.13) -- (42,99) ;
+%Straight Lines [id:da35490545965880527] 
+\draw    (183,90.13) -- (183,99) ;
+%Straight Lines [id:da5207378426742408] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (40.75,92.13) -- (112.5,10.13) ;
+%Straight Lines [id:da635731478281172] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (184.25,92.13) -- (112.5,10.13) ;
+%Straight Lines [id:da16537306933901208] 
+\draw [color={rgb, 255:red, 245; green, 154; blue, 35 }  ,draw opacity=1 ]   (182.5,122.13) -- (131.3,122.13) ;
+\draw [shift={(131.3,122.13)}, rotate = 360] [color={rgb, 255:red, 245; green, 154; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(182.5,122.13)}, rotate = 360] [color={rgb, 255:red, 245; green, 154; blue, 35 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da974676279327652] 
+\draw [line width=1.5]    (42,90.13) -- (183,90.13) ;
+%Straight Lines [id:da4032584569796245] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (92.5,8.73) -- (92.5,88.13) ;
+\draw [shift={(92.5,88.13)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(92.5,8.73)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+
+% Text Node
+\draw (207,52) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{k_{1}( 5.2)}$};
+% Text Node
+\draw (121.25,150.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b=\textcolor[rgb]{0.43,0.68,0.98}{1.0}$};
+% Text Node
+\draw (106,98.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (34.75,98.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 4$};
+% Text Node
+\draw (178.75,98.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 6$};
+% Text Node
+\draw (144.25,123.13) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 245; green, 154; blue, 35 }  ,opacity=1 ] [align=left] {$\displaystyle \textcolor[rgb]{0.96,0.6,0.14}{0.8}$};
+% Text Node
+\draw (134,11.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{5.2}$};
+% Text Node
+\draw (68,60) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 1.0$};
+% Text Node
+\draw (275,17) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0,0,0}{\frac{\textcolor[rgb]{0.82,0.01,0.11}{k}\textcolor[rgb]{0.82,0.01,0.11}{_{1}}\textcolor[rgb]{0.82,0.01,0.11}{(}\textcolor[rgb]{0.82,0.01,0.11}{5.2}\textcolor[rgb]{0.82,0.01,0.11}{)}}{1.0} =\frac{\textcolor[rgb]{0.96,0.6,0.14}{0.8}}{\textcolor[rgb]{0.43,0.68,0.98}{1.0}}}$\\$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{k}\textcolor[rgb]{0.82,0.01,0.11}{_{1}}\textcolor[rgb]{0.82,0.01,0.11}{(}\textcolor[rgb]{0.82,0.01,0.11}{5.2}\textcolor[rgb]{0.82,0.01,0.11}{)}\textcolor[rgb]{0,0,0}{=}\textcolor[rgb]{0,0,0}{\frac{\textcolor[rgb]{0.96,0.6,0.14}{0.8}}{\textcolor[rgb]{0.43,0.68,0.98}{1.0}} \times 1.0}$};
+\end{tikzpicture}
+\end{center}
+\end{formula}
+
 
 
 \columnbreak
-\subsection{Noyau gaussien}
+\subsubsection{Noyau gaussien}
 \begin{definitionNOHFILLsub}[Noyau gaussien]
 Le noyau gaussien prend la forme d'une densité normale de moyenne $x_{i}$ et variance $b^{2}$ : 
 \begin{center}
@@ -5068,12 +5220,14 @@ En termes mathématiques, pour $x \in (-\infty, \infty)$,
 \end{align*}
 \end{definitionNOHFILLsub}
 
+\paragraph{Note}	Le noyau gaussien est le seul dont les probabilités doivent être calculées algébriquement.
 
 
-\pagebreak
-\subsection{Données complètes}
-\hl{Section à compléter avec mes notes d’ IARD et 11.2 de Nonlife Actuariel Models (tse).}
-\subsubsection{Distribution empirique}
+
+\columnbreak
+\subsection{Distribution empirique}\label{subsec:empirDistr}
+\hl{Section à compléter avec mes notes d’IARD et 11.2 de Nonlife Actuariel Models (tse).}
+\subsubsection{Données complètes}
 \begin{definitionNOHFILL}[Distribution empirique]
 Distribution discrète prenant comme valeurs $y_{1}, \dots, y_{m}$ avec probabilités $\frac{w_{1}}{n}, \dots, \frac{w_{m}}{n}$;
 \begin{itemize}
@@ -5139,68 +5293,11 @@ On trouve :
 \end{definitionNOHFILLprop}
 
 
-\subsubsection{Estimation par noyaux}
-La fonction de répartition empirique résume les données d'une distribution discrète. Cependant, lorsque la variable d'intérêt $X$ est continue on souhaite estimer une fonction de densité.
-
-Pour une observation $x_{i}$ de l'échantillon, la fonction de répartition empirique assigne une masse de probabilité de $1/n$ au point $x_{i}$.
-Puisque $X$ est continue, il est normal que l'on souhaite \underline{\textit{distribuer}} cette masse \textit{autour} de $x_{i}$.
-
-Si l'on souhaite distribuer cette masse de façon égale, on le fait sur l'intervalle \icbox{$[x_{i}  - b, x_{i} + b]$} avec la fonction de $x_{i}$ $f_{i}(x)$:
-\begin{align*}
-	f_{i}(x)
-	&=	\begin{cases}
-		\frac{0.5}{b},	&	x_{i} - b	\leq		x	\leq		x_{i} + b,	\\
-		0,	&	\text{sinon}
-		\end{cases}	
-\end{align*}
-\begin{itemize}[leftmargin = *]
-	\item	Cette fonction est rectangulaire avec une base de longueur $2b$ et une hauteur de $0.5/b$ pour avoir une aire de 1.
-	\item	On peut l'interpréter comme la fonction de densité contribuée par l'observation $x_{i}$;
-	\item	On note que ceci correspond à la fonction de densité d'une distribution uniforme $U(x_{i} -  b, x_{i} + b)$;
-	\item	Alors, seulement les valeurs de $x$ contenues dans l'intervalle $(x_{i} -  b, x_{i} + b)$ reçoivent une "contribution" de $x_{i}$;
-	\item	La fonction de densité de $X$ est donc la somme des masses de probabilité contribuées \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{n} \sumz{n}{i = 1}(x)$}.
-\end{itemize}
-
-On défini $\phi_{i}	=	\frac{x - x_{i}}{b}$ et $K_{R}(\phi)$:
-\begin{align*}
-	K_{R}(\phi)
-	&=	\begin{cases}
-		\frac{1}{2},	&	-1	\leq		\phi	\leq		1,	\\
-		0,	&	\text{sinon}
-		\end{cases}	
-\end{align*}
-\begin{itemize}[leftmargin = *]
-	\item	On trouve donc que \icbox[red][palechestnut]{$f_{i}(x)	=	\frac{1}{b}K_{R}(\phi_{i})$} et \icbox[red][palechestnut]{$\tilde{f}(x)	=	\frac{1}{nb}\sumz{n}{i = 1}K_{R}(\phi_{i})$}.
-\end{itemize}
-
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$b$]	\og \textit{bandwith} \fg{} où \icbox[red][palechestnut]{$b > 0$};
-	\item[$K_{R}(\phi)$]	\og \textit{rectangular (box, uniform) kernel function} \fg{};
-	\item[$\tilde{f}(x)$]	Estimation de la fonction de densité selon le noyau rectangulaire;
-	\item[$K_{T}(\phi)$]	\og \textit{triangular kernel} \fg{};
-	\begin{align*}
-		K_{R}(\phi)
-		&=	\begin{cases}
-			1 - |\phi|,	&	-1	\leq		\phi	\leq		1,	\\
-			0,	&	\text{sinon}
-			\end{cases}	
-	\end{align*}
-	\item[$K_{G}(\phi)$]	\og \textit{Gaussian kernel} \fg{};
-		\begin{align*}
-		K_{G}(\phi)
-		&=	\frac{1}{\sqrt{2\pi}} \textrm{e}^{-\frac{\phi^{2}}{2}}, -\infty	<	\phi	<	\infty
-		\end{align*}
-\end{description}
-\end{distributions}
-
-
-
 
 \columnbreak
-\subsection{Données incomplètes}
+\subsubsection{Données incomplètes}
 \hl{Section à compléter avec mes notes d’ IARD et 11.2 de Nonlife Actuariel Models (tse).}
-\subsubsection{Estimateur de Kaplan-Meier}
+\paragraph{Estimateur de Kaplan-Meier}
 Soit : 
 \begin{align*}
 	S(y_{j})
@@ -5220,7 +5317,7 @@ Variance de l'estimateur Kaplan-Meier : \lfbox[formula]{$\text{Var}(\hat{S}_{K}(
 Approximation de Greenwood de la variance de l'estimateur Kaplan-Meier : \lfbox[formula]{$\widehat{\text{Var}}(\hat{S}_{K}(y_{j}) | \mathcal{C})	\approx	\left(\hat{S}_{K}(y_{j})\right)^{2} \left(\sum^{j}_{h = 1} \frac{w_{h}}{r_{h} (r_{h} - w_{h})}\right)$} 
 
 
-\subsubsection{Estimateur de Nelson-Aalen}
+\paragraph{Estimateur de Nelson-Aalen}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$h(y)$]	Fonction de hasard.
@@ -5237,8 +5334,10 @@ Il s'ensuit que \lfbox[formula]{$S(y)	=	\textrm{e}^{-H(y)}$} et \lfbox[formula]{
 
 Avec l'approximation \lfbox[conditions]{$-\ln\left(1	-	\frac{w_{h}}{r_{h}}\right)	\approx	\frac{w_{h}}{r_{h}}$} on trouve que \lfbox[formula]{$H(y)	=	\sum_{h	=	1}^{j} \frac{w_{h}}{r_{h}}$} qui correspond à l'\textbf{estimateur Nelson-Aalen} de la fonction de hasard cumulative.
 
+
+
 \columnbreak
-\subsection{Données groupées}
+\subsubsection{Données groupées}
 \hl{Section à compléter avec mes notes d’ IARD et 11.3 de Nonlife Actuariel Models (tse).}
 
 
