@@ -4668,6 +4668,409 @@ Combiné avec les autres facteurs :
 
 \pagebreak
 \section{Estimation de modèles non paramétriques}
+\begin{rappel_enhanced}[Contexte]
+En lieu de supposer une distribution continue pour $f(x)$ puis d'estimer ses paramètres, on peut choisir de \underline{directement} estimer la fonction de densité avec un \textbf{estimateur à noyau de la densité}.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Fonction noyau $k()$]
+La fonction noyau $k()$ est une \textit{fonction de densité} à deux paramètres ($x_{i}$ et $b$).\\
+
+\begin{rappel_enhanced}[Contexte]
+Les fonctions noyaux faisant partie de l'examen sont \textbf{symétriques} avec $x_{i}$ comme point milieu. \\
+
+On dénote donc la fonction \lfbox[formula]{$k_{i}()$} comme la fonction noyau dont le domaine est centrée autour de l'observation $x_{i}$.
+\end{rappel_enhanced}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[$i^{\text{e}}$ valeur observée $x_{i}$]
+\begin{rappel_enhanced}[Contexte]
+Puisque la fonction noyau est symétrique et centrée sur l'observation $x_{i}$, la $i^{\text{e}}$ valeur observée $x_{i}$ \textbf{représente la moyenne de la distribution} liée à la fonction noyau.
+\end{rappel_enhanced}
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Largeur de la bande $b$]
+L'interprétation de la largeur de la bande $b$ varie selon la fonction noyau.
+
+\bigskip
+
+\begin{itemize}
+	\item	En anglais, \og \textit{bandwith} \fg{}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+	
+\begin{definitionNOHFILLprop}[Estimer une fonction de densité par une fonction noyau]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Choisir un type de fonction de densité pour $k()$.
+	\item	Estimer la fonction de densité $f(x)$ comme la moyenne de $k_{1}(x), \dots, k_{n}(x)$ : 
+		\begin{align*}
+		\tilde{f}(x)
+		&=	\frac{1}{n} \sum_{i = 1}^{n} k_{i}(x)
+		\end{align*}
+\end{enumerate}
+\end{definitionNOHFILLprop}
+	
+
+\subsection{Noyau rectangulaire (uniforme)}
+\begin{definitionNOHFILLsub}[Noyau rectangulaire ou uniforme]
+Le noyau rectangulaire, ou uniforme, suppose une densité distribuée uniformément : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,182); %set diagram left start at 0, and has height of 182
+
+%Shape: Rectangle [id:dp9350964128266188] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (40.75,60) -- (182.5,60) -- (182.5,122.13) -- (40.75,122.13) -- cycle ;
+%Straight Lines [id:da3088461155660609] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (40,60) -- (183.5,60) ;
+%Straight Lines [id:da19432909125531617] 
+\draw [line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (183.5,60) -- (183.5,124.13) ;
+%Straight Lines [id:da9711903958538282] 
+\draw [line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (40,60) -- (40,124.13) ;
+
+%Shape: Axis 2D [id:dp17460084411665977] 
+\draw [line width=1.5]  (12.5,123.13) -- (244.5,123.13)(12.5,31.13) -- (12.5,123.13) -- cycle (237.5,118.13) -- (244.5,123.13) -- (237.5,128.13) (7.5,38.13) -- (12.5,31.13) -- (17.5,38.13)  ;
+%Straight Lines [id:da5565191430131156] 
+\draw    (112,118.13) -- (112,129) ;
+%Straight Lines [id:da35097250351235054] 
+\draw    (202.5,61) -- (202.5,120.13) ;
+\draw [shift={(202.5,120.13)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(202.5,61)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da7245369722233317] 
+\draw    (182.5,152.13) -- (112,152.13) ;
+\draw [shift={(112,152.13)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(182.5,152.13)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+
+% Text Node
+\draw (84,88) node [anchor=north west][inner sep=0.75pt]   [align=left] {aire = 1};
+% Text Node
+\draw (247,114) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (102,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{i}$};
+% Text Node
+\draw (9,8) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle k( x)$};
+% Text Node
+\draw (207,71) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \frac{1}{2b}$};
+% Text Node
+\draw (144.25,155.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+	\item	La longueur de bande $b$ représente donc la \textbf{distance du milieu $x_{i}$ à la fin du domaine}.
+	\item	Par géométrie, on obtient une largeur de $2b$ et, puisque l'aire doit être de 1, une hauteur de $\frac{1}{2b}$.
+\end{itemize}
+
+En termes mathématiques : 
+\begin{align*}
+	k_{i}(x)
+	&=	\begin{cases}
+		\frac{1}{2b},	&	x_{i} - b \leq x \leq x_{i} + b	\\
+		0,	&	\text{sinon}
+	\end{cases}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\begin{formula}{Exemple de noyau rectangulaire}
+On observe les montants de réclamation $\{5, 2, 6\}$. Pour un noyau rectangulaire avec une longueur de bande $b = 1$, on désire estimer la fonction de densité évaluée à $5.2$.
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On interprète le problème comme $\tilde{f}(5.2) = \frac{1}{3}\left(k_{1}(x) + k_{2}(x) + k_{3}(x)\right)$.
+	\item	On visualise les fonctions de noyau : 
+		\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,182); %set diagram left start at 0, and has height of 182
+
+%Straight Lines [id:da0488215777963914] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (10,54.52) -- (153.5,54.52) ;
+%Straight Lines [id:da6350824616406365] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (153.5,54.52) -- (153.5,92.13) ;
+%Straight Lines [id:da8857778665429823] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (10,54.52) -- (10,92.13) ;
+%Straight Lines [id:da603101474324707] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (82,86.13) -- (82,97) ;
+%Straight Lines [id:da247303161730001] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (10.75,91.13) -- (154.25,91.13) ;
+
+%Straight Lines [id:da06487564055126116] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (94.5,54.52) -- (94.5,92.52) ;
+
+
+%Straight Lines [id:da4755907070770722] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (115,114.52) -- (258.5,114.52) ;
+%Straight Lines [id:da37561521309718215] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (258.5,114.52) -- (258.5,152.13) ;
+%Straight Lines [id:da07924390473881271] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (115,114.52) -- (115,152.13) ;
+%Straight Lines [id:da8549093821682794] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (187,146.13) -- (187,157) ;
+%Straight Lines [id:da3169775752886963] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (115.75,151.13) -- (259.25,151.13) ;
+
+
+%Straight Lines [id:da8471275771610149] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (199,54.52) -- (342.5,54.52) ;
+%Straight Lines [id:da550226252864882] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (342.5,54.52) -- (342.5,92.13) ;
+%Straight Lines [id:da7027367241105156] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (199,54.52) -- (199,92.13) ;
+%Straight Lines [id:da07982315650310023] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (271,86.13) -- (271,97) ;
+%Straight Lines [id:da9452485248663929] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (199.75,91.13) -- (343.25,91.13) ;
+
+%Straight Lines [id:da78508824006868] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (225.5,53.52) -- (225.5,91.52) ;
+
+
+%Straight Lines [id:da4810337253732295] 
+\draw    (161.5,54.52) -- (162.25,91.13) ;
+\draw [shift={(162.25,91.13)}, rotate = 268.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(161.5,54.52)}, rotate = 268.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da8311195487795335] 
+\draw    (352.5,54.52) -- (353.25,91.13) ;
+\draw [shift={(353.25,91.13)}, rotate = 268.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(352.5,54.52)}, rotate = 268.83] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Flowchart: Connector [id:dp7561998322781991] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (312,148.42) .. controls (312,146.99) and (313.16,145.83) .. (314.58,145.83) .. controls (316.01,145.83) and (317.17,146.99) .. (317.17,148.42) .. controls (317.17,149.84) and (316.01,151) .. (314.58,151) .. controls (313.16,151) and (312,149.84) .. (312,148.42) -- cycle ;
+
+% Text Node
+\draw (84,34.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{5.2}$};
+% Text Node
+\draw (215,33.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{5.2}$};
+% Text Node
+\draw (266,99) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 6$};
+% Text Node
+\draw (202.75,94.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (331.75,93.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {7};
+% Text Node
+\draw (182,159.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {2};
+% Text Node
+\draw (117.75,153.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (246.75,152.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 3$};
+% Text Node
+\draw (77,99.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (12.75,94.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 4$};
+% Text Node
+\draw (141.75,93.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 6$};
+% Text Node
+\draw (166,56.41) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \frac{1}{2}$};
+% Text Node
+\draw (358,55.41) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \frac{1}{2}$};
+% Text Node
+\draw (305,152.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{5.2}$};
+\end{tikzpicture}
+		\end{center}
+	\item	La fonction de densité estimée est donc : 
+		\begin{align*}
+		\tilde{f}(5.2)
+		&=	\frac{1}{3}\left(\frac{1}{2} + 0 + \frac{1}{2}\right)
+		=	\frac{1}{3}
+		\end{align*}
+\end{enumerate}
+
+Si on désire trouver la probabilité que la réclamation soit inférieure à 5.2 : 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Visuellement, on voit comment l'équivalence géométrique du calcul des probabilités : 
+		\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,182); %set diagram left start at 0, and has height of 182
+
+%Shape: Rectangle [id:dp10926935167281204] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (115.75,113.73) -- (258.5,113.73) -- (258.5,151.13) -- (115.75,151.13) -- cycle ;
+%Shape: Rectangle [id:dp15351423654195528] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (199,54.13) -- (225.5,54.13) -- (225.5,91.52) -- (199,91.52) -- cycle ;
+%Shape: Rectangle [id:dp886098100041153] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=0.89 ] (10,54.52) -- (94.5,54.52) -- (94.5,90.72) -- (10,90.72) -- cycle ;
+%Straight Lines [id:da5680322495589596] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (10,54.52) -- (153.5,54.52) ;
+%Straight Lines [id:da35964040196755276] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (153.5,54.52) -- (153.5,92.13) ;
+%Straight Lines [id:da8706635327985417] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (10,54.52) -- (10,92.13) ;
+%Straight Lines [id:da06644124721174882] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (82,86.13) -- (82,97) ;
+%Straight Lines [id:da20769822354912293] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (10.75,91.13) -- (154.25,91.13) ;
+
+%Straight Lines [id:da17532879296030157] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (94.5,54.52) -- (94.5,92.52) ;
+%Straight Lines [id:da1353057880824622] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (115,114.52) -- (258.5,114.52) ;
+%Straight Lines [id:da465890373758973] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (258.5,114.52) -- (258.5,152.13) ;
+%Straight Lines [id:da37868549911641125] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (115,114.52) -- (115,152.13) ;
+%Straight Lines [id:da541968657190196] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (187,146.13) -- (187,157) ;
+%Straight Lines [id:da020773045309237625] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (115.75,151.13) -- (259.25,151.13) ;
+
+
+%Straight Lines [id:da9637016893695587] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (199,54.52) -- (342.5,54.52) ;
+%Straight Lines [id:da28460076501236276] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (342.5,54.52) -- (342.5,92.13) ;
+%Straight Lines [id:da07602675868950537] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (199,54.52) -- (199,92.13) ;
+%Straight Lines [id:da4327562103950724] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ]   (271,86.13) -- (271,97) ;
+%Straight Lines [id:da12657599050742818] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=1.5]    (199.75,91.13) -- (343.25,91.13) ;
+
+%Straight Lines [id:da5946928144144585] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (225.5,53.52) -- (225.5,91.52) ;
+%Flowchart: Connector [id:dp503215224078879] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (312,148.42) .. controls (312,146.99) and (313.16,145.83) .. (314.58,145.83) .. controls (316.01,145.83) and (317.17,146.99) .. (317.17,148.42) .. controls (317.17,149.84) and (316.01,151) .. (314.58,151) .. controls (313.16,151) and (312,149.84) .. (312,148.42) -- cycle ;
+
+% Text Node
+\draw (10,57.52) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle \textcolor[rgb]{0,0,0}{\frac{5.2-4}{6-4} =0.60}$};
+% Text Node
+\draw (266,99) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 6$};
+% Text Node
+\draw (202.75,94.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (331.75,93.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {7};
+% Text Node
+\draw (182,159.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {2};
+% Text Node
+\draw (117.75,153.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (246.75,152.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 3$};
+% Text Node
+\draw (77,99.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 5$};
+% Text Node
+\draw (12.75,94.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 4$};
+% Text Node
+\draw (141.75,93.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle 6$};
+% Text Node
+\draw (305,152.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{5.2}$};
+% Text Node
+\draw (199.5,57.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle \textcolor[rgb]{0,0,0}{0.10=\frac{5.2-5}{6-5}}$};
+% Text Node
+\draw (184.5,127.13) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=1 ] [align=left] {$\displaystyle 1$};
+\end{tikzpicture}
+		\end{center}
+	\item	Donc :
+		\begin{align*}
+		\tilde{F}(5.2)
+		&=	\frac{1}{3}\left(0.60 + 1 + 0.10\right)
+		=	0.567
+		\end{align*}
+\end{enumerate}
+\end{formula}
+
+
+\columnbreak
+\subsection{Noyau triangulaire}
+\begin{definitionNOHFILLsub}[Noyau triangulaire]
+Le noyau triangulaire prend la forme d'un triangle isocèle : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,182); %set diagram left start at 0, and has height of 182
+
+%Shape: Triangle [id:dp5452780980971446] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=1 ] (112.5,40.13) -- (184.25,122.13) -- (40.75,122.13) -- cycle ;
+%Straight Lines [id:da5534365720792029] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (40.75,122.13) -- (112.5,40.13) ;
+%Shape: Axis 2D [id:dp17946031138077045] 
+\draw [line width=1.5]  (12.5,123.13) -- (244.5,123.13)(12.5,31.13) -- (12.5,123.13) -- cycle (237.5,118.13) -- (244.5,123.13) -- (237.5,128.13) (7.5,38.13) -- (12.5,31.13) -- (17.5,38.13)  ;
+%Straight Lines [id:da4070497773660917] 
+\draw    (112,118.13) -- (112,129) ;
+%Straight Lines [id:da2736295479294497] 
+\draw    (202.5,61) -- (202.5,120.13) ;
+\draw [shift={(202.5,120.13)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(202.5,61)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da3760018714115432] 
+\draw    (182.5,152.13) -- (112,152.13) ;
+\draw [shift={(112,152.13)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+\draw [shift={(182.5,152.13)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (0,5.59) -- (0,-5.59)   ;
+%Straight Lines [id:da2411822326562434] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (184.25,122.13) -- (112.5,40.13) ;
+
+% Text Node
+\draw (84,88) node [anchor=north west][inner sep=0.75pt]   [align=left] {aire = 1};
+% Text Node
+\draw (247,114) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (102,128) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{i}$};
+% Text Node
+\draw (9,8) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle k( x)$};
+% Text Node
+\draw (207,71) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \frac{1}{b}$};
+% Text Node
+\draw (144.25,155.13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle b$};
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item	La longueur de bande $b$ représente donc la \textbf{distance du milieu $x_{i}$ à la fin du domaine}.
+	\item	Par géométrie, on obtient une largeur de $2b$ et, puisque l'aire doit être de 1, une hauteur de $\frac{1}{b}$.
+\end{itemize}
+
+En termes mathématiques : 
+\begin{align*}
+	k_{i}(x)
+	&=	\begin{cases}
+		\frac{b - |x - x_{i}|}{b^{2}},	&	x_{i} - b \leq x \leq x_{i} + b	\\
+		0,	&	\text{sinon}
+	\end{cases}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Pour calculer des probabilités, il est \underline{bien mieux} de se \textbf{faire un dessin} et \textbf{utiliser la géométrie} que de mémoriser les formules.
+
+
+\columnbreak
+\subsection{Noyau gaussien}
+\begin{definitionNOHFILLsub}[Noyau gaussien]
+Le noyau gaussien prend la forme d'une densité normale de moyenne $x_{i}$ et variance $b^{2}$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,182); %set diagram left start at 0, and has height of 182
+
+%Shape: Axis 2D [id:dp6287339631352287] 
+\draw [line width=1.5]  (12.5,123.13) -- (244.5,123.13)(12.5,31.13) -- (12.5,123.13) -- cycle (237.5,118.13) -- (244.5,123.13) -- (237.5,128.13) (7.5,38.13) -- (12.5,31.13) -- (17.5,38.13)  ;
+%Straight Lines [id:da4981131650467896] 
+\draw    (103,122.13) -- (103,133) ;
+%Curve Lines [id:da927899970203304] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 255; green, 144; blue, 144 }  ,fill opacity=1 ][line width=1.5]    (12.5,123.13) .. controls (66.1,120.13) and (60.1,64.13) .. (100.1,64.13) .. controls (140.1,64.12) and (138.1,122.13) .. (184.1,123.13) ;
+%Straight Lines [id:da8807791236851921] 
+\draw    (12.5,123.13) -- (184.1,123.13) ;
+
+% Text Node
+\draw (74,92) node [anchor=north west][inner sep=0.75pt]   [align=left] {aire = 1};
+% Text Node
+\draw (247,114) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (93,131) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x_{i}$};
+% Text Node
+\draw (9,8) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle k( x)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+	\item	La longueur de bande $b$ représente donc \textbf{l'écart-type de la distribution}.
+\end{itemize}
+
+En termes mathématiques, pour $x \in (-\infty, \infty)$, 
+\begin{align*}
+	k_{i}(x)
+	&=	\frac{1}{b\sqrt{2\pi}} \textrm{e}^{-\frac{1}{2} \left(\frac{x - x_{i}}{b}\right)^{2}}
+\end{align*}
+\end{definitionNOHFILLsub}
+
+
+
+\pagebreak
 \subsection{Données complètes}
 \hl{Section à compléter avec mes notes d’ IARD et 11.2 de Nonlife Actuariel Models (tse).}
 \subsubsection{Distribution empirique}
