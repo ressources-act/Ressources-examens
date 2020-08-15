@@ -69,8 +69,7 @@ L'objectif est d'expliquer les concepts d'une façon claire, concise et visuelle
 \raggedcolumns
 \begin{multicols*}{2}
 
-\part{Analyse statistique des risques actuariels}
-\label{chapt:stats}
+\part{Analyse statistique des risques actuariels}\label{chapt:stats}
 \section{Échantillonnage et statistiques}
 \begin{distributions}[Notation]
 \begin{description}
@@ -79,15 +78,70 @@ L'objectif est d'expliquer les concepts d'une façon claire, concise et visuelle
 		\begin{itemize}
 		\item	Par exemple, pour une loi normale $\Theta	=	\{(\mu, \sigma^{2}): \sigma^{2} > 0, -\infty < \mu < \infty\}$.
 		\end{itemize}
-	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de taille $n$.
+	\item[$\{X_{1}, \dots, X_{n}\}$]	Échantillon de $n$ observations (\textit{variables aléatoires}).
 		\begin{itemize}
-		\item	On pose que les observations ont la même distribution que $X$;
+		\item	On pose que toutes les observations ont la même distribution que $X$;
 		\item	On pose habituellement l'indépendance entre les observations;
-		\item	L'indépendance et la distribution identique rend l'échantillon un \textbf{échantillon aléatoire};
-		\item	Lorsque nous avons des observations, ont dénote l'échantillon par $\{x_{1}, \dots, x_{n}\}$ pour représenter des \textit{réalisations} de l'échantillon.
+		\item	L'indépendance et la distribution identique rend l'échantillon un \textbf{\textit{échantillon aléatoire}};
+		\item	On dénote les \textit{réalisations} de l'échantillon par $\{x_{1}, \dots, x_{n}\}$.
 		\end{itemize}
 \end{description}
 \end{distributions}
+
+\subsection{Statistiques}
+\begin{definitionNOHFILL}[Statistique $T_{n}$]
+Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantillon aléatoire en une seule valeur. 
+
+\begin{itemize}
+\item	Une statistique est donc également une \textit{variable aléatoire} ;
+\item	Sa distribution est la \textbf{distribution d'échantillonnage} qui dépend de :
+	\begin{enumerate}
+	\item	La statistique.
+	\item	La taille de l'échantillon.
+	\item	La distribution sous-jacente des données.
+	\end{enumerate}
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILLprop}[Moyenne échantillonnale $\bar{X}$]
+\lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
+
+\begin{itemize}
+	\item	Estime sans biais la moyenne $\mu$ ;
+	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
+	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
+	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{S_{n}/\sqrt{n}}	=	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Variance échantillonnale $S^{2}_{n}$]
+\lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
+
+\begin{itemize}
+	\item	Estime \underline{sans biais} la vraie variance $\sigma^{2}$ ;
+	\item	$S^{2}_{n}$ n'est pas normalement distribuée, cependant la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Variance empirique $\hat{\sigma}^{2}$]
+\lfbox[formula]{$\hat{\sigma}^{2}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}$}.
+
+\begin{itemize}
+	\item	Estime \underline{avec biais} la vraie variance $\sigma^{2}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Statistique $F$]
+\lfbox[formula]{$F	=	\frac{S^{2}_{n}/\sigma^{2}_{1}}{S^{2}_{m}/\sigma^{2}_{2}}$}.
+
+\begin{itemize}
+	\item	Si on pose que les deux échantillons aléatoires indépendants $(X_{1}, \dots, X_{n})$ et $(Y_{1}, \dots, Y_{m})$ sont normalement distribués, \lfbox[formula]{$F \sim \mathcal{F}_{(n - 1, m - 1)}$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscules lorsqu'elles sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
+Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
 
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
@@ -133,7 +187,7 @@ La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une dif
 \columnbreak
 \section{Qualité de l'estimateur}
 
-La première section traite de \guillemotleft \textbf{estimateurs ponctuels} \guillemotright. 
+La première section traite d'\guillemotleft \textbf{estimateurs ponctuels} \guillemotright. 
 C'est-à-dire, on produit une seule valeur comme notre meilleur essai pour déterminer la valeur de la population inconnue.
 Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.\\
 
@@ -142,8 +196,8 @@ Le type principal d'\textit{estimateur par intervalle} est \textit{l'intervalle 
 
 En bref:
 \begin{description}
-	\item[Estimateur ponctuel]	L'estimateur $\hat{\theta}_{n}$ assigne une valeur précise à $\theta$ selon l'échantillon.
-	\item[Estimateur par intervalle]	Un \textit{intervalle aléatoire}, construit avec l'échantillon aléatoire, ayant une certaine probabilité de contenir la vraie valeur $\theta$.
+	\item[Estimateur ponctuel]	Règle (\textit{fonction}) $\hat{\theta}_{n}$ qui décrit comment calculer une valeur précise estimée de $\theta$ en fonction de l'échantillon aléatoire. 
+	\item[Estimateur par intervalle]	\textit{Intervalle aléatoire} qui produit un intervalle ayant une certaine probabilité de contenir la vraie valeur $\theta$ en fonction de l'échantillon aléatoire.
 \end{description}
 
 
@@ -437,8 +491,7 @@ En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \
 
 \columnbreak
 
-\subsection{Estimation par intervalles}
-\label{sec:int-estimation}
+\subsection{Estimation par intervalles}\label{sec:int-estimation}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
@@ -506,59 +559,6 @@ Alors, \lfbox[formula]{$F	=	\frac{W_{1}/\nu_{1}}{W_{2}/\nu_{2}}	\sim	\mathcal{F}
 
 On peut relier la loi de Student et la loi F : \lfbox[formula]{$T^{2}	=	\frac{Z^{2}}{W/n}	\sim	\mathcal{F}_{(1, n)}$} puisque \lfbox[formula]{$Z^{2} \sim \chi^{2}_{(1)}$} où \lfbox[conditions]{$Z \sim \mathcal{N}(0, 1)$}.
 \end{rappel_enhanced}
-
-\begin{definitionNOHFILL}[Statistique de test $T_{n}$]
-$T_{n}$ est une statistique de test basée sur un échantillon aléatoire de $n$ observations.
-
-\begin{itemize}
-\item	C'est donc une \textbf{fonction} d'un échantillon aléatoire ;
-\item	Sa distribution est la \textbf{distribution d'échantillonnage} qui dépend de :
-	\begin{enumerate}
-	\item	La statistique.
-	\item	La taille de l'échantillon.
-	\item	La distribution sous-jacente des données.
-	\end{enumerate}
-\end{itemize}
-\end{definitionNOHFILL}
-
-\begin{definitionNOHFILLprop}[Moyenne échantillonnale $\bar{X}$]
-\lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
-
-\begin{itemize}
-	\item	Estime sans biais la moyenne $\mu$ ;
-	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
-	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
-	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{S_{n}/\sqrt{n}}	=	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
-\end{itemize}
-\end{definitionNOHFILLprop}
-
-\begin{definitionNOHFILLprop}[Variance échantillonnale $S^{2}_{n}$]
-\lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
-
-\begin{itemize}
-	\item	Estime \underline{sans biais} la vraie variance $\sigma^{2}$ ;
-	\item	$S^{2}_{n}$ n'est pas normalement distribuée, cependant la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
-\end{itemize}
-\end{definitionNOHFILLprop}
-
-\begin{definitionNOHFILLprop}[Variance empirique $\hat{\sigma}^{2}$]
-\lfbox[formula]{$\hat{\sigma}^{2}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}$}.
-
-\begin{itemize}
-	\item	Estime \underline{avec biais} la vraie variance $\sigma^{2}$.
-\end{itemize}
-\end{definitionNOHFILLprop}
-
-\begin{definitionNOHFILLprop}[Statistique $F$]
-\lfbox[formula]{$F	=	\frac{S^{2}_{n}/\sigma^{2}_{1}}{S^{2}_{m}/\sigma^{2}_{2}}$}.
-
-\begin{itemize}
-	\item	Si on pose que les deux échantillons aléatoires indépendants $(X_{1}, \dots, X_{n})$ et $(Y_{1}, \dots, Y_{m})$ sont normalement distribués, \lfbox[formula]{$F \sim \mathcal{F}_{(n - 1, m - 1)}$}.
-\end{itemize}
-\end{definitionNOHFILLprop}
-
-\paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscules lorsqu'elles sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
-Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
 
 
 
@@ -5343,7 +5343,7 @@ Avec l'approximation \lfbox[conditions]{$-\ln\left(1	-	\frac{w_{h}}{r_{h}}\right
 
 
 \pagebreak
-\section{Estimation de modèles paramétriques} \label{sec:paramModelEstimLikelihood}
+\section{Estimation de modèles paramétriques}\label{sec:paramModelEstimLikelihood}
 \paragraph{Note}	Cette section ce veut une continuation de \underline{\nameref{subsec:MLEConstruction}} du chapitre \underline{\nameref{chapt:stats}}.
 
 \subsection*{Estimation par maximum de vraisemblance pour des données incomplètes et groupées}
