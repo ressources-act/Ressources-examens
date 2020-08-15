@@ -108,7 +108,7 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
 
 \begin{itemize}
-	\item	Estime sans biais la moyenne $\mu$ ;
+	\item	Estime \textbf{\underline{sans biais}} la moyenne $\mu$ ;
 	\item	Si on pose que l'échantillon aléatoire est normalement distribué, $\bar{X}	\sim \mathcal{N}(\mu, \frac{\sigma}{\sqrt{n}})$ ;
 	\item	On centre et réduit pour trouver que \lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0, 1)$} ;
 	\item	Si $\sigma^{2}$ est inconnue, on l'estime avec $s^{2}_{n}$ pour obtenir une distribution student---\lfbox[formula]{$T_{n}	=	\frac{\bar{X} - \mu}{S_{n}/\sqrt{n}}	=	\frac{Z}{\sqrt{W/(n - 1)}} \sim t_{(n - 1)}$} où $W \sim \chi^{2}_{(n - 1)}$.
@@ -119,7 +119,7 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
 
 \begin{itemize}
-	\item	Estime \underline{sans biais} la vraie variance $\sigma^{2}$ ;
+	\item	Estime \underline{\textbf{sans biais}} la vraie variance $\sigma^{2}$ ;
 	\item	$S^{2}_{n}$ n'est pas normalement distribuée, cependant la statistique \lfbox[formula]{$T_{n}	=	\frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
 \end{itemize}
 \end{definitionNOHFILLprop}
@@ -128,7 +128,8 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \lfbox[formula]{$\hat{\sigma}^{2}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}$}.
 
 \begin{itemize}
-	\item	Estime \underline{avec biais} la vraie variance $\sigma^{2}$.
+	\item	Estime \underline{\textbf{avec biais}} la vraie variance $\sigma^{2}$.
+	\item	Cependant, si la \underline{moyenne était connue} et que nous n'avions pas à l'estimer avec $\bar{x}$, alors la variance empirique serait \textit{\underline{sans biais}}.
 \end{itemize}
 \end{definitionNOHFILLprop}
 
@@ -201,60 +202,196 @@ En bref:
 \end{description}
 
 
-\subsection{Estimation ponctuelle}
 
-\subsubsection{Biais}
+\subsection{Estimation ponctuelle}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
 	\item[$\theta$]	Paramètre inconnu à estimer ;
-	\item[$\Theta$]	Ensemble des valeurs possibles pour $\theta$ ;
-		\begin{itemize}
-		\item	Dans le cas multivarié, on a un vecteur $\bm{\theta}$ et on définit un ensemble des valeurs possibles $\bm{\Theta}$;
-		\item	Par exemple, une loi Gamma a $\bm{\theta}	=	\{\alpha, \beta\}$ et, puisque ces paramètres sont strictement positif, $\bm{\Theta}	=	\{\mathbb{R}^{+}, \mathbb{R}^{+}\}$.
-		\end{itemize}
 	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$ basé sur $n$ observations;
 		\begin{itemize}[leftmargin = *]
 		\item	Souvent, on écrit $\hat{\theta}$ pour simplifier la notation.
 		\end{itemize}
+\end{description}
+\end{distributions}
+
+
+
+\columnbreak	
+\subsubsection{Biais}
+\begin{distributions}[Notation]
+\begin{description}[font = \normalfont]
 	\item[$\text{B}(\hat{\theta}_{n})$]	Biais de l'estimateur $\hat{\theta}_{n}$.
 \end{description}
 \end{distributions}
 
-Lorsque nous avons un estimateur $\hat{\theta}_{n}$ pour un paramètre inconnu $\theta$ on espère que, \textbf{en moyenne}, ses erreurs de prévision seront nulles. Le \textbf{biais} $\text{B}(\hat{\theta}_{n})$ d'un estimateur quantifie les erreurs de l'estimateur dans ses prévisions de la vraie valeur du paramètre $\theta$.
+\begin{rappel_enhanced}[Motivation]
+Lorsque nous avons un estimateur $\hat{\theta}_{n}$ pour un paramètre inconnu $\theta$, on souhaite que, \textbf{en moyenne}, ses erreurs de prévision soient nulles. Le \textbf{biais} $\text{B}(\hat{\theta}_{n})$ d'un estimateur quantifie les erreurs de l'estimateur dans ses prévisions de la vraie valeur du paramètre $\theta$.
+\end{rappel_enhanced}
 
-\begin{algo}{Biais d'un estimateur}
-\begin{align*}
-	\text{B}(\hat{\theta}_{n}) 
-	&= 	\text{E}[\hat{\theta}_{n} | \theta] - \theta
-\end{align*}
 
-où :
+\begin{definitionNOHFILL}[Biais d'un estimateur]
+Le biais est défini comme \lfbox[formula]{$\text{B}(\hat{\theta}_{n}) = \text{E}[\hat{\theta}_{n} | \theta] - \theta$}, où $\text{E}\lbrack\hat{\theta}_{n} | \theta\rbrack$ est l'espérance de l'estimateur $\hat{\theta}_{n}$ sachant que la vraie valeur du paramètre est $\theta$.
+
+\begin{definitionNOHFILLprop}[Estimateur sans biais]
+Lorsque le biais d'un estimateur est nul, \lfbox[conditions]{$\text{B}(\hat{\theta}_{n}) = 0$}, l'estimateur est \underline{\textit{sans biais}}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Estimateur asymptotiquement sans biais]
+Lorsque le biais d'un estimateur tend vers 0 alors que le nombre d'observations de l'échantillon sur lequel il est basé tend vers l'infini, \lfbox[conditions]{$\limz{n}{\infty}\text{B}(\hat{\theta}_{n}) = 0$}, l'estimateur est \underline{\textit{asymptotiquement sans biais}}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Limitations]
+Bien que le biais quantifie les erreurs de prévisions de l'estimateur $\hat{\theta}_{n}$, il n'indique pas la variabilité de ses prévisions. Imagine une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur. \textbf{\underline{En moyenne}}, sa température corporelle est tiède. \textit{\underline{En réalité}}, sa température corporelle est à la fois extrêmement élevée et faible. 
+\end{rappel_enhanced}
+
+
+
+\columnbreak
+\subsubsection{Variance}
+\begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
-	\item[$\text{E}\lbrack\hat{\theta}_{n} | \theta\rbrack$]	l'espérance de l'estimateur $\hat{\theta}_{n}$ sachant que la vraie valeur du paramètre est $\theta$.
+	\item[$\text{Var}(\hat{\theta}_{n})$]	Variance de l'estimateur $\hat{\theta}_{n}$.
 \end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Motivation]
+Les prévisions des estimateurs non biaisés seront toujours proches de la vraie valeur $\theta$. Cependant, être bon \textit{\textbf{en moyenne}} n'est pas suffisant et on souhaite évaluer la variabilité des prévisions d'un estimateur $\hat{\theta}_{n}$ avec sa variance $\text{Var}(\hat{\theta}_{n})$.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Variance d'un estimateur]
+La variance est définie comme \lfbox[formula]{$\text{Var}(\hat{\theta}_{n}) = \text{E}\left[\left(\hat{\theta}_{n} - \text{E}[\hat{\theta}_{n}]\right)^{2}\right]$}.
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Limitations]
+Bien que la variance peut aider à dépister des estimateurs très variables, il a la limitation inhérente de ne pas prendre en considération le biais de l'estimateur. On cherche donc la juste balance entre le biais et la variance et utilisons l'erreur quadratique moyenne (EQM). 
+\end{rappel_enhanced}
+
+
+
+\columnbreak
+\subsubsection{Erreur quadratique moyenne}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\text{MSE}_{\hat{\theta}_{n}}(\theta)$]	Erreur quadratique moyenne d'un estimateur $\hat{\theta}_{n}$
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Motivation]
+L'erreur quadratique moyenne $\text{MSE}_{\hat{\theta}_{n}}(\theta)$ calcule la variance avec la vraie valeur du paramètre $\theta$ plutôt que l'espérance de l'estimateur $\text{E}[\hat{\theta}_{n}]$---il permet de quantifier l'écart entre un estimateur $\hat{\theta}_{n}$ et le vrai paramètre $\theta$.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Erreur quadratique moyenne (EQM)]
+L'erreur quadratique moyenne est définie comme \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{E}[(\hat{\theta}_{n} - \theta)^{2}]$}. Également, on peut réécrire l'expression comme \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{Var}(\hat{\theta}_{n}) + \left[\text{B}(\hat{\theta}_{n})\right]^{2}$}.
+
+\bigskip
+
+\begin{itemize}
+	\item	Il s'ensuit que pour un estimateur non biaisé, \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{Var}(\hat{\theta}_{n})$}.
+	\item	En anglais, \og \textit{Mean Squared Error (MSE)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
+\subsubsection{Convergence}
+\begin{rappel_enhanced}[Motivation]
+Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs. Alors, un autre aspect à évaluer d'un estimateur est sa convergence pour de grands échantillons. \\
+
+Par la loi des grands nombres, on s'attend à ce que la prévision d'un estimateur tend vers le vrai paramètre $\theta$. On peut déduire avec intuition que le biais d'un estimateur \og \textit{consistent} \fg{} devrait tendre vers $0$ et que sa variance devrait être très faible.
+\end{rappel_enhanced}
+
+Il y a deux façons de définir la convergence d'un estimateur. 
+\begin{itemize}
+	\item	En fonction de la variance et du biais, $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ s'il est \textit{asymptotiquement sans biais} et que sa \textit{variance tend vers $0$} alors que la taille $n$ de l'échantillon tend vers l'infini.
+	\item	En termes mathématiques, $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ si la probabilité que sa prévision $\hat{\theta}$ du paramètre $\theta$ diffère de la vraie valeur par une erreur $\varepsilon$ (presque nulle) tend vers $0$ alors que la taille $n$ de l'échantillon tend vers l'infini.
+\end{itemize}
+
+Cependant, la première façon est limitée car \underline{\textbf{l'inverse n'est pas vrai}}---la variance et/ou biais d'un estimateur \og \textit{consistent} \fg{} ne tende(nt) pas nécessairement vers 0.
+
+\begin{definitionNOHFILL}[Convergence (\og \textit{consistency} \fg{}) d'un estimateur]
+$\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ si :
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	\lfbox[conditions]{$\limz{n}{\infty} \text{B}(\hat{\theta}_{n}) = 0$}.
+	\item	\lfbox[conditions]{$\limz{n}{\infty} \text{Var}(\hat{\theta}_{n}) = 0$}.
+\end{enumerate}
 
 \tcbline
 
+$\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ si \lfbox[conditions]{$\forall\varepsilon > 0$}, \lfbox[formula]{$\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat{\theta}_{n} - \theta \big| > \varepsilon) = 0$}.
+\end{definitionNOHFILL}
+
+
+%D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramér-Rao}.
+
+\begin{rappel_enhanced}[Limitations]
+Dût à la sélection arbitraire de l'erreur $\varepsilon$, il est possible d'être sournois avec le choix de $\varepsilon$.
+\end{rappel_enhanced}
+
+\paragraph{Note}	Les estimateurs par la méthode des moments sont \og \textit{consistent} \fg{} si ils sont uniques.
+
+
+
+\subsubsection*{Détails sur la convergence}
+On reprend les résultats de la section précédente en expliquant plus en détail la mathématique sous-jacente. \textbf{\underline{Vous pouvez sauter cette section}}.
+
+\begin{definitionNOHFILL}[Convergence en probabilité]
+\begin{distributions}[Notation]
 \begin{description}
-	\item[Estimateur sans biais]	lorsque le biais d'un estimateur est nul:
-		 \[
-		 	\text{B}(\hat{\theta}_{n}) = 0
-		 \]
-	\item[Estimateur asymptotiquement sans biais]	lorsque le biais d'un estimateur tend vers 0 alors que le nombre d'observations sur lequel il est basé tend vers l'infini: 
-		\[
-			\limz{n}{\infty}\text{B}(\hat{\theta}_{n}) = 0
-		\]
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires;
+	\item[$Y$]	Variable aléatoire comprise dans $\{Y_{n}\}$.
 \end{description}
-\end{algo}
+\end{distributions}
 
-Bien que le biais quantifie les erreurs de prévisions de l'estimateur $\hat{\theta}_{n}$, il n'indique pas la variabilité de ses prévisions. Imagine une personne ayant ses pieds dans de l'eau bouillante et sa tête dans un congélateur. \textbf{\underline{En moyenne}}, sa température corporelle est tiède. \textit{\underline{En réalité}}, sa température corporelle est à la fois extrêmement élevée et faible. \\
+On dit que $Y_{n}$ converge en probabilité à $Y$ si \lfbox[conditions]{$\forall \varepsilon > 0$}, 
+\begin{align*}
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|	>	\varepsilon\right]	
+	&=	0
+\end{align*}
+%%%	--------------------
+%%%	NOTES:
+%%%	+	\geq ou > ???
+%%%	--------------------
+ou de façon équivalente,
+\begin{align*}
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|<	\varepsilon\right]	
+	&=	1
+\end{align*}
 
-Les prévisions des estimateurs non biaisés seront toujours proches de la vraie valeur $\theta$. Cependant, être bon \textit{\textbf{en moyenne}} n'est pas suffisant et on souhaite évaluer la variabilité des prévisions d'un estimateur $\hat{\theta}_{n}$ avec sa variance $\text{Var}(\hat{\theta}_{n})$.
+On dénote la convergence en probabilité par: \lfbox[formula]{$Y_{n}	\overset{P}{\rightarrow}	Y$.}
+\end{definitionNOHFILL}
 
-%\columnbreak
-\subsubsection{Borne Cramér-Rao}
-\label{sec:cramer_rao}
+La convergence en probabilité est le théorème sous-jacent à la loi faible des grands nombres (vue en ACT-1002: analyse probabiliste des risques actuariels).
 
+\begin{rappel}{Rappel: loi faible des grands nombres}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires iid avec moyenne $\mu$ et variance $\sigma^{2}$ où \lfbox[conditions]{$\sigma^{2}	<	\infty$};
+	\item[$\overline{X}_{n}$]	Moyenne empirique.
+\end{description}
+\end{distributions}
+
+On pose que \lfbox[formula]{$\overline{X}_{n}	\overset{P}{\rightarrow}	\mu$.}
+\end{rappel}
+
+\begin{definitionNOHFILLprop}[Théorèmes résultant de la convergence en probabilité]
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n} + Y_{n}	\overset{P}{\rightarrow}	X + Y$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et une \lfbox[conditions]{constante $a$}. Alors \lfbox[formula]{$aX_{n}	\overset{P}{\rightarrow}	aX$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	a$} et la \lfbox[conditions]{fonction $g(\cdot)$ continue à $a$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(a)$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et la \lfbox[conditions]{fonction continue $g(\cdot)$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(X)$}.\\
+Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n}Y_{n}	\overset{P}{\rightarrow}	XY$}.
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILL}[\og \textit{Consistency} \fg{}]
+Avec la notation définie ci-dessus, on simplifie la définition pour dire que $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak	
+\subsubsection{Borne Cramér-Rao} \label{sec:cramer_rao}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$} ;
@@ -268,6 +405,7 @@ Les prévisions des estimateurs non biaisés seront toujours proches de la vraie
 \end{distributions}
 
 Lorsque l'on analyse la variance d'un estimateur \underline{sans biais}, on débute par définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramér-Rao}} de sa variance $\text{Var}(\hat{\theta}_{n})$. Cette borne utilise \textbf{la matrice d'information de Fisher} $\bm{I}_{n}(\theta)$:
+
 
 \begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramér-Rao}}
 Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité},
@@ -378,114 +516,12 @@ Lorsque:
 \end{description}
 \end{algo}
 
+
+
 \columnbreak
-\subsubsection{Convergence}
-Nous pouvons également évaluer si un estimateur converge avec des très grands échantillons; ceci évalue si un estimateur est cohérent. Un estimateur $\hat{\theta}_{n}$ est dit d'être \og \textit{\textbf{consistent}} \fg{} si la probabilité que sa prévision $\hat{\theta}$ du paramètre $\theta$ diffère de la vraie valeur par une erreur, près de 0, $\epsilon$ tend vers 0 alors que la taille de l'échantillon $n$ tend vers l'infini:
-\begin{algo}{Convergence (\textbf{consistency}) d'un estimateur}
-\begin{align*}
-	\underset{n \rightarrow \infty}{\lim} \Pr(\big| \hat{\theta}_{n} - \theta \big| > \epsilon) = 0, \quad \epsilon > 0
-\end{align*}
-\end{algo}
+\subsubsection{MVUE}
 
-Ce critère pour qu'un estimateur $\hat{\theta}_{n}$ soit \og \textit{consistent} \fg{} peut être satisfait lorsque: 
-\begin{enumerate}
-	\item	l'estimateur est \hypertarget{asympto}{\textbf{asymptotiquement sans biais}};
-		\begin{align*}
-		\limz{n}{\infty} \text{B}(\hat{\theta}_{n}) = 0
-		\end{align*}
-	\item	la \textbf{variance de l'estimateur tend vers 0}.
-		\begin{align*}
-		\limz{n}{\infty} \text{Var}(\hat{\theta}_{n}) = 0
-		\end{align*}
-\end{enumerate}
-
-D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramér-Rao}.
-
-Cependant, l'inverse n'est pas vrai---qu'un estimateur soit \og \textit{consistent} \fg{} n'implique pas que sa variance ni que son biais tendent vers 0.\\
-
-Malgré la nature plaisante de la convergence d'un estimateur, beaucoup d'estimateurs ont cette propriété. 
-Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs.
-De plus, dût à la sélection arbitraire de l'erreur $\epsilon$ pour la \textit{consistency} d'un estimateur, il est possible de la choisir malicieusement afin de faire parler les données comme on le souhaite. 
-
-\subsubsection*{Détails sur la convergence}
-On reprend les résultats de la section précédente en expliquant plus en détail la mathématique sous-jacente.\\
-
-\begin{definitionNOHFILLsub}[Convergence en probabilité]
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires;
-	\item[$Y$]	Variable aléatoire comprise dans $\{Y_{n}\}$.
-\end{description}
-\end{distributions}
-
-On dit que $Y_{n}$ converge en probabilité à $Y$ si \lfbox[conditions]{$\forall \varepsilon > 0$}, 
-\begin{align*}
-	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|	\geq	\varepsilon\right]	
-	&=	0
-\end{align*}
-%%%	--------------------
-%%%	NOTES:
-%%%	+	\geq ou > ???
-%%%	--------------------
-ou de façon équivalente,
-\begin{align*}
-	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|<	\varepsilon\right]	
-	&=	1
-\end{align*}
-
-On dénote la convergence en probabilité par: \lfbox[formula]{$Y_{n}	\overset{P}{\rightarrow}	Y$.}
-\end{definitionNOHFILLsub}
-
-\paragraph{Note:}	La convergence en probabilité est d'ailleurs le théorème sous-jacent à la loi faible des grands nombres vue en prob.
-
-\begin{rappel}{Loi faible des grands nombres}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires iid avec moyenne $\mu$ et variance $\sigma^{2}$ où \lfbox[conditions]{$\sigma^{2}	<	\infty$};
-	\item[$\overline{X}_{n}$]	Moyenne empirique.
-\end{description}
-\end{distributions}
-
-On pose que \lfbox[formula]{$\overline{X}_{n}	\overset{P}{\rightarrow}	\mu$.}
-\end{rappel}
-
-\begin{definitionNOHFILLsub}[Théorèmes résultant de la convergence en probabilité]
-Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n} + Y_{n}	\overset{P}{\rightarrow}	X + Y$}.\\
-Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et une \lfbox[conditions]{constante $a$}. Alors \lfbox[formula]{$aX_{n}	\overset{P}{\rightarrow}	aX$}.\\
-Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	a$} et la \lfbox[conditions]{fonction $g(\cdot)$ continue à $a$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(a)$}.\\
-Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et la \lfbox[conditions]{fonction continue $g(\cdot)$}. Alors \lfbox[formula]{$g(X_{n})	\overset{P}{\rightarrow}	g(X)$}.\\
-Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions]{$Y_{n}	\overset{P}{\rightarrow}	Y$}. Alors \lfbox[formula]{$X_{n}Y_{n}	\overset{P}{\rightarrow}	XY$}.
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILL}[\og \textit{Consistency} \fg{}]
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$Y$]	Variable aléatoire avec une distribution paramétrique de paramètre $\theta$;
-	\item[$\{Y_{1}, Y_{2}, \dots, Y_{n}\}$]	Échantillon de la distribution de $Y$;
-	\item[$\hat{\theta}_{n}$]	Estimateur de $\theta$.
-\end{description}
-\end{distributions}
-
-On dit que $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
-\end{definitionNOHFILL}
-
-
-\subsubsection{Erreur quadratique moyenne}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\text{MSE}_{\hat{\theta}_{n}}(\theta)$]	Erreur quadratique moyenne d'un estimateur $\hat{\theta}_{n}$
-\end{description}
-\end{distributions}
-
-On défini alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation. Cette mesure permet de quantifier l'écart entre un estimateur $\hat{\theta}_{n}$ et le vrai paramètre $\theta$.
-
-\begin{algo}{Erreur Quadratique Moyenne (Mean Squared Error)}
-\begin{align*}
-	\text{MSE}_{\hat\theta}(\theta)
-	&=	\text{E}[(\hat{\theta}_{n} - \theta)^{2}]
-	\Leftrightarrow	\text{Var}(\hat{\theta}_{n}) + \left[\text{B}(\hat{\theta}_{n})\right]^{2}
-\end{align*}
-\end{algo}
+%On défini alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation. 
 
 En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais}. C'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
 
