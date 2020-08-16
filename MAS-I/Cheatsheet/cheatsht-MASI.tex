@@ -333,7 +333,7 @@ Dût à la sélection arbitraire de l'erreur $\varepsilon$, il est possible d'ê
 
 
 
-\subsubsection*{Détails sur la convergence}
+\subsubsection*{Détails mathématiques sur la convergence}
 On reprend les résultats de la section précédente en expliquant plus en détail la mathématique sous-jacente. \textbf{\underline{Vous pouvez sauter cette section}}.
 
 \begin{definitionNOHFILL}[Convergence en probabilité]
@@ -394,38 +394,60 @@ Avec la notation définie ci-dessus, on simplifie la définition pour dire que $
 \subsubsection{Borne Cramér-Rao} \label{sec:cramer_rao}
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$} ;
 	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\left\{X_{n}\right\}$ ;
 		\begin{itemize}
-		\item	La matrice d'information Fisher pour une seule observation sera donc dénotée $\bm{I}(\theta)$ ;
+		\item	La matrice d'information de Fisher pour une seule observation est dénotée $\bm{I}(\theta)$ ;
 		\item	On obtient une "matrice" lorsque nous estimons plusieurs paramètres et donc $\bm{\theta}$ n'est pas juste un scalaire $\theta$.
 		\end{itemize}
-	\item[$\hat{\theta}^{EMV}$]	Estimateur du maximum de vraisemblance de $\theta$.
+	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$}.
 \end{description}
 \end{distributions}
 
-Lorsque l'on analyse la variance d'un estimateur \underline{sans biais}, on débute par définir la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramér-Rao}} de sa variance $\text{Var}(\hat{\theta}_{n})$. Cette borne utilise \textbf{la matrice d'information de Fisher} $\bm{I}_{n}(\theta)$:
+\begin{definitionNOHFILL}[Information (de Fisher) de $\theta$]
+\begin{rappel_enhanced}[Contexte]
+On peut penser à l'information de Fisher comme une mesure de la sensibilité de la log-vraisemblance $\ell(\theta)$ aux données. Une information élevée, exprimée par une variabilité de $\ell'(\theta)$ élevée, suggère que la forme de $\ell(\theta)$ est sensible aux données.
+\end{rappel_enhanced}
+
+L'information (de Fisher) de $\theta$ est \lfbox[formula]{$\bm{I}(\theta) = \text{Var}(\ell'(\theta))$}. \\
+
+Si les données sont (iid), on peut récrire \lfbox[formula]{$\bm{I}(\theta) = -\text{E}[\ell''(\theta)]$}.
+
+\begin{itemize}
+	\item	Pour des données (iid), on obtient que \lfbox[formula]{$\bm{I}_{n}(\theta)	=	n\bm{I}(\theta) = -n\text{E}\left[\frac{\partial^{2}}{\partial\theta^{2}} \ln f(x; \theta)\right]$}.
+\end{itemize}
+\end{definitionNOHFILL}
 
 
-\begin{algo}{\hypertarget{cramer-rao}{Borne inférieure Cramér-Rao}}
-Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité},
+\begin{definitionNOHFILL}[Matrice d'information (de Fisher) de $\bm{\theta}$]
+Pour une distribution ayant plusieurs paramètres, l'information de Fisher devient une matrice des dérivées partielles de la log-vraisemblance $\ell(\bm{\theta})$.
+
+\begin{definitionNOHFILLsub}[Matrice d'information (de Fisher) pour $\bm{\theta} = (\theta_{1}, \theta_{2})$]
 \begin{align*}
-	\text{Var}(\hat{\theta}_{n}) 
-	&\geq	\frac{1}{\bm{I}_{n}(\theta)}
+	\bm{I}_{n}(\bm{\theta})
+	&=	\begin{bmatrix}
+		-n\text{E}\left[\frac{\partial^{2}}{\partial\theta_{1}^{2}} \ln f(x; \bm{\theta})\right]	&	-n\text{E}\left[\frac{\partial^{2}}{\partial\theta_{1}\theta_{2}} \ln f(x; \bm{\theta})\right]	\\
+		-n\text{E}\left[\frac{\partial^{2}}{\partial\theta_{1}\theta_{2}} \ln f(x; \bm{\theta})\right]	&	-n\text{E}\left[\frac{\partial^{2}}{\partial\theta_{2}^{2}} \ln f(x; \bm{\theta})\right]	\\
+		\end{bmatrix}
 \end{align*}
-où
-\begin{align*}
-	\bm{I}(\theta) 
-	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln f(x; \theta)\Big)^{2}\right]	
-	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln f(x; \theta)}	\right]	\\
-	\bm{I}_{n}(\theta) 
-	&=	\text{E}\left[\Big(\deriv{\theta}{} \ln \mathcal{L}(\theta; \bm{x})\Big)^{2}\right]	
-	\overset{\text{iid}}{=}	\text{E}\left[{\color{red}\shortminus}\deriv[2]{\theta}{\ln \mathcal{L}(\theta; \bm{x})}\right]	
-\end{align*}
-\paragraph{Note}	Dans le cas d'un échantillon aléatoire (alias, les données sont iid) on obtient la deuxième équation et \lfbox[formula]{$\bm{I}_{n}(\theta)	=	n\bm{I}(\theta)$.}
-\end{algo}
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
 
-\subsubsection*{Détails sur la borne Cramér-Rao}
+
+\begin{definitionNOHFILL}[\hypertarget{cramer-rao}{Borne inférieure Cramér-Rao}]
+\begin{rappel_enhanced}[Motivation]
+Lorsque nous analysons la variance $\text{Var}(\hat{\theta}_{n})$ d'un estimateur \underline{sans biais}, la \hyperlink{cramer-rao}{\textbf{borne inférieure de Cramér-Rao}} sert de point de départ. 
+\end{rappel_enhanced}
+
+Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la borne inférieure Cramér-Rao est définie comme \lfbox[formula]{$\text{Var}(\hat{\theta}_{n}) \geq \frac{1}{\bm{I}_{n}(\theta)}$}.
+
+\tcbline
+
+Dans le cas multivarié, \lfbox[formula]{$\text{Var}(\hat{\theta_{j}}) \geq \bm{I}^{-1}(\bm{\theta})_{j, j}$}.
+\end{definitionNOHFILL}
+
+
+
+\subsubsection*{Détails mathématiques sur la borne Cramér-Rao}
 La borne de Cramér-Rao est un concept qui échappe souvent aux étudiants. Sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et de \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo}, je vais tenter d'expliquer l'intuition sous-jacente au concept. Ce concept va réapparaître plus tard dans le bac et donc, s’il n’est pas clair d’ici la fin de la section, je vous conseille d’aller visionner les vidéos.	\\
 
 Premièrement, on définit l'utilité des deux premières dérivées:
@@ -438,9 +460,9 @@ L'estimateur du maximum de vraisemblance (EMV) $\hat\theta^{\texttt{EMV}}$ du pa
 
 \textbf{Note:}	L'EMV devient un "point" lorsqu'on le calcule pour un échantillon aléatoire d'observations.\\
 
-La fonction de vraisemblance \textbf{est concave} et, puisque sa première dérivée est nulle à $\hat{\theta}^{\text{EMV}}_{n}$, elle va augmenter avant puis diminuer après. \lfbox[imphl]{La première dérivée permet donc de trouver une fonction qui est maximisée à $\hat{\theta}^{\text{EMV}}_{n}$}. Cependant, ceci ne permet pas d'identifier une fonction unique---plusieurs fonctions peuvent être maximisées au même \textbf{point} tout en ayant des formes différentes.	\\
+La fonction de vraisemblance \textbf{est concave} et, puisque sa première dérivée est nulle à $\hat{\theta}^{\text{EMV}}_{n}$, elle va augmenter avant ce point puis diminuer par après. \lfbox[imphl]{La première dérivée permet donc de trouver une fonction qui est maximisée à $\hat{\theta}^{\text{EMV}}_{n}$}. Cependant, ceci ne permet pas d'identifier une fonction unique---plusieurs fonctions peuvent être maximisées au même \textbf{point} tout en ayant des formes différentes.	\\
 
-Par exemple, on trace ci-dessous \textcolor{amethyst}{la fonction de vraisemblance} et \textcolor{orange}{une autre fonction maximisée à $\hat{\theta}^{\text{EMV}}_{n}$} :
+Par exemple, on trace ci-dessous \textcolor{amethyst}{la fonction de vraisemblance} et \textcolor{orange}{une autre fonction également maximisée à $\hat{\theta}^{\text{EMV}}_{n}$} :
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -464,13 +486,15 @@ Par exemple, on trace ci-dessous \textcolor{amethyst}{la fonction de vraisemblan
 
 \end{tikzpicture}
 
-On peut donc voir que la forme de la fonction de vraisemblance est plus comprimée, alias que la concavité est plus forte, que l'autre fonction qui se maximise au même point. C'est-à-dire, la fonction de vraisemblance correspond à la fonction avec \textit{la plus forte concavité} dont le maximum est à $\hat{\theta}^{\text{EMV}}_{n}$.	\\
+On peut voir que la forme de la fonction de vraisemblance est plus comprimée. Alias, sa concavité est plus forte que l'autre fonction qui se maximise au même point. C'est-à-dire, la fonction de vraisemblance correspond à la fonction, dont le maximum est à $\hat{\theta}^{\text{EMV}}_{n}$, avec \textit{la plus forte concavité}.	\\
 
-On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendue de valeurs possibles et moins de points près de $\hat\theta^{\text{EMV}}$. En bref, \lfbox[imphl]{la deuxième dérivée assure que} parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$, \lfbox[imphl]{la fonction de vraisemblance est celle dont la variabilité des prévisions est minimisée}.	\\
+On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendu de valeurs possibles et moins de points près de $\hat\theta^{\text{EMV}}$. En bref, \lfbox[imphl]{la deuxième dérivée assure que} parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$ \lfbox[imphl]{la fonction de vraisemblance est la fonction dont la variabilité des prévisions est minimisée}.	\\
 
 L'information de Fisher permet de quantifier cette fonction de la deuxième dérivée. Puis, la borne de Cramér-Rao se définit comme son réciproque $1 / \bm{I}(\theta)$. L'intuition est que plus la concavité est faible, plus l'étendue est grand. Prendre le réciproque de l'information de Fisher permet donc de quantifier l'agrandissement de l'étendu.\\
 
-Lorsque l'information de Fisher tend vers l'infini (alias la force de la concavité croît infiniment), on dit que la distribution de l'estimateur est "asymptotiquement normale" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
+Lorsque l'information de Fisher tend vers l'infini, alias la force de la concavité croît infiniment, on dit que la distribution de l'estimateur est "\textit{asymptotiquement normale}" tel que $\hat\theta^{\text{EMV}} \overset{a.s.}{\rightarrow} \mathcal{N}\Big(\mu = \theta, \sigma^{2} = \frac{1}{\bm{I}(\theta)}\Big)$ où a.s. veut dire \hyperlink{asympto}{asymptotiquement}.
+
+
 
 \columnbreak
 \subsubsection{Efficacité}
@@ -481,45 +505,41 @@ Lorsque l'information de Fisher tend vers l'infini (alias la force de la concavi
 \end{description}
 \end{distributions}
 
-Avec le concept de l'information de Fisher, on définit \textbf{l'efficacité d'un estimateur} comme le ratio de la borne Cramér-Rao sur la variance de l'estimateur:
-\begin{algo}{Efficacité d'un estimateur}
-\begin{align*}
-	\text{eff}(\hat{\theta}_{n})
-	&=	\frac{\text{Var}(\hat{\theta}_{n})^{\text{Rao}}}{\text{Var}(\hat{\theta})} 
-	=	\frac{1}{\bm{I}(\theta)\text{Var}(\hat{\theta})}
-\end{align*}
-\tcbline
-\begin{description}
-	\item[Estimateur \og \textit{efficient} \fg{}]	Lorsque la variance de l'estimateur $\text{Var}(\hat{\theta}_{n})$ est égale à la borne de Cramér-Rao.
-		\begin{align*}
-		\text{eff}(\hat{\theta}_{n}) = 1
-		\end{align*}
-	\begin{itemize}[leftmargin = *]
-	\item	Étant égal à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais.\\
-	 		On dit qu'il est le \og \textbf{\textit{Minimum Variance Unbiased Estimator (MVUE)}} \fg{}. 
-	\end{itemize}
-\end{description}
-\end{algo}
+\begin{rappel_enhanced}[Motivation]
+Puisque la variance d'un estimateur ne peut être inférieure à la borne Cramér-Rao, il est désirable qu'un estimateur (sans biais) l'atteigne. On définit donc l'efficacité (\og \textit{efficiency} \fg{}) d'un estimateur (sans biais) comme le ratio la borne Cramér-Rao à sa variance.
+\end{rappel_enhanced}
 
-De plus, on peut généraliser cette formulation pour obtenir l'efficacité relative d'un estimateur à un autre:
-\begin{algo}{Efficacité relative}
-\begin{align*}
-	\text{eff}(\hat\theta_{n}, \tilde\theta_{n})
-	&=	\frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}		\\
-\end{align*}
-où les estimateurs $\hat\theta_{n}$ et $\tilde\theta_{n}$ sont sans biais.
-\tcbline
-Lorsque:
-\begin{description}[font = \normalfont]
-	\item[$\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$:]	L'estimateur $\hat{\theta}_{n}$ est plus efficace que l'estimateur $\tilde{\theta}_{n}$, \\
-	et vice-versa si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) > 1$.
-\end{description}
-\end{algo}
+\paragraph{Note}	Pour toute la section d'efficacité, on suppose que les estimateurs sont \underline{\textbf{sans biais}}.
+
+\begin{definitionNOHFILL}[Efficacité (\og \textit{efficiency} \fg{}) d'un estimateur]
+L'\og \textit{efficiency} \fg{} d'un estimateur $\hat{\theta}_{n}$ est définie comme \lfbox[formula]{$\text{eff}(\hat{\theta}_{n}) = \frac{1}{\bm{I}(\theta)\text{Var}(\hat{\theta})}$}.
+
+\begin{definitionNOHFILLsub}[Estimateur \og \textit{efficient} \fg{}]
+Si \lfbox[formula]{$\text{eff}(\hat{\theta}_{n}) = 1$}, alias la variance de l'estimateur est égale à la borne Cramér-Rao, l'estimateur \textbf{est \og \textit{efficient} \fg{}}.
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
+
+
+\begin{rappel_enhanced}[Motivation]
+On peut utiliser le concept d'efficacité pour comparer des estimateurs entre-eux plutôt qu'à la borne Cramér-Rao. On obtient donc l'efficacité relative d'un estimateur relatif à un autre estimateur.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Efficacité (\og \textit{efficiency} \fg{}) relative]
+\og \textit{The relative efficiency} \fg{} de l'estimateur $\hat\theta_{n}$ à l'estimateur $\tilde\theta_{n}$ est définie comme \lfbox[formula]{$\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) = \frac{\text{Var}(\hat\theta_{n})}{\text{Var}(\tilde\theta_{n})}$}.
+
+\bigskip
+
+Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$, l'estimateur $\hat{\theta}_{n}$ est plus efficace que l'estimateur $\tilde{\theta}_{n}$ et vice-versa si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) > 1$.
+\end{definitionNOHFILL}
 
 
 
 \columnbreak
 \subsubsection{MVUE}
+
+%%	De efficiency.
+%Étant égal à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais. On dit qu'il est le \og \textbf{\textit{Minimum Variance Unbiased Estimator (MVUE)}} \fg{}.
+
 
 %On défini alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation. 
 
