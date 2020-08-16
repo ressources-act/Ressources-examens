@@ -535,18 +535,29 @@ Si $\text{eff}(\hat\theta_{n}, \tilde\theta_{n}) < 1$, l'estimateur $\hat{\theta
 
 
 \columnbreak
-\subsubsection{MVUE}
+\subsubsection{Estimateur non biaisé à variance minimale (MVUE)} \label{subsubsec:MVUECriteria}
+\begin{rappel_enhanced}[Motivation]
+Si nous cherchons à minimiser la variance est désirons un estimateur sans biais, alors nous souhaitons un estimateur \og \textit{efficient} \fg{}. Cependant, cet estimateur n'existe pas toujours et donc nous voulons l'estimateur non biaisé ayant la plus petite variance possible.
+\end{rappel_enhanced}
 
-%%	De efficiency.
-%Étant égal à la borne, il \textit{doit} être l'estimateur avec la plus petite de tous les estimateurs sans biais. On dit qu'il est le \og \textbf{\textit{Minimum Variance Unbiased Estimator (MVUE)}} \fg{}.
+\begin{definitionNOHFILL}[Estimateur non biaisé à variance minimale (MVUE)]
+L'estimateur sans biais ayant la plus petite parmi tous les estimateurs non biaisés.
+
+\begin{itemize}
+	\item	En anglais, \og \textit{minimum variance unbiased estimator (\textbf{MVUE})} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Limitations]
+L'estimateur MVUE n'est pas nécessairement l'estimateur ayant la plus petite variance car un estimateur biaisé peut avoir une variance inférieure à celle du MVUE.
+\end{rappel_enhanced}
 
 
 %On défini alors l'\textbf{Erreur Quadratique Moyenne} (EQM), ou \textbf{Mean Squared Error (MSE)}, permettant de comparer les différents estimateurs ayant tous une bonne \textit{consistency} en assurant une cohérence d'interprétation. 
 
-En combinant tous ces critères, le meilleur estimateur est alors l'estimateur \textbf{sans biais} ayant la \textbf{plus petite variance} possible parmi tous les estimateurs \textit{sans biais}. C'est-à-dire, le \textbf{Uniformly Minimum Variance Unbiased Estimator \textit{(UMVUE)}}.
+
 
 \columnbreak
-
 \subsection{Estimation par intervalles}\label{sec:int-estimation}
 \begin{distributions}[Notation]
 \begin{description}
@@ -1775,61 +1786,86 @@ Cette statistique est vue dans les modèles linéaires généralisés aussi.
 
 \columnbreak
 \section{Statistiques exhaustives}
-\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}\\
+Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.
 
-\begin{definitionNOHFILL}[Statistique exhaustive]
-Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
-Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si la distribution conditionnelle $(X_{1}, \dots, X_{n} | T_{n})$ ne \textbf{dépend pas} de $\theta$.
+\begin{definitionNOHFILL}[Statistique exhaustive (\og \textit{sufficient} \fg{})]
+La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ ssi \lfbox[formula]{$f(x_{1}, \dots, x_{n} | t) = h(x_{1}, \dots, x_{n})$} où la fonction $h(\cdot)$ ne dépend pas de $\theta$.	\\
 
-\begin{formula}{Exemple Bernoulli}
-Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.\\
-Alors $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est exhaustive pour $p$, car : 
-
-\setlength{\mathindent}{-1cm}
-\begin{align*}
-	\Pr(X_{1}	=	x_{1}, \dots, X_{n}	=	x_{n} &| T_{n}	=	x_{1} + \dots + x_{n})	\\
-	&=	p^{{\color{teal}x_{1} + \dots + x_{n}}}(1 - p)^{n - {\color{teal}(x_{1} + \dots + x_{n})}}	\\
-	&=	p^{\color{teal}t} (1 - p)^{n  -{\color{teal}t}}
-\end{align*}
-Dépends seulement de l'échantillon par la valeur ${\color{teal}t}$ de la statistique $T_{n}$.
-\end{formula}
-\setlength{\mathindent}{1cm}
+C'est-à-dire que la distribution de l'échantillon, conditionnelle à la valeur $t$ de la statistique $T_{n}$, suit une distribution qui ne dépend pas de $\theta$. Alors, savoir que $T_{n} = t$ nous donne \textit{\textbf{suffisamment}} d'information à propos de l'effet de $\theta$ sur l'échantillon sans avoir à connaître les $n$ valeurs observées.
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILLprop}[\textbf{Théorème de factorisation} de Fisher-Neymann]
-Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
-Alors, la statistique $T_{n}$ est "\textbf{exhaustive pour $\theta$}" si pour tout $x_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$,
-\begin{align*}
-	{\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}
-	&=	g({\color{teal}t}; {\color{amethyst}\theta}) \times h(x_{1}, \dots, x_{n})
-\end{align*}
-où :
-\begin{itemize}
-	\item	$g({\color{teal}t}; {\color{amethyst}\theta})$ dépend de $(x_{1}, \dots, x_{n})$ seulement par $T_{n}$ ;
-	\item	$h(x_{1}, \dots, x_{n})$ ne \textbf{dépend pas} de ${\color{amethyst}\theta}$.
-\end{itemize}	
 
-\tcbline
+\begin{formula}{Exemple Bernoulli}
+Soit l'échantillon aléatoire d'une distribution Bernoulli de paramètre $p$.\\
+Alors $T_{n} = \sum_{i = 1}^{n} X_{i}$ est exhaustive pour $p$, car
 
-Pour \textbf{plusieurs paramètres}, on généralise avec le vecteur de paramètres inconnus $\bm{\theta}	=	(\theta_{1}, \dots, \theta_{k})$.\\
-Alors, les statistiques $T^{1}_{n}, \dots, T^{k}_{n}$ sont \textbf{conjointement exhaustives pour $\bm{\theta}$} si pour tout $x_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$, 
 \begin{align*}
-	{\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}
-	&=	g({\color{teal}t_{1}, \dots, t_{k}}; {\color{amethyst}\theta}) \times h(x_{1}, \dots, x_{n})
+	\Pr(X_{1}	=	x_{1}, \dots, X_{n}	=	x_{n} &| T_{n}	=	x_{1} + \dots + x_{n})	\\
+	&=	\frac{\prod_{i = 1}^{n} p(x_{i})}{p_{T_{n}}(t)}	\\
+	&=	p^{{\color{teal}x_{1} + \dots + x_{n}}}(1 - p)^{n - {\color{teal}(x_{1} + \dots + x_{n})}}	\\
+	&=	p^{\color{teal}t} (1 - p)^{n - {\color{teal}t}}
 \end{align*}
-où :
-\begin{itemize}
-	\item	$g({\color{teal}t^{1}, \dots, t^{k}}; {\color{amethyst}\bm{\theta}})$ dépend de $(x_{1}, \dots, x_{n})$ seulement par $T^{1}_{n}, \dots, T^{k}_{n}$ ;
-	\item	$h(x_{1}, \dots, x_{n})$ ne \textbf{dépend pas} de ${\color{amethyst}\bm{\theta}}$.
-\end{itemize}	
+où $h_{1}(\cdot)$ dépend seulement de l'échantillon par ${\color{teal}t}$ et $h_{2}(\cdot)$ ne dépend pas de $p$.
+\end{formula}
+
+\paragraph{Note}	Pour une fonction injective (\og \textit{one-to-one} \fg{}), si $T_{n}$ est une statistique exhaustive pour $\theta$, alors $g(T_{n})$ est une statistique exhaustive pour $\theta$ et $T_{n}$ est une statistique exhaustive pour $g(\theta)$.
+
+\begin{rappel_enhanced}[Limitations]
+La définition de l'exhaustivité nécessite de connaître la distribution de la statistique pour trouver $f_{T_{n}}(t)$ (ou $p_{T_{n}}(t)$ dans le cas discret). Cependant, ceci n'est pas toujours possible. Alors, nous pouvons utiliser l'approche du théorème de factorisation de Fisher-Neymann afin de prouver qu'une statistique est exhaustive.
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILLsub}[Théorème de factorisation de Fisher-Neymann]
+La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ si \lfbox[formula]{${\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)} = h_{1}({\color{teal}t}; {\color{amethyst}\theta}) \times h_{2}(x_{1}, \dots, x_{n})$} où 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	$h_{1}({\color{teal}t}; {\color{amethyst}\theta})$ dépend de l'échantillon seulement par la statistique $T_{n}$.
+	\item	$h_{2}(x_{1}, \dots, x_{n})$ ne dépend pas du paramètre ${\color{amethyst}\theta}$.
+	\item	$\forall i = 1, 2, \dots, n$ $x_{i} \in \mathbb{R}$.
+\end{enumerate}
+
+
+\begin{definitionNOHFILLprop}[Cas multivarié]
+Pour $\bm{\theta} = (\theta_{1}, \dots, \theta_{r})$, les statistiques $T^{1}_{n}, \dots, T^{r}_{n}$ sont \textbf{\underline{conjointement} exhaustives pour $\bm{\theta}$} si \lfbox[formula]{${\color{burntorange} f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)} = h_{1}({\color{teal} t_{1}, \dots, t_{r}}; {\color{amethyst} \theta}) \times h_{2}(x_{1}, \dots, x_{n})$} où
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	$h_{1}({\color{teal}t^{1}, \dots, t^{r}}; {\color{amethyst}\bm{\theta}})$ dépend de l'échantillon seulement par les statistiques $T^{1}_{n}, \dots, T^{r}_{n}$.
+	\item	$h_{2}(x_{1}, \dots, x_{n})$ ne dépend pas des paramètres ${\color{amethyst}\bm{\theta}}$.
+	\item	$\forall i = 1, 2, \dots, n$ $x_{i} \in \mathbb{R}$.
+\end{enumerate}	
 \end{definitionNOHFILLprop}
+\end{definitionNOHFILLsub}
 
-Le théorème de factorisation permet d'identifier des statistiques exhaustives. Cependant, il peut y avoir plusieurs statistiques exhaustives ! Certaines offrent une plus grande réduction des données ; par exemple, $\bar{X}_{n}$ réduit les données plus que $(X_{(1)}, \dots, X_{(n)})$. 
 
-On cherche donc la statistique exhaustive qui offre la \textbf{réduction maximale} tout en retenant toute l'information sur le paramètre visé.
+\begin{formula}{Exemple Bernoulli}
+Soit l'échantillon aléatoire d'une distribution Bernoulli de paramètre $p$.\\
 
+Alors, par le théorème de factorisation, $T_{n} = \sum_{i = 1}^{n} X_{i}$ est une statistique exhaustive pour $p$, car
+\begin{align*}
+	p(x_{1}, \dots, x_{n})
+	&=	\prod_{i = 1}^{n} p^{x_{i}}(1 - p)^{1 - x_{i}}	\\
+	&=	p^{{\color{teal}x_{1} + \dots + x_{n}}}(1 - p)^{n - {\color{teal}(x_{1} + \dots + x_{n})}} \times \textcolor{amethyst}{1}	\\
+	&=	h_{1}({\color{teal}x_{1} + \dots + x_{n}}; p) \textcolor{amethyst}{h_{2}(x_{1}, \dots, x_{n})}
+\end{align*}
+dépend seulement de l'échantillon par la valeur ${\color{teal}t}$ de la statistique $T_{n}$.
+\end{formula}
+
+
+\begin{rappel_enhanced}[Limitations]
+Le théorème de factorisation permet d'identifier des statistiques exhaustives. Cependant, il peut y avoir plusieurs statistiques exhaustives dont certaines qui offrent une plus grande réduction des données. \\
+
+Par exemple, la moyenne empirique $\bar{X}_{n}$ réduit davantage les données que les statistiques d'ordre $(X_{(1)}, \dots, X_{(n)})$. On cherche donc la statistique exhaustive offrant la \textbf{réduction maximale} qui retient cependant toute l'information sur le paramètre visé.
+\end{rappel_enhanced}
+
+
+
+\columnbreak
+\subsubsection{Completeness}
+
+
+
+\columnbreak
+\subsubsection{Statistique exhaustive minimale}
 \begin{definitionNOHFILL}[Statistique exhaustive minimale]
-Une statistique exhaustive $T_{n}	=	T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour toute autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ telle que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
+Une statistique exhaustive $T_{n} = T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour toute autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ telle que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
 
 \begin{definitionNOHFILLprop}[Critère de Lehmann-Scheffé]
 Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
@@ -1861,8 +1897,9 @@ Si la statistique $T_{n}$ est exhaustive pour $\theta$, la statistique \lfbox[fo
 \end{definitionNOHFILLprop}
 
 
-\subsubsection*{Famille exponentielle}
 
+\columnbreak
+\subsubsection*{Famille exponentielle}
 Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 \begin{enumerate}
 	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
@@ -2577,53 +2614,6 @@ Ce qui implique:
 \end{description}
 %%%	Impliquent que l'on peut interchanger l'intégration et la différention wrt/ \theta
 \end{definitionNOHFILLprop}
-	
-
-
-\subsubsection{Cas multivarié}
-Lorsqu'une distributions a plusieurs paramètres, $\theta$ ne sera plus un scalaire (un seul paramètre) mais plutôt un vecteur. Pour le cas multivarié où une distribution a $r$ paramètres, on dénote le vecteur $\bm{\theta}	=	(\theta_{1}, \cdots, \theta_{r})^{\top}$.\\
-
-
-\begin{definitionNOHFILLprop}[Matrice d'information de Fisher]
-\begin{rappel_enhanced}[Contexte]
-Dans la sous-section sur la \underline{\textit{\nameref{sec:cramer_rao}}}, nous avons utilisé la "matrice" d'information de Fisher pour un distribution ayant un paramètre $\theta$. Le calcul de la matrice est le même pour plusieurs paramètres, sauf que l'on représente $\theta^{2}$ comme $\bm{\theta} \bm{\theta}^{\top}$.
-\end{rappel_enhanced}
-
-\begin{align*}
-	\bm{I}(\bm{\theta})
-	&=	\text{E}\left[	
-			\frac{\partial \ln f(x; \bm{\theta})}{\partial \bm{\theta}}
-			\frac{\partial \ln f(x; \bm{\theta})}{\partial \bm{\theta}^{\top}}
-		\right]
-	\overset{iid}{=}	\text{E}\left[	
-			\frac{\partial^{2} \ln f(x; \bm{\theta})}{\partial \bm{\theta}\bm{\theta}^{\top}}
-		\right]
-\end{align*}
-\begin{itemize}
-	\item	Cette définition est pour une seule observation $x$, pour plusieurs observations l'échantillon de données sera typiquement un échantillon aléatoire et donc $\bm{I}_{n}(\bm{\theta})	=	n\bm{I}(\bm{\theta})$.
-	\item	On dénote l'inverse de la matrice d'information de Fisher par $\bm{I}^{-1}_{n}(\bm{\theta})$.
-\end{itemize}
-\end{definitionNOHFILLprop}
-
-
-%Soit $\tilde{\bm{\theta}}$ un estimateur sans bais de $\bm{\theta}$. 
-
-%\begin{distributions}[Notation]
-%\begin{description}
-%	\item[$\text{Var}(\tilde{\bm{\theta}})$]	Matrice de variance de $\tilde{\bm{\theta}}$.
-%		\begin{itemize}
-%		\item	Le $(i, j)^{\text{e}}$ élément est donc $\text{Cov}(\tilde{\bm{\theta}}_{i}, \tilde{\bm{\theta}}_{j})$.
-%		\end{itemize}
-%\end{description}
-%\end{distributions}
-
-%La version multivariée de l'inégalité Cramér-Rao stipule que \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	=	\bm{I}^{-1}_{n}(\bm{\theta})$} est une \lfbox[conditions]{matrice \og \textit{nonnegative definite} \fg{}.}
-%\begin{itemize}
-%	\item	Puisque les éléments de la diagonale doivent être positifs, la borne inférieure de $\text{Var}(\tilde{\bm{\theta}}_{i})$ est le $i^{\text{e}}$ élément de la diagonale de $\bm{I}^{-1}_{n}(\bm{\theta})$.
-%\end{itemize}
-	
-%En bref, on trouve que sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la distribution de $\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right)$ converge en distribution vers une distribution normale multivariée (de $k$ dimensions) avec une moyenne nulle et une variance égale à la borne de Cramér-Rao.
-Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, \lfbox[formula]{$\text{Var}(\tilde{\bm{\theta}})	=	\bm{I}^{-1}_{n}(\bm{\theta})$} et \lfbox[formula]{$\sqrt{n}\left( \hat{\bm{\theta}}	-	\bm{\theta} \right) \overset{D}{\rightarrow} \mathcal{N}_{k}\left( 0, \bm{I}^{-1}_{n}(\bm{\theta}) \right)$}.
 
 
 %\subsection{Autres critères}
@@ -7268,6 +7258,7 @@ On a que \lfbox[formula]{$\Dx[t]{x} \sim \text{Bin}(\ell_{x}, \qx[t]{x})$}.
 \end{definitionNOHFILL}
 
 
+\columnbreak
 \subsubsection{Espérances de vie}
 \setlength{\mathindent}{-1cm}
 \begin{definitionNOHFILLsub}[Espérance de vie \textbf{\underline{abrégée}} pour un individu d'âge $x$]
