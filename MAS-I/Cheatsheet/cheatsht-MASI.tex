@@ -256,7 +256,7 @@ Bien que le biais quantifie les erreurs de prévisions de l'estimateur $\hat{\th
 \end{distributions}
 
 \begin{rappel_enhanced}[Motivation]
-Les prévisions des estimateurs non biaisés seront toujours proches de la vraie valeur $\theta$. Cependant, être bon \textit{\textbf{en moyenne}} n'est pas suffisant et on souhaite évaluer la variabilité des prévisions d'un estimateur $\hat{\theta}_{n}$ avec sa variance $\text{Var}(\hat{\theta}_{n})$.
+Les prévisions des estimateurs non biaisés seront toujours proches de la vraie valeur $\theta$. Cependant, être bon \textit{\textbf{en moyenne}} n'est pas suffisant et on souhaite évaluer la variabilité des prévisions d'un estimateur $\hat{\theta}_{n}$ avec sa variance $\text{Var}(\hat{\theta}_{n})$. 
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Variance d'un estimateur]
@@ -282,7 +282,9 @@ L'erreur quadratique moyenne $\text{MSE}_{\hat{\theta}_{n}}(\theta)$ calcule la 
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Erreur quadratique moyenne (EQM)]
-L'erreur quadratique moyenne est définie comme \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{E}[(\hat{\theta}_{n} - \theta)^{2}]$}. Également, on peut réécrire l'expression comme \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{Var}(\hat{\theta}_{n}) + \left[\text{B}(\hat{\theta}_{n})\right]^{2}$}.
+L'erreur quadratique moyenne est définie comme \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{E}[(\hat{\theta}_{n} - \theta)^{2}]$}. \\
+
+Également, on peut réécrire l'expression comme \lfbox[formula]{$\text{MSE}_{\hat\theta}(\theta) = \text{Var}(\hat{\theta}_{n}) + \left[\text{B}(\hat{\theta}_{n})\right]^{2}$}.
 
 \bigskip
 
@@ -297,7 +299,7 @@ L'erreur quadratique moyenne est définie comme \lfbox[formula]{$\text{MSE}_{\ha
 \columnbreak
 \subsubsection{Convergence}
 \begin{rappel_enhanced}[Motivation]
-Nous voulons alors une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs. Alors, un autre aspect à évaluer d'un estimateur est sa convergence pour de grands échantillons. \\
+Nous voulons une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs. Alors, un autre aspect à évaluer d'un estimateur est sa convergence pour de grands échantillons. \\
 
 Par la loi des grands nombres, on s'attend à ce que la prévision d'un estimateur tend vers le vrai paramètre $\theta$. On peut déduire avec intuition que le biais d'un estimateur \og \textit{consistent} \fg{} devrait tendre vers $0$ et que sa variance devrait être très faible.
 \end{rappel_enhanced}
@@ -323,10 +325,8 @@ $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ s
 \end{definitionNOHFILL}
 
 
-%D'ailleurs, nous avons déjà raisonné ceci avec \hyperlink{cramer-rao}{la borne inférieure Cramér-Rao}.
-
 \begin{rappel_enhanced}[Limitations]
-Dût à la sélection arbitraire de l'erreur $\varepsilon$, il est possible d'être sournois avec le choix de $\varepsilon$.
+La convergence peut être manipulée. Dût à la sélection arbitraire de l'erreur $\varepsilon$, il est possible d'être sournois avec le choix de $\varepsilon$.
 \end{rappel_enhanced}
 
 \paragraph{Note}	Les estimateurs par la méthode des moments sont \og \textit{consistent} \fg{} si ils sont uniques.
@@ -394,18 +394,18 @@ Avec la notation définie ci-dessus, on simplifie la définition pour dire que $
 \subsubsection{Borne Cramér-Rao} \label{sec:cramer_rao}
 \begin{distributions}[Notation]
 \begin{description}
+	\item[$S(\theta)$]	Fonction de Score, dérivée de la log-vraisemblance\lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$}.
 	\item[$\bm{I}_{n}(\theta)$]	Matrice d'information de Fisher d'un échantillon aléatoire $\left\{X_{n}\right\}$ ;
 		\begin{itemize}
 		\item	La matrice d'information de Fisher pour une seule observation est dénotée $\bm{I}(\theta)$ ;
 		\item	On obtient une "matrice" lorsque nous estimons plusieurs paramètres et donc $\bm{\theta}$ n'est pas juste un scalaire $\theta$.
 		\end{itemize}
-	\item[$S(\theta)$]	Fonction de Score, \lfbox[formula]{$S(\theta)	=	\deriv{\theta}{\ln f(\theta; x)}$}.
 \end{description}
 \end{distributions}
 
 \begin{definitionNOHFILL}[Information (de Fisher) de $\theta$]
 \begin{rappel_enhanced}[Contexte]
-On peut penser à l'information de Fisher comme une mesure de la sensibilité de la log-vraisemblance $\ell(\theta)$ aux données. Une information élevée, exprimée par une variabilité de $\ell'(\theta)$ élevée, suggère que la forme de $\ell(\theta)$ est sensible aux données.
+On peut penser à l'information de Fisher comme une mesure de la sensibilité de la dérivée de la log-vraisemblance $\ell'(\theta)$ aux données. Une information élevée, exprimée par une variabilité de $\ell'(\theta)$ élevée, suggère que la forme de $\ell(\theta)$ est sensible aux données.
 \end{rappel_enhanced}
 
 L'information (de Fisher) de $\theta$ est \lfbox[formula]{$\bm{I}(\theta) = \text{Var}(\ell'(\theta))$}. \\
@@ -442,13 +442,13 @@ Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de 
 
 \tcbline
 
-Dans le cas multivarié, \lfbox[formula]{$\text{Var}(\hat{\theta_{j}}) \geq \bm{I}^{-1}(\bm{\theta})_{j, j}$}.
+Dans le cas multivarié, \lfbox[formula]{$\text{Var}(\hat{\theta_{j}}) \geq \bm{I}^{-1}_{n}(\bm{\theta})_{j, j}$}.
 \end{definitionNOHFILL}
 
 
 
 \subsubsection*{Détails mathématiques sur la borne Cramér-Rao}
-La borne de Cramér-Rao est un concept qui échappe souvent aux étudiants. Sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et de \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo}, je vais tenter d'expliquer l'intuition sous-jacente au concept. Ce concept va réapparaître plus tard dans le bac et donc, s’il n’est pas clair d’ici la fin de la section, je vous conseille d’aller visionner les vidéos.	\\
+La borne de Cramér-Rao est un concept qui échappe souvent aux étudiants. Sur la base de \hyperlink{https://www.youtube.com/watch?v=igQIsYAlKlY}{\color{blue}ce vidéo} et de \hyperlink{https://www.youtube.com/watch?v=i0JiSddCXMM}{\color{blue}ce vidéo}, je vais tenter d'expliquer l'intuition sous-jacente au concept. Ce concept va réapparaître plus tard dans le bac et donc, s’il n’est pas clair d’ici la fin de la section, je vous conseille d’aller visionner les vidéos.	Bien que je ne le recommande pas, \textbf{\underline{vous pouvez sauter cette section}}.
 
 Premièrement, on définit l'utilité des deux premières dérivées:
 \begin{description}
@@ -497,7 +497,7 @@ Lorsque l'information de Fisher tend vers l'infini, alias la force de la concavi
 
 
 \columnbreak
-\subsubsection{Efficacité}
+ \subsubsection{Efficacité}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
 	\item[$\text{eff}(\hat{\theta}_{n})$]	Efficacité d'un estimateur $\hat{\theta}_{n}$;
@@ -512,10 +512,10 @@ Puisque la variance d'un estimateur ne peut être inférieure à la borne Cramé
 \paragraph{Note}	Pour toute la section d'efficacité, on suppose que les estimateurs sont \underline{\textbf{sans biais}}.
 
 \begin{definitionNOHFILL}[Efficacité (\og \textit{efficiency} \fg{}) d'un estimateur]
-L'\og \textit{efficiency} \fg{} d'un estimateur $\hat{\theta}_{n}$ est définie comme \lfbox[formula]{$\text{eff}(\hat{\theta}_{n}) = \frac{1}{\bm{I}(\theta)\text{Var}(\hat{\theta})}$}.
+L'\og \textit{efficiency} \fg{} d'un estimateur $\hat{\theta}_{n}$ est définie comme \lfbox[formula]{$\text{eff}(\hat{\theta}_{n}) = \frac{1/\bm{I}_{n}(\theta)}{\text{Var}(\hat{\theta})}$}.
 
 \begin{definitionNOHFILLsub}[Estimateur \og \textit{efficient} \fg{}]
-Si \lfbox[formula]{$\text{eff}(\hat{\theta}_{n}) = 1$}, alias la variance de l'estimateur est égale à la borne Cramér-Rao, l'estimateur \textbf{est \og \textit{efficient} \fg{}}.
+Si \lfbox[formula]{$\text{eff}(\hat{\theta}_{n}) = 1$}, alias la variance de l'estimateur est égale à la borne Cramér-Rao, l'estimateur est \textbf{\og \textit{efficient} \fg{}}.
 \end{definitionNOHFILLsub}
 \end{definitionNOHFILL}
 
@@ -541,12 +541,15 @@ Si nous cherchons à minimiser la variance est désirons un estimateur sans biai
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Estimateur non biaisé à variance minimale (MVUE)]
-L'estimateur sans biais ayant la plus petite parmi tous les estimateurs non biaisés.
+L'estimateur sans biais ayant la plus petite parmi tous les estimateurs \textit{non biaisés}.
 
 \begin{itemize}
 	\item	En anglais, \og \textit{minimum variance unbiased estimator (\textbf{MVUE})} \fg{}.
 \end{itemize}
 \end{definitionNOHFILL}
+
+\paragraph{Note}	On peut trouver cet estimateur comme l'estimateur non biaisé ayant la plus petite efficacité. Sinon, on peut l'identifier avec le \underline{\textit{\hyperlink{lehSchTh}{théorème de Lehmann-Scheffé}}} ou le théorème de Rao-Blackwell décrits dans la section \underline{\textbf{\nameref{sec:exhStat}}}.
+
 
 \begin{rappel_enhanced}[Limitations]
 L'estimateur MVUE n'est pas nécessairement l'estimateur ayant la plus petite variance car un estimateur biaisé peut avoir une variance inférieure à celle du MVUE.
@@ -1718,6 +1721,8 @@ La région uniformément la plus puissante n'existe pas toujours, mais dans le c
 
 \columnbreak
 \subsection{Test du khi carré}
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}\\
+
 \subsubsection{Test d'adéquation (\og \textit{goodness-of-fit test} \fg{})}
 Soit $n$ répétitions (indépendantes) d'une expérience aléatoire.\\
 On pose :
@@ -1784,14 +1789,17 @@ Soit une hypothèse nulle qui spécifie $k$ paramètre et une hypothèse alterna
 
 Cette statistique est vue dans les modèles linéaires généralisés aussi.
 
-\columnbreak
-\section{Statistiques exhaustives}
+
+
+
+\newpage
+\section{Statistiques exhaustives}\label{sec:exhStat}
 Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.
 
 \begin{definitionNOHFILL}[Statistique exhaustive (\og \textit{sufficient} \fg{})]
-La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ ssi \lfbox[formula]{$f(x_{1}, \dots, x_{n} | t) = h(x_{1}, \dots, x_{n})$} où la fonction $h(\cdot)$ ne dépend pas de $\theta$.	\\
+La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ ssi la distribution de l'échantillon conditionnelle à la valeur de l'estimateur ne dépend pas de $\theta$. C'est-à-dire, ssi \lfbox[formula]{$f(x_{1}, \dots, x_{n} | t) = h(x_{1}, \dots, x_{n})$} où la fonction $h(\cdot)$ ne dépend pas de $\theta$.	\\
 
-C'est-à-dire que la distribution de l'échantillon, conditionnelle à la valeur $t$ de la statistique $T_{n}$, suit une distribution qui ne dépend pas de $\theta$. Alors, savoir que $T_{n} = t$ nous donne \textit{\textbf{suffisamment}} d'information à propos de l'effet de $\theta$ sur l'échantillon sans avoir à connaître les $n$ valeurs observées.
+Donc, savoir la valeur $t$ que prend la statistique $T_{n}$ nous donne \textit{\textbf{suffisamment}} d'information à propos de l'effet de $\theta$ sur l'échantillon sans avoir à connaître les $n$ valeurs observées.
 \end{definitionNOHFILL}
 
 
@@ -1816,7 +1824,7 @@ La définition de l'exhaustivité nécessite de connaître la distribution de la
 
 
 \begin{definitionNOHFILLsub}[Théorème de factorisation de Fisher-Neymann]
-La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ si \lfbox[formula]{${\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)} = h_{1}({\color{teal}t}; {\color{amethyst}\theta}) \times h_{2}(x_{1}, \dots, x_{n})$} où 
+La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ ssi on peut récrire la fonction de densité comme le produit d'une fonction ($h_{1}(\cdot)$) de la statistique ${\color{teal}T_{n}}$et du paramètre ${\color{amethyst}\theta}$ et d'une fonction ($h_{2}(\cdot)$) de l'échantillon. C'est-à-dire, ssi \lfbox[formula]{${\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)} = h_{1}({\color{teal}t}; {\color{amethyst}\theta}) \times h_{2}(x_{1}, \dots, x_{n})$} où 
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	$h_{1}({\color{teal}t}; {\color{amethyst}\theta})$ dépend de l'échantillon seulement par la statistique $T_{n}$.
 	\item	$h_{2}(x_{1}, \dots, x_{n})$ ne dépend pas du paramètre ${\color{amethyst}\theta}$.
@@ -1857,45 +1865,74 @@ Par exemple, la moyenne empirique $\bar{X}_{n}$ réduit davantage les données q
 
 
 
+\subsubsection{Statistique complète}
+\hl{Concept à clarifier, pas clair.}
+
+\begin{definitionNOHFILL}[Statistique complète]
+La distribution de $T_{n}$ provient d'une famille \textbf{\textit{complète}} de distributions si le fait que $\text{E}[g(T_{n})] = 0$ \textbf{implique} que $\Pr(g(T_{n}) = 0) = 1$.
+
+\bigskip
+
+\begin{itemize}
+	\item	Il s'ensuit qu'il est possible que $\text{E}[g(T_{n})] = 0$ sans que la distribution de la statistique provienne d'une famille complète de distributions.
+	\item	Le fait qu'une statistique soit complète veut dire que toute fonction $g(\cdot)$ qui entraîne la moyenne de $g(T_{n})$ à être nulle doit être une fonction \og \textit{that maps to 0} \fg{}.
+	\item	Il est hors du cadre de l'examen de devoir prouver que des statistiques sont complètes.
+	\item	Le fait d'être complet implique qu'il existe une seule fonction $T_{n}$ qui est un estimateur non biaisé de $\theta$; alias, $g(T_{n})$ est \textbf{unique}. 
+\end{itemize}
+\end{definitionNOHFILL}
+
+	
+\begin{definitionNOHFILLsub}[\hypertarget{lehSchTh}{Théorème de Lehmann-Scheffé}]
+Si : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	La statistique $T_{n}$ est une statistique exhaustive pour $\theta$.
+	\item	La distribution de $T_{n}$ provient d'une faille de distributions complète.
+	\item	Il y existe une fonction unique $\phi(\cdot)$ de $T_{n}$ tel que $\phi(T_{n})$ est une estimateur non biaisé de $\theta$.
+\end{enumerate}
+alors la statistique $\phi(T_{n})$ est le MVUE de $\theta$.
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Voir \nameref{subsubsec:MVUECriteria} pour plus de détails sur le MVUE.
+
 \columnbreak
-\subsubsection{Completeness}
-
-
-
-\columnbreak
-\subsubsection{Statistique exhaustive minimale}
+\subsubsection{Statistique exhaustive minimale}\label{subsubsec:exhMinStat}
 \begin{definitionNOHFILL}[Statistique exhaustive minimale]
 Une statistique exhaustive $T_{n} = T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour toute autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ telle que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
+\end{definitionNOHFILL}
 
-\begin{definitionNOHFILLprop}[Critère de Lehmann-Scheffé]
-Soit l'échantillon aléatoire $(X_{1}, \dots, X_{n})$ d'une distribution avec paramètre $\theta$ inconnu.\\
-Alors, la statistique $T_{n}$ est "\textbf{exhaustive \textit{minimale} pour $\theta$}" si pour tout $x_{i}, y_{i}	\in \mathbb{R}, i = 1, 2, \dots, n$,
-\begin{align*}
-	\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}
-\end{align*}
-ne \textbf{dépend pas} de $\theta$ ssi $T(x_{1}, \dots, x_{n})	=	T(y_{1}, \dots, y_{n})$
-\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLsub}[Critère de Lehmann-Scheffé]
+La statistique $T_{n}$ est \textbf{\underline{exhaustive minimale}} pour $\theta$ si \lfbox[formula]{$\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}$ ne dépend pas de $\theta$} \lfbox[conditions]{ssi $T(x_{1}, \dots, x_{n})	=	T(y_{1}, \dots, y_{n})$} où, $\forall i = 1, 2, \dots, n$, $x_{i}, y_{i} \in \mathbb{R}$.
+\end{definitionNOHFILLsub}
 
 \begin{formula}{Exemple Bernoulli}
 Soit l'échantillon aléatoire d'une distribution Bernouilli de paramètre $p$.
 
-\setlength{\mathindent}{-1cm}
 \begin{align*}
 	\frac{f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)}{f(y_{1}; \theta) \times \hdots \times f(y_{n}; \theta)}	
 	&=	\left(\frac{p}{1 - p}\right)^{(x_{1} + \dots + x_{n}) - (y_{1} + \dots + y_{n})}
 \end{align*}
 
-Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i = 1}^{n} y_{i}$ et donc $T_{n}	=	\sum_{i = 1}^{n}X_{i}$ est \textbf{exhaustive minimale} pour $p$.
+Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i = 1}^{n} y_{i}$ et donc $T_{n} = \sum_{i = 1}^{n}X_{i}$ est \textbf{exhaustive minimale} pour $p$.
 \end{formula}
-\setlength{\mathindent}{1cm}
-\end{definitionNOHFILL}
 
 
-\begin{definitionNOHFILLprop}[Théorème de Rao-Blackwell]
-Soit l'estimateur $\hat{\theta}_{n}$ sans biais pour $\theta$ avec $\text{Var}(\hat{\theta}_{n}) < \infty$.	\\
-Si la statistique $T_{n}$ est exhaustive pour $\theta$, la statistique \lfbox[formula]{$\theta_{n}^{\ast}	=	\text{E}[\hat{\theta}_{n} | T_{n}]$} est un \textbf{estimateur sans biais} de $\theta$ avec \lfbox[conditions]{$\text{Var}(\theta^{\ast}_{n}) \leq \text{Var}(\hat{\theta}_{n})$}.
-\end{definitionNOHFILLprop}
 
+\hl{Concept à clarifier, pas clair.}
+\begin{definitionNOHFILLsub}[Théorème de Rao-Blackwell]
+Soit : 
+\begin{enumerate}
+	\item	la statistique $T_{n}$ exhaustive pour $\theta$, et
+	\item	l'estimateur de $\theta$ non biaisé $\hat{\theta}_{n}$
+\end{enumerate}
+tel que $T_{n}$ n'est pas fonction de $\hat{\theta}_{n}$, et vice-versa. 
+
+\bigskip
+
+Le fait que $T_{n}$ est exhaustif garanti que la distribution de $(\hat{\theta}_{n} | T_{n})$ n'est pas fonction de $\theta$. Il s'ensuit que \lfbox[formula]{$\tilde{\theta}_{n} = \text{E}_{\hat{\theta}_{n}}[\hat{\theta}_{n} | T_{n}]$} est également une statistique non biaisé de $\theta$, puis que \lfbox[formula]{$\text{Var}(\tilde{\theta}_{n}) \leq \text{Var}(\hat{\theta}_{n})$}.
+\end{definitionNOHFILLsub}
+
+En bref, le théorème de Rao-Blackwell indique que l'estimateur $\text{E}_{\hat{\theta}_{n}}[\hat{\theta}_{n} | T_{n}]$ a une variance inférieure, ou égale, à tout autre estimateur non biaisé $\hat{\theta}_{n}$; il s'ensuit qu'il remplit tous les critères pour être le MVUE.
 
 
 \columnbreak
@@ -1919,9 +1956,11 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
 \end{enumerate}
 
-\columnbreak
-\section{Statistiques d'ordre}
-\label{subsec:orderStats}
+
+
+
+\newpage
+\section{Statistiques d'ordre} \label{sec:orderStats}
 %%%	NOTES :
 %%%	+	Ajouter des détails sur l arelation avec la loi Béta
 
@@ -2382,6 +2421,7 @@ Le diagramme quantile-quantile évalue si la distribution empirique est semblabl
 \end{center}
 
 
+
 \columnbreak
 \section{Construction d'estimateurs}
 \subsection{Introduction}
@@ -2584,7 +2624,7 @@ Ce qui implique:
 		\begin{itemize}
 		\item	C'est-à-dire que, pour tout $\theta$, le support des fonctions de densité reste le même.
 		\item	Ceci permet entre autres de garantir que la vraisemblance sera maximisée à la vraie valeur $\theta_{0}$ du paramètre.
-		\item	C'est une condition restrictive que certains modèles ne respectent pas.
+		\item	C'est une condition restrictive que certains modèles ne respectent pas (e.g. la loi uniforme).
 		\end{itemize}
 	\item[R2]	La "vraie valeur" $\theta_{0}$ de $\theta$ est contenue dans l'ensemble des valeurs possibles $\Theta$.
 \end{description}
@@ -7840,7 +7880,7 @@ Si \lfbox[conditions]{$N(t) \sim \text{Poisson}(\lambda t)$} alors \lfbox[formul
 
 
 \subsubsection{Temps d'occurrence conditionnels}
-\paragraph{Note}	Voir la sous-section des \textbf{\nameref{subsec:orderStats}} du chapitre de \nameref{chapt:stats}.
+\paragraph{Note}	Voir la sous-section des \textbf{\nameref{sec:orderStats}} du chapitre de \nameref{chapt:stats}.
 
 \
 
@@ -7881,7 +7921,7 @@ Par exemple, $N(t) = n$ implique que $T_{1}, T_{2}, \dots, T_{n} \leq t$ :
 
 \
 
-On en déduit que les temps d'occurrences sont en fait des \textbf{\nameref{subsec:orderStats}} avec $0 < T_{1} \leq T_{2} \leq \dots \leq T_{n} \leq t$ : 
+On en déduit que les temps d'occurrences sont en fait des \textbf{\nameref{sec:orderStats}} avec $0 < T_{1} \leq T_{2} \leq \dots \leq T_{n} \leq t$ : 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
