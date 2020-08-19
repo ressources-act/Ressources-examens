@@ -550,7 +550,6 @@ L'estimateur sans biais ayant la plus petite parmi tous les estimateurs \textit{
 
 \paragraph{Note}	On peut trouver cet estimateur comme l'estimateur non biaisé ayant la plus petite efficacité. Sinon, on peut l'identifier avec le \underline{\textit{\hyperlink{lehSchTh}{théorème de Lehmann-Scheffé}}} ou le théorème de Rao-Blackwell décrits dans la section \underline{\textbf{\nameref{sec:exhStat}}}.
 
-
 \begin{rappel_enhanced}[Limitations]
 L'estimateur MVUE n'est pas nécessairement l'estimateur ayant la plus petite variance car un estimateur biaisé peut avoir une variance inférieure à celle du MVUE.
 \end{rappel_enhanced}
@@ -1887,12 +1886,39 @@ Si :
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	La statistique $T_{n}$ est une statistique exhaustive pour $\theta$.
 	\item	La distribution de $T_{n}$ provient d'une faille de distributions complète.
-	\item	Il y existe une fonction unique $\phi(\cdot)$ de $T_{n}$ tel que $\phi(T_{n})$ est une estimateur non biaisé de $\theta$.
+	\item	Il y existe une fonction unique $\varphi(\cdot)$ de $T_{n}$ tel que $\varphi(T_{n})$ est une estimateur non biaisé de $\theta$.
 \end{enumerate}
-alors la statistique $\phi(T_{n})$ est le MVUE de $\theta$.
+alors la statistique $\varphi(T_{n})$ est le MVUE de $\theta$.
 \end{definitionNOHFILLsub}
 
-\paragraph{Note}	Voir \nameref{subsubsec:MVUECriteria} pour plus de détails sur le MVUE.
+
+\begin{rappel_enhanced}[Contexte]
+Le théorème de Rao-Blackwell se base sur le théorème de Lehmann-Scheffé pour poser que la fonction unique $\varphi(\theta)$ doit être $\text{E}_{\hat{\theta}_{n}}[\hat{\theta}_{n} | T_{n}]$.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Théorème de Rao-Blackwell]
+Si : 
+\begin{enumerate}
+	\item	La statistique $T_{n}$ est une statistique exhaustive pour $\theta$.
+	\item	La statistique $\hat{\theta}_{n}$ est un estimateur non biaisé de $\theta$.
+\end{enumerate}
+où $T_{n}$ n'est pas fonction de $\hat{\theta}_{n}$, et vice-versa. 	\\
+
+Le fait que $T_{n}$ est exhaustif garanti que la distribution de $(\hat{\theta}_{n} | T_{n})$ n'est pas fonction de $\theta$. Alors, la fonction \lfbox[formula]{$\tilde{\theta}_{n} = \text{E}_{\hat{\theta}_{n}}[\hat{\theta}_{n} | T_{n}]$} est une \textit{statistique} non biaisé de $\theta$ avec \lfbox[formula]{$\text{Var}(\tilde{\theta}_{n}) \leq \text{Var}(\hat{\theta}_{n})$}.\\
+
+Par le théorème de Lehmann-Scheffé, la distribution complète implique un MVUE unique. Donc, la statistique $\tilde{\theta}_{n}$ \textit{doit être le \textbf{MVUE}} puisque sa variance est inférieure (ou égale) à tout autre estimateur non biaisé $\hat{\theta}_{n}$.
+\end{definitionNOHFILLsub}
+
+
+En bref, pour trouver le MVUE : 
+\begin{enumerate}
+	\item	Trouver une statistique $T_{n}$ complète exhaustive pour $\theta$.
+	\item	Trouver une fonction de $T_{n}$ non biaisé pour $\theta$.
+\end{enumerate}
+
+\paragraph{Note}	Voir la section \underline{\textbf{\nameref{subsubsec:MVUECriteria}}} pour plus de détails sur le MVUE. 
+
+
 
 \columnbreak
 \subsubsection{Statistique exhaustive minimale}\label{subsubsec:exhMinStat}
@@ -1918,43 +1944,35 @@ Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i 
 
 
 
-\hl{Concept à clarifier, pas clair.}
-\begin{definitionNOHFILLsub}[Théorème de Rao-Blackwell]
-Soit : 
-\begin{enumerate}
-	\item	la statistique $T_{n}$ exhaustive pour $\theta$, et
-	\item	l'estimateur de $\theta$ non biaisé $\hat{\theta}_{n}$
-\end{enumerate}
-tel que $T_{n}$ n'est pas fonction de $\hat{\theta}_{n}$, et vice-versa. 
-
-\bigskip
-
-Le fait que $T_{n}$ est exhaustif garanti que la distribution de $(\hat{\theta}_{n} | T_{n})$ n'est pas fonction de $\theta$. Il s'ensuit que \lfbox[formula]{$\tilde{\theta}_{n} = \text{E}_{\hat{\theta}_{n}}[\hat{\theta}_{n} | T_{n}]$} est également une statistique non biaisé de $\theta$, puis que \lfbox[formula]{$\text{Var}(\tilde{\theta}_{n}) \leq \text{Var}(\hat{\theta}_{n})$}.
-\end{definitionNOHFILLsub}
-
-En bref, le théorème de Rao-Blackwell indique que l'estimateur $\text{E}_{\hat{\theta}_{n}}[\hat{\theta}_{n} | T_{n}]$ a une variance inférieure, ou égale, à tout autre estimateur non biaisé $\hat{\theta}_{n}$; il s'ensuit qu'il remplit tous les critères pour être le MVUE.
-
 
 \columnbreak
 \subsubsection*{Famille exponentielle}
-Une loi de probabilité fait partie de la famille exponentielle linéaire si:
-\begin{enumerate}
-	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
-\begin{formula}{Densité de la famille exponentielle}
-	\begin{align*}
-		f(y ; \theta, \phi) 
-			= 	\exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi) \right)  
-	\end{align*}
-\end{formula}
-	où
-	\begin{description}
-		\item[$\theta$] paramètre canonique
-		\item[$\phi$] paramètre de dispersion
-	\end{description}
-	\item	La fonction $c$ ne dépend pas du paramètre $\theta$.
-	
-	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
-\end{enumerate}
+\begin{definitionNOHFILL}[La famille exponentielle]
+La variable aléatoire $X$ fait partie de la famille exponentielle si l'on peut récrire sa fonction de probabilité comme : \lfbox[formula]{$f(x) = \textrm{e}^{a(x) \cdot b(\theta) + c(\theta) + d(x)}$} où le domaine de $X$ ne dépend pas du paramètre $\theta$.
+\end{definitionNOHFILL}
+
+
+\lfbox[formula]{$f(x_{1}, \dots, x_{n}) = h_{1}\left(\sum_{i = 1}^{n}a(x_{i}); \theta\right)h_{2}\left(x_{1}, \dots, x_{n}\right)$}
+
+
+%Une loi de probabilité fait partie de la famille exponentielle linéaire si:
+%\begin{enumerate}
+%	\item	Sa fonction de densité \textit{(ou de masse)} de probabilité peut être exprimée comme:
+%\begin{formula}{Densité de la famille exponentielle}
+%	\begin{align*}
+%		f(y ; \theta, \phi) 
+%			= 	\exp \left( \frac{y \theta - b(\theta)}{a(\phi)} + c(y ; \phi) \right)  
+%	\end{align*}
+%\end{formula}
+%	où
+%	\begin{description}
+%		\item[$\theta$] paramètre canonique
+%		\item[$\phi$] paramètre de dispersion
+%	\end{description}
+%	\item	La fonction $c$ ne dépend pas du paramètre $\theta$.
+%	
+%	\item 	Le support de $Y$ ne dépend pas de $\theta$ puisqu'il ne peut pas varier.
+%\end{enumerate}
 
 
 
@@ -1962,7 +1980,7 @@ Une loi de probabilité fait partie de la famille exponentielle linéaire si:
 \newpage
 \section{Statistiques d'ordre} \label{sec:orderStats}
 %%%	NOTES :
-%%%	+	Ajouter des détails sur l arelation avec la loi Béta
+%%%	+	Ajouter des détails sur la relation avec la loi Béta
 
 Soit un échantillon aléatoire de taille $n$.
 Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
