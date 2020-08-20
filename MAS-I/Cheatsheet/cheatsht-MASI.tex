@@ -548,7 +548,7 @@ L'estimateur sans biais ayant la plus petite parmi tous les estimateurs \textit{
 \end{itemize}
 \end{definitionNOHFILL}
 
-\paragraph{Note}	On peut trouver cet estimateur comme l'estimateur non biaisé ayant la plus petite efficacité. Sinon, on peut l'identifier avec le \underline{\textit{\hyperlink{lehSchTh}{théorème de Lehmann-Scheffé}}} ou le théorème de Rao-Blackwell décrits dans la section \underline{\textbf{\nameref{sec:exhStat}}}.
+\paragraph{Note}	On peut trouver cet estimateur comme l'estimateur non biaisé ayant la plus petite efficacité. Sinon, on peut l'identifier avec le \underline{\textit{\hyperlink{lehSchTh}{théorème de Lehmann-Scheffé}}} ou le théorème de Rao-Blackwell décrits dans la section \underline{\textit{\nameref{sec:exhStat}}}.
 
 \begin{rappel_enhanced}[Limitations]
 L'estimateur MVUE n'est pas nécessairement l'estimateur ayant la plus petite variance car un estimateur biaisé peut avoir une variance inférieure à celle du MVUE.
@@ -885,9 +885,13 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \label{sec:hyp-test}
 \subsection{Introduction}
 \begin{rappel_enhanced}[Contexte]
-Les statistiques classiques posent que tout phénomène observable est régi par un \textit{"\textbf{processus}" sous-jacent}.\\
-On ne peut jamais savoir exactement ce qu'est ce "processus"; le mieux que l'on peut faire est d'émettre des \textit{\textbf{hypothèses}} vraisemblables sur ce qu'il pourrait être. \\
-Par la suite, on analyse les observations en présumant qu'elles sont régies par le processus hypothétique et détermine la \textit{\textbf{vraisemblance des observations}}. On accepte le processus hypothétique si la vraisemblance est suffisamment élevée.
+Les statistiques classiques posent que tout phénomène observable est régi par un \textit{"\textbf{processus}" sous-jacent}. On ne peut jamais savoir exactement ce qu'est ce "processus", le mieux que l'on peut faire est d'émettre des \textit{\textbf{hypothèses}} vraisemblables sur ce qu'il pourrait être. \\
+
+Puis, on analyse les observations en présumant qu'elles sont régies par le processus hypothétique afin de déterminer la \textit{\textbf{vraisemblance}} des observations. On accepte le processus hypothétique si la vraisemblance est suffisamment élevée.
+
+
+%Un test d'hypothèse prend deux possibilités de scénario opposantes et vérifie laquelle des deux est mieux supportée par les données. Les données sont résumées en une seule valeur dont on évalue la vraisemblance avec les probabilités. Selon que la valeur soit jugée d'être vraisemblable ou pas supporte l'une des deux hypothèses.
+
 \end{rappel_enhanced}
 
 \begin{distributions}[Notation]
@@ -905,7 +909,7 @@ Par la suite, on analyse les observations en présumant qu'elles sont régies pa
 \end{distributions}
 
 \begin{definitionNOHFILL}[Test d'hypothèse]
-On spécifie une \textcolor{burntorange}{hypothèse} nulle et par conséquent une hypothèse alternative :
+On spécifie une \textcolor{burntorange}{hypothèse} nulle et, par conséquent, une hypothèse alternative :
 \begin{align*}
 	\textrm{H}_{0}
 	&:	\theta \in \Theta_{0}	&
@@ -971,9 +975,9 @@ L'hypothèse :
 	\item[$\mathcal{C}$]	\textbf{Région critique} du test qui est un sous-ensemble de $\mathcal{S}$.
 \end{description}
 \end{distributions}
+La région critique $\mathcal{C}$ est l'ensemble des valeurs de la statistique que l'on considère trop « extrême » pour être le statu quo et donc que l'on rejette. 
 
-On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$.\\
-On conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$ puis on conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
 
 \begin{itemize}
 	\item	On peut aussi dire \og \textbf{région de rejet} \fg{}.
@@ -989,11 +993,14 @@ L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 \end{itemize}
 \end{formula}
 
-On peut donc faire 2 types d'erreurs:
+\begin{rappel_enhanced}[Contexte]
+Bien que nous tentons de prendre une décision informée sur quel test est le vrai, on ne peut jamais être certain que l'hypothèse sélectionnée est la bonne. Cependant, on peut évaluer l'impact d'une mauvaise décision selon que l'hypothèse nulle $\mathrm{H}_{0}$ soit réellement la vraie hypothèse ou pas.\\
+
+Avec cet approche, on trouve que l'on peut faire 2 types d'erreur, soit une erreur de type I (\og \textit{false positive} \fg{}) ou une erreur de type II (\og \textit{false negative} \fg{}). Le tableau ci-dessous montre ce qu'elles représentent, puis la section sur les \underline{\textit{\ref{subsec:optimTests}}} va plus en détails sur l'optimisation des erreurs.
+\end{rappel_enhanced}
 %%	voir les images que j'ai gardé pour quand je retouche à la matrice de confusion dans les GLMs pour développer et parler des métriques ! 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,165); %set diagram left start at 0, and has height of 165
 
@@ -1045,8 +1052,20 @@ On peut donc faire 2 types d'erreurs:
 \end{tikzpicture}
 \end{center}
 
+En bref, voici un résumé des régions et valeurs critiques selon le type de test :
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}	\\\specialrule{0.1em}{0em}{0em} 
+\textbf{\textcolor{white}{Région critique}}	&	$z \leq -c$	&	$|z| \geq c$	&	$z \geq c$	\\\hline
+\textbf{\textcolor{white}{Valeur critique}}	&	$-z_{1 - \alpha}$	&	$z_{1 - \alpha/2}$	&	$z_{1 - \alpha}$	\\\hline
+\end{tabular}
+\end{center}
+
+
 \columnbreak
-\subsection{Certitude du test}
+\subsection{Certitude du test}\label{subsec:confTests}
 Lorsque nous voulons quantifier le degré auquel nous sommes confiants du test, nous utilisons la valeur $p$. \\
 La valeur $p$ a trois composantes:
 \begin{enumerate}
@@ -1112,9 +1131,57 @@ C'est-à-dire :
 	\item	où la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
 \end{itemize}
 
+\bigskip
+
+De façon générale, on représente la région critique pour un test bilatéral comme l'aire en rouge du graphique de la distribution normale ci-dessous : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Straight Lines [id:da6802183040034526] 
+\draw [line width=1.5]    (428.83,129.33) -- (428.83,134.67) ;
+%Straight Lines [id:da041814477790474536] 
+\draw [line width=1.5]    (530.83,129.33) -- (530.83,134.67) ;
+%Straight Lines [id:da41096098350194876] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,121.67) -- (516.83,129) -- (571.83,129) ;
+%Straight Lines [id:da13848515684182172] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,111.67) -- (516.83,121.67) -- (540.5,125.67) ;
+%Straight Lines [id:da8715947370065913] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,108.67) -- (516.83,118.67) -- (528.67,123.67) ;
+
+%Straight Lines [id:da3975103087670575] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,121.67) -- (442.83,129) -- (387.83,129) ;
+%Straight Lines [id:da12291978656544122] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,111.67) -- (442.83,121.67) -- (419.17,125.67) ;
+%Straight Lines [id:da848416046947716] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,108.67) -- (442.83,118.67) -- (431,123.67) ;
+
+%Curve Lines [id:da9736207271739545] 
+\draw [line width=1.5]    (387,129) .. controls (474.83,128.67) and (450.83,49.67) .. (479.83,49.67) .. controls (509.83,49.67) and (485.83,128.67) .. (571.83,129) ;
+%Straight Lines [id:da09391007998053968] 
+\draw [line width=1.5]    (387,129) -- (571.83,129) ;
+%Shape: Axis 2D [id:dp7710092673870226] 
+\draw  (357.32,129) -- (601.48,129)(479.42,16.32) -- (479.42,129) (594.48,124) -- (601.48,129) -- (594.48,134) (474.42,23.32) -- (479.42,16.32) -- (484.42,23.32)  ;
+
+% Text Node
+\draw (397,104) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (537,104) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
+% Text Node
+\draw (524.83,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (414.33,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -c$};
+% Text Node
+\draw (604.83,124) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z$};
+% Text Node
+\draw (481.83,29) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle f( z)$};
+\end{tikzpicture}
+\end{center}
+
 
 \columnbreak
-\subsection{Puissance d'un test}
+\subsection{Puissance d'un test}\label{subsec:PowerTests}
 \begin{definitionNOHFILL}[La puissance d'un test]
 La probabilité de \textit{correctement} rejeter l'hypothèse nulle.
 %%	https://www.youtube.com/watch?v=Rsc5znwR5FA&feature=youtu.be
@@ -1331,7 +1398,7 @@ Si, par exemple, on rejette l'hypothèse nulle, on pourrait tracer la fonction d
 
 \columnbreak
 
-\subsection{Tests optimaux}
+\subsection{Tests optimaux}\label{subsec:optimTests}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\delta$]	(Procédure de) test ;
