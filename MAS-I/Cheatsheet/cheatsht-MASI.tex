@@ -297,7 +297,7 @@ L'erreur quadratique moyenne est définie comme \lfbox[formula]{$\text{MSE}_{\ha
 
 
 \columnbreak
-\subsubsection{Convergence}
+\subsubsection{Convergence}\label{subsubsec:ConsistencyEstim}
 \begin{rappel_enhanced}[Motivation]
 Nous voulons une mesure qui n'indique pas seulement qu'un estimateur arrive près de la bonne valeur souvent \textit{(alias, une très petite variance)}, mais qu'il est mieux que d'autres estimateurs. Alors, un autre aspect à évaluer d'un estimateur est sa convergence pour de grands échantillons. \\
 
@@ -497,7 +497,7 @@ Lorsque l'information de Fisher tend vers l'infini, alias la force de la concavi
 
 
 \columnbreak
- \subsubsection{Efficacité}
+\subsubsection{Efficacité}\label{subsubsec:EfficiencyEstim}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
 	\item[$\text{eff}(\hat{\theta}_{n})$]	Efficacité d'un estimateur $\hat{\theta}_{n}$;
@@ -1864,7 +1864,7 @@ Par exemple, la moyenne empirique $\bar{X}_{n}$ réduit davantage les données q
 
 
 
-\subsubsection{Statistique complète}
+\subsection{Statistique complète}\label{subsec:ComplStat}
 \hl{Concept à clarifier, pas clair.}
 
 \begin{definitionNOHFILL}[Statistique complète]
@@ -1921,7 +1921,7 @@ En bref, pour trouver le MVUE :
 
 
 \columnbreak
-\subsubsection{Statistique exhaustive minimale}\label{subsubsec:exhMinStat}
+\subsection{Statistique exhaustive minimale}\label{subsec:exhMinStat}
 \begin{definitionNOHFILL}[Statistique exhaustive minimale]
 Une statistique exhaustive $T_{n} = T(X_{1}, \dots, X_{n})$ est "\textbf{minimale}" si pour toute autre statistique exhaustive $U_{n}	=	U(X_{1}, \dots, X_{n})$, il existe une fonction $g$ telle que $T	=	g\{U(X_{1}, \dots, X_{n})\}$.
 \end{definitionNOHFILL}
@@ -1946,13 +1946,41 @@ Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i 
 
 
 \columnbreak
-\subsubsection*{Famille exponentielle}
+\subsection{Famille exponentielle}\label{subsec:FamExpMVUE}
+\paragraph{Note}	La section \underline{\textit{\nameref{subsec:ExpFamRegr}}} du chapitre de \underline{\textit{\nameref{chapt:modLin}}} couvre plus en détails la famille linéaire. Cette sous-section se limite à ses propriétés utiles pour identifier le MVUE.
+
+\begin{rappel_enhanced}[Contexte]
+Dans le contexte du MVUE, la famille exponentielle est utile car, si une distribution provient de la famille exponentielle, il est beaucoup plus simple de le trouver.
+\end{rappel_enhanced}
+
 \begin{definitionNOHFILL}[La famille exponentielle]
-La variable aléatoire $X$ fait partie de la famille exponentielle si l'on peut récrire sa fonction de probabilité comme : \lfbox[formula]{$f(x) = \textrm{e}^{a(x) \cdot b(\theta) + c(\theta) + d(x)}$} où le domaine de $X$ ne dépend pas du paramètre $\theta$.
+La variable aléatoire $X$ fait partie de la famille exponentielle si l'on peut récrire sa fonction de probabilité comme : \lfbox[formula]{$f(x) = \textrm{e}^{a(x) \cdot b(\theta) + c(\theta) + d(x)}$} où 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	$\theta$ est le paramètre d'intérêt.
+	\item	le domaine de $X$ ne dépend pas du paramètre $\theta$.
+\end{enumerate}
 \end{definitionNOHFILL}
 
+\begin{definitionNOHFILLprop}[Exhaustivité et \og \textit{completeness} \fg{}]
+Pour un échantillon aléatoire tiré d'une distribution faisant partie de la famille exponentielle, on trouve que \lfbox[formula]{$f(x_{1}, \dots, x_{n}) = h_{1}\left(\textcolor{teal}{\sum_{i = 1}^{n} a(x_{i})}; \theta\right)h_{2}\left(x_{1}, \dots, x_{n}\right)$}.\\
 
-\lfbox[formula]{$f(x_{1}, \dots, x_{n}) = h_{1}\left(\sum_{i = 1}^{n}a(x_{i}); \theta\right)h_{2}\left(x_{1}, \dots, x_{n}\right)$}
+Par le théorème de factorisation, la statistique $\textcolor{teal}{\sum_{i = 1}^{n} a(x_{i})}$ est une statistique exhaustive pour $\theta$. De plus, la \textbf{distribution de la statistique} $\textcolor{teal}{\sum_{i = 1}^{n} a(x_{i})}$ \textbf{provient d'une famille complète} de distributions (la preuve est hors du cadre de l'examen)
+\end{definitionNOHFILLprop}
+
+Plusieurs distributions font partie de la famille exponentielle, voici un tableau résumé :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c	| >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Distribution}}	&	\textcolor{white}{\textbf{Paramètre d'intérêt}}	&	\textcolor{white}{$\sum_{i = 1}^{n} a(x_{i})$}	&	\textcolor{white}{\textbf{MVUE}}		\\\specialrule{0.1em}{0em}{0em} 
+Binomiale			&	$q$			&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	&	$\frac{1}{m}\bar{X}$	\\\hline
+Normale				&	$\mu$		&	$\sum_{i = 1}^{n} X_{i}^{2}$	&	$\bar{X}$	\\\hline
+Normale				&	$\sigma^{2}$	&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	&	$\frac{\sum_{i = 1}^{n}\left(X_{i}^{2}\right)}{n} - \mu^{2}$	\\\hline
+Poisson				&	$\lambda$	&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	&	$\bar{X} $	\\\hline
+Gamma				&	$\theta$		&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	&	$\frac{1}{\alpha}\bar{X}$	\\\hline
+Inverse Gaussienne	&	$\mu$		&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	&	$\bar{X}$	\\\hline
+Binomiale Négative	&	$\beta$		&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	&	$\frac{1}{r}\bar{X}$	\\\hline
+\end{tabular}
+\end{center}
 
 
 %Une loi de probabilité fait partie de la famille exponentielle linéaire si:
@@ -2611,29 +2639,56 @@ La propriété d'invariance implique que l'estimateur du maximum de vraisemblanc
 %Soit une fonction bijective $g(\cdot)$ et l'estimateur du maximum de vraisemblance (EMV) $\hat{\theta}^{\text{EMV}}$ de $\theta$. 
 \end{definitionNOHFILLsub}
 
+\begin{formula}{Exemple de la propriété d'invariance}
+Afin de bien comprendre ce que veut dire la propriété d'invariance, on donne un exemple avec la loi de Poisson. \\
 
-\begin{definitionNOHFILLsub}[Convergence en distribution de l'EMV]
-\textbf{Théorème}:	\lfbox[formula]{$\hat{\theta}^{\text{EMV}}	\approx	\mathcal{N}\left(0, \frac{1}{\bm{I}_{n}(\theta)}\right)$.}
+Pour une loi de Poisson, l'estimateur du maximum de vraisemblance est $\hat{\theta} = \bar{X}$. Par la propriété d'invariance, on peut déduire que l'estimateur du maximum de vraisemblance de la fonction $g(\lambda) = \textrm{e}^{-\lambda}$ est $g(\hat{\lambda}) = \textrm{e}^{-\hat{\lambda}}$.
+\end{formula}
 
-\tcbline
 
-Sous \hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}, la distribution de $\sqrt{n}\left( \hat{\theta}	-	\theta \right)$ converge en distribution vers une distribution normale avec une moyenne nulle et une variance égale à la \hyperref[sec:cramer_rao]{\color{azure(colorwheel)}borne de Cramér-Rao}.
+\begin{definitionNOHFILLprop}[Caractéristiques des estimateurs du maximum de vraisemblance]
+Les estimateurs du maximum de vraisemblance ont généralement ces 3 propriétés désirables : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	$\hat{\theta}^{\text{EMV}}_{n}$ est un \underline{\textit{\hyperref[subsubsec:ConsistencyEstim]{estimateur \og \textit{consistent} \fg{}}}} pour $\theta$.
+	\item	$\hat{\theta}^{\text{EMV}}_{n}$ est asymptotiquement normalement distribué.
+	\item	S'il y existe une statistique $T_{n}$ \underline{\textit{\hyperref[sec:exhStat]{exhaustive}}} pour $\theta$, alors $\hat{\theta}^{\text{EMV}}_{n}$ en est une fonction.
+\end{enumerate}
+
+Les deux premières caractéristiques doivent cependant respecter ces 3 conditions : 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Les \underline{\hyperlink{reg_cond}{\color{blue!40!green!80!black}conditions de régularité}} habituelles.
+	\item	$\hat{\theta}^{\text{EMV}}_{n}$ est la solution unique de l'équation de score (des dérivées partielles).
+	\item	$(X_{1}, X_{2}, \dots, X_{n})$ est un échantillon aléatoire.
+\end{enumerate}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLsub}[Distribution asymptotique de l'estimateur du maximum de vraisemblance]
+Sous \underline{\hyperlink{reg_cond}{\color{blue!40!green!80!black}certaines conditions de régularité}}, la distribution de l'estimateur du maximum de vraisemblance $\hat{\theta}^{\text{EMV}}$ converge en distribution vers une distribution normale avec une moyenne $\theta$ et une variance égale à la \underline{\hyperref[sec:cramer_rao]{borne de Cramér-Rao}} : \lfbox[formula]{$\hat{\theta}^{\text{EMV}}	\approx	\mathcal{N}\left(\theta, \frac{1}{\bm{I}_{n}(\theta)}\right)$}. \\
+
+En termes mathématiques, 
 \begin{align*}
 	\sqrt{n}\left( \hat{\theta}	-	\theta \right)
 	&\overset{D}{\rightarrow}
 	\mathcal{N}\left( 0, \frac{1}{\bm{I}_{n}(\theta)} \right)
 \end{align*}
 
-Ce qui implique:
+\
+
+La normalité de la distribution asymptotique implique :
 \begin{enumerate}
-	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement sans biais.}
-	\item	$\hat{\theta}$ est \lfbox[imphl]{\og \textit{consistent} \fg{}.}
-	\item	$\hat{\theta}$ est \lfbox[imphl]{approximativement normalement distribué avec moyenne $\theta$ et} \lfbox[imphl]{variance $1/\bm{I}_{n}(\theta)$ pour des grands échantillons.}
-	\item	$\hat{\theta}$ est \lfbox[imphl]{asymptotiquement efficace} puisque sa variance tend vers la borne Cramér-Rao.
+	\item	$\hat{\theta}^{\text{EMV}}$ est \textit{asymptotiquement} \textbf{sans biais}.
+	\item	$\hat{\theta}^{\text{EMV}}$ est \og \textit{\textbf{consistent}} \fg{}.
+	\item	$\hat{\theta}^{\text{EMV}}$ est, pour des grands échantillons, approximativement normalement distribué avec moyenne $\theta$ et variance $1/\bm{I}_{n}(\theta)$.
+	\item	$\hat{\theta}^{\text{EMV}}$ est \textbf{asymptotiquement efficace}, car sa variance tend vers la borne Cramér-Rao.
 \end{enumerate}
 \end{definitionNOHFILLsub}
 	
-\paragraph{Note}	Souvent ces conditions ne sont pas vues en classe puisqu'elles sont compliquées. Alors, ne vous en faites pas si vous ne les comprenez pas complètement.
+\begin{rappel_enhanced}[Contexte]
+Souvent, nous voyons ces théorèmes et définitions sans vraiment voir ce que sont les mystérieuses conditions de régularité sous lesquelles les théorèmes sont valides. La raison et que ces conditions sont relativement compliquées pour leur utilité. 
+
+Je résume donc les conditions ci-dessous, mais ne vous en faites pas si vous ne les comprenez pas---vous pouvez sauter l'encadré.
+\end{rappel_enhanced}
 
 \begin{definitionNOHFILLprop}[\hypertarget{reg_cond}{Conditions de régularité}]
 \begin{description}
@@ -2674,6 +2729,13 @@ Ce qui implique:
 \end{definitionNOHFILLprop}
 
 
+\begin{rappel_enhanced}[Contexte]
+La distribution normale asymptotique de l'estimateur du maximum de vraisemblance se généralise au cas multivarié avec une distribution normale multivariée.
+\end{rappel_enhanced}
+
+Soit une distribution avec $r$ paramètre tel que $\hat{\bm{\theta}} = (\hat{\theta}_{1}, \hat{\theta}_{2}, \dots, \hat{\theta}_{r})$, on trouve que : \lfbox[formula]{$\hat{\bm{\theta}}^{\text{EMV}}	\approx	\mathcal{N}\left(\bm{\theta}, \bm{I}(\bm{\theta})^{-1}\right)$}.
+
+
 %\subsection{Autres critères}
 %	Quantile-Quantile
 %	AIC
@@ -2682,8 +2744,7 @@ Ce qui implique:
 
 
 \pagebreak
-\part{Modèles linéaires en actuariat}
-\label{chapt:modLin}
+\part{Modèles linéaires en actuariat}\label{chapt:modLin}
 \section{Apprentissage statistique}
 \begin{definitionNOHFILL}[Apprentissage statistique]
 L'apprentissage statistique est l'utilisation de statistiques pour estimer les relations entre des variables « \textit{\textbf{explicatives}} » et un résultat (une variable « \textbf{\textit{réponse}} »). 
@@ -2983,7 +3044,10 @@ Par exemple :
 
 \columnbreak
 \section{Régression}
-\subsection{Famille exponentielle}
+\subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
+\paragraph{Note}	La section \underline{\textit{\nameref{subsec:exhMinStat}}} du chapitre de \underline{\textit{\nameref{subsec:FamExpMVUE}}} détaille l'application de la famille exponentielle pour identifier le MVUE. Cette section couvre plus en détails la famille.
+
+
 La famille exponentielle est de la forme : \lfbox[formula]{$f(y; \theta)	=	\textrm{e}^{a(y)b(\theta) + c(\theta) + d(y)}$}.
 \begin{itemize}
 	\item	Le GLM requiert que \lfbox[conditions]{$a(y)	=	y$} que l'on nomme la \textbf{forme canonique}.
