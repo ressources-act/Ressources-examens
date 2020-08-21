@@ -883,7 +883,7 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \columnbreak
 \section{Tests d'hypothèses}
 \label{sec:hyp-test}
-\subsection{Introduction}
+\subsection{Hypothèses}
 \begin{rappel_enhanced}[Contexte]
 Les statistiques classiques posent que tout phénomène observable est régi par un \textit{"\textbf{processus}" sous-jacent}. On ne peut jamais savoir exactement ce qu'est ce "processus", le mieux que l'on peut faire est d'émettre des \textit{\textbf{hypothèses}} vraisemblables sur ce qu'il pourrait être. \\
 
@@ -897,16 +897,11 @@ Puis, on analyse les observations en présumant qu'elles sont régies par le pro
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\Theta_{0}$ et $\Theta_{1}$]	Sous-ensembles disjoints de $\Theta$ tel que \lfbox[formula]{$\Theta_{0} \cup \Theta_{1}	=	\Theta$;}
-	\item[$\textrm{H}_{0}$]	Hypothèse nulle ;
-		\begin{itemize}
-		\item	Représente généralement le statu quo jusqu'à preuve contraire.
-		\end{itemize}
+	\item[$\textrm{H}_{0}$]	Hypothèse nulle.
 	\item[$\textrm{H}_{1}$]	Hypothèse alternative.
-		\begin{itemize}
-		\item	Représente généralement un changement du statu quo.
-		\end{itemize}
 \end{description}
 \end{distributions}
+
 
 \begin{definitionNOHFILL}[Test d'hypothèse]
 On spécifie une \textcolor{burntorange}{hypothèse} nulle et, par conséquent, une hypothèse alternative :
@@ -919,7 +914,32 @@ On spécifie une \textcolor{burntorange}{hypothèse} nulle et, par conséquent, 
 \end{align*}
 
 Puis, on spécifie une \textcolor{orange-red}{expérience} et un \textcolor{orange}{test} pour décider si l'on accepte ou rejette l'hypothèse nulle.
+
+\begin{definitionNOHFILLsub}[Hypothèse nulle]
+Représente généralement le statu quo jusqu'à preuve contraire.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Hypothèse alternative]
+Représente généralement un changement du statu quo.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[Décision du test d'hypothèse]
+Soit on : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Ne peut rejeter l'hypothèse nulle $\textrm{H}_{0}$.
+	\item	On rejete l'hypothèse nulle $\mathrm{H}_{0}$ pour l'hypothèse alternative $\mathrm{H}_{a}$.
+\end{enumerate}
+\end{definitionNOHFILLprop}
 \end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Contexte]
+Typiquement, on dit qu’« on ne peut pas rejeter l'hypothèse nulle » plutôt que dire qu’« on accepte l'hypothèse nulle ». Cette interprétation est plus précise, car un test d'hypothèse ne prouve pas quelle hypothèse est la bonne, elle décide quelle option est plus vraisemblable en fonction des données. 
+
+\bigskip
+
+Il s'ensuit que nous sommes biaisés vers le statu quo---l'hypothèse nulle $\mathrm{H}_{0}$. Donc, un test d'hypothèse n'est pas un choix entre deux scénarios, mais plutôt une évaluation pour voir s'il y a suffisamment d'évidence dans les données pour changer l'hypothèse du statu quo.
+\end{rappel_enhanced}
+
 
 \begin{distributions}[Terminologie]
 \begin{description}
@@ -968,6 +988,10 @@ L'hypothèse :
 \end{description}
 \end{formula}
 
+
+
+\columnbreak
+\subsection{Région et valeur critique}
 \begin{definitionNOHFILLsub}[Région critique]
 \begin{distributions}[Notation]
 \begin{description}
@@ -975,9 +999,11 @@ L'hypothèse :
 	\item[$\mathcal{C}$]	\textbf{Région critique} du test qui est un sous-ensemble de $\mathcal{S}$.
 \end{description}
 \end{distributions}
-La région critique $\mathcal{C}$ est l'ensemble des valeurs de la statistique que l'on considère trop « extrême » pour être le statu quo et donc que l'on rejette. 
+La région critique $\mathcal{C}$ est l'ensemble des valeurs de la statistique, que l'on considère trop « extrêmes » pour être le statu quo, pour lesquelles on rejette l'hypothèse nulle $\textrm{H}_{0}$.
 
-On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$ puis on conserve $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
+\bigskip
+
+On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$ mais on ne peut pas rejeter $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}^{c}$.
 
 \begin{itemize}
 	\item	On peut aussi dire \og \textbf{région de rejet} \fg{}.
@@ -989,14 +1015,30 @@ On reprend l'exemple du LPU.\\
 L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 \begin{itemize}
 	\item	Un test "\textbf{bilatéral}" a comme région critique $\mathcal{C} = [0, 0.44) \cup (0.44, 1]$;
-	\item	Un test "\textbf{unilatéral}" testant l'augmentation a comme région critique $\mathcal{C} = (0.44, 1]$.
+	\item	Un test "\textbf{unilatéral}" testant \underline{l'augmentation} a comme région critique $\mathcal{C} = (0.44, 1]$.
 \end{itemize}
 \end{formula}
 
+En bref, voici un résumé des régions et valeurs critiques selon le type de test :
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}	\\\specialrule{0.1em}{0em}{0em} 
+\textbf{\textcolor{white}{Région critique}}	&	$z \leq -c$	&	$|z| \geq c$	&	$z \geq c$	\\\hline
+\textbf{\textcolor{white}{Valeur critique}}	&	$-z_{1 - \alpha}$	&	$z_{1 - \alpha/2}$	&	$z_{1 - \alpha}$	\\\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Note}	Voir la section \underline{\textit{\nameref{subsubsec:CritRegGraph}}} pour un résumé graphique des régions critiques selon le type de test.
+
+
+
+\columnbreak
+\subsubsection{Erreurs de test}
 \begin{rappel_enhanced}[Contexte]
 Bien que nous tentons de prendre une décision informée sur quel test est le vrai, on ne peut jamais être certain que l'hypothèse sélectionnée est la bonne. Cependant, on peut évaluer l'impact d'une mauvaise décision selon que l'hypothèse nulle $\mathrm{H}_{0}$ soit réellement la vraie hypothèse ou pas.\\
 
-Avec cet approche, on trouve que l'on peut faire 2 types d'erreur, soit une erreur de type I (\og \textit{false positive} \fg{}) ou une erreur de type II (\og \textit{false negative} \fg{}). Le tableau ci-dessous montre ce qu'elles représentent, puis la section sur les \underline{\textit{\ref{subsec:optimTests}}} va plus en détails sur l'optimisation des erreurs.
+Avec cet approche, on trouve que l'on peut faire 2 types d'erreur, soit une erreur de type I (\og \textit{false positive} \fg{}) ou une erreur de type II (\og \textit{false negative} \fg{}). Le tableau ci-dessous montre ce qu'elles représentent, puis la section sur les \underline{\textit{\nameref{subsec:optimTests}}} va plus en détails sur l'optimisation des erreurs.
 \end{rappel_enhanced}
 %%	voir les images que j'ai gardé pour quand je retouche à la matrice de confusion dans les GLMs pour développer et parler des métriques ! 
 \begin{center}
@@ -1052,16 +1094,6 @@ Avec cet approche, on trouve que l'on peut faire 2 types d'erreur, soit une erre
 \end{tikzpicture}
 \end{center}
 
-En bref, voici un résumé des régions et valeurs critiques selon le type de test :
-
-\begin{center}
-\begin{tabular}{| >{\columncolor{airforceblue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
-\hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}	\\\specialrule{0.1em}{0em}{0em} 
-\textbf{\textcolor{white}{Région critique}}	&	$z \leq -c$	&	$|z| \geq c$	&	$z \geq c$	\\\hline
-\textbf{\textcolor{white}{Valeur critique}}	&	$-z_{1 - \alpha}$	&	$z_{1 - \alpha/2}$	&	$z_{1 - \alpha}$	\\\hline
-\end{tabular}
-\end{center}
 
 
 \columnbreak
@@ -1109,40 +1141,91 @@ Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \begin{distributions}[Terminologie]
 \begin{description}
 	\item[$p$]	La \textbf{valeur $p$} du test.
-		\begin{itemize}
-		\item	On peut la définir comme la probabilité d'un événement tout aussi (ou plus) rare sous l'hypothèse nulle ;
-		\item	On peut la définir comme la \textbf{taille} de la région critique $\mathcal{C}$ ; c'est-à-dire, l'\textit{aire} de la région de rejet de l'hypothèse nulle $\text{H}_{0}$ alors qu'elle est vraie ;
-		\item	On peut la définir comme le \textbf{seuil de signifiance} ; c'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie ;
-		\item	Elle correspond donc également à la \textbf{probabilité d'une erreur de type I}.
-		\end{itemize}
 	\item[$\alpha$]	Dénote habituellement le \textbf{seuil de signifiance} ou la \textbf{taille} du test.
-		\begin{itemize}
-		\item	Même idée qu'avec les intervalles de confiance;
-		\item	On peut parfois aussi utiliser $\alpha$ pour dénoter la valeur de $p$ qui détermine si on rejette ou pas un test ;
-		\item	En anglais, \og \textit{threshold for significance} \fg{}.
-		\end{itemize}
 \end{description}
 \end{distributions}
 
-Formellement, on définit \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} ; {\color{amethyst}\theta} \right\}$}. \\
-C'est-à-dire :
+\begin{definitionNOHFILLsub}[La valeur $p$ du test]
+On peut définir la valeur $p$ de plusieurs façons, soit comme : 
+\begin{enumerate}
+	\item	la probabilité d'un événement tout aussi (ou plus) rare sous l'hypothèse nulle.
+	\item	la \textbf{taille} de la région critique $\mathcal{C}$.
+		\begin{itemize}
+		\item	C'est-à-dire, l'\textit{aire} de la région de rejet de l'hypothèse nulle $\text{H}_{0}$ alors qu'elle est vraie.
+		\end{itemize}
+	\item	le \textbf{seuil de signifiance}.
+	\item	la \textbf{probabilité d'une erreur de type I}.
+		\begin{itemize}
+		\item	 C'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie
+		\end{itemize}
+\end{enumerate}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Le seuil de signifiance $\alpha$ du test]
+On dénote habituellement par $\alpha$ le \textbf{seuil de signifiance}, ou la \textbf{taille}, du test. Donc, c'est la valeur que la valeur $p$ doit atteindre afin de pouvoir rejeter l'hypothèse nulle.
+
 \begin{itemize}
-	\item	on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$), 
-	\item	où la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
+	\item	C'est la même idée qu'avec les intervalles de confiance. 
+	\item	En anglais, \og \textit{threshold for significance} \fg{}.
 \end{itemize}
 
 \bigskip
 
-De façon générale, on représente la région critique pour un test bilatéral comme l'aire en rouge du graphique de la distribution normale ci-dessous : 
+En termes mathématiques, on définit \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} | {\color{amethyst}\theta} \right\}$}. \\
+
+En mots, 
+\begin{itemize}
+	\item	on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$), 
+	\item	où la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+
+\subsubsection{Valeur $p$ vs seuil $\alpha$}
+On défini ces deux termes pour le test bilatéral en fonction de la valeur \textbf{\textcolor{burntorange}{observée}} de la statistique $\textcolor{burntorange}{t}$ et de la valeur \textbf{\textcolor{amethyst}{critique}} de la statistique $\textcolor{amethyst}{c}$ : \\
+
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{align*}
+	\textcolor{amethyst}{p}
+	&=	\Pr(|T| \geq |\textcolor{burntorange}{t}| | \textrm{H}_{0} \text{ est vrai.})	
+\end{align*}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Comparaison}}	&	\textcolor{white}{\textbf{Décision}}		\\\specialrule{0.1em}{0em}{0em} 
+$\textcolor{amethyst}{p} \leq \textcolor{ao(english)}{\alpha}$	&	Rejete $\textrm{H}_{0}$	\\\hline
+$\textcolor{amethyst}{p} > \textcolor{ao(english)}{\alpha}$	&	Ne rejete pas $\textrm{H}_{0}$	\\\hline
+\end{tabular}
+\end{center}
+\end{minipage}%
+\begin{minipage}[t]{0.5\columnwidth}
+\begin{align*}
+	\textcolor{ao(english)}{\alpha}
+	&=	\Pr(|T| \geq |\textcolor{amethyst}{c}| | \textrm{H}_{0} \text{ est vrai.})	
+\end{align*}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Comparaison}}	&	\textcolor{white}{\textbf{Décision}}		\\\specialrule{0.1em}{0em}{0em} 
+$|\textcolor{burntorange}{t}| \geq \textcolor{amethyst}{c}$	&	Rejete $\textrm{H}_{0}$	\\\hline
+$|\textcolor{burntorange}{t}| < \textcolor{amethyst}{c}$	&	Ne rejete pas $\textrm{H}_{0}$	\\\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+
+\subsubsection{Résumé graphique des régions critiques}\label{subsubsec:CritRegGraph}
+On résume les régions critiques pour les 3 type de test : 
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+%uncomment if require: \path (0,563); %set diagram left start at 0, and has height of 563
 
 %Straight Lines [id:da6802183040034526] 
-\draw [line width=1.5]    (428.83,129.33) -- (428.83,134.67) ;
+\draw [line width=1.5]    (441.83,129.33) -- (441.83,134.67) ;
 %Straight Lines [id:da041814477790474536] 
-\draw [line width=1.5]    (530.83,129.33) -- (530.83,134.67) ;
+\draw [line width=1.5]    (517.83,129.33) -- (517.83,134.67) ;
 %Straight Lines [id:da41096098350194876] 
 \draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,121.67) -- (516.83,129) -- (571.83,129) ;
 %Straight Lines [id:da13848515684182172] 
@@ -1163,27 +1246,110 @@ De façon générale, on représente la région critique pour un test bilatéral
 \draw [line width=1.5]    (387,129) -- (571.83,129) ;
 %Shape: Axis 2D [id:dp7710092673870226] 
 \draw  (357.32,129) -- (601.48,129)(479.42,16.32) -- (479.42,129) (594.48,124) -- (601.48,129) -- (594.48,134) (474.42,23.32) -- (479.42,16.32) -- (484.42,23.32)  ;
+%Straight Lines [id:da10641777712403622] 
+\draw [line width=1.5]    (441.83,269.33) -- (441.83,274.67) ;
+%Straight Lines [id:da1346338272878358] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,261.67) -- (442.83,269) -- (387.83,269) ;
+%Straight Lines [id:da23612013545979393] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,251.67) -- (442.83,261.67) -- (419.17,265.67) ;
+%Straight Lines [id:da1871894830522587] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,248.67) -- (442.83,258.67) -- (431,263.67) ;
+
+%Curve Lines [id:da030211219626132158] 
+\draw [line width=1.5]    (387,269) .. controls (474.83,268.67) and (450.83,189.67) .. (479.83,189.67) .. controls (509.83,189.67) and (485.83,268.67) .. (571.83,269) ;
+%Straight Lines [id:da5276459079533653] 
+\draw [line width=1.5]    (387,269) -- (571.83,269) ;
+%Shape: Axis 2D [id:dp6710370981044727] 
+\draw  (357.32,269) -- (601.48,269)(479.42,156.32) -- (479.42,269) (594.48,264) -- (601.48,269) -- (594.48,274) (474.42,163.32) -- (479.42,156.32) -- (484.42,163.32)  ;
+%Straight Lines [id:da5483896782485129] 
+\draw [line width=1.5]    (517.83,399.33) -- (517.83,404.67) ;
+%Straight Lines [id:da4065751089506662] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,391.67) -- (516.83,399) -- (571.83,399) ;
+%Straight Lines [id:da7066605159257371] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,381.67) -- (516.83,391.67) -- (540.5,395.67) ;
+%Straight Lines [id:da18146383134988575] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,378.67) -- (516.83,388.67) -- (528.67,393.67) ;
+
+%Curve Lines [id:da2583170846225764] 
+\draw [line width=1.5]    (387,399) .. controls (474.83,398.67) and (450.83,319.67) .. (479.83,319.67) .. controls (509.83,319.67) and (485.83,398.67) .. (571.83,399) ;
+%Straight Lines [id:da2094204856422468] 
+\draw [line width=1.5]    (387,399) -- (571.83,399) ;
+%Shape: Axis 2D [id:dp5730568045080924] 
+\draw  (357.32,399) -- (601.48,399)(479.42,286.32) -- (479.42,399) (594.48,394) -- (601.48,399) -- (594.48,404) (474.42,293.32) -- (479.42,286.32) -- (484.42,293.32)  ;
+%Shape: Rectangle [id:dp864336208048724] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (181.7,151.67) -- (346.83,151.67) -- (346.83,260) -- (181.7,260) -- cycle ;
+%Shape: Rectangle [id:dp8733669339576369] 
+\draw  [fill={rgb, 255:red, 228; green, 228; blue, 228 }  ,fill opacity=1 ] (150.01,174.93) -- (346.83,174.93) -- (346.83,260) -- (150.01,260) -- cycle ;
+%Shape: Rectangle [id:dp8272992154092693] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (149.89,151.67) -- (346.72,151.67) -- (346.72,175) -- (149.89,175) -- cycle ;
+%Shape: Rectangle [id:dp12719094507999928] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (178.7,290.67) -- (343.83,290.67) -- (343.83,399) -- (178.7,399) -- cycle ;
+%Shape: Rectangle [id:dp009363175705765503] 
+\draw  [fill={rgb, 255:red, 228; green, 228; blue, 228 }  ,fill opacity=1 ] (146.82,313.93) -- (343.64,313.93) -- (343.64,399) -- (146.82,399) -- cycle ;
+%Shape: Rectangle [id:dp5666676405726738] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (146.7,290.67) -- (343.53,290.67) -- (343.53,314) -- (146.7,314) -- cycle ;
+%Shape: Rectangle [id:dp5463281456561648] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (180.7,18.67) -- (345.83,18.67) -- (345.83,127) -- (180.7,127) -- cycle ;
+%Shape: Rectangle [id:dp6519267749626716] 
+\draw  [fill={rgb, 255:red, 228; green, 228; blue, 228 }  ,fill opacity=1 ] (148.94,41.93) -- (345.77,41.93) -- (345.77,127) -- (148.94,127) -- cycle ;
+%Shape: Rectangle [id:dp5350336608524122] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (148.83,18.67) -- (345.65,18.67) -- (345.65,42) -- (148.83,42) -- cycle ;
 
 % Text Node
 \draw (397,104) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
 % Text Node
 \draw (537,104) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
 % Text Node
-\draw (524.83,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+\draw (511.83,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
 % Text Node
-\draw (414.33,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -c$};
+\draw (427.33,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -c$};
 % Text Node
 \draw (604.83,124) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z$};
 % Text Node
-\draw (481.83,29) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle f( z)$};
+\draw (481.83,28) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle f( z)$};
+% Text Node
+\draw (397,244) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha $};
+% Text Node
+\draw (427.33,272) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -c$};
+% Text Node
+\draw (604.83,264) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z$};
+% Text Node
+\draw (481.83,169) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle f( z)$};
+% Text Node
+\draw (537,374) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha $};
+% Text Node
+\draw (511.83,402) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle c$};
+% Text Node
+\draw (604.83,394) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z$};
+% Text Node
+\draw (481.83,298) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle f( z)$};
+% Text Node
+\draw (180.66,154.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {Unilatéral à la gauche};
+% Text Node
+\draw (156.77,221.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\textcolor[rgb]{0.82,0.01,0.11}{\alpha } =\Pr\left( T\leq -c\ |\ \text{H}_{0}\text{ est vrai}\right)$};
+% Text Node
+\draw (156.77,185.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$p=\Pr\left( T\leq t\ |\ \text{H}_{0}\text{ est vrai}\right)$};
+% Text Node
+\draw (183.16,293.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {Unilatéral à la droite};
+% Text Node
+\draw (156.77,361.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\textcolor[rgb]{0.82,0.01,0.11}{\alpha } =\Pr\left( T\geq c\ |\ \text{H}_{0}\text{ est vrai}\right)$};
+% Text Node
+\draw (156.77,324.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$p=\Pr\left( T\geq t\ |\ \text{H}_{0}\text{ est vrai}\right)$};
+% Text Node
+\draw (224.66,21.83) node [anchor=north west][inner sep=0.75pt]   [align=left] {Bilatéral};
+% Text Node
+\draw (155.77,88.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\textcolor[rgb]{0.82,0.01,0.11}{\alpha } =\Pr\left( |T|\geq c\ |\ \text{H}_{0}\text{ est vrai}\right)$};
+% Text Node
+\draw (155.77,52.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$p=\Pr\left( |T|\geq |t|\ |\ \text{H}_{0}\text{ est vrai}\right)$};
 \end{tikzpicture}
 \end{center}
+
 
 
 \columnbreak
 \subsection{Puissance d'un test}\label{subsec:PowerTests}
 \begin{definitionNOHFILL}[La puissance d'un test]
-La probabilité de \textit{correctement} rejeter l'hypothèse nulle.
+La probabilité de \textit{correctement} rejeter l'hypothèse nulle : \lfbox[formula]{$\Pr((X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \in \Theta_{0})$}
 %%	https://www.youtube.com/watch?v=Rsc5znwR5FA&feature=youtu.be
 
 \tcbline
@@ -1191,8 +1357,9 @@ La probabilité de \textit{correctement} rejeter l'hypothèse nulle.
 Une analyse de la puissance détermine le nombre d'observations qu'il faut afin d'avoir une probabilité élevée de correctement rejeter l'hypothèse nulle.
 \end{definitionNOHFILL}
 
+\subsubsection{Facteurs influençant la puissance}
+Plusieurs facteurs influencent la puissance d'un test. Afin de les visualiser, on teste si deux échantillons d'observations proviennent de la même distribution. 
 
-Plusieurs facteurs influencent la puissance d'un test. Lorsqu'on teste si deux échantillons d'observations proviennent de la même distribution,
 \begin{definitionNOHFILLsub}[La forme de la distribution]
 Si les deux distributions sont:
 \begin{itemize}
@@ -1371,9 +1538,10 @@ Certains tests ont une puissance plus élevée que les autres. \\
 Cela dit, le test $t$ habituel est très puissant.
 \end{definitionNOHFILLsub}
 
-\subsubsection{La fonction de puissance}
 
-La fonction de puissance est \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \right\}$} ; c'est-à-dire, la probabilité de rejeter l'hypothèse nulle $\mathrm{H}_{0}$ si la \textbf{vraie} valeur du paramètre est $\theta \in \Theta$. 
+
+\subsubsection{La fonction de puissance}
+La fonction de puissance est \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \right\}$} ; c'est-à-dire, la probabilité de rejeter l'hypothèse nulle $\mathrm{H}_{0}$ si la \textbf{vraie} valeur du paramètre est $\theta \in \Theta$. 
 \begin{itemize}
 	\item	C'est une fonction de $\theta$ ;
 	\item	Idéalement, si l'hypothèse nulle est :
@@ -1384,7 +1552,7 @@ La fonction de puissance est \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1},
 			\end{itemize}
 		\item[rejetée]	on souhaite que $\gamma(\theta)	=	1$ puisque $\theta \in \Theta_{1}$.
 			\begin{itemize}
-			\item	On dénote $\gamma(\theta_{1})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ; \theta \in \Theta_{1}\right\}	=	1$.
+			\item	On dénote $\gamma(\theta_{1})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \in \Theta_{1}\right\}	=	1$.
 			\end{itemize}
 		\end{description}
 \end{itemize}
@@ -1509,11 +1677,11 @@ La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille 
 		\item	C'est-à-dire, \lfbox[conditions]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	\alpha$}.
 		\item	Cependant, ce critère n'identifie par un sous-ensemble unique ;
 		\item	Il y a une multitude de sous-ensembles $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $\alpha$ ;
-		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}; \theta	=	\theta_{0}	\right\}	=	\alpha$.
+		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}| \theta	=	\theta_{0}	\right\}	=	\alpha$.
 		\end{itemize}
 	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$.
 		\begin{itemize}
-		\item	C'est-à-dire, \lfbox[formula]{$Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta	=	\theta_{1}	\right\}	\geq Pr\big\{(X_{1}, \dots, X_{n}) \in \mathcal{A};$} \lfbox[formula]{$\theta	=	\theta_{1}	\big\}$}.
+		\item	C'est-à-dire, \lfbox[formula]{$Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta	=	\theta_{1}	\right\}	\geq Pr\big\{(X_{1}, \dots, X_{n}) \in \mathcal{A};$} \lfbox[formula]{$\theta	=	\theta_{1}	\big\}$}.
 		\end{itemize}
 \end{enumerate}
 
@@ -1522,9 +1690,9 @@ Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathc
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test optimal selon les NDC de M.-P.	%%%%	
 %\begin{itemize}
-%	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	>	bf(\bm{x} ; \theta_{1})$} ;
-%	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	<	bf(\bm{x} ; \theta_{1})$} ;
-%	\item	Si \lfbox[conditions]{$af(\bm{x} ; \theta_{0})	=	bf(\bm{x} ; \theta_{1})$} soit $\mathrm{H}_{0}$ ou $\mathrm{H}_{1}$ peut être acceptée.
+%	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$af(\bm{x} | \theta_{0})	>	bf(\bm{x} | \theta_{1})$} ;
+%	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$af(\bm{x} | \theta_{0})	<	bf(\bm{x} | \theta_{1})$} ;
+%	\item	Si \lfbox[conditions]{$af(\bm{x} | \theta_{0})	=	bf(\bm{x} | \theta_{1})$} soit $\mathrm{H}_{0}$ ou $\mathrm{H}_{1}$ peut être acceptée.
 %\end{itemize}
 %
 %Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
@@ -1548,28 +1716,28 @@ Soit :
 	\item	Le seuil de signifiance $\alpha	=	0.125$.
 	\item	Les sous-ensembles $\mathcal{A}_{1}	=	\{x : x = 0\}$ et $\mathcal{A}_{2}	=	\{x : x = 3\}$ de $\mathcal{S}$.
 \end{itemize}
-Alors, $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.50)	=	\Pr( X \in \mathcal{A}_{2}; \theta	=	0.50)	=	0.125$ et il n'y a pas d'autres sous-ensembles de $\mathcal{S}$ avec la même taille de $0.125$.\\
+Alors, $\Pr( X \in \mathcal{A}_{1}| \theta	=	0.50)	=	\Pr( X \in \mathcal{A}_{2}| \theta	=	0.50)	=	0.125$ et il n'y a pas d'autres sous-ensembles de $\mathcal{S}$ avec la même taille de $0.125$.\\
 Il s'ensuit que soit $\mathcal{A}_{1}$ ou $\mathcal{A}_{2}$ est la région critique $\mathcal{C}$ optimale de taille $\alpha$ pour tester $\mathrm{H}_{0}$ contre $\mathrm{H}_{1}$.\\
 
-On trouve que $\Pr( X \in \mathcal{A}_{1}; \theta	=	0.75)	=	0.015625$ alors que $\Pr( X \in \mathcal{A}_{2}; \theta	=	0.75)	=	0.421875$. 
+On trouve que $\Pr( X \in \mathcal{A}_{1}| \theta	=	0.75)	=	0.015625$ alors que $\Pr( X \in \mathcal{A}_{2}| \theta	=	0.75)	=	0.421875$. 
 \begin{itemize}
 	\item	Dans le premier cas :\\
 		\setlength{\mathindent}{-1cm}
 		\begin{align*}
-		\Pr( \underbrace{X \in \mathcal{A}_{1}; \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
+		\Pr( \underbrace{X \in \mathcal{A}_{1}| \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
 		&=	0.015625		&
 		&<	&
-		\Pr( \underbrace{X \in \mathcal{A}_{1}; \theta	=	0.50}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est vraie ($\theta = 0.50$)}}})	
+		\Pr( \underbrace{X \in \mathcal{A}_{1}| \theta	=	0.50}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est vraie ($\theta = 0.50$)}}})	
 		&=	0.125	
 		\end{align*}
 		\setlength{\mathindent}{1cm}
 	\item	Dans le deuxième cas :\\
 		\setlength{\mathindent}{-1cm}
 		\begin{align*}
-		\Pr( \underbrace{X \in \mathcal{A}_{2}; \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
+		\Pr( \underbrace{X \in \mathcal{A}_{2}| \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
 		&=	0.421875		&
 		&>	&
-		\Pr( \underbrace{X \in \mathcal{A}_{2}; \theta	=	0.50}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est vraie ($\theta = 0.50$)}}})	
+		\Pr( \underbrace{X \in \mathcal{A}_{2}| \theta	=	0.50}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est vraie ($\theta = 0.50$)}}})	
 		&=	0.125	
 		\end{align*}
 		\setlength{\mathindent}{1cm}
@@ -1591,7 +1759,7 @@ On peut utiliser ce ratio comme outil pour identifier la région critique $\math
 
 \begin{definitionNOHFILL}[Théorème de Neymann-Pearson]
 %Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à 
-%$\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) ; \theta \in \Theta_{0} \right\}$.
+%$\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) | \theta \in \Theta_{0} \right\}$.
 
 Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simple}} :
 \begin{align*}
@@ -1607,7 +1775,7 @@ Soit une constante $k > 0$ et le sous-ensemble $\mathcal{C} \in \mathcal{S}$ tel
 		\begin{itemize}
 		\item	En récrivant les équations comme $\mathcal{L}(\theta_{1} ; \bm{x})	\leq\textcolor{teal}{(\geq)}\	k\mathcal{L}(\theta_{0} ; \bm{x})$ on peut l'interpréter comme qu'il doit être plus vraisemblable que $\theta	=	\theta_{0}\textcolor{teal}{(\theta_{1})}$ que $\theta_{1}\textcolor{teal}{(\theta_{0})}$ lorsque $x \in \mathcal{C}^{\textcolor{teal}{\complement}}$ et que l'on rejette \textcolor{teal}{(accepte)} $\mathrm{H}_{0}$.
 		\end{itemize}
-	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
+	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
 \end{enumerate}
 
 Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} de taille $\alpha$.
@@ -1629,7 +1797,7 @@ Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} 
 \begin{definitionNOHFILLsub}[Test non biaisé]
 Soit les mêmes hypothèses que dans la définition du théorème de Neymann-Pearson.\\
 
-Un test $\delta$ est non biaisé si sa puissance est toujours d'au moins $\alpha$ ; c'est-à-dire, \lfbox[formula]{$\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}; \theta \right\} \geq \alpha$}.\\
+Un test $\delta$ est non biaisé si sa puissance est toujours d'au moins $\alpha$ ; c'est-à-dire, \lfbox[formula]{$\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta \right\} \geq \alpha$}.\\
 
 Le meilleur test obtenu par le théorème de Neymann-Pearson est non biaisé.
 \end{definitionNOHFILLsub}
@@ -1674,8 +1842,8 @@ Alors, la région critique $\mathcal{C}$ optimale est composée des points $(x_{
 
 Alors, la région critique optimale $\mathcal{C}	=	\left\{(x_{1}, x_{2}, \dots, x_{n})	:	\frac{1}{n}\sum_{i	=	1}^{n} x_{i}	\geq	 {\color{amethyst}c}  \right\}$ où $\color{amethyst}c$ est une constante choisie telle que la taille de $\mathcal{C}$ est $\alpha$.\\
 
-Par exemple, puisque $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \mathcal{N}(0, 1 / n)$ on peut trouver $c$ avec $\Pr\left\{\bar{X}	\geq	c ; \theta	=	\theta_{0} \right\}	=	\alpha$.	\\
-Puis, on peut trouver la puissance du test quand $\mathrm{H}_{1}$ est vraie avec $\Pr\left\{\bar{X}	\geq	c ; \theta	=	\theta_{1} \right\}$.
+Par exemple, puisque $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \mathcal{N}(0, 1 / n)$ on peut trouver $c$ avec $\Pr\left\{\bar{X}	\geq	c | \theta	=	\theta_{0} \right\}	=	\alpha$.	\\
+Puis, on peut trouver la puissance du test quand $\mathrm{H}_{1}$ est vraie avec $\Pr\left\{\bar{X}	\geq	c | \theta	=	\theta_{1} \right\}$.
 \end{formula}
 
 \paragraph{Note sur les hypothèses}
