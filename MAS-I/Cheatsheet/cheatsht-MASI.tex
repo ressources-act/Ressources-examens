@@ -1595,7 +1595,69 @@ Pour $n_{1}$ et $n_{2}$ qui sont grands, le \hyperlink{TCLDef}{théorème centra
 \columnbreak
 \subsection{Tests sur la variance}
 
+\subsubsection{Rappels}
+Loi du khi carrée
+	relation loi normale
+%	statistique (équivalent TCL)
+	propriétés
+		non négative
+		asymétrique vers la droite
 
+Loi de Fisher
+	relation khi carrées
+%	statistique
+	relation inverse
+		propriétés
+			non négative
+			asymétrique vers la droite, mais pas autant (penser relation avec l'inverse)
+
+
+\subsubsection{1 échantillon}
+Pour un échantillon aléatoire de taille $n$ tiré d'une \textbf{distribution normale} de variance $\sigma^{2}$, la loi du khi carrée implique que \lfbox[formula]{$T_{n} = \frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \sim \chi_{(n - 1)}^{2}$}. Il s'ensuit que \lfbox[formula]{$\frac{(n - 1)s_{n}^{2}}{h}$}.
+
+\bigskip
+
+Les régions critiques sont :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.5cm} | >{\columncolor{beaublue}\centering}m{2cm}  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}\centering}m{2cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Région critique}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}		\tabularnewline\specialrule{0.1em}{0em}{0em} 
+$\mathcal{C}$	&	$t \leq \chi^{2}_{\alpha, n - 1}$		&	$\left\{t \leq \chi^{2}_{\alpha/2, n - 1}\right\} \bigcup \left\{t \leq \chi^{2}_{1 - \alpha/2, n - 1}\right\}$	&	$t \geq \chi^{2}_{1 - \alpha, n - 1}$		\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Note}	Puisque la distribution khi carrée est asymétrique, on ne peut pas simplifier d'avantage les régions critique avec des valeurs absolues comme avec la loi normale.
+
+\bigskip
+
+Percentiles
+probabilités cumulatives.
+
+
+
+\subsubsection{2 échantillons}
+\begin{rappel_enhanced}[Contexte]
+Pour 1 échantillon, nous sommes habituellement intéressés à la \underline{\textit{valeur}} que prend la variance $\sigma^{2}$. Dans le cas où nous désirons comparer 2 échantillons (indépendants), nous sommes plutôt intéressés au \underline{\textit{ratio des variance}} $\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}}$ et non à la différence ni les valeurs.
+\end{rappel_enhanced}
+
+Pour 2 échantillons aléatoires indépendants de tailles $n_{1}$ et $n_{2}$ qui sont normalement distribués avec variances $\sigma^{2}_{1}$ et $\sigma^{2}_{2}$, la loi de Fisher implique que \lfbox[formula]{$T_{n} = \frac{S^{2}_{1}/\sigma^{2}_{1}}{S^{2}_{2}/\sigma^{2}_{2}} \sim F_{(n_{1} - 1, n_{2} - 1)}$}. Il s'ensuit que \lfbox[formula]{$\frac{s^{2}_{1}}{s^{2}_{2}} \times \frac{1}{h}$}.
+
+\bigskip
+
+Les régions critiques sont et hypothèses alternatives sont : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.5cm} | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}		\tabularnewline\specialrule{0.1em}{0em}{0em} 
+$\textrm{H}_{0}$	&	$\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}} < h$		&	$\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}} < h$	&	$\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}} \neq h$		\tabularnewline\hline
+$\mathcal{C}$	&	$t \leq F_{1 - \alpha, n_{1} - 1, n_{2} - 1}$		&	$\left\{t \leq \left(F_{\alpha/2, n_{2} - 1, n_{1} - 1}\right)^{-1}\right\} \bigcup \left\{t \leq F_{\alpha/2, n_{1} - 1, n_{2} - 1}\right\}$	&	$t \geq F_{\alpha, n_{1} - 1, n_{2} - 1}$		\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+
+Percentiles
+probabilités de survie.
+	seule avec cette particularité
 
 
 \columnbreak
