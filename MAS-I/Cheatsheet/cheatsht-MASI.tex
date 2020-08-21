@@ -835,7 +835,7 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \end{definitionNOHFILLsub}
 
-On définit le \og \textit{pooled estimator} \fg{} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
+On définit le \hypertarget{pooledVarianceDef}{\og \textit{pooled estimator} \fg{}} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.\\
 
 
 \begin{definitionNOHFILLsub}[Intervalle de confiance pour une différence de moyennes]
@@ -1355,12 +1355,11 @@ De façon générale, la statistique observée d'un test d'hypothèse sur la moy
 
 \bigskip
 
-Pour les tests sur la moyenne, on couvre 2 scénarios : \textit{\underline{\nameref{subsubsec:MeanTests1Sample}}} et \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}}. Pour ce dernier, on distingue 2 cas : des échantillons indépendants ou des échantillons appariés (\og \textit{paired samples} \fg{}).
+Pour tous les tests, on dénote la moyenne par $\mu$ et la variance par $\sigma^{2}$ même si les échantillons ne proviennent pas de distributions normales. Également, on dénote la valeur supposée par l'hypothèse nulle comme $h$.
 
 \bigskip
 
-Pour tous les tests, on dénote la moyenne par $\mu$ et la variance par $\sigma^{2}$ même si les échantillons ne proviennent pas de distributions normales.
-
+Pour les tests sur la moyenne, on couvre 2 scénarios : \textit{\underline{\nameref{subsubsec:MeanTests1Sample}}} et \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}}. Pour ce dernier, on distingue 2 cas : des échantillons indépendants ou des échantillons appariés (\og \textit{paired samples} \fg{}).
 
 
 \subsubsection{Rappels}\label{subsubsec:MeanTestsRappels}
@@ -1414,21 +1413,188 @@ En revanche, la loi de Student s'applique \textbf{\textit{juste} si} \textcolor{
 
 
 \subsubsection{1 échantillon}\label{subsubsec:MeanTests1Sample}
+Pour un échantillon aléatoire de taille $n$,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.4cm} | >{\columncolor{beaublue}\centering}m{2cm}  | >{\columncolor{beaublue}\centering}m{1.1cm}  | >{\columncolor{beaublue}\centering}m{3cm}  | >{\columncolor{beaublue}\centering}m{3cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{variance}}	&	\textcolor{white}{\textbf{distribution de\\ l'échantillon}}	&	\textcolor{white}{\textbf{$n$ grand ?}}	&	\textcolor{white}{\textbf{valeur observée} $t$ \textbf{de la statistique} $T$}	&	\textcolor{white}{\textbf{distribution de la statistique} $T$}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+connue	&	n'importe quelle	&	oui	&	$\frac{\bar{x}_{n} - h}{\sigma/\sqrt{n}}$&	$\mathcal{N}(0, 1)$	\tabularnewline\hline
+inconnue	&	normale	&	non	&	$\frac{\bar{x}_{n} - h}{s_{n}/\sqrt{n}}$	&	$t_{n - 1}$	\tabularnewline\hline
+\end{tabular}
+\end{center}
 
+\bigskip
+
+Les valeur critiques sont : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Statistique $T$}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}		\tabularnewline\specialrule{0.1em}{0em}{0em} 
+$\frac{\bar{X}_{n} - h}{\sigma/\sqrt{n}}$	&	$-z_{1 - \alpha}$		&	$z_{1 - \alpha/2}$	&	$z_{1 - \alpha}$		\tabularnewline\hline
+$\frac{\bar{X}_{n} - h}{S_{n}/\sqrt{n}}$		&	$-t_{2\alpha, n - 1}$	&	$t_{\alpha, n - 1}$	&	$t_{2\alpha, n - 1}$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\begin{definitionNOHFILLprop}[Explication des percentile de loi normal vs de loi de Student]
+On dénote :
+\begin{description}
+	\item[$z_{q}$]	$100q^{\text{e}}$ percentile de la loi normale standard.
+	\item[$t_{2(1 - q), ddl}$]	$100q^{\text{e}}$ percentile de la loi de student avec $ddl$ degrés de liberté.
+\end{description}
+
+Ces deux percentiles correspondent à la même probabilité $q$. Ils sont notés différemment car les tables de l'examen les notent différemment :  
+\begin{itemize}
+	\item	La table de la loi \textit{normale} standard comprend les \textbf{probabilités cumulatives} (e.g. $\Pr(Z \leq z)$).
+	\item	La table de la loi de \textit{Student} comprend les \textbf{probabilités des deux queues} (e.g. $\Pr(|T| \geq t)$).
+\end{itemize}
+
+Pour visualiser la différence, les valeurs des tables que l'on obtient pour $\alpha = 0.05$ sont :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,149); %set diagram left start at 0, and has height of 149
+
+%Curve Lines [id:da6484670291350603] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (386,118.5) .. controls (473.83,118.17) and (449.83,49.17) .. (478.83,49.17) .. controls (508.83,49.17) and (484.83,118.17) .. (570.83,118.5) ;
+%Straight Lines [id:da4388402935940008] 
+\draw [line width=1.5]    (502.83,118.83) -- (502.83,124.17) ;
+%Straight Lines [id:da7932815314697563] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (503.7,106.72) -- (503.7,118.5) -- (570.83,118.5) ;
+%Straight Lines [id:da6714150352765025] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (503.7,90.65) -- (503.7,106.72) -- (532.59,113.14) ;
+%Straight Lines [id:da08082884003788271] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (503.7,85.82) -- (503.7,101.89) -- (518.14,109.93) ;
+
+%Straight Lines [id:da3432529504734514] 
+\draw [line width=1.5]    (386,118.5) -- (570.83,118.5) ;
+%Curve Lines [id:da4752245525513106] 
+\draw [line width=1.5]    (386,118.5) .. controls (473.83,118.17) and (449.83,49.17) .. (478.83,49.17) .. controls (508.83,49.17) and (484.83,118.17) .. (570.83,118.5) ;
+
+
+%Curve Lines [id:da344941573754699] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (182,119) .. controls (269.83,118.67) and (245.83,49.67) .. (274.83,49.67) .. controls (304.83,49.67) and (280.83,118.67) .. (366.83,119) ;
+%Straight Lines [id:da47259305662479667] 
+\draw [line width=1.5]    (310.83,119.33) -- (310.83,124.67) ;
+%Straight Lines [id:da4303484246231184] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (311.5,112.15) -- (311.5,119) -- (366.83,119) ;
+%Straight Lines [id:da08589176663878506] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (311.5,102.8) -- (311.5,112.15) -- (335.31,115.89) ;
+%Straight Lines [id:da707780338313531] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (311.5,100) -- (311.5,109.34) -- (323.41,114.02) ;
+
+%Straight Lines [id:da496065790542082] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (238.5,112.15) -- (238.5,119) -- (182.83,119) ;
+%Straight Lines [id:da5855803887181865] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (238.5,102.8) -- (238.5,112.15) -- (214.55,115.89) ;
+%Straight Lines [id:da075493212915277] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (238.5,100) -- (238.5,109.34) -- (226.52,114.02) ;
+
+%Curve Lines [id:da23950757985611149] 
+\draw [line width=1.5]    (182,119) .. controls (269.83,118.67) and (245.83,49.67) .. (274.83,49.67) .. controls (304.83,49.67) and (280.83,118.67) .. (366.83,119) ;
+%Straight Lines [id:da2240446588520737] 
+\draw [line width=1.5]    (182,119) -- (366.83,119) ;
+
+
+
+% Text Node
+\draw (526,95.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle 0.05$};
+% Text Node
+\draw (490.5,121.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z_{0.05}$};
+% Text Node
+\draw (466,81.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 95\%$};
+% Text Node
+\draw (193,95) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle 0.025$};
+% Text Node
+\draw (333,95) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle 0.025$};
+% Text Node
+\draw (262,82) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 95\%$};
+% Text Node
+\draw (298.83,122) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{0.05,\ df}$};
+% Text Node
+\draw (437.92,20.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {Loi normale};
+% Text Node
+\draw (225,20) node [anchor=north west][inner sep=0.75pt]   [align=left] {Loi de Student};
+\end{tikzpicture}
+\end{center}
+\end{definitionNOHFILLprop}
 
 
 
 \subsubsection{2 échantillons}\label{subsubsec:MeanTests2Samples}
+\begin{rappel_enhanced}[Contexte]
+Pour 1 échantillon, nous sommes habituellement intéressés à la \underline{\textit{valeur}} que prend la moyenne $\mu$. Dans le cas où nous désirons comparer 2 échantillons \textbf{indépendants}, nous sommes plutôt intéressés aux \underline{\textit{différences des valeurs}} $\mu_{1} - \mu_{2}$ et non les valeurs elles-mêmes.
+
+\bigskip	
+
+Donc, au lieu de s'intéresser à tester si les moyennes sont égales, $\mu_{1} = \mu_{2}$, on s'intéresse à tester si la différence entre les moyennes est nulle, $\mu_{1} - \mu_{2} = 0$. Bien que ça revient à la même chose mathématiquement, l'interprétation différente est importante. L'utilité du test devient donc de déterminer si deux échantillons proviennent de la même distribution.
+\end{rappel_enhanced}
+
+\paragraph{Note}	La section sur la \textit{\underline{\nameref{subsec:PowerTests}}} utilise ce scénario de deux échantillons. Les graphiques de la section aident à saisir l'idée de tester si deux échantillons proviennent de la même distribution.
+
+\bigskip
+
+Pour 2 échantillons aléatoires \underline{\textbf{indépendants}} de tailles $n_{1}$ et $n_{2}$, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.4cm} | >{\columncolor{beaublue}\centering}m{2cm}  | >{\columncolor{beaublue}\centering}m{1.3cm}  | >{\columncolor{beaublue}\centering}m{1.3cm}  | >{\columncolor{beaublue}\centering}m{2.2cm}  | >{\columncolor{beaublue}\centering}m{2cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{variances}}	&	\textcolor{white}{\textbf{distribution des\\ échantillons}}	&	\textcolor{white}{\textbf{autres conditions?}}	&	\textcolor{white}{\textbf{$n_{k}$ grands?}}	&	\textcolor{white}{\textbf{valeur observée} $t$ \textbf{de la statistique} $T$}	&	\textcolor{white}{\textbf{distribution de la statistique} $T$}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+connues		&	n'importe lesquelles	&	non									&	oui	&	$\frac{\bar{x}_{1} - \bar{x}_{2} - h}{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{1}}}}$&	$\mathcal{N}(0, 1)$	\tabularnewline\hline
+inconnues	&	normales				&	$\sigma_{1}^{2} = \sigma_{2}^{2}$	&	non	&	$\frac{\bar{x}_{1} - \bar{x}_{2} - h}{s_{p}\sqrt{\frac{1}{n_{1}} + \frac{1}{n_{1}}}}$	&	$t_{n_{1} + n_{2} - 2}$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+où $s_{p}$ est la valeur observée du \hyperlink{pooledVarianceDef}{« pooled estimator »} $S_{p}$ de l'écart-type.
 
 
 
-\columnbreak
+\begin{rappel_enhanced}[Contexte]
+Il peut y arriver que les 2 échantillons ne sont pas indépendants, mais plutôt \textbf{appariés}. Par exemple, les expériences pharmaceutiques ont un groupe de contrôle et un groupe expérimental et un groupe de contrôle qui sont appariés.
+\end{rappel_enhanced}
+
+
+Pour 2 échantillons aléatoires \underline{\textbf{appariés}} de taille $n_{\ast}$, où $n_{1} = n_{2} = n_{\ast}$, on définit les tests en fonction des différences $D_{i}$ des paires de $X$.
+
+\begin{definitionNOHFILLsub}[Différence $D_{i}$ de la $i^{\text{e}}$ paire d'observations de $X$]
+La différence $D_{i}$ de la $i^{\text{e}}$ paire de $X$ a une moyenne $\mu_{D}$ et une variance $\sigma^{2}_{D} = \sigma^{2}_{1} + \sigma^{2}_{2} - 2\rho\sigma_{1}\sigma_{2}$.
+\end{definitionNOHFILLsub}
+
+Donc,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.4cm} | >{\columncolor{beaublue}\centering}m{2cm}  | >{\columncolor{beaublue}\centering}m{1.1cm}  | >{\columncolor{beaublue}\centering}m{3cm}  | >{\columncolor{beaublue}\centering}m{3cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{variance}}	&	\textcolor{white}{\textbf{distribution des\\ différences}}	&	\textcolor{white}{\textbf{$n_{\ast}$ grand ?}}	&	\textcolor{white}{\textbf{valeur observée} $t$ \textbf{de la statistique} $T$}	&	\textcolor{white}{\textbf{distribution de la statistique} $T$}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+connue	&	n'importe quelle	&	oui	&	$\frac{\bar{d}_{n} - h}{\sigma_{D}/\sqrt{n_{\ast}}}$	&	$\mathcal{N}(0, 1)$	\tabularnewline\hline
+inconnue	&	normale$^{\ast}$	&	non	&	$\frac{\bar{d}_{n} - h}{s_{D}/\sqrt{n_{\ast}}}$		&	$t_{n_{\ast} - 1}$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Note}	Techniquement, le fait que les échantillons sont normalement distribués ne garanti pas que leurs différences $D_{i}$ le sera. Il faudrait, par exemple, que les échantillons suivent une distribution normale bivariée. Cependant, l'examen n'a pas considéré cette distinction jusqu'à date et donc exiger que les échantillons sont normalement distribués est un critère que l'on considère adéquat.
+
+
+
+%\columnbreak
 \subsection{Tests sur les proportions}
+Le paramètre $p$ d'une distribution Bernoulli est d'intérêt particulier car il représente la \textit{proportion} d'une population qui est considérée un « succès ». Bien que $p$ correspond à la moyenne d'une distribution Bernoulli, il y a quelques particularités qui distinguent le test sur une proportion.
+
+\bigskip
+
+La distinction principale revient à la variance, $p(1 - p)$, d'une distribution Bernoulli. Puisqu'elle est fonction du paramètre $p$ inconnu, il s'ensuit que la \underline{\textbf{variance est inconnue}}. Auparavant, les tests sur la moyenne pour lesquels la variance est inconnue ont étés restreints à des échantillons tirés d'une distribution normale afin d'utiliser la loi de Student. Cependant, puisque l'échantillon est tiré de la distribution (discrète) de Bernoulli, on ne peut pas appliquer la loi de Student.
+
+
+\subsubsection{1 échantillon}
+Pour $n$ qui est grand, le \hyperlink{TCLDef}{théorème centrale limite} implique que \lfbox[formula]{$\bar{X}_{n} \overset{D}{\rightarrow} \mathcal{N}\left(q, \frac{q(1 - q)}{n}\right)$}. Pour le cas d'une proportion, il est courant de dénoter la valeur observée de la moyenne empirique comme : \lfbox[formula]{$\bar{x}_{n} = \hat{q}$}. Il s'ensuit que \lfbox[formula]{$t = \frac{\hat{q} - h}{\sqrt{\frac{h(1 - h)}{n}}}$} où \lfbox[formula]{$T \sim \mathcal{N}(0, 1)$}.
+
+
+
+\subsubsection{2 échantillons}
+Pour $n_{1}$ et $n_{2}$ qui sont grands, le \hyperlink{TCLDef}{théorème centrale limite} implique que \lfbox[formula]{$\bar{X}_{1} - \bar{X}_{2} \overset{D}{\rightarrow} \mathcal{N}\left(q_{1} - q_{2}, \frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}\right)$}. Il s'ensuit que \lfbox[formula]{$t = \frac{\hat{q}_{1} - \hat{q}_{2} - h}{\sqrt{\frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}}}$} où \lfbox[formula]{$T \sim \mathcal{N}(0, 1)$}.
+
+\paragraph{Note}	Dans le cas où nous avons 1 échantillon, il faut juste connaître $q$ pour connaître la variance. Dans le cas où nous avons 2 échantillons, il faut connaître $q_{1}$ et $q_{2}$ individuellement alors que nous connaissons uniquement la différence $h$. C'est pourquoi l'erreur-type de la statistique diffère pour les scénarios.
 
 
 
 \columnbreak
 \subsection{Tests sur la variance}
+
 
 
 
