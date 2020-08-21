@@ -333,10 +333,10 @@ La convergence peut être manipulée. Dût à la sélection arbitraire de l'erre
 
 
 
-\subsubsection*{Détails mathématiques sur la convergence}
+\subsubsection*{Détails mathématiques sur la convergence}\label{subsubsec:ConsistencyEstimMaths}
 On reprend les résultats de la section précédente en expliquant plus en détail la mathématique sous-jacente. \textbf{\underline{Vous pouvez sauter cette section}}.
 
-\begin{definitionNOHFILL}[Convergence en probabilité]
+\begin{definitionNOHFILL}[\hypertarget{converge-prob}{Convergence en probabilité}]
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires;
@@ -367,7 +367,7 @@ La convergence en probabilité est le théorème sous-jacent à la loi faible de
 \begin{rappel}{Rappel: loi faible des grands nombres}
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires iid avec moyenne $\mu$ et variance $\sigma^{2}$ où \lfbox[conditions]{$\sigma^{2}	<	\infty$};
+	\item[$\{X_{n}\}$]	Séquence de variables aléatoires iid avec moyenne $\mu$ et variance $\sigma^{2}$ où \lfbox[conditions]{$\sigma^{2}	<	\infty$};
 	\item[$\overline{X}_{n}$]	Moyenne empirique.
 \end{description}
 \end{distributions}
@@ -388,6 +388,8 @@ Soit \lfbox[conditions]{$X_{n}	\overset{P}{\rightarrow}	X$} et \lfbox[conditions
 Avec la notation définie ci-dessus, on simplifie la définition pour dire que $\hat{\theta}_{n}$ est un estimateur \og \textit{consistent} \fg{} de $\theta$ si \lfbox[formula]{$\hat{\theta}_{n}	\overset{P}{\rightarrow}	\theta$}.
 \end{definitionNOHFILL}
 
+
+\paragraph{Note}	Voir la section \textit{\underline{\nameref{subsec:MeanTests}}} de la section sur les \textit{\underline{\nameref{sec:hyp-test}}} pour la \hyperlink{converge-dist}{convergence en distribution}.
 
 
 \columnbreak	
@@ -601,7 +603,7 @@ Soit \lfbox[formula]{$Q	=	\sumz{n}{i	=	1}\left(X_{i}	-	\mu\right)^{2}$}.\\
 Alors, \lfbox[formula]{$Q/\sigma^{2} \sim \chi^{2}_{(n)}$}.
 \end{rappel_enhanced}
 
-\begin{rappel_enhanced}[Rappel : Loi de Student]
+\begin{rappel_enhanced}[\hypertarget{studentReminder}{Rappel : Loi de Student}]
 Soit les variables aléatoires indépendantes :
 \begin{itemize}
 	\item	$Z \sim \mathcal{N}(0, 1)$.
@@ -881,8 +883,7 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 %%%
 
 \columnbreak
-\section{Tests d'hypothèses}
-\label{sec:hyp-test}
+\section{Tests d'hypothèses}\label{sec:hyp-test}
 \subsection{Hypothèses}
 \begin{rappel_enhanced}[Contexte]
 Les statistiques classiques posent que tout phénomène observable est régi par un \textit{"\textbf{processus}" sous-jacent}. On ne peut jamais savoir exactement ce qu'est ce "processus", le mieux que l'on peut faire est d'émettre des \textit{\textbf{hypothèses}} vraisemblables sur ce qu'il pourrait être. \\
@@ -1343,6 +1344,91 @@ On résume les régions critiques pour les 3 type de test :
 \draw (155.77,52.86) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$p=\Pr\left( |T|\geq |t|\ |\ \text{H}_{0}\text{ est vrai}\right)$};
 \end{tikzpicture}
 \end{center}
+
+
+
+\columnbreak
+\subsection{Tests sur la moyenne}\label{subsec:MeanTests}
+De façon générale, la statistique observée d'un test d'hypothèse sur la moyenne sera \lfbox[formula]{$t = \frac{\substack{\text{valeur estimée}} - \substack{\text{valeur supposée}}}{\substack{\text{erreur type}}}$}. Dans notre cas, l'erreur type correspond à l'écart-type de l'estimateur. Si la variance est connue, on utilise la \textit{\textbf{vraie} erreur type} qui correspond à l'écart-type $\sigma$ lui-même. Sinon, on utilise \textit{l'erreur type \textbf{estimée}} qui correspond à l'estimation non biaisé de la variance $s_{n}$.
+
+\paragraph{Note}	Voir la section \underline{\textit{\nameref{sec:SESDGLM}}} du chapitre de \underline{\textit{\nameref{chapt:modLin}}} pour l'interprétation de l'erreur type en régression.
+
+\bigskip
+
+Pour les tests sur la moyenne, on couvre 2 scénarios : \textit{\underline{\nameref{subsubsec:MeanTests1Sample}}} et \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}}. Pour ce dernier, on distingue 2 cas : des échantillons indépendants ou des échantillons appariés (\og \textit{paired samples} \fg{}).
+
+\bigskip
+
+Pour tous les tests, on dénote la moyenne par $\mu$ et la variance par $\sigma^{2}$ même si les échantillons ne proviennent pas de distributions normales.
+
+
+
+\subsubsection{Rappels}\label{subsubsec:MeanTestsRappels}
+Avant de détailler les tests, nous effectuons quelques rappels.
+
+\bigskip
+
+Premièrement, on généralise la \hyperlink{converge-prob}{convergence en probabilité} de la section \underline{\textit{\nameref{subsubsec:ConsistencyEstimMaths}}} pour présenter la \textbf{convergence en distribution}.
+
+\begin{definitionNOHFILL}[\hypertarget{converge-dist}{Convergence en distribution}]
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires indépendantes et identiquement distribuées.
+	\item[$Y$]	Variable aléatoire comprise dans $\{Y_{n}\}$ avec moyenne $\mu$ et variance $	\sigma^{2}$.
+	\item[$S_{n}$]	La somme des $n$ variables aléatoires, $S_{n} = Y_{1} + Y_{2} + \cdot + Y_{n}$.
+\end{description}
+\end{distributions}
+
+On dit que $S_{n}$ converge en distribution vers une distribution normale si
+\begin{align*}
+	\limz{n}{\infty} \Pr\left(\frac{S_{n}	-	\text{E}[S_{n}]}{\sqrt{\text{Var}(S_{n})}}	\leq	z\right)	
+	&=	\Phi(z)
+\end{align*}
+
+On dénote la convergence en distribution par: \lfbox[formula]{$S_{n}	\overset{D}{\rightarrow}	\mathcal{N}(\text{E}[S_{n}], \text{Var}(S_{n}))$}.
+\end{definitionNOHFILL}
+
+La convergence en distribution est le théorème sous-jacent au théorème centrale limite (vue en ACT-1002: analyse probabiliste des risques actuariels).
+
+\begin{rappel}{\hypertarget{TCLDef}{Rappel: théorème centrale limite}}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{X_{n}\}$]	Séquence de variables aléatoires indépendantes et identiquement distribuées.
+	\item[$\overline{X}_{n}$]	La moyenne empirique des $n$ variables aléatoires, $\overline{X}_{n} = \frac{S_{n}}{n}$.
+\end{description}
+\end{distributions}
+On pose que \lfbox[formula]{$\overline{X}_{n}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu, \frac{\sigma^{2}}{n}\right)$}.
+\end{rappel}
+
+Le théorème s'applique directement pour \textit{\underline{\nameref{subsubsec:MeanTests1Sample}}}. Pour \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}}, s'ils sont indépendants, on généralise pour trouver que la différence des moyennes empiriques \lfbox[formula]{$\overline{X}_{1} - \overline{X}_{2}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu_{1} - \mu_{2}, \frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}}\right)$}. S'ils sont appariés, on applique le théorème centrale limite à la différences des observations pour trouver que \lfbox[formula]{$\overline{D}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu_{d}, \sigma_{D}^{2}\right)$}.
+
+\bigskip
+
+Lorsque la variance de l'échantillon aléatoire est connue, on applique le théorème centrale limite. Dans le cas où la variance est inconnue, nous avons recours à \textit{\underline{\hyperlink{studentReminder}{la loi de Student}}}. 
+
+\bigskip
+
+Le théorème centrale limite a l'avantage de s'appliquer \textbf{\textit{peu importe}} \textcolor{teal}{la distribution de l'échantillon aléatoire} au dépend de s'appliquer \underline{\textit{juste lorsque $\textcolor{amethyst}{n}$ est grand}}. \\
+En revanche, la loi de Student s'applique \textbf{\textit{juste} si} \textcolor{teal}{la distribution de l'échantillon aléatoire} \textbf{\textit{est normale}} mais ne \underline{\textit{nécessite pas que $\textcolor{amethyst}{n}$ soit grand}}. 
+
+
+
+\subsubsection{1 échantillon}\label{subsubsec:MeanTests1Sample}
+
+
+
+
+\subsubsection{2 échantillons}\label{subsubsec:MeanTests2Samples}
+
+
+
+\columnbreak
+\subsection{Tests sur les proportions}
+
+
+
+\columnbreak
+\subsection{Tests sur la variance}
 
 
 
@@ -3787,7 +3873,7 @@ TP
 \end{center}
 
 
-\section{Erreur}
+\section{Erreur}\label{sec:SESDGLM}
 
 \begin{description}
 	\item[Écart-type]	Mesure la variation \underline{entre les observations} d'\textbf{un} ensemble de données.
@@ -8802,7 +8888,7 @@ Alors \lfbox[formula]{$S(t)	=	\sum_{i = 1}^{N(t)} X_{i}$} est un \textbf{process
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLprop}[Approximation de la distribution]
-Puisque la distribution de $S(t)$ est difficile à déterminer, elle peut être approximée avec le \textbf{théorème limite centrale} où \lfbox[formula]{$S(t) \approx \mathcal{N}\left(\text{E}[S(t)], \text{Var}(S(t))\right)$}.\\
+Puisque la distribution de $S(t)$ est difficile à déterminer, elle peut être approximée avec le \hyperlink{TCLDef}{théorème centrale limite} où \lfbox[formula]{$S(t) \approx \mathcal{N}\left(\text{E}[S(t)], \text{Var}(S(t))\right)$}.\\
 
 Il s'ensuit que :
 \begin{align*}
@@ -9870,7 +9956,4 @@ On défini la probabilité que la population disparaisse $\pi_{0}$ si $X_{0} = 1
 
 
 \end{multicols*}
-
-
-
 \end{document}
