@@ -1993,7 +1993,6 @@ Par exemple, si on rejette l'hypothèse nulle alors on pourrait tracer la foncti
 		\item	$\beta(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} ;  \theta \in \Theta_{1}\right\}	=	1 - \gamma(\theta_{1})$.
 		\end{itemize}
 \end{description}
-
 \end{distributions}
 Pour mettre en contexte cette notation, revoici le tableau des types d'erreurs pour un test $\delta$ :
 \begin{center}
@@ -2069,7 +2068,7 @@ Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilit�
 	\item	Trouve parmi tous les sous-ensembles de taille $k$ celui qui minimise l'erreur de type II.
 \end{enumerate}
 
-\begin{definitionNOHFILLprop}[Tests optimaux]
+\begin{definitionNOHFILL}[Tests optimaux]
 %Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser la fonction \lfbox[formula]{$a\alpha(\delta) + b\beta(\delta)$} des \lfbox[conditions]{constantes $a, b > 0$}.\\
 
 %\tcbline
@@ -2086,21 +2085,16 @@ Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blu
 \bigskip
 
 La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille $\alpha$ du test $\delta^{\ast}$ est la suivante :
-\begin{enumerate}
-	\item	On trouve une région critique (alias, un sous-ensemble de $\mathcal{S}$) $\mathcal{C}$ tel que la probabilité $\alpha(\delta^{\ast})$ d'une erreur de type I est de $\alpha$.
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	On trouve une région critique (alias, un sous-ensemble de $\mathcal{S}$) $\mathcal{C}$ tel que la probabilité $\alpha(\delta^{\ast})$ d'une erreur de type I est de $\alpha$ : \lfbox[formula]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	\alpha$}.
 		\begin{itemize}
-		\item	C'est-à-dire, \lfbox[conditions]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	\alpha$}.
 		\item	Cependant, ce critère n'identifie par un sous-ensemble unique ;
-		\item	Il y a une multitude de sous-ensembles $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle) est aussi $\alpha$ ;
-		\item	C'est-à-dire, $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}| \theta	=	\theta_{0}	\right\}	=	\alpha$.
+		\item	Il y a une multitude de sous-ensembles $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle), $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}| \theta	=	\theta_{0}	\right\}	=	\alpha$, est aussi $\alpha$.
 		\end{itemize}
-	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$.
-		\begin{itemize}
-		\item	C'est-à-dire, \lfbox[formula]{$Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta	=	\theta_{1}	\right\}	\geq Pr\big\{(X_{1}, \dots, X_{n}) \in \mathcal{A};$} \lfbox[formula]{$\theta	=	\theta_{1}	\big\}$}.
-		\end{itemize}
+	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$ : \lfbox[formula]{$Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta = \theta_{1} \right\} \geq Pr\big\{(X_{1}, \dots, X_{n}) \in \mathcal{A} | \theta = \theta_{1}	\big\}$}.
 \end{enumerate}
 
-Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathcal{C}$ de taille $\alpha$ \textbf{optimale} pour tester les hypothèses simples.
+Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathcal{C}$ de taille $\alpha$ \textbf{optimale} pour tester les hypothèses simples. Le test qui y correspond est le \underline{\textbf{test uniformément le plus puissant}}.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test optimal selon les NDC de M.-P.	%%%%	
@@ -2112,7 +2106,7 @@ Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathc
 %
 %Pour tout autre test $\delta$, \lfbox[formula]{$a\alpha(\delta^{*}) + b\beta(\delta^{*})	\leq	a\alpha(\delta) + b\beta(\delta)$}.
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
 
 En bref, on pose fixe à un seuil $\alpha$ la fonction de puissance posant que le vrai paramètre $\theta	=	\theta_{0}$ puis on trouve la région critique qui maximise la puissance posant que le vrai paramètre $\theta	=	\theta_{1}$.
 
@@ -2175,6 +2169,7 @@ On peut utiliser ce ratio comme outil pour identifier la région critique $\math
 \columnbreak
 \subsubsection{Cas d'hypothèses simples}
 \begin{definitionNOHFILL}[Théorème de Neymann-Pearson]
+Le théorème de Neymann-Pearson permet de trouver le test le plus puissant.
 %Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à 
 %$\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) | \theta \in \Theta_{0} \right\}$.
 
