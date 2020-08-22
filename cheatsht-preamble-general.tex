@@ -12,8 +12,9 @@
 %% -----------------------------
 %% Encoding packages
 %% -----------------------------
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+%%	voir https://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc pour une explication de ces deux paquetages
+\usepackage[T1]{fontenc} % used for output of special characters
+\usepackage[utf8]{inputenc} % used for user input of special characters (e.g. «»)
 \usepackage{babel}
 \usepackage{lmodern}
 \usepackage[colorinlistoftodos]{todonotes}
@@ -67,6 +68,7 @@
 %% -----------------------------
 \usepackage[fleqn]{amsmath}
 \usepackage{amsthm,amssymb,latexsym,amsfonts}
+\usepackage{textcomp} %% j'avais un avertissement, voir https://latex.org/forum/viewtopic.php?f=4&t=3364#p13124 pour pourquoi j'import ce paquetage
 \usepackage{gensymb}
 \usepackage{empheq}
 \usepackage{numprint}
@@ -200,7 +202,7 @@
 %% -----------------------------
 %% tcolorbox configuration
 %% -----------------------------
-\usepackage[most]{tcolorbox}
+\usepackage[many]{tcolorbox}
 \tcbuselibrary{xparse}
 \tcbuselibrary{breakable}
 %%%	Explanation of various arugments : 
