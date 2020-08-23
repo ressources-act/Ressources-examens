@@ -2207,7 +2207,7 @@ Cet exemple mène au prochain théorème de Neyman-Pearson qui est une méthode 
 
 
 \columnbreak
-\subsubsection{Identifier le test le plus puissant}
+\subsubsection{Test le plus puissant}
 \begin{definitionNOHFILL}[\hypertarget{NeyPearThe}{Théorème de Neyman-Pearson}]
 Le théorème de Neyman-Pearson permet de trouver le test le plus puissant.
 %Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à 
@@ -2355,7 +2355,7 @@ $\Lambda$	&	0.042	&	0.208	&	0.5	&	1.72	&	2	\\\hline
 
 
 \columnbreak
-\subsubsection{Identifier le test le plus puissance avec des hypothèses composées}
+\subsubsection{Test uniformément le plus puissant}
 \hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}
 
 \bigskip
@@ -2392,19 +2392,19 @@ La région uniformément la plus puissante n'existe pas toujours, mais dans le c
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test UMP selon les NDC de M.-P.	%%%%	
-%\begin{definitionNOHFILL}[Test uniformément le plus puissant]
-%Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ du test d'une hypothèse simple $\mathrm{H}_{0}$ contre l'hypothèse composée $\mathrm{H}_{1}$ si :
-%
-%\begin{enumerate}
-%	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
-%	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
-%\end{enumerate}
-%Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
-%
-%\begin{itemize}
-%	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{}.
-%\end{itemize}
-%\end{definitionNOHFILL}
+\begin{definitionNOHFILL}[Test uniformément le plus puissant]
+Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ du test d'une hypothèse simple $\mathrm{H}_{0}$ contre l'hypothèse composée $\mathrm{H}_{1}$ si :
+
+\begin{enumerate}
+	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
+	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
+\end{enumerate}
+Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+
+\begin{itemize}
+	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{}.
+\end{itemize}
+\end{definitionNOHFILL}
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
 %%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
@@ -2425,17 +2425,17 @@ La région uniformément la plus puissante n'existe pas toujours, mais dans le c
 %		mentionner que unilat peut être "dangereux"
 %%%	La valeur p
 %	
-%%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
-%	Tests échantillons normaux
-%		Test T
-%			Unilatéral (test, taille, puissance, seuil observé, IC)
-%			Bilatéral (test, taille, puissance, seuil observé, IC)\\
-%		Test sur la variance
-%			3 différents problèmes (<=U<, >=U>, =U=/=)
-%	Tests grands échantillons
-%		Test Z (normal)
-%			3 différents problèmes (<=U<, >=U>, =U=/=)
-%			(tests, tailles, puissances, seuils observé, IC)
+%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
+%%%	Tests échantillons normaux
+%%%		Test T
+%%%			Unilatéral (test, taille, puissance, seuil observé, IC)
+%%%			Bilatéral (test, taille, puissance, seuil observé, IC)\\
+%%%		Test sur la variance
+%%%			3 différents problèmes (<=U<, >=U>, =U=/=)
+%%%	Tests grands échantillons
+%%%		Test Z (normal)
+%%%			3 différents problèmes (<=U<, >=U>, =U=/=)
+%%%			(tests, tailles, puissances, seuils observé, IC)
 %	Test du Rapport de Vraisemblance
 %		Statistique, test
 %	Test d'adéquation
@@ -2452,10 +2452,10 @@ La région uniformément la plus puissante n'existe pas toujours, mais dans le c
 %%%	Théorème de factorisation de Fisher-Neyman
 %%%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
 %%%	Théorème de factorisation de Fisher-Neyman (cas de plus d'un paramètre)
-%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
-%	MVUE
-%		Élaboration sur le MVUE
-%		Comment le construire
+%%%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
+%%%	MVUE
+%%%		Élaboration sur le MVUE
+%%%		Comment le construire
 
 %%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
 %		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
