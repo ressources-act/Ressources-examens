@@ -968,7 +968,8 @@ Il s'ensuit que nous sommes biaisés vers le statu quo---l'hypothèse nulle $\ma
 	\end{itemize}
 \item[Hypothèse composite]	Spécifie \textbf{partiellement} une distribution de probabilité.
 	\begin{itemize}
-	\item	Par exemple, $\mathcal{H}_{1}	:	q \neq 0.50$.---on ne connaît pas la valeur exacte du paramètre $q$, il pourrait être n'importe quel chiffre sauf $0.50$.
+	\item	Par exemple, $\mathcal{H}_{1}	:	q \neq 0.50$---on ne connaît pas la valeur exacte du paramètre $q$, il pourrait être n'importe quel chiffre sauf $0.50$.
+	\item	Par exemple, pour une distribution normale de moyenne $\mu$ et variance \underline{inconnue} $\sigma^{2}$, $\mathcal{H}_{0}	:	\mu = 0.50$---on ne connaît pas la variance et donc la distribution n'est pas \textit{\underline{entièrement}} spécifiée.
 	\end{itemize}
 \end{description}
 \end{distributions}
@@ -1055,7 +1056,7 @@ En bref, voici un résumé des régions et valeurs critiques selon le type de te
 
 
 \columnbreak
-\subsubsection{Erreurs de test}
+\subsubsection{Erreurs de test}\label{subsubsec:TestErrors}
 \begin{rappel_enhanced}[Contexte]
 Bien que nous tentons de prendre une décision informée sur quel test est le vrai, on ne peut jamais être certain que l'hypothèse sélectionnée est la bonne. Cependant, on peut évaluer l'impact d'une mauvaise décision selon que l'hypothèse nulle $\mathrm{H}_{0}$ soit réellement la vraie hypothèse ou pas.
 
@@ -1064,6 +1065,8 @@ Bien que nous tentons de prendre une décision informée sur quel test est le vr
 Avec cet approche, on trouve que l'on peut faire 2 types d'erreur, soit une erreur de type I (\og \textit{false positive} \fg{}) ou une erreur de type II (\og \textit{false negative} \fg{}). Le tableau ci-dessous montre ce qu'elles représentent, puis la section sur les \underline{\textit{\nameref{subsec:optimTests}}} va plus en détails sur l'optimisation des erreurs.
 \end{rappel_enhanced}
 %%	voir les images que j'ai gardé pour quand je retouche à la matrice de confusion dans les GLMs pour développer et parler des métriques ! 
+
+
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -1756,7 +1759,7 @@ La table de la loi Fisher est la \underline{seule} qui comprend des \textbf{prob
 \columnbreak
 \subsection{Puissance d'un test}\label{subsec:PowerTests}
 \begin{definitionNOHFILL}[La puissance d'un test]
-La probabilité de \textit{correctement} rejeter l'hypothèse nulle : \lfbox[formula]{$\Pr((X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \in \Theta_{0})$}.
+La probabilité de \textit{correctement} rejeter l'hypothèse nulle : \lfbox[formula]{$\Pr((X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \in \Theta_{1})$}.
 %%	https://www.youtube.com/watch?v=Rsc5znwR5FA&feature=youtu.be
 
 \tcbline
@@ -1950,51 +1953,57 @@ Cela dit, le test $t$ habituel est très puissant.
 
 
 \subsubsection{La fonction de puissance}
+\begin{rappel_enhanced}[Contexte]
+La puissance est utile mais limitée à ce qu'il n'y ai qu'une seule hypothèse alternative. Il s'avère donc utile de définir la \underline{fonction de puissance} qui permet de poser quelle hypothèse est la vraie.
+
+\bigskip
+
+La fonction de puissance permet donc d'analyser les valeurs possibles du paramètre. Par exemple, on pourrait tracer la fonction de puissance pour toutes les valeurs possibles de l'ensemble $\Theta_{1}$.
+\end{rappel_enhanced}
+
 \begin{definitionNOHFILL}[Fonction de puissance]
 La fonction de puissance correspond à la probabilité de rejeter l'hypothèse nulle $\mathrm{H}_{0}$ si la \textbf{vraie} valeur du paramètre est $\theta \in \Theta$ : \lfbox[formula]{$\gamma(\theta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \right\}$}. 
 
 \bigskip
 
-Ceci généralise la puissance en posant que la \textit{vraie} hypothèse \underline{peut} être l'alternative et donc, la fonction de puissance est une fonction de $\theta$. 
+Ceci généralise la puissance en posant que la \textit{vraie} hypothèse \underline{peut} être la nulle ou tout autre hypothèse alternative s'il y en a une plusieurs. Bref, la fonction de puissance est une fonction de $\theta$. 
 
 \bigskip
 
-Idéalement, si l'hypothèse nulle est :
+Idéalement, avec 2 hypothèses, si l'hypothèse nulle est 
 \begin{description}
-	\item[acceptée]	on souhaite que $\gamma(\theta)	=	0$ puisque $\theta \in \Theta_{0}$.
-		\begin{itemize}
-		\item	On dénote $\gamma(\theta_{0})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} |  \theta \in \Theta_{0}\right\}	=	0$.
-		\end{itemize}
-	\item[rejetée]	on souhaite que $\gamma(\theta)	=	1$ puisque $\theta \in \Theta_{1}$.
-		\begin{itemize}
-		\item	On dénote $\gamma(\theta_{1})	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta \in \Theta_{1}\right\}	=	1$.
-		\end{itemize}
+	\item[acceptée]	on souhaite que $\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} |  \theta \in \Theta_{0}\right\} = \gamma(\theta_{0}) = 0$.
+	\item[rejetée]	on souhaite que $\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} |  \theta \in \Theta_{1}\right\} = \gamma(\theta_{1}) = 1$.
 \end{description}
 \end{definitionNOHFILL}
 
-Par exemple, si on rejette l'hypothèse nulle alors on pourrait tracer la fonction de puissance pour toutes les valeurs possibles de l'ensemble $\Theta_{1}$.
-
+\paragraph{Note}	La puissance correspond à $\gamma(\theta_{1})$.
 
 %%	
 %	\lfbox[formula]{$n \geq \left(\frac{z}{k - \mu_{1}}\right)^{2}\sigma^{2}$}.
 
 
 \columnbreak
-\subsection{Tests optimaux}\label{subsec:optimTests}
+\subsection{Tests optimaux (les plus puissants)}\label{subsec:optimTests}
+\subsubsection{Introduction}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\delta$]	(Procédure de) test ;
-	\item[$\alpha(\delta)$]	Probabilité d'une erreur de type I pour un test $\delta$ ;
-		\begin{itemize}
-		\item	$\alpha(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta \in \Theta_{0}\right\}	=	\gamma(\theta_{0})$.
-		\end{itemize}
-	\item[$\beta(\delta)$]	Probabilité d'une erreur de type II pour un test $\delta$ ;
-		\begin{itemize}
-		\item	$\beta(\delta)	=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} ;  \theta \in \Theta_{1}\right\}	=	1 - \gamma(\theta_{1})$.
-		\end{itemize}
+	\item[$\alpha(\delta)$]	Probabilité d'une erreur de type I, c'est-à-dire de incorrectement rejeter l'hypothèse nulle, pour un test $\delta$.
+		\begin{align*}
+		\alpha(\delta)	
+		&=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} |  \theta \in \Theta_{0}\right\}	
+		=	\gamma(\theta_{0})
+		\end{align*}
+	\item[$\beta(\delta)$]	Probabilité d'une erreur de type II, c'est-à-dire de incorrectement accepter l'hypothèse nulle, pour un test $\delta$.
+		\begin{align*}
+		\beta(\delta)	
+		&=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} |  \theta \in \Theta_{1}\right\}	
+		=	1 - \gamma(\theta_{1})
+		\end{align*}
 \end{description}
 \end{distributions}
-Pour mettre en contexte cette notation, revoici le tableau des types d'erreurs pour un test $\delta$ :
+Pour mettre en contexte cette notation, voici le tableau des types d'erreurs pour un test $\delta$ repris de celui de la section des \textit{\underline{\nameref{subsubsec:TestErrors}}} :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
@@ -2050,51 +2059,65 @@ Pour mettre en contexte cette notation, revoici le tableau des types d'erreurs p
 \end{tikzpicture}
 \end{center}
 
-\begin{itemize}
-	\item	\textit{En théorie}, on minimise la probabilité d'une erreur de type I \textbf{et} de II ; 
-	\item	\textit{En réalité}, il y a un compromis et on ne pourra pas avoir des très petites probabilités pour les deux ;
-	\item	Le contexte va déterminer ce qu'on souhaite minimiser le plus ;
-		\begin{itemize}
-		\item	Par exemple, soit l'hypothèse nulle que quelqu'un n'a pas le cancer ;
-		\item	Il est plus grave de dire à quelqu'un qu'il n'a pas le cancer alors qu'il l'a (erreur de type II) que de dire qu'il a le cancer alors qu'il ne l'a pas (erreur de type I) ;
-		\item	Dans ce contexte, on souhaiterait minimiser l'erreur de type II $\beta(\delta)$ plus que celle de type I $\alpha(\delta)$.
-		\end{itemize}
-%	\item	Cela dit, on peut tenter de minimiser une \textit{fonction} des deux erreurs.
-\end{itemize}
+Bien qu'\textit{en théorie} on minimise la probabilité d'une erreur de type I \textbf{et} de II, \textit{en pratique} il y a un compromis entre les deux. On ne peut pas minimiser les deux erreurs. Selon le contexte, on détermine laquelle que l'on souhaite minimiser le plus.
 
-Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on :
-\begin{enumerate}
-	\item	Fixe l'erreur de type I à un seuil, alias une taille de région critique, $k$.
-	\item	Trouve parmi tous les sous-ensembles de taille $k$ celui qui minimise l'erreur de type II.
-\end{enumerate}
-
-\begin{definitionNOHFILL}[Tests optimaux]
-%Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser la fonction \lfbox[formula]{$a\alpha(\delta) + b\beta(\delta)$} des \lfbox[conditions]{constantes $a, b > 0$}.\\
-
-%\tcbline
-
-Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simples}} :
-\begin{align*}
-	\mathrm{H}_{0}	&:	\theta	=	\theta_{0}	\\
-	\mathrm{H}_{1}	&:	\theta	=	\theta_{1}
-\end{align*}
-\begin{itemize}
-	\item	Par exemple, on pourrait avoir une distribution Bernoulli et poser $\mathrm{H}_{0}	:	p	=	0.4$ v.s. $\mathrm{H}_{1}	:	p	=	0.6$.
-\end{itemize}
+\bigskip
+Par exemple, soit l'hypothèse nulle que quelqu'un n'a pas le cancer. Il est plus \textit{grave} de dire à quelqu'un réellement atteint du cancer qu'il n'a pas le cancer (erreur de type II) que de dire à quelqu'un qui n'est pas réellement atteint du cancer qu'il a le cancer (erreur de type I). Dans ce contexte, on souhaiterait minimiser l'erreur de type II $\beta(\delta)$ plus que l'erreur de type I $\alpha(\delta)$.
+%	Cela dit, on peut tenter de minimiser une \textit{fonction} des deux erreurs.
 
 \bigskip
 
-La procédure pour trouver la région critique $\mathcal{C}$ optimale de taille $\alpha$ du test $\delta^{\ast}$ est la suivante :
+Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on :
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
-	\item	On trouve une région critique (alias, un sous-ensemble de $\mathcal{S}$) $\mathcal{C}$ tel que la probabilité $\alpha(\delta^{\ast})$ d'une erreur de type I est de $\alpha$ : \lfbox[formula]{$\alpha(\delta^{\ast})	=	Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} ;  \theta	=	\theta_{0}\right\}	=	\alpha$}.
-		\begin{itemize}
-		\item	Cependant, ce critère n'identifie par un sous-ensemble unique ;
-		\item	Il y a une multitude de sous-ensembles $\mathcal{A}$ de $\mathcal{S}$ dont la probabilité que l'échantillon aléatoire y soit contenu (sous l'hypothèse nulle), $Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{A}| \theta	=	\theta_{0}	\right\}	=	\alpha$, est aussi $\alpha$.
-		\end{itemize}
-	\item	On pose que la probabilité que l'échantillon aléatoire soit dans la région critique $\mathcal{C}$ (sous l'hypothèse alternative) est supérieure à la probabilité que l'échantillon aléatoire soit contenu dans tout autre sous-ensemble $\mathcal{A}$ : \lfbox[formula]{$Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta = \theta_{1} \right\} \geq Pr\big\{(X_{1}, \dots, X_{n}) \in \mathcal{A} | \theta = \theta_{1}	\big\}$}.
+	\item	Fixe l'erreur de type I à un seuil, alias une taille de région critique, $\alpha$.
+	\item	Trouve, parmi tous les régions (sous-ensembles) de taille $\alpha$, la région de valeurs qui minimise l'erreur de type II.
 \end{enumerate}
 
-Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathcal{C}$ de taille $\alpha$ \textbf{optimale} pour tester les hypothèses simples. Le test qui y correspond est le \underline{\textbf{test uniformément le plus puissant}}.
+
+\begin{definitionNOHFILL}[Tests optimaux, alias tests les plus puissants]
+%Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser la fonction \lfbox[formula]{$a\alpha(\delta) + b\beta(\delta)$} des \lfbox[conditions]{constantes $a, b > 0$}.\\
+
+%\tcbline
+Le test le plus puissant est le test, parmi tous les tests dont la taille de la région critique est de $\alpha$ et que les hypothèses sont simples, qui a la \underline{\textit{meilleur région critique}}. Le test qui a la \underline{\textit{meilleur région critique}} est le test qui a la \underline{\textbf{plus grande puissance}}.
+
+\bigskip
+
+Pour trouver ce test optimal dénoté $\delta^{*}$, on débute par poser deux conditions : 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Les hypothèses doivent êtres \hyperlink{hyp-simple}{\color{blue!80!white}\underline{simples}} :
+		\begin{align*}
+		\mathrm{H}_{0}	&:	\theta	=	\theta_{0}	\\
+		\mathrm{H}_{1}	&:	\theta	=	\theta_{1}
+		\end{align*}
+	\item	La région, alias le sous-ensembles de $\mathcal{S}$, doit être de taille $\alpha$. En autres mots, la probabilité de incorrectement rejeter l'hypothèse nulle (erreur de type I), $\alpha(\delta^{\ast})$, est de $\alpha$ :
+		\begin{align*}
+		\alpha(\delta^{\ast})	
+		&=	\Pr\left((X_{1}, \dots, X_{n}) \in \mathcal{C} | \theta = \theta_{0}\right)	
+		=	\alpha
+		\end{align*}
+\end{enumerate}
+
+Avec ces deux conditions, on identifie toutes les régions, dénotées $\mathcal{A}$, de taille $\alpha$ qui pourraient être \textit{\textbf{la}} région critique $\mathcal{C}$. 
+
+\bigskip
+
+Puis, pour trouver la région critique \textit{\underline{unique}}, on pose que la probabilité que \textcolor{amethyst}{l'échantillon aléatoire soit contenu dans \textbf{\textit{la}} région critique $\mathcal{C}$}, \textcolor{teal}{sachant que l'hypothèse alternative est vraie}, est supérieure à la probabilité que \textcolor{burntorange}{l'échantillon aléatoire soit contenu dans \underline{\textit{tout autre sous-ensemble}} $\mathcal{A}$} :
+
+\begin{align*}
+	Pr\left(\textcolor{amethyst}{(X_{1}, \dots, X_{n}) \in \mathcal{C}} | \textcolor{teal}{\theta = \theta_{1}} \right) 
+	&\geq	
+	Pr\big(\textcolor{burntorange}{(X_{1}, \dots, X_{n}) \in \mathcal{A}} | \textcolor{teal}{\theta = \theta_{1}}	\big)
+\end{align*}
+
+Bref, on prend la région critique qui a la plus grande puissance.
+
+%\begin{itemize}
+%	\item	Par exemple, on pourrait avoir une distribution Bernoulli et poser $\mathrm{H}_{0}	:	p	=	0.4$ v.s. $\mathrm{H}_{1}	:	p	=	0.6$.
+%\end{itemize}
+
+\bigskip
+
+Avec ces critères, on trouve \textit{\textbf{la}} région critique $\mathcal{C}$ de taille $\alpha$ \textbf{optimale} pour tester les hypothèses simples. Le test qui y correspond est le \underline{\textbf{test le plus puissant}}.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test optimal selon les NDC de M.-P.	%%%%	
@@ -2108,31 +2131,51 @@ Avec ces deux critères, on trouve \textit{\textbf{la}} région critique $\mathc
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 \end{definitionNOHFILL}
 
-En bref, on pose fixe à un seuil $\alpha$ la fonction de puissance posant que le vrai paramètre $\theta	=	\theta_{0}$ puis on trouve la région critique qui maximise la puissance posant que le vrai paramètre $\theta	=	\theta_{1}$.
-
-\begin{formula}{Exemple avec une distribution binomiale}
-Soit :
-\begin{itemize}
-	\item	La variable aléatoire $X \sim Binom(n = 3, p = \theta)$.
-		\begin{itemize}
-		\item	Alors, $\mathcal{S}	=	\{x : x	=	0, 1, 2, 3\}$.
-		\end{itemize}
-	\item	Les hypothèses : \\
-		\begin{align*}
-		\mathrm{H}_{0}	&:	\theta	=	0.50	\\
-		\mathrm{H}_{1}	&:	\theta	=	0.75
-		\end{align*}
-	\item	Le seuil de signifiance $\alpha	=	0.125$.
-	\item	Les sous-ensembles $\mathcal{A}_{1}	=	\{x : x = 0\}$ et $\mathcal{A}_{2}	=	\{x : x = 3\}$ de $\mathcal{S}$.
-\end{itemize}
-Alors, $\Pr( X \in \mathcal{A}_{1}| \theta	=	0.50)	=	\Pr( X \in \mathcal{A}_{2}| \theta	=	0.50)	=	0.125$ et il n'y a pas d'autres sous-ensembles de $\mathcal{S}$ avec la même taille de $0.125$.\\
-Il s'ensuit que soit $\mathcal{A}_{1}$ ou $\mathcal{A}_{2}$ est la région critique $\mathcal{C}$ optimale de taille $\alpha$ pour tester $\mathrm{H}_{0}$ contre $\mathrm{H}_{1}$.
+En bref, on pose la fonction de puissance en posant que l'hypothèse nulle est vraie fixe à un seuil $\alpha$, puis on trouve la région critique qui maximise la fonction de puissance (qui pose que l'hypothèse alternative est vraie).
 
 \bigskip
 
-On trouve que $\Pr( X \in \mathcal{A}_{1}| \theta	=	0.75)	=	0.015625$ alors que $\Pr( X \in \mathcal{A}_{2}| \theta	=	0.75)	=	0.421875$. 
+\begin{formula}{Exemple avec une distribution binomiale}
+Pour la variable aléatoire $X \sim Binom(n = 3, p = \theta)$, on fixe les hypothèses suivantes :
+\begin{align*}
+	\mathrm{H}_{0}	&:	\theta	=	0.50	\\
+	\mathrm{H}_{1}	&:	\theta	=	0.75
+\end{align*}
+
+\bigskip
+
+On souhaite identifier le test le plus puissant de taille $\alpha = 0.125$. 
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	La première étape est d'identifier les régions de valeurs pour lesquels la variable aléatoire a une probabilité de $0.125$ d'y être contenue. 
+		\begin{enumerate}
+		\item	On fait un tableau des valeurs sous les deux hypothèses : 
+		\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{FMP}}	&	\textcolor{white}{$x = 0$}	&	\textcolor{white}{$x = 1$}	&	\textcolor{white}{$x = 2$}	&	\textcolor{white}{$x = 3$}		\\\specialrule{0.1em}{0em}{0em} 
+$p(x | \theta = 0.50)$	&	0.125	&	0.375	&	0.375	&	0.125	\\\hline
+$p(x | \theta = 0.75)$	&	0.01\ 5625	&	0.140\ 625	&	0.421\ 875	&	0.421\ 875	\\\hline
+\end{tabular}
+\end{center}
+		\item	On trouve que les sous-ensembles de $\mathcal{S}$ correspondants sont $\mathcal{A}_{1} = \{x = 0\}$ et $\mathcal{A}_{2} = \{x = 3\}$.
+			\begin{itemize}
+			\item	C'est-à-dire, $\Pr(X \in \mathcal{A}_{1}| \theta = 0.50) = \Pr(X \in \mathcal{A}_{2}| \theta = 0.50) = 0.125$ et il n'y a pas d'autres sous-ensembles de $\mathcal{S}$ avec la même "taille" de $0.125$.
+			\end{itemize}
+		\end{enumerate}
+	\item	On doit identifier laquelle de $\mathcal{A}_{1}$ ou $\mathcal{A}_{2}$ est la région critique $\mathcal{C}$ optimale de taille $\alpha$ pour tester $\mathrm{H}_{0}$ contre $\mathrm{H}_{1}$.
+	\item	On trouve la probabilité de correctement rejeter l'hypothèse nulle (faire partie de la région critique) pour les deux régions : 
+		\begin{align*}
+		\Pr(X \in \mathcal{A}_{1}| \theta = 0.75)
+		&=	\Pr(X = 0 | \theta = 0.75)
+		=	0.015\ 625	\\
+		\Pr(X \in \mathcal{A}_{2}| \theta = 0.75)
+		&=	\Pr(X = 3 | \theta = 0.75)
+		=	0.421\ 875
+		\end{align*}
+	\item	On compare les probabilités de correctement rejeter l'hypothèse nulle aux probabilités de incorrectement rejeter l'hypothèse nulle : 
 \begin{itemize}
-	\item	Dans le premier cas :\\
+	\item	Dans le premier cas :
 		\setlength{\mathindent}{-1cm}
 		\begin{align*}
 		\Pr( \underbrace{X \in \mathcal{A}_{1}| \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
@@ -2142,7 +2185,7 @@ On trouve que $\Pr( X \in \mathcal{A}_{1}| \theta	=	0.75)	=	0.015625$ alors que 
 		&=	0.125	
 		\end{align*}
 		\setlength{\mathindent}{1cm}
-	\item	Dans le deuxième cas :\\
+	\item	Dans le deuxième cas :
 		\setlength{\mathindent}{-1cm}
 		\begin{align*}
 		\Pr( \underbrace{X \in \mathcal{A}_{2}| \theta	=	0.75}_{\mathclap{\shortstack{rejeter $\mathrm{H}_{0}$ alors que $\mathrm{H}_{0}$\\ est faux ($\theta = 0.75$)}}})	
@@ -2152,24 +2195,21 @@ On trouve que $\Pr( X \in \mathcal{A}_{1}| \theta	=	0.75)	=	0.015625$ alors que 
 		&=	0.125	
 		\end{align*}
 		\setlength{\mathindent}{1cm}
-	\item	Le premier sous-ensemble $\mathcal{A}_{1}$ n'est pas désirable, car on serait plus probable de incorrectement rejeter $\mathrm{H}_{0}$ lorsqu'elle est vraie (erreur de type I) que de correctement la rejeter lorsqu'elle est fausse ! 
-	\item	Alors, on choisit $\mathcal{C}	=	\mathcal{A}_{2}	=	\{x: x = 3\}$.
 \end{itemize}
+	\item	Puisque le premier sous-ensemble a une probabilité plus élevée de incorrectement rejeter l'hypothèse nulle (erreur de type I) que de correctement la rejeter, on choisit le deuxième comme région critique : $\mathcal{C} = \mathcal{A}_{2} = \{x = 3\}$.
+\end{enumerate}
 
-D'ailleurs, la région est choisie en incluant dans $\mathcal{C}$ les points $x$ pour lesquels $f(x; \theta	=	0.50)$ est petite par rapport à $f(x; \theta	=	0.75)$.
-\begin{itemize}
-	\item	On peut d'ailleurs observer que le ratio $\frac{f(x; \theta	=	0.50)}{f(x; \theta	=	0.75)}$ évalué à $x	=	5$ est un minimum.
-\end{itemize}
+Également, on peut observer que la région est choisie en incluant dans $\mathcal{C}$ les points $x$ pour lesquels $p(x| \theta = 0.50)$ est petite par rapport à $p(x; \theta = 0.75)$. Il s'ensuit que le ratio $\frac{p(x| \theta = 0.50)}{p(x; \theta = 0.75)}$ évalué à $x = 5$ \textbf{est un minimum}.
 \end{formula}
 
-On peut utiliser ce ratio comme outil pour identifier la région critique $\mathcal{C}$ optimale pour un seuil fixe de $\alpha$.
+Cet exemple mène au prochain théorème de Neyman-Pearson qui est une méthode plus efficace d'identifier le test le plus puissant. Grâce au théorème, on peut utiliser le ratio des fonctions de densité (vraisemblance) comme outil pour identifier la région critique $\mathcal{C}$ optimale à un seuil fixe de $\alpha$.
 
 
 
 \columnbreak
-\subsubsection{Cas d'hypothèses simples}
-\begin{definitionNOHFILL}[Théorème de Neymann-Pearson]
-Le théorème de Neymann-Pearson permet de trouver le test le plus puissant.
+\subsubsection{Identifier le test le plus puissant}
+\begin{definitionNOHFILL}[\hypertarget{NeyPearThe}{Théorème de Neyman-Pearson}]
+Le théorème de Neyman-Pearson permet de trouver le test le plus puissant.
 %Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à 
 %$\alpha	=	\alpha(\delta^{*})	=	\Pr\left\{ f(\bm{X} ; \theta_{0}) < k f(\bm{X} ; \theta_{1}) | \theta \in \Theta_{0} \right\}$.
 
@@ -2178,22 +2218,28 @@ Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blu
 	\mathrm{H}_{0}	&:	\theta	=	\theta_{0}	\\
 	\mathrm{H}_{1}	&:	\theta	=	\theta_{1}
 \end{align*}
-\
 
-Soit une constante $k > 0$ et le sous-ensemble $\mathcal{C} \in \mathcal{S}$ tel que :
+\paragraph{Note}	Il est important que les hypothèses soient simples afin qu'elles \textbf{spécifient complètement la distribution}.
+
+\bigskip
+
+Soit une constante $k > 0$ et la région critique $\mathcal{C}$ de taille $\alpha$ tel que :
 \begin{enumerate}
-	\item	\lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\leq	k$} pour tout \lfbox[conditions]{$x \in \mathcal{C}$}.
-	\item	\lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$} pour tout \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}.
-		\begin{itemize}
-		\item	En récrivant les équations comme $\mathcal{L}(\theta_{1} ; \bm{x})	\leq\textcolor{teal}{(\geq)}\	k\mathcal{L}(\theta_{0} ; \bm{x})$ on peut l'interpréter comme qu'il doit être plus vraisemblable que $\theta	=	\theta_{0}\textcolor{teal}{(\theta_{1})}$ que $\theta_{1}\textcolor{teal}{(\theta_{0})}$ lorsque $x \in \mathcal{C}^{\textcolor{teal}{\complement}}$ et que l'on rejette \textcolor{teal}{(accepte)} $\mathrm{H}_{0}$.
-		\end{itemize}
+	\item	si l'échantillon aléatoire est contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\leq	k$}.
+	\item	si l'échantillon aléatoire n'est pas contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$}.
 	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
 \end{enumerate}
 
 Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} de taille $\alpha$.
 
+\paragraph{Note}	Réécrire la première égalité sous la forme de $\mathcal{L}(\textcolor{ao(english)}{\theta_{0}}; \bm{x}) \leq k\mathcal{L}(\textcolor{teal}{\theta_{1}}; \bm{x})$ mène à l'interprétation qu'il doit être plus \textit{vraisemblable} que l'échantillon soit distribué selon \textcolor{teal}{l'hypothèse alternative} ($\textcolor{teal}{\theta = \theta_{1}}$) que \textcolor{ao(english)}{l'hypothèse nulle} ($\textcolor{ao(english)}{\theta = \theta_{0}}$) lorsqu'il est contenu dans la région critique ($\bm{x} \in \mathcal{C}$) puisque que l'on rejette \textcolor{ao(english)}{l'hypothèse nulle} $\mathrm{H}_{0}$. On peut dire que les données semblent \textit{favoriser} l'hypothèse alternative. L'inverse peut être déduit à partir de la deuxième égalité.
+
+\bigskip
+
+\paragraph{Note}	L'approche est typiquement d'écrire le ratio puis de tender de trouver une statistique afin de calculer une probabilité avec sa distribution. Voir les exemples ci-dessous.
+
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-%%%	Neymann-Pearsoon selon les NDC de M.-P.	%%%%	
+%%%	Neyman-Pearsoon selon les NDC de M.-P.	%%%%	
 %\begin{itemize}
 %	\item	 $\mathrm{H}_{0}$ est acceptée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	>	kf(\bm{x} ; \theta_{1})$} ;
 %	\item	 $\mathrm{H}_{0}$ est rejetée si \lfbox[conditions]{$f(\bm{x} ; \theta_{0})	<	kf(\bm{x} ; \theta_{1})$} ;
@@ -2207,76 +2253,109 @@ Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} 
 \end{definitionNOHFILL}
 
 
-
-\begin{definitionNOHFILLsub}[Test non biaisé]
-Soit les mêmes hypothèses que dans la définition du théorème de Neymann-Pearson.
-
-\bigskip
-
-Un test $\delta$ est non biaisé si sa puissance est toujours d'au moins $\alpha$ ; c'est-à-dire, \lfbox[formula]{$\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta \right\} \geq \alpha$}.
-
-\bigskip
-
-Le meilleur test obtenu par le théorème de Neymann-Pearson est non biaisé.
-\end{definitionNOHFILLsub}
-
-\begin{formula}{Exemple avec une distribution normale}
-Soit :
-\begin{itemize}
-	\item	L'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ d'une distribution normale $\mathcal{N}(\mu = \theta, \sigma^{2} = 0)$.
-		\begin{itemize}
-		\item	Alors, $\mathcal{S}	=	\{x : x	\in \mathbb{R}\}$.
-		\end{itemize}
-	\item	Les hypothèses : 
-		\begin{align*}
-		\mathrm{H}_{0}	&:	\theta	=	0	\\
-		\mathrm{H}_{1}	&:	\theta	=	1
-		\end{align*}
-\end{itemize}
-
-On a : 
+\begin{formula}{Exemple cas continu}
+Pour l'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ tiré d'une distribution normale $\mathcal{N}(\mu = \theta, \sigma^{2} = 0)$, on fixe les hypothèses suivantes : 
 \begin{align*}
-	\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}
-	&=	\frac{\textrm{exp}\left\{-\sum_{i = 1}^{n}x^{2}_{i}/2\right\}\frac{1}{(\sqrt{2\pi})^{n}}}{\textrm{exp}\left\{-\sum_{i = 1}^{n}(x_{i} - 1)^{2}/2\right\}\frac{1}{(\sqrt{2\pi})^{n}}}	
-	=	\textrm{exp}\left\{-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}\right\}	\\
+	\mathrm{H}_{0}	&:	\theta	=	0	\\
+	\mathrm{H}_{1}	&:	\theta	=	1
 \end{align*}
 
-Alors, la région critique $\mathcal{C}$ optimale est composée des points $(x_{1}, x_{2}, \dots, x_{n})$ tel que :
-\begin{align*}
-	\textrm{e}^{-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}}	
-	&\leq	k	&
-	&\Rightarrow	&
-	-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}
-	&\leq	\ln(k)	&
-	&\Rightarrow	&
-	\sum_{i = 1}^{n}x_{i}
-	&\geq	\frac{n}{2}	-	\ln(k)	
-\end{align*}
-\begin{align*}
-	\therefore
-	\frac{\sum_{i = 1}^{n}x_{i}}{\color{teal}n}
-	&\geq	\underbrace{\frac{1}{2}	-	\frac{\ln(k)}{\color{teal}n}}_{\color{amethyst}c}	
-\end{align*}
+On souhaite identifier le test le plus puissance pour un seuil fixé $\alpha$.
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	La première étape est d'identifier le ratio des vraisemblances et d'essayer d'y trouver une statistique.
+	\setlength{\mathindent}{-1cm}
+	\begin{align*}
+		\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}
+		&=	\frac{\textrm{exp}\left\{-\sum_{i = 1}^{n}x^{2}_{i}/2\right\}\frac{1}{(\sqrt{2\pi})^{n}}}{\textrm{exp}\left\{-\sum_{i = 1}^{n}(x_{i} - 1)^{2}/2\right\}\frac{1}{(\sqrt{2\pi})^{n}}}	
+		=	\textrm{exp}\left\{-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}\right\}	\\
+	\end{align*}
+	\item	Puis, avec le ratio des fonctions de vraisemblance, on trouve la région critique $\mathcal{C}$ avec la première égalité du \hyperlink{NeyPearThe}{théorème de Neyman-Pearson}.
+	\begin{align*}
+		\textrm{e}^{-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}}	
+		&\leq	k	&
+		&\Rightarrow	&
+		-\sum_{i = 1}^{n}x_{i} + \frac{n}{2}
+		&\leq	\ln(k)	&
+		&\Rightarrow	&
+		\sum_{i = 1}^{n}x_{i}
+		&\geq	\frac{n}{2}	-	\ln(k)	
+	\end{align*}
+	\begin{align*}
+		\therefore
+		\frac{\sum_{i = 1}^{n}x_{i}}{\color{teal}n}
+		&\geq	\underbrace{\frac{1}{2}	-	\frac{\ln(k)}{\color{teal}n}}_{\color{amethyst}c}	
+	\end{align*}
+	\setlength{\mathindent}{1cm}
+\end{enumerate}
 
 Alors, la région critique optimale $\mathcal{C}	=	\left\{(x_{1}, x_{2}, \dots, x_{n})	:	\frac{1}{n}\sum_{i	=	1}^{n} x_{i}	\geq	 {\color{amethyst}c}  \right\}$ où $\color{amethyst}c$ est une constante choisie telle que la taille de $\mathcal{C}$ est $\alpha$.
 
 \bigskip
 
-Par exemple, puisque $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \mathcal{N}(0, 1 / n)$ on peut trouver $c$ avec $\Pr\left\{\bar{X}	\geq	c | \theta	=	\theta_{0} \right\}	=	\alpha$.
-
-\bigskip
-Puis, on peut trouver la puissance du test quand $\mathrm{H}_{1}$ est vraie avec $\Pr\left\{\bar{X}	\geq	c | \theta	=	\theta_{1} \right\}$.
+Par exemple, sous l'hypothèse nulle $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \mathcal{N}(0, 1 / n)$, 
+\begin{itemize}
+	\item	on peut isoler $c$ avec $\Pr\left(\bar{X} \geq c | \theta = \theta_{0} \right) = \alpha$.
+	\item	on peut calculer la puissance du test avec $\Pr\left(\bar{X} \geq c | \theta = \theta_{1} \right)$.
+\end{itemize}
 \end{formula}
 
-\paragraph{Note sur les hypothèses}
-Les hypothèses doivent entièrement spécifier la distribution. Si les hypothèses sont sur les paramètres, elles doivent être des hypothèses simples, mais elles peuvent être sur autre chose.
+\begin{formula}{Exemple cas discret}
+Pour la variable aléatoire discrète $X$, on fixe les hypothèses suivantes :
+\begin{align*}
+	\mathrm{H}_{0}	&:	\theta	=	1\\
+	\mathrm{H}_{1}	&:	\theta	=	2
+\end{align*}
 
 \bigskip
-Par exemple, si on teste $\mathrm{H}_{0}: f_{X}(x)	=	g(x)$ v.s. $\mathrm{H}_{1}: f_{X}(x)	=	h(x)$ alors la vraisemblance sera un ratio de deux distributions différentes.
+
+On souhaite identifier meilleur région critique pour les tests de taille $0.06$. Cependant, puisque la variable aléatoire est discrète, on ne peut pas manipuler le ratio des vraisemblances. En lieu, 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On produit le tableau des valeurs de la fonction de masse des probabilités sous les deux hypothèses : 
+	\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{FMP}}	&	\textcolor{white}{$x = 1$}	&	\textcolor{white}{$x = 2$}	&	\textcolor{white}{$x = 3$}	&	\textcolor{white}{$x = 4$}	&	\textcolor{white}{$x = 5$}		\\\specialrule{0.1em}{0em}{0em} 
+$p(x | \theta = 1)$	&	0.01	&	0.05	&	0.50	&	0.43	&	0.01	\\\hline
+$p(x | \theta = 2)$	&	0.02&	0.24	&	0.25	&	0.25	&	0.24	\\\hline
+\end{tabular}
+	\end{center}
+	\item	On trouve les ratios dénotés $\Lambda$ :
+	\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{FMP}}	&	\textcolor{white}{$x = 1$}	&	\textcolor{white}{$x = 2$}	&	\textcolor{white}{$x = 3$}	&	\textcolor{white}{$x = 4$}	&	\textcolor{white}{$x = 5$}		\\\specialrule{0.1em}{0em}{0em} 
+$\Lambda$	&	0.50	&	0.208	&	2	&	1.72	&	0.042	\\\hline
+\end{tabular}
+	\end{center}
+	\item	Puisqu'on cherche à rejeter l'hypothèse nulle, il s'ensuit qu'on cherche des petites valeurs du ratio. Donc, on trie en ordre croissante les valeurs de $x$ : 
+	\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{FMP}}	&	\textcolor{white}{$x = 5$}	&	\textcolor{white}{$x = 2$}	&	\textcolor{white}{$x = 1$}	&	\textcolor{white}{$x = 4$}	&	\textcolor{white}{$x = 3$}		\\\specialrule{0.1em}{0em}{0em} 
+$\Lambda$	&	0.042	&	0.208	&	0.5	&	1.72	&	2	\\\hline
+\end{tabular}
+	\end{center}
+	\item	De ce tableau, on voit que la meilleur région critique de taille $0.06$ est $C = \{x = 5, 2\}$ car $p(x = 5 | \theta = 1) + p(x = 2 | \theta = 1) = 0.01 + 0.05 = 0.06$.
+\end{enumerate}
+\end{formula}
+
+
+%\begin{definitionNOHFILLsub}[Test non biaisé]
+%Soit les mêmes hypothèses que dans la définition du théorème de Neyman-Pearson.
+%
+%\bigskip
+%
+%Un test $\delta$ est non biaisé si sa puissance est toujours d'au moins $\alpha$ ; c'est-à-dire, \lfbox[formula]{$\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta \right\} \geq \alpha$}.
+%
+%\bigskip
+%
+%Le meilleur test obtenu par le théorème de Neyman-Pearson est non biaisé.
+%\end{definitionNOHFILLsub}
 
 
 \columnbreak
-\subsubsection{Cas d'hypothèses composées}
+\subsubsection{Identifier le test le plus puissance avec des hypothèses composées}
 \hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}
 
 \bigskip
@@ -2309,7 +2388,7 @@ L'idée est donc de poser un $\theta_{1}$ fixe pour évaluer la forme du ratio d
 
 \bigskip
 
-La région uniformément la plus puissante n'existe pas toujours, mais dans le cas qu'elle existe le théorème de Neymann-Pearson permet de la trouver.
+La région uniformément la plus puissante n'existe pas toujours, mais dans le cas qu'elle existe le théorème de Neyman-Pearson permet de la trouver.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Test UMP selon les NDC de M.-P.	%%%%	
@@ -2339,7 +2418,7 @@ La région uniformément la plus puissante n'existe pas toujours, mais dans le c
 %%%	Région de réjection
 %%%	Erreurs de type I et II
 %%%		Tests optimaux
-%%%		Lemme de Neymann-Pearson
+%%%		Lemme de Neyman-Pearson
 %		Ratio de vraisemblance
 %%%	Valeurs critique et seuil observé
 %%%	Test unilatéral et bilatéral
@@ -2370,9 +2449,9 @@ La région uniformément la plus puissante n'existe pas toujours, mais dans le c
 %\subsection{Exhaustivité}
 %	Contenu à y inclure
 %%%	Définition de l'exhaustivité
-%%%	Théorème de factorisation de Fisher-Neymann
+%%%	Théorème de factorisation de Fisher-Neyman
 %%%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
-%%%	Théorème de factorisation de Fisher-Neymann (cas de plus d'un paramètre)
+%%%	Théorème de factorisation de Fisher-Neyman (cas de plus d'un paramètre)
 %	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
 %	MVUE
 %		Élaboration sur le MVUE
@@ -2451,7 +2530,7 @@ En fonction des observations, calculer :
 \end{enumerate}
 La région critique correspond à la région pour laquelle le ratio des vraisemblances est en dessous d'une constante $k$.
 \begin{itemize}
-	\item	Si les deux hypothèses sont simples, ceci équivaut à utiliser le théorème de Neymann-Pearson.
+	\item	Si les deux hypothèses sont simples, ceci équivaut à utiliser le théorème de Neyman-Pearson.
 \end{itemize}
 
 \bigskip
@@ -2495,11 +2574,11 @@ où $h_{1}(\cdot)$ dépend seulement de l'échantillon par ${\color{teal}t}$ et 
 \paragraph{Note}	Pour une fonction injective (\og \textit{one-to-one} \fg{}), si $T_{n}$ est une statistique exhaustive pour $\theta$, alors $g(T_{n})$ est une statistique exhaustive pour $\theta$ et $T_{n}$ est une statistique exhaustive pour $g(\theta)$.
 
 \begin{rappel_enhanced}[Limitations]
-La définition de l'exhaustivité nécessite de connaître la distribution de la statistique pour trouver $f_{T_{n}}(t)$ (ou $p_{T_{n}}(t)$ dans le cas discret). Cependant, ceci n'est pas toujours possible. Alors, nous pouvons utiliser l'approche du théorème de factorisation de Fisher-Neymann afin de prouver qu'une statistique est exhaustive.
+La définition de l'exhaustivité nécessite de connaître la distribution de la statistique pour trouver $f_{T_{n}}(t)$ (ou $p_{T_{n}}(t)$ dans le cas discret). Cependant, ceci n'est pas toujours possible. Alors, nous pouvons utiliser l'approche du théorème de factorisation de Fisher-Neyman afin de prouver qu'une statistique est exhaustive.
 \end{rappel_enhanced}
 
 
-\begin{definitionNOHFILLsub}[Théorème de factorisation de Fisher-Neymann]
+\begin{definitionNOHFILLsub}[Théorème de factorisation de Fisher-Neyman]
 La statistique $T_{n}$ est une \underline{\textbf{statistique exhaustive}} pour $\theta$ ssi on peut récrire la fonction de densité comme le produit d'une fonction ($h_{1}(\cdot)$) de la statistique ${\color{teal}T_{n}}$et du paramètre ${\color{amethyst}\theta}$ et d'une fonction ($h_{2}(\cdot)$) de l'échantillon. C'est-à-dire, ssi \lfbox[formula]{${\color{burntorange}f(x_{1}; \theta) \times \hdots \times f(x_{n}; \theta)} = h_{1}({\color{teal}t}; {\color{amethyst}\theta}) \times h_{2}(x_{1}, \dots, x_{n})$} où 
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	$h_{1}({\color{teal}t}; {\color{amethyst}\theta})$ dépend de l'échantillon seulement par la statistique $T_{n}$.
