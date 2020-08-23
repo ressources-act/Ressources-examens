@@ -2001,6 +2001,7 @@ Idéalement, avec 2 hypothèses, si l'hypothèse nulle est
 		&=	\Pr\left\{(X_{1}, \dots, X_{n}) \in \mathcal{C}^{\complement} |  \theta \in \Theta_{1}\right\}	
 		=	1 - \gamma(\theta_{1})
 		\end{align*}
+	\item[$\Lambda$]	\textbf{Ratio de vraisemblance}. 
 \end{description}
 \end{distributions}
 Pour mettre en contexte cette notation, voici le tableau des types d'erreurs pour un test $\delta$ repris de celui de la section des \textit{\underline{\nameref{subsubsec:TestErrors}}} :
@@ -2074,6 +2075,9 @@ Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilit�
 \end{enumerate}
 
 
+
+\columnbreak
+\subsubsection{Test le plus puissant}
 \begin{definitionNOHFILL}[Tests optimaux, alias tests les plus puissants]
 %Puisqu'il est impossible de trouver un test $\delta$ pour lequel les probabilités d'erreurs de type I et II sont très petites, on peut minimiser la fonction \lfbox[formula]{$a\alpha(\delta) + b\beta(\delta)$} des \lfbox[conditions]{constantes $a, b > 0$}.\\
 
@@ -2205,9 +2209,6 @@ $p(x | \theta = 0.75)$	&	0.01\ 5625	&	0.140\ 625	&	0.421\ 875	&	0.421\ 875	\\\hl
 Cet exemple mène au prochain théorème de Neyman-Pearson qui est une méthode plus efficace d'identifier le test le plus puissant. Grâce au théorème, on peut utiliser le ratio des fonctions de densité (vraisemblance) comme outil pour identifier la région critique $\mathcal{C}$ optimale à un seuil fixe de $\alpha$.
 
 
-
-\columnbreak
-\subsubsection{Test le plus puissant}
 \begin{definitionNOHFILL}[\hypertarget{NeyPearThe}{Théorème de Neyman-Pearson}]
 Le théorème de Neyman-Pearson permet de trouver le test le plus puissant.
 %Le lemme de Neyman-Pearson trouve le test $\delta$ qui minimise la probabilité d'une erreur de type II $\beta(\delta)$ parmi tous les test dont la probabilité d'une erreur de type I $\alpha(\delta)$ est inférieure ou égale à 
@@ -2260,7 +2261,7 @@ Pour l'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ tiré d'une dist
 	\mathrm{H}_{1}	&:	\theta	=	1
 \end{align*}
 
-On souhaite identifier le test le plus puissance pour un seuil fixé $\alpha$.
+On souhaite identifier le test le plus puissant pour un seuil fixé $\alpha$.
 
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	La première étape est d'identifier le ratio des vraisemblances et d'essayer d'y trouver une statistique.
@@ -2360,105 +2361,89 @@ $\Lambda$	&	0.042	&	0.208	&	0.5	&	1.72	&	2	\\\hline
 
 \bigskip
 
-%On applique la même procédure en posant un $\theta$ fixe pour l'hypothèse alternative dans le ratio.
-%Ensuite, la procédure dépend de la situation.
-
-\begin{formula}{Exemple avec une distribution normale}
-Soit :
-\begin{itemize}
-	\item	Un échantillon aléatoire $\bm{X}	=	(X_{1}, X_{2}, \dots, X_{n})$ tiré d'une distribution normale $\mathcal{N}(0, \theta)$ ;
-	\item	Les hypothèses : 
-		\begin{align*}
-		\mathrm{H}_{0}	&:	\theta	=	1	\\
-		\mathrm{H}_{1}	&:	\theta	>	1
-		\end{align*}
-\end{itemize}
-
-Alors, on trouve le ratio : 
-\begin{align*}
-	\frac{\mathcal{L}(\theta_{0} = 1; \bm{x})}{\mathcal{L}(\theta_{1}; \bm{x})}
-	&=	\frac{\frac{1}{(1)^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2(1)^{2}}}}{\frac{1}{\theta_{1}^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n}(x_{i})^{2}}{2\theta_{1}^{2}}}}	
-	=	\theta_{1}^{n} \textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2}\left(1 - \frac{1}{\theta_{1}^{2}}\right)}	\\
-\end{align*}
-
-On voit que le ratio décroît alors que $\sum x^{2}_{i}$ augmente. Par conséquent, un test uniformément le plus puissance aura une région critique définie par $\sum x^{2}_{i} > k$ avec un $k$ choisi selon le seuil de signifiance.
-\end{formula}
-
-L'idée est donc de poser un $\theta_{1}$ fixe pour évaluer la forme du ratio de la vraisemblance. Selon la croissance ou décroissance de la fonction, ainsi que l'hypothèse, on peut établir une région pour laquelle une augmentation du $\theta_{1}$ maintient la relation. 
+\begin{rappel_enhanced}[Motivation]
+Bien que le théorème de Neyman-Pearson est très utile, le fait qu'il est seulement applicable pour les hypothèses simples est une restriction importante puisque la majorité des tests d'hypothèses ont des hypothèses composées.
 
 \bigskip
 
-La région uniformément la plus puissante n'existe pas toujours, mais dans le cas qu'elle existe le théorème de Neyman-Pearson permet de la trouver.
+Bien qu'on ne peut pas l'utiliser directement pour des hypothèses composées, le théorème de Neyman-Pearson peut servir d'outil pour identifier le \textit{test uniformément le plus puissant}. La situation typique est que l'hypothèse nulle est simple alors que l'hypothèse alternative est composée. L'astuce pour appliquer le théorème de Neyman-Pearson aux hypothèses composées est de voir une hypothèse composée comme un regroupement d'hypothèses simples (e.g. $\theta > 2$ implique $\theta = 3$, $\theta = 4$, $\theta = 5$, etc.)
 
-%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-%%%	Test UMP selon les NDC de M.-P.	%%%%	
+\bigskip	
+
+On cherche donc la meilleur région critique pour tester l'hypothèse nulle à toutes les hypothèses alternatives simples contenues dans l'hypothèse alternative composée. Bref, le test uniformément le plus puissant a la meilleur région critique \textbf{pour toutes les combinaisons possibles d'hypothèses simples contenues dans l'hypothèse alternative composée}.
+\end{rappel_enhanced}
+
 \begin{definitionNOHFILL}[Test uniformément le plus puissant]
-Un test $\delta^{*}$ est le test \lfbox[imphl]{uniformément le plus puissant} au seuil $\alpha$ du test d'une hypothèse simple $\mathrm{H}_{0}$ contre l'hypothèse composée $\mathrm{H}_{1}$ si :
+Un test $\delta^{*}$ est le test de l'hypothèse \underline{simple} $\mathrm{H}_{0}$ contre l'hypothèse \underline{composée} $\mathrm{H}_{1}$ \textbf{uniformément le plus puissant} de taille $\alpha$ s'il a la plus grande puissance, $\gamma(\theta \in \Theta_{1} | \delta^{\ast})$, parmi tous les tests $\delta$ de taille $\alpha$, \textbf{pour toutes les valeurs possibles de l'hypothèse alternative} ($\theta \in \Theta_{1}$). 
 
-\begin{enumerate}
-	\item	\lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$}, et si
-	\item	pour tout autre test $\delta$ tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
-\end{enumerate}
-Alors, \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$}.
+\bigskip
+
+En termes mathématiques, c'est le test $\delta^{\ast}$ tel que \lfbox[formula]{$\gamma(\theta \in \Theta_{1} | \delta) \leq \gamma(\theta \in \Theta_{1} | \delta^{*})$} où \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta^{*}) \leq \alpha$} et $\delta$ est tout autre test tel que \lfbox[conditions]{$\sup_{\theta \in \Theta_{0}} \gamma(\theta | \delta) \leq \alpha$}.
+
+\bigskip
 
 \begin{itemize}
 	\item	En anglais, c'est le test \og \textit{uniformly most powerful (UMP)} \fg{}.
 \end{itemize}
 \end{definitionNOHFILL}
-%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 
-%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-%%%%		À rajouter éventuellement	%%%%	
-%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
+La procédure pour trouver le test \textit{uniformément le plus puissant} est de poser un $\theta_{1}$ fixe afin d'évaluer la forme du ratio de la vraisemblance. Selon la forme de l'hypothèse et la croissance, ou décroissance, du ratio $\Lambda$, on peut établir une région critique valide pour toutes les hypothèse alternatives simples contenues dans l'hypothèse alternative composée. 
 
-%\subsection{Tests d'hypothèses}
-%	Contenu à y inclure
-%%%	Hypothèse nulle et alternative
-%%%	Statistique de test
-%%%	Région de réjection
-%%%	Erreurs de type I et II
-%%%		Tests optimaux
-%%%		Lemme de Neyman-Pearson
-%		Ratio de vraisemblance
-%%%	Valeurs critique et seuil observé
-%%%	Test unilatéral et bilatéral
-%		mentionner que unilat peut être "dangereux"
-%%%	La valeur p
-%	
-%	Test uniformément le plus puissant, alias Uniformely Most Powerful (UMP)
-%%%	Tests échantillons normaux
-%%%		Test T
-%%%			Unilatéral (test, taille, puissance, seuil observé, IC)
-%%%			Bilatéral (test, taille, puissance, seuil observé, IC)\\
-%%%		Test sur la variance
-%%%			3 différents problèmes (<=U<, >=U>, =U=/=)
-%%%	Tests grands échantillons
-%%%		Test Z (normal)
-%%%			3 différents problèmes (<=U<, >=U>, =U=/=)
-%%%			(tests, tailles, puissances, seuils observé, IC)
-%	Test du Rapport de Vraisemblance
-%		Statistique, test
-%	Test d'adéquation
-%		Fonction de répartition empirique
-%		Test de Kolmogorov-Smirnov
-%%%		Test du khi carré de Pearson
-%%%			design multinomial
-%%%		Tableau de contingence
-%		Test d'indépendance du khi carré
+\begin{formula}{Exemple avec une distribution normale}
+Pour l'échantillon aléatoire $\bm{X} = (X_{1}, X_{2}, \dots, X_{n})$ tiré d'une distribution normale $\mathcal{N}(0, \theta)$, on fixe les hypothèses suivantes : 
+\begin{align*}
+	\mathrm{H}_{0}	&:	\theta	=	1	\\
+	\mathrm{H}_{1}	&:	\theta	>	1
+\end{align*}
 
-%\subsection{Exhaustivité}
-%	Contenu à y inclure
-%%%	Définition de l'exhaustivité
-%%%	Théorème de factorisation de Fisher-Neyman
-%%%	Critère de Lehmann-Scheffé (Exhaustivité minimale)
-%%%	Théorème de factorisation de Fisher-Neyman (cas de plus d'un paramètre)
-%%%	Théorème de Rao-Blackwell (statistique exhaustive sans biais)
-%%%	MVUE
-%%%		Élaboration sur le MVUE
-%%%		Comment le construire
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On trouve le ratio $\Lambda$ : 
+	\begin{align*}
+		\Lambda
+		&=	\frac{\mathcal{L}(\theta_{0} = 1; \bm{x})}{\mathcal{L}(\theta_{1}; \bm{x})}
+		=	\frac{\frac{1}{(1)^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2(1)^{2}}}}{\frac{1}{\theta_{1}^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n} x_{i}^{2}}{2\theta_{1}^{2}}}}	
+		=	\theta_{1}^{n} \textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2}\left(1 - \frac{1}{\theta_{1}^{2}}\right)}	
+	\end{align*}
+	\item	On observe que le ratio $\Lambda$ décroit alors que $\sum x^{2}_{i}$ augmente.
+	\item	Puisque le ratio est décroissant, un test uniformément le plus puissant aura une région critique définie par $\sum x_{i}^{2} \geq k$, où $k$ est choisi selon la taille $\alpha$.
+		\begin{align*}
+		\theta_{1}^{n} \textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2}\left(1 - \frac{1}{\theta_{1}^{2}}\right)}	
+		&\leq	c	&
+		&\Rightarrow	&
+		\sum_{i = 1}^{n} x_{i}^{2} 
+		&\geq
+		-2\frac{\ln\left(\frac{k}{\theta_{1}^{n}}\right)}{1 - \theta_{1}^{-2}}
+		\end{align*}
+\end{enumerate}
 
-%%	Tableau des intervalles de confiance, tests d'hypothèses, etc. pour des cas spécifiques
-%		Variance inconnue, moyenne inconnue pour une normale, proportion, petit échantillon, ...
+\paragraph{Note}	La région qui correspond au test uniformément le plus puissant \textbf{n'existe pas toujours}. Si, par exemple, l'hypothèse alternative aurait été $\theta \neq 1$ alors la fonction de vraisemblance pourrait être décroissante pour $\theta < 1$ et la région critique ne serait pas unique.
+\end{formula}
+
+\bigskip
+
+L'approche prise dans l'exemple ci-dessus est de poser un $\theta_{0} = \text{un nombre}$ puis de poser une constante $\theta_{1} > \theta_{0}$. Cependant, on peut généraliser l'approche au cas où les deux hypothèses sont composées (e.g. $\textrm{H}_{0}: \theta \leq 2$ et $\textrm{H}_{1}: \theta > 2$), on définit le \textbf{ratio de vraisemblance monotone}. 
+
+\begin{definitionNOHFILLsub}[Ratio de vraisemblance monotone]
+Soit les constantes $a$ et $b$ tel que $a < b$ qui sont des valeurs possibles de $\theta$ (alias, $a, b \in \Theta$). Alors, on définit \lfbox[formula]{$\Lambda = \frac{\mathcal{L}(a)}{\mathcal{L}(b)}$}. 
+
+\bigskip
+
+Pour qu'un test ayant des hypothèses composées soit uniformément le plus puissant, le ratio de vraisemblance doit être monotone en fonction de la statistique $y$ obtenue du ratio. La monotonicité assure que la relation de décroissance se maintient peut importe les valeurs prises par $\theta$ en dedans de son domain (e.g. pour tout $\theta_{0} \leq 2$ et tout $\theta_{1} > 2$).
+
+\bigskip
+
+On résume la région critique la taille du test selon le ratio de vraisemblance pour le test $\textrm{H}_{0} : \theta = h$ :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{3cm} | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Ratio de vraisemblance monotone}}	&	\textcolor{white}{\textbf{Région critique}}	&	\textcolor{white}{$\alpha$}		\\\specialrule{0.1em}{0em}{0em} 
+décroissant	&	$y \geq c$	&	$\Pr(Y \geq c | \theta = h)$	\\\hline
+croissant	&	$y \leq c$	&	$\Pr(Y \leq c | \theta = h)$	\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	On voit donc qu'en posant $a = \theta_{0} = \text{un nombre}$, cette approche est équivalente à celle de l'exemple ci-dessus.
 
 
 
