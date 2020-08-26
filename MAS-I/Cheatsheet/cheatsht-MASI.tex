@@ -2591,46 +2591,115 @@ L'hypothèse du test est que les espérances théoriques du nombre d'observation
 La statistique du test calcule les divergences pour chacun des intervalles : \lfbox[formula]{$\displaystyle t = \sum_{j = 1}^{k} \frac{(n_{j} - nq_{j})^{2}}{nq_{j}}$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{(k - 1 - r)}$. 
 
 \paragraph{Note}	Le $k - 1$ des degrés de liberté est dut au fait que nous avons $k$ données empiriques sous la contrainte que $\sum_{j = 1}^{n} n_{j} = n$. Donc, il y a seulement $k - 1$ données estimées. Le $r$ correspond au nombre de paramètres estimés de la distribution théorique. Par exemple, pour une distribution normale avec $\sigma = 2$ et $\mu$ inconnu, $r = 1$.
+
+%	la région critique est $t \geq \chi^{2}_{(1 - \alpha, k - 1 - r)}$
 \end{definitionNOHFILL}
 
 
 
 \columnbreak
 \subsubsection{Test de l'indépendance du khi carré (tableau de contingence)}
-Dans le cas de données à deux dimensions, alias un tableau de contingence, on définit :
+\begin{rappel_enhanced}[Motivation]
+Le test de l'indépendance du khi carré est pour les données pouvant être représentées sous la forme d'un \textbf{tableau de contingence}. Le test examine la dépendance entre les deux variables avec une procédure semblable au test d'adéquation du khi carré. Il s'ensuit qu'il a une utilité assez différente des autres tests d'adéquation !
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Tableau de contingence]
+Tableau de la fréquence d'observations décrites par 2 variables catégoriques. Donc, on peut visualiser la distribution empirique multivariée ! 
+
+\paragraph{Note}	Voir plus bas pour un visuel de tableau de contingence.
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILL}[Test d'indépendance du khi carré]
+Au lieu de tester si la distribution d'un échantillon suit celle d'une distribution théorique, on test si les 2 variables aléatoires sont indépendantes en fonction d'un tableau des fréquence de leurs observations. Les hypothèses sont donc : 
+\begin{align*}
+	\textrm{H}_{0}	&:	\text{les 2 v.a. sont indépendantes}	&
+	\textrm{H}_{1}	&:	\text{les 2 v.a. sont dépendantes}
+\end{align*}
+
+\bigskip
+
+On pose qu'une variable aléatoire a $a$ catégories et que l'autre a $b$ catégories. Il s'ensuit que chacune des $n$ observations appartient à une des combinaisons $a-b$.
+
+\bigskip
+
+On dénote, pour $i \in \{1, \dots, a\}$ et $j \in \{1, \dots, b\}$,
 \begin{description}
-	\item[$E_{ij}$]	L'espérance du nombre d'observations dans la cellule $i, j$ ;
-	\item[$O_{ij}$]	Le nombre observé d'observations dans la cellule $i, j$.
+	\item[$n_{ij}$]	Le nombre d'observations dans la catégorie $i$ de la première variable aléatoire et $j$ de la deuxième.
+	\item[$n_{i\cdot}$]	Le sous-total du nombre d'observations dans la catégorie $i$ de la première variable aléatoire pour toutes les catégories de la deuxième.
+	\item[$n_{\cdot j}$]	Le sous-total du nombre d'observations dans la catégorie $j$ de la deuxième variable aléatoire pour toutes les catégories de la première.
 \end{description}
 
-\begin{itemize}
-	\item	On pose qu'il y a $c$ colonnes au tableau pour $r$ rangées (les rangées sont les différents ensembles) ;
-	\item	On peut donc tester si la distribution de la fréquence est identique pour les $c$ colonnes avec \lfbox[formula]{$Q	=	\sumz{r}{i	=	1}\sumz{c}{j	=	1}\frac{(O_{ij} - E_{ij})^{2}}{E_{ij}} \approx	\chi^{2}_{(r - 1) \cdot (c - 1)}$} ;
-	\item	Cette formule est beaucoup plus intuitive visuellement que par formule; pour la comprendre, faites un exemple.
-\end{itemize}
+\bigskip
+
+Donc, le tableau de contingence est de la forme: 
+
+\begin{tabular}{|	c	|	l	|	l	|	l	|	l	|	l	|	l	|}
+\hline
+\multicolumn{2}{|	l}{\multirow{2}{*}{}}                                                 & \multicolumn{4}{|	l}{Second variable}                      & \multirow{2}{*}{Total} \\\cline{3-6}
+\multicolumn{2}{|	l}{}                                                                  & Cat. 1        & Cat. 2        & $\cdots$  & Cat. b        &                        \\\hline
+\multirow{4}{*}{First Variable} & Cat. 1   & $n_{11}$      & $n_{12}$      & $\cdots$  & $n_{1b}$      & $n_{1\cdot}$           \\\cline{2-7}
+                                                                           & Cat. 2   & $n_{21}$      & $n_{22}$      & $\cdots$  & $n_{2b}$      & $n_{2\cdot}$           \\\cline{2-7}
+                                                                           & $\cdots$ & $\cdots$      & $\cdots$      & $\ddots$ & $\hdots$      & $\cdots$               \\\cline{2-7}
+                                                                           & Cat. a   & $n_{a1}$      & $n_{a2}$      & $\cdots$  & $n_{ab}$      & $n_{a\cdot}$           \\\hline
+\multicolumn{2}{|	c}{Total}                                                             & $n_{\cdot 1}$ & $n_{\cdot 2}$ & $\cdots$  & $n_{\cdot b}$ & $n$            	\\\hline       
+\end{tabular}
+
+\bigskip
+
+La statistique du test a le même raisonnement que la statistique pour le test d'adéquation du khi carré : \lfbox[formula]{$\displaystyle t = \frac{1}{n} \sum_{i = 1}^{a} \sum_{j = 1}^{b} \frac{(n_{ij}n - n_{i\cdot} n_{\cdot j})^{2}}{n_{i\cdot} n_{\cdot j}}$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{(a - 1)(b - 1)}$. 
+
+%	la région critique est $t \geq \chi^{2}_{1 - \alpha, (a - 1)(b - 1)}$
+\end{definitionNOHFILL}
 
 
 
 \columnbreak
 \subsubsection{Test du rapport de vraisemblance}
-En fonction des observations, calculer :
-\begin{enumerate}
-	\item	Le maximum de vraisemblance sous l'hypothèse nulle ;
-	\item	Le maximum de vraisemblance sous l'hypothèse alternative
+\begin{rappel_enhanced}[Motivation]
+L'idée du test du rapport de vraisemblance (TRV) est de tester si les données peuvent être suffisamment bien expliquée par une simplification d'une distribution. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Test du rapport de vraisemblance]
+Les hypothèses sont 
+\begin{align*}
+	\textrm{H}_{0}	&:	\text{les données proviennent d'une distribution $A$}	\\
+	\textrm{H}_{1}	&:	\text{les données proviennent d'une distribution $B$}
+\end{align*}
+où la distribution $A$ est un cas spécial de la distribution $B$. L'exemple intuitif est la distribution exponentielle qui est un cas spécial de la distribution gamma avec $\alpha = 1$. Cependant, plus généralement, on peut penser à une distribution avec des paramètres prédéterminés comme une simplification de la même distribution avec des paramètres inconnus (e.g. normale avec $\mu$ et $\sigma^{2}$ inconnus vs normale avec $\mu = 2$ et $\sigma^{2}$ inconnu).
+
+\bigskip
+
+Il s'ensuit que la distribution $B$ est plus complexe que la distribution $A$ et donc que $B$ a plus de "paramètres libres". L'idée du test est que nous préférons un modèle plus simple (distribution $A$) mais utiliserons un modèle plus complexe (distribution $B$) s'il y a une amélioration suffisamment importante.
+
+\bigskip
+
+On dénote donc : 
+\begin{description}
+	\item[$r_{0}$ et $r_{1}$]	Nombre de paramètres libres de la distribution $A$ et $B$.
+	\item[$\mathcal{L}_{0}$ et $\mathcal{L}_{1}$]	Maximum de vraisemblance sous l'hypothèse nulle et alternative.
+		\begin{itemize}
+		\item	On dénote les log-vraisemblances comme $\ell_{0} = \ln(\mathcal{L}_{0})$ et $\ell_{1} = \ln(\mathcal{L}_{1})$.
+		\end{itemize}
+\end{description}
+
+Puis, la statistique du test \lfbox[formula]{$t = -2 (\ell_{1} - \ell_{0})$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$. 
+\end{definitionNOHFILL}
+
+
+\paragraph{Note}	La distribution \underline{asymptotique} du khi carré dépend sur : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	la condition qu'un modèle "emboîte" l'autre, 
+	\item	que $n$ soit large,
+	\item	les conditions de régularité typiques soit maintenues,
+	\item	sous les deux hypothèses, les EMV sont des solutions \og \textit{consistent} \fg{} aux équations de Score.
 \end{enumerate}
-La région critique correspond à la région pour laquelle le ratio des vraisemblances est en dessous d'une constante $k$.
-\begin{itemize}
-	\item	Si les deux hypothèses sont simples, ceci équivaut à utiliser le théorème de Neyman-Pearson.
-\end{itemize}
+
+%	la région critique est $t \geq \chi^{2}_{1 - \alpha, r_{1} - r_{0})}$
 
 \bigskip
 
-Cependant, il peut s'avérer difficile d'isoler une distribution dans le ratio. Pour des grands échantillons, on peut plutôt utiliser la distribution asymptotique.\\
-Soit une hypothèse nulle qui spécifie $k$ paramètre et une hypothèse alternative qui en spécifie seulement $l$ ($l < k$). Alors, la statistique du rapport de vraisemblance \lfbox[formula]{$Q	=	-2\left(\ln(\theta_{0})	-	\ln(\theta_{1})\right)	\sim	\chi^{2}_{k - l}$}.
-
-\bigskip
-
-Cette statistique est vue dans les modèles linéaires généralisés aussi.
+\paragraph{Note}	Voir la section <section pas encore faite> du chapitre de \textit{\underline{\nameref{chapt:modLin}}} pour l'application du test du rapport de vraisemblance des les modèles linéaires généralisés.
 
 
 
