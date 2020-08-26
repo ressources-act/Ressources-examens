@@ -2458,25 +2458,30 @@ croissant	&	$y \leq c$	&	$\Pr(Y \leq c | \theta = h)$	\\\hline
 
 
 \begin{rappel_enhanced}[Contexte]
-Jusqu'à présent, nous avons présenté les test d'hypothèses qui évaluent la valeur des paramètres d'une distribution. Cependant, le paramètre d'une distribution n'est qu'une partie de l'ajustement d'une distribution à un échantillon de données. 
+L'objectif sous-jacent de cette section est d'évaluer la qualité de l'ajustement d'une distribution d'un échantillon de données. Jusqu'à présent, nous avons présenté les test d'hypothèses qui évaluent la valeur des paramètres d'une distribution. Cependant, le paramètre d'une distribution n'est qu'une partie de l'ajustement.  
 
 \bigskip
 
-Cette section détaille plusieurs tests qui servent à évaluer la qualité, ou \textbf{\textit{adéquation}}, de l'ajustement. 
+Cette section détaille plusieurs tests qui servent à évaluer la qualité, ou \textbf{\textit{adéquation}}, de l'ajustement au-delà des paramètres. 
 \end{rappel_enhanced}
 
 \subsubsection{Test de Kolmogorov-Smirnov}
-\begin{rappel_enhanced}[Motivation]
-Le test de Kolmogorov-Smirnov compare la fonction de répartition \textit{empirique} à la fonction de répartition \textit{théorique} d'une distribution hypothétique. Il est intuitif de visuellement évaluer l'ajustement des données, mais cette évaluation est très \textit{subjective}. La « raison d'être » du test est de quantifier cette évaluation subjective afin d'obtenir une mesure \textbf{quantitative}. 
+\begin{rappel_enhanced}[Motivation] 
+Le premier volet d'ajustement que l'on évalue est la fonction de répartition alias, la fonction de \textit{distribution}. Le test de Kolmogorov-Smirnov compare la fonction de répartition \textit{empirique} à la fonction de répartition \textit{théorique} d'une distribution hypothétique.
+
+\bigskip
+
+Il est intuitif de visuellement évaluer l'ajustement des données, mais cette évaluation est très \textit{subjective}. La « raison d'être » du test est de \underline{quantifier} cette évaluation subjective afin d'obtenir une mesure \textbf{quantitative}. 
 \end{rappel_enhanced}
 
 
 \begin{definitionNOHFILL}[Test de Kolmogorov-Smirnov]
-Le test de Kolmogorov-Smirnov teste si les données semblent suivre une distribution avec \textbf{la statistique de Kolmogorov-Smirnov} \lfbox[formula]{$D = \underset{j}{\max} D_{j}$} où \lfbox[formula]{$D_{j} = \underset{j}{\max}\left\{\left| \hat{F}(x_{(j - 1)}) - F^{\ast}(x_{(j)}) \right|, \left| \hat{F}(x_{(j)})	-	F^{\ast}(x_{(j)}) \right|\right\}$} avec $\hat{F}(x_{(0)}) = 0$.
+Le test de Kolmogorov-Smirnov teste si les données semblent suivre une distribution avec \textbf{la statistique de Kolmogorov-Smirnov} \lfbox[formula]{$D = \underset{j}{\max}\ D_{j}$} où \lfbox[formula]{$D_{j} = \underset{j}{\max}\left\{\left| \hat{F}(x_{(j - 1)}) - F^{\ast}(x_{(j)}) \right|, \left| \hat{F}(x_{(j)})	-	F^{\ast}(x_{(j)}) \right|\right\}$} avec $\hat{F}(x_{(0)}) = 0$.
 
 \bigskip
 
-Ces équations reviennent donc à calculer la différence maximale entre la fonction de répartition empirique et théorique. Il s'ensuit que si les données sont bien ajustées, on s'attend à ce que $D$ soit très petit.
+Ces équations reviennent donc à calculer \textbf{la différence maximale} entre la fonction de répartition empirique et théorique. Chacune des différences prend le maximum de l'écart entre la distribution théorique et la 
+Il s'ensuit que si les données sont bien ajustées, on s'attend à ce que $D$ soit très petit.
 
 \bigskip
 
@@ -2486,122 +2491,59 @@ Visuellement :
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 
-%Shape: Axis 2D [id:dp24483060574985016] 
-\draw  (159.17,162) -- (308.17,162)(159.17,21) -- (159.17,162) -- cycle (301.17,157) -- (308.17,162) -- (301.17,167) (154.17,28) -- (159.17,21) -- (164.17,28)  ;
-%Straight Lines [id:da6030801017105296] 
-\draw [line width=2.25]    (179,157) -- (179,167) ;
-%Straight Lines [id:da2652234915508369] 
-\draw [line width=2.25]    (206,157) -- (206,167) ;
-%Straight Lines [id:da7718269955671673] 
-\draw [line width=2.25]    (235,157) -- (235,167) ;
-%Straight Lines [id:da8049939015901117] 
-\draw [line width=2.25]    (263,157) -- (263,167) ;
-%Straight Lines [id:da5692977431446764] 
-\draw [line width=2.25]    (292,157) -- (292,167) ;
-%Straight Lines [id:da036135237157260525] 
-\draw [line width=2.25]    (153.67,44) -- (164.5,44) ;
-%Straight Lines [id:da021466328536539292] 
-\draw [line width=2.25]    (153.67,87) -- (164.5,87) ;
-%Straight Lines [id:da8388615672035813] 
-\draw [line width=2.25]    (153.67,120) -- (164.5,120) ;
-%Straight Lines [id:da4377316999274832] 
-\draw [line width=2.25]    (153.67,144) -- (164.5,144) ;
-%Flowchart: Connector [id:dp27902589825476154] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (186,149.42) .. controls (186,147.99) and (187.16,146.83) .. (188.58,146.83) .. controls (190.01,146.83) and (191.17,147.99) .. (191.17,149.42) .. controls (191.17,150.84) and (190.01,152) .. (188.58,152) .. controls (187.16,152) and (186,150.84) .. (186,149.42) -- cycle ;
-%Flowchart: Connector [id:dp8858881991629384] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (177,149.42) .. controls (177,147.99) and (178.16,146.83) .. (179.58,146.83) .. controls (181.01,146.83) and (182.17,147.99) .. (182.17,149.42) .. controls (182.17,150.84) and (181.01,152) .. (179.58,152) .. controls (178.16,152) and (177,150.84) .. (177,149.42) -- cycle ;
-%Flowchart: Connector [id:dp965947428222834] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (195,147.42) .. controls (195,145.99) and (196.16,144.83) .. (197.58,144.83) .. controls (199.01,144.83) and (200.17,145.99) .. (200.17,147.42) .. controls (200.17,148.84) and (199.01,150) .. (197.58,150) .. controls (196.16,150) and (195,148.84) .. (195,147.42) -- cycle ;
-%Flowchart: Connector [id:dp5208785016321031] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (205,146.42) .. controls (205,144.99) and (206.16,143.83) .. (207.58,143.83) .. controls (209.01,143.83) and (210.17,144.99) .. (210.17,146.42) .. controls (210.17,147.84) and (209.01,149) .. (207.58,149) .. controls (206.16,149) and (205,147.84) .. (205,146.42) -- cycle ;
-%Flowchart: Connector [id:dp2872263470627334] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (214,145.42) .. controls (214,143.99) and (215.16,142.83) .. (216.58,142.83) .. controls (218.01,142.83) and (219.17,143.99) .. (219.17,145.42) .. controls (219.17,146.84) and (218.01,148) .. (216.58,148) .. controls (215.16,148) and (214,146.84) .. (214,145.42) -- cycle ;
-%Flowchart: Connector [id:dp6170797725926003] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (219,140.42) .. controls (219,138.99) and (220.16,137.83) .. (221.58,137.83) .. controls (223.01,137.83) and (224.17,138.99) .. (224.17,140.42) .. controls (224.17,141.84) and (223.01,143) .. (221.58,143) .. controls (220.16,143) and (219,141.84) .. (219,140.42) -- cycle ;
-%Flowchart: Connector [id:dp6321853947189746] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (224,130.42) .. controls (224,128.99) and (225.16,127.83) .. (226.58,127.83) .. controls (228.01,127.83) and (229.17,128.99) .. (229.17,130.42) .. controls (229.17,131.84) and (228.01,133) .. (226.58,133) .. controls (225.16,133) and (224,131.84) .. (224,130.42) -- cycle ;
-%Flowchart: Connector [id:dp4527459516123209] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (225,123.42) .. controls (225,121.99) and (226.16,120.83) .. (227.58,120.83) .. controls (229.01,120.83) and (230.17,121.99) .. (230.17,123.42) .. controls (230.17,124.84) and (229.01,126) .. (227.58,126) .. controls (226.16,126) and (225,124.84) .. (225,123.42) -- cycle ;
-%Flowchart: Connector [id:dp5990586632002524] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (228,114.42) .. controls (228,112.99) and (229.16,111.83) .. (230.58,111.83) .. controls (232.01,111.83) and (233.17,112.99) .. (233.17,114.42) .. controls (233.17,115.84) and (232.01,117) .. (230.58,117) .. controls (229.16,117) and (228,115.84) .. (228,114.42) -- cycle ;
-%Flowchart: Connector [id:dp46008272444906795] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (229,105.42) .. controls (229,103.99) and (230.16,102.83) .. (231.58,102.83) .. controls (233.01,102.83) and (234.17,103.99) .. (234.17,105.42) .. controls (234.17,106.84) and (233.01,108) .. (231.58,108) .. controls (230.16,108) and (229,106.84) .. (229,105.42) -- cycle ;
-%Flowchart: Connector [id:dp10208355949407677] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (243,49.42) .. controls (243,47.99) and (244.16,46.83) .. (245.58,46.83) .. controls (247.01,46.83) and (248.17,47.99) .. (248.17,49.42) .. controls (248.17,50.84) and (247.01,52) .. (245.58,52) .. controls (244.16,52) and (243,50.84) .. (243,49.42) -- cycle ;
-%Flowchart: Connector [id:dp44081367516766856] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (249,48.42) .. controls (249,46.99) and (250.16,45.83) .. (251.58,45.83) .. controls (253.01,45.83) and (254.17,46.99) .. (254.17,48.42) .. controls (254.17,49.84) and (253.01,51) .. (251.58,51) .. controls (250.16,51) and (249,49.84) .. (249,48.42) -- cycle ;
-%Flowchart: Connector [id:dp258791942489629] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (256,47.42) .. controls (256,45.99) and (257.16,44.83) .. (258.58,44.83) .. controls (260.01,44.83) and (261.17,45.99) .. (261.17,47.42) .. controls (261.17,48.84) and (260.01,50) .. (258.58,50) .. controls (257.16,50) and (256,48.84) .. (256,47.42) -- cycle ;
-%Flowchart: Connector [id:dp7461727454132954] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (230,98.42) .. controls (230,96.99) and (231.16,95.83) .. (232.58,95.83) .. controls (234.01,95.83) and (235.17,96.99) .. (235.17,98.42) .. controls (235.17,99.84) and (234.01,101) .. (232.58,101) .. controls (231.16,101) and (230,99.84) .. (230,98.42) -- cycle ;
-%Flowchart: Connector [id:dp3590383056585824] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (232,86.42) .. controls (232,84.99) and (233.16,83.83) .. (234.58,83.83) .. controls (236.01,83.83) and (237.17,84.99) .. (237.17,86.42) .. controls (237.17,87.84) and (236.01,89) .. (234.58,89) .. controls (233.16,89) and (232,87.84) .. (232,86.42) -- cycle ;
-%Flowchart: Connector [id:dp1884350833419266] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (233,81.42) .. controls (233,79.99) and (234.16,78.83) .. (235.58,78.83) .. controls (237.01,78.83) and (238.17,79.99) .. (238.17,81.42) .. controls (238.17,82.84) and (237.01,84) .. (235.58,84) .. controls (234.16,84) and (233,82.84) .. (233,81.42) -- cycle ;
-%Flowchart: Connector [id:dp24880669696449487] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (235,74.42) .. controls (235,72.99) and (236.16,71.83) .. (237.58,71.83) .. controls (239.01,71.83) and (240.17,72.99) .. (240.17,74.42) .. controls (240.17,75.84) and (239.01,77) .. (237.58,77) .. controls (236.16,77) and (235,75.84) .. (235,74.42) -- cycle ;
-%Flowchart: Connector [id:dp23618438280038845] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (237,66.42) .. controls (237,64.99) and (238.16,63.83) .. (239.58,63.83) .. controls (241.01,63.83) and (242.17,64.99) .. (242.17,66.42) .. controls (242.17,67.84) and (241.01,69) .. (239.58,69) .. controls (238.16,69) and (237,67.84) .. (237,66.42) -- cycle ;
-%Flowchart: Connector [id:dp38788335050603684] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (239,56.42) .. controls (239,54.99) and (240.16,53.83) .. (241.58,53.83) .. controls (243.01,53.83) and (244.17,54.99) .. (244.17,56.42) .. controls (244.17,57.84) and (243.01,59) .. (241.58,59) .. controls (240.16,59) and (239,57.84) .. (239,56.42) -- cycle ;
-%Flowchart: Connector [id:dp8001516680880116] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (272,47.42) .. controls (272,45.99) and (273.16,44.83) .. (274.58,44.83) .. controls (276.01,44.83) and (277.17,45.99) .. (277.17,47.42) .. controls (277.17,48.84) and (276.01,50) .. (274.58,50) .. controls (273.16,50) and (272,48.84) .. (272,47.42) -- cycle ;
-%Flowchart: Connector [id:dp06230967753042438] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (263,47.42) .. controls (263,45.99) and (264.16,44.83) .. (265.58,44.83) .. controls (267.01,44.83) and (268.17,45.99) .. (268.17,47.42) .. controls (268.17,48.84) and (267.01,50) .. (265.58,50) .. controls (264.16,50) and (263,48.84) .. (263,47.42) -- cycle ;
-%Flowchart: Connector [id:dp4843810494735361] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (281,45.42) .. controls (281,43.99) and (282.16,42.83) .. (283.58,42.83) .. controls (285.01,42.83) and (286.17,43.99) .. (286.17,45.42) .. controls (286.17,46.84) and (285.01,48) .. (283.58,48) .. controls (282.16,48) and (281,46.84) .. (281,45.42) -- cycle ;
-%Flowchart: Connector [id:dp9279424690148039] 
-\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (291,44.42) .. controls (291,42.99) and (292.16,41.83) .. (293.58,41.83) .. controls (295.01,41.83) and (296.17,42.99) .. (296.17,44.42) .. controls (296.17,45.84) and (295.01,47) .. (293.58,47) .. controls (292.16,47) and (291,45.84) .. (291,44.42) -- cycle ;
-%Curve Lines [id:da002395199379529034] 
-\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (159.5,150.67) .. controls (213.5,150.67) and (220.5,124.17) .. (228,98.42) .. controls (235.5,72.67) and (217.5,36.67) .. (296.17,44.42) ;
-%Shape: Brace [id:dp6799486612215031] 
-\draw   (235,145.67) .. controls (238.43,145.67) and (240.15,143.95) .. (240.15,140.52) -- (240.15,140.52) .. controls (240.15,135.62) and (241.86,133.17) .. (245.29,133.17) .. controls (241.86,133.17) and (240.15,130.72) .. (240.15,125.81)(240.15,128.02) -- (240.15,125.81) .. controls (240.15,122.38) and (238.43,120.67) .. (235,120.67) ;
-%Straight Lines [id:da08941638414935005] 
-\draw    (219.5,120.67) -- (235.5,120.67) ;
-%Straight Lines [id:da34946556635800796] 
-\draw    (219.17,145.67) -- (235.5,145.67) ;
+%Shape: Axis 2D [id:dp060266286159169846] 
+\draw  (159.17,162) -- (362.91,162)(159.17,21) -- (159.17,162) -- cycle (355.91,157) -- (362.91,162) -- (355.91,167) (154.17,28) -- (159.17,21) -- (164.17,28)  ;
+%Straight Lines [id:da12562536074307395] 
+\draw [line width=2.25]    (221,157) -- (221,167) ;
+%Straight Lines [id:da3733054059652132] 
+\draw [color={rgb, 255:red, 162; green, 162; blue, 162 }  ,draw opacity=1 ][line width=2.25]  [dash pattern={on 6.75pt off 4.5pt}]  (252,87.93) -- (252,162.93) ;
+%Straight Lines [id:da6545989327932975] 
+\draw [line width=2.25]    (316,157) -- (316,167) ;
+%Curve Lines [id:da530172644514328] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]    (159.5,151.67) .. controls (209.41,89.93) and (219.74,78.93) .. (230.08,70.93) .. controls (240.42,62.93) and (255.18,42.93) .. (361.3,45.42) ;
+%Straight Lines [id:da8769131976670139] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (159.5,150.67) -- (168.06,150.67) -- (168.06,116.93) -- (190.21,116.93) -- (190.21,97.93) -- (207.93,97.93) -- (207.93,87.93) -- (252.23,87.93) -- (252.23,47.93) -- (312.77,47.93) -- (312.77,42.93) -- (361.3,42.93) ;
+%Shape: Brace [id:dp016501247032992383] 
+\draw   (253,86.93) .. controls (257.01,86.93) and (259.02,84.92) .. (259.02,80.9) -- (259.02,80.9) .. controls (259.02,75.17) and (261.03,72.3) .. (265.05,72.3) .. controls (261.03,72.3) and (259.02,69.43) .. (259.02,63.69)(259.02,66.27) -- (259.02,63.69) .. controls (259.02,59.68) and (257.01,57.67) .. (253,57.67) ;
+%Shape: Brace [id:dp2141454102768252] 
+\draw   (250.3,48.93) .. controls (249.2,48.93) and (248.65,49.48) .. (248.65,50.57) -- (248.65,50.57) .. controls (248.65,52.14) and (248.1,52.93) .. (247.01,52.93) .. controls (248.1,52.93) and (248.65,53.71) .. (248.65,55.28)(248.65,54.57) -- (248.65,55.28) .. controls (248.65,56.38) and (249.2,56.93) .. (250.3,56.93) ;
+%Shape: Rectangle [id:dp6167125719112116] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (380,21.33) -- (551.3,21.33) -- (551.3,54.33) -- (380,54.33) -- cycle ;
+%Straight Lines [id:da237668939118584] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=3.75]    (384.17,30.33) -- (449.17,30.33) ;
+%Straight Lines [id:da8580734108652255] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=3.75]    (384.17,45.33) -- (449.17,45.33) ;
+
 
 % Text Node
-\draw (183,6) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{114.75000000000001pt}\setlength\topsep{0pt}
-\begin{center}
-{\footnotesize Comparaison des distributions }\\{\footnotesize empiriques et théoriques }
-\end{center}
-
-\end{minipage}};
-% Text Node
-\draw (314,152) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\draw (372.91,152) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
 \begin{center}
 $\displaystyle x$
 \end{center}
 
 \end{minipage}};
 % Text Node
-\draw (121.5,8.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{16.001216pt}\setlength\topsep{0pt}
-\begin{center}
-$\displaystyle F_{X}$
-\end{center}
+\draw (308.62,167.15) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle x_{( j+1)}$};
+% Text Node
+\draw (338.62,167.15) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \dotsc $};
+% Text Node
+\draw (137.62,35.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {1};
+% Text Node
+\draw (245.62,167.15) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle x_{( j)}$};
+% Text Node
+\draw (208.62,167.15) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle x_{( j-1)}$};
+% Text Node
+\draw (182.17,164) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \dotsc $};
+% Text Node
+\draw (269,61) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\scriptsize $\displaystyle |\textcolor[rgb]{0.96,0.65,0.14}{\hat{F}}\textcolor[rgb]{0.96,0.65,0.14}{(} x_{( j-1)}\textcolor[rgb]{0.96,0.65,0.14}{)} -\textcolor[rgb]{0.29,0.56,0.89}{F}\textcolor[rgb]{0.29,0.56,0.89}{^{\ast }}\textcolor[rgb]{0.29,0.56,0.89}{(} x_{( j)}\textcolor[rgb]{0.29,0.56,0.89}{)}\textcolor[rgb]{0,0,0}{|}$}};
+% Text Node
+\draw (163,41) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\scriptsize $\displaystyle |\textcolor[rgb]{0.96,0.65,0.14}{\hat{F}}\textcolor[rgb]{0.96,0.65,0.14}{(} x_{( j)}\textcolor[rgb]{0.96,0.65,0.14}{)} -\textcolor[rgb]{0.29,0.56,0.89}{F}\textcolor[rgb]{0.29,0.56,0.89}{^{\ast }}\textcolor[rgb]{0.29,0.56,0.89}{(} x_{( j)}\textcolor[rgb]{0.29,0.56,0.89}{)}\textcolor[rgb]{0,0,0}{|}$}};
+% Text Node
+\draw (500,45) node  [font=\small] [align=left] {distr. théorique};
+% Text Node
+\draw (502,30) node  [font=\small] [align=left] {distr. empirique};
 
-\end{minipage}};
-% Text Node
-\draw (166.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle -2$};
-% Text Node
-\draw (194.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle -1$};
-% Text Node
-\draw (230.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 0$};
-% Text Node
-\draw (259.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 1$};
-% Text Node
-\draw (287.62,170.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2};
-% Text Node
-\draw (135.62,146.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 0$};
-% Text Node
-\draw (137.62,130.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 0.25$};
-% Text Node
-\draw (137.62,95.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {$\displaystyle 0.50$};
-% Text Node
-\draw (136.62,47.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,rotate=-270] [align=left] {1};
-% Text Node
-\draw (247,123) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\scriptsize $\displaystyle \max \ \Delta =D$}};
+
 \end{tikzpicture}
 \end{center}
 \end{definitionNOHFILL}
@@ -2616,37 +2558,40 @@ $\displaystyle F_{X}$
 
 \columnbreak
 \subsubsection{Test d'adéquation du khi carré (\og \textit{Chi-Square Goodness-of-Fit Test} \fg{})}
-Soit $n$ répétitions (indépendantes) d'une expérience aléatoire.
+\begin{rappel_enhanced}[Motivation]
+Le test de Kolmogorov-Smirnov a la limitation inhérente qu'il mesure seulement la plus grande divergence entre la distribution empirique et théorique. Il s'ensuit que nous désirons évaluer la similarité des distributions sur l'ensemble du domaine. Pour ce faire, on utilise le test d'adéquation du khi carré.
 
 \bigskip
 
-On pose :
-\begin{itemize}
-	\item	L'espace d'échantillon des expériences $\mathcal{A}$ qui représente l'union de $k$ différents ensembles (disjoints) $\mathcal{A}	=	\left\{A_{1} \cup A_{2} \cup \dots \cup A_{k} \right\}$ ;
-	\item	On pose que pour $i	=	1, 2, \dots, k$, $\Pr(A_{i})	=	p_{i}$ où $p_{k}	=	1	-	p_{1}	-	\hdots	-	p_{k - 1}$ et $O_{k}	=	n	-	O_{1}	-	\hdots	-	O_{k - 1}$ ;
-		\begin{itemize}
-		\item	$p_{i}$ représente donc la \textit{probabilité} que le résultat de l'expérience aléatoire fasse partie de l'ensemble $A_{i}$ ;
-		\item	$O_{i}$	représente le \textit{nombre d'observations} (la \textit{fréquence}) pour lesquelles le résultat de l'expérience aléatoire fait partie de l'ensemble $A_{i}$.
-		\end{itemize}
-	\item	On pose que la distribution conjointe de $O_{1}, O_{2}, \dots, O_{k - 1} \sim MultiNom(n, p_{1}, \dots, p_{k - 1})$.
-\end{itemize}
+Contrairement au test de Kolmogorov-Smirnov, le test d'adéquation du khi carré \textbf{est un test d'hypothèse}.
+\end{rappel_enhanced}
 
-Soit le test d'hypothèse avec les nombres spécifiés $p_{1,0}, p_{2,0}, p_{k - 1,0}$ :
+
+\begin{definitionNOHFILL}[Test d'adéquation du khi carré]
+Le test débute par définir $k$ intervalles (distincts) des données dans lesquels les $n$ données sont réparties. 
+
+\bigskip
+
+Puis, pour $j \in \{1, \dots, k\}$, on défini : 
+\begin{description}
+	\item[$q_{j}$]	La probabilité de la distribution hypothétique d'être contenu dans l'intervalle $j$.
+	\item[$n_{j}$]	Le nombre d'observations de l'échantillon de données contenues dans l'intervalle $j$.
+\end{description}
+
+\bigskip
+
+L'hypothèse du test est que les espérances théoriques du nombre d'observations par intervalle ($nq_{j}$) vont être égaux aux nombres observés d'observations par intervalle ($n_{j}$). Donc, pour tout $j \in \{1, \dots, k\}$,
 \begin{align*}
-	\mathrm{H}_{0}	&:	
-	p_{1}	=	p_{1,0}, p_{2}	=	p_{2,0},	 \dots, p_{k - 1}	=	p_{k - 1,0}
+	\textrm{H}_{0}	&:	nq_{j}	=	n_{j}	&
+	\textrm{H}_{1}	&:	nq_{j}	\neq	n_{j}
 \end{align*}
-où $p_{k}	=	p_{k,0}	=	1	-	p_{1,0}	-	\hdots	-	p_{k - 1,0}$.
 
-Alors, sous l'hypothèse nulle : \lfbox[formula]{$Q	=	\sumz{k}{i = 1} \frac{(O_{i}	-	np_{i,0})^{2}}{np_{i,0}}	\approx	\chi_{(k - 1)}^{2}$}.
-\begin{itemize}
-%	\item	Si $O_{i} \sim \mathcal{N}$ alors le distribution du khi carré n'est pas une approximation ;
-	\item	Il y a seulement $k - 1$ degrés de liberté, car on estime seulement $k - 1$ paramètres.
-		\begin{itemize}
-		\item	Le nombre $n$ total d'observations est fixe et on déduit $n_{k}$ par la somme ;
-		\item	Si on avait à 
-		\end{itemize}
-\end{itemize}
+\bigskip
+
+La statistique du test calcule les divergences pour chacun des intervalles : \lfbox[formula]{$\displaystyle t = \sum_{j = 1}^{k} \frac{(n_{j} - nq_{j})^{2}}{nq_{j}}$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{(k - 1 - r)}$. 
+
+\paragraph{Note}	Le $k - 1$ des degrés de liberté est dut au fait que nous avons $k$ données empiriques sous la contrainte que $\sum_{j = 1}^{n} n_{j} = n$. Donc, il y a seulement $k - 1$ données estimées. Le $r$ correspond au nombre de paramètres estimés de la distribution théorique. Par exemple, pour une distribution normale avec $\sigma = 2$ et $\mu$ inconnu, $r = 1$.
+\end{definitionNOHFILL}
 
 
 
