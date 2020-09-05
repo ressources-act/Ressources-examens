@@ -590,33 +590,68 @@ L'estimateur MVUE n'est pas nécessairement l'estimateur ayant la plus petite va
 
 \columnbreak
 \subsection{Estimation par intervalles}\label{sec:int-estimation}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$\hat{\theta}_{L}$ et $\hat{\theta}_{U}$]	Fonctions de l'échantillon aléatoire $\{X_{1}, \dots, X_{n}\}$ où \icbox[red][palechestnut]{$\hat{\theta}_{L} < \hat{\theta}_{U}$};
-	\item[$(\hat{\theta}_{L}, \hat{\theta}_{U})$]	Intervalle de confiance de $100(1 - \alpha)\%$ de $\theta$ si \icbox[red][palechestnut]{$\Pr(\hat{\theta}_{L} \leq \theta \leq \hat{\theta}_{U}) = 1 - \alpha$};
+\begin{rappel_enhanced}[Contexte]
+Le type principal d'estimateur par intervalle est l'\textbf{intervalle de confiance}. Un intervalle de confiance suggère où est situé la valeur du paramètre d'intérêt à un certain niveau de confiance. 
+
+\bigskip
+
+De façon générale, on requiert les éléments suivants pour obtenir un intervalle de confiance :
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Une méthodologie
+	\item	Une distribution adéquate
+	\item	Un niveau de confiance
+	\item	Des données
+\end{enumerate}
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Intervalle de confiance]
+On décrit un \textbf{intervalle aléatoire} \lfbox[formula]{$(L, U)$} d'un paramètre $\theta$ avec \lfbox[formula]{$\Pr(L \leq \theta \leq U) = k$}. 
+
+\bigskip
+
+Lorsque $L$ et $U$ sont évalués pour les données, nous obtenons un intervalle de confiance \lfbox[formula]{$(l, u)$} de $100k\%$ pour $\theta$ où $k$ est le \textit{\textbf{niveau de confiance}}.
+
+\bigskip
+
+\paragraph{Note}	Les composantes $L$ et $U$ sont aléatoires alors que $\theta$ est fixe.
+\end{definitionNOHFILL}
+
+\bigskip
+
+Pour construire des intervalles de confiance, nous utilisons la \textbf{\textit{méthode du pivot}} basé sur \textit{un pivot}.
+
+\begin{definitionNOHFILLsub}[Pivot (\og \textit{pivotal quantity} \fg{})]
+Un pivot est \underline{une fonction} \textbf{des observations} et \textbf{des paramètres inconnus} de la distribution de l'échantillon. Cependant, la \textbf{distribution du pivot} ne \textbf{dépend pas des paramètres inconnus}.
+
+\bigskip	
+
+Le pivot est donc semblable, mais \textit{distinct}, d'une statistique. Si la distribution d'une statistique dépend de paramètres inconnus, elle n'est pas un pivot. Si le pivot est composée de paramètres inconnus, alors il n'est pas une statistique.
+
+\bigskip
+
+Par exemple, le pivot $\frac{\bar{X}_{n} - \mu}{\sqrt{n}}$ est un pivot; il est une fonction de l'échantillon ($\bar{X}_{n}$) et du paramètre inconnu ($\mu$), mais sa distribution est obtenue via le \hyperlink{TCLDef}{théorème central limite} et donc ne dépend pas de $\mu$.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILL}[Méthode du pivot]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Trouver un pivot \lfbox[formula]{$W = W(X_{1}, \dots, X_{n}; \theta)$}.
+	\item	Trouver les quantiles de la distribution de $W$, tels que \lfbox[formula]{$\Pr(w_{(1 - k)/2} \leq W \leq w_{(1 + k)/2}) = k$} pour un intervalle bilatéral.
 		\begin{itemize}
-		\item	Avec les réalisations, on a un intervalle de nombres réels $(\hat{\theta}_{l}, \hat{\theta}_{u})$.
+		\item	Pour des intervalles unilatéraux, on ajuste le niveau des quantiles.
 		\end{itemize}
-	\item[$(1 - \alpha)$]	Niveau de confiance de l'intervalle où \lfbox[conditions]{$\alpha \in (0, 1)$}.
-\end{description}
-\end{distributions}
+	\item	Isoler $\theta$ de l'équation \lfbox[formula]{$w_{(1 - k)/2} \leq W(X_{1}, \dots, X_{n}; \theta) \leq w_{(1 + k)/2}$} pour obtenir l'intervalle de confiance.
+\end{enumerate}
+\end{definitionNOHFILL}
 
-Le type principal d'estimateur par intervalle est l'\textbf{intervalle de confiance}:
-\begin{algo}{Intervalle de confiance}
-Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que le paramètre inconnu $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$. 
 
-De façon équivalente, nous sommes confiants à un seuil de $\alpha$\% que $\theta$ est entre $(\hat{\theta}_{L}, \hat{\theta}_{U})$.
+\begin{rappel_enhanced}[Contexte]
+Ce qu'il faut bien saisir avec les intervalles de confiance, c'est que \textit{soit} $\theta$ \textbf{\textit{est} contenu} dans l'intervalle $(L, U)$ \textit{ou} \textbf{il ne l'est \textit{pas}}.
 
 \bigskip
 
-Donc, \icbox{$\theta \in (\hat{\theta}_{L}, \hat{\theta}_{U})$} et nous pouvons dire que \icbox{$\Pr( \hat{\theta}_{L} \le \theta \le  \hat{\theta}_{U}) \ge (1 - \alpha)$} \icbox[red][palechestnut]{pour tout $\theta$}.
-\end{algo}
+On peut conceptualiser les intervalles comme une distribution binomiale avec probabilité de succès de $k$. Si l'on effectue $N$ essais indépendants, on s'attend à ce que $k \times N$ intervalles de confiance contiennent $\theta$. Donc, nous sommes confiants à $k\%$ que la vraie valeur de $\theta$ est contenue dans l'intervalle \textbf{observé} $(l, u)$.
+\end{rappel_enhanced}
 
-\bigskip
-
-Ce qu'il faut bien saisir avec les intervalles de confiance, c'est que \textit{soit} $\theta$ \textbf{\textit{est} contenu} dans l'intervalle $(\hat{\theta}_{l}, \hat{\theta}_{u})$ \textit{ou} \textbf{il ne l'est \textit{pas}}.
-
-On peut conceptualiser les intervalles comme une distribution binomiale avec probabilité de succès de $(1 - \alpha)$. Si l'on effectue $M$ essais indépendants, on s'attend à ce que $(1 - \alpha)M$ intervalles de confiance contiennent $\theta$. Donc on se sent confiant à $(1 - \alpha)\%$ que la vraie valeur de $\theta$ est contenue dans l'intervalle observé $(\hat{\theta}_{l}, \hat{\theta}_{u})$.
 
 \paragraph{Efficacité des intervalles de confiance}
 Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ augmente si on augmente le niveau de confiance $(1 - \alpha)$. Par exemple, pour être certain à 100\% que l'intervalle va contenir la valeur, on a qu'à faire un intervalle $(-\infty, \infty)$.
@@ -894,9 +929,40 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{definitionNOHFILLsub}
 
 
-%%%
-%%%	Méthode du pivot
-%%%
+\columnbreak
+\section{Intervalles de confiance}\label{sec:intConf}
+\subsection{Intervalles sur la moyenne}
+\subsubsection{1 échantillon}
+variance
+	connue
+	inconnue
+bilatéral
+unilatéral vers la droite
+unilatéral vers la gauche
+
+\subsubsection{2 échantillons}
+variance
+	connue
+	inconnue
+bilatéral
+unilatéral vers la droite
+unilatéral vers la gauche
+
+échantillons appariés
+
+\subsection{Intervalles sur les proportions}
+\subsubsection{1 échantillon}
+
+
+\subsubsection{2 échantillons}
+
+
+\subsection{Intervalles sur la variance}
+\subsubsection{1 échantillon}
+
+
+\subsubsection{2 échantillons}
+
 
 \columnbreak
 \section{Tests d'hypothèses}\label{sec:hyp-test}
