@@ -887,7 +887,7 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 
 \columnbreak
 \section{Intervalles de confiance}\label{sec:intConf}
-\paragraph{Note}	Ces sections sur les \textit{\underline{\nameref{subsec:meanIC}}}, les \textit{\underline{\nameref{subsec:propIC}}} et les  \textit{\underline{\nameref{subsec:varIC}}} se rapprochent des sections correspondantes des \textit{\underline{\nameref{sec:hyp-test}}}. La section sur les \textit{\underline{\nameref{sec:hyp-test}}} a été faite avant celle-ci sur les \textit{\underline{\nameref{sec:intConf}}}, et donc je vous conseille de la lire en premier.
+\paragraph{Note}	Ces sections sur les \textit{\underline{\nameref{subsec:meanIC}}}, les \textit{\underline{\nameref{subsec:propIC}}} et les  \textit{\underline{\nameref{subsec:varIC}}} sont semblables aux sections correspondantes des \textit{\underline{\nameref{sec:hyp-test}}}. La section sur les \textit{\underline{\nameref{sec:hyp-test}}} a été faite avant celle-ci sur les \textit{\underline{\nameref{sec:intConf}}}, et donc je vous conseille de la lire en premier.
 
 \subsection{Intervalles sur la moyenne}\label{subsec:meanIC}
 \paragraph{Note}	Voir la section sur \textit{\underline{\nameref{subsec:MeanTests}}} pour les rappels de \hyperlink{TCLDef}{la définition du théorème centrale limite} et de \hyperlink{studentReminder}{la définition de la loi de Student}.
@@ -1073,10 +1073,45 @@ Si les données sont \textbf{appariées}, les intervalles de confiance sont les 
 
 \columnbreak
 \subsection{Intervalles sur les proportions}\label{subsec:propIC}
+\paragraph{Note}	Voir \hyperlink{ctxtPropTests}{la boîte de contexte} des \textit{\underline{\nameref{subsec:PropTests}}} pour comprendre la notion de variance dans le cas d'une distribution Bernoulli.
+
 \subsubsection{1 échantillon}
+Pour un échantillon aléatoire de taille $n$ tiré d'une distribution Bernoulli, on déduit du \hyperlink{TCLDef}{théorème centrale limite} que, lorsque $n$ est grand, le pivot \lfbox[formula]{$\displaystyle \frac{\hat{q} - q}{\sqrt{\frac{\hat{q}(1 - \hat{q})}{n}}} \overset{D}{\rightarrow} Z$}.
+
+\bigskip
+
+Donc, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.8cm}	|	>{\columncolor{beaublue}}m{4.5cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$\displaystyle q \in \hat{q} \pm z_{(1 - k)/2} \sqrt{\frac{\hat{q}(1 - \hat{q})}{n}}$	\tabularnewline\hline
+unilatéral à gauche	&	$\displaystyle q \in \left[-\infty,\, \hat{q} + z_{k} \sqrt{\frac{\hat{q}(1 - \hat{q})}{n}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$\displaystyle q \in \left[\hat{q} - z_{k} \sqrt{\frac{\hat{q}(1 - \hat{q})}{n}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\paragraph{Note}	L'intervalle de confiance diffère de \hyperref[subsubsec:PropTests1Sample]{la statistique du test d'hypothèse correspondant} car nous utilisons $\hat{q}$ pour l'erreur type et non $q$.
+
 
 
 \subsubsection{2 échantillons}
+Pour 2 échantillons aléatoires de tailles $n_{1}$ et $n_{2}$, on déduit du \hyperlink{TCLDef}{théorème centrale limite} que, lorsque $n_{1}$ et $n_{2}$ sont grands, le pivot \lfbox[formula]{$\displaystyle \frac{(\hat{q}_{1} - \hat{q}_{2}) - (q_{1} - q_{2})}{\sqrt{\frac{\hat{q}_{1}(1 - \hat{q}_{1})}{n_{1}} + \frac{\hat{q}_{2}(1 - \hat{q}_{2})}{n_{2}}}} \overset{D}{\rightarrow} Z$}.
+
+\bigskip
+
+Donc, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.8cm}	|	>{\columncolor{beaublue}}m{9.5cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$\displaystyle (q_{1} - q_{2}) \in (\hat{q}_{1} - \hat{q}_{2}) \pm z_{(1 - k)/2} \sqrt{\frac{\hat{q}_{1}(1 - \hat{q}_{1})}{n_{1}} + \frac{\hat{q}_{2}(1 - \hat{q}_{2})}{n_{2}}}$	\tabularnewline\hline
+unilatéral à gauche	&	$\displaystyle (q_{1} - q_{2}) \in \left[-\infty,\, (\hat{q}_{1} - \hat{q}_{2}) + z_{k} \sqrt{\frac{\hat{q}_{1}(1 - \hat{q}_{1})}{n_{1}} + \frac{\hat{q}_{2}(1 - \hat{q}_{2})}{n_{2}}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$\displaystyle (q_{1} - q_{2}) \in \left[(\hat{q}_{1} - \hat{q}_{2}) - z_{k} \sqrt{\frac{\hat{q}_{1}(1 - \hat{q}_{1})}{n_{1}} + \frac{\hat{q}_{2}(1 - \hat{q}_{2})}{n_{2}}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\bigskip
 
 
 
@@ -1806,14 +1841,16 @@ inconnue	&	normale$^{\ast}$	&	non	&	$\frac{\bar{d}_{n} - h}{s_{D}/\sqrt{n_{\ast}
 
 \columnbreak
 \subsection{Tests sur les proportions}\label{subsec:PropTests}
+\begin{rappel_enhanced}[\hypertarget{ctxtPropTests}{Contexte}]
 Le paramètre $p$ d'une distribution Bernoulli est d'intérêt particulier car il représente la \textit{proportion} d'une population qui est considérée un « succès ». Bien que $p$ correspond à la moyenne d'une distribution Bernoulli, il y a quelques particularités qui distinguent le test sur une proportion.
 
 \bigskip
 
 La distinction principale revient à la variance, $p(1 - p)$, d'une distribution Bernoulli. Puisqu'elle est fonction du paramètre $p$ inconnu, il s'ensuit que la \underline{\textbf{variance est inconnue}}. Auparavant, les tests sur la moyenne pour lesquels la variance est inconnue ont étés restreints à des échantillons tirés d'une distribution normale afin d'utiliser la loi de Student. Cependant, puisque l'échantillon est tiré de la distribution (discrète) de Bernoulli, on ne peut pas appliquer la loi de Student.
+\end{rappel_enhanced}
 
 
-\subsubsection{1 échantillon}
+\subsubsection{1 échantillon}\label{subsubsec:PropTests1Sample}
 Pour $n$ qui est grand, le \hyperlink{TCLDef}{théorème centrale limite} implique que \lfbox[formula]{$\bar{X}_{n} \overset{D}{\rightarrow} \mathcal{N}\left(q, \frac{q(1 - q)}{n}\right)$}. Pour le cas d'une proportion, il est courant de dénoter la valeur observée de la moyenne empirique comme : \lfbox[formula]{$\bar{x}_{n} = \hat{q}$}. Il s'ensuit que \lfbox[formula]{$t = \frac{\hat{q} - h}{\sqrt{\frac{h(1 - h)}{n}}}$} où \lfbox[formula]{$T \sim \mathcal{N}(0, 1)$}.
 
 
