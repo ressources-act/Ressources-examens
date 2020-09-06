@@ -605,13 +605,13 @@ De façon générale, on requiert les éléments suivants pour obtenir un interv
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Intervalle de confiance]
-On décrit un \textbf{intervalle aléatoire} \lfbox[formula]{$(L, U)$} d'un paramètre $\theta$ avec \lfbox[formula]{$\Pr(L \leq \theta \leq U) = k$}. 
+On décrit un \textbf{\textcolor{teal}{intervalle aléatoire}} \lfbox[formula]{$(L, U)$} d'un paramètre $\theta$ avec \lfbox[formula]{$\Pr(L \leq \theta \leq U) = k$} où $k$ est le \textit{\textbf{niveau de confiance}}. 
 
 \bigskip
 
-Lorsque $L$ et $U$ sont évalués pour les données, nous obtenons un intervalle de confiance \lfbox[formula]{$(l, u)$} de $100k\%$ pour $\theta$ où $k$ est le \textit{\textbf{niveau de confiance}}.
+Lorsque $L$ et $U$ sont évalués pour les données, nous obtenons un \textbf{\textcolor{teal}{intervalle numérique}} : l'\textbf{\underline{intervalle de confiance}} \lfbox[formula]{$(l, u)$} de $100k\%$ pour $\theta$.
 
-\bigskip
+%\bigskip
 
 \paragraph{Note}	Les composantes $L$ et $U$ sont aléatoires alors que $\theta$ est fixe.
 \end{definitionNOHFILL}
@@ -644,6 +644,95 @@ Par exemple, le pivot $\frac{\bar{X}_{n} - \mu}{\sqrt{n}}$ est un pivot; il est 
 \end{definitionNOHFILL}
 
 
+\begin{formula}{Exemple d'application de la méthode du pivot}
+Soit $X \sim \sim \text{Pareto}(\alpha = 2, \theta)$ et le pivot $W = \frac{\theta}{X}$. Nous avons un échantillon d'une observation : $x = \{3.5\}$ et on désire trouver un intervalle de confiance bilatéral de 95\% pour $\theta$.
+
+\bigskip
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	On doit vérifier que $W = \frac{\theta}{X}$ est un pivot valide.
+		\begin{enumerate}
+		\item	$W$ est une fonction de l'échantillon et du paramètre inconnu.
+		\item	La distribution de $W$ ne doit pas dépendre de $\theta$, on confirme en trouvant sa fonction de répartition : 
+			\begin{align*}
+			F_{W}(w)
+			&=	\Pr(W \leq w)
+			=	\Pr\left(\frac{\theta}{X} \leq w\right)	
+			=	\Pr\left(X < \frac{\theta}{w}\right)		\\
+			&=	\left(\frac{\theta}{\left(\frac{\theta}{w}\right) + \theta}\right)^{2}	\\
+			=	\left(\frac{w}{w + 1}\right)^{2}
+			\end{align*}
+		\end{enumerate}
+	\item	On doit établir quels quantiles trouver pour un niveau de confiance de 95\%. On déduit ces percentiles visuellement : 
+		\begin{center}
+		\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Curve Lines [id:da829336988813256] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (372,98) .. controls (459.83,97.67) and (435.83,28.67) .. (464.83,28.67) .. controls (494.83,28.67) and (470.83,97.67) .. (556.83,98) ;
+%Straight Lines [id:da4741264493482007] 
+\draw [line width=1.5]    (500.83,98.33) -- (500.83,103.67) ;
+%Straight Lines [id:da5314815019161057] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (501.5,91.15) -- (501.5,98) -- (556.83,98) ;
+%Straight Lines [id:da3968427061974229] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (501.5,81.8) -- (501.5,91.15) -- (525.31,94.89) ;
+%Straight Lines [id:da9562363742512534] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (501.5,79) -- (501.5,88.34) -- (513.41,93.02) ;
+
+%Straight Lines [id:da15241431159523566] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (428.5,91.15) -- (428.5,98) -- (372.83,98) ;
+%Straight Lines [id:da763617499922203] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (428.5,81.8) -- (428.5,91.15) -- (404.55,94.89) ;
+%Straight Lines [id:da4030414239191158] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (428.5,79) -- (428.5,88.34) -- (416.52,93.02) ;
+
+%Curve Lines [id:da438544491345902] 
+\draw [line width=1.5]    (372,98) .. controls (459.83,97.67) and (435.83,28.67) .. (464.83,28.67) .. controls (494.83,28.67) and (470.83,97.67) .. (556.83,98) ;
+%Straight Lines [id:da26493469845993656] 
+\draw [line width=1.5]    (372,98) -- (556.83,98) ;
+%Straight Lines [id:da0827491606518942] 
+\draw [line width=1.5]    (428.83,98.33) -- (428.83,103.67) ;
+
+% Text Node
+\draw (488.83,101) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle w_{0.975}$};
+% Text Node
+\draw (452,61) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle 95\%$};
+% Text Node
+\draw (523,74) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle 0.025$};
+% Text Node
+\draw (383,74) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle 0.025$};
+% Text Node
+\draw (421.52,101) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle w_{0.025}$};
+\end{tikzpicture}
+		\end{center}
+	\item	On isoles les valeurs des percentiles $w_{0.025}$ et $w_{0.975}$ avec la fonction de répartition :
+		\begin{align*}
+		0.025
+		&=	\left(\frac{w}{w + 1}\right)^{2}
+		\Rightarrow
+		w = 0.1878	\\
+		0.975
+		&=	\left(\frac{w}{w + 1}\right)^{2}
+		\Rightarrow
+		w = 78.4968	
+		\end{align*}
+	\item	On établit la probabilité désiré 
+		\begin{align*}
+		\Pr(w_{0.025} \leq W \leq w_{0.975}) 
+		&= 0.95	\\
+		\Pr(0.1878 \leq W \leq 78.4968) 
+		&= 0.95	\\
+		\Pr\left(0.1878 \leq \frac{\theta}{X} \leq 78.4968\right) 
+		&= 0.95	\\
+		\Pr\left(0.1878 \times X \leq \theta \leq 78.4968 \times X\right) 
+		&= 0.95	
+		\end{align*}
+	\item	Finalement, pour obtenir \og l'intervalle numérique \fg{}, alias l'\textbf{intervalle de confiance} de niveau 95\%, on insère l'échantillon de données et on trouve que nous sommes confiants à un niveau de 95\% que $\theta \in \left[0.1878 \times 3.5, 78.4968 \times 3.5 \right] = \left[0.6573, 274.7389 \right]$.
+\end{enumerate}
+\end{formula}
+
+
 \begin{rappel_enhanced}[Contexte]
 Ce qu'il faut bien saisir avec les intervalles de confiance, c'est que \textit{soit} $\theta$ \textbf{\textit{est} contenu} dans l'intervalle $(L, U)$ \textit{ou} \textbf{il ne l'est \textit{pas}}.
 
@@ -654,17 +743,21 @@ On peut conceptualiser les intervalles comme une distribution binomiale avec pro
 
 
 \paragraph{Efficacité des intervalles de confiance}
-Typiquement, la largeur de l'intervalle $(\hat{\theta}_{L}, \hat{\theta}_{U})$ augmente si on augmente le niveau de confiance $(1 - \alpha)$. Par exemple, pour être certain à 100\% que l'intervalle va contenir la valeur, on a qu'à faire un intervalle $(-\infty, \infty)$.
+Typiquement, la largeur de l'intervalle $(L, U)$ augmente si on augmente le niveau de confiance $k$. Par exemple, pour être certain à 100\% que l'intervalle va contenir la valeur, on a qu'à faire un intervalle $(-\infty, \infty)$.
 
 \bigskip
 
-Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $(1 - \alpha)$, l'intervalle avec la plus petite largeur est \textit{plus efficace} que l'autre.
+Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $k$, l'intervalle avec la plus petite largeur est \textit{plus \textbf{efficace}} que l'autre.
 
 
 
 \columnbreak
 \subsubsection{Statistiques}
 Voir la section de \underline{\textit{\nameref{subsubsec:VarTestsRem}}} des \textit{\underline{\nameref{subsec:VarTests}}} pour un rappel sur \hyperlink{ChiSquaredReminder}{la loi du khi carré} et sur \hyperlink{FisherReminder}{la loi de Fisher-Snedecor}. Également, la section de \textit{\underline{\nameref{subsubsec:MeanTestsRappels}}} des \textit{\underline{\nameref{subsec:MeanTests}}} pour un rappel sur \hyperlink{studentReminder}{la loi de Student}.
+
+\bigskip
+
+On définit le \hypertarget{pooledVarianceDef}{\og \textit{pooled estimator} \fg{}} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.
 
 
 
@@ -728,129 +821,6 @@ Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
 \end{align*}
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ connue)]
-%%%	https://www.youtube.com/watch?v=KG921rfbTDw&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=4&t=0s
-%%%	https://www.youtube.com/watch?v=-iYDu8flFXQ&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=3&t=268s
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\mu$ inconnu et $\sigma^{2}$ connue, \lfbox[formula]{$\Pr\left(-z_{\alpha/2} \leq \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \leq z_{\alpha/2}\right) =	(1 - \alpha)$}.
-
-\bigskip
-
-Graphiquement:
-\begin{center}
-
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
-
-%Curve Lines [id:da8947130044196236] 
-\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
-%Straight Lines [id:da8407133508917781] 
-\draw [line width=1.5]    (428.83,99.33) -- (428.83,104.67) ;
-%Straight Lines [id:da7153733396293662] 
-\draw [line width=1.5]    (530.83,99.33) -- (530.83,104.67) ;
-%Straight Lines [id:da1468161753341053] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,91.67) -- (516.83,99) -- (571.83,99) ;
-%Straight Lines [id:da44372694181119354] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,81.67) -- (516.83,91.67) -- (540.5,95.67) ;
-%Straight Lines [id:da871067588661014] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,78.67) -- (516.83,88.67) -- (528.67,93.67) ;
-
-%Straight Lines [id:da7000317622260974] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,91.67) -- (442.83,99) -- (387.83,99) ;
-%Straight Lines [id:da8176903889743383] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,81.67) -- (442.83,91.67) -- (419.17,95.67) ;
-%Straight Lines [id:da7955659226488763] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,78.67) -- (442.83,88.67) -- (431,93.67) ;
-
-%Curve Lines [id:da21189166086741196] 
-\draw [line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
-%Straight Lines [id:da9615401029487891] 
-\draw [line width=1.5]    (387,99) -- (571.83,99) ;
-
-
-% Text Node
-\draw (397,74) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
-% Text Node
-\draw (537,74) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
-% Text Node
-\draw (461,5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1\ -\ \alpha $};
-% Text Node
-\draw (518.83,102) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z_{\alpha /2}$};
-% Text Node
-\draw (417.33,102) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -z_{\alpha /2}$};
-
-
-\end{tikzpicture}
-\end{center}
-
-
-Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	\mu \in \left[ \bar{X} - z_{\alpha/2} \frac{\sigma}{\sqrt{n}}, \bar{X} + z_{\alpha/2} \frac{\sigma}{\sqrt{n}}\right].
-\end{equation*}
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la moyenne ($\sigma^{2}$ inconnue)]
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(-t_{\alpha/2, n - 1} \leq \frac{\bar{X} - \mu}{S_{n}/\sqrt{n}} \leq t_{\alpha/2, n - 1}\right) =	(1 - \alpha)$}.
-
-\bigskip
-
-Graphiquement:
-\begin{center}
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
-
-%Curve Lines [id:da982458578172261] 
-\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (386,98) .. controls (473.83,97.67) and (449.83,28.67) .. (478.83,28.67) .. controls (508.83,28.67) and (484.83,97.67) .. (570.83,98) ;
-%Straight Lines [id:da3849016484089105] 
-\draw [line width=1.5]    (427.83,98.33) -- (427.83,103.67) ;
-%Straight Lines [id:da40648686188300065] 
-\draw [line width=1.5]    (529.83,98.33) -- (529.83,103.67) ;
-%Straight Lines [id:da0901743854683843] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (515.5,91.15) -- (515.5,98) -- (570.83,98) ;
-%Straight Lines [id:da7611083055876529] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (515.5,81.8) -- (515.5,91.15) -- (539.31,94.89) ;
-%Straight Lines [id:da39003595249115297] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (515.5,79) -- (515.5,88.34) -- (527.41,93.02) ;
-
-%Straight Lines [id:da438403114586448] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.5,91.15) -- (442.5,98) -- (386.83,98) ;
-%Straight Lines [id:da963730012359405] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.5,81.8) -- (442.5,91.15) -- (418.55,94.89) ;
-%Straight Lines [id:da7346871172050706] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.5,79) -- (442.5,88.34) -- (430.52,93.02) ;
-
-%Curve Lines [id:da971478425929696] 
-\draw [line width=1.5]    (386,98) .. controls (473.83,97.67) and (449.83,28.67) .. (478.83,28.67) .. controls (508.83,28.67) and (484.83,97.67) .. (570.83,98) ;
-%Straight Lines [id:da9295821978585093] 
-\draw [line width=1.5]    (386,98) -- (570.83,98) ;
-
-% Text Node
-\draw (396,73) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
-% Text Node
-\draw (536,73) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
-% Text Node
-\draw (459,14) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1\ -\ \alpha $};
-% Text Node
-\draw (517.83,101) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{\alpha /2}$};
-% Text Node
-\draw (416.33,101) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -t_{\alpha /2}$};
-
-
-\end{tikzpicture}
-\end{center}
-
-Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	\mu \in \left[ \bar{X} - t_{\alpha/2, n - 1} \frac{S_{n}}{\sqrt{n}}, \bar{X} + t_{\alpha/2, n - 1} \frac{S_{n}}{\sqrt{n}}\right].
-\end{equation*}
-\end{definitionNOHFILLsub}
-
-
 %%%	-------------------------
 %%%	NOTES:
 %%%	+	À retravailler cette section pour ajouter un peu plus de contexte sur les grands échantillons
@@ -880,23 +850,9 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 \end{equation*}
 \end{definitionNOHFILLsub}
 
-On définit le \hypertarget{pooledVarianceDef}{\og \textit{pooled estimator} \fg{}} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.
-
 \bigskip
 
 
-\begin{definitionNOHFILLsub}[Intervalle de confiance pour une différence de moyennes]
-Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variance $\sigma^{2}_{1} = \sigma^{2}_{2} = \sigma^{2}$ inconnues.
-
-Nous sommes confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	(\mu_{1}	-	\mu_{2}) \in \left[ 
-	\bar{x}_{n}	-	\bar{y}_{m}
-	\pm	t_{\alpha/2, n + m - 2} S_{p}\sqrt{\frac{1}{n} + \frac{1}{m}} \right].
-\end{equation*}
-\begin{align*}
-\end{align*}
-\end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} pour une différence de moyennes]
 Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variances $\sigma^{2}_{1}$ et $\sigma^{2}_{2}$ inconnues.
@@ -931,33 +887,201 @@ Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niv
 
 \columnbreak
 \section{Intervalles de confiance}\label{sec:intConf}
-\subsection{Intervalles sur la moyenne}
+\paragraph{Note}	Ces sections sur les \textit{\underline{\nameref{subsec:meanIC}}}, les \textit{\underline{\nameref{subsec:propIC}}} et les  \textit{\underline{\nameref{subsec:varIC}}} se rapprochent des sections correspondantes des \textit{\underline{\nameref{sec:hyp-test}}}. La section sur les \textit{\underline{\nameref{sec:hyp-test}}} a été faite avant celle-ci sur les \textit{\underline{\nameref{sec:intConf}}}, et donc je vous conseille de la lire en premier.
+
+\subsection{Intervalles sur la moyenne}\label{subsec:meanIC}
+\paragraph{Note}	Voir la section sur \textit{\underline{\nameref{subsec:MeanTests}}} pour les rappels de \hyperlink{TCLDef}{la définition du théorème centrale limite} et de \hyperlink{studentReminder}{la définition de la loi de Student}.
+
 \subsubsection{1 échantillon}
-variance
-	connue
-	inconnue
-bilatéral
-unilatéral vers la droite
-unilatéral vers la gauche
+Pour un échantillon aléatoire de taille $n$ avec moyenne $\mu$ et variance $\sigma^{2}$,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.4cm} | >{\columncolor{beaublue}\centering}m{2cm}  | >{\columncolor{beaublue}\centering}m{1.1cm}  | >{\columncolor{beaublue}\centering}m{3cm}  | >{\columncolor{beaublue}\centering}m{3cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{variance}}	&	\textcolor{white}{\textbf{distribution de\\ l'échantillon}}	&	\textcolor{white}{\textbf{$n$ grand ?}}	&	\textcolor{white}{\textbf{pivot}}	&	\textcolor{white}{\textbf{distribution du pivot}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+connue	&	n'importe quelle	&	oui	&	$\frac{\bar{X}_{n} - \mu}{\sigma/\sqrt{n}}$	&	$\mathcal{N}(0, 1)$	\tabularnewline\hline
+inconnue	&	normale			&	non	&	$\frac{\bar{X}_{n} - \mu}{S_{n}/\sqrt{n}}$	&	$t_{n - 1}$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+Donc, lorsque la variance est connue,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.5cm} | >{\columncolor{beaublue}\centering}m{1.7cm}  | >{\columncolor{beaublue}}m{6.5cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle aléatoire}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$(L, U)$			&	$\displaystyle \mu \in \left[\bar{x}_{n} - z_{(1 - k)/2} \frac{\sigma}{\sqrt{n}},\, \bar{x}_{n} + z_{(1 + k)/2} \frac{\sigma}{\sqrt{n}}\right]$	\tabularnewline\hline
+unilatéral à gauche	&	$(-\infty, U)$	&	$\displaystyle \mu \in \left[-\infty,\, \bar{x}_{n} + z_{k} \frac{\sigma}{\sqrt{n}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$(L, \infty)$	&	$\displaystyle \mu \in \left[\bar{x}_{n} - z_{k} \frac{\sigma}{\sqrt{n}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+Visuellement, nous avons une aire de $(1 - k)/2$ dans les deux queues et les points $z_{(1 - k)/2}$ et $z_{(1 + k)/2}$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Curve Lines [id:da6119393163367723] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
+%Straight Lines [id:da6903377197423433] 
+\draw [line width=1.5]    (440.83,99.33) -- (440.83,104.67) ;
+%Straight Lines [id:da37995246673643823] 
+\draw [line width=1.5]    (515.83,99.33) -- (515.83,104.67) ;
+%Straight Lines [id:da42909893547923383] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,91.67) -- (516.83,99) -- (571.83,99) ;
+%Straight Lines [id:da8239616681738389] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,81.67) -- (516.83,91.67) -- (540.5,95.67) ;
+%Straight Lines [id:da6526175849865508] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,78.67) -- (516.83,88.67) -- (528.67,93.67) ;
+
+%Straight Lines [id:da060032519095376546] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,91.67) -- (442.83,99) -- (387.83,99) ;
+%Straight Lines [id:da47946865517011994] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,81.67) -- (442.83,91.67) -- (419.17,95.67) ;
+%Straight Lines [id:da7400597075839581] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,78.67) -- (442.83,88.67) -- (431,93.67) ;
+
+%Curve Lines [id:da27291947700102814] 
+\draw [line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
+%Straight Lines [id:da2032332181368821] 
+\draw [line width=1.5]    (387,99) -- (571.83,99) ;
+
+% Text Node
+\draw (377,71) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle ( 1-k) /2$};
+% Text Node
+\draw (530,71) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle ( 1-k) /2$};
+% Text Node
+\draw (475,5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle k$};
+% Text Node
+\draw (505.83,102) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z_{( 1+k) /2}$};
+% Text Node
+\draw (429.33,102) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle z_{( 1-k) /2}$};
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+
+Puis, lorsque la variance n'est \textit{pas} connue,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.5cm} | >{\columncolor{beaublue}\centering}m{1.7cm}  | >{\columncolor{beaublue}}m{6.5cm}}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle aléatoire}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$(L, U)$			&	$\displaystyle \mu \in \left[\bar{x}_{n} - t_{1 - k, n - 1} \frac{s}{\sqrt{n}},\, \bar{x}_{n} + t_{1 - k, n - 1} \frac{s}{\sqrt{n}}\right]$	\tabularnewline\hline
+unilatéral à gauche	&	$(-\infty, U)$	&	$\displaystyle \mu \in \left[-\infty,\, \bar{x}_{n} + t_{2(1 - k), n - 1} \frac{s}{\sqrt{n}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$(L, \infty)$	&	$\displaystyle \mu \in \left[\bar{x}_{n} - t_{2(1 - k), n - 1} \frac{s}{\sqrt{n}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+Visuellement, nous avons une aire de $(1 - k)/2$ dans les deux queues et les points $-t_{(1 - k), n - 1}$ et $t_{(1 - k), n - 1}$ : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Curve Lines [id:da824005969687698] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
+%Straight Lines [id:da9890395962112117] 
+\draw [line width=1.5]    (440.83,99.33) -- (440.83,104.67) ;
+%Straight Lines [id:da414728674062669] 
+\draw [line width=1.5]    (515.83,99.33) -- (515.83,104.67) ;
+%Straight Lines [id:da06438257520474777] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,91.67) -- (516.83,99) -- (571.83,99) ;
+%Straight Lines [id:da511184754452765] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,81.67) -- (516.83,91.67) -- (540.5,95.67) ;
+%Straight Lines [id:da9211495488241099] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (516.83,78.67) -- (516.83,88.67) -- (528.67,93.67) ;
+
+%Straight Lines [id:da1299480497735801] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,91.67) -- (442.83,99) -- (387.83,99) ;
+%Straight Lines [id:da003160337403435687] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,81.67) -- (442.83,91.67) -- (419.17,95.67) ;
+%Straight Lines [id:da08512308646808342] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (442.83,78.67) -- (442.83,88.67) -- (431,93.67) ;
+
+%Curve Lines [id:da6586949516305098] 
+\draw [line width=1.5]    (387,99) .. controls (474.83,98.67) and (450.83,19.67) .. (479.83,19.67) .. controls (509.83,19.67) and (485.83,98.67) .. (571.83,99) ;
+%Straight Lines [id:da9985317303599219] 
+\draw [line width=1.5]    (387,99) -- (571.83,99) ;
+
+% Text Node
+\draw (377,71) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle ( 1-k) /2$};
+% Text Node
+\draw (530,71) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle ( 1-k) /2$};
+% Text Node
+\draw (475,5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle k$};
+% Text Node
+\draw (510.83,104) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle t_{( 1-k) ,\ n-1\ }$};
+% Text Node
+\draw (423.33,104) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle -t_{( 1-k) ,\ n-1}$};
+
+
+\end{tikzpicture}
+\end{center}
+
+
+\paragraph{Note}	Voir \hyperlink{normStudPerc}{\textcolor{bleudefrance}{cette explication de la différence entre les quantiles de la loi normale et les quantiles de la loi de Student}} du chapitre sur les \textit{\underline{\nameref{sec:hyp-test}}}. 
+
+\bigskip
+
+\paragraph{Note}	Puisque la loi normale est symétrique, $z_{(1 - k)/2} = -z_{(1 + k)/2}$. Il s'ensuit qu'on peut simplifier l'écriture de l'intervalle de confiance bilatéral comme $\mu \in \bar{x}_{n} \pm z_{(1 - k)/2} \frac{\sigma}{\sqrt{n}}$.
+
+
 
 \subsubsection{2 échantillons}
-variance
-	connue
-	inconnue
-bilatéral
-unilatéral vers la droite
-unilatéral vers la gauche
+Pour 2 échantillons aléatoires \underline{\textbf{indépendants}} de tailles $n_{1}$ et $n_{2}$, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.4cm} | >{\columncolor{beaublue}\centering}m{2cm}  | >{\columncolor{beaublue}\centering}m{1.3cm}  | >{\columncolor{beaublue}\centering}m{1.3cm}  | >{\columncolor{beaublue}\centering}m{2.2cm}  | >{\columncolor{beaublue}\centering}m{2cm}  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{variances}}	&	\textcolor{white}{\textbf{distribution des\\ échantillons}}	&	\textcolor{white}{\textbf{autres conditions?}}	&	\textcolor{white}{\textbf{$n_{k}$ grands?}}	&	\textcolor{white}{\textbf{pivot}}	&	\textcolor{white}{\textbf{distribution du pivot}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+connues		&	n'importe lesquelles	&	non									&	oui	&	$\frac{\bar{X}_{1} - \bar{X}_{2} - (\mu_{1} - \mu_{2})}{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{1}}}}$	&	$\mathcal{N}(0, 1)$		\tabularnewline\hline
+inconnues	&	normales				&	$\sigma_{1}^{2} = \sigma_{2}^{2}$	&	non	&	$\frac{\bar{X}_{1} - \bar{X}_{2} - (\mu_{1} - \mu_{2})}{S_{p}\sqrt{\frac{1}{n_{1}} + \frac{1}{n_{1}}}}$						&	$t_{n_{1} + n_{2} - 2}$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+où $S_{p}$ est le \hyperlink{pooledVarianceDef}{« pooled estimator »} $S_{p}$ de l'écart-type.
 
-échantillons appariés
 
-\subsection{Intervalles sur les proportions}
+Donc, lorsque la variance est connue,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.8cm}	|	>{\columncolor{beaublue}}m{7.5cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$\displaystyle (\mu_{1} - \mu_{2}) \in (\bar{x}_{1} - \bar{x}_{2}) \pm z_{(1 - k)/2} \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}}}$	\tabularnewline\hline
+unilatéral à gauche	&	$\displaystyle (\mu_{1} - \mu_{2}) \in \left[-\infty,\, (\bar{x}_{1} - \bar{x}_{2}) + z_{k} \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$\displaystyle (\mu_{1} - \mu_{2}) \in \left[(\bar{x}_{1} - \bar{x}_{2}) - z_{k} \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+Puis, lorsque la variance n'est \textit{pas} connue,
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.8cm}	|	>{\columncolor{beaublue}}m{9.5cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$\displaystyle (\mu_{1} - \mu_{2}) \in (\bar{x}_{1} - \bar{x}_{2}) \pm t_{(1 - k), n_{1} + n_{2} - 1} s_{p}\sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}$	\tabularnewline\hline
+unilatéral à gauche	&	$\displaystyle (\mu_{1} - \mu_{2}) \in \left[-\infty,\, (\bar{x}_{1} - \bar{x}_{2}) + t_{2(1 - k), n_{1} + n_{2} - 1} s_{p}\sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$\displaystyle (\mu_{1} - \mu_{2}) \in \left[(\bar{x}_{1} - \bar{x}_{2}) - t_{2(1 - k), n_{1} + n_{2} - 1} s_{p}\sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+Si les données sont \textbf{appariées}, les intervalles de confiance sont les mêmes que ceux pour un échantillon avec les substitutions suivantes : $\bar{x} = \bar{d}$, $\sigma^{2} = \sigma^{2}_{D}$, $n = n_{\ast}$ et $s^{2} = s^{2}_{D}$. Voir les \textit{\underline{\nameref{subsec:MeanTests}}} sur \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}} pour l'explication de données appariées.
+
+
+
+\columnbreak
+\subsection{Intervalles sur les proportions}\label{subsec:propIC}
 \subsubsection{1 échantillon}
 
 
 \subsubsection{2 échantillons}
 
 
-\subsection{Intervalles sur la variance}
+
+\columnbreak
+\subsection{Intervalles sur la variance}\label{subsec:varIC}
 \subsubsection{1 échantillon}
 
 
@@ -1543,7 +1667,7 @@ $\frac{\bar{X}_{n} - h}{S_{n}/\sqrt{n}}$		&	$-t_{2\alpha, n - 1}$	&	$t_{\alpha, 
 \end{tabular}
 \end{center}
 
-\begin{definitionNOHFILLprop}[Explication des percentile de loi normal vs de loi de Student]
+\begin{definitionNOHFILLprop}[\hypertarget{normStudPerc}{Explication des percentile de loi normal vs de loi de Student}]
 On dénote :
 \begin{description}
 	\item[$z_{q}$]	$100q^{\text{e}}$ percentile de la loi normale standard.
@@ -7981,7 +8105,7 @@ Soit la v.a. \lfbox[formula]{$X_{i, j}$} représentant l'existence d'un arc entr
 \end{align*}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILLsub}[Connectivité des graphiques aléatoiress]
+\begin{definitionNOHFILLsub}[Connectivité des graphiques aléatoires]
 \begin{rappel_enhanced}[Contexte]
 La connectivité des graphiques aléatoires est semblable à la fiabilité des systèmes. 
 
