@@ -70,7 +70,6 @@ L'objectif est d'expliquer les concepts d'une façon claire, concise et visuelle
 \newpage
 \raggedcolumns
 \begin{multicols*}{2}
-
 \part{Analyse statistique des risques actuariels}\label{chapt:stats}
 \section{Échantillonnage et statistiques}
 \begin{distributions}[Notation]
@@ -147,20 +146,6 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
 
 
-%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-%%%%		À rajouter éventuellement	%%%%	
-%%%%%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
-
-%\subsection{Distributions d'échantillonnage}
-%%	Contenu à y inclure
-%	Postulat de normalité
-%		Moyenne échantillonnale
-%		Variance échantillonnale
-%		Statistique T
-%		Statistique F
-%	Échantillons de distribution inconnue
-%		Théorème centrale limite
-
 \columnbreak
 \section{Vraisemblance}\label{sec:likelihood}
 \begin{distributions}[Notation]
@@ -184,6 +169,7 @@ La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une dif
 \begin{itemize}
 	\item	Au lieu de faire varier $x$ pour un (ou des) paramètre $\theta$ fixe, on fait varier $\theta$ pour un échantillon d'observations $\bm{x}$ fixé.
 \end{itemize}
+
 
 
 
@@ -750,84 +736,6 @@ Typiquement, la largeur de l'intervalle $(L, U)$ augmente si on augmente le nive
 Donc, un intervalle plus petit nous donne plus d'information si le niveau est adéquat. On dit que pour un même niveau $k$, l'intervalle avec la plus petite largeur est \textit{plus \textbf{efficace}} que l'autre.
 
 
-
-\columnbreak
-\subsubsection{Statistiques}
-Voir la section de \underline{\textit{\nameref{subsubsec:VarTestsRem}}} des \textit{\underline{\nameref{subsec:VarTests}}} pour un rappel sur \hyperlink{ChiSquaredReminder}{la loi du khi carré} et sur \hyperlink{FisherReminder}{la loi de Fisher-Snedecor}. Également, la section de \textit{\underline{\nameref{subsubsec:MeanTestsRappels}}} des \textit{\underline{\nameref{subsec:MeanTests}}} pour un rappel sur \hyperlink{studentReminder}{la loi de Student}.
-
-\bigskip
-
-On définit le \hypertarget{pooledVarianceDef}{\og \textit{pooled estimator} \fg{}} comme la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.
-
-
-
-%\columnbreak
-\subsubsection{Intervalles de confiance}
-
-%%%	-------------------------
-%%%	NOTES:
-%%%	+	À retravailler cette section pour ajouter un peu plus de contexte sur les grands échantillons
-%%%	-------------------------
-
-
-\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} sur la moyenne]
-%%%	https://www.youtube.com/watch?v=bFefxSE5bmo&list=PLvxOuBpazmsMdPBRxBTvwLv5Lhuk0tuXh&index=8&t=0s
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution avec moyenne $\mu$ et une variance inconnue.
-
-\bigskip
-
-Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	\mu \in \left[ \bar{X} - z_{\alpha/2} \frac{s}{\sqrt{n}}, \bar{X} + z_{\alpha/2} \frac{s}{\sqrt{n}}\right].
-\end{equation*}
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} sur la proportion]
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution Bernoulli de paramètre $p$.
-
-\bigskip
-
-Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	p \in \left[ \hat{p} - z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}, \hat{p} + z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}\right].
-\end{equation*}
-\end{definitionNOHFILLsub}
-
-\bigskip
-
-
-
-\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} pour une différence de moyennes]
-Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions normales de moyennes $\mu_{1}$ et $\mu_{2}$ et variances $\sigma^{2}_{1}$ et $\sigma^{2}_{2}$ inconnues.
-
-\bigskip
-
-Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	(\mu_{1}	-	\mu_{2}) \in \left[ 
-	\bar{X}_{n}	-	\bar{Y}_{m}
-	\pm	z_{\alpha/2} \sqrt{\frac{S_{n}^{2}}{n} + \frac{S_{m}^{2}}{m}} \right].
-\end{equation*}
-\begin{align*}
-\end{align*}
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Intervalle de confiance \textit{approximatif} pour une différence de proportions]
-Pour les échantillons aléatoires $\{X_{1}, X_{2}, \dots, X_{n}\}$ et $\{Y_{1}, Y_{2}, \dots, Y_{m}\}$ issus de distributions Bernoulli de paramètres $p_{1}$ et $p_{2}$.
-
-\bigskip
-
-Pour $n$ très grand, nous sommes \textit{approximativement} confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{equation*}
-	(p_{1}	-	p_{2}) \in \left[ 
-	\hat{p}_{1}	-	\hat{p}_{2}
-	\pm	z_{\alpha/2} \sqrt{\frac{\hat{p}_{1}(1 - \hat{p}_{1})}{n} + \frac{\hat{p}_{2}(1 - \hat{p}_{2})}{m}} \right].
-\end{equation*}
-\begin{align*}
-\end{align*}
-\end{definitionNOHFILLsub}
-
-
 \columnbreak
 \section{Intervalles de confiance}\label{sec:intConf}
 \paragraph{Note}	Ces sections sur les \textit{\underline{\nameref{subsec:meanIC}}}, les \textit{\underline{\nameref{subsec:propIC}}} et les  \textit{\underline{\nameref{subsec:varIC}}} sont semblables aux sections correspondantes des \textit{\underline{\nameref{sec:hyp-test}}}. La section sur les \textit{\underline{\nameref{sec:hyp-test}}} a été faite avant celle-ci sur les \textit{\underline{\nameref{sec:intConf}}}, et donc je vous conseille de la lire en premier.
@@ -1058,7 +966,12 @@ unilatéral à droite	&	$\displaystyle (q_{1} - q_{2}) \in \left[(\hat{q}_{1} - 
 
 \columnbreak
 \subsection{Intervalles sur la variance}\label{subsec:varIC}
+\begin{definitionNOHFILL}[\hypertarget{pooledVarianceDef}{\og \textit{Pooled Estimator} \fg{}}]
+Le \og \textit{pooled estimator} \fg{} est la moyenne pondérée des deux variances échantillonnales \lfbox[formula]{$S_{p}^{2}	=	\frac{(n - 1)S_{n}^{2} + (m - 1)S_{m}^{2}}{n + m - 2}$}.
+\end{definitionNOHFILL}
+
 \paragraph{Note}	Voir la section sur \textit{\underline{\nameref{subsec:VarTests}}} pour les rappels de \hyperlink{ChiSquaredReminder}{la définition de la loi du khi carré} et de \hyperlink{FisherReminder}{la définition de la loi de Fisher}.
+
 
 \subsubsection{1 échantillon}
 Pour un échantillon aléatoire de taille $n$ tiré d'une distribution normale, le pivot \lfbox[formula]{$\displaystyle \frac{(n - 1)S_{n}^{2}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
@@ -1134,6 +1047,7 @@ unilatéral à gauche	&	$\displaystyle \sigma^{2} \in \left[0,\, \frac{s_{1}^{2}
 unilatéral à droite	&	$\displaystyle \sigma^{2} \in \left[\frac{s_{1}^{2}}{s_{2}^{2}} \left(F_{1 - k, n_{1} - 1, n_{2} - 1}\right)^{-1},\, \infty\right]$	\tabularnewline\hline
 \end{tabular}
 \end{center}
+
 
 
 
@@ -3178,77 +3092,96 @@ Binomiale Négative	&	$\beta$		&	$\textcolor{amethyst}{\sum_{i = 1}^{n} X_{i}}$	
 %%%	NOTES :
 %%%	+	Ajouter des détails sur la relation avec la loi Béta
 
-Soit un échantillon aléatoire de taille $n$.
-Nous définissons la \textbf{$k^{\text{e}}$ statistique d'ordre} $X_{(k)}$ comme étant la $k^{\text{e}}$ plus petite valeur d'un échantillon.
-\begin{itemize}
-	\item	Les crochets sont utilisés pour distinguer la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
-	\item	La $k^{\text{e}}$ statistique d'ordre correspond au $\frac{k}{n + 1}^{\text{e}}$ quantile.
-\end{itemize}
+\subsection{Principes fondamentaux}
+\begin{definitionNOHFILL}[$k^{\text{e}}$ statistique d'ordre]
+La $k^{\text{e}}$ statistique d'ordre est la $k^{\text{e}}$ observation, en ordre croissant, dénotée \lfbox[formula]{$X_{(k)}$} $\forall k = 1, 2, \dots, n$. Ceci correspond également au $\frac{k}{n + 1}^{\text{e}}$ quantile.
 
 \bigskip
 
-Nous sommes habituellement intéressés au minimum $X_{(1)}$ et le maximum $X_{(n)}$ :
+Si l'échantillon est un \textbf{échantillon aléatoire}, on peut identifier la fonction de densité et de répartition :
+\begin{align*}
+%	X_{(k)}
+	f_{X_{(k)}}(x)
+	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
+	F_{X_{(k)}}(x)
+	&=	\underset{\substack{\text{Probabilité qu'au moins $k$ des $n$}\\ \text{ observations $X_{k}$  sont $\le x$}}}{\underbrace{\sum_{i = k}^{n} \binom{n}{i} [F_{X}(x)]^{i} [1 - F_{X}(x)]^{n - i}}}
+\end{align*}
+
+
+\paragraph{Note}	Les parenthèses sont utilisées pour distinguer la $k^{\text{e}}$ statistique d'ordre $X_{(k)}$ de la $k^{\text{e}}$ observation $X_{k}$.
+\end{definitionNOHFILL}
+
+\bigskip
+
+Nous sommes habituellement intéressés au minimum $X_{(1)}$ et au maximum $X_{(n)}$. Nous les définissions ci-dessous avec leurs fonctions \underline{pour un \textbf{échantillon aléatoire}} :
 
 \setlength{\mathindent}{-0.75cm}
 \begin{minipage}{0.5\columnwidth}
-\begin{algo}{Minimum}
+\begin{definitionNOHFILL}[Minimum]
 \begin{align*}
 	X_{(1)}
 	&=	\min(X_{1}, \dots, X_{n})	\\
 	f_{X_{(1)}}(x)
 	&=	n f_{X}(x) \big( S_{X}(x) \big)^{n - 1}	\\
 	S_{X_{(1)}}(x)
-	&=	\prod_{i = 1}^{n} \Pr(X_{i} > x)
+	&=	\prod_{i = 1}^{n} \Pr(X_{i} > x)	\\
+	&=	\left[S_{X}(x)\right]^{n}
 \end{align*}
-\end{algo}
+\end{definitionNOHFILL}
 \end{minipage}%
 \begin{minipage}{0.5\columnwidth}
-\begin{algo}{Maximum}
+\begin{definitionNOHFILL}[Maximum]
 \begin{align*}
 	X_{(n)}
 	&=	\max(X_{1}, \dots, X_{n})	\\
 	f_{X_{(n)}}(x)
 	&=	n f_{X}(x) \big( F_{X}(x) \big)^{n - 1}	\\
 	F_{X_{(n)}}(x)
-	&=	\prod_{i = 1}^{n} \Pr(X_{i} \le x)
+	&=	\prod_{i = 1}^{n} \Pr(X_{i} \le x)	\\
+	&=	\left[F_{X}(x)\right]^{n}
 \end{align*}
-\end{algo}
+\end{definitionNOHFILL}
 \end{minipage}
 \setlength{\mathindent}{1cm}
 
-De façon plus générale, on défini:
-\begin{algo}{$k^{\text{e}}$ statistique d'ordre}
-\begin{align*}
-%	X_{(k)}
-	f_{X_{(k)}}(x)
-	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
-	F_{X_{(k)}}(x)
-	&=	\underset{\substack{\text{Probabilité qu'au moins $k$ des $n$}\\ \text{ observations $X_{k}$  sont $\le x$}}}{\underbrace{\sum_{i = r}^{n} \binom{n}{i} [F_{X}(x)]^{j} [1 - F_{X}(x)]^{n - j}}}
-\end{align*}
 
-\begin{itemize}
-	\item	On peut observer que $X_{(k)}	\sim	Beta(\alpha	=	k, \beta	=	n - k + 1)$
-\end{itemize}
-\end{algo}
+\subsubsection{Cas spéciaux}\label{subsubsec:orderStatsSpecialCases}
+Si l'échantillon aléatoire est tiré d'une \textbf{distribution uniforme} sur $[a, b]$, alors \lfbox[formula]{$\displaystyle \text{E}[X_{(k)}] = a + \frac{k(b - a)}{n + 1}$}. De plus, si $X \sim U(0, \theta)$ alors 
+
+\begin{align*}
+	f_{X_{(k)}}(x)
+	&=	\frac{\Gamma(n + 1)}{\Gamma(k)\Gamma(n - k + 1)} \left(\frac{x}{\theta}\right)^{k}\left(1 0 \frac{x}{\theta}\right)^{k} \frac{1}{x}, \quad 0 \leq x \leq \theta
+\end{align*}
+où il s'ensuit que \lfbox[formula]{$X_{(k)} \sim \text{Beta}(k, n - k + 1, \theta)$}.
+
+\paragraph{Note}	Voir la section sur les \textit{\underline{\nameref{subsubsec:ProcPoisTempsOccurCond}}} pour l'application de cette espérance aux processus de Poisson.
+
 
 \bigskip
 
-Nous pouvons également définir quelques autres statistiques d'intérêt :
+Si l'échantillon aléatoire est tiré d'une \textbf{distribution exponentielle} de moyenne $\theta$, alors \lfbox[formula]{$\displaystyle \text{E}[X_{(k)}] = \theta \sum_{i = n - k + 1}^{n} \frac{1}{i}$}.
+
+\bigskip
+
+Pour \hyperlink{fiabilitykParmin}{\textcolor{bleudefrance}{un système de $k$ parmi $n$}}, dont le nombre minimal de composantes est $K$, on dénote les durées de vie des $n$ composantes par l'échantillon aléatoire $X_{1}, \dots, X_{n}$. Pour lier les statistiques d'ordre à ce système, on pose que \lfbox[formula]{$k = n - K + 1$} et donc \textbf{la durée de vie du système} est \lfbox[formula]{$X_{(n - k + 1)}$}.
+
+
+
+\columnbreak
+\subsection{Autres statistiques}
+Nous définissons également quelques autres statistiques d'intérêt :
 \begin{definitionNOHFILLsub}[L'étendue (\og \textit{range} \fg{})]
 \textbf{L'étendue} (range) est la différence entre le minimum et le maximum d'un échantillon : \lfbox[formula]{$R = X_{(n)} - X_{(1)}$}.
 
 \bigskip
 
-\begin{itemize}
-	\item	L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
-	\item	Par exemple, supposons que l’on a des données historiques sur la température pour le 1er septembre. 
-		\begin{itemize}
-		\item	En moyenne, la température est de $16\degree C$.
-		\item	Il y a un cas extrême de $-60\degree C$ en 1745.
-		\item	L'étendue sera de $86\degree C$ ce qui n'est pas très représentatif des données.
-		\item	Donc, dans ce contexte, l'étendue n'est pas une mesure très utile.
-		\end{itemize}
-\end{itemize}
+\begin{rappel_enhanced}[Contexte]
+L'utilité de l'étendue est limitée puisqu'elle est très sensible aux données extrêmes.
+
+\bigskip
+
+Par exemple, supposons que l’on a des données historiques sur la température pour le 1er septembre. En moyenne, la température est de $16\degree C$ mais il y a un cas extrême de $-60\degree C$ en 1745. L'étendue sera de $86\degree C$, ce qui n'est pas très représentatif des données. Donc, dans ce contexte, l'étendue n'est pas une mesure très utile.
+\end{rappel_enhanced}
 \end{definitionNOHFILLsub}
 
 
@@ -3279,25 +3212,29 @@ Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne a
 \end{itemize}
 \end{definitionNOHFILLsub}
 
-\begin{formula}{Exemple sur les statistiques d'ordre}
-Soit un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (Celsius).
 
-Je suppose que ce sont des températures du 4 février observées lors des dernières années.
-\begin{itemize}
-	\item	La moyenne arithmétique ($-22.25\degree C$) m'intéresse, car je peux savoir, en moyenne, ce qu'est la température le 4 février.
-	\item	La mi-étendue ($-12.5\degree C$), tout comme l'étendue ($-35\degree C$), ne m'intéresse pas puisqu'elle ne prend pas en considération la vraisemblance des différentes températures.
-\end{itemize}
+\begin{formula}{Exemple de contexte pour les statistiques}
+Nous cherchons à comprendre les contextes dans lesquels les différents mesures sont utiles. Pour ce faire, nous supposons un échantillon de données météorologiques $\{-30\degree, -24\degree, -7\degree, -23\degree, +5\degree\}$ (Celsius). 
 
-Maintenant, je suppose que ces données sont des températures observées tout au long de l'hiver passé.
-\begin{itemize}
-	\item	La moyenne arithmétique ne m'intéresse pas puisqu'elle est beaucoup trop biaisée par les températures de cette même journée. 
-	\item	Cependant, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température de l'hiver.
-\end{itemize}
+\bigskip
 
-L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \textbf{très} simpliste et dans tous les cas on ne peut pas tirer de conclusions sur les températures de l'hiver à partir d'une seule journée.
+Pour un premier contexte, on suppose que les données représentent la température du 4 février des dernières années. Dans ce contexte, la moyenne arithmétique ($-22.25\degree C$) est une statistique intéressante, car elle nous informe que, en moyenne, la température ressentie le 4 février est de $-22.25\degree C$. En revanche, la mi-étendue ($-12.5\degree C$) et l'étendue ($-35\degree C$) ne m'intéressent pas, car elles ne considèrent pas la \textit{vraisemblance} des différentes températures.
+
+\bigskip
+
+Pour un deuxième contexte, on suppose que ces données sont des températures observées tout au long de l'hiver passé. Dans ce contexte, la moyenne arithmétique n'est pas une statistique intéressante; on ne peut pas supposer une température moyenne sur plusieurs mois à partir de 5 observations. De plus, il est illogique de vouloir connaître la température moyenne entre décembre et mars---ce chiffre ne veut rien dire.
+
+\bigskip
+
+En revanche, la mi-étendue et l'étendue me donnent maintenant une meilleure idée de la température au fil de l'hiver. Ils m'informent sur les valeurs extrêmes ce qui a du sens. 
+
+\bigskip
+
+L'important à retenir est que l'utilité des mesures dépend de la situation. Également, ceci est un exemple \underline{\textbf{très} simpliste} et, dans tous les cas, on ne peut pas tirer de conclusions sur les températures de l'hiver à partir de 5 observations.
 \end{formula}
 
-Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre :
+
+Nous définissons la \textbf{médiane} en termes de statistiques d'ordre :
 
 \begin{definitionNOHFILLsub}[Médiane]
 \begin{align*}
@@ -3316,13 +3253,10 @@ Nous pouvons définir la \textbf{médiane} en termes de statistiques d'ordre :
 \end{itemize}
 \end{definitionNOHFILLsub}
 
-Finalement, on définit la distribution conjointe du minimum et du maximum $\forall x < y$ :
-\begin{algo}{Distribution conjointe du maximum et du minimum}
-\begin{align*}
-	f_{X_{(1)}, X_{(n)}}(x, y)
-	&=	n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)
-\end{align*}
-\end{algo}
+
+\subsection{Distribution conjointe}
+La distribution conjointe du minimum et du maximum pour un échantillon aléatoire a la fonction de densité, $\forall x < y$,\\
+\lfbox[formula]{$f_{X_{(1)}, X_{(n)}}(x, y) = n (n - 1) [F_{X}(y) - F_{X}(x)]^{n - 2} f_{X}(x) f_{X}(y)$}.
 
 
 
@@ -7139,8 +7073,8 @@ Fonctionne seulement si toutes les composantes du système fonctionnent.
 \end{center}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Système de $k$ parmi $n$]
-Fonction si au moins $k$ des $n$ composantes du système fonctionnent.
+\begin{definitionNOHFILL}[\hypertarget{fiabilitykParmin}{Système de $k$ parmi $n$}]
+Fonctionne si au moins $k$ des $n$ composantes du système fonctionnent.
 
 \bigskip
 
@@ -9082,7 +9016,7 @@ Si la fonction d'intensité varie avec le temps $t$, le processus $\underline{N}
 
 
 \columnbreak
-\subsection{Temps d'occurrence}
+\subsection{Temps d'occurrence}\label{subsec:ProcPoisTempsOccur}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$T_{k}$]	Temps d'occurrence du $k^{e}$ événement.
@@ -9166,7 +9100,7 @@ Si \lfbox[conditions]{$N(t) \sim \text{Poisson}(\lambda t)$} alors \lfbox[formul
 \end{definitionNOHFILLprop}
 
 
-\subsubsection{Temps d'occurrence conditionnels}
+\subsubsection{Temps d'occurrence conditionnels}\label{subsubsec:ProcPoisTempsOccurCond}
 \paragraph{Note}	Voir la sous-section des \textbf{\nameref{sec:orderStats}} du chapitre de \nameref{chapt:stats}.
 
 \bigskip
@@ -9451,8 +9385,11 @@ En bref :
 \end{tikzpicture}
 \end{center}
 
-Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{n + 1}$}.
+Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{n + 1}$}. 
 
+\paragraph{Note}	Voir la \textit{\underline{\nameref{subsubsec:orderStatsSpecialCases}}} des \textit{\underline{\nameref{sec:orderStats}}} pour la définition de cette espérance.
+
+\bigskip
 
 \begin{formula}{Exemple}
 Des autobus arrivent à un arrêt d'autobus selon une distribution de Poisson avec un paramètre de fréquence de $\lambda = 4$ par heure. Les autobus commencent à arriver dès 8h du matin.
@@ -10382,7 +10319,7 @@ Une chaîne de Markov \textbf{irréductible}, \textbf{récurrente positive} et \
 %%	Remarque que chaque colonne prend la même valeur
 
 \columnbreak
-\subsection{Time Spent in Transient States}
+\subsection{Temps passé dans les états transitoires}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\bm{P}_{T}$]Matrice des probabilités de transition contentant uniquement les états transitoires.
@@ -10402,6 +10339,10 @@ Une chaîne de Markov \textbf{irréductible}, \textbf{récurrente positive} et \
 		\end{itemize}
 \end{description}
 \end{distributions}
+
+\paragraph{Note}	En anglais, on dit \og \textit{Time Spent in Transient States} \fg{}.
+
+\bigskip
 
 \begin{rappel}{Rappel : Matrice d'identité}
 La matrice d'identité $\bm{I}$ est la suivante : 
@@ -10515,7 +10456,7 @@ On souhaite trouver l'espérance du nombre de périodes passées dans l'état $2
 
 
 \columnbreak
-\subsection{Time Reversibility}
+\subsection{\og \textit{Time Reversibility} \fg{}}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$R_{i, j}$]	Probabilité de transition de l'état $i$ à l'état $j$ (en une période) pour la chaîne de Markov inverse.
@@ -10617,8 +10558,8 @@ Soit la chaîne de Markov à 2 états (1, 2) avec la matrice des probabilités d
 
 
 \columnbreak
-\subsection{Applications of Markov Chains}
-\subsubsection{Random Walk}
+\subsection{Applications des chaînes de Markov}
+\subsubsection{Marche aléatoire}
 \begin{definitionNOHFILL}[Marche aléatoire]
 \begin{definitionGENERAL}{À une dimension}[\circled{1}{trueblue}]
 Une \textit{marche aléatoire} à une dimension équivaut à une chaîne de Markov qui, de l'état $i$, peut seulement aller soit à l'état $\textcolor{blue}{i + 1}$ avec probabilité $P_{i, \textcolor{blue}{i + 1}} = p$ ou l'état $\textcolor{red}{i - 1}$ avec probabilité $P_{i, \textcolor{red}{i - 1}} = 1 - p$ où $p \in [0, 1]$.
@@ -10741,7 +10682,7 @@ Les marches aléatoires sont seulement \textit{\textbf{récurrentes}} si elles o
 
 
 
-\subsubsection{Gambler's ruin}
+\subsubsection{\og \textit{Gambler's ruin} \fg{}}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$P_{i}$]	Probabilité de commencer $i$ jetons et terminer avec $j$ jetons.
@@ -10752,7 +10693,7 @@ Les marches aléatoires sont seulement \textit{\textbf{récurrentes}} si elles o
 \end{description}
 \end{distributions}
 
-\begin{definitionNOHFILL}[Gambler's ruin problem]
+\begin{definitionNOHFILL}[\og \textit{Gambler's ruin problem} \fg{}]
 Soit un jeu où, à chaque ronde, un \og \textit{gambler} \fg{} \textit{gagne} un jeton avec probabilité $p$ ou \textit{perd} un jeton avec probabilité $1 - p$. L'objectif est de se rendre à $j$ jetons.
 
 \bigskip
@@ -10760,7 +10701,7 @@ Soit un jeu où, à chaque ronde, un \og \textit{gambler} \fg{} \textit{gagne} u
 Le \og \textit{gambler's ruin problem} \fg{} est de calculer la probabilité qu'un \og \textit{gambler} \fg{} qui commence avec $i$ jetons va terminer le jeu avec $j$ jetons.
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILLsub}[Gambling model]
+\begin{definitionNOHFILLsub}[\og \textit{Gambling model} \fg{}]
 Le modèle qu'on utilise pour modéliser le \og \textit{gambler's ruin problem} \fg{} se nomme le \og \textit{gambling model} \fg{}. Il s'apparente à la marche aléatoire sauf qu'il comporte un nombre \textbf{\textit{fini}} d'états. Les états correspondent au nombre de jetons.
 
 \bigskip
@@ -10818,7 +10759,7 @@ Alors, \lfbox[formula]{$\text{Var}(X) = (b - a)^{2}p(1 - p)$}.
 
 
 \columnbreak
-\subsection{Branching Process}
+\subsection{\og \textit{Branching Process} \fg{}}
 \begin{rappel_enhanced}[Contexte]
 On pose que nous avons une population d'individus dont chacun produit $j$ descendants d'ici la fin de leur durée de vie avec probabilité $P_{j}$.
 
