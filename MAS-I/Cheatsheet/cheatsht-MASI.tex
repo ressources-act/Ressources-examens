@@ -763,63 +763,6 @@ On définit le \hypertarget{pooledVarianceDef}{\og \textit{pooled estimator} \fg
 
 %\columnbreak
 \subsubsection{Intervalles de confiance}
-%
-%De façon générale, les intervalles de confiance ont une estimation ponctuelle à laquelle on ajoute une marge d'erreur.
-
-\begin{definitionNOHFILLsub}[Intervalle de confiance sur la variance]
-%%%	https://www.youtube.com/watch?v=qwqB5a7_W44
-Pour l'échantillon aléatoire $\{X_{1}, X_{2}, \dots, X_{n}\}$ issu d'une distribution normale avec $\sigma^{2}$ inconnue, \lfbox[formula]{$\Pr\left(\chi^{2}_{1 - \alpha/2} \leq \frac{(n - 1)S^{2}_{n}}{\sigma^{2}} \leq \chi^{2}_{\alpha/2}\right) =	(1 - \alpha)$}. 
-
-\bigskip
-
-Graphiquement: 
-\begin{center}
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
-
-%Curve Lines [id:da6253759692396421] 
-\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (100.83,100.33) .. controls (106.67,75) and (119.67,40) .. (146.67,41) .. controls (173.67,42) and (207.67,88.33) .. (284.67,100.33) ;
-%Straight Lines [id:da9705044831224325] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (119.83,52.67) -- (119.83,99.33) -- (100.83,99.33) ;
-%Curve Lines [id:da9090824147972125] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=2.25]    (100.83,99.33) .. controls (106.67,72) and (114.83,58.67) .. (119.83,52.67) ;
-
-%Straight Lines [id:da8243679921312423] 
-\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (228.83,85) -- (228.83,100.33) -- (283.83,100.33) ;
-%Curve Lines [id:da07655100443368612] 
-\draw [line width=1.5]    (100,100) .. controls (105.83,74.67) and (118.83,39.67) .. (145.83,40.67) .. controls (172.83,41.67) and (206.83,88) .. (283.83,100) ;
-%Straight Lines [id:da5824849118650262] 
-\draw [line width=1.5]    (119.83,100.33) -- (119.83,105.67) ;
-%Straight Lines [id:da7912407501617629] 
-\draw [line width=1.5]    (228.83,100.33) -- (228.83,105.67) ;
-%Straight Lines [id:da26335370673771696] 
-\draw [line width=1.5]    (99,100) -- (283.83,100) ;
-
-% Text Node
-\draw (79,52) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
-% Text Node
-\draw (249,70) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle \alpha /2$};
-% Text Node
-\draw (185,38) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle 1\ -\ \alpha $};
-% Text Node
-\draw (96.83,102.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{1-\alpha /2}$};
-% Text Node
-\draw (208,102.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{\alpha /2}$};
-
-
-\end{tikzpicture}
-\end{center}
-
-Nous sommes donc confiants à un niveau de 100$(1 - \alpha)$\% que :
-\begin{align*}
-	\sigma^{2} \in \left[
-		\frac{(n - 1)S^{2}_{n}}{\chi^{2}_{\alpha / 2}}, 
-		\frac{(n - 1)S^{2}_{n}}{\chi^{2}_{1 - \alpha / 2}}
-	\right]
-\end{align*}
-\end{definitionNOHFILLsub}
 
 %%%	-------------------------
 %%%	NOTES:
@@ -1022,8 +965,6 @@ Visuellement, nous avons une aire de $(1 - k)/2$ dans les deux queues et les poi
 
 \paragraph{Note}	Voir \hyperlink{normStudPerc}{\textcolor{bleudefrance}{cette explication de la différence entre les quantiles de la loi normale et les quantiles de la loi de Student}} du chapitre sur les \textit{\underline{\nameref{sec:hyp-test}}}. 
 
-\bigskip
-
 \paragraph{Note}	Puisque la loi normale est symétrique, $z_{(1 - k)/2} = -z_{(1 + k)/2}$. Il s'ensuit qu'on peut simplifier l'écriture de l'intervalle de confiance bilatéral comme $\mu \in \bar{x}_{n} \pm z_{(1 - k)/2} \frac{\sigma}{\sqrt{n}}$.
 
 
@@ -1117,10 +1058,83 @@ unilatéral à droite	&	$\displaystyle (q_{1} - q_{2}) \in \left[(\hat{q}_{1} - 
 
 \columnbreak
 \subsection{Intervalles sur la variance}\label{subsec:varIC}
+\paragraph{Note}	Voir la section sur \textit{\underline{\nameref{subsec:VarTests}}} pour les rappels de \hyperlink{ChiSquaredReminder}{la définition de la loi du khi carré} et de \hyperlink{FisherReminder}{la définition de la loi de Fisher}.
+
 \subsubsection{1 échantillon}
+Pour un échantillon aléatoire de taille $n$ tiré d'une distribution normale, le pivot \lfbox[formula]{$\displaystyle \frac{(n - 1)S_{n}^{2}}{\sigma^{2}} \sim \chi^{2}_{(n - 1)}$}.
+
+\bigskip
+
+Donc, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.8cm}	|	>{\columncolor{beaublue}}m{5.5cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$\displaystyle \sigma^{2} \in \left[\frac{(n - 1)s_{n}^{2}}{\chi^{2}_{(1 + k)/2, n - 1}}, \frac{(n - 1)s_{n}^{2}}{\chi^{2}_{(1 - k)/2, n - 1}}\right]$	\tabularnewline\hline
+unilatéral à gauche	&	$\displaystyle \sigma^{2} \in \left[0,\, \frac{(n - 1)s_{n}^{2}}{\chi^{2}_{1 - k, n - 1}}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$\displaystyle \sigma^{2} \in \left[\frac{(n - 1)s_{n}^{2}}{\chi^{2}_{k, n - 1}},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+Visuellement, nous avons une aire de $(1 - k)/2$ dans les deux queues et les points $\chi^{2}_{(1 + k)/2}$ et  $\chi^{2}_{(1 - k)/2}$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Curve Lines [id:da18622695749224438] 
+\draw [draw opacity=0][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ][line width=1.5]    (100.83,100.33) .. controls (106.67,75) and (119.67,40) .. (146.67,41) .. controls (173.67,42) and (207.67,88.33) .. (284.67,100.33) ;
+%Straight Lines [id:da0993377108944784] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (119.83,52.67) -- (119.83,99.33) -- (100.83,99.33) ;
+%Curve Lines [id:da6503039664140968] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=2.25]    (100.83,99.33) .. controls (106.67,72) and (114.83,58.67) .. (119.83,52.67) ;
+
+%Straight Lines [id:da2789787725895867] 
+\draw [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]   (228.83,85) -- (228.83,100.33) -- (283.83,100.33) ;
+%Curve Lines [id:da37673455540909107] 
+\draw [line width=1.5]    (100,100) .. controls (105.83,74.67) and (118.83,39.67) .. (145.83,40.67) .. controls (172.83,41.67) and (206.83,88) .. (283.83,100) ;
+%Straight Lines [id:da7862148202835215] 
+\draw [line width=1.5]    (119.83,100.33) -- (119.83,105.67) ;
+%Straight Lines [id:da7737769405986843] 
+\draw [line width=1.5]    (228.83,100.33) -- (228.83,105.67) ;
+%Straight Lines [id:da5920921083311417] 
+\draw [line width=1.5]    (99,100) -- (283.83,100) ;
+
+% Text Node
+\draw (47,67) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle ( 1-k) /2$};
+% Text Node
+\draw (253,73) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {$\displaystyle ( 1-k) /2$};
+% Text Node
+\draw (185,39) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle k$};
+% Text Node
+\draw (111.83,103.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{( 1+k) /2}$};
+% Text Node
+\draw (223,103.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{( 1-k) /2}$};
+\end{tikzpicture}
+\end{center}
+
+
+\paragraph{Note}	Puisque la distribution du khi carré est asymétrique de droite, les intervalles de confiance n'ont pas de symétrie.
 
 
 \subsubsection{2 échantillons}
+Pour 2 échantillons aléatoires indépendants de tailles $n_{1}$ et $n_{2}$ qui sont normalement distribués avec variances $\sigma^{2}_{1}$ et $\sigma^{2}_{2}$, le pivot \lfbox[formula]{$\frac{S^{2}_{1}/\sigma^{2}_{1}}{S^{2}_{2}/\sigma^{2}_{2}} \sim F_{(n_{1} - 1, n_{2} - 1)}$}. 
+
+\bigskip
+
+Donc, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}\centering}m{1.8cm}	|	>{\columncolor{beaublue}}m{9cm}	|}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{intervalle de confiance}}	&	\textcolor{white}{\textbf{intervalle numérique}}	\tabularnewline\specialrule{0.1em}{0em}{0em} 
+bilatéral			&	$\displaystyle \sigma^{2} \in \left[\frac{s_{1}^{2}}{s_{2}^{2}} \left(F_{(1 - k)/2, n_{1} - 1, n_{2} - 1}\right)^{-1}, \frac{s_{1}^{2}}{s_{2}^{2}} \left(F_{(1 - k)/2, n_{2} - 1, n_{1} - 1}\right)\right]$	\tabularnewline\hline
+unilatéral à gauche	&	$\displaystyle \sigma^{2} \in \left[0,\, \frac{s_{1}^{2}}{s_{2}^{2}}F_{1 - k, n_{2} - 1, n_{1} - 1}\right]$	\tabularnewline\hline
+unilatéral à droite	&	$\displaystyle \sigma^{2} \in \left[\frac{s_{1}^{2}}{s_{2}^{2}} \left(F_{1 - k, n_{1} - 1, n_{2} - 1}\right)^{-1},\, \infty\right]$	\tabularnewline\hline
+\end{tabular}
+\end{center}
+
 
 
 \columnbreak
