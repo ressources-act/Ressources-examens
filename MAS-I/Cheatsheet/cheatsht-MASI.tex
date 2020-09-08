@@ -111,8 +111,9 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \end{definitionNOHFILL}
 
 
-\begin{definitionNOHFILLprop}[Moyenne échantillonnale $\bar{X}$]
-\lfbox[formula]{$\bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
+\subsubsection{Statistiques univariées}
+\begin{definitionNOHFILLprop}[\hypertarget{sampleMean}{Moyenne échantillonnale $\bar{X}$}]
+\lfbox[formula]{$\displaystyle \bar{X}	=	\frac{\sum^{n}_{i = 1} X_{i}}{n}$}.
 
 \begin{itemize}
 	\item	Estime \textbf{\underline{sans biais}} la moyenne $\mu$ ;
@@ -122,8 +123,8 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \end{itemize}
 \end{definitionNOHFILLprop}
 
-\begin{definitionNOHFILLprop}[Variance échantillonnale $S^{2}_{n}$]
-\lfbox[formula]{$S^{2}_{n}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n - 1}$}.
+\begin{definitionNOHFILLprop}[\hypertarget{sampleVariance}{Variance échantillonnale $S^{2}_{n}$}]
+\lfbox[formula]{$\displaystyle S^{2}_{n}	=	\frac{\sum^{n}_{i = 1} (X_{i} - \bar{X})^{2}}{n - 1}$}.
 
 \begin{itemize}
 	\item	Estime \underline{\textbf{sans biais}} la vraie variance $\sigma^{2}$ ;
@@ -131,8 +132,8 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \end{itemize}
 \end{definitionNOHFILLprop}
 
-\begin{definitionNOHFILLprop}[Variance empirique $\hat{\sigma}^{2}$]
-\lfbox[formula]{$\hat{\sigma}^{2}	=	\frac{\sum (X_{i} - \bar{X})^{2}}{n}$}.
+\begin{definitionNOHFILLprop}[\hypertarget{empiricalVariance}{Variance empirique $\hat{\sigma}^{2}$}]
+\lfbox[formula]{$\displaystyle \hat{\sigma}^{2}	=	\frac{\sum^{n}_{i = 1} (X_{i} - \bar{X})^{2}}{n}$}.
 
 \begin{itemize}
 	\item	Estime \underline{\textbf{avec biais}} la vraie variance $\sigma^{2}$.
@@ -141,7 +142,7 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Statistique $F$]
-\lfbox[formula]{$F	=	\frac{S^{2}_{n}/\sigma^{2}_{1}}{S^{2}_{m}/\sigma^{2}_{2}}$}.
+\lfbox[formula]{$\displaystyle F	=	\frac{S^{2}_{n}/\sigma^{2}_{1}}{S^{2}_{m}/\sigma^{2}_{2}}$}.
 
 \begin{itemize}
 	\item	Si on pose que les deux échantillons aléatoires indépendants $(X_{1}, \dots, X_{n})$ et $(Y_{1}, \dots, Y_{m})$ sont normalement distribués, \lfbox[formula]{$F \sim \mathcal{F}_{(n - 1, m - 1)}$}.
@@ -150,6 +151,29 @@ Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantil
 
 \paragraph{Note sur majuscule vs minuscule}	On écrit les statistiques avec des majuscules lorsqu'elles sont aléatoires et avec des minuscules lorsque ce sont des réalisations. Par exemple, dans une probabilité on utilise une majuscule puisque la statistique est aléatoire. 
 Pour un seuil $\alpha$ \textbf{\underline{fixé}} d'un intervalle de confiance, le quantile n'est pas aléatoire et jusqu'à ce que l'on calcule l'intervalle avec l'échantillon observé, les statistiques sont également aléatoires. 
+
+
+\subsubsection{Statistiques bivariées}
+Les statistiques bivariées sont définies pour un échantillon aléatoire bivarié $\{(X_{1}, Y_{1}), \dots, (X_{n}, Y_{n})\}$.
+
+\begin{definitionNOHFILLprop}[\hypertarget{sampleCovariance}{Covariance échantillonnale $cov_{X, Y}$}]
+\lfbox[formula]{$\displaystyle cov_{X, Y}	=	\frac{\sum^{n}_{i = 1} (X_{i} - \bar{X})(Y_{i} - \bar{Y})}{n - 1}$}.
+
+\begin{itemize}
+	\item	Estime \underline{\textbf{sans biais}} la vraie covariance $\sigma_{X, Y}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[\hypertarget{sampleCovariance}{Corrélation échantillonnale $r_{X, Y}$}]
+\lfbox[formula]{$\displaystyle r_{X, Y}	=	\frac{\sum^{n}_{i = 1} (X_{i} - \bar{X})(Y_{i} - \bar{Y})}{\sqrt{\sum^{n}_{i = 1} (X_{i} - \bar{X})^{2} \cdot \sum^{n}_{i = 1} (Y_{i} - \bar{Y})^{2}}}$}. Également, \lfbox[formula]{$\displaystyle r_{X, Y} = \frac{cov_{X, Y}}{s_{X} s_{Y}}$}.
+
+\begin{itemize}
+	\item	Estime \underline{\textbf{sans biais}} la vraie corrélation $\rho_{X, Y}$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+ échantillonnale
+
+corrélation échantillonnale
 
 
 \columnbreak
@@ -3209,7 +3233,7 @@ Pour comprendre ce que représente la mi-étendue, on la compare à la moyenne a
 \end{definitionNOHFILLsub}
 
 
-\begin{definitionNOHFILLsub}[L'écart interquartile (\og \textit{interquartile range (IQR)} \fg{)}]
+\begin{definitionNOHFILLsub}[\hypertarget{IQR}{L'écart interquartile (\og \textit{interquartile range (IQR)} \fg{})}]
 Écart entre le troisième quartile et le premier quartile : \lfbox[formula]{$IQR = Q_{3} - Q_{1}$}.
 
 \bigskip
@@ -3269,22 +3293,18 @@ La distribution conjointe du minimum et du maximum pour un échantillon aléatoi
 
 
 \columnbreak
-\subsection{Graphiques}
-\subsubsection{Le diagramme en boîte (\og \textit{boxplot} \fg{})}
-Le diagramme du « \textit{sommaire à cinq chiffres} ».
-
-\bigskip
-
-\begin{conceptgen}{Sommaire à cinq chiffres}
-Les cinq statistiques suivantes : 
-\begin{enumerate}
+\subsection{Graphiques}\label{subsec:OrderStatsPlots}
+\subsubsection{Diagramme en boîte (\og \textit{boxplot} \fg{})}\label{subsubsec:OrderStatsBoxPlot}
+Le diagramme du « \textit{\textbf{sommaire à cinq chiffres}} » composé de : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	Le minimum.
 	\item	Le premier quartile $Q_{1}$.
 	\item	La médiane (deuxième quartile) $Q_{2}$.
 	\item	Le troisième quartile $Q_{3}$.
 	\item	Le maximum.
 \end{enumerate}
-\end{conceptgen}
+
+\bigskip
 
 Visuellement : 
 
@@ -3358,32 +3378,32 @@ Proportion \\des données
 \end{tikzpicture}
 \end{center}
 
+\textbf{Remarques} :
 \begin{itemize}
-	\item	La médiane est la ligne contenue dans la boîte.
-		\begin{itemize}
-		\item	La moitié des données sont au-dessus, et l'autre moitié en dessous, de la ligne.
-		\end{itemize}
+	\item	La médiane (ligne dans la boîte) correspond au point où la moitié des données sont au-dessus et l'autre moitié en dessous.
 	\item	La boîte est délimitée par le premier et le troisième quartile.
 		\begin{itemize}
 		\item	Il s'ensuit que la boîte contient la moitié des données.
-		\item	De plus, 25\% des données sont contenues entre la borne \textit{supérieure} de la boîte et la médiane avec l'autre 25\% qui est contenu entre la borne \textit{inférieure} et la médiane.
+		\item	De plus, 25\% des données sont contenues entre la borne \textit{supérieure} de la boîte et la médiane (l'autre 25\% est contenu entre la borne \textit{inférieure} et la médiane).
 		\end{itemize}
-	\item	Les « moustaches » de la boîte sont tracées à un pas $h$ des quartiles où \lfbox[conditions]{$h = 1.5 \cdot (Q_{3} - Q_{1})$}.
+	\item	Les « moustaches » de la boîte sont tracées à un pas $\textcolor{teal}{h}$ des quartiles où \lfbox[formula]{$\textcolor{teal}{h} = 1.5 \cdot (Q_{3} - Q_{1})$}.
 		\begin{itemize}
-		\item	Les points qui sont à l'extérieur de ces bornes sont les données potentiellement aberrantes.
-		\item	$Q_{3}	-	Q_{1}$ correspond à l'écart interquartile.
-		\item	Plus l'écart est élevé, plus la boîte sera large et, par conséquent, plus les moustaches seront situées loin de la médiane.
-		\item	Le 1.5 est basé sur la règle du 68-95-99.7 avec moins de 1\% des données à l'extérieur de la borne supérieure.
+		\item	Les points à l'extérieur de ces bornes sont \textit{\underline{potentiellement}} des données aberrantes.
+		\item	Plus \textit{\color{bleudefrance}\underline{\hyperlink{IQR}{\color{bleudefrance} l'écart interquartile}}} ($Q_{3}	-	Q_{1}$) est élevé, plus la boîte sera large et, par conséquent, plus les moustaches seront loin de la médiane.
 		\end{itemize}
 \end{itemize}
 
+\paragraph{Note}	Le « 1.5 » du pas $\textcolor{teal}{h}$ découle de la \textit{\textbf{règle du 68-95-99.7}}. Selon la règle, moins de 1\% des données seront situées à l'extérieur de la borne supérieure.
+
+\bigskip
+
+En premier, on défini la règle du 68-95-99.7.
+
 \begin{definitionNOHFILLprop}[Règle du 68-95-99.7]
-Pour une distribution normale, environ 68\% des données sont en dedans d'un écart-type de la moyenne, 95\% en dedans de 2 et 99.7\% en dedans de 3.
+Pour un échantillon tiré d'une distribution normale, environ 68\% des données se situent à moins de 1 écart-type de la moyenne, 95\% à moins de 2 et 99.7\% à moins de 3.
 
-\begin{center}
-		
+\begin{center}	
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,278); %set diagram left start at 0, and has height of 278
 
@@ -3451,21 +3471,25 @@ Pour une distribution normale, environ 68\% des données sont en dedans d'un éc
 % Text Node
 \draw (406.5,230.23) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \mu -3\sigma $}};
 \end{tikzpicture}
-
 \end{center}
 \end{definitionNOHFILLprop}
 
+\bigskip
 
+Puis, ce graphique tiré de \textit{\color{bleudefrance}\underline{\href{https://en.wikipedia.org/wiki/Interquartile_range}{\color{bleudefrance} Wikipédia}}} illustre bien le lien entre le diagramme en boîte et la règle du 68-95-99.7 :
 
-\columnbreak
-En bref, le diagramme en boîte permet d'évaluer comment les données sont distribuées. Cette image de \href{https://en.wikipedia.org/wiki/Interquartile_range}{wikipedia} résume bien : 
 \begin{center}
 	\includegraphics[scale=0.4]{../../src/ACT-2000/boxplot-normrule.png}
 \end{center}
 
 
+Donc, pourquoi utiliser 1.5 comme échelle de l'écart interquartile ? Puisque cela permet d'englober environ 99\% des données.
+
+\paragraph{Note}	Voir \textit{\underline{\nameref{subsubsec:StatLearningBoxPlot}}} pour l'interprétation des diagrammes en boîte.
+
+
 \columnbreak
-\subsubsection{Diagramme quantile-quantile (\og \textit{Q-Q plot} \fg{})}
+\subsubsection{Diagramme quantile-quantile (\og \textit{Q-Q plot} \fg{})}\label{subsubsec:OrderStatsQQPlot}
 En pratique, on pose souvent que les données suivent une distribution. Un diagramme quantile-quantile permet de comparer les quantiles théoriques de la distribution aux quantiles empiriques des données. 
 
 \bigskip
@@ -3584,10 +3608,7 @@ Par exemple :
 
 \end{center}
 
-Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autres, évaluer la queue de la distribution. Selon la distribution, les quantiles « normaux » varient. Ci-dessous est une image de \href{https://mgimond.github.io/ES218/Week06a.html}{ce site} qui montre quantiles selon la distribution avec une droite pour la normale :
-\begin{center}
-	\includegraphics[scale=0.5]{../../src/ACT-2000/qqplot-skeweing.png}
-\end{center}
+\paragraph{Note}	Voir \textit{\underline{\nameref{subsubsec:StatLearningQQPlot}}} pour l'interprétation du diagramme quantile-quantile.
 
 
 
@@ -3648,7 +3669,7 @@ L'estimation de $\bm{\theta}$ est donc la solution aux $r$ équations suivantes 
 
 
 \columnbreak
-\subsection{Méthode du \guillemotleft Percentile Matching \guillemotright}
+\subsection{Méthode du \guillemotleft Percentile Matching \guillemotright}\label{subsec:percMatching}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\pi_{q}(\bm{\theta})$]	$100q^{\text{e}}$ centile, \lfbox[formula]{$\pi_{q}(\bm{\theta}) = F^{-1}_{\bm{\theta}}(q)$}, \lfbox[conditions]{$q \in [0, 1]$}.
@@ -4088,7 +4109,7 @@ Le désavantage des modèles plus flexibles est leur \textbf{\underline{complexi
 
 \subsubsection{Erreur quadratique moyenne}\label{subsubsec:EQMPrecisionModel}
 \begin{rappel_enhanced}[Contexte]
-Il s'ensuit de sa définition que $\hat{Y}$ est un \textbf{\textcolor{bleudefrance}{\hyperref[subsec:estimationPonctuelle]{estimateur}}} de $\text{E}[Y]$. Pour quantifier l'erreur de prévision de la variable réponse, nous désirons calculer la variance des prévision $\hat{Y}$ des observations avec leurs vraies valeurs $Y$. Cependant, ceci ne correspond \textbf{pas} à la variance de l'estimateur, car $\hat{Y}$ estime l'espérance $\text{E}[Y]$ de l'observation et non sa valeur $Y$. Plutôt, ceci correspond à l'\textit{\underline{\nameref{subsubsec:EQMQuality}}}.
+Il s'ensuit de sa définition que $\hat{Y}$ est un \textbf{\textcolor{bleudefrance}{\hyperref[subsec:estimationPonctuelle]{estimateur}}} de $\text{E}[Y]$. Pour quantifier l'erreur de prévision de la variable réponse, nous désirons calculer la variabilité de l'écart entre les prévisions $\hat{Y}$ des observations et leurs vraies valeurs $Y$. Cependant, ceci ne correspond \textbf{pas} à la variance de l'estimateur, car $\hat{Y}$ estime l'espérance $\text{E}[Y]$ de l'observation et non sa valeur $Y$. Plutôt, ceci correspond à l'\textit{\underline{\nameref{subsubsec:EQMQuality}}}.
 
 \bigskip
 
@@ -4146,11 +4167,23 @@ Donc,
 \end{itemize}
 
 \subsubsection{Compromis biais-variance}
+\begin{rappel_enhanced}[Contexte]
+La variance de $\hat{f}$ mesure l'erreur due à la \textit{\textbf{sensibilité} du modèle à l'ensemble de données}. C'est-à-dire, si la \textbf{forme} de $\hat{f}$ varie beaucoup selon l'ensemble de données utilisé pour ajuster le modèle. Si la variance de $\hat{f}$ est très élevée, ça peut signaler qu'il est surajusté aux données. 
+
+\bigskip
+
+Le biais de $\hat{f}$ mesure le degré auquel $\hat{f}$ est proche de $f$. Un modèle très flexible s'ajuste bien aux données et comporte un faible biais. Par exemple, un \og \textit{spline} \fg{} a un faible biais et une variance élevée alors qu'une régression linéaire a un biais élevée et une faible variance.
+
+\bigskip
+
+Donc, augmenter la flexibilité diminue le biais et augmente la variance, puis vice-versa. Il y a donc un \textbf{compromis} à faire entre les deux.
+\end{rappel_enhanced}
+
 On sait de la \textcolor{bleudefrance}{\textit{\underline{\hyperref[subsubsec:EQMQuality]{\textcolor{bleudefrance}{définition de l'EQM}}}}} qu'on peut le récrire comme $\text{MSE} = \text{Var}(\hat{Y}) + \left[\text{B}[\hat{Y}]\right]^{2}$. En décomposant le premier terme, on obtient que \lfbox[formula]{$\text{MSE} = \text{Var}(\hat{f}) + \left[\text{B}[\hat{f}]\right]^{2} + \text{Var}(\varepsilon)$}.
 
 \bigskip
 
-La troisième composante $\text{Var}(\varepsilon)$ correspond à la variance de \textbf{l'erreur irréductible}. Peu importe le modèle choisit, cette variance ne change pas et donc l'EQM de test ne peut pas y être inférieur. Les deux premières correspondent à la variance de \textbf{l'erreur réductible} qui peut être optimisée.
+La troisième composante $\text{Var}(\varepsilon)$ correspond à la variance de \textbf{l'erreur irréductible}. Peu importe le modèle choisit, cette variance ne change pas et donc l'EQM de test ne peut pas y être inférieur. Les deux premières correspondent à la variance de ce qu'on appelle \textbf{l'erreur \textit{réductible}} et peut être optimisée.
 
 \bigskip
 
@@ -4188,29 +4221,210 @@ Pour choisir le meilleur modèle, nous allons donc vouloir trouver \textbf{le me
 \end{center}
 
 
-\subsubsection{Variance}
-
-
-\subsubsection{Biais}
-
-
 
 \columnbreak
 \subsection{Résumés numériques des modèles}
-univarié
-bivarié
+\begin{rappel_enhanced}[Contexte]
+L'EQM, la variance et le biais d'un modèle permettent de quantifier sa précision. Cependant, avant d'ajuster un modèle, nous désirons avoir une image globale de l'ensemble de données sur lequel on l'ajuste. 
+
+\bigskip
+
+Nous définissons alors quelques statistiques qui permettent d'évaluer les données.
+\end{rappel_enhanced}
+
+
+Nous avons des statistiques
+
+\begin{definitionGENERAL}{Univariées}[\circled{1}{trueblue}]
+Pour une variable $x$, nous utilisons typiquement la \textit{\color{bleudefrance}\underline{\hyperlink{sampleMean}{\color{bleudefrance} moyenne échantillonnale}}} $\bar{x}$ et la \textit{\color{bleudefrance}\underline{\hyperlink{sampleVariance}{\color{bleudefrance}variance échantillonnale}}} $s^{2}$.
+
+\bigskip
+
+Également, on utilise les \textit{\color{bleudefrance}\underline{\hyperref[subsec:percMatching]{\color{bleudefrance} statistiques d'ordre empiriques}}} et \textit{\color{bleudefrance}\underline{\hyperlink{IQR}{\color{bleudefrance} l'écart interquartile}}}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Bivariées}[\circled{2}{trueblue}]
+Pour deux variables $x$ et $y$, on utilise typiquement la \textit{\color{bleudefrance}\underline{\hyperlink{sampleCovariance}{\color{bleudefrance} covariance échantillonnale}}} $cov_{X, Y}$ et la \textit{\color{bleudefrance}\underline{\hyperlink{sampleCorrelation}{\color{bleudefrance} corrélation échantillonnale}}} $r_{X, Y}$.
+\end{definitionGENERAL}
 
 
 
 \columnbreak
 \subsection{Résumés graphiques des modèles}
-\subsubsection{\og \textit{Scatterplots} \fg{}}
+\begin{rappel_enhanced}[Contexte]
+Nous désirons avoir non seulement des résumés numériques, mais également des \textit{résumés graphiques}.
+\end{rappel_enhanced}
 
 
-\subsubsection{\og \textit{Box Plots} \fg{}}
+\subsubsection{Nuage de points (\og \textit{Scatterplots} \fg{})}
+Les nuages de points permettent de visualiser les réalisations de 2 variables afin d'évaluer leur relation. Lorsqu'il y a plusieurs variables, on peut faire une \textbf{matrice de nuages de points} qui montre le diagramme de toutes les combinaisons des variables.
+
+\subsubsection{Diagramme en boîte}\label{subsubsec:StatLearningBoxPlot}
+\begin{rappel_enhanced}[Contexte]
+Le \textit{\underline{\nameref{subsubsec:OrderStatsBoxPlot}}} est défini dans la section \textit{\underline{\nameref{subsec:OrderStatsPlots}}} du \textit{\color{bleudefrance}\underline{\hyperref[chapt:stats]{\color{bleudefrance} chapitre de statistiques}}}. 
+
+\bigskip
+
+Dans cette section, on décrit \textit{\textbf{l'interprétation}} du diagramme en boîte plutôt que son calcul.
+\end{rappel_enhanced}
 
 
-\subsubsection{\og \textit{QQ Plots} \fg{}}
+Le diagramme quantile-quantile évalue si la distribution empirique est semblable à la distribution théorique. On peut, entre autres, évaluer la queue de la distribution. Selon la distribution, les quantiles considérés comme étant « normales » varient. Ci-dessous est un graphique montrant ce à quoi les quantiles devraient ressembler en fonction de la forme de la distribution.
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,250); %set diagram left start at 0, and has height of 250
+
+%Curve Lines [id:da911224771338055] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.39 ][line width=3]  [dash pattern={on 7.88pt off 4.5pt}]  (228.03,138.67) .. controls (269.33,138.67) and (257.42,43.67) .. (284.42,43.67) .. controls (311.42,43.67) and (305.86,139.67) .. (346.36,138.67) ;
+%Curve Lines [id:da6453897215386599] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=0.64 ][line width=3]    (354.75,139) .. controls (445.68,131.67) and (462.63,55) .. (475.86,42.67) .. controls (489.1,30.33) and (484.6,140) .. (525.1,139) ;
+%Curve Lines [id:da9400539085495259] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.6 ][line width=3]    (49,139) .. controls (79.58,139.67) and (73.75,24.33) .. (88.31,43.67) .. controls (102.87,63) and (131.2,129.67) .. (219.35,139) ;
+%Straight Lines [id:da35722900131880886] 
+\draw [line width=2.25]    (49,139) -- (219.35,139) ;
+%Straight Lines [id:da43674678469313366] 
+\draw [line width=2.25]    (228.03,138.67) -- (346.36,138.67) ;
+%Straight Lines [id:da11283643127052989] 
+\draw [line width=2.25]    (354.75,139) -- (525.1,139) ;
+%Shape: Rectangle [id:dp05386138275192387] 
+\draw   (122.76,168.07) -- (122.76,211.37) -- (90.99,211.37) -- (90.99,168.07) -- cycle ;
+%Straight Lines [id:da8627509723114333] 
+\draw [line width=2.25]    (103.7,167.71) -- (103.7,211.72) ;
+%Straight Lines [id:da8598907055371097] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (197.41,189.72) -- (122.66,189.72) ;
+%Straight Lines [id:da662040670183248] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (90.1,189.72) -- (70.94,189.72) ;
+
+%Straight Lines [id:da16117684786717712] 
+\draw    (71.14,165.72) -- (71.14,213.03) ;
+%Straight Lines [id:da48888530965409815] 
+\draw    (197.41,165.72) -- (197.41,213.03) ;
+
+%Shape: Rectangle [id:dp7292679122935448] 
+\draw   (451.34,212.03) -- (451.34,168.72) -- (483.11,168.72) -- (483.11,212.03) -- cycle ;
+%Straight Lines [id:da4854418365604074] 
+\draw    (502.96,214.03) -- (502.96,166.72) ;
+%Straight Lines [id:da12333367457551292] 
+\draw    (376.69,214.03) -- (376.69,166.72) ;
+%Straight Lines [id:da8445167224366488] 
+\draw [line width=2.25]    (470.4,212.38) -- (470.4,168.37) ;
+%Straight Lines [id:da5725856224097436] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (376.69,190.38) -- (451.44,190.38) ;
+%Straight Lines [id:da8040518199281168] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (484,190.37) -- (503.16,190.38) ;
+
+%Shape: Rectangle [id:dp4156688254344669] 
+\draw   (271.71,212.03) -- (271.71,168.72) -- (303.48,168.72) -- (303.48,212.03) -- cycle ;
+%Straight Lines [id:da6931948002304418] 
+\draw    (350.33,214.03) -- (350.33,166.72) ;
+%Straight Lines [id:da6953892005132631] 
+\draw    (224.06,214.03) -- (224.06,166.72) ;
+%Straight Lines [id:da24145105422858992] 
+\draw [line width=2.25]    (290.77,212.38) -- (290.77,168.37) ;
+%Straight Lines [id:da6989907311434764] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (224.06,190.38) -- (267.68,190.38) ;
+%Straight Lines [id:da3558964525053774] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (306.72,190.38) -- (350.33,190.38) ;
+
+
+% Text Node
+\draw (287.2,19) node  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{48.0675pt}\setlength\topsep{0pt}
+\begin{center}
+Symmetrical\\\textit{(symétrique)}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (439.93,19) node  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{102.51pt}\setlength\topsep{0pt}
+\begin{center}
+Left Skewed\\\textit{(asymétrique vers la gauche)}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (134.17,19) node  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{96.15200000000002pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.29,0.56,0.89}{Right Skewed }\\\textcolor[rgb]{0.29,0.56,0.89}{\textit{(asymétrique vers la droite)}}
+\end{center}
+
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+
+
+
+\subsubsection{Diagramme quantile-quantile}\label{subsubsec:StatLearningQQPlot}
+\begin{rappel_enhanced}[Contexte]
+Le \textit{\underline{\nameref{subsubsec:OrderStatsQQPlot}}} est défini dans la section \textit{\underline{\nameref{subsec:OrderStatsPlots}}} du \textit{\color{bleudefrance}\underline{\hyperref[chapt:stats]{\color{bleudefrance} chapitre de statistiques}}}.
+
+\bigskip
+
+Dans cette section, on décrit \textit{\textbf{l'interprétation}} du diagramme en boîte plutôt que son calcul.
+\end{rappel_enhanced}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,447); %set diagram left start at 0, and has height of 447
+
+%Curve Lines [id:da49391395394118187] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=0.39 ][line width=3]  [dash pattern={on 7.88pt off 4.5pt}]  (226.53,138.67) .. controls (267.48,138.67) and (255.67,43.67) .. (282.44,43.67) .. controls (309.22,43.67) and (303.7,139.67) .. (343.87,138.67) ;
+%Curve Lines [id:da950094170978208] 
+\draw [color={rgb, 255:red, 126; green, 211; blue, 33 }  ,draw opacity=1 ][fill={rgb, 255:red, 184; green, 233; blue, 134 }  ,fill opacity=0.64 ][line width=3]    (352.18,139) .. controls (442.35,131.67) and (459.15,55) .. (472.28,42.67) .. controls (485.4,30.33) and (480.94,140) .. (521.1,139) ;
+%Curve Lines [id:da1143637374312727] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=0.6 ][line width=3]    (49,139) .. controls (79.32,139.67) and (73.54,24.33) .. (87.98,43.67) .. controls (102.42,63) and (130.51,129.67) .. (217.92,139) ;
+%Straight Lines [id:da9678970695090572] 
+\draw [line width=2.25]    (49,139) -- (217.92,139) ;
+%Straight Lines [id:da025890937159315452] 
+\draw [line width=2.25]    (226.53,138.67) -- (343.87,138.67) ;
+%Straight Lines [id:da27854451078401743] 
+\draw [line width=2.25]    (352.18,139) -- (521.1,139) ;
+%Shape: Axis 2D [id:dp8093452558474676] 
+\draw  (81.41,264.52) -- (172.87,264.52)(81.41,163.92) -- (81.41,264.52) -- cycle (165.87,259.52) -- (172.87,264.52) -- (165.87,269.52) (76.41,170.92) -- (81.41,163.92) -- (86.41,170.92)  ;
+%Curve Lines [id:da8264588118186762] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,draw opacity=1 ]   (87.04,261.92) .. controls (131.92,266.92) and (143.73,232.92) .. (161.85,169.92) ;
+%Straight Lines [id:da22425951333310934] 
+\draw [color={rgb, 255:red, 255; green, 159; blue, 0 }  ,draw opacity=1 ]   (112.91,264.52) -- (172.08,189.39) ;
+
+%Shape: Axis 2D [id:dp5159212255716297] 
+\draw  (402.71,265.52) -- (494.17,265.52)(402.71,164.92) -- (402.71,265.52) -- cycle (487.17,260.52) -- (494.17,265.52) -- (487.17,270.52) (397.71,171.92) -- (402.71,164.92) -- (407.71,171.92)  ;
+%Curve Lines [id:da9187950866992278] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,draw opacity=1 ]   (404.39,260.92) .. controls (422.51,216.92) and (427.23,171.92) .. (467.39,173.92) ;
+%Straight Lines [id:da26114763971403576] 
+\draw [color={rgb, 255:red, 255; green, 159; blue, 0 }  ,draw opacity=1 ]   (403.5,235.52) -- (455.58,169.39) ;
+
+%Shape: Axis 2D [id:dp8816282808525446] 
+\draw  (252.3,267.52) -- (343.76,267.52)(252.3,166.92) -- (252.3,267.52) -- cycle (336.76,262.52) -- (343.76,267.52) -- (336.76,272.52) (247.3,173.92) -- (252.3,166.92) -- (257.3,173.92)  ;
+%Curve Lines [id:da5052987444451966] 
+\draw [color={rgb, 255:red, 0; green, 117; blue, 255 }  ,draw opacity=1 ]   (252.3,264.52) .. controls (279.97,231.92) and (289.42,222.92) .. (323.96,179.52) ;
+%Straight Lines [id:da7185392189334847] 
+\draw [color={rgb, 255:red, 255; green, 159; blue, 0 }  ,draw opacity=1 ]   (252.3,267.52) -- (322.39,178.52) ;
+
+% Text Node
+\draw (285.2,19) node  [font=\footnotesize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{48.0675pt}\setlength\topsep{0pt}
+\begin{center}
+Symmetrical\\\textit{(symétrique)}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (436.64,19) node  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{102.51pt}\setlength\topsep{0pt}
+\begin{center}
+Left Skewed\\\textit{(asymétrique vers la gauche)}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (133.46,19) node  [font=\footnotesize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {\begin{minipage}[lt]{96.15200000000002pt}\setlength\topsep{0pt}
+\begin{center}
+\textcolor[rgb]{0.29,0.56,0.89}{Right Skewed }\\\textcolor[rgb]{0.29,0.56,0.89}{\textit{(asymétrique vers la droite)}}
+\end{center}
+
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
 
 
 %%%	----------------------------------------	%%%
@@ -4219,9 +4433,6 @@ bivarié
 %	Méthodes paramétriques
 %	Méthodes non-paramétriques
 %	
-%Évaluer la précision d'un modèle
-%	Qualité de l'ajustement
-%	Compromis biais-variance
 %%%	----------------------------------------	%%%
 
 %%%	----------------------------------------	%%%
@@ -4388,7 +4599,17 @@ bivarié
 
 
 \newpage
-\section{Régression}\label{sec:regression}
+\section{Régression linéaire simple et multiple}\label{sec:regression}
+\subsection{Régression linéaire simple}
+
+
+
+\subsection{Régression linéaire multiple}
+
+
+
+\newpage
+\section{Régression linéaire généralisée}
 
 
 \subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
@@ -5274,6 +5495,9 @@ Le kurtosis de la distribution normale est de 3. On pose qu'il est plus vraisemb
 \end{center}
 \end{definitionNOHFILLsub}
 
+
+
+%La corrélation est une mesure de la dépendance linéaire
 
 
 \columnbreak
