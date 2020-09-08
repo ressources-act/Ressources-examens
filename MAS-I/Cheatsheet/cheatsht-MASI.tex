@@ -3886,147 +3886,239 @@ Soit une distribution avec $r$ paramètre tel que $\hat{\bm{\theta}} = (\hat{\th
 \part{Modèles linéaires en actuariat}\label{chapt:modLin}
 \section{Apprentissage statistique}
 \begin{definitionNOHFILL}[Apprentissage statistique]
-L'apprentissage statistique est l'utilisation de statistiques pour estimer les relations entre des variables « \textit{\textbf{explicatives}} » et un résultat (une variable « \textbf{\textit{réponse}} »). 
+L'apprentissage statistique est l'utilisation des statistiques pour pour essayer de trouver, puis quantifier, des relations entre des variables « \textit{\textbf{explicatives}} » et une variable « \textbf{\textit{réponse}} ». 
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILLsub}[Variable réponse]
-Variable pour laquelle nous voulons effectuer des prévisions.
-\end{definitionNOHFILLsub}
-
-\begin{definitionNOHFILLsub}[Variables explicatives]
-Variables utilisées pour les prévisions de la variable réponse.
-\end{definitionNOHFILLsub}
-
-Les modèles d'apprentissage statistique ont deux utilités principales : 
-\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
-	\item	Faire des \textbf{prévisions} de la valeur de la variable réponse pour des valeurs spécifiques des variables réponse.
-	\item	Faire de l'\textbf{inférence} afin de comprendre quelles variables explicatives sont liées à la variable réponse, et à quel degré.
-\end{enumerate}
-
-Il y a une multitude de modèles d'apprentissage statistique différents. Entre autres, ces modèles varient en \textbf{flexibilité}; c'est-à-dire, certains modèles s'\textit{ajustent} mieux aux données.
-
-\bigskip
-
-Par exemple, une régression linéaire correspond à une ligne droite (peu flexible). En réalité, il est peu probable que les données soient situées sur une droite. En contraste, une \og \textit{spline} \fg{} va passer à travers tous les points (très flexible).
-
-
-\begin{definitionNOHFILLprop}[Flexibilité du modèle]
-Il y a un compromis à faire entre la flexibilité d'un modèle et sa facilité d'interprétation :
-\begin{itemize}
-	\item	Les modèles \textit{moins flexibles} sont plus facilement interprétables au coût de moins bonnes prévisions. 
-		\begin{itemize}
-		\item	Ils sont généralement mieux pour l'inférence. 
-		\end{itemize}
-	\item	Les modèles \textit{plus flexibles} sont plus difficilement interprétables, mais ont l'avantage d'offrir de meilleures prévisions. 
-		\begin{itemize}
-		\item	Ils sont généralement mieux pour faire des prévisions.
-		\end{itemize}
-\end{itemize}
-
-En revanche, si un modèle est \textit{\textbf{sur ajusté}} aux données alors il pourrait être biaisé envers les données avec lesquelles il est entraîné et offrir des mauvaises prévisions pour des \textbf{nouvelles} données.
-\end{definitionNOHFILLprop}
-
-De façon générale, on sépare l'apprentissage statistique en deux types :
-\begin{description}
-	\item[apprentissage supervisé]	comporte une variable réponse.
-	\item[apprentissage non supervisé]	ne comporte pas de variable réponse.
-\end{description}
 
 
 \columnbreak
-\subsection{Types de variables explicatives}
-Les variables explicatives prennent plusieurs formes :
-
-\begin{definitionNOHFILLpropos}[Variable continue]
-Définie sur les nombres réels.	
-
-\bigskip
-
-Par exemple :
-\begin{itemize}
-	\item	Les montants de perte d'accidents d'automobile.
-	\item	Le temps avant qu'une réclamation d'assurance soit réglée.
-\end{itemize}
-\end{definitionNOHFILLpropos}
-
-\begin{definitionNOHFILLpropos}[Variable catégorielle]
-Définie sur un petit nombre de valeurs catégorielles. On dit aussi \textit{variable qualitative}.	
-
-\bigskip
-
-Par exemple : 
-\begin{itemize}
-	\item	Une \textbf{variable binaire} (seulement deux niveaux). 
+\subsection{Variables d'un modèle d'apprentissage statistique}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$Y$]	variable réponse.
 		\begin{itemize}
-		\item	P. ex., une variable \textit{"Maison a un système d'alarme"} prenant comme valeur \textit{"oui"} ou \textit{"non"}.
-		\item	P. ex., le \textit{sexe} d'un individu prenant comme valeur \textit{"homme"} ou \textit{"femme"}.
+		\item	On dénote la $i^{\text{e}}$ observation, d'un ensemble de $n$ observations, par $y_{i}$ où $i = 1, 2, \dots, n$.
 		\end{itemize}
-	\item	Une variable avec plusieurs niveaux.
+	\item[$X_{j}$]	$j^{\text{e}}$ variable explicative où $j = 1, 2, \dots, \textcolor{teal}{p}$.
 		\begin{itemize}
-		\item	P. ex., la \textit{marque d'une voiture} assurée prenant comme valeurs \textit{"Toyota"}, \textit{"Honda"}, etc.
+		\item	On dénote la $i^{\text{e}}$ observation, de la $j^{\text{e}}$ variable explicative, par $x_{i, j}$ où $i = 1, 2, \dots, n$.
 		\end{itemize}
-\end{itemize}
+	\item[$\textcolor{teal}{p}$]	Nombre de variables explicatives.
+\end{description}
+\end{distributions}
+
+
+\begin{definitionNOHFILL}[Variable réponse]
+Typiquement, nous voulons effectuer des prévisions sur la valeur de la \textit{variable réponse}. Également, on veut essayer de mieux la comprendre avec les variables explicatives. Elle a plusieurs noms : \og \textit{output variable} \fg{}, \og \textit{dependant variable} \fg{}, \og \textit{outcome} \fg{}, etc.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Variables explicatives]
+Les \textit{variables explicatives} sont toutes les variables qui peuvent aider à comprendre la variable réponse. Ils ont plusieurs noms : \og \textit{independent variables} \fg{}, \og \textit{features} \fg{}, \og \textit{predictors} \fg{}, etc.
+\end{definitionNOHFILL}
 
 \bigskip
 
-Une variable catégorielle peut être :
-\begin{definitionGENERAL}{Nominale}[\circled{1}{trueblue}]
-Il n'y a pas d'ordre aux catégories.
+Ces variables sont soit \textit{quantitatives} ou \textit{qualitatives}.
 
-\bigskip
+\begin{definitionNOHFILLsub}[Variable quantitative]
+Les \textit{variables quantitatives}, aussi appelées les \og \textit{covariates}, \fg{} prennent comme valeur \underline{une quantité} et se séparent en 2 types : 
 
-Par exemple :
+\begin{definitionGENERAL}{Variable continue}[\circled{1}{trueblue}]
+Les variables continues sont définies sur les \textbf{nombres réels}. Par exemple, 
 \begin{itemize}
-	\item	Le \textit{programme d'étude} d'un étudiant prenant comme valeur \textit{"actuariat"}, \textit{"comptabilité"}, etc.
+	\item	les montants de perte d'un accident d'automobile, 
+	\item	le temps avant qu'une réclamation d'assurance soit réglée, 
+	\item	la probabilité de précipitations, etc.
 \end{itemize}
 \end{definitionGENERAL}
-\begin{definitionGENERAL}{Ordinale}[\circled{2}{trueblue}]
-Il y a une d'ordre aux catégories.
 
-\bigskip
-
-Par exemple :
-\begin{itemize}                                           
-	\item	La \textit{sévérité d'un incendie} allant de \textit{1} à \textit{5}.
-\end{itemize}    
-\end{definitionGENERAL}
-\end{definitionNOHFILLpropos}
-
-\begin{definitionNOHFILLpropos}[Variable de comptage]
-Définie sur les entiers positifs.	
-
-\bigskip
-
-Par exemple :
+\begin{definitionGENERAL}{Variable de comptage}[\circled{2}{trueblue}]
+Les variables de comptage sont définies sur les entiers positifs. Par exemple,
 \begin{itemize}
-	\item	Le nombre de réclamations.
+	\item	le nombre de d'accidents d'automobile, 
+	\item	le nombre d'étudiants dans une salle de cours, etc.
 \end{itemize}
-\end{definitionNOHFILLpropos}
+\end{definitionGENERAL}
+
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Variable qualitative]
+Les \textit{variables quantitatives}, aussi appelées les \textbf{\textit{variables catégorielles}}, prennent comme valeur un petit nombre de résultats, ou \underline{catégories}, possibles. On peut aussi considérer les catégories comme des \textbf{niveaux} ou des \textbf{classes}.
+
+\bigskip
+
+Les variables qualitatives se séparent en deux types selon la présence ou absence d'ordre à ses niveaux : 
+
+\begin{definitionGENERAL}{Variable nominale}[\circled{1}{trueblue}]
+Variable qualitative dont les \textbf{catégories n'ont pas d'ordre}. Par exemple, 
+\begin{itemize}
+	\item	le programme d'étude d'un étudiant (actuariat, informatique, etc.), 
+	\item	la couleur d'une voiture (rouge, bleu, vert, etc.), 
+	\item	le fabricant d'une voiture (Toyota, Subaru, etc.), etc.
+\end{itemize}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Variable ordinale}[\circled{2}{trueblue}]
+Variable qualitative dont les \textbf{niveaux ont une ordre}. Par exemple, 
+\begin{itemize}
+	\item	la sévérité d'un accident de 1 à 5,
+	\item	le degré de risque d'incendie de bas à élevé, etc.
+\end{itemize}
+\end{definitionGENERAL}
+
+\bigskip
+
+\textbf{Notes} :
+\begin{itemize}
+	\item	Si une variable qualitative a seulement 2 classes, on l'appelle une \textbf{\textit{variable binaire}}.
+		\begin{itemize}
+		\item	Par exemple, la variable "sexe de l'assuré" prenant comme valeur \textit{homme} ou \textit{femme}.
+		\end{itemize}
+	\item	Une variable explicative qualitative est appelée un \textit{\textbf{facteur}}.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+
+
+\columnbreak
+\subsection{Types de modèles d'apprentissage statistique}
+L'apprentissage statistique se distingue par 2 types; soit il est supervisé, ou il ne l'est pas.
+
+\begin{definitionNOHFILLsub}[Apprentissage supervisé]
+L'apprentissage statistique \textit{supervisé} évalue des données qui comportent une variable réponse. Toute l'analyse est concentrée sur l'évaluation de cette variable via les variables explicatives. 
+
+\bigskip
+
+Par exemple, 
+\begin{itemize}
+	\item	prédire le nombre de buts marqués par un joueur de la LNH,
+	\item	prédire la quantité de neige qui va tomber l'année prochaine,
+	\item	prédire si un client est satisfait ou pas suite à un appel, etc.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Apprentissage non supervisé]
+L'apprentissage statistique \textit{non supervisé} analyse les observations ou les variables d'un ensemble de données qui ne contient pas une variable réponse. L'idée de l'analyse est d'identifier des tendances qui pourraient exister, mais il n'y a pas d'objectif spécifique ni de façon de quantifier les résultats de l'analyse.
+
+\bigskip
+
+Par exemple,
+\begin{itemize}
+	\item	analyser ce qu'achètent les consommateurs d'une certaine région,
+	\item	évaluer les caractéristiques des étudiants en défaillance dans leurs prêts étudiants,
+	\item	évaluer la composition du sol dans un environnement pollué, etc.
+\end{itemize}
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Dans le cadre de l'examen MAS-I, seule \textit{\underline{\hyperref[sec:PCA]{l'analyse en composantes principales}} (ACP)} est couverte. Nous nous concentrons surtout sur les méthodes d'apprentissage supervisé.
+
+
+
+\subsubsection{Problèmes d'apprentissage supervisé}
+Les \textbf{problèmes} d'apprentissage supervisé se divisent typiquement en 2 types de problèmes : 
+
+\begin{definitionGENERAL}{Régression}[\circled{1}{trueblue}]
+Un problème de \textit{\underline{\nameref{sec:regression}}} implique une variable réponse \textbf{quantitative}. 
+
+\paragraph{Note}	L'examen MAS-I se concentre davantage sur la régression que la classification. 
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Classification}[\circled{2}{trueblue}]
+Un problème de \textit{\underline{\nameref{sec:classification}}} implique une variable réponse \textbf{qualitative}. 
+\end{definitionGENERAL}
+
+\paragraph{Note}	Parfois, la différence entre la régression et la classification est minime. Par exemple, la classification d'une variable binaire \textit{oui} ou \textit{non} peut devenir un problème de régression en estimant la \textit{probabilité} d'un oui.
+
+\bigskip
+
+Un problème de régression suppose qu'il y existe une relation entre la variable réponse et les variables explicatives. De façon générale, on représente la relation entre une observation des variables explicatives et de la variable réponse comme 
+
+\begin{align*}
+	(Y | X_{1} = x_{1}, X_{2} = x_{2}, \dots, X_{p} = x_{p}) 
+	&=	\underbrace{f(x_{1}, x_{2}, \dots, x_{p})}_{\substack{\text{une fonction des}\\ \text{ variables explicatives}}} + \underbrace{\varepsilon}_{\substack{\text{une erreur}\\ \text{irreductible}}}
+\end{align*}
+
+\paragraph{Note}	Ici, le conditionnement de $Y$ sur les valeurs prises par les variables explicatives provient du fait que l'échantillon de données est observé. Cependant, ce niveau de détail n'est pas nécessaire pour comprendre les concepts. Donc, dans le but de \textit{simplifier} la suite, on va simplement écrire $Y$.
+
+\bigskip
+
+On pose que \lfbox[conditions]{$\text{E}[\varepsilon] = 0$} et donc \lfbox[formula]{$\text{E}[Y] = \text{E}[f(x_{1}, x_{2}, \dots, x_{p})] = f(x_{1}, x_{2}, \dots, x_{p})$}. Bref, une réalisation de la variable réponse est composée d'une composante \textbf{systématique} et d'une composante \textbf{aléatoire}. Souvent on dénote cette décomposition comme \og \textit{signal plus noise} \fg{}.
+
+\bigskip
+
+L'objectif de la régression et donc d'estimer $f$ par $\hat{f}$ en présumant que \underline{\textit{la relation ne change pas}}. Le processus d'estimer $f$ pour obtenir un $\hat{f}$ optimal est la \textbf{\textit{phase d'entraînement}}.
+
+
+\subsubsection{Objectifs de l'apprentissage supervisé}
+Les \textbf{objectifs} de l'apprentissage supervisé se résume à un des deux suivants : 
+
+\begin{definitionGENERAL}{Prévision}[\circled{1}{trueblue}]
+Effectuer des \textit{prévisions} de la valeur prise par la variable réponse en fonction d'observations des variables explicatives.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Inférence}[\circled{2}{trueblue}]
+Chercher à comprendre l'effet des variables explicatives sur la variable réponse.
+\end{definitionGENERAL}
+
+
+\bigskip
+
+Les différents modèles d'apprentissage statistique varient, entres autre, en \textbf{\textit{flexibilité}}. La \textbf{flexibilité} décrit le degré auquel $\hat{f}$ peut s'\textit{ajuster} aux données. Un \textit{meilleur ajustement} implique que $\hat{f}$ est \textit{plus flexible}, alors qu'un \textit{moins bon ajustement} implique que $\hat{f}$ est \textit{moins flexible}.
+
+\bigskip
+
+Par exemple, une régression linéaire correspond à une ligne droite et donc $\hat{f}$ est très peu flexible. L'ajustement aux données est moins bon, car il est peu probable que les données soient situées sur une droite. En revanche, une \og \textit{spline} \fg{} passe à travers tous les points (l'ajustement est alors « parfait ») et donc $\hat{f}$ est très flexible. Cependant, un modèle peut devenir \textbf{\textit{surajusté}} aux données d'entraînement et effectuer de mauvaises prévisions. Voir la section \hl{<TBD>} pour de plus amples détails sur le surajustement d'un modèle.
+
+\bigskip
+
+Le désavantage des modèles plus flexibles est leur \textbf{\underline{complexité}}. Plus un modèle est flexible, plus il est complexe et plus il est difficilement interprétable. De façon générale, les modèles plus flexibles sont préférables pour la prévision alors que les modèles plus simples (moins flexibles) sont préférables pour l'inférence.
+
+
+
+\columnbreak
+\subsection{Précision des modèles d'apprentissage statistique}
+EQM
+	EQM d'entraînement
+	surajustement
+	EQM de test
+	données d'entraînement
+
+	flexibilité et EQM 
+
+Compromis biais-variance
+	erreur irréductible
+	erreur réductible
+	
+variance
+
+biais
+
+
+
+\columnbreak
+\subsection{Résumés numériques des modèles}
+univarié
+bivarié
+
+
+
+\columnbreak
+\subsection{Résumés graphiques des modèles}
+\subsubsection{\og \textit{Scatterplots} \fg{}}
+
+
+\subsubsection{\og \textit{Box Plots} \fg{}}
+
+
+\subsubsection{\og \textit{QQ Plots} \fg{}}
 
 
 %%%	----------------------------------------	%%%
 %%%		Serait à ajouter pour compléter		%%%
-%Variable vs prédicteur vs ...
-%Explication des composantes de la régression linéaire
-%	terme d'erreur / erreur irréductible / systémique
-%	supposer une relation linéaire
-%	réponse quantitative 
-%
-%Pourquoi estimer la fonction
-%	prévision
-%	inférence
-%		relation entre les prédicteurs
-%		relation entre la variable réponse et chacun des prédicteurs
-%		relation plus compliquée qu'une relation linéaire?
-%
 %Comment estimer la fonction
 %	Méthodes paramétriques
 %	Méthodes non-paramétriques
 %	
-%Compromis interprétation et précision
-%Apprentissage supervisé vs non supervisé
-%Régression vs catégorique
-%
 %Évaluer la précision d'un modèle
 %	Qualité de l'ajustement
 %	Compromis biais-variance
@@ -4193,8 +4285,12 @@ Par exemple :
 %\end{itemize}
 %%%	----------------------------------------	%%%
 
-\columnbreak
-\section{Régression}
+
+
+\newpage
+\section{Régression}\label{sec:regression}
+
+
 \subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
 \paragraph{Note}	La section \underline{\textit{\nameref{subsec:exhMinStat}}} du chapitre de \underline{\textit{\nameref{subsec:FamExpMVUE}}} détaille l'application de la famille exponentielle pour identifier le MVUE. Cette section couvre plus en détails la famille.
 
@@ -4236,8 +4332,8 @@ Sous cette forme, on déduit que \lfbox[formula]{$\text{E}[a(Y)]	=	-\frac{c'(\th
 %\end{description}
 
 
-\columnbreak
-\section{Classification}
+\newpage
+\section{Classification}\label{sec:classification}
 On fait de la \textbf{classification} lorsque nous voulons prédire une variable \textit{catégorielle}. Il y a 3 trois types de variables : nominal, ordinal et binomial. Les deux premières ont été définies plus haut, une variable réponse binomiale est simplement une variable ayant 2 catégories.
 
 \subsection{Binomial}
@@ -4310,6 +4406,7 @@ Comme on peut observer ci-dessous, les fonctions de lien logit et probit sont \t
 
 
 \subsection{Nominal}
+%%	voir pour la régression logistique https://maurocamaraescudero.netlify.app/post/logistic-regression/
 On suppose qu'il y a $J$ catégories possibles pour la variable réponse. 
 Pour modéliser avec la régression logistique, on :
 \begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
@@ -4369,7 +4466,10 @@ Excepté l'intercepte, les paramètres $\beta$ ne varient pas par catégorie $j$
 \end{align*}
 
 
-\pagebreak
+\newpage	
+\section{Analyse en composantes principales}\label{sec:PCA}
+
+\newpage
 \section{Autres}
 %	https://www.youtube.com/watch?v=0XfXHYDYoBA
 \begin{tabular}{|	c	|	c	|}
@@ -4861,11 +4961,9 @@ TP
 
 
 \newpage
-\part{Mathématiques actuarielles IARD I}
-\label{chapt:mathIARD}
+\part{Mathématiques actuarielles IARD I} \label{chapt:mathIARD}
 \section{Probabilité}
-\subsection{Fonctions de variables aléatoires}
-\label{subsec:rvfunct}
+\subsection{Fonctions de variables aléatoires} \label{subsec:rvfunct}
 \begin{definitionNOHFILL}[Fonction de masse de probabilité (PMF)]
 Pour une variable aléatoire discrète $X$, on dénote sa fonction de masse de probabilité \lfbox[formula]{$p_{X}(x)	=	\Pr(X	=	x)$} tel que \lfbox[conditions]{$0	\leq	p(x)	\leq	1$} et \lfbox[conditions]{$\sum_{x} p(x)	=	1$}.
 \end{definitionNOHFILL}
