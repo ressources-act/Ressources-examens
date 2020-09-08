@@ -180,7 +180,7 @@ La fonction de vraisemblance $\mathcal{L}(\theta; \bm{x})$ se résume à une dif
 
 
 \columnbreak
-\section{Qualité de l'estimateur}
+\section{Qualité de l'estimateur}\label{sec:EsimatorQuality}
 La première section traite d'« \textbf{estimateurs ponctuels} ». 
 C'est-à-dire, on produit une seule valeur comme notre meilleur essai pour déterminer la valeur de la population inconnue.
 Intrinsèquement, on ne s'attend pas à ce que cette valeur (même si c'en est une bonne) soit la vraie valeur exacte.
@@ -200,7 +200,7 @@ En bref:
 
 
 
-\subsection{Estimation ponctuelle}
+\subsection{Estimation ponctuelle}\label{subsec:estimationPonctuelle}
 \begin{distributions}[Notation]
 \begin{description}[font = \normalfont]
 	\item[$\theta$]	Paramètre inconnu à estimer ;
@@ -267,7 +267,7 @@ Bien que la variance peut aider à dépister des estimateurs très variables, il
 
 
 \columnbreak
-\subsubsection{Erreur quadratique moyenne}
+\subsubsection{Erreur quadratique moyenne}\label{subsubsec:EQMQuality}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\text{MSE}_{\hat{\theta}_{n}}(\theta)$]	Erreur quadratique moyenne d'un estimateur $\hat{\theta}_{n}$
@@ -293,6 +293,8 @@ L'erreur quadratique moyenne est définie comme \lfbox[formula]{$\text{MSE}_{\ha
 \end{itemize}
 \end{definitionNOHFILL}
 
+
+\paragraph{Note}	Voir la section \textit{\underline{\nameref{subsubsec:EQMPrecisionModel}}} pour l'application de l'EQM dans le contexte \textit{\underline{d'\nameref{sec:StatLearning}}}.
 
 
 \columnbreak
@@ -3884,7 +3886,7 @@ Soit une distribution avec $r$ paramètre tel que $\hat{\bm{\theta}} = (\hat{\th
 
 \pagebreak
 \part{Modèles linéaires en actuariat}\label{chapt:modLin}
-\section{Apprentissage statistique}
+\section{Apprentissage statistique}\label{sec:StatLearning}
 \begin{definitionNOHFILL}[Apprentissage statistique]
 L'apprentissage statistique est l'utilisation des statistiques pour pour essayer de trouver, puis quantifier, des relations entre des variables « \textit{\textbf{explicatives}} » et une variable « \textbf{\textit{réponse}} ». 
 \end{definitionNOHFILL}
@@ -4077,21 +4079,119 @@ Le désavantage des modèles plus flexibles est leur \textbf{\underline{complexi
 
 \columnbreak
 \subsection{Précision des modèles d'apprentissage statistique}
-EQM
-	EQM d'entraînement
-	surajustement
-	EQM de test
-	données d'entraînement
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\hat{Y}$]	Prévision de $Y$ où $\hat{Y} = \hat{f}(x_{1}, x_{2}, \dots, x_{p}) = \hat{\text{E}}[Y]$.
+\end{description}
+\end{distributions}
 
-	flexibilité et EQM 
 
-Compromis biais-variance
-	erreur irréductible
-	erreur réductible
-	
-variance
+\subsubsection{Erreur quadratique moyenne}\label{subsubsec:EQMPrecisionModel}
+\begin{rappel_enhanced}[Contexte]
+Il s'ensuit de sa définition que $\hat{Y}$ est un \textbf{\textcolor{bleudefrance}{\hyperref[subsec:estimationPonctuelle]{estimateur}}} de $\text{E}[Y]$. Pour quantifier l'erreur de prévision de la variable réponse, nous désirons calculer la variance des prévision $\hat{Y}$ des observations avec leurs vraies valeurs $Y$. Cependant, ceci ne correspond \textbf{pas} à la variance de l'estimateur, car $\hat{Y}$ estime l'espérance $\text{E}[Y]$ de l'observation et non sa valeur $Y$. Plutôt, ceci correspond à l'\textit{\underline{\nameref{subsubsec:EQMQuality}}}.
 
-biais
+\bigskip
+
+Il y a cependant une distinction à faire entre l'application de l'EQM pour évaluer la précision d'un modèle et son application pour évaluer la \textit{\underline{\nameref{sec:EsimatorQuality}}}. Lorsqu'on évalue la qualité d'un estimateur, on calcule la différence entre \textbf{une variable aléatoire} ($\hat{\theta}$) et \textbf{une constante} ($\theta$). Lorsqu'on évalue l'erreur d'un modèle, on calcule la différence entre \textbf{\underline{deux} variables aléatoires} ($\hat{Y}$ et $Y$).
+\end{rappel_enhanced}
+
+\bigskip
+
+L'erreur quadratique moyenne (EQM) mesure la \textbf{précision} du modèle où \lfbox[formula]{$\text{MSE} = \text{E}\left[\left(Y - \hat{Y}\right)^{2}\right]$}. Typiquement, on calcule l'EQM avec l'échantillon de données où \lfbox[formula]{$\displaystyle \text{MSE} = \frac{\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2}}{n}$}.
+
+\bigskip
+
+Si on calcule l'EQM avec l'échantillon de données de 
+\begin{description}
+	\item[test]	on obtient l'EQM de test.
+	\item[d'entraînement]	on obtient l'EQM d'entraînement.
+\end{description}
+
+\bigskip
+
+Si l'on ajuste le modèle avec l'EQM d'entraînement, on peut obtenir de très bonnes prévisions sur les données d'entraînement. Cependant, le modèle peut devenir \textbf{\textit{surajusté}} et effectuer des mauvaises prévisions sur de nouvelles données; il est difficilement généralisable. Alors, \textbf{on utilise l'EQM de test par défaut} évaluer la précision du modèle. C'est-à-dire, on ajuste le modèle avec les données d'entraînement puis on évalue la qualité de l'ajustement avec l'EQM calculé à partir des données de test.
+
+\bigskip
+
+De façon générale, l'EQM de test et d'entraînement ont le patron suivant : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,176); %set diagram left start at 0, and has height of 176
+
+%Shape: Axis 2D [id:dp5772917383218528] 
+\draw  (98.17,151.52) -- (338.17,151.52)(98.17,12) -- (98.17,151.52) -- cycle (331.17,146.52) -- (338.17,151.52) -- (331.17,156.52) (93.17,19) -- (98.17,12) -- (103.17,19)  ;
+%Curve Lines [id:da7180172356998638] 
+\draw [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ]   (100.17,53) .. controls (121.9,107.93) and (159.9,106.93) .. (173.9,110.93) .. controls (201.9,115.93) and (251.9,109.93) .. (327.9,137.93) ;
+%Curve Lines [id:da41914783051829674] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (100.17,31) .. controls (131.9,82.93) and (138.9,95.52) .. (187.9,95.93) .. controls (236.9,96.33) and (284.9,80.93) .. (305.9,32.93) ;
+
+% Text Node
+\draw (283,153) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\small flexibilité}};
+% Text Node
+\draw (54,8) node [anchor=north west][inner sep=0.75pt]   [align=left] {EQM};
+% Text Node
+\draw (338,124) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {{\footnotesize erreur d'entraînement}};
+% Text Node
+\draw (329,30) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {{\footnotesize \textcolor[rgb]{0.82,0.01,0.11}{erreur de test}}};
+\end{tikzpicture}
+\end{center}
+
+Donc, 
+\begin{itemize}
+	\item	puisque est optimisé pour les données d'entraînement, il sera toujours inférieur à l'EQM de test.
+	\item	l'EQM d'entraînement décroître lorsque la flexibilité (et donc, la complexité aussi) du modèle augmente.
+	\item	l'EQM de test est concave ce qui veut dire que le meilleur modèle fait un \textbf{\underline{compromis}} entre la \textit{flexibilité} et la \textit{précision} du modèle.
+\end{itemize}
+
+\subsubsection{Compromis biais-variance}
+On sait de la \textcolor{bleudefrance}{\textit{\underline{\hyperref[subsubsec:EQMQuality]{\textcolor{bleudefrance}{définition de l'EQM}}}}} qu'on peut le récrire comme $\text{MSE} = \text{Var}(\hat{Y}) + \left[\text{B}[\hat{Y}]\right]^{2}$. En décomposant le premier terme, on obtient que \lfbox[formula]{$\text{MSE} = \text{Var}(\hat{f}) + \left[\text{B}[\hat{f}]\right]^{2} + \text{Var}(\varepsilon)$}.
+
+\bigskip
+
+La troisième composante $\text{Var}(\varepsilon)$ correspond à la variance de \textbf{l'erreur irréductible}. Peu importe le modèle choisit, cette variance ne change pas et donc l'EQM de test ne peut pas y être inférieur. Les deux premières correspondent à la variance de \textbf{l'erreur réductible} qui peut être optimisée.
+
+\bigskip
+
+Pour choisir le meilleur modèle, nous allons donc vouloir trouver \textbf{le meilleur compromis} entre la variance et le biais du modèle : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Curve Lines [id:da4759750305396995] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ]   (99.17,143) .. controls (137.9,142.52) and (290.9,135.52) .. (304.9,72.52) ;
+%Shape: Axis 2D [id:dp9745205547244375] 
+\draw  (98.17,152.52) -- (338.17,152.52)(98.9,12) -- (98.9,152.52) (331.17,147.52) -- (338.17,152.52) -- (331.17,157.52) (93.9,19) -- (98.9,12) -- (103.9,19)  ;
+%Curve Lines [id:da033007208636684604] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (99.17,73) .. controls (120.9,101.52) and (122.44,110.98) .. (191.9,129.52) .. controls (205.2,133.07) and (241.9,136.52) .. (303.9,139.52) ;
+%Straight Lines [id:da008555734300703888] 
+\draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=1.5]    (99.17,106) -- (332.17,106) ;
+%Curve Lines [id:da10214451559207416] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (100.17,22) .. controls (131.9,73.93) and (142.9,86.52) .. (187.9,86.93) .. controls (232.9,87.33) and (284.9,71.93) .. (305.9,23.93) ;
+
+% Text Node
+\draw (283,153) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\small flexibilité}};
+% Text Node
+\draw (46,8) node [anchor=north west][inner sep=0.75pt]   [align=left] {Erreur};
+% Text Node
+\draw (306,127) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize \textcolor[rgb]{0.29,0.56,0.89}{biais}}};
+% Text Node
+\draw (312.17,57) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {\textcolor[rgb]{0.96,0.65,0.14}{{\footnotesize variance}}};
+% Text Node
+\draw (101.17,109) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 139; green, 87; blue, 42 }  ,opacity=1 ] [align=left] {erreur \\irréductible};
+% Text Node
+\draw (308,9) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ] [align=left] {{\footnotesize \textcolor[rgb]{0.82,0.01,0.11}{EQM de test}}};
+\end{tikzpicture}
+\end{center}
+
+
+\subsubsection{Variance}
+
+
+\subsubsection{Biais}
 
 
 
