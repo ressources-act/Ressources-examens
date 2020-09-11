@@ -4099,7 +4099,7 @@ Le désavantage des modèles plus flexibles est leur \textbf{\underline{complexi
 
 
 \columnbreak
-\subsection{Précision des modèles d'apprentissage statistique}
+\subsection{Précision des modèles d'apprentissage statistique}\label{subsec:PrecisionModel}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\hat{Y}$]	Prévision de $Y$ où $\hat{Y} = \hat{f}(x_{1}, x_{2}, \dots, x_{p}) = \hat{\text{E}}[Y]$.
@@ -4600,10 +4600,110 @@ Left Skewed\\\textit{(asymétrique vers la gauche)}
 
 \newpage
 \section{Régression linéaire simple et multiple}\label{sec:regression}
+\hl{rewrite pour que ce soit moins une introduction et plus une intuition}.
+\begin{rappel_enhanced}[Contexte]
+On débute les méthodes de \textit{\textbf{régression linéaire}} avec la \textbf{\underline{régression linéaire simple}} qui utilise une variable explicative pour prédire une variable réponse \underline{quantitative}. 
+
+\bigskip
+
+Puis, on présente aussi les concepts fondamentaux et l'interprétation de la sortie d'un modèle de régression en le reliant aux tests d'hypothèse et les intervalles de confiance.
+\end{rappel_enhanced}
+
+
 \subsection{Régression linéaire simple}
+\begin{rappel_enhanced}[Contexte]
+La régression linéaire simple revient à prédire la variable réponse par une ligne droite. Puisque nous avons une fonction \underline{\textbf{linéaire}}, on fait appel aux notions du secondaire pour obtenir une équation de la forme $f = \text{intercepte} + \text{pente} \times \text{variable explicative}$.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\beta_{0}$]	Paramètre d'intercepte.
+	\item[$\beta_{1}$]	Paramètre de pente.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Régression linéaire simple]
+On définit \lfbox[formula]{$Y = \beta_{0} + \beta_{1}x + \varepsilon$} sous \textit{\color{bleudefrance}\underline{\hyperlink{postulatsSLR}{\color{bleudefrance} certains postulats}}}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[\hypertarget{postulatsSLR}{Postulats de la régression linéaire simple}]
+On suppose que : 
+\begin{enumerate}
+	\item	$Y$ s'exprime en fonction de la variable explicative sous la forme $Y_{i} = \beta_{0} + \beta_{1}x_{i} + \varepsilon_{i}$, $\forall i = 1, 2, \dots, n$.
+	\item	les réalisations $x_{i}$ ne sont pas aléatoires $\forall i = 1, 2, \dots, n$.
+\end{enumerate}
+
+\bigskip
+
+Puis, $\forall i = 1, 2, \dots, n$, nous avons les postulats suivants sur $\varepsilon_{i}$: 
+\begin{enumerate}[label = $\mathbf{H}_{\arabic*}$]
+	\item Linéarité : $\text{E}[\varepsilon_{i}] = 0$.
+	\item Homoscédasticité : $\variance{\varepsilon_i}= \sigma^2$.
+	\item Indépendance : $\text{Cov}(\varepsilon_{i}, \varepsilon_{j}) = 0$.
+	\item Normalité : $\varepsilon_{i} \sim \mathcal{N}(0, \sigma^{2})$.
+\end{enumerate}
+
+\bigskip
+
+Des postulats, on déduit que valeurs observées de la variable réponse sont indépendantes et normalement distribuées avec \lfbox[formula]{$\text{E}[Y_{i}] = \beta_{0} + \beta_{1} x_{i}$} et \lfbox[formula]{$\text{Var}(Y_{i}) = \sigma^{2}$} telles que \lfbox[formula]{$Y_{i} \sim \mathcal{N}( \beta_{0} + \beta_{1} x_{i}, \sigma^{2})$}.
+\end{definitionNOHFILLprop}
+
+
+\paragraph{Note}	L'\textbf{homoscédasticité} implique que la variance est constante pour toutes les observations.
+
+\bigskip
+
+\begin{rappel_enhanced}[Limitations]
+Par définition, le modèle pose qu'il y existe \textit{systématiquement} une relation \textbf{\underline{linéaire}} entre la variable réponse et la variable explicative. Donc, une variable explicative idéale \underline{pour une régression linéaire simple} aura un important patron \textbf{\underline{linéaire}} avec la variable réponse.
+
+\bigskip
+
+Il s'ensuit que le modèle de régression linéaire simple a des limitations inhérentes aux relations qu'il peut capturer. Si une variable réponse n'a pas de relation \textit{linéaire} avec une variable explicative, on peut tenter de modéliser une fonction $g(\cdot)$ de la variable réponse $Y$. Par exemple, si $Y$ a une forte relation \textit{exponentielle} avec $x$, alors on peut modéliser $\log(Y)$ au lieu de $Y$ pour obtenir une relation linéaire.
+\end{rappel_enhanced}
 
 
 
+\columnbreak
+\subsubsection{Estimation des paramètres libres}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$b_{0}$]	Estimation du paramètre d'intercepte $\beta_{0}$.
+	\item[$b_{1}$]	Estimation du paramètre de pente $\beta_{1}$.
+	\item[$\hat{y}$]	Prévision de la variable réponse $y$.
+\end{description}
+\end{distributions}
+
+On obtient les prévisions $\hat{y}$ en fonction des estimations des paramètres libres avec \lfbox[formula]{$\hat{y} = b_{0} + b_{1} x$}.
+
+\bigskip
+
+Avec les données d'entraînement, on estime les paramètres libres par \textit{\textbf{la méthode des moindres carrés ordinaires}}. On minimise la somme des différences entre les valeurs observées et prédites de la variable réponse : $\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2} = \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1} x_{i}\right)^{2}$ afin d'obtenir les estimations \lfbox[formula]{$\displaystyle b_{1} = \frac{\sum_{i = 1}^{n} (x_{i} - \bar{x})(y_{i} - \bar{y})}{\sum_{i = 1}^{n} (x_{i} - \bar{x})^{2}}$} et \lfbox[formula]{$b_{0} = \bar{y} - b_{1} \bar{x}$}.
+
+\paragraph{Note}	On peut récrire que la somme du produit des observations centrées de la variable explicative et de la variables réponse $\sum_{i = 1}^{n} (x_{i} - \bar{x})(y_{i} - \bar{y}) = \sum_{i = 1}^{n} (x_{i} - \bar{x})y_{i} = \sum_{i = 1}^{n} x_{i}y_{i} - \bar{y}\sum_{i = 1}^{n}x_{i}$.
+
+\paragraph{Note}	On peut récrire que la somme du carré des observations centrées de la variable explicative $\sum_{i = 1}^{n} (x_{i} - \bar{x})^{2} = \sum_{i = 1}^{n} x_{i}^{2} - n\bar{x}^{2}$.
+
+
+
+\columnbreak
+\subsubsection{Estimation de la variance}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$MSE$]	Erreur quadratique moyenne.
+		\begin{itemize}
+		\item	La racine du MSE, $\sqrt{MSE}$, est nommée l'\textbf{erreur type résiduelle} (\og \textit{residual standard error} \fg{}).
+		\end{itemize}
+\end{description}
+\end{distributions}
+
+
+La variance de la valeur réponse, qui correspond à la variance de l'erreur de prévision, est estimée par l'erreur quadratique moyenne de prévision : \lfbox[formula]{$\displaystyle MSE = \frac{\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2}}{n - 2}$}. 
+	
+\paragraph{Note}	On divise par $n - 2$ puisque les paramètres $\beta_{0}$ et $\beta_{1}$ sont estimés. Le MSE de la section de \textit{\underline{\nameref{subsec:PrecisionModel}}} estime une mesure de la précision du modèle alors qu'ici on estime sans-biais la précision. Donc, il n'était pas nécessaire de diviser par $n - 2$ au lieu de $n$.
+
+
+
+\columnbreak
 \subsection{Régression linéaire multiple}
 
 
