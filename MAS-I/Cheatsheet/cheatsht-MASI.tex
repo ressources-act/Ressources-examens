@@ -907,6 +907,8 @@ Visuellement, nous avons une aire de $(1 - k)/2$ dans les deux queues et les poi
 
 \paragraph{Note}	Puisque la loi normale est symétrique, $z_{(1 - k)/2} = -z_{(1 + k)/2}$. Il s'ensuit qu'on peut simplifier l'écriture de l'intervalle de confiance bilatéral comme $\mu \in \bar{x}_{n} \pm z_{(1 - k)/2} \frac{\sigma}{\sqrt{n}}$.
 
+\paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsubsec:PIandCISLR}}} de la section sur la \textit{\underline{\nameref{sec:SLR}}} pour l'application de l'intervalle de confiance sur la moyenne à la régression linéaire simple.
+
 
 
 \subsubsection{2 échantillons}
@@ -4041,7 +4043,7 @@ Par exemple,
 Les \textbf{problèmes} d'apprentissage supervisé se divisent typiquement en 2 types de problèmes : 
 
 \begin{definitionGENERAL}{Régression}[\circled{1}{trueblue}]
-Un problème de \textit{\underline{\nameref{sec:regression}}} implique une variable réponse \textbf{quantitative}. 
+Un problème de régression implique une variable réponse \textbf{quantitative}. 
 
 \paragraph{Note}	L'examen MAS-I se concentre davantage sur la régression que la classification. 
 \end{definitionGENERAL}
@@ -4599,7 +4601,7 @@ Left Skewed\\\textit{(asymétrique vers la gauche)}
 
 
 \newpage
-\section{Régression linéaire simple et multiple}\label{sec:regression}
+\section{Régression linéaire simple}\label{sec:SLR}
 \hl{rewrite pour que ce soit moins une introduction et plus une intuition}.
 \begin{rappel_enhanced}[Contexte]
 On débute les méthodes de \textit{\textbf{régression linéaire}} avec la \textbf{\underline{régression linéaire simple}} qui utilise une variable explicative pour prédire une variable réponse \underline{quantitative}. 
@@ -4609,12 +4611,14 @@ On débute les méthodes de \textit{\textbf{régression linéaire}} avec la \tex
 Puis, on présente aussi les concepts fondamentaux et l'interprétation de la sortie d'un modèle de régression en le reliant aux tests d'hypothèse et les intervalles de confiance.
 \end{rappel_enhanced}
 
+\bigskip
 
-\subsection{Régression linéaire simple}
 \begin{rappel_enhanced}[Contexte]
 La régression linéaire simple revient à prédire la variable réponse par une ligne droite. Puisque nous avons une fonction \underline{\textbf{linéaire}}, on fait appel aux notions du secondaire pour obtenir une équation de la forme $f = \text{intercepte} + \text{pente} \times \text{variable explicative}$.
 \end{rappel_enhanced}
 
+
+\subsection{Définition du modèle}
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$\beta_{0}$]	Paramètre d'intercepte.
@@ -4664,6 +4668,7 @@ Il s'ensuit que le modèle de régression linéaire simple a des limitations inh
 
 
 \columnbreak
+\subsection{Estimation du modèle}
 \subsubsection{Estimation des paramètres libres}
 \begin{distributions}[Notation]
 \begin{description}
@@ -4847,6 +4852,7 @@ La statistique \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}
 
 
 \columnbreak	
+\subsection{Estimateurs des paramètres}
 \subsubsection{Estimateurs}
 En traitant les réalisations de la variable réponse comme une variable aléatoire et les réalisations de la variable explicative comme des constantes, $b_{0}$ et $b_{1}$ sont des combinaisons linéaires de $Y$ et donc des estimateurs. De plus, nous nous intéressons à la statistique \lfbox[formula]{$\text{E}[Y] = \beta_{0} + \beta_{1} x$} estimée par $\hat{Y}$.
 
@@ -4908,45 +4914,166 @@ La méthode du \og \textit{\textbf{bootstrapping}} \fg{} permet d'éviter l'hypo
 
 \columnbreak
 \subsubsection{Tests d'hypothèse}
-Tests $t$ bilatéral
+\begin{definitionNOHFILL}[Test $t$ bilatéral]
+S'il n'y a pas de relation linéaire entre la variable réponse $Y$ et la variable explicative $x$, la pente $\beta_{1}$ sera nulle et $Y = \beta_{0} + \varepsilon$. Donc, on effectue le test $t$ bilatéral pour tester s'il y a une relation linéaire : 
 \begin{align*}
 	\mathrm{H}_{0}&: \beta_{1} = 0	&
 	\mathrm{H}_{1}&: \beta_{1} \neq 0
 \end{align*}
 
-$t = \frac{b_{1} - h}{se(b_{1})}$
+\bigskip
 
-Régression origine
+On fait un \textit{\color{bleudefrance}\underline{\hyperref[subsec:MeanTests]{\color{bleudefrance} test sur la moyenne}}} de l'estimateur $b_{1}$ avec \lfbox[formula]{$t = \frac{b_{1} - h}{se(b_{1})}$} où \lfbox[formula]{$T \sim t_{\textcolor{teal}{(n - 2)}}$}. La zone critique est \lfbox[formula]{$| t | \geq t_{\alpha, \textcolor{teal}{n - 2}}$}.
 
-Tests $t$ unilatéral
-\begin{align*}
-	\mathrm{H}_{0}&: \beta_{1} \leq 0	&
-	\mathrm{H}_{1}&: \beta_{1} > 0
-\end{align*}
-
-$t = \frac{b_{1} - h}{se(b_{1})}$
-
-\columnbreak
-\subsubsection{Intervalle de confiance et de prévision}
-confiance
-	$\beta_{0}$
-	$\beta_{1}$
-	$\text{E}[Y]$
-
-\begin{definitionNOHFILL}[Intervalle de prévision]
-
+\paragraph{Note}	Puisque nous utilisons l'EQM et non la variance, la statistique est distribuée selon la loi de Student et non la loi normale. De plus, le calcul se base sur les $n$ observations $e_{1}, \dots, e_{n}$ qui sont soumis à 2 restrictions : \lfbox[conditions]{$\sum_{i = 1}^{n}e_{i} = 0$} et \lfbox[conditions]{$\sum_{i = 1}^{n} x_{i}e_{i} = 0$}. Nous avons donc $\textcolor{teal}{(n - 2)}$ résidus \textbf{sans contraintes}.
 \end{definitionNOHFILL}
 
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+On peut également faire un test d'hypothèse unilatéral. Par exemple, on peut tester si la pente est \textbf{positive}, en supposant qu'elle ne l'est pas, avec le test unilatéral \textit{vers la droite} $H_{1} : \beta_{1} > 0$ et $H_{0} : \beta_{1} \leq 0$. Également, on peut tester si la pente est \textbf{négative}, en supposant qu'elle ne l'est pas, avec le test unilatéral \textit{vers la gauche} $H_{1} : \beta_{1} < 0$ et $H_{0} : \beta_{1} \geq 0$.
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Test $t$ unilatéral}}	&	\textcolor{white}{\textbf{Région critique}}		\\\specialrule{0.1em}{0em}{0em} 
+vers la gauche	&	$t \leq -t_{2\alpha, n - 2}$	\\\hline
+vers la droite	&	$t \geq t_{2\alpha, n - 2}$	\\\hline
+\end{tabular}
+\end{center}
 
 
 
 \columnbreak
-\subsection{Régression linéaire multiple}\label{subsec:MLR}
+\subsubsection{Intervalle de confiance et de prévision}\label{subsubsec:PIandCISLR}
+\begin{rappel_enhanced}[Contexte]
+De façon générale, nous avons l'expression \lfbox[formula]{$\text{estimation} \pm (\text{percentile de la loi } t) \times (\text{erreur type})$}.
+\end{rappel_enhanced}
+
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Paramètre}}	&	\textcolor{white}{\textbf{Intervalle de confiance}}		\\\specialrule{0.1em}{0em}{0em} 
+$\beta_{0}$	&	$b_{0} \pm t_{1 - k, n - 2} se(b_{0})$	\\\hline
+$\beta_{1}$	&	$b_{1} \pm t_{1 - k, n - 2} se(b_{1})$	\\\hline
+$\text{E}[Y]$	&	$\hat{y} \pm t_{1 - k, n - 2} se(\hat{y})$	\\\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+L'intervalle de confiance sur $\text{E}[Y]$ prédit la \textbf{valeur moyenne} de $(Y | X = x)$. On peut cependant généraliser le concept d'intervalle de confiance pour \textit{prédire} la vraie valeur de la variable réponse $Y$. Un \textbf{\textit{intervalle de prévision}} trouve un intervalle de valeurs dans lequel la \textit{\textbf{réalisation} d'une variable aléatoire} pourrait être contenue plutôt qu'un intervalle dans lequel un \textit{paramètre} pourrait être contenu.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Intervalle de prévision]
+\begin{rappel_enhanced}[Contexte]
+Typiquement, l'intervalle de confiance est établit à partir de la distribution de la statistique. Cependant, pour un intervalle de prévision on pose que \lfbox[formula]{$Y_{n + 1} - \hat{Y}_{n + 1} \sim \mathcal{N}\left(0, \sigma^{2}\left[1 + \frac{1}{n} + \frac{\left(x_{n + 1} - \bar{x}\right)^{2}}{\sum_{i = 1}^{n}\left(x_{i} - \bar{x}\right)^{2}}\right]\right)$} avec \lfbox[formula]{$\hat{Y}_{n + 1} = b_{0}  + b_{1} x_{n + 1}$}. 
+\end{rappel_enhanced}
+
+L'\textbf{\textit{intervalle de prévision}} est un intervalle de valeurs qui estime la valeur de la variable réponse pour la réalisation $y_{n + 1}$ d'une nouvelle observation $Y_{n + 1}$ : \lfbox[formula]{$y_{n + 1} \in \hat{y}_{n + 1} \pm t_{1 - k, n - 2} se\left(\hat{y}_{n + 1}\right)$}.
+\end{definitionNOHFILL}
+
+\bigskip
+
+L'erreur type de l'intervalle de prévision $\sqrt{MSE \left[\textcolor{amethyst}{1} + \textcolor{teal}{\frac{1}{n} + \frac{\left(x_{n + 1} - \bar{x}\right)^{2}}{\sum_{i = 1}^{n}\left(x_{i} - \bar{x}\right)^{2}}}\right]}$ est presque identique à l'erreur type de l'intervalle de confiance $\sqrt{MSE \left[\textcolor{teal}{\frac{1}{n} + \frac{\left(x_{n + 1} - \bar{x}\right)^{2}}{\sum_{i = 1}^{n}\left(x_{i} - \bar{x}\right)^{2}}}\right]}$. En fait, la distinction revient à distinguer 2 composantes : 
+
+\begin{definitionGENERAL}{\og \textit{Parameter risk} \fg{}}[\circled{1}{trueblue}]
+Le \og \textit{\textcolor{teal}{parameter risk}} \fg{} est l'incertitude liée à l'estimation des paramètres. Il s'ensuit que cette composante fait partie des 2 erreurs type.
+
+\bigskip
+
+Visuellement, c'est l'intervalle des formes possibles pour la droite de régression estimée : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,184); %set diagram left start at 0, and has height of 184
+
+%Shape: Axis 2D [id:dp32136653798359216] 
+\draw  (78,147.4) -- (197.66,147.4)(78,45.57) -- (78,147.4) -- cycle (190.66,142.4) -- (197.66,147.4) -- (190.66,152.4) (73,52.57) -- (78,45.57) -- (83,52.57)  ;
+%Straight Lines [id:da5288396308877217] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (87.31,126.57) -- (181.59,62.14) ;
+%Curve Lines [id:da9211218650049606] 
+\draw [line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (83.17,108.22) .. controls (100.17,106.22) and (119.17,90.22) .. (129.17,83.22) .. controls (139.17,76.22) and (161.17,61.22) .. (165.17,44.22) ;
+%Flowchart: Connector [id:dp20386664225225148] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ] (133.27,93.26) .. controls (133.27,91.58) and (134.63,90.22) .. (136.31,90.22) .. controls (137.99,90.22) and (139.36,91.58) .. (139.36,93.26) .. controls (139.36,94.95) and (137.99,96.31) .. (136.31,96.31) .. controls (134.63,96.31) and (133.27,94.95) .. (133.27,93.26) -- cycle ;
+%Straight Lines [id:da8724379575109438] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (136.45,93.36) -- (136.5,145.89) ;
+%Curve Lines [id:da16040421767429525] 
+\draw [line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (103.17,139.22) .. controls (107.17,129.22) and (137.17,105.22) .. (142.17,101.22) .. controls (147.17,97.22) and (183.17,78.22) .. (197.17,77.22) ;
+%Straight Lines [id:da3901291590148206] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (78.5,93.36) -- (136.45,93.36) ;
+
+% Text Node
+\draw (137,155) node  [font=\scriptsize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \overline{x}$};
+% Text Node
+\draw (70,91) node  [font=\scriptsize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \overline{Y}$};
+% Text Node
+\draw (211,52) node  [font=\scriptsize,color={rgb, 255:red, 157; green, 2; blue, 21 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y}$=$\displaystyle b_{0} +b_{1} x$};
+% Text Node
+\draw (68,44) node  [font=\footnotesize] [align=left] {$\displaystyle Y$};
+% Text Node
+\draw (203,155) node  [font=\footnotesize] [align=left] {$\displaystyle x$};
+\end{tikzpicture}
+\end{center}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{\og \textit{Process risk} \fg{}}[\circled{2}{trueblue}]
+Le \og \textit{\textcolor{amethyst}{process risk}} \fg{} est l'incertitude liée à la fluctuation de la variable réponse auprès de sa moyenne. Il s'ensuit que cette composante fait seulement partie de l'erreur type sur la prévision.
+
+\bigskip
+
+Visuellement, l'impact du \og \textit{\textcolor{amethyst}{process risk}} \fg{} sera d'élargir de $\sqrt{MSE}$ l'intervalle des deux bords :
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp033725357769953224] 
+\draw  (254,198.4) -- (373.66,198.4)(254,96.57) -- (254,198.4) -- cycle (366.66,193.4) -- (373.66,198.4) -- (366.66,203.4) (249,103.57) -- (254,96.57) -- (259,103.57)  ;
+%Straight Lines [id:da3913594702609864] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (263.31,165.57) -- (357.59,101.14) ;
+%Curve Lines [id:da8190333532366403] 
+\draw [line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (259.17,125.22) .. controls (276.17,123.22) and (295.17,109.22) .. (305.17,102.22) .. controls (315.17,95.22) and (337.17,80.22) .. (341.17,63.22) ;
+%Flowchart: Connector [id:dp3166540733299006] 
+\draw  [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][fill={rgb, 255:red, 65; green, 117; blue, 5 }  ,fill opacity=1 ] (309.27,134.53) .. controls (309.27,132.54) and (310.63,130.92) .. (312.31,130.92) .. controls (313.99,130.92) and (315.36,132.54) .. (315.36,134.53) .. controls (315.36,136.53) and (313.99,138.14) .. (312.31,138.14) .. controls (310.63,138.14) and (309.27,136.53) .. (309.27,134.53) -- cycle ;
+%Straight Lines [id:da49281740122581397] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (312.45,134.64) -- (312.5,196.89) ;
+%Curve Lines [id:da8857664828992295] 
+\draw [line width=2.25]  [dash pattern={on 2.53pt off 3.02pt}]  (279.17,198.22) .. controls (283.17,188.22) and (313.17,164.22) .. (318.17,160.22) .. controls (323.17,156.22) and (359.17,137.22) .. (373.17,136.22) ;
+%Straight Lines [id:da12789997287941413] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 1.69pt off 2.76pt}]  (254.5,134.64) -- (312.45,134.64) ;
+
+% Text Node
+\draw (313,206) node  [font=\scriptsize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \overline{x}$};
+% Text Node
+\draw (245,135) node  [font=\scriptsize,color={rgb, 255:red, 65; green, 117; blue, 5 }  ,opacity=1 ] [align=left] {$\displaystyle \overline{Y}$};
+% Text Node
+\draw (387,91) node  [font=\scriptsize,color={rgb, 255:red, 157; green, 2; blue, 21 }  ,opacity=1 ] [align=left] {$\displaystyle \hat{Y}$=$\displaystyle b_{0} +b_{1} x$};
+% Text Node
+\draw (244,95) node  [font=\footnotesize] [align=left] {$\displaystyle Y$};
+% Text Node
+\draw (379,206) node  [font=\footnotesize] [align=left] {$\displaystyle x$};
+\end{tikzpicture}
+\end{center}
+\end{definitionGENERAL}
+
+
 
 
 
 \newpage
-\section{Régression linéaire généralisée}
+\section{Régression linéaire multiple}\label{sec:MLR}
+
+
+
+\newpage
+\section{Régression linéaire généralisée}\label{sec:GLM}
 
 
 \subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
