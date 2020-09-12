@@ -4622,7 +4622,7 @@ La régression linéaire simple revient à prédire la variable réponse par une
 \end{description}
 \end{distributions}
 
-\begin{definitionNOHFILL}[Régression linéaire simple]
+\begin{definitionNOHFILL}[Modèle de régression linéaire simple]
 On définit \lfbox[formula]{$Y = \beta_{0} + \beta_{1}x + \varepsilon$} sous \textit{\color{bleudefrance}\underline{\hyperlink{postulatsSLR}{\color{bleudefrance} certains postulats}}}.
 \end{definitionNOHFILL}
 
@@ -4673,11 +4673,13 @@ Il s'ensuit que le modèle de régression linéaire simple a des limitations inh
 \end{description}
 \end{distributions}
 
-On obtient les prévisions $\hat{y}$ en fonction des estimations des paramètres libres avec \lfbox[formula]{$\hat{y} = b_{0} + b_{1} x$}.
+\begin{definitionNOHFILL}[Estimation du modèle de régression linéaire simple]
+Les prévisions $\hat{y}$ sont obtenues en fonction des estimations des paramètres : \lfbox[formula]{$\hat{y} = b_{0} + b_{1} x$}. 
 
 \bigskip
 
-Avec les données d'entraînement, on estime les paramètres libres par \textit{\textbf{la méthode des moindres carrés ordinaires}}. On minimise la somme des différences entre les valeurs observées et prédites de la variable réponse : $\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2} = \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1} x_{i}\right)^{2}$ afin d'obtenir les estimations \lfbox[formula]{$\displaystyle b_{1} = \frac{\sum_{i = 1}^{n} (x_{i} - \bar{x})(y_{i} - \bar{y})}{\sum_{i = 1}^{n} (x_{i} - \bar{x})^{2}}$} et \lfbox[formula]{$b_{0} = \bar{y} - b_{1} \bar{x}$}.
+Avec les données d'entraînement, on estime les paramètres libres par \textbf{la méthode des moindres carrés} qui minimise la somme des différences entre les valeurs observées et prédites de la variable réponse $\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2}$ afin d'obtenir les estimations \lfbox[formula]{$\displaystyle b_{1} = \frac{\sum_{i = 1}^{n} (x_{i} - \bar{x})(y_{i} - \bar{y})}{\sum_{i = 1}^{n} (x_{i} - \bar{x})^{2}}$} et \lfbox[formula]{$b_{0} = \bar{y} - b_{1} \bar{x}$}.
+\end{definitionNOHFILL}
 
 \paragraph{Note}	On peut récrire que la somme du produit des observations centrées de la variable explicative et de la variables réponse $\sum_{i = 1}^{n} (x_{i} - \bar{x})(y_{i} - \bar{y}) = \sum_{i = 1}^{n} (x_{i} - \bar{x})y_{i} = \sum_{i = 1}^{n} x_{i}y_{i} - \bar{y}\sum_{i = 1}^{n}x_{i}$.
 
@@ -4685,7 +4687,8 @@ Avec les données d'entraînement, on estime les paramètres libres par \textit{
 
 
 
-\columnbreak
+
+%\columnbreak
 \subsubsection{Estimation de la variance}
 \begin{distributions}[Notation]
 \begin{description}
@@ -4697,14 +4700,246 @@ Avec les données d'entraînement, on estime les paramètres libres par \textit{
 \end{distributions}
 
 
-La variance de la valeur réponse, qui correspond à la variance de l'erreur de prévision, est estimée par l'erreur quadratique moyenne de prévision : \lfbox[formula]{$\displaystyle MSE = \frac{\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2}}{n - 2}$}. 
+La variance de la valeur réponse, qui correspond à la variance de l'erreur de prévision, est estimée par l'erreur quadratique moyenne de prévision : \lfbox[formula]{$\displaystyle MSE = \frac{\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2}}{\textcolor{teal}{n - 2}}$}. 
 	
-\paragraph{Note}	On divise par $n - 2$ puisque les paramètres $\beta_{0}$ et $\beta_{1}$ sont estimés. Le MSE de la section de \textit{\underline{\nameref{subsec:PrecisionModel}}} estime une mesure de la précision du modèle alors qu'ici on estime sans-biais la précision. Donc, il n'était pas nécessaire de diviser par $n - 2$ au lieu de $n$.
+\paragraph{Note}	On divise par $\textcolor{teal}{n - 2}$ puisque 2 paramètres, $\beta_{0}$ et $\beta_{1}$, sont estimés. Le MSE de la section de \textit{\underline{\nameref{subsec:PrecisionModel}}} estime une mesure de la précision du modèle et donc diviser par $n$ était suffisant. Cependant, ici on désire estimer un paramètre sans-biais et donc on doit diviser par $\textcolor{teal}{n - 2}$.
 
 
 
 \columnbreak
-\subsection{Régression linéaire multiple}
+\subsubsection{Représentation matricielle du modèle de régression linéaire simple}
+\begin{rappel_enhanced}[Contexte]
+Au lieu d'écrire que $\forall i = 1, 2, \dots, n$ $Y_{i} = \beta_{0} + \beta_{1}x_{i} + \varepsilon_{i}$, on peut écrire l'expression sous forme matricielle avec $\bm{Y} = \bm{X} \bm{\beta} + \bm{\varepsilon}$.
+
+\bigskip
+
+La représentation matricielle du modèle est superflue pour la régression linéaire simple puisqu'il y a seulement une variable explicative. Cependant, dès que nous en avons plusieurs et que nous obtenons une \textit{\underline{\nameref{subsec:MLR}}} on doit utiliser la représentation matricielle.
+\end{rappel_enhanced}
+
+
+On obtient que \lfbox[formula]{$\bm{Y} = \bm{X} \bm{\beta} + \bm{\varepsilon}$}. C'est-à-dire :
+\begin{align*}
+	\begin{bmatrix}
+		Y_{1}	\\
+		Y_{2}	\\
+		\vdots	\\
+		Y_{n}
+	\end{bmatrix}
+	&=	
+	\begin{bmatrix}
+		1	&	x_{1}	\\
+		1	&	x_{2}	\\
+		\vdots	&	\vdots	\\
+		1	&	x_{n}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\beta_{0}	\\
+		\beta_{1}
+	\end{bmatrix} + 
+	\begin{bmatrix}
+		\varepsilon_{1}	\\
+		\varepsilon_{2}	\\
+		\vdots	\\
+		\varepsilon_{n}	\\
+	\end{bmatrix},
+\end{align*}
+où \textbf{la matrice d'incidence} $\bm{X}$ est composée de $1$ qui sont multipliés avec l'intercepte $\beta_{0}$ et de $x_{i}$ qui sont multipliés avec la pente $\beta_{1}$.
+
+\bigskip
+
+Également, on peut récrire les estimations des paramètres en une matrice $\bm{b}$ :
+\begin{align*}
+	\bm{b}
+	&=	\begin{bmatrix}
+		b_{0}	\\
+		b_{1}
+	\end{bmatrix},
+\end{align*}
+d'où \lfbox[formula]{$\bm{b} = \left(\bm{X}^{\top} \bm{X}\right)^{-1} \bm{X}^{\top} \bm{y}$}. 
+
+\bigskip
+
+\begin{definitionNOHFILL}[Matrice de projection $\bm{H}$]
+La matrice \lfbox[formula]{$\bm{H} = \bm{X} \left(\bm{X}^{\top} \bm{X}\right)^{-1} \bm{X}^{\top}$} s'appelle la \textbf{\textit{matrice de projection}} ou \textit{matrice chapeau} (\og \textit{hat matrix} \fg{}).
+
+\bigskip
+
+Avec la matrice de projection, on obtient que \lfbox[formula]{$\hat{\bm{y}} = \bm{X}\bm{b} = \bm{H}\bm{y}$}. 
+
+\paragraph{Note}	Le nom \og \textit{hat matrix} \fg{} provient du fait que les prévisions de la variable réponse sont obtenues en multipliant les valeurs observées avec la matrice $H$---on met un chapeau sur $\bm{y}$.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
+\subsubsection{Somme des carrés}
+\begin{definitionNOHFILL}[Résidus $e_{i}$]
+Le $i^{\text{e}}$ résidu est \lfbox[formula]{$e_{i} = y_{i} - \hat{y}_{i}$} ce qui correspond à la réalisation de $\varepsilon_{i}$.
+
+\bigskip
+
+Si le résidu est 
+\begin{description}
+	\item[positif]	la vraie valeur est \textbf{supérieure} à la valeur prédite.
+	\item[négatif]	la vraie valeur est \textbf{inférieure} à la valeur prédite.
+\end{description}
+\end{definitionNOHFILL}
+
+Nous minimisons l'EQM pour ajuster le meilleur modèle. Cependant, pour évaluer l'utilité du modèle, on partitionne la variabilité de la variable réponse en plusieurs sommes des carrés. On dénote la somme des carrés et la variance comme des fonctions, $SS(\cdot)$ et $\text{Var}(\cdot)$, de ce qui estime la variable réponse. 
+
+\begin{definitionGENERAL}{Total Sum of Squares (SST)}[\circled{1}{trueblue}]
+\begin{rappel_enhanced}[Contexte]
+La SST correspond à la somme des carrés si l'on prédit toujours la moyenne : $SS(\text{moyenne}) = (\text{données} - \text{moyenne})^{2} = \sum_{i = 1}^{n}(y_{i} - \bar{y})^{2}$. La variance $\text{Var}(\text{moyenne}) = \frac{(\text{données} - \text{moyenne})^{2}}{n - 1} = s^{2}$ représente donc la variabilité des données autours de la moyenne.  
+\end{rappel_enhanced}
+
+On obtient que \lfbox[formula]{$SST = \sum_{i = 1}^{n} \left(y_{i} - \bar{y}\right)^{2}$}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Error Sum of Squares (SSE)}[\circled{2}{trueblue}]
+\begin{rappel_enhanced}[Contexte]
+La SSE correspond à la somme des carrés avec les valeurs prédites du modèle : $SS(\text{prévisions}) = (\text{données} - \text{prévisions})^{2} = \sum_{i = 1}^{n}(y_{i} - \hat{y}_{i})^{2}$. La variance $\text{Var}(\text{prévisions}) = \frac{(\text{données} - \text{prévisions})^{2}}{n - 2} = MSE$ représente donc la variabilité des données autours de la droite de régression.  
+\end{rappel_enhanced}
+
+On obtient que \lfbox[formula]{$SSE = \sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\right)^{2}$}. La SSE représente donc la variabilité qui n'est pas expliquée par la régression linéaire simple.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Regression Sum of Squares (SSR)}[\circled{3}{trueblue}]
+\begin{rappel_enhanced}[Contexte]
+Alors que la SST représente la variabilité totale et la SSE la variabilité qui n'est pas expliquée par le modèle, la SSR représente la variabilité qui \textit{\textbf{est expliquée}} par le modèle. 
+\end{rappel_enhanced}
+
+On obtient que \lfbox[formula]{$SSR = \sum_{i = 1}^{n} \left(\hat{y}_{i} - \bar{y}\right)^{2}$}.
+\end{definitionGENERAL}
+
+\paragraph{Note}	La SSE est parfois nommé la \og \textit{Sum of Squared Residuals} \fg{} et dénotée par RSS. Il est donc important de ne pas confondre SSR avec RSS.
+
+\bigskip
+
+En bref, on a que \lfbox[formula]{$SST = SSR + SSE$} où
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Sum of Squares}}	&	\textcolor{white}{\textbf{Somme}}	&	\textcolor{white}{\textbf{Variabilité}}		\\\specialrule{0.1em}{0em}{0em} 
+SST	&	$\sum_{i = 1}^{n} \left(y_{i} - \bar{y}\right)^{2}$			&	totale	\\\hline
+SSR	&	$\sum_{i = 1}^{n} \left(\hat{y}_{i} - \bar{y}\right)^{2}$	&	expliquée	\\\hline
+SSE	&	$\sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\right)^{2}$		&	inexpliquée	\\\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\begin{definitionNOHFILL}[Coefficient de corrélation $R^{2}$]
+\begin{rappel_enhanced}[Contexte]
+Le $R^{2}$ est une mesure de corrélation qui correspond au carré du coefficient de corrélation : \lfbox[formula]{$R^{2} = r_{Y, x}^{2}$}. Le $R^{2}$ est plus facilement interprétable que le coefficient de corrélation de Pearson, particulièrement pour la régression linéaire.
+
+\bigskip
+
+Pour que la régression linéaire soit un bon modèle, on s'attend à ce qu'il y ait une forte dépendance entre la variable réponse $Y$ et la variable explicative $x$. Si c'est le cas, $r_{Y, x}$ sera prêt de $-1$ ou de $1$. Il s'ensuit que, pour obtenir un bon modèle, on désire \textbf{\underline{maximiser}} le $R^{2}$.
+
+\bigskip
+
+On peut également définir le $R^{2}$ en fonction des sommes de carré : $R^{2} = \frac{SS(\text{moyenne}) - SS(\text{prévisions})}{SS(\text{moyenne})}$. Donc, c'est le ratio de la variabilité expliquée par le modèle à la variabilité totale. Plus $R^{2}$ est élevé, plus le modèle explique la variabilité et le mieux qu'il est.
+\end{rappel_enhanced}
+
+La statistique \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}.
+
+
+$R^{2} = r_{x, y}^{2}$
+\end{definitionNOHFILL}
+
+
+\columnbreak	
+\subsubsection{Estimateurs}
+En traitant la variable réponse comme une variable aléatoire, $b_{0}$ et $b_{1}$ sont des estimateurs et non des estimations. Nous nous intéressons également à la statistique \lfbox[formula]{$\text{E}[Y] = \beta_{0} + \beta_{1} x$} qui est estimé par $\hat{Y}$.
+
+\bigskip
+
+Nous définissons quelques propriétés des estimateurs :
+
+\begin{definitionGENERAL}{Distribution}[\circled{1}{trueblue}]
+Les estimateurs $b_{0}$ et $b_{1}$ sont des combinaisons linéaires de la v.a. normale $Y$; ils sont donc normalement distribués. Il s'ensuit que la statistique $\hat{Y}$, fonction de $b_{0}$ et $b_{1}$, sera également normalement distribuée.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Moyenne}[\circled{2}{trueblue}]
+Les estimateurs sont sans biais.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Erreur type}[\circled{3}{trueblue}]
+variances
+$\text{Var}(b_{0}) = \sigma^{2} \left[\frac{1}{n} + \frac{\bar{x}^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]$
+$\text{Var}(b_{1}) = \sigma^{2} \left[\frac{1}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]$
+$\text{Var}\left(\hat{Y}\right) = \sigma^{2} \left[\frac{1}{n} + \frac{\left(x - \bar{x}\right)^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]$
+
+erreurs type estimées si $\sigma^{2}$ n'est pas connu
+$\text{SE}(b_{0}) = \sqrt{MSE \left[\frac{1}{n} + \frac{\bar{x}^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]}$
+$\text{SE}(b_{1}) =  \sqrt{\frac{MSE}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}}$
+$\text{SE}\left(\hat{Y}\right) = \sqrt{MSE \left[\frac{1}{n} + \frac{\left(x - \bar{x}\right)^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]}$
+\end{definitionGENERAL}
+
+
+
+$\bm{b} = \left(\bm{X}^{\top} \bm{X}\right)^{-1}\bm{X}^{\top}\bm{Y}$
+
+donc matrice de variance-covariance de $\bm{b}$ est $\text{Var}(\bm{b}) = \sigma^{2} \left(\bm{X}^{\top} \bm{X}\right)^{-1}$ où 
+\begin{align*}
+	\text{Var}(\bm{b})
+	&=	\begin{bmatrix}
+		\text{Var}(b_{0})		&	\text{Cov}(b_{0}, b_{1})	\\
+		\text{Cov}(b_{0}, b_{1})	&	\text{Var}(b_{1})		\\
+		\end{bmatrix}
+\end{align*}
+
+Si $\sigma^{2}$ est inconnu, $\widehat{\text{Var}}(\bm{b}) = MMSE \left(\bm{X}^{\top} \bm{X}\right)^{-1}$ où 
+\begin{align*}
+	\widehat{\text{Var}}(\bm{b})
+	&=	\begin{bmatrix}
+		\widehat{\text{Var}}(b_{0})		&	\widehat{\text{Cov}}(b_{0}, b_{1})	\\
+		\widehat{\text{Cov}}(b_{0}, b_{1})	&	\widehat{\text{Var}}(b_{1})		\\
+		\end{bmatrix},
+\end{align*}
+où $\widehat{\text{Var}}(b_{0}) =\text{se}(b_{0})^{2}$ et $\widehat{\text{Var}}(b_{1}) =\text{se}(b_{1})^{2}$.
+
+\columnbreak
+\subsubsection{Bootstrapping}
+
+
+\columnbreak
+\subsubsection{Tests d'hypothèse}
+Tests $t$ bilatéral
+\begin{align*}
+	\mathrm{H}_{0}&: \beta_{1} = 0	&
+	\mathrm{H}_{1}&: \beta_{1} \neq 0
+\end{align*}
+
+$t = \frac{b_{1} - h}{se(b_{1})}$
+
+Régression origine
+
+Tests $t$ unilatéral
+\begin{align*}
+	\mathrm{H}_{0}&: \beta_{1} \leq 0	&
+	\mathrm{H}_{1}&: \beta_{1} > 0
+\end{align*}
+
+$t = \frac{b_{1} - h}{se(b_{1})}$
+
+\columnbreak
+\subsubsection{Intervalle de confiance et de prévision}
+confiance
+	$\beta_{0}$
+	$\beta_{1}$
+	$\text{E}[Y]$
+
+\begin{definitionNOHFILL}[Intervalle de prévision]
+
+\end{definitionNOHFILL}
+
+
+
+
+\columnbreak
+\subsection{Régression linéaire multiple}\label{subsec:MLR}
 
 
 
