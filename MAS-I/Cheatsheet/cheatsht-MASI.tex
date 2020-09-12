@@ -4843,54 +4843,47 @@ On peut également définir le $R^{2}$ en fonction des sommes de carré : $R^{2}
 \end{rappel_enhanced}
 
 La statistique \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}.
-
-
-$R^{2} = r_{x, y}^{2}$
 \end{definitionNOHFILL}
 
 
 \columnbreak	
 \subsubsection{Estimateurs}
-En traitant la variable réponse comme une variable aléatoire, $b_{0}$ et $b_{1}$ sont des estimateurs et non des estimations. Nous nous intéressons également à la statistique \lfbox[formula]{$\text{E}[Y] = \beta_{0} + \beta_{1} x$} qui est estimé par $\hat{Y}$.
+En traitant les réalisations de la variable réponse comme une variable aléatoire et les réalisations de la variable explicative comme des constantes, $b_{0}$ et $b_{1}$ sont des combinaisons linéaires de $Y$ et donc des estimateurs. De plus, nous nous intéressons à la statistique \lfbox[formula]{$\text{E}[Y] = \beta_{0} + \beta_{1} x$} estimée par $\hat{Y}$.
 
 \bigskip
 
-Nous définissons quelques propriétés des estimateurs :
-
-\begin{definitionGENERAL}{Distribution}[\circled{1}{trueblue}]
-Les estimateurs $b_{0}$ et $b_{1}$ sont des combinaisons linéaires de la v.a. normale $Y$; ils sont donc normalement distribués. Il s'ensuit que la statistique $\hat{Y}$, fonction de $b_{0}$ et $b_{1}$, sera également normalement distribuée.
-\end{definitionGENERAL}
-
-\begin{definitionGENERAL}{Moyenne}[\circled{2}{trueblue}]
-Les estimateurs sont sans biais.
-\end{definitionGENERAL}
-
-\begin{definitionGENERAL}{Erreur type}[\circled{3}{trueblue}]
-variances
-$\text{Var}(b_{0}) = \sigma^{2} \left[\frac{1}{n} + \frac{\bar{x}^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]$
-$\text{Var}(b_{1}) = \sigma^{2} \left[\frac{1}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]$
-$\text{Var}\left(\hat{Y}\right) = \sigma^{2} \left[\frac{1}{n} + \frac{\left(x - \bar{x}\right)^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]$
-
-erreurs type estimées si $\sigma^{2}$ n'est pas connu
-$\text{SE}(b_{0}) = \sqrt{MSE \left[\frac{1}{n} + \frac{\bar{x}^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]}$
-$\text{SE}(b_{1}) =  \sqrt{\frac{MSE}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}}$
-$\text{SE}\left(\hat{Y}\right) = \sqrt{MSE \left[\frac{1}{n} + \frac{\left(x - \bar{x}\right)^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]}$
-\end{definitionGENERAL}
+Puisque les estimateurs sont des combinaisons linéaires de la v.a. normale $Y$, ils sont tous normalement distribués :
 
 
+\begin{center}
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Estimateur}}	&	\textcolor{white}{\textbf{Distribution}}	&	\textcolor{white}{\textbf{Erreur type $se(\cdot)$}}	\\\specialrule{0.1em}{0em}{0em} 
+$b_{0}$	&	$\mathcal{N}\left(\beta_{0}, \sigma^{2}\left[\frac{1}{n} + \frac{\bar{x}^{2}}{\sum_{i = 1}^{n}(x_{i} - \bar{x})^{2}}\right]\right)$	&	$\sqrt{MSE \left[\frac{1}{n} + \frac{\bar{x}^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]}$	\\\hline
+$b_{1}$	&	$\mathcal{N}\left(\beta_{1}, \frac{\sigma^{2}}{\sum_{i = 1}^{n}(x_{i} - \bar{x})^{2}}\right)$		&	$\sqrt{\frac{MSE}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}}$	\\\hline
+$\hat{Y}$	&	$\mathcal{N}\left(\text{E}[Y], \sigma^{2}\left[\frac{1}{n} + \frac{(x - \bar{x})^{2}}{\sum_{i = 1}^{n}(x_{i} - \bar{x})^{2}}\right]\right)$	&	$\sqrt{MSE \left[\frac{1}{n} + \frac{\left(x - \bar{x}\right)^{2}}{\sum_{i = 1}^{n} \left(x_{i} - \bar{x}\right)^{2}}\right]}$	\\\hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
 
-$\bm{b} = \left(\bm{X}^{\top} \bm{X}\right)^{-1}\bm{X}^{\top}\bm{Y}$
+\paragraph{Note}	Il est important de distinguer le $MSE$ qui estime $\text{Var}(Y) = \sigma^{2}$ de $se(\hat{y})^{2}$ qui estime $\text{Var}(\hat{Y})$.
 
-donc matrice de variance-covariance de $\bm{b}$ est $\text{Var}(\bm{b}) = \sigma^{2} \left(\bm{X}^{\top} \bm{X}\right)^{-1}$ où 
+\bigskip
+
+\begin{definitionNOHFILL}[Matrice de variance-covariance]
+La matrice de variance-covariance de $\bm{b} = \left(\bm{X}^{\top} \bm{X}\right)^{-1}\bm{X}^{\top}\bm{Y}$ est \lfbox[formula]{$\text{Var}(\bm{b}) = \sigma^{2} \left(\bm{X}^{\top} \bm{X}\right)^{-1}$} où
 \begin{align*}
 	\text{Var}(\bm{b})
 	&=	\begin{bmatrix}
 		\text{Var}(b_{0})		&	\text{Cov}(b_{0}, b_{1})	\\
-		\text{Cov}(b_{0}, b_{1})	&	\text{Var}(b_{1})		\\
+		\text{Cov}(b_{0}, b_{1})	&	\text{Var}(b_{1})		
 		\end{bmatrix}
 \end{align*}
 
-Si $\sigma^{2}$ est inconnu, $\widehat{\text{Var}}(\bm{b}) = MMSE \left(\bm{X}^{\top} \bm{X}\right)^{-1}$ où 
+\bigskip
+
+Si $\sigma^{2}$ est inconnu, \lfbox[formula]{$\widehat{\text{Var}}(\bm{b}) = MSE \left(\bm{X}^{\top} \bm{X}\right)^{-1}$} où 
 \begin{align*}
 	\widehat{\text{Var}}(\bm{b})
 	&=	\begin{bmatrix}
@@ -4898,10 +4891,19 @@ Si $\sigma^{2}$ est inconnu, $\widehat{\text{Var}}(\bm{b}) = MMSE \left(\bm{X}^{
 		\widehat{\text{Cov}}(b_{0}, b_{1})	&	\widehat{\text{Var}}(b_{1})		\\
 		\end{bmatrix},
 \end{align*}
-où $\widehat{\text{Var}}(b_{0}) =\text{se}(b_{0})^{2}$ et $\widehat{\text{Var}}(b_{1}) =\text{se}(b_{1})^{2}$.
+avec $\widehat{\text{Var}}(b_{0}) = \text{se}(b_{0})^{2}$ et $\widehat{\text{Var}}(b_{1}) =\text{se}(b_{1})^{2}$.
+\end{definitionNOHFILL}
+
+
 
 \columnbreak
 \subsubsection{Bootstrapping}
+\begin{rappel_enhanced}[Contexte]
+Dans la section de \textit{\underline{\nameref{sec:simulation}}}, on a présenté la méthode de simulation Monte Carlo qui permet d'estimer l'erreur type comme l'écart-type d'un grand nombre d'estimations du paramètre d'intérêt. Cependant, cette méthode nécessite de connaître la vraie distribution de l'estimateur. Bien que l'on pose habituellement que la distribution est normale, ceci pourrait être une hypothèse erronée.
+\end{rappel_enhanced}
+
+La méthode du \og \textit{\textbf{bootstrapping}} \fg{} permet d'éviter l'hypothèse de normalité; elle extrait des échantillons aléatoires (avec remplacement) de l'ensemble de données originale. L'objectif est de créer plusieurs ensembles de données \og \textit{bootstrap} \fg{}.
+
 
 
 \columnbreak
@@ -9492,7 +9494,7 @@ Cependant, si le détenteur de police \og \textit{lapses} \fg{} ou ne renouvelle
 
 
 \newpage	
-\section{Simulation}
+\section{Simulation}\label{sec:simulation}
 On simule des réalisations de variables aléatoires à partir de nombres aléatoires distribués uniformément dans $[0, 1)$.
 
 \begin{algo2}[Générer des nombres pseudo-aléatoires]
