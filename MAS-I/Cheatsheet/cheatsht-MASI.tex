@@ -4820,7 +4820,7 @@ On obtient que \lfbox[formula]{$SSR = \sum_{i = 1}^{n} \left(\hat{y}_{i} - \bar{
 
 \bigskip
 
-En bref, on a que \lfbox[formula]{$SST = SSR + SSE$} où
+\hypertarget{ANOVABefore}{En bref}, on a que \lfbox[formula]{$SST = SSR + SSE$} où
 
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
@@ -5239,20 +5239,68 @@ Ce modèle suppose que lorsqu'une des variable explicatives varie (p. ex. $x_{1}
 \end{definitionNOHFILLsub}
 
 
+\begin{definitionNOHFILL}[\hypertarget{hierachicalPrincipleMLR}{Principe hiérarchique}]
+Le \textbf{\textit{principe hiérarchique}} stipule qu'une interaction significative implique que les termes individuels devraient être conservés dans le modèle, peu importe le résultat de leurs tests $t$. Lorsque l'interaction explique bien la variable réponse, la valeur des termes individuels n'importe peu. De plus, retirer les termes individuels pourrait changer l'interprétation et la signifiance de l'interaction. 
+\end{definitionNOHFILL}
+
+
 
 \columnbreak
 \subsection{Estimateurs des paramètres}
+\begin{rappel_enhanced}[Contexte]
+Pour la régression linéaire multiple, il n'y a pas de changements à apporter à la définition des estimateurs autre que le nombre de paramètres.
+\end{rappel_enhanced}
+
 \subsubsection{Test t}
-Quadratique
-dummy
-Interaction
+\begin{rappel_enhanced}[Contexte]
+Il y une différence entre le test $t$ d'une régression linéaire multiple et le test $t$ d'une \textit{\underline{\nameref{sec:SLR}}} : la distribution de la statistique. Au lieu de suivre une loi de student de $n - 2$ degrés de liberté, \lfbox[formula]{$T \sim t_{n - p'}$}.
+
+\bigskip
+
+Cependant, l'interprétation est très différente et il est important de se rappeler qu'on effectue le test $t$ sur \textbf{un coefficient à la fois}. Plutôt que tester s'il y existe une relation linéaire, on test si l'on peut \textbf{\textit{simplifier le modèle}} d'un coefficient.
+\end{rappel_enhanced}
+
+\paragraph{Note}	Si une variable catégorique est séparée en $w - 1$ variables \og \textit{dummy} \fg{}, on ne peut pas simplement retirer une des variables si elle n'est pas significative---le modèle n'aurait plus de sens. Plutôt, on doit examiner le modèle davantage pour comprendre les relations entre les variables.
+
+\paragraph{Note}	Ne pas oublier le \textit{\color{bleudefrance}\underline{\hyperlink{hierachicalPrincipleMLR}{\color{bleudefrance} principe hierarchique}}} pour un modèle ayant une interaction.
 
 
 
 \subsubsection{Test F}
-ANOVA
-Test $F$
-Test $F$ partiel
+\begin{rappel_enhanced}[Contexte]
+La limitation inhérente au test $t$ est qu'elle peut seulement tester une variable à la fois. Pour tester l'importance de plusieurs variables explicatives, on doit utiliser un différent test. Cependant, avant de présenter ce test, on présente le \textbf{\textit{tableau d'ANOVA}} et le test $F$.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[tableau d'ANOVA]
+Le tableau de \og \textit{analysis of variance (ANOVA)} \fg{} élabore sur \textit{\color{bleudefrance}\underline{\hyperlink{ANOVABefore}{\color{bleudefrance} le tableau résumé}}} des sommes des carrés présenté dans la section de \textit{\underline{\nameref{sec:SLR}}}.
+
+\bigskip
+
+On défini la fonction $MS(\cdot) = \frac{SS(\cdot)}{df}$ pour trouver : 
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}\centering}m{2cm} | >{\columncolor{beaublue}\centering}m{2cm} | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{Somme des carrés}}	&	\textcolor{white}{\textbf{Degrés de liberté}}	&	\textcolor{white}{\og \textit{\textbf{Mean square}} \fg{}}		\\\specialrule{0.1em}{0em}{0em} 
+régression	&	SSR	&	$p$		&	MSR			\\\hline
+erreur		&	SSE	&	$n - p'$	&	MSE			\\\hline
+totale		&	SST	&	$n - 1$	&	$s^{2}_{y}$	\\\hline
+\end{tabular}
+\end{center}
+
+La nouvelle mesure \lfbox[formula]{$MSR = \frac{SSR}{p}$} mesure la variance expliquée par la régression linéaire en moyenne par degré de liberté.
+
+\paragraph{Note}	Bien que $SST + SSR + SSE$, $s^{2}_{y} \neq MSR + MSE$.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Test $F$]
+
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Test $F$ partiel]
+
+\end{definitionNOHFILL}
 
 
 \subsubsection{Intervalle de confiance}
