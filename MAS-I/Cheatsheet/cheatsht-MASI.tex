@@ -4834,9 +4834,9 @@ SSE	&	$\sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\right)^{2}$		&	inexpliquée	\\\
 
 \bigskip
 
-\begin{definitionNOHFILL}[Coefficient de corrélation $R^{2}$]
+\begin{definitionNOHFILL}[Coefficient de détermination $R^{2}$]
 \begin{rappel_enhanced}[Contexte]
-Le $R^{2}$ est une mesure de corrélation qui correspond au carré du coefficient de corrélation : \lfbox[formula]{$R^{2} = r_{Y, x}^{2}$}. Le $R^{2}$ est plus facilement interprétable que le coefficient de corrélation de Pearson, particulièrement pour la régression linéaire.
+Le $R^{2}$ est une mesure de corrélation qui correspond au carré du coefficient de corrélation : \lfbox[formula]{$R^{2} = r_{Y, x}^{2}$}. Il est plus facile d'interpréter le $R^{2}$ que le coefficient de corrélation de Pearson, particulièrement pour la régression linéaire.
 
 \bigskip
 
@@ -4847,8 +4847,11 @@ Pour que la régression linéaire soit un bon modèle, on s'attend à ce qu'il y
 On peut également définir le $R^{2}$ en fonction des sommes de carré : $R^{2} = \frac{SS(\text{moyenne}) - SS(\text{prévisions})}{SS(\text{moyenne})}$. Donc, c'est le ratio de la variabilité expliquée par le modèle à la variabilité totale. Plus $R^{2}$ est élevé, plus le modèle explique la variabilité et le mieux qu'il est.
 \end{rappel_enhanced}
 
-La statistique \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}.
+Le coefficient de détermination \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}.
 \end{definitionNOHFILL}
+
+\paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{adjustedR2}{\color{bleudefrance} la définition du $R^{2}_{a}$}}} dans la section sur la \textit{\underline{\nameref{sec:MLR}}} pour les limitations du coefficient de détermination.
+
 
 
 \columnbreak	
@@ -5069,7 +5072,190 @@ Visuellement, l'impact du \og \textit{\textcolor{amethyst}{process risk}} \fg{} 
 
 \newpage
 \section{Régression linéaire multiple}\label{sec:MLR}
+\begin{rappel_enhanced}[Contexte]
+La régression linéaire multiple généralise la régression linéaire simple en incluant $p$ variables explicatives plutôt que juste une.
+\end{rappel_enhanced}
 
+
+\subsection{Définition du modèle}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$p$]	Nombre de variables explicatives du modèle.
+		\begin{itemize}
+		\item	Pour inclure l'intercepte, on utilise souvent $p' = p + 1$.
+		\end{itemize}
+	\item[$\beta_{j}$]	$j^{\text{e}}$ coefficient de régression, $j \in \{0, 1, \dots, p\}$.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Modèle de régression linéaire multiple]
+On définit \lfbox[formula]{$Y = \beta_{0} + \beta_{1} x_{1} + \cdot + \beta_{p} x_{p} + \varepsilon$} sous certains postulats. 
+
+\bigskip
+
+Ces postulats sont \textit{\color{bleudefrance}\underline{\hyperlink{postulatsSLR}{\color{bleudefrance} les mêmes}}} que pour la régression linéaire simple, mais on ajoute la condition que le prédicteur $x_{j}$ n'est pas une combinaison linéaire des $p$ autres prédicteurs pour $j = 0, 1, \dots, p$. Ceci évite qu'il y ait des variables \textbf{\textit{redondantes}} dans le modèle.
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Dans l'équation du modèle, on pose que $x_{0} = 1$.
+
+
+
+\columnbreak
+\subsection{Estimation du modèle}
+\subsubsection{Estimation des paramètres libres}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$b_{j}$]	Estimation du $j^{\text{e}}$ coefficient de régression, $j \in \{0, 1, \dots, p\}$.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Estimation du modèle de régression linéaire simple]
+Les prévisions $\hat{y}$ sont obtenues en fonction des estimations des paramètres : \lfbox[formula]{$\hat{y} = b_{0} + b_{1} x_{1} + \dots + b_{p} x_{p}$}. 
+\end{definitionNOHFILL}
+
+
+\subsubsection{Estimation de la variance}
+Pour la régression linéaire multiple, on récrit l'expression de l'EQM : \lfbox[formula]{$\displaystyle MSE = \frac{\sum_{i = 1}^{n} \left(y_{i} - \hat{y}_{i}\right)^{2}}{\textcolor{teal}{n - p'}}$}. 
+	
+\paragraph{Note}	On divise par $\textcolor{teal}{n - p}$ puisque $p'$ paramètres, $\beta_{0}, \beta_{1}, \dots, \beta_{p}$ sont estimés. La \textit{\underline{\nameref{sec:SLR}}} comporte seulement deux paramètres $\beta_{0}$ et $\beta_{1}$ alors $p' = 2$.
+
+
+
+\subsubsection{Représentation matricielle du modèle de régression linéaire simple}
+\begin{rappel_enhanced}[Contexte]
+La représentation matricielle du modèle est essentielle pour la régression linéaire multiple puisqu'il y a $p$ variables explicatives. 
+\end{rappel_enhanced}
+
+
+On généralise l'équation obtenue pour la \textit{\underline{\nameref{sec:SLR}}} \lfbox[formula]{$\bm{Y} = \bm{X} \bm{\beta} + \bm{\varepsilon}$} avec : 
+\begin{align*}
+	\begin{bmatrix}
+		Y_{1}	\\
+		Y_{2}	\\
+		\vdots	\\
+		Y_{n}
+	\end{bmatrix}
+	&=	
+	\begin{bmatrix}
+		1	&	x_{1, 1}	&	\cdots	&	x_{1, p}	\\
+		1	&	x_{2, 1}	&	\cdots	&	x_{2, p}	\\
+	\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		1	&	x_{n, 1}	&	\cdots	&	x_{n, p}	\\
+	\end{bmatrix}
+	\begin{bmatrix}
+		\beta_{0}	\\
+		\beta_{1}	\\
+		\vdots		\\
+		\beta_{p}
+	\end{bmatrix} + 
+	\begin{bmatrix}
+		\varepsilon_{1}	\\
+		\varepsilon_{2}	\\
+		\vdots	\\
+		\varepsilon_{n}	\\
+	\end{bmatrix}
+\end{align*}
+
+
+
+\columnbreak
+\subsubsection{Somme des carrés}
+\begin{rappel_enhanced}[Contexte]
+Les sommes des carrés ne changement pas en régression linéaire multiple. La seule différence est que l'on ne peut pas exprimer le coefficient de détermination en fonction de la corrélation puisqu'il y a plusieurs variables explicatives ($R^{2} \neq r_{x, Y}^{2}$). Plutôt, on défini une nouvelle mesure : le coefficient de détermination ajusté $R_{a}^{2}$.
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILL}[\hypertarget{adjustedR2}{Coefficient de détermination ajusté $R^{2}_{a}$}]
+\begin{rappel_enhanced}[Contexte]
+Le désavantage du coefficient de détermination $R^{2}$ est qu'il va toujours augmenter lorsque nous ajoutons des variables explicatives. Plus nous avons des variables explicatives, mieux le modèle va prédire les observations (sur les données d'entraînement) et plus le $R^{2}$ sera élevé. La mesure ne considère donc pas l'utilité de ces variables explicatives, si elles valent la peine d'inclure dans le modèle.
+
+\bigskip
+
+Augmenter le nombre de prédicteurs équivaut à augmenter la complexité, ou \textit{flexibilité}, du modèle. La section de \textit{\underline{\nameref{subsec:PrecisionModel}}} détaille comment que la variance augmente après un certain niveau de flexibilité. Le coefficient de détermination ajusté $R^{2}_{a}$ considère donc ce compromis en utilisant les variances au lieu des sommes. 
+\end{rappel_enhanced}
+
+On définit le coefficient de détermination ajusté comme \lfbox[formula]{$\displaystyle R^{2}_{a} = 1 - \frac{SSE / (n - p')}{SST / (n - 1)} = 1 - \frac{MSE}{s^{2}_{y}}$}.
+
+\bigskip
+
+Également, on peut exprimer le $R^{2}_{a}$ en fonction du $R^{2}$ : \lfbox[formula]{$R^{2}_{a} = 1 - \textcolor{teal}{\left(1 - R^{2}\right)} \textcolor{amethyst}{\left(\frac{n - 1}{n - p'}\right)}$}. Puisque $\textcolor{amethyst}{\left(\frac{n - 1}{n - p'}\right)} > 1$,  ce terme va \textcolor{amethyst}{gonfler} la \textcolor{teal}{proportion de variabilité qui n'est pas expliquée par le modèle}. Le résultat est que le \lfbox[conditions]{$R^{2}_{a} < R^{2}$}.
+
+\paragraph{Note}	Contrairement au $R^{2} \in [0, 1]$, le $R^{2}_{a} \not\in [0, 1]$.
+\end{definitionNOHFILL}
+
+
+
+
+\columnbreak
+\subsection{Variables explicatives spéciales}
+\subsubsection{Termes d'ordre supérieur}
+\begin{rappel_enhanced}[Contexte]
+Le « linéaire » de régression linéaire ne provient pas de la linéarité des variables explicatives, mais plutôt de la linéarité des coefficients. Donc, on peut avoir un modèle avec des polynômes.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Régression linéaire avec polynôme d'ordre $k$]
+Soit une régression linéaire avec une seule variable explicative $x_{j}$, alors \lfbox[formula]{$Y = \beta_{0} + \beta_{1} x_{j} + \beta_{2} x_{j}^{2} + \dots + \beta_{k} x_{j}^{k} + \varepsilon$}. 
+
+\bigskip
+
+Ce modèle suppose que la variable réponse est systématiquement reliée par un polynôme d'ordre $k$. On inclut aussi les polynômes de $1$ à $k - 1$ afin de mieux ajuster la forme de la droite de régression.
+\end{definitionNOHFILLsub}
+
+
+
+\subsubsection{Variables \og \textit{dummy} \fg{}}
+\begin{rappel_enhanced}[Contexte]
+Si nous avons des variables explicatives catégoriques, nous devons les convertir en variables numériques pour appliquer le modèle de régression linéaire. Une variable \og \textit{\textbf{dummy}} \fg{} prend comme valeur $0$ ou $1$ et s'apparente à la fonction indicatrice $I(\cdot)$.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Variable \og \textit{dummy} \fg{}]
+Pour une variable catégorique, une variable \og \textit{dummy} \fg{} $x_{c}$ est définie comme suit :
+\begin{align*}
+	x_{c}
+	&=	\begin{cases}
+		1,	&	\text{si $x_{c}$ = catégorie $c$}	\\
+		0,	&	\text{si $x_{c}$ = tout autre catégorie}
+		\end{cases}
+\end{align*}
+
+\bigskip
+
+Pour une variable catégorique avec $w$ catégories, nous devons utiliser $w - 1$ variables \og \textit{dummy} \fg{}. Nous utilisons seulement $w -  1$ et non $w$ variables, car on définit une \textbf{\textit{catégorie de base}} qui se réalise si toutes les variables \og \textit{dummy} \fg{} sont nulles.
+\end{definitionNOHFILL}
+
+
+
+\subsubsection{Interaction de variables}
+\begin{rappel_enhanced}[Contexte]
+Pour modéliser la dépendance entre des variables explicatives dans le modèle on inclut une \textbf{\textit{interaction}} qui équivaut au produit des variables explicatives. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Régression linéaire avec interaction]
+Soit une régression linéaire avec $p$ variables explicatives et une interaction entre $x_{1}$ et $x_{2}$, alors \lfbox[formula]{$Y = \beta_{0} + \beta_{1} x_{1} + \beta_{2} x_{2} + \beta_{3} x_{1}x_{2} + \dots + \beta_{p + 1}x_{p} + \varepsilon$}. 
+
+\bigskip
+
+Ce modèle suppose que lorsqu'une des variable explicatives varie (p. ex. $x_{1}$), la variable réponse est impactée par son coefficient $\beta_{1}$ \textbf{\textit{et}} le produit de $x_{2}$ avec un autre coefficient $\beta_{3}$. reliée par un polynôme d'ordre $k$. On inclut aussi les polynômes de $1$ à $k - 1$ afin de mieux ajuster la forme de la droite de régression.
+\end{definitionNOHFILLsub}
+
+
+
+\columnbreak
+\subsection{Estimateurs des paramètres}
+\subsubsection{Test t}
+Quadratique
+dummy
+Interaction
+
+
+
+\subsubsection{Test F}
+ANOVA
+Test $F$
+Test $F$ partiel
+
+
+\subsubsection{Intervalle de confiance}
 
 
 \newpage
