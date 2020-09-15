@@ -1909,7 +1909,7 @@ Comme la table de la loi normale, la table de la loi du khi carré comprend les 
 
 
 %\columnbreak
-\subsubsection{2 échantillons}
+\subsubsection{2 échantillons}\label{subsubsec:VarTest2Samples}
 \begin{rappel_enhanced}[Contexte]
 Pour 1 échantillon, nous sommes habituellement intéressés à la \underline{\textit{valeur}} que prend la variance $\sigma^{2}$. Dans le cas où nous désirons comparer 2 échantillons (indépendants), nous sommes plutôt intéressés au \underline{\textit{ratio des variance}} $\frac{\sigma^{2}_{1}}{\sigma^{2}_{2}}$ et non à la différence ni les valeurs.
 \end{rappel_enhanced}
@@ -5295,15 +5295,131 @@ La nouvelle mesure \lfbox[formula]{$MSR = \frac{SSR}{p}$} mesure la variance exp
 
 
 \begin{definitionNOHFILL}[Test $F$]
+Le test $F$ test si l'on peut retirer \textbf{tous} les coefficients de régression sauf l'intercepte. Les hypothèses sont : 
+\begin{align*}
+	\mathrm{H}_{0} &: \beta_{1} = \beta_{2} = \dots = \beta_{p} = 0	\\
+	\mathrm{H}_{1} &: \text{au moins un } \beta_{j} \neq 0, j = 1, 2, \dots, p	
+\end{align*}
 
+\bigskip
+
+Donc, on teste si le modèle nul est préférable au modèle de régression linéaire multiple. La statistique de test est \lfbox[formula]{$t = \frac{MSR}{MSE}$} où \lfbox[formula]{$T \sim F_{p, n - p'}$}. On interprète $p$ comme le nombre de degrés de liberté associé avec la régression et $n - p'$ comme le nombre de degrés de liberté associé avec l'erreur. 
+
+\bigskip
+
+Puisque ce test est unilatéral vers la droite, on déduit de la \textit{\color{bleudefrance}\underline{\hyperref[subsubsec:VarTest2Samples]{\color{bleudefrance} définition du test $F$}}} que l'on rejette l'hypothèse nulle si $t \geq F_{\alpha, p, n - p'}$.
 \end{definitionNOHFILL}
+
+\paragraph{Note}	Le test $t$ est équivalent au test $F$ pour la régression linéaire simple.
+
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+Une régression linéaire multiple avec au moins un prédicteur significatif devrait expliquer une grande proportion de la variabilité et donc avoir une valeur de $MSR$ élevée. Le test $F$ teste donc si le $MSR$ est suffisamment grand relatif à le $MSE$. En fait, on peut interpréter le test $F$ comme $F = \frac{\text{variabilité qui \textbf{EST} expliquée par le modèle}}{\text{variabilité qui n'est \textbf{PAS} expliquée par le modèle}}$.
+
+\bigskip
+
+Pour tester le retrait de \textbf{quelques} variables, on utilise le \textbf{\textit{test $F$ partiel}}.
+\end{rappel_enhanced}
+
 
 \begin{definitionNOHFILL}[Test $F$ partiel]
+Le test $F$ partiel compare 2 modèles dont un qui a plus de coefficients (le modèle \textbf{complet}) que l'autre (le modèle \textbf{réduit}). L'objectif est de tester si un certain nombre de coefficients spécifiés expliquent suffisamment de variabilité pour être inclus dans le modèle.
 
+\bigskip
+
+Visuellement, on rejette l'hypothèse nulle que le modèle réduit est suffisant si l'aire en rouge est suffisamment réduite : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Rounded Rect [id:dp0743430687391975] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (189.82,44.82) .. controls (189.82,35.02) and (197.77,27.07) .. (207.57,27.07) -- (260.81,27.07) .. controls (270.61,27.07) and (278.56,35.02) .. (278.56,44.82) -- (278.56,110.12) .. controls (278.56,119.92) and (270.61,127.86) .. (260.81,127.86) -- (207.57,127.86) .. controls (197.77,127.86) and (189.82,119.92) .. (189.82,110.12) -- cycle ;
+
+%Rounded Rect [id:dp02967780390960062] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (289.49,44.42) .. controls (289.49,34.81) and (297.29,27.01) .. (306.9,27.01) -- (361.16,27.01) .. controls (370.77,27.01) and (378.57,34.81) .. (378.57,44.42) -- (378.57,110.52) .. controls (378.57,120.13) and (370.77,127.92) .. (361.16,127.92) -- (306.9,127.92) .. controls (297.29,127.92) and (289.49,120.13) .. (289.49,110.52) -- cycle ;
+%Rounded Rect [id:dp656837738796684] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (289.44,82.53) .. controls (289.44,75.57) and (295.08,69.92) .. (302.04,69.92) -- (365.91,69.92) .. controls (372.87,69.92) and (378.52,75.57) .. (378.52,82.53) -- (378.52,115.32) .. controls (378.52,122.28) and (372.87,127.92) .. (365.91,127.92) -- (302.04,127.92) .. controls (295.08,127.92) and (289.44,122.28) .. (289.44,115.32) -- cycle ;
+%Rounded Rect [id:dp2842279558481968] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (289.44,68.92) .. controls (289.44,68.92) and (289.44,68.92) .. (289.44,68.92) -- (378.52,68.92) .. controls (378.52,68.92) and (378.52,68.92) .. (378.52,68.92) -- (378.52,82.53) .. controls (378.52,82.53) and (378.52,82.53) .. (378.52,82.53) -- (289.44,82.53) .. controls (289.44,82.53) and (289.44,82.53) .. (289.44,82.53) -- cycle ;
+
+
+%Rounded Rect [id:dp3020767580873265] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (389.49,44.42) .. controls (389.49,34.81) and (397.29,27.01) .. (406.9,27.01) -- (461.16,27.01) .. controls (470.77,27.01) and (478.57,34.81) .. (478.57,44.42) -- (478.57,110.52) .. controls (478.57,120.13) and (470.77,127.92) .. (461.16,127.92) -- (406.9,127.92) .. controls (397.29,127.92) and (389.49,120.13) .. (389.49,110.52) -- cycle ;
+%Rounded Rect [id:dp11826387021817242] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (389.44,91.92) .. controls (389.44,86.4) and (393.92,81.92) .. (399.44,81.92) -- (468.52,81.92) .. controls (474.04,81.92) and (478.52,86.4) .. (478.52,91.92) -- (478.52,117.93) .. controls (478.52,123.45) and (474.04,127.92) .. (468.52,127.92) -- (399.44,127.92) .. controls (393.92,127.92) and (389.44,123.45) .. (389.44,117.93) -- cycle ;
+%Rounded Rect [id:dp23254470927764803] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (389.44,79.92) .. controls (389.44,79.92) and (389.44,79.92) .. (389.44,79.92) -- (478.52,79.92) .. controls (478.52,79.92) and (478.52,79.92) .. (478.52,79.92) -- (478.52,93.53) .. controls (478.52,93.53) and (478.52,93.53) .. (478.52,93.53) -- (389.44,93.53) .. controls (389.44,93.53) and (389.44,93.53) .. (389.44,93.53) -- cycle ;
+
+% Text Node
+\draw (318,136.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {réduit};
+% Text Node
+\draw (412,136.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {complet};
+% Text Node
+\draw (419,47.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {SSR};
+% Text Node
+\draw (419,99.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {SSE};
+% Text Node
+\draw (319,39.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {SSR};
+% Text Node
+\draw (319,89.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {SSE};
+% Text Node
+\draw (219.69,69.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {SST};
+
+
+\end{tikzpicture}
+\end{center}
+
+\bigskip
+
+Il s'ensuit que la statistique \lfbox[formula]{$t = \frac{(SSE_{r} - SSE_{f})/(p_{f} - p_{r})}{SSE_{f} / (n - p_{f}')}$} où $SSE_{r}$ est la SSE du modèle \textbf{r}éduit et $SSE_{f}$ du modèle complet (\og \textit{\textbf{f}ull} \fg{}). Également, \lfbox[formula]{$T \sim F_{p_{f} - p_{r}, n - p_{f}'}$}.
 \end{definitionNOHFILL}
 
 
-\subsubsection{Intervalle de confiance}
+\paragraph{Note}	Pour les \textbf{intervalles de confiance}, la seule différence en régressoin linéaire multiple est que la loi de Student a $n - p'$ degrés de liberté au lieu de $n - 2$. 
+
+
+
+
+\newpage
+\section{ANOVA}\label{sec:ANOVA}
+\subsection{\og \textit{One-Way ANOVA} \fg{}}
+\og \textit{one-factor ANOVA} \fg{}
+
+
+\subsection{\og \textit{Two-Way ANOVA} \fg{}}
+
+
+\subsection{Modèle additif sans réplication}
+
+
+\subsection{Autres}
+Modèle de \og \textit{analysis of covariance (ANCOVA)} \fg{}
+
+\og \textit{uncorrected total sum of squares} \fg{}
+
+
+
+
+\newpage
+\section{Hypothèse du modèle linéaire}\label{sec:hypothesisLM}
+
+
+
+
+\newpage
+\section{Sélection du modèle}\label{sec:modelSelection}
+
+
+
+
+
+\newpage
+\section{Méthodes de régression alternatives}\label{sec:altRegressionMethods}
+
+
 
 
 \newpage
