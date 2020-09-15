@@ -3401,7 +3401,7 @@ Proportion \\des données
 
 En premier, on défini la règle du 68-95-99.7.
 
-\begin{definitionNOHFILLprop}[Règle du 68-95-99.7]
+\begin{definitionNOHFILLprop}[\hypertarget{6895997Rule}{Règle du 68-95-99.7}]
 Pour un échantillon tiré d'une distribution normale, environ 68\% des données se situent à moins de 1 écart-type de la moyenne, 95\% à moins de 2 et 99.7\% à moins de 3.
 
 \begin{center}	
@@ -4764,7 +4764,7 @@ d'où \lfbox[formula]{$\bm{b} = \left(\bm{X}^{\top} \bm{X}\right)^{-1} \bm{X}^{\
 
 \bigskip
 
-\begin{definitionNOHFILL}[Matrice de projection $\bm{H}$]
+\begin{definitionNOHFILL}[\hypertarget{hatMatrix}{Matrice de projection $\bm{H}$}]
 La matrice \lfbox[formula]{$\bm{H} = \bm{X} \left(\bm{X}^{\top} \bm{X}\right)^{-1} \bm{X}^{\top}$} s'appelle la \textbf{\textit{matrice de projection}} ou \textit{matrice chapeau} (\og \textit{hat matrix} \fg{}).
 
 \bigskip
@@ -5468,43 +5468,67 @@ Ce problème se résume par la \textbf{\textit{malédiction de la dimensionalit�
 \paragraph{Note}	Les 6 premier problèmes correspondent aux \textit{\color{bleudefrance}\underline{\hyperlink{postulatsSLR}{\color{bleudefrance} postulats de la régression linéaire}}}.
 
 
+
 \columnbreak
 \subsection{Levier et résidus}\label{subsec:LMHLevRes}
 \begin{definitionNOHFILL}[Levier (\og \textit{leverage} \fg{})]
-\lfbox[formula]{$h_{i} = \frac{1}{n} + \frac{(x_{i} - \bar{x})^{2}}{\sum_{j = 1}^{n} (x_{j} - \bar{x})^{2}}$}.
+Le levier d'une observation mesure son impact dans la prévision de la variable réponse. Le levier de la $i^{\text{e}}$ observation correspond à la $i^{\text{e}}$ entrée diagonale de la \textit{\color{bleudefrance}\underline{\hyperlink{hatMatrix}{\color{bleudefrance} matrice de projection}}} $\bm{H}$. Pour la régression linéaire simple, on obtient que \lfbox[formula]{$h_{i} = \frac{1}{n} + \frac{(x_{i} - \bar{x})^{2}}{\sum_{j = 1}^{n} (x_{j} - \bar{x})^{2}}$}.
 
 \bigskip
 
-Règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{high leverage point} \fg{} si \lfbox[conditions]{$h >  3\left(\frac{p'}{n}\right)$}.
+Il s'ensuit que plus $h_{i}$ est large, plus l'observation $x_{i}$ est différente des autres. De plus, on obtient de l'expression que \lfbox[conditions]{$h_{i} \in \left[\frac{1}{n}, 1\right]$} et que \lfbox[conditions]{$\sum_{i = 1}^{n} h_{i} =  p'$}. Une règle du pouce obtenue de cette condition est qu'une observation est \textbf{\underline{potentiellement} aberrante} si son levier est plus que 3 fois le levier moyen :  si \lfbox[formula]{$h_{i} >  3\left(\frac{p'}{n}\right)$}.
 \end{definitionNOHFILL}
 
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+Le résidu $e_{i}$ correspond à la différence entre la valeur de la variable réponse et sa prévision $y_{i} - \hat{y}_{i}$. Il s'ensuit que le résidu est \textit{sensible à l'échelle} des valeurs de la variable réponse. 
+
+\bigskip
+
+Nous devons donc standardiser les résidus. Cependant, diviser par la MSE serait erroné car il est possible que l'hypothèse d'homoscédasticité ne soit pas respectée. Plutôt, on doit utiliser une erreur type estimée. Bien qu'il y a plusieurs façons d'estimer cette erreur type, l'examen se concentre sur les deux façons les plus courantes.
+\end{rappel_enhanced}
+
 \begin{definitionNOHFILLsub}[Résidus standardisés]
-\lfbox[formula]{$e_{sta, i} = \frac{e_{i}}{\sqrt{MSE(1 - h_{i})}}$}
+Les \textbf{\textit{résidus standardisés}} pondèrent les résidus par une erreur type estimée qui gonfle la MSE par le réciproque du levier : \lfbox[formula]{$e_{sta, i} = \frac{e_{i}}{\sqrt{MSE(1 - h_{i})}}$}.
+
+\bigskip
+
+Si le modèle est adéquat, les résidus standardisés sont \textit{approximativement} distribués selon la \textbf{loi normale standard}.
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Résidus studentisés]
-\lfbox[formula]{$e_{stu, i} = \frac{e_{i}}{\sqrt{MSE_{(i)}(1 - h_{i})}}$}
+Les \textbf{\textit{résidus studentisés}} pondère les résidus par une erreur type estimée qui gonfle une différente MSE par le réciproque du levier : \lfbox[formula]{$e_{stu, i} = \frac{e_{i}}{\sqrt{MSE_{(i)}(1 - h_{i})}}$}. La $MSE_{(i)}$ correspond à la MSE de la régression qui exclue la $i^{\text{e}}$ observation.
+
+\bigskip
+
+Si le modèle est adéquat, les résidus studentisés sont distribués selon la \textbf{loi de Student} qui \textit{\color{bleudefrance}\underline{\hyperlink{studentReminder}{\color{bleudefrance} converge vers la loi normale standard}}}.
 \end{definitionNOHFILLsub}
-Leverage
-Residuals
-	standardized residuals
-	studentized residuals
-Cook's distance
+
+Puisque les 2 résidus convergent vers une loi normale standard, on déduit de la \textit{\color{bleudefrance}\underline{\hyperlink{6895997Rule}{\color{bleudefrance} règle du 68-95-99.7}}} que environ 95\% des résidus seront entre $-2$ et $2$, puis que environ $99.7$\% des résidus seront entre $-3$ et $3$. La règle du pouce est donc que si la valeur absolue du résidu est supérieur à $3$, l'observation est potentiellement une donnée aberrante : \lfbox[formula]{$e_{st, i} > 3$}.
+
+\bigskip
 
 \begin{rappel_enhanced}[Contexte]
 Pour évaluer le levier \textit{et} les résidus en une seule mesure, on peut calculer soit \og \textit{\textbf{cook's distance}} \fg{} ou \textit{\textbf{DFITS}} pour chaque observation.
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[DFITS]
-DFITS : \lfbox[formula]{$DFITS = e_{sta, i} \sqrt{\frac{h_{i}}{1 - h_{i}}}$}.
+\lfbox[formula]{$DFITS = e_{sta, i} \sqrt{\frac{h_{i}}{1 - h_{i}}}$}.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\og \textit{Cooks's distance} \fg{}]
-\og \textit{\textbf{Cook's distance}} \fg{} : \lfbox[formula]{$d_{i} =  \frac{DFITS^{2}_{i}}{p'}$}. \lfbox[formula]{$d_{i} = \frac{e^{2}_{sta, i}  h_{i}}{p'(1 - h_{i})}$}. \lfbox[formula]{$d_{i} = \frac{e^{2}_{i} h_{i}}{MSE p' (1 - h_{i})^{2}}$}.
+La $i^{\text{e}}$ \og \textit{\textbf{cook's distance}} \fg{} peut être écrite de plusieurs façons : 
+\begin{enumerate}
+	\item	En fonction du DFITS : \lfbox[formula]{$d_{i} =  \frac{DFITS^{2}_{i}}{p'}$}.
+	\item	En fonction du résidu standardisé : \lfbox[formula]{$d_{i} = \frac{e^{2}_{sta, i}}{p'} \left(\frac{h_{i}}{1 - h_{i}}\right)$}.
+	\item	En fonction du résidu : \lfbox[formula]{$d_{i} = \frac{e^{2}_{i} h_{i}}{MSE p' (1 - h_{i})^{2}}$}.
+\end{enumerate}
+  
 
 \bigskip
 
-Règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{influential point} \fg{} si $d_{i}$ \og \textit{exceeds \textbf{unity}} \fg{}. C'est-à-dire, si \lfbox[conditions]{$d_{i} > 1$}.
+La règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{influential point} \fg{} si $d_{i}$ \og \textit{exceeds \textbf{unity}} \fg{}. C'est-à-dire, si \lfbox[conditions]{$d_{i} > 1$}.
 \end{definitionNOHFILL}
 	
 
