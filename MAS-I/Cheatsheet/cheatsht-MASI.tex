@@ -5405,6 +5405,126 @@ Modèle de \og \textit{analysis of covariance (ANCOVA)} \fg{}
 
 \newpage
 \section{Hypothèse du modèle linéaire}\label{sec:hypothesisLM}
+\begin{rappel_enhanced}[Contexte]
+On débute par \textit{\color{bleudefrance}\underline{\hyperref[subsec:LMHProbIssues]{\color{bleudefrance} expliquer les conséquences}}} de ne pas respecter les hypothèses du modèle de régression linéaire. Également, les problèmes qui peuvent survenir avec les données. Puis, on détaille comment détecter ces problèmes et concluons en expliquant comment adresser ces problèmes. 
+\end{rappel_enhanced}
+
+\subsection{Problèmes et enjeux}\label{subsec:LMHProbIssues}
+Il y a plusieurs problèmes qui peuvent survenir en régression linéaire :
+
+\begin{definitionGENERAL}{Expression du modèle erronée}[\circled{1}{trueblue}]
+Cette problématique survient s'il est incorrect de poser qu'une fonction relie les variables explicatives à la variable réponse ou si on n'inclut pas les prédicteurs appropriés. Par exemple, ajuster un modèle linéaire alors qu'une relation polynomiale existe.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Résidus avec une moyenne non-nulle}[\circled{2}{trueblue}]
+Les résidus $e$, alias les réalisations des erreurs irréductibles $\varepsilon$, devraient être nuls \underline{en moyenne}. Si la moyenne des résidus est loin d'être nulle, ça peut signaler qu'un aspect de la régression est erroné.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Hétéroscédasticité}[\circled{3}{trueblue}]
+L'hétéroscédasticité est l'inverse de l'homoscédasticité et implique que la variance des erreurs n'est pas constante pour toutes les observations. S'il y a hétéroscédasticité, cela implique que la MSE n'est pas fiable, car son utilité est fondée sur l'hypothèse qu'il y a une seule variance.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Erreurs corrélées}[\circled{4}{trueblue}]
+Les erreurs sont supposées aléatoires. Si ce n'est pas le cas, le comportement des erreurs serait prévisible d'une observation à l'autre et les covariances des observations $Y$ ne seraient pas nulles.
+
+\bigskip
+
+S'il y a des erreurs dépendantes, les erreurs types seront sous-estimées et les valeurs $p$ plus petites qu'elles devraient l'être. Ceci peut mener à un faux positif.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Erreurs non-normales}[\circled{5}{trueblue}]
+Si les erreurs ne suivent pas une distribution normale, on ne peut pas poser que les estimateurs suivent une loi $t$ ou $F$. Il s'ensuit que de faire des tests d'hypothèse avec la mauvaise distribution mène à des conclusions mal fondées.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Multicolinéarité}[\circled{6}{trueblue}]
+Si un prédicteur est proche d'être une combinaison linéaire d'autres prédicteurs, il peut y avoir un problème de \textbf{\textit{multicolinéarité}}. L'impact est qu'il peut devenir difficile de déterminer quels coefficients sont importants. Ceci rend leur estimation instable, car la valeur estimée pourrait changer de façon importante d'un ensemble de données à un autre.
+
+\bigskip
+
+L'instabilité vient main en main avec des erreurs types plus élevés. L'impact est donc \textbf{sur l'interprétation} des coefficients et non \textbf{pas} sur la puissance prédictive du modèle, sur la fiabilité du MSE ni sur le résultats de tests $F$.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{\og \textit{Influential points} \fg{}}[\circled{7}{trueblue}]
+Un ensemble données peut comporter des points \og \textit{influential} \fg{}---des observations ayant un impact important sur l'inférence du modèle. Il n'y a pas de méthode définitive pour mesurer l'influence, mais une observation peut être un point \og \textit{influential} \fg{} si elle est une donnée aberrante ou comporte un \og \textit{high leverage} \fg{}. Les données aberrantes et les points avec un \og \textit{high leverage} \fg{} sont donc des observations qui sont bizarres comparativement au reste des données. 
+
+\bigskip
+
+Les données aberrantes (\og \textit{outliers} \fg{}) sont les observations avec un résidu extrême où la définition de « extrême » est relativement arbitraire. Ces points gonflent la SSE et doivent être évalués.
+
+\bigskip
+
+Les points ayant un \og \textit{high leverage} \fg{} sont les observations dont les prédicteurs prennent des valeurs inhabituelles. L'estimation des coefficients est très sensible aux valeurs bizarres d'observations et donc on évalue ces observations de près afin qu'elles ne causent pas de biais dans l'estimation des coefficients.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Dimensionalité élevée}[\circled{7}{trueblue}]
+La régression linéaire est conçue pour les ensembles de données où le nombre d'observations $n$ est plus large que le nombre de prédicteurs $p$. Le sur-ajustement peut survenir pour des ensembles de données ayant beaucoup de dimensions (alias, $p$ est trop grand).
+
+\bigskip
+
+Ce problème se résume par la \textbf{\textit{malédiction de la dimensionalité}}. Un ensemble de données avec beaucoup d'observations peut contenir beaucoup d'information. Cependant, une grande quantité de variables affaiblit la qualité des données.
+\end{definitionGENERAL}
+
+
+\paragraph{Note}	Les 6 premier problèmes correspondent aux \textit{\color{bleudefrance}\underline{\hyperlink{postulatsSLR}{\color{bleudefrance} postulats de la régression linéaire}}}.
+
+
+\columnbreak
+\subsection{Levier et résidus}\label{subsec:LMHLevRes}
+\begin{definitionNOHFILL}[Levier (\og \textit{leverage} \fg{})]
+\lfbox[formula]{$h_{i} = \frac{1}{n} + \frac{(x_{i} - \bar{x})^{2}}{\sum_{j = 1}^{n} (x_{j} - \bar{x})^{2}}$}.
+
+\bigskip
+
+Règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{high leverage point} \fg{} si \lfbox[conditions]{$h >  3\left(\frac{p'}{n}\right)$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Résidus standardisés]
+\lfbox[formula]{$e_{sta, i} = \frac{e_{i}}{\sqrt{MSE(1 - h_{i})}}$}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Résidus studentisés]
+\lfbox[formula]{$e_{stu, i} = \frac{e_{i}}{\sqrt{MSE_{(i)}(1 - h_{i})}}$}
+\end{definitionNOHFILLsub}
+Leverage
+Residuals
+	standardized residuals
+	studentized residuals
+Cook's distance
+
+\begin{rappel_enhanced}[Contexte]
+Pour évaluer le levier \textit{et} les résidus en une seule mesure, on peut calculer soit \og \textit{\textbf{cook's distance}} \fg{} ou \textit{\textbf{DFITS}} pour chaque observation.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[DFITS]
+DFITS : \lfbox[formula]{$DFITS = e_{sta, i} \sqrt{\frac{h_{i}}{1 - h_{i}}}$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\og \textit{Cooks's distance} \fg{}]
+\og \textit{\textbf{Cook's distance}} \fg{} : \lfbox[formula]{$d_{i} =  \frac{DFITS^{2}_{i}}{p'}$}. \lfbox[formula]{$d_{i} = \frac{e^{2}_{sta, i}  h_{i}}{p'(1 - h_{i})}$}. \lfbox[formula]{$d_{i} = \frac{e^{2}_{i} h_{i}}{MSE p' (1 - h_{i})^{2}}$}.
+
+\bigskip
+
+Règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{influential point} \fg{} si $d_{i}$ \og \textit{exceeds \textbf{unity}} \fg{}. C'est-à-dire, si \lfbox[conditions]{$d_{i} > 1$}.
+\end{definitionNOHFILL}
+	
+
+Plots of residuals
+	plot against predictions ($e$ vs $\hat{y}$)
+		Discernible trends 
+		Non-zero average 
+		Hétéroscédasticité
+	plot against observation index ($e$ versus $i$)
+	$QQ$ plot de $e$
+
+
+Variance inflation factors (VIFs)
+
+
+Potential solutions
+	Expression du modèle erronée
+	Résidus avec une moyenne non-nulle
+	Multicolinéarité
+	Valeurs aberrantes, données avec levier élevé et/ou influential points
 
 
 
