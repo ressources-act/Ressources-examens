@@ -30,6 +30,30 @@
 \def\SubSubSectionColor{azure(colorwheel)}
 %%%	depth
 \setcounter{secnumdepth}{0}
+
+%% -----------------------------
+%% 	Format part
+%% -----------------------------
+\usepackage{titlesec}
+\titleformat
+	{\part}			%	command
+	[display]		%	shape
+	{\normalfont\bfseries\filcenter}	%	format
+	{\LARGE\thepart}	%	label
+	{1ex}			%	sep
+	{
+		\titlerule[2pt]
+		\vspace{2ex}%
+		\LARGE
+	}				%	before-code
+	[
+		\vspace{1ex}%
+		{\titlerule[2pt]}
+	]				%	after-code
+\titlespacing{\part}
+	{0pc}			%	left margin spacing
+	{-5mm}			%	vertical space before title
+	{1pc}			%	seperation between title and non-sectioning text
 %% -----------------------------
 
 %% -----------------------------
