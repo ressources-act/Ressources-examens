@@ -4677,7 +4677,7 @@ Des postulats, on déduit que valeurs observées de la variable réponse sont in
 \end{definitionNOHFILLprop}
 
 
-\paragraph{Note}	L'\textbf{homoscédasticité} implique que la variance est constante pour toutes les observations.
+\paragraph{Note}	L'\textbf{\hypertarget{homoscedasticity}{homoscédasticité}} implique que la variance est constante pour toutes les observations.
 
 \bigskip
 
@@ -4901,6 +4901,8 @@ $\hat{Y}$	&	$\mathcal{N}\left(\text{E}[Y], \sigma^{2}\left[\frac{1}{n} + \frac{(
 \end{center}
 
 \paragraph{Note}	Il est important de distinguer le $MSE$ qui estime $\text{Var}(Y) = \sigma^{2}$ de $se(\hat{y})^{2}$ qui estime $\text{Var}(\hat{Y})$.
+
+\paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{VIF}{\color{bleudefrance} la définition du VIF}}} de la section des \textit{\underline{\nameref{sec:hypothesisLM}}} pour sa relation avec l'erreur type des coefficients.
 
 \bigskip
 
@@ -5428,7 +5430,7 @@ Modèle de \og \textit{analysis of covariance (ANCOVA)} \fg{}
 
 
 \newpage
-\section{Hypothèse du modèle linéaire}\label{sec:hypothesisLM}
+\section{Hypothèses du modèle linéaire}\label{sec:hypothesisLM}
 \begin{rappel_enhanced}[Contexte]
 On débute par \textit{\color{bleudefrance}\underline{\hyperref[subsec:LMHProbIssues]{\color{bleudefrance} expliquer les conséquences}}} de ne pas respecter les hypothèses du modèle de régression linéaire. Également, les problèmes qui peuvent survenir avec les données. Puis, on détaille comment détecter ces problèmes et concluons en expliquant comment adresser ces problèmes. 
 \end{rappel_enhanced}
@@ -5460,7 +5462,7 @@ S'il y a des erreurs dépendantes, les erreurs types seront sous-estimées et le
 Si les erreurs ne suivent pas une distribution normale, on ne peut pas poser que les estimateurs suivent une loi $t$ ou $F$. Il s'ensuit que de faire des tests d'hypothèse avec la mauvaise distribution mène à des conclusions mal fondées.
 \end{definitionGENERAL}
 
-\begin{definitionGENERAL}{Multicolinéarité}[\circled{6}{trueblue}]
+\begin{definitionGENERAL}{\hypertarget{multicolin}{Multicolinéarité}}[\circled{6}{trueblue}]
 Si un prédicteur est proche d'être une combinaison linéaire d'autres prédicteurs, il peut y avoir un problème de \textbf{\textit{multicolinéarité}}. L'impact est qu'il peut devenir difficile de déterminer quels coefficients sont importants. Ceci rend leur estimation instable, car la valeur estimée pourrait changer de façon importante d'un ensemble de données à un autre.
 
 \bigskip
@@ -5480,7 +5482,7 @@ Les données aberrantes (\og \textit{outliers} \fg{}) sont les observations avec
 Les points ayant un \og \textit{high leverage} \fg{} sont les observations dont les prédicteurs prennent des valeurs inhabituelles. L'estimation des coefficients est très sensible aux valeurs bizarres d'observations et donc on évalue ces observations de près afin qu'elles ne causent pas de biais dans l'estimation des coefficients.
 \end{definitionGENERAL}
 
-\begin{definitionGENERAL}{Dimensionalité élevée}[\circled{7}{trueblue}]
+\begin{definitionGENERAL}{Dimensionalité élevée}[\circled{8}{trueblue}]
 La régression linéaire est conçue pour les ensembles de données où le nombre d'observations $n$ est plus large que le nombre de prédicteurs $p$. Le sur-ajustement peut survenir pour des ensembles de données ayant beaucoup de dimensions (alias, $p$ est trop grand).
 
 \bigskip
@@ -5556,30 +5558,926 @@ La règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{in
 \end{definitionNOHFILL}
 	
 
-Plots of residuals
-	plot against predictions ($e$ vs $\hat{y}$)
-		Discernible trends 
-		Non-zero average 
-		Hétéroscédasticité
-	plot against observation index ($e$ versus $i$)
-	$QQ$ plot de $e$
+\columnbreak
+\subsection{Graphiques des résidus}
+\begin{rappel_enhanced}[Contexte]
+Effectuer des tests diagnostiques sur les résidus nous permet d'identifier des problèmes potentiels et le non-respect des hypothèses du modèle. Puisque les résidus sont les réalisations des termes d'erreur, si leurs comportements diffèrent de ce qui est attendu on doit mettre en question la validité du modèle.
+
+\bigskip
+
+On présente 3 différents graphiques permettant d'analyser le patron général des résidus. Nous évaluons le comportement général et non individuel des résidus et donc les résidus que nous évaluons (non-ajustés, standardisés, studentisés) n'importe peu.
+\end{rappel_enhanced}
 
 
-Variance inflation factors (VIFs)
+\subsubsection{Graphique résidus contre prévisions}
+Voici un exemple d'un graphique ne présentant pas de problèmes :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,159); %set diagram left start at 0, and has height of 159
+
+%Straight Lines [id:da16445714028479164] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (30.57,82.86) -- (162.09,82.86) ;
+%Shape: Axis 2D [id:dp6743768503357292] 
+\draw  (31.04,136.45) -- (172.4,136.45)(31.04,12.06) -- (31.04,136.45) -- cycle (165.4,131.45) -- (172.4,136.45) -- (165.4,141.45) (26.04,19.06) -- (31.04,12.06) -- (36.04,19.06)  ;
+%Flowchart: Connector [id:dp6842391684479434] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (67.99,97.34) .. controls (67.99,95.57) and (69.4,94.15) .. (71.13,94.15) .. controls (72.86,94.15) and (74.26,95.57) .. (74.26,97.34) .. controls (74.26,99.1) and (72.86,100.52) .. (71.13,100.52) .. controls (69.4,100.52) and (67.99,99.1) .. (67.99,97.34) -- cycle ;
+%Flowchart: Connector [id:dp3900522442196277] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (122.38,84.35) .. controls (122.38,82.59) and (123.79,81.16) .. (125.52,81.16) .. controls (127.25,81.16) and (128.65,82.59) .. (128.65,84.35) .. controls (128.65,86.11) and (127.25,87.54) .. (125.52,87.54) .. controls (123.79,87.54) and (122.38,86.11) .. (122.38,84.35) -- cycle ;
+%Flowchart: Connector [id:dp8981250715948663] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (134.44,58.59) .. controls (134.44,56.83) and (135.84,55.4) .. (137.57,55.4) .. controls (139.3,55.4) and (140.7,56.83) .. (140.7,58.59) .. controls (140.7,60.35) and (139.3,61.78) .. (137.57,61.78) .. controls (135.84,61.78) and (134.44,60.35) .. (134.44,58.59) -- cycle ;
+%Flowchart: Connector [id:dp721591501750565] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (86.23,65.55) .. controls (86.23,63.78) and (87.63,62.36) .. (89.36,62.36) .. controls (91.09,62.36) and (92.5,63.78) .. (92.5,65.55) .. controls (92.5,67.31) and (91.09,68.73) .. (89.36,68.73) .. controls (87.63,68.73) and (86.23,67.31) .. (86.23,65.55) -- cycle ;
+%Flowchart: Connector [id:dp004069132896319605] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (69.2,82.62) .. controls (69.2,80.85) and (70.6,79.43) .. (72.33,79.43) .. controls (74.06,79.43) and (75.46,80.85) .. (75.46,82.62) .. controls (75.46,84.38) and (74.06,85.8) .. (72.33,85.8) .. controls (70.6,85.8) and (69.2,84.38) .. (69.2,82.62) -- cycle ;
+%Flowchart: Connector [id:dp13933069729663683] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (122.38,77.97) .. controls (122.38,76.21) and (123.79,74.78) .. (125.52,74.78) .. controls (127.25,74.78) and (128.65,76.21) .. (128.65,77.97) .. controls (128.65,79.73) and (127.25,81.16) .. (125.52,81.16) .. controls (123.79,81.16) and (122.38,79.73) .. (122.38,77.97) -- cycle ;
+%Flowchart: Connector [id:dp5769210686276671] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (93.46,92.53) .. controls (93.46,90.77) and (94.86,89.34) .. (96.6,89.34) .. controls (98.33,89.34) and (99.73,90.77) .. (99.73,92.53) .. controls (99.73,94.29) and (98.33,95.72) .. (96.6,95.72) .. controls (94.86,95.72) and (93.46,94.29) .. (93.46,92.53) -- cycle ;
+%Flowchart: Connector [id:dp686816945572561] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (101.9,82.72) .. controls (101.9,80.96) and (103.3,79.53) .. (105.03,79.53) .. controls (106.76,79.53) and (108.16,80.96) .. (108.16,82.72) .. controls (108.16,84.48) and (106.76,85.91) .. (105.03,85.91) .. controls (103.3,85.91) and (101.9,84.48) .. (101.9,82.72) -- cycle ;
+%Flowchart: Connector [id:dp2969296501863683] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (158.38,71.26) .. controls (158.38,69.5) and (159.78,68.07) .. (161.51,68.07) .. controls (163.24,68.07) and (164.64,69.5) .. (164.64,71.26) .. controls (164.64,73.02) and (163.24,74.45) .. (161.51,74.45) .. controls (159.78,74.45) and (158.38,73.02) .. (158.38,71.26) -- cycle ;
+%Flowchart: Connector [id:dp2951792069943937] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (134.44,88.03) .. controls (134.44,86.27) and (135.84,84.84) .. (137.57,84.84) .. controls (139.3,84.84) and (140.7,86.27) .. (140.7,88.03) .. controls (140.7,89.79) and (139.3,91.22) .. (137.57,91.22) .. controls (135.84,91.22) and (134.44,89.79) .. (134.44,88.03) -- cycle ;
+%Flowchart: Connector [id:dp432661105561541] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (150.1,86.8) .. controls (150.1,85.04) and (151.5,83.61) .. (153.23,83.61) .. controls (154.97,83.61) and (156.37,85.04) .. (156.37,86.8) .. controls (156.37,88.56) and (154.97,89.99) .. (153.23,89.99) .. controls (151.5,89.99) and (150.1,88.56) .. (150.1,86.8) -- cycle ;
+%Flowchart: Connector [id:dp7743502722187183] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (135.64,73.31) .. controls (135.64,71.55) and (137.04,70.12) .. (138.77,70.12) .. controls (140.5,70.12) and (141.91,71.55) .. (141.91,73.31) .. controls (141.91,75.07) and (140.5,76.5) .. (138.77,76.5) .. controls (137.04,76.5) and (135.64,75.07) .. (135.64,73.31) -- cycle ;
+%Flowchart: Connector [id:dp08727058706830437] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (55.94,77.71) .. controls (55.94,75.95) and (57.34,74.52) .. (59.07,74.52) .. controls (60.81,74.52) and (62.21,75.95) .. (62.21,77.71) .. controls (62.21,79.47) and (60.81,80.9) .. (59.07,80.9) .. controls (57.34,80.9) and (55.94,79.47) .. (55.94,77.71) -- cycle ;
+%Flowchart: Connector [id:dp15498995397058035] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (71.61,72.8) .. controls (71.61,71.04) and (73.01,69.61) .. (74.74,69.61) .. controls (76.47,69.61) and (77.87,71.04) .. (77.87,72.8) .. controls (77.87,74.56) and (76.47,75.99) .. (74.74,75.99) .. controls (73.01,75.99) and (71.61,74.56) .. (71.61,72.8) -- cycle ;
+%Flowchart: Connector [id:dp8498333582911335] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (57.15,59.31) .. controls (57.15,57.55) and (58.55,56.12) .. (60.28,56.12) .. controls (62.01,56.12) and (63.41,57.55) .. (63.41,59.31) .. controls (63.41,61.07) and (62.01,62.5) .. (60.28,62.5) .. controls (58.55,62.5) and (57.15,61.07) .. (57.15,59.31) -- cycle ;
+%Flowchart: Connector [id:dp865003959893097] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (103.1,66.77) .. controls (103.1,65.01) and (104.51,63.58) .. (106.24,63.58) .. controls (107.97,63.58) and (109.37,65.01) .. (109.37,66.77) .. controls (109.37,68.53) and (107.97,69.96) .. (106.24,69.96) .. controls (104.51,69.96) and (103.1,68.53) .. (103.1,66.77) -- cycle ;
+%Flowchart: Connector [id:dp23923864669808137] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (115.15,53.44) .. controls (115.15,51.67) and (116.56,50.25) .. (118.29,50.25) .. controls (120.02,50.25) and (121.42,51.67) .. (121.42,53.44) .. controls (121.42,55.2) and (120.02,56.62) .. (118.29,56.62) .. controls (116.56,56.62) and (115.15,55.2) .. (115.15,53.44) -- cycle ;
+%Flowchart: Connector [id:dp8738527595905365] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (39.07,67.65) .. controls (39.07,65.89) and (40.47,64.46) .. (42.2,64.46) .. controls (43.93,64.46) and (45.34,65.89) .. (45.34,67.65) .. controls (45.34,69.41) and (43.93,70.84) .. (42.2,70.84) .. controls (40.47,70.84) and (39.07,69.41) .. (39.07,67.65) -- cycle ;
+%Flowchart: Connector [id:dp43535358364404697] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (55,103.23) .. controls (55,101.47) and (56.4,100.04) .. (58.13,100.04) .. controls (59.86,100.04) and (61.27,101.47) .. (61.27,103.23) .. controls (61.27,104.99) and (59.86,106.42) .. (58.13,106.42) .. controls (56.4,106.42) and (55,104.99) .. (55,103.23) -- cycle ;
+%Flowchart: Connector [id:dp9148408598064155] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (40.54,89.74) .. controls (40.54,87.98) and (41.94,86.55) .. (43.67,86.55) .. controls (45.4,86.55) and (46.81,87.98) .. (46.81,89.74) .. controls (46.81,91.5) and (45.4,92.93) .. (43.67,92.93) .. controls (41.94,92.93) and (40.54,91.5) .. (40.54,89.74) -- cycle ;
+%Flowchart: Connector [id:dp2563847028113224] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (98.18,106.61) .. controls (98.18,104.85) and (99.58,103.42) .. (101.31,103.42) .. controls (103.04,103.42) and (104.45,104.85) .. (104.45,106.61) .. controls (104.45,108.37) and (103.04,109.8) .. (101.31,109.8) .. controls (99.58,109.8) and (98.18,108.37) .. (98.18,106.61) -- cycle ;
+%Flowchart: Connector [id:dp06334551966270086] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (83.72,93.12) .. controls (83.72,91.36) and (85.12,89.93) .. (86.85,89.93) .. controls (88.58,89.93) and (89.99,91.36) .. (89.99,93.12) .. controls (89.99,94.88) and (88.58,96.31) .. (86.85,96.31) .. controls (85.12,96.31) and (83.72,94.88) .. (83.72,93.12) -- cycle ;
+%Flowchart: Connector [id:dp29682005681623025] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (103.16,81.25) .. controls (103.16,79.49) and (104.57,78.07) .. (106.3,78.07) .. controls (108.03,78.07) and (109.43,79.49) .. (109.43,81.25) .. controls (109.43,83.02) and (108.03,84.44) .. (106.3,84.44) .. controls (104.57,84.44) and (103.16,83.02) .. (103.16,81.25) -- cycle ;
+%Flowchart: Connector [id:dp2162262706874032] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (83.72,71.14) .. controls (83.72,69.38) and (85.12,67.95) .. (86.85,67.95) .. controls (88.58,67.95) and (89.99,69.38) .. (89.99,71.14) .. controls (89.99,72.9) and (88.58,74.33) .. (86.85,74.33) .. controls (85.12,74.33) and (83.72,72.9) .. (83.72,71.14) -- cycle ;
+%Flowchart: Connector [id:dp8315057346977559] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (128.99,105.34) .. controls (128.99,103.57) and (130.4,102.15) .. (132.13,102.15) .. controls (133.86,102.15) and (135.26,103.57) .. (135.26,105.34) .. controls (135.26,107.1) and (133.86,108.52) .. (132.13,108.52) .. controls (130.4,108.52) and (128.99,107.1) .. (128.99,105.34) -- cycle ;
+%Flowchart: Connector [id:dp015739429509463942] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (154.46,100.53) .. controls (154.46,98.77) and (155.86,97.34) .. (157.6,97.34) .. controls (159.33,97.34) and (160.73,98.77) .. (160.73,100.53) .. controls (160.73,102.29) and (159.33,103.72) .. (157.6,103.72) .. controls (155.86,103.72) and (154.46,102.29) .. (154.46,100.53) -- cycle ;
+%Flowchart: Connector [id:dp04453073243488781] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (116,111.23) .. controls (116,109.47) and (117.4,108.04) .. (119.13,108.04) .. controls (120.86,108.04) and (122.27,109.47) .. (122.27,111.23) .. controls (122.27,112.99) and (120.86,114.42) .. (119.13,114.42) .. controls (117.4,114.42) and (116,112.99) .. (116,111.23) -- cycle ;
+%Flowchart: Connector [id:dp05125439283102495] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (159.18,114.61) .. controls (159.18,112.85) and (160.58,111.42) .. (162.31,111.42) .. controls (164.04,111.42) and (165.45,112.85) .. (165.45,114.61) .. controls (165.45,116.37) and (164.04,117.8) .. (162.31,117.8) .. controls (160.58,117.8) and (159.18,116.37) .. (159.18,114.61) -- cycle ;
+%Flowchart: Connector [id:dp6584318498928625] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (144.72,101.12) .. controls (144.72,99.36) and (146.12,97.93) .. (147.85,97.93) .. controls (149.58,97.93) and (150.99,99.36) .. (150.99,101.12) .. controls (150.99,102.88) and (149.58,104.31) .. (147.85,104.31) .. controls (146.12,104.31) and (144.72,102.88) .. (144.72,101.12) -- cycle ;
+%Flowchart: Connector [id:dp8704735614718919] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (78.99,105.34) .. controls (78.99,103.57) and (80.4,102.15) .. (82.13,102.15) .. controls (83.86,102.15) and (85.26,103.57) .. (85.26,105.34) .. controls (85.26,107.1) and (83.86,108.52) .. (82.13,108.52) .. controls (80.4,108.52) and (78.99,107.1) .. (78.99,105.34) -- cycle ;
+%Flowchart: Connector [id:dp7985504540635144] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (104.46,100.53) .. controls (104.46,98.77) and (105.86,97.34) .. (107.6,97.34) .. controls (109.33,97.34) and (110.73,98.77) .. (110.73,100.53) .. controls (110.73,102.29) and (109.33,103.72) .. (107.6,103.72) .. controls (105.86,103.72) and (104.46,102.29) .. (104.46,100.53) -- cycle ;
+%Flowchart: Connector [id:dp3789173903535643] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (66,111.23) .. controls (66,109.47) and (67.4,108.04) .. (69.13,108.04) .. controls (70.86,108.04) and (72.27,109.47) .. (72.27,111.23) .. controls (72.27,112.99) and (70.86,114.42) .. (69.13,114.42) .. controls (67.4,114.42) and (66,112.99) .. (66,111.23) -- cycle ;
+%Flowchart: Connector [id:dp7643631020335837] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (109.18,114.61) .. controls (109.18,112.85) and (110.58,111.42) .. (112.31,111.42) .. controls (114.04,111.42) and (115.45,112.85) .. (115.45,114.61) .. controls (115.45,116.37) and (114.04,117.8) .. (112.31,117.8) .. controls (110.58,117.8) and (109.18,116.37) .. (109.18,114.61) -- cycle ;
+%Flowchart: Connector [id:dp6771631315190749] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (94.72,101.12) .. controls (94.72,99.36) and (96.12,97.93) .. (97.85,97.93) .. controls (99.58,97.93) and (100.99,99.36) .. (100.99,101.12) .. controls (100.99,102.88) and (99.58,104.31) .. (97.85,104.31) .. controls (96.12,104.31) and (94.72,102.88) .. (94.72,101.12) -- cycle ;
+%Flowchart: Connector [id:dp6812061968165328] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (78.99,55.34) .. controls (78.99,53.57) and (80.4,52.15) .. (82.13,52.15) .. controls (83.86,52.15) and (85.26,53.57) .. (85.26,55.34) .. controls (85.26,57.1) and (83.86,58.52) .. (82.13,58.52) .. controls (80.4,58.52) and (78.99,57.1) .. (78.99,55.34) -- cycle ;
+%Flowchart: Connector [id:dp9884486190055797] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (104.46,50.53) .. controls (104.46,48.77) and (105.86,47.34) .. (107.6,47.34) .. controls (109.33,47.34) and (110.73,48.77) .. (110.73,50.53) .. controls (110.73,52.29) and (109.33,53.72) .. (107.6,53.72) .. controls (105.86,53.72) and (104.46,52.29) .. (104.46,50.53) -- cycle ;
+%Flowchart: Connector [id:dp8789057375810114] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (66,61.23) .. controls (66,59.47) and (67.4,58.04) .. (69.13,58.04) .. controls (70.86,58.04) and (72.27,59.47) .. (72.27,61.23) .. controls (72.27,62.99) and (70.86,64.42) .. (69.13,64.42) .. controls (67.4,64.42) and (66,62.99) .. (66,61.23) -- cycle ;
+%Flowchart: Connector [id:dp8560853930492258] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (109.18,64.61) .. controls (109.18,62.85) and (110.58,61.42) .. (112.31,61.42) .. controls (114.04,61.42) and (115.45,62.85) .. (115.45,64.61) .. controls (115.45,66.37) and (114.04,67.8) .. (112.31,67.8) .. controls (110.58,67.8) and (109.18,66.37) .. (109.18,64.61) -- cycle ;
+%Flowchart: Connector [id:dp4126288082725975] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (94.72,51.12) .. controls (94.72,49.36) and (96.12,47.93) .. (97.85,47.93) .. controls (99.58,47.93) and (100.99,49.36) .. (100.99,51.12) .. controls (100.99,52.88) and (99.58,54.31) .. (97.85,54.31) .. controls (96.12,54.31) and (94.72,52.88) .. (94.72,51.12) -- cycle ;
+%Flowchart: Connector [id:dp7686429574677234] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (153.44,52.59) .. controls (153.44,50.83) and (154.84,49.4) .. (156.57,49.4) .. controls (158.3,49.4) and (159.7,50.83) .. (159.7,52.59) .. controls (159.7,54.35) and (158.3,55.78) .. (156.57,55.78) .. controls (154.84,55.78) and (153.44,54.35) .. (153.44,52.59) -- cycle ;
+%Flowchart: Connector [id:dp5779402547422072] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (146.44,61.59) .. controls (146.44,59.83) and (147.84,58.4) .. (149.57,58.4) .. controls (151.3,58.4) and (152.7,59.83) .. (152.7,61.59) .. controls (152.7,63.35) and (151.3,64.78) .. (149.57,64.78) .. controls (147.84,64.78) and (146.44,63.35) .. (146.44,61.59) -- cycle ;
+%Flowchart: Connector [id:dp344782955692986] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (121.64,64.31) .. controls (121.64,62.55) and (123.04,61.12) .. (124.77,61.12) .. controls (126.5,61.12) and (127.91,62.55) .. (127.91,64.31) .. controls (127.91,66.07) and (126.5,67.5) .. (124.77,67.5) .. controls (123.04,67.5) and (121.64,66.07) .. (121.64,64.31) -- cycle ;
+%Flowchart: Connector [id:dp27514523913823075] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (42,109.23) .. controls (42,107.47) and (43.4,106.04) .. (45.13,106.04) .. controls (46.86,106.04) and (48.27,107.47) .. (48.27,109.23) .. controls (48.27,110.99) and (46.86,112.42) .. (45.13,112.42) .. controls (43.4,112.42) and (42,110.99) .. (42,109.23) -- cycle ;
+%Flowchart: Connector [id:dp19156684686970737] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (55.94,93.09) .. controls (55.94,91.33) and (57.34,89.9) .. (59.07,89.9) .. controls (60.81,89.9) and (62.21,91.33) .. (62.21,93.09) .. controls (62.21,94.85) and (60.81,96.28) .. (59.07,96.28) .. controls (57.34,96.28) and (55.94,94.85) .. (55.94,93.09) -- cycle ;
+%Flowchart: Connector [id:dp4730787344722591] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (113.73,96.53) .. controls (113.73,94.77) and (115.13,93.34) .. (116.86,93.34) .. controls (118.59,93.34) and (119.99,94.77) .. (119.99,96.53) .. controls (119.99,98.29) and (118.59,99.72) .. (116.86,99.72) .. controls (115.13,99.72) and (113.73,98.29) .. (113.73,96.53) -- cycle ;
 
 
-Potential solutions
-	Expression du modèle erronée
-	Résidus avec une moyenne non-nulle
-	Multicolinéarité
-	Valeurs aberrantes, données avec levier élevé et/ou influential points
+% Text Node
+\draw (11.8,12.15) node   [align=left] {{\footnotesize $\displaystyle \varepsilon _{i}$}};
+% Text Node
+\draw (20.26,79.92) node  [font=\normalsize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 3}\\{\tiny 2}\\{\tiny 1}\\{\tiny \textcolor[rgb]{0.25,0.46,0.02}{0}}\\{\tiny -1}\\{\tiny -2}\\{\tiny -3}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (182.95,143.2) node   [align=left] {{\footnotesize $\displaystyle \hat{Y}_{i}$}};
+\end{tikzpicture}
+\end{center}
+
+Il y a 3 aspects que l'on cherche à vérifier visuellement :  
+
+\begin{definitionGENERAL}{Le patron des points}[\circled{1}{trueblue}]
+Comme ci-dessus, les \textbf{points} doivent sembler d'être \textbf{distribués de façon aléatoire} et ne \textbf{pas démontrer de patrons}. Par exemple, ce graphique démontre un patron indicatif d'une relation quadratique : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,161); %set diagram left start at 0, and has height of 161
+
+%Straight Lines [id:da27746710662289753] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (27.63,83.39) -- (189.33,83.39) ;
+%Shape: Axis 2D [id:dp05121435527612617] 
+\draw  (27.35,137.06) -- (171.1,137.06)(27.35,15.62) -- (27.35,137.06) -- cycle (164.1,132.06) -- (171.1,137.06) -- (164.1,142.06) (22.35,22.62) -- (27.35,15.62) -- (32.35,22.62)  ;
+%Flowchart: Connector [id:dp8321136976905301] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (150.02,103.02) .. controls (151.71,103.51) and (152.67,105.24) .. (152.17,106.89) .. controls (151.66,108.54) and (149.89,109.48) .. (148.2,108.98) .. controls (146.52,108.49) and (145.56,106.76) .. (146.06,105.11) .. controls (146.56,103.46) and (148.34,102.52) .. (150.02,103.02) -- cycle ;
+%Flowchart: Connector [id:dp14607155206176037] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (66.99,63.7) .. controls (67.53,65.34) and (66.6,67.09) .. (64.93,67.62) .. controls (63.25,68.15) and (61.46,67.25) .. (60.92,65.61) .. controls (60.38,63.97) and (61.3,62.22) .. (62.98,61.69) .. controls (64.65,61.16) and (66.45,62.06) .. (66.99,63.7) -- cycle ;
+%Flowchart: Connector [id:dp5661946984833734] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (77.99,94.77) .. controls (78.53,96.41) and (77.61,98.16) .. (75.93,98.69) .. controls (74.26,99.21) and (72.46,98.32) .. (71.92,96.68) .. controls (71.38,95.04) and (72.3,93.29) .. (73.98,92.76) .. controls (75.66,92.23) and (77.45,93.13) .. (77.99,94.77) -- cycle ;
+%Flowchart: Connector [id:dp6310794447070263] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (86.12,81.61) .. controls (86.66,83.24) and (85.74,85) .. (84.06,85.52) .. controls (82.39,86.05) and (80.59,85.15) .. (80.05,83.52) .. controls (79.51,81.88) and (80.43,80.12) .. (82.11,79.6) .. controls (83.78,79.07) and (85.58,79.97) .. (86.12,81.61) -- cycle ;
+%Flowchart: Connector [id:dp7809475616386092] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (160.05,108.9) .. controls (161.73,109.4) and (162.69,111.13) .. (162.19,112.78) .. controls (161.69,114.43) and (159.91,115.36) .. (158.23,114.87) .. controls (156.54,114.38) and (155.58,112.65) .. (156.08,111) .. controls (156.59,109.35) and (158.36,108.41) .. (160.05,108.9) -- cycle ;
+%Flowchart: Connector [id:dp34092476272174554] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (97.19,90.08) .. controls (97.73,91.72) and (96.81,93.47) .. (95.13,94) .. controls (93.46,94.52) and (91.66,93.63) .. (91.12,91.99) .. controls (90.58,90.35) and (91.5,88.6) .. (93.18,88.07) .. controls (94.85,87.54) and (96.65,88.44) .. (97.19,90.08) -- cycle ;
+%Flowchart: Connector [id:dp5910799540501568] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (67.13,85.76) .. controls (67.67,87.39) and (66.74,89.15) .. (65.07,89.67) .. controls (63.39,90.2) and (61.6,89.3) .. (61.06,87.67) .. controls (60.52,86.03) and (61.44,84.27) .. (63.12,83.75) .. controls (64.79,83.22) and (66.59,84.12) .. (67.13,85.76) -- cycle ;
+%Flowchart: Connector [id:dp3925761750004073] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (106.39,98.98) .. controls (106.93,100.62) and (106,102.37) .. (104.33,102.9) .. controls (102.65,103.43) and (100.86,102.53) .. (100.32,100.89) .. controls (99.78,99.26) and (100.7,97.5) .. (102.38,96.97) .. controls (104.05,96.45) and (105.85,97.35) .. (106.39,98.98) -- cycle ;
+%Flowchart: Connector [id:dp1700659807098892] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (181.82,76.56) .. controls (182.36,78.19) and (181.44,79.95) .. (179.76,80.47) .. controls (178.09,81) and (176.29,80.1) .. (175.75,78.46) .. controls (175.21,76.83) and (176.13,75.07) .. (177.81,74.55) .. controls (179.48,74.02) and (181.28,74.92) .. (181.82,76.56) -- cycle ;
+%Flowchart: Connector [id:dp9312833108089953] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (83.95,104.07) .. controls (84.48,105.71) and (83.56,107.46) .. (81.89,107.99) .. controls (80.21,108.52) and (78.42,107.62) .. (77.88,105.98) .. controls (77.34,104.34) and (78.26,102.59) .. (79.94,102.06) .. controls (81.61,101.53) and (83.41,102.43) .. (83.95,104.07) -- cycle ;
+%Flowchart: Connector [id:dp1933950131712252] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (58.77,44.14) .. controls (59.31,45.78) and (58.39,47.53) .. (56.71,48.06) .. controls (55.04,48.59) and (53.24,47.69) .. (52.7,46.05) .. controls (52.16,44.41) and (53.08,42.66) .. (54.76,42.13) .. controls (56.43,41.6) and (58.23,42.5) .. (58.77,44.14) -- cycle ;
+%Flowchart: Connector [id:dp7378043397512895] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (92.31,109.84) .. controls (92.85,111.48) and (91.93,113.23) .. (90.26,113.76) .. controls (88.58,114.29) and (86.79,113.39) .. (86.25,111.75) .. controls (85.71,110.11) and (86.63,108.36) .. (88.3,107.83) .. controls (89.98,107.3) and (91.77,108.2) .. (92.31,109.84) -- cycle ;
+%Flowchart: Connector [id:dp5484898095227897] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (168.6,97.65) .. controls (170.28,98.14) and (171.24,99.87) .. (170.74,101.52) .. controls (170.24,103.17) and (168.46,104.11) .. (166.78,103.62) .. controls (165.09,103.12) and (164.13,101.39) .. (164.63,99.74) .. controls (165.14,98.09) and (166.91,97.16) .. (168.6,97.65) -- cycle ;
+%Flowchart: Connector [id:dp2753873425367195] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (127.06,119) .. controls (128.75,119.49) and (129.71,121.23) .. (129.2,122.87) .. controls (128.7,124.52) and (126.93,125.46) .. (125.24,124.97) .. controls (123.55,124.48) and (122.6,122.74) .. (123.1,121.1) .. controls (123.6,119.45) and (125.38,118.51) .. (127.06,119) -- cycle ;
+%Flowchart: Connector [id:dp9180716430142275] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157.43,97.54) .. controls (159.12,98.03) and (160.08,99.77) .. (159.57,101.42) .. controls (159.07,103.06) and (157.3,104) .. (155.61,103.51) .. controls (153.92,103.02) and (152.96,101.29) .. (153.47,99.64) .. controls (153.97,97.99) and (155.74,97.05) .. (157.43,97.54) -- cycle ;
+%Flowchart: Connector [id:dp5728645622118642] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (130.43,93.8) .. controls (130.97,95.44) and (130.05,97.2) .. (128.38,97.72) .. controls (126.7,98.25) and (124.91,97.35) .. (124.37,95.71) .. controls (123.83,94.08) and (124.75,92.32) .. (126.42,91.8) .. controls (128.1,91.27) and (129.9,92.17) .. (130.43,93.8) -- cycle ;
+%Flowchart: Connector [id:dp8150024008977936] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (100.32,100.89) .. controls (100.86,102.53) and (99.94,104.28) .. (98.26,104.81) .. controls (96.59,105.34) and (94.79,104.44) .. (94.25,102.8) .. controls (93.71,101.17) and (94.64,99.41) .. (96.31,98.88) .. controls (97.99,98.36) and (99.78,99.26) .. (100.32,100.89) -- cycle ;
+%Flowchart: Connector [id:dp15567748521951907] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (125.51,113.09) .. controls (127.2,113.58) and (128.16,115.32) .. (127.66,116.96) .. controls (127.15,118.61) and (125.38,119.55) .. (123.69,119.06) .. controls (122.01,118.57) and (121.05,116.84) .. (121.55,115.19) .. controls (122.05,113.54) and (123.83,112.6) .. (125.51,113.09) -- cycle ;
+%Flowchart: Connector [id:dp49323863221273156] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (144.78,116.76) .. controls (145.31,118.39) and (144.39,120.15) .. (142.72,120.68) .. controls (141.04,121.2) and (139.25,120.3) .. (138.71,118.67) .. controls (138.17,117.03) and (139.09,115.28) .. (140.77,114.75) .. controls (142.44,114.22) and (144.24,115.12) .. (144.78,116.76) -- cycle ;
+%Flowchart: Connector [id:dp230019734932567] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (102.98,111.04) .. controls (103.51,112.68) and (102.59,114.43) .. (100.92,114.96) .. controls (99.24,115.49) and (97.45,114.59) .. (96.91,112.95) .. controls (96.37,111.31) and (97.29,109.56) .. (98.97,109.03) .. controls (100.64,108.5) and (102.44,109.4) .. (102.98,111.04) -- cycle ;
+%Flowchart: Connector [id:dp9638343686738928] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (136.63,102.18) .. controls (137.17,103.82) and (136.24,105.57) .. (134.57,106.1) .. controls (132.89,106.63) and (131.1,105.73) .. (130.56,104.09) .. controls (130.02,102.45) and (130.94,100.7) .. (132.62,100.17) .. controls (134.29,99.64) and (136.09,100.54) .. (136.63,102.18) -- cycle ;
+%Flowchart: Connector [id:dp053979367743026696] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (131.46,113.87) .. controls (132,115.51) and (131.08,117.26) .. (129.41,117.79) .. controls (127.73,118.32) and (125.94,117.42) .. (125.4,115.78) .. controls (124.86,114.14) and (125.78,112.39) .. (127.46,111.86) .. controls (129.13,111.33) and (130.93,112.23) .. (131.46,113.87) -- cycle ;
+%Flowchart: Connector [id:dp054388399469351034] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (115.07,117.86) .. controls (115.61,119.49) and (114.68,121.25) .. (113.01,121.78) .. controls (111.33,122.3) and (109.54,121.4) .. (109,119.77) .. controls (108.46,118.13) and (109.38,116.38) .. (111.06,115.85) .. controls (112.73,115.32) and (114.53,116.22) .. (115.07,117.86) -- cycle ;
+%Flowchart: Connector [id:dp3224381593586032] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (173.79,87.38) .. controls (174.33,89.02) and (173.4,90.78) .. (171.73,91.3) .. controls (170.05,91.83) and (168.26,90.93) .. (167.72,89.29) .. controls (167.18,87.66) and (168.1,85.9) .. (169.78,85.38) .. controls (171.45,84.85) and (173.25,85.75) .. (173.79,87.38) -- cycle ;
+%Flowchart: Connector [id:dp12456873083414455] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (176.28,65.27) .. controls (176.82,66.91) and (175.9,68.66) .. (174.22,69.19) .. controls (172.55,69.71) and (170.75,68.81) .. (170.21,67.18) .. controls (169.67,65.54) and (170.59,63.79) .. (172.27,63.26) .. controls (173.94,62.73) and (175.74,63.63) .. (176.28,65.27) -- cycle ;
+%Flowchart: Connector [id:dp42208494310960143] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (164.66,89.65) .. controls (165.2,91.29) and (164.28,93.04) .. (162.6,93.57) .. controls (160.93,94.1) and (159.13,93.2) .. (158.59,91.56) .. controls (158.05,89.92) and (158.98,88.17) .. (160.65,87.64) .. controls (162.33,87.12) and (164.12,88.01) .. (164.66,89.65) -- cycle ;
+%Flowchart: Connector [id:dp3826919878308461] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (52.36,32.26) .. controls (52.37,33.98) and (50.95,35.38) .. (49.19,35.39) .. controls (47.43,35.4) and (45.99,34.01) .. (45.99,32.29) .. controls (45.98,30.57) and (47.4,29.17) .. (49.16,29.16) .. controls (50.92,29.15) and (52.35,30.54) .. (52.36,32.26) -- cycle ;
+%Flowchart: Connector [id:dp5471109757102788] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (52.03,53.67) .. controls (52.57,55.31) and (51.65,57.06) .. (49.97,57.59) .. controls (48.3,58.12) and (46.5,57.22) .. (45.96,55.58) .. controls (45.43,53.94) and (46.35,52.19) .. (48.02,51.66) .. controls (49.7,51.14) and (51.49,52.04) .. (52.03,53.67) -- cycle ;
+%Flowchart: Connector [id:dp8075598642665633] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (124.85,109.49) .. controls (125.39,111.13) and (124.47,112.89) .. (122.79,113.41) .. controls (121.12,113.94) and (119.32,113.04) .. (118.78,111.4) .. controls (118.25,109.77) and (119.17,108.01) .. (120.84,107.49) .. controls (122.52,106.96) and (124.31,107.86) .. (124.85,109.49) -- cycle ;
+%Flowchart: Connector [id:dp2549996394459424] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (49.83,71.18) .. controls (50.37,72.82) and (49.45,74.57) .. (47.78,75.1) .. controls (46.1,75.62) and (44.31,74.73) .. (43.77,73.09) .. controls (43.23,71.45) and (44.15,69.7) .. (45.82,69.17) .. controls (47.5,68.64) and (49.29,69.54) .. (49.83,71.18) -- cycle ;
+%Flowchart: Connector [id:dp5373674661009007] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (53.17,85.23) .. controls (53.71,86.86) and (52.79,88.62) .. (51.11,89.14) .. controls (49.44,89.67) and (47.64,88.77) .. (47.11,87.13) .. controls (46.57,85.5) and (47.49,83.74) .. (49.16,83.22) .. controls (50.84,82.69) and (52.63,83.59) .. (53.17,85.23) -- cycle ;
+%Flowchart: Connector [id:dp8286600247742404] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (58.73,64.4) .. controls (59.27,66.04) and (58.35,67.79) .. (56.68,68.32) .. controls (55,68.85) and (53.21,67.95) .. (52.67,66.31) .. controls (52.13,64.67) and (53.05,62.92) .. (54.72,62.39) .. controls (56.4,61.87) and (58.19,62.77) .. (58.73,64.4) -- cycle ;
+%Flowchart: Connector [id:dp893757668088438] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (186.75,52.78) .. controls (188.23,51.83) and (190.16,52.24) .. (191.08,53.7) .. controls (192,55.16) and (191.54,57.12) .. (190.07,58.07) .. controls (188.59,59.02) and (186.65,58.61) .. (185.74,57.15) .. controls (184.82,55.69) and (185.27,53.74) .. (186.75,52.78) -- cycle ;
+%Flowchart: Connector [id:dp17899335792167803] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (197.77,49.07) .. controls (199.24,48.12) and (201.18,48.53) .. (202.1,49.99) .. controls (203.01,51.45) and (202.56,53.41) .. (201.08,54.36) .. controls (199.61,55.31) and (197.67,54.9) .. (196.75,53.44) .. controls (195.84,51.98) and (196.29,50.02) .. (197.77,49.07) -- cycle ;
+%Flowchart: Connector [id:dp7587255291373214] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (155.11,83.11) .. controls (156.7,83.77) and (157.42,85.62) .. (156.72,87.23) .. controls (156.02,88.84) and (154.17,89.61) .. (152.58,88.94) .. controls (150.99,88.27) and (150.26,86.43) .. (150.96,84.82) .. controls (151.66,83.21) and (153.52,82.44) .. (155.11,83.11) -- cycle ;
+%Flowchart: Connector [id:dp054139719441495204] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (194.86,35.24) .. controls (196.34,34.29) and (198.28,34.7) .. (199.19,36.16) .. controls (200.11,37.62) and (199.65,39.57) .. (198.18,40.52) .. controls (196.7,41.48) and (194.76,41.06) .. (193.85,39.6) .. controls (192.93,38.14) and (193.39,36.19) .. (194.86,35.24) -- cycle ;
+%Flowchart: Connector [id:dp9131834684554605] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (187.47,43.6) .. controls (188.94,42.65) and (190.88,43.06) .. (191.8,44.52) .. controls (192.71,45.98) and (192.26,47.94) .. (190.78,48.89) .. controls (189.31,49.84) and (187.37,49.43) .. (186.45,47.97) .. controls (185.54,46.51) and (185.99,44.56) .. (187.47,43.6) -- cycle ;
+%Flowchart: Connector [id:dp7100769662603532] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (142.54,111.75) .. controls (144.13,112.42) and (144.86,114.26) .. (144.16,115.88) .. controls (143.46,117.49) and (141.6,118.25) .. (140.01,117.59) .. controls (138.42,116.92) and (137.7,115.08) .. (138.4,113.47) .. controls (139.1,111.85) and (140.96,111.09) .. (142.54,111.75) -- cycle ;
+%Flowchart: Connector [id:dp3837744287427165] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (152.58,88.94) .. controls (154.17,89.61) and (154.89,91.45) .. (154.19,93.06) .. controls (153.49,94.67) and (151.63,95.44) .. (150.04,94.77) .. controls (148.45,94.11) and (147.73,92.26) .. (148.43,90.65) .. controls (149.13,89.04) and (150.99,88.27) .. (152.58,88.94) -- cycle ;
+%Flowchart: Connector [id:dp09746146724686944] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (161.98,93.58) .. controls (163.57,94.25) and (164.29,96.09) .. (163.59,97.7) .. controls (162.89,99.32) and (161.04,100.08) .. (159.45,99.42) .. controls (157.86,98.75) and (157.14,96.91) .. (157.84,95.3) .. controls (158.54,93.68) and (160.39,92.92) .. (161.98,93.58) -- cycle ;
+%Flowchart: Connector [id:dp7425943261004049] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (177.34,62.36) .. controls (178.93,63.02) and (179.65,64.87) .. (178.95,66.48) .. controls (178.25,68.09) and (176.4,68.86) .. (174.81,68.19) .. controls (173.22,67.53) and (172.5,65.68) .. (173.19,64.07) .. controls (173.89,62.46) and (175.75,61.69) .. (177.34,62.36) -- cycle ;
+%Flowchart: Connector [id:dp09032722653939551] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (106.75,106.78) .. controls (108.23,105.83) and (110.16,106.24) .. (111.08,107.7) .. controls (112,109.16) and (111.54,111.12) .. (110.07,112.07) .. controls (108.59,113.02) and (106.65,112.61) .. (105.74,111.15) .. controls (104.82,109.69) and (105.27,107.74) .. (106.75,106.78) -- cycle ;
+%Flowchart: Connector [id:dp013551553007913553] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (117.77,103.07) .. controls (119.24,102.12) and (121.18,102.53) .. (122.1,103.99) .. controls (123.01,105.45) and (122.56,107.41) .. (121.08,108.36) .. controls (119.61,109.31) and (117.67,108.9) .. (116.75,107.44) .. controls (115.84,105.98) and (116.29,104.02) .. (117.77,103.07) -- cycle ;
+%Flowchart: Connector [id:dp05827118202685844] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (114.86,89.24) .. controls (116.34,88.29) and (118.28,88.7) .. (119.19,90.16) .. controls (120.11,91.62) and (119.65,93.57) .. (118.18,94.52) .. controls (116.7,95.48) and (114.76,95.06) .. (113.85,93.6) .. controls (112.93,92.14) and (113.39,90.19) .. (114.86,89.24) -- cycle ;
+%Flowchart: Connector [id:dp533807578128024] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (107.47,97.6) .. controls (108.94,96.65) and (110.88,97.06) .. (111.8,98.52) .. controls (112.71,99.98) and (112.26,101.94) .. (110.78,102.89) .. controls (109.31,103.84) and (107.37,103.43) .. (106.45,101.97) .. controls (105.54,100.51) and (105.99,98.56) .. (107.47,97.6) -- cycle ;
+
+
+% Text Node
+\draw (180.95,142.59) node   [align=left] {{\footnotesize $\displaystyle \hat{Y}_{i}$}};
+% Text Node
+\draw (11.06,12.76) node   [align=left] {{\footnotesize $\displaystyle \varepsilon _{i}$}};
+% Text Node
+\draw (16.57,80.53) node  [font=\normalsize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 3}\\{\tiny 2}\\{\tiny 1}\\{\tiny \textcolor[rgb]{0.25,0.46,0.02}{0}}\\{\tiny -1}\\{\tiny -2}\\{\tiny -3}
+\end{flushright}
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+
+On observe que les résidus sont presque tous négatifs entre 5 et 15 et presque tous positifs avant 5 et après 15. Donc, si les prévisions sont bizarres de façon systématique, il est probable que l'équation du modèle ne soit pas bien spécifiée.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Moyenne des résidus non-nulle}[\circled{2}{trueblue}]
+L'hypothèse que la moyenne des résidus est nulle peut être mise en question \textbf{si on voit qu'une région du graphique a une moyenne non-nulle}. Par exemple, les observations au milieu du graphique suivant ont une moyenne différente de zéro : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,166); %set diagram left start at 0, and has height of 166
+
+%Straight Lines [id:da14160522075917825] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (29.57,85.86) -- (161.09,85.86) ;
+%Shape: Axis 2D [id:dp2882626274081397] 
+\draw  (30.04,139.45) -- (171.4,139.45)(30.04,15.06) -- (30.04,139.45) -- cycle (164.4,134.45) -- (171.4,139.45) -- (164.4,144.45) (25.04,22.06) -- (30.04,15.06) -- (35.04,22.06)  ;
+%Flowchart: Connector [id:dp42274224837326746] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (66.99,100.34) .. controls (66.99,98.57) and (68.4,97.15) .. (70.13,97.15) .. controls (71.86,97.15) and (73.26,98.57) .. (73.26,100.34) .. controls (73.26,102.1) and (71.86,103.52) .. (70.13,103.52) .. controls (68.4,103.52) and (66.99,102.1) .. (66.99,100.34) -- cycle ;
+%Flowchart: Connector [id:dp825266714542503] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (121.38,97.35) .. controls (121.38,95.59) and (122.79,94.16) .. (124.52,94.16) .. controls (126.25,94.16) and (127.65,95.59) .. (127.65,97.35) .. controls (127.65,99.11) and (126.25,100.54) .. (124.52,100.54) .. controls (122.79,100.54) and (121.38,99.11) .. (121.38,97.35) -- cycle ;
+%Flowchart: Connector [id:dp5887277320925377] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (133.44,63.59) .. controls (133.44,61.83) and (134.84,60.4) .. (136.57,60.4) .. controls (138.3,60.4) and (139.7,61.83) .. (139.7,63.59) .. controls (139.7,65.35) and (138.3,66.78) .. (136.57,66.78) .. controls (134.84,66.78) and (133.44,65.35) .. (133.44,63.59) -- cycle ;
+%Flowchart: Connector [id:dp8026974837116998] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (85.23,69.55) .. controls (85.23,67.78) and (86.63,66.36) .. (88.36,66.36) .. controls (90.09,66.36) and (91.5,67.78) .. (91.5,69.55) .. controls (91.5,71.31) and (90.09,72.73) .. (88.36,72.73) .. controls (86.63,72.73) and (85.23,71.31) .. (85.23,69.55) -- cycle ;
+%Flowchart: Connector [id:dp9301193607228269] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (68.2,85.62) .. controls (68.2,83.85) and (69.6,82.43) .. (71.33,82.43) .. controls (73.06,82.43) and (74.46,83.85) .. (74.46,85.62) .. controls (74.46,87.38) and (73.06,88.8) .. (71.33,88.8) .. controls (69.6,88.8) and (68.2,87.38) .. (68.2,85.62) -- cycle ;
+%Flowchart: Connector [id:dp9419071461326944] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (121.38,90.97) .. controls (121.38,89.21) and (122.79,87.78) .. (124.52,87.78) .. controls (126.25,87.78) and (127.65,89.21) .. (127.65,90.97) .. controls (127.65,92.73) and (126.25,94.16) .. (124.52,94.16) .. controls (122.79,94.16) and (121.38,92.73) .. (121.38,90.97) -- cycle ;
+%Flowchart: Connector [id:dp8874952774757685] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (92.46,105.53) .. controls (92.46,103.77) and (93.86,102.34) .. (95.6,102.34) .. controls (97.33,102.34) and (98.73,103.77) .. (98.73,105.53) .. controls (98.73,107.29) and (97.33,108.72) .. (95.6,108.72) .. controls (93.86,108.72) and (92.46,107.29) .. (92.46,105.53) -- cycle ;
+%Flowchart: Connector [id:dp32372036613639854] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (100.9,95.72) .. controls (100.9,93.96) and (102.3,92.53) .. (104.03,92.53) .. controls (105.76,92.53) and (107.16,93.96) .. (107.16,95.72) .. controls (107.16,97.48) and (105.76,98.91) .. (104.03,98.91) .. controls (102.3,98.91) and (100.9,97.48) .. (100.9,95.72) -- cycle ;
+%Flowchart: Connector [id:dp8125265100612846] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157.38,76.26) .. controls (157.38,74.5) and (158.78,73.07) .. (160.51,73.07) .. controls (162.24,73.07) and (163.64,74.5) .. (163.64,76.26) .. controls (163.64,78.02) and (162.24,79.45) .. (160.51,79.45) .. controls (158.78,79.45) and (157.38,78.02) .. (157.38,76.26) -- cycle ;
+%Flowchart: Connector [id:dp7304518484166878] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (133.44,93.03) .. controls (133.44,91.27) and (134.84,89.84) .. (136.57,89.84) .. controls (138.3,89.84) and (139.7,91.27) .. (139.7,93.03) .. controls (139.7,94.79) and (138.3,96.22) .. (136.57,96.22) .. controls (134.84,96.22) and (133.44,94.79) .. (133.44,93.03) -- cycle ;
+%Flowchart: Connector [id:dp5868086799864194] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (149.1,91.8) .. controls (149.1,90.04) and (150.5,88.61) .. (152.23,88.61) .. controls (153.97,88.61) and (155.37,90.04) .. (155.37,91.8) .. controls (155.37,93.56) and (153.97,94.99) .. (152.23,94.99) .. controls (150.5,94.99) and (149.1,93.56) .. (149.1,91.8) -- cycle ;
+%Flowchart: Connector [id:dp9833222438990417] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (134.64,78.31) .. controls (134.64,76.55) and (136.04,75.12) .. (137.77,75.12) .. controls (139.5,75.12) and (140.91,76.55) .. (140.91,78.31) .. controls (140.91,80.07) and (139.5,81.5) .. (137.77,81.5) .. controls (136.04,81.5) and (134.64,80.07) .. (134.64,78.31) -- cycle ;
+%Flowchart: Connector [id:dp060412691420569375] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (54.94,80.71) .. controls (54.94,78.95) and (56.34,77.52) .. (58.07,77.52) .. controls (59.81,77.52) and (61.21,78.95) .. (61.21,80.71) .. controls (61.21,82.47) and (59.81,83.9) .. (58.07,83.9) .. controls (56.34,83.9) and (54.94,82.47) .. (54.94,80.71) -- cycle ;
+%Flowchart: Connector [id:dp8936630562153962] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (70.61,75.8) .. controls (70.61,74.04) and (72.01,72.61) .. (73.74,72.61) .. controls (75.47,72.61) and (76.87,74.04) .. (76.87,75.8) .. controls (76.87,77.56) and (75.47,78.99) .. (73.74,78.99) .. controls (72.01,78.99) and (70.61,77.56) .. (70.61,75.8) -- cycle ;
+%Flowchart: Connector [id:dp9612879891185686] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (56.15,62.31) .. controls (56.15,60.55) and (57.55,59.12) .. (59.28,59.12) .. controls (61.01,59.12) and (62.41,60.55) .. (62.41,62.31) .. controls (62.41,64.07) and (61.01,65.5) .. (59.28,65.5) .. controls (57.55,65.5) and (56.15,64.07) .. (56.15,62.31) -- cycle ;
+%Flowchart: Connector [id:dp9830180301632552] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (102.1,79.77) .. controls (102.1,78.01) and (103.51,76.58) .. (105.24,76.58) .. controls (106.97,76.58) and (108.37,78.01) .. (108.37,79.77) .. controls (108.37,81.53) and (106.97,82.96) .. (105.24,82.96) .. controls (103.51,82.96) and (102.1,81.53) .. (102.1,79.77) -- cycle ;
+%Flowchart: Connector [id:dp692071406451706] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (134.15,101.44) .. controls (134.15,99.67) and (135.56,98.25) .. (137.29,98.25) .. controls (139.02,98.25) and (140.42,99.67) .. (140.42,101.44) .. controls (140.42,103.2) and (139.02,104.62) .. (137.29,104.62) .. controls (135.56,104.62) and (134.15,103.2) .. (134.15,101.44) -- cycle ;
+%Flowchart: Connector [id:dp5648329081382175] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (38.07,70.65) .. controls (38.07,68.89) and (39.47,67.46) .. (41.2,67.46) .. controls (42.93,67.46) and (44.34,68.89) .. (44.34,70.65) .. controls (44.34,72.41) and (42.93,73.84) .. (41.2,73.84) .. controls (39.47,73.84) and (38.07,72.41) .. (38.07,70.65) -- cycle ;
+%Flowchart: Connector [id:dp0705497505785524] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (54,106.23) .. controls (54,104.47) and (55.4,103.04) .. (57.13,103.04) .. controls (58.86,103.04) and (60.27,104.47) .. (60.27,106.23) .. controls (60.27,107.99) and (58.86,109.42) .. (57.13,109.42) .. controls (55.4,109.42) and (54,107.99) .. (54,106.23) -- cycle ;
+%Flowchart: Connector [id:dp5759325110839109] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (39.54,92.74) .. controls (39.54,90.98) and (40.94,89.55) .. (42.67,89.55) .. controls (44.4,89.55) and (45.81,90.98) .. (45.81,92.74) .. controls (45.81,94.5) and (44.4,95.93) .. (42.67,95.93) .. controls (40.94,95.93) and (39.54,94.5) .. (39.54,92.74) -- cycle ;
+%Flowchart: Connector [id:dp4219736966659511] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (97.18,119.61) .. controls (97.18,117.85) and (98.58,116.42) .. (100.31,116.42) .. controls (102.04,116.42) and (103.45,117.85) .. (103.45,119.61) .. controls (103.45,121.37) and (102.04,122.8) .. (100.31,122.8) .. controls (98.58,122.8) and (97.18,121.37) .. (97.18,119.61) -- cycle ;
+%Flowchart: Connector [id:dp3170865393964064] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (82.72,106.12) .. controls (82.72,104.36) and (84.12,102.93) .. (85.85,102.93) .. controls (87.58,102.93) and (88.99,104.36) .. (88.99,106.12) .. controls (88.99,107.88) and (87.58,109.31) .. (85.85,109.31) .. controls (84.12,109.31) and (82.72,107.88) .. (82.72,106.12) -- cycle ;
+%Flowchart: Connector [id:dp5206991100684877] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (102.16,94.25) .. controls (102.16,92.49) and (103.57,91.07) .. (105.3,91.07) .. controls (107.03,91.07) and (108.43,92.49) .. (108.43,94.25) .. controls (108.43,96.02) and (107.03,97.44) .. (105.3,97.44) .. controls (103.57,97.44) and (102.16,96.02) .. (102.16,94.25) -- cycle ;
+%Flowchart: Connector [id:dp7763795939402349] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (82.72,84.14) .. controls (82.72,82.38) and (84.12,80.95) .. (85.85,80.95) .. controls (87.58,80.95) and (88.99,82.38) .. (88.99,84.14) .. controls (88.99,85.9) and (87.58,87.33) .. (85.85,87.33) .. controls (84.12,87.33) and (82.72,85.9) .. (82.72,84.14) -- cycle ;
+%Flowchart: Connector [id:dp9026962093110023] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (127.99,110.34) .. controls (127.99,108.57) and (129.4,107.15) .. (131.13,107.15) .. controls (132.86,107.15) and (134.26,108.57) .. (134.26,110.34) .. controls (134.26,112.1) and (132.86,113.52) .. (131.13,113.52) .. controls (129.4,113.52) and (127.99,112.1) .. (127.99,110.34) -- cycle ;
+%Flowchart: Connector [id:dp34391134691630953] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (153.46,105.53) .. controls (153.46,103.77) and (154.86,102.34) .. (156.6,102.34) .. controls (158.33,102.34) and (159.73,103.77) .. (159.73,105.53) .. controls (159.73,107.29) and (158.33,108.72) .. (156.6,108.72) .. controls (154.86,108.72) and (153.46,107.29) .. (153.46,105.53) -- cycle ;
+%Flowchart: Connector [id:dp620630518526812] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (115,124.23) .. controls (115,122.47) and (116.4,121.04) .. (118.13,121.04) .. controls (119.86,121.04) and (121.27,122.47) .. (121.27,124.23) .. controls (121.27,125.99) and (119.86,127.42) .. (118.13,127.42) .. controls (116.4,127.42) and (115,125.99) .. (115,124.23) -- cycle ;
+%Flowchart: Connector [id:dp6869718326310532] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (158.18,119.61) .. controls (158.18,117.85) and (159.58,116.42) .. (161.31,116.42) .. controls (163.04,116.42) and (164.45,117.85) .. (164.45,119.61) .. controls (164.45,121.37) and (163.04,122.8) .. (161.31,122.8) .. controls (159.58,122.8) and (158.18,121.37) .. (158.18,119.61) -- cycle ;
+%Flowchart: Connector [id:dp15363670438888755] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (143.72,106.12) .. controls (143.72,104.36) and (145.12,102.93) .. (146.85,102.93) .. controls (148.58,102.93) and (149.99,104.36) .. (149.99,106.12) .. controls (149.99,107.88) and (148.58,109.31) .. (146.85,109.31) .. controls (145.12,109.31) and (143.72,107.88) .. (143.72,106.12) -- cycle ;
+%Flowchart: Connector [id:dp9823792520704608] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (77.99,102.34) .. controls (77.99,100.57) and (79.4,99.15) .. (81.13,99.15) .. controls (82.86,99.15) and (84.26,100.57) .. (84.26,102.34) .. controls (84.26,104.1) and (82.86,105.52) .. (81.13,105.52) .. controls (79.4,105.52) and (77.99,104.1) .. (77.99,102.34) -- cycle ;
+%Flowchart: Connector [id:dp9302056068701354] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (103.46,113.53) .. controls (103.46,111.77) and (104.86,110.34) .. (106.6,110.34) .. controls (108.33,110.34) and (109.73,111.77) .. (109.73,113.53) .. controls (109.73,115.29) and (108.33,116.72) .. (106.6,116.72) .. controls (104.86,116.72) and (103.46,115.29) .. (103.46,113.53) -- cycle ;
+%Flowchart: Connector [id:dp9460762624781285] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (65,114.23) .. controls (65,112.47) and (66.4,111.04) .. (68.13,111.04) .. controls (69.86,111.04) and (71.27,112.47) .. (71.27,114.23) .. controls (71.27,115.99) and (69.86,117.42) .. (68.13,117.42) .. controls (66.4,117.42) and (65,115.99) .. (65,114.23) -- cycle ;
+%Flowchart: Connector [id:dp338279997250446] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (108.18,127.61) .. controls (108.18,125.85) and (109.58,124.42) .. (111.31,124.42) .. controls (113.04,124.42) and (114.45,125.85) .. (114.45,127.61) .. controls (114.45,129.37) and (113.04,130.8) .. (111.31,130.8) .. controls (109.58,130.8) and (108.18,129.37) .. (108.18,127.61) -- cycle ;
+%Flowchart: Connector [id:dp4740081866971382] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (93.72,114.12) .. controls (93.72,112.36) and (95.12,110.93) .. (96.85,110.93) .. controls (98.58,110.93) and (99.99,112.36) .. (99.99,114.12) .. controls (99.99,115.88) and (98.58,117.31) .. (96.85,117.31) .. controls (95.12,117.31) and (93.72,115.88) .. (93.72,114.12) -- cycle ;
+%Flowchart: Connector [id:dp051503912979275146] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (77.99,58.34) .. controls (77.99,56.57) and (79.4,55.15) .. (81.13,55.15) .. controls (82.86,55.15) and (84.26,56.57) .. (84.26,58.34) .. controls (84.26,60.1) and (82.86,61.52) .. (81.13,61.52) .. controls (79.4,61.52) and (77.99,60.1) .. (77.99,58.34) -- cycle ;
+%Flowchart: Connector [id:dp5952521469836121] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (123.46,106.53) .. controls (123.46,104.77) and (124.86,103.34) .. (126.6,103.34) .. controls (128.33,103.34) and (129.73,104.77) .. (129.73,106.53) .. controls (129.73,108.29) and (128.33,109.72) .. (126.6,109.72) .. controls (124.86,109.72) and (123.46,108.29) .. (123.46,106.53) -- cycle ;
+%Flowchart: Connector [id:dp9076189385174436] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (65,64.23) .. controls (65,62.47) and (66.4,61.04) .. (68.13,61.04) .. controls (69.86,61.04) and (71.27,62.47) .. (71.27,64.23) .. controls (71.27,65.99) and (69.86,67.42) .. (68.13,67.42) .. controls (66.4,67.42) and (65,65.99) .. (65,64.23) -- cycle ;
+%Flowchart: Connector [id:dp8630194276723298] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (110.18,76.61) .. controls (110.18,74.85) and (111.58,73.42) .. (113.31,73.42) .. controls (115.04,73.42) and (116.45,74.85) .. (116.45,76.61) .. controls (116.45,78.37) and (115.04,79.8) .. (113.31,79.8) .. controls (111.58,79.8) and (110.18,78.37) .. (110.18,76.61) -- cycle ;
+%Flowchart: Connector [id:dp6074397187736662] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (113.72,107.12) .. controls (113.72,105.36) and (115.12,103.93) .. (116.85,103.93) .. controls (118.58,103.93) and (119.99,105.36) .. (119.99,107.12) .. controls (119.99,108.88) and (118.58,110.31) .. (116.85,110.31) .. controls (115.12,110.31) and (113.72,108.88) .. (113.72,107.12) -- cycle ;
+%Flowchart: Connector [id:dp5069240193735522] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (75.23,64.55) .. controls (75.23,62.78) and (76.63,61.36) .. (78.36,61.36) .. controls (80.09,61.36) and (81.5,62.78) .. (81.5,64.55) .. controls (81.5,66.31) and (80.09,67.73) .. (78.36,67.73) .. controls (76.63,67.73) and (75.23,66.31) .. (75.23,64.55) -- cycle ;
+%Flowchart: Connector [id:dp3094453863212987] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (52.15,51.31) .. controls (52.15,49.55) and (53.55,48.12) .. (55.28,48.12) .. controls (57.01,48.12) and (58.41,49.55) .. (58.41,51.31) .. controls (58.41,53.07) and (57.01,54.5) .. (55.28,54.5) .. controls (53.55,54.5) and (52.15,53.07) .. (52.15,51.31) -- cycle ;
+%Flowchart: Connector [id:dp75105286329826] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (34.07,59.65) .. controls (34.07,57.89) and (35.47,56.46) .. (37.2,56.46) .. controls (38.93,56.46) and (40.34,57.89) .. (40.34,59.65) .. controls (40.34,61.41) and (38.93,62.84) .. (37.2,62.84) .. controls (35.47,62.84) and (34.07,61.41) .. (34.07,59.65) -- cycle ;
+%Flowchart: Connector [id:dp7434782018645043] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (73.99,47.34) .. controls (73.99,45.57) and (75.4,44.15) .. (77.13,44.15) .. controls (78.86,44.15) and (80.26,45.57) .. (80.26,47.34) .. controls (80.26,49.1) and (78.86,50.52) .. (77.13,50.52) .. controls (75.4,50.52) and (73.99,49.1) .. (73.99,47.34) -- cycle ;
+%Flowchart: Connector [id:dp10537903239986379] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (61,53.23) .. controls (61,51.47) and (62.4,50.04) .. (64.13,50.04) .. controls (65.86,50.04) and (67.27,51.47) .. (67.27,53.23) .. controls (67.27,54.99) and (65.86,56.42) .. (64.13,56.42) .. controls (62.4,56.42) and (61,54.99) .. (61,53.23) -- cycle ;
+%Flowchart: Connector [id:dp732538349050351] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (124.44,55.59) .. controls (124.44,53.83) and (125.84,52.4) .. (127.57,52.4) .. controls (129.3,52.4) and (130.7,53.83) .. (130.7,55.59) .. controls (130.7,57.35) and (129.3,58.78) .. (127.57,58.78) .. controls (125.84,58.78) and (124.44,57.35) .. (124.44,55.59) -- cycle ;
+%Flowchart: Connector [id:dp6929360196993277] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (148.38,68.26) .. controls (148.38,66.5) and (149.78,65.07) .. (151.51,65.07) .. controls (153.24,65.07) and (154.64,66.5) .. (154.64,68.26) .. controls (154.64,70.02) and (153.24,71.45) .. (151.51,71.45) .. controls (149.78,71.45) and (148.38,70.02) .. (148.38,68.26) -- cycle ;
+%Flowchart: Connector [id:dp20514932200476088] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (125.64,70.31) .. controls (125.64,68.55) and (127.04,67.12) .. (128.77,67.12) .. controls (130.5,67.12) and (131.91,68.55) .. (131.91,70.31) .. controls (131.91,72.07) and (130.5,73.5) .. (128.77,73.5) .. controls (127.04,73.5) and (125.64,72.07) .. (125.64,70.31) -- cycle ;
+%Flowchart: Connector [id:dp15408747151680635] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (149.44,59.59) .. controls (149.44,57.83) and (150.84,56.4) .. (152.57,56.4) .. controls (154.3,56.4) and (155.7,57.83) .. (155.7,59.59) .. controls (155.7,61.35) and (154.3,62.78) .. (152.57,62.78) .. controls (150.84,62.78) and (149.44,61.35) .. (149.44,59.59) -- cycle ;
+%Flowchart: Connector [id:dp37872625292944284] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (140.44,51.59) .. controls (140.44,49.83) and (141.84,48.4) .. (143.57,48.4) .. controls (145.3,48.4) and (146.7,49.83) .. (146.7,51.59) .. controls (146.7,53.35) and (145.3,54.78) .. (143.57,54.78) .. controls (141.84,54.78) and (140.44,53.35) .. (140.44,51.59) -- cycle ;
+%Flowchart: Connector [id:dp4264646967251009] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (164.38,64.26) .. controls (164.38,62.5) and (165.78,61.07) .. (167.51,61.07) .. controls (169.24,61.07) and (170.64,62.5) .. (170.64,64.26) .. controls (170.64,66.02) and (169.24,67.45) .. (167.51,67.45) .. controls (165.78,67.45) and (164.38,66.02) .. (164.38,64.26) -- cycle ;
+
+% Text Node
+\draw (10.8,15.15) node   [align=left] {{\footnotesize $\displaystyle \varepsilon _{i}$}};
+% Text Node
+\draw (19.26,82.92) node  [font=\normalsize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 3}\\{\tiny 2}\\{\tiny 1}\\{\tiny \textcolor[rgb]{0.25,0.46,0.02}{0}}\\{\tiny -1}\\{\tiny -2}\\{\tiny -3}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (181.95,146.2) node   [align=left] {{\footnotesize $\displaystyle \hat{Y}_{i}$}};
+\end{tikzpicture}
+\end{center}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Hétéroscédasticité}[\circled{3}{trueblue}]
+Le modèle de régression linéaire pose \textit{\color{bleudefrance}\underline{\hyperlink{homoscedasticity}{\color{bleudefrance} l'homoscédasticité}}}. C'est-à-dire, que tous les termes d'erreur on la même variance. Cette hypothèse peut donc non-respectée si les résidus sont distribués de façon non-aléatoire et qu'on observe un patron dans les résidus. Typiquement, on utilise un entonnoir pour visualiser; voici deux exemples :  
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,166); %set diagram left start at 0, and has height of 166
+
+%Straight Lines [id:da7214404329259465] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (29.57,83.86) -- (161.09,83.86) ;
+%Shape: Axis 2D [id:dp3545435555137326] 
+\draw  (30.04,137.45) -- (171.4,137.45)(30.04,13.06) -- (30.04,137.45) -- cycle (164.4,132.45) -- (171.4,137.45) -- (164.4,142.45) (25.04,20.06) -- (30.04,13.06) -- (35.04,20.06)  ;
+%Flowchart: Connector [id:dp8721585558791203] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (104.99,50.34) .. controls (104.99,48.57) and (106.4,47.15) .. (108.13,47.15) .. controls (109.86,47.15) and (111.26,48.57) .. (111.26,50.34) .. controls (111.26,52.1) and (109.86,53.52) .. (108.13,53.52) .. controls (106.4,53.52) and (104.99,52.1) .. (104.99,50.34) -- cycle ;
+%Flowchart: Connector [id:dp4479900557374681] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (121.38,95.35) .. controls (121.38,93.59) and (122.79,92.16) .. (124.52,92.16) .. controls (126.25,92.16) and (127.65,93.59) .. (127.65,95.35) .. controls (127.65,97.11) and (126.25,98.54) .. (124.52,98.54) .. controls (122.79,98.54) and (121.38,97.11) .. (121.38,95.35) -- cycle ;
+%Flowchart: Connector [id:dp8415992830885808] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (133.44,69.59) .. controls (133.44,67.83) and (134.84,66.4) .. (136.57,66.4) .. controls (138.3,66.4) and (139.7,67.83) .. (139.7,69.59) .. controls (139.7,71.35) and (138.3,72.78) .. (136.57,72.78) .. controls (134.84,72.78) and (133.44,71.35) .. (133.44,69.59) -- cycle ;
+%Flowchart: Connector [id:dp05074234731970195] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (85.23,76.55) .. controls (85.23,74.78) and (86.63,73.36) .. (88.36,73.36) .. controls (90.09,73.36) and (91.5,74.78) .. (91.5,76.55) .. controls (91.5,78.31) and (90.09,79.73) .. (88.36,79.73) .. controls (86.63,79.73) and (85.23,78.31) .. (85.23,76.55) -- cycle ;
+%Flowchart: Connector [id:dp23034070500859816] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (68.2,93.62) .. controls (68.2,91.85) and (69.6,90.43) .. (71.33,90.43) .. controls (73.06,90.43) and (74.46,91.85) .. (74.46,93.62) .. controls (74.46,95.38) and (73.06,96.8) .. (71.33,96.8) .. controls (69.6,96.8) and (68.2,95.38) .. (68.2,93.62) -- cycle ;
+%Flowchart: Connector [id:dp6894795329049583] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (121.38,88.97) .. controls (121.38,87.21) and (122.79,85.78) .. (124.52,85.78) .. controls (126.25,85.78) and (127.65,87.21) .. (127.65,88.97) .. controls (127.65,90.73) and (126.25,92.16) .. (124.52,92.16) .. controls (122.79,92.16) and (121.38,90.73) .. (121.38,88.97) -- cycle ;
+%Flowchart: Connector [id:dp3275016367574637] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (92.46,103.53) .. controls (92.46,101.77) and (93.86,100.34) .. (95.6,100.34) .. controls (97.33,100.34) and (98.73,101.77) .. (98.73,103.53) .. controls (98.73,105.29) and (97.33,106.72) .. (95.6,106.72) .. controls (93.86,106.72) and (92.46,105.29) .. (92.46,103.53) -- cycle ;
+%Flowchart: Connector [id:dp4869615584601392] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (100.9,93.72) .. controls (100.9,91.96) and (102.3,90.53) .. (104.03,90.53) .. controls (105.76,90.53) and (107.16,91.96) .. (107.16,93.72) .. controls (107.16,95.48) and (105.76,96.91) .. (104.03,96.91) .. controls (102.3,96.91) and (100.9,95.48) .. (100.9,93.72) -- cycle ;
+%Flowchart: Connector [id:dp2265228137909432] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157.38,82.26) .. controls (157.38,80.5) and (158.78,79.07) .. (160.51,79.07) .. controls (162.24,79.07) and (163.64,80.5) .. (163.64,82.26) .. controls (163.64,84.02) and (162.24,85.45) .. (160.51,85.45) .. controls (158.78,85.45) and (157.38,84.02) .. (157.38,82.26) -- cycle ;
+%Flowchart: Connector [id:dp748905060312568] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (133.44,99.03) .. controls (133.44,97.27) and (134.84,95.84) .. (136.57,95.84) .. controls (138.3,95.84) and (139.7,97.27) .. (139.7,99.03) .. controls (139.7,100.79) and (138.3,102.22) .. (136.57,102.22) .. controls (134.84,102.22) and (133.44,100.79) .. (133.44,99.03) -- cycle ;
+%Flowchart: Connector [id:dp14544339640792403] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (149.1,97.8) .. controls (149.1,96.04) and (150.5,94.61) .. (152.23,94.61) .. controls (153.97,94.61) and (155.37,96.04) .. (155.37,97.8) .. controls (155.37,99.56) and (153.97,100.99) .. (152.23,100.99) .. controls (150.5,100.99) and (149.1,99.56) .. (149.1,97.8) -- cycle ;
+%Flowchart: Connector [id:dp5513126960165935] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (134.64,84.31) .. controls (134.64,82.55) and (136.04,81.12) .. (137.77,81.12) .. controls (139.5,81.12) and (140.91,82.55) .. (140.91,84.31) .. controls (140.91,86.07) and (139.5,87.5) .. (137.77,87.5) .. controls (136.04,87.5) and (134.64,86.07) .. (134.64,84.31) -- cycle ;
+%Flowchart: Connector [id:dp6272535363877361] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (54.94,88.71) .. controls (54.94,86.95) and (56.34,85.52) .. (58.07,85.52) .. controls (59.81,85.52) and (61.21,86.95) .. (61.21,88.71) .. controls (61.21,90.47) and (59.81,91.9) .. (58.07,91.9) .. controls (56.34,91.9) and (54.94,90.47) .. (54.94,88.71) -- cycle ;
+%Flowchart: Connector [id:dp8253195281018946] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (70.61,83.8) .. controls (70.61,82.04) and (72.01,80.61) .. (73.74,80.61) .. controls (75.47,80.61) and (76.87,82.04) .. (76.87,83.8) .. controls (76.87,85.56) and (75.47,86.99) .. (73.74,86.99) .. controls (72.01,86.99) and (70.61,85.56) .. (70.61,83.8) -- cycle ;
+%Flowchart: Connector [id:dp14403690892599097] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (56.15,75.31) .. controls (56.15,73.55) and (57.55,72.12) .. (59.28,72.12) .. controls (61.01,72.12) and (62.41,73.55) .. (62.41,75.31) .. controls (62.41,77.07) and (61.01,78.5) .. (59.28,78.5) .. controls (57.55,78.5) and (56.15,77.07) .. (56.15,75.31) -- cycle ;
+%Flowchart: Connector [id:dp3838366272318998] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (102.1,77.77) .. controls (102.1,76.01) and (103.51,74.58) .. (105.24,74.58) .. controls (106.97,74.58) and (108.37,76.01) .. (108.37,77.77) .. controls (108.37,79.53) and (106.97,80.96) .. (105.24,80.96) .. controls (103.51,80.96) and (102.1,79.53) .. (102.1,77.77) -- cycle ;
+%Flowchart: Connector [id:dp21842031994086053] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (134.15,107.44) .. controls (134.15,105.67) and (135.56,104.25) .. (137.29,104.25) .. controls (139.02,104.25) and (140.42,105.67) .. (140.42,107.44) .. controls (140.42,109.2) and (139.02,110.62) .. (137.29,110.62) .. controls (135.56,110.62) and (134.15,109.2) .. (134.15,107.44) -- cycle ;
+%Flowchart: Connector [id:dp4365418229288329] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (38.07,78.65) .. controls (38.07,76.89) and (39.47,75.46) .. (41.2,75.46) .. controls (42.93,75.46) and (44.34,76.89) .. (44.34,78.65) .. controls (44.34,80.41) and (42.93,81.84) .. (41.2,81.84) .. controls (39.47,81.84) and (38.07,80.41) .. (38.07,78.65) -- cycle ;
+%Flowchart: Connector [id:dp5398881221724936] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (92,56.23) .. controls (92,54.47) and (93.4,53.04) .. (95.13,53.04) .. controls (96.86,53.04) and (98.27,54.47) .. (98.27,56.23) .. controls (98.27,57.99) and (96.86,59.42) .. (95.13,59.42) .. controls (93.4,59.42) and (92,57.99) .. (92,56.23) -- cycle ;
+%Flowchart: Connector [id:dp35778996275486774] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (45.54,88.74) .. controls (45.54,86.98) and (46.94,85.55) .. (48.67,85.55) .. controls (50.4,85.55) and (51.81,86.98) .. (51.81,88.74) .. controls (51.81,90.5) and (50.4,91.93) .. (48.67,91.93) .. controls (46.94,91.93) and (45.54,90.5) .. (45.54,88.74) -- cycle ;
+%Flowchart: Connector [id:dp6596458523724842] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (94.18,115.61) .. controls (94.18,113.85) and (95.58,112.42) .. (97.31,112.42) .. controls (99.04,112.42) and (100.45,113.85) .. (100.45,115.61) .. controls (100.45,117.37) and (99.04,118.8) .. (97.31,118.8) .. controls (95.58,118.8) and (94.18,117.37) .. (94.18,115.61) -- cycle ;
+%Flowchart: Connector [id:dp6212707070179906] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (82.72,104.12) .. controls (82.72,102.36) and (84.12,100.93) .. (85.85,100.93) .. controls (87.58,100.93) and (88.99,102.36) .. (88.99,104.12) .. controls (88.99,105.88) and (87.58,107.31) .. (85.85,107.31) .. controls (84.12,107.31) and (82.72,105.88) .. (82.72,104.12) -- cycle ;
+%Flowchart: Connector [id:dp7035650628565184] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (102.16,92.25) .. controls (102.16,90.49) and (103.57,89.07) .. (105.3,89.07) .. controls (107.03,89.07) and (108.43,90.49) .. (108.43,92.25) .. controls (108.43,94.02) and (107.03,95.44) .. (105.3,95.44) .. controls (103.57,95.44) and (102.16,94.02) .. (102.16,92.25) -- cycle ;
+%Flowchart: Connector [id:dp2986023907550268] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (82.72,82.14) .. controls (82.72,80.38) and (84.12,78.95) .. (85.85,78.95) .. controls (87.58,78.95) and (88.99,80.38) .. (88.99,82.14) .. controls (88.99,83.9) and (87.58,85.33) .. (85.85,85.33) .. controls (84.12,85.33) and (82.72,83.9) .. (82.72,82.14) -- cycle ;
+%Flowchart: Connector [id:dp9716331962580107] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (127.99,116.34) .. controls (127.99,114.57) and (129.4,113.15) .. (131.13,113.15) .. controls (132.86,113.15) and (134.26,114.57) .. (134.26,116.34) .. controls (134.26,118.1) and (132.86,119.52) .. (131.13,119.52) .. controls (129.4,119.52) and (127.99,118.1) .. (127.99,116.34) -- cycle ;
+%Flowchart: Connector [id:dp8896315505034964] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (153.46,111.53) .. controls (153.46,109.77) and (154.86,108.34) .. (156.6,108.34) .. controls (158.33,108.34) and (159.73,109.77) .. (159.73,111.53) .. controls (159.73,113.29) and (158.33,114.72) .. (156.6,114.72) .. controls (154.86,114.72) and (153.46,113.29) .. (153.46,111.53) -- cycle ;
+%Flowchart: Connector [id:dp891595005635373] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (115,122.23) .. controls (115,120.47) and (116.4,119.04) .. (118.13,119.04) .. controls (119.86,119.04) and (121.27,120.47) .. (121.27,122.23) .. controls (121.27,123.99) and (119.86,125.42) .. (118.13,125.42) .. controls (116.4,125.42) and (115,123.99) .. (115,122.23) -- cycle ;
+%Flowchart: Connector [id:dp0039460689366324075] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (158.18,125.61) .. controls (158.18,123.85) and (159.58,122.42) .. (161.31,122.42) .. controls (163.04,122.42) and (164.45,123.85) .. (164.45,125.61) .. controls (164.45,127.37) and (163.04,128.8) .. (161.31,128.8) .. controls (159.58,128.8) and (158.18,127.37) .. (158.18,125.61) -- cycle ;
+%Flowchart: Connector [id:dp020249471101910332] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (143.72,112.12) .. controls (143.72,110.36) and (145.12,108.93) .. (146.85,108.93) .. controls (148.58,108.93) and (149.99,110.36) .. (149.99,112.12) .. controls (149.99,113.88) and (148.58,115.31) .. (146.85,115.31) .. controls (145.12,115.31) and (143.72,113.88) .. (143.72,112.12) -- cycle ;
+%Flowchart: Connector [id:dp6419772656901201] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (71.99,102.34) .. controls (71.99,100.57) and (73.4,99.15) .. (75.13,99.15) .. controls (76.86,99.15) and (78.26,100.57) .. (78.26,102.34) .. controls (78.26,104.1) and (76.86,105.52) .. (75.13,105.52) .. controls (73.4,105.52) and (71.99,104.1) .. (71.99,102.34) -- cycle ;
+%Flowchart: Connector [id:dp00552316015484644] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (103.46,111.53) .. controls (103.46,109.77) and (104.86,108.34) .. (106.6,108.34) .. controls (108.33,108.34) and (109.73,109.77) .. (109.73,111.53) .. controls (109.73,113.29) and (108.33,114.72) .. (106.6,114.72) .. controls (104.86,114.72) and (103.46,113.29) .. (103.46,111.53) -- cycle ;
+%Flowchart: Connector [id:dp48128293362311414] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (103,64.23) .. controls (103,62.47) and (104.4,61.04) .. (106.13,61.04) .. controls (107.86,61.04) and (109.27,62.47) .. (109.27,64.23) .. controls (109.27,65.99) and (107.86,67.42) .. (106.13,67.42) .. controls (104.4,67.42) and (103,65.99) .. (103,64.23) -- cycle ;
+%Flowchart: Connector [id:dp5426255393341546] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (138.18,125.61) .. controls (138.18,123.85) and (139.58,122.42) .. (141.31,122.42) .. controls (143.04,122.42) and (144.45,123.85) .. (144.45,125.61) .. controls (144.45,127.37) and (143.04,128.8) .. (141.31,128.8) .. controls (139.58,128.8) and (138.18,127.37) .. (138.18,125.61) -- cycle ;
+%Flowchart: Connector [id:dp07358978830306251] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (88.72,92.12) .. controls (88.72,90.36) and (90.12,88.93) .. (91.85,88.93) .. controls (93.58,88.93) and (94.99,90.36) .. (94.99,92.12) .. controls (94.99,93.88) and (93.58,95.31) .. (91.85,95.31) .. controls (90.12,95.31) and (88.72,93.88) .. (88.72,92.12) -- cycle ;
+%Flowchart: Connector [id:dp8069291518438786] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (77.99,66.34) .. controls (77.99,64.57) and (79.4,63.15) .. (81.13,63.15) .. controls (82.86,63.15) and (84.26,64.57) .. (84.26,66.34) .. controls (84.26,68.1) and (82.86,69.52) .. (81.13,69.52) .. controls (79.4,69.52) and (77.99,68.1) .. (77.99,66.34) -- cycle ;
+%Flowchart: Connector [id:dp31959564126239837] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (123.46,104.53) .. controls (123.46,102.77) and (124.86,101.34) .. (126.6,101.34) .. controls (128.33,101.34) and (129.73,102.77) .. (129.73,104.53) .. controls (129.73,106.29) and (128.33,107.72) .. (126.6,107.72) .. controls (124.86,107.72) and (123.46,106.29) .. (123.46,104.53) -- cycle ;
+%Flowchart: Connector [id:dp8042090323925111] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (65,72.23) .. controls (65,70.47) and (66.4,69.04) .. (68.13,69.04) .. controls (69.86,69.04) and (71.27,70.47) .. (71.27,72.23) .. controls (71.27,73.99) and (69.86,75.42) .. (68.13,75.42) .. controls (66.4,75.42) and (65,73.99) .. (65,72.23) -- cycle ;
+%Flowchart: Connector [id:dp762712284662393] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (108.18,75.61) .. controls (108.18,73.85) and (109.58,72.42) .. (111.31,72.42) .. controls (113.04,72.42) and (114.45,73.85) .. (114.45,75.61) .. controls (114.45,77.37) and (113.04,78.8) .. (111.31,78.8) .. controls (109.58,78.8) and (108.18,77.37) .. (108.18,75.61) -- cycle ;
+%Flowchart: Connector [id:dp7942194668290266] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (113.72,105.12) .. controls (113.72,103.36) and (115.12,101.93) .. (116.85,101.93) .. controls (118.58,101.93) and (119.99,103.36) .. (119.99,105.12) .. controls (119.99,106.88) and (118.58,108.31) .. (116.85,108.31) .. controls (115.12,108.31) and (113.72,106.88) .. (113.72,105.12) -- cycle ;
+%Flowchart: Connector [id:dp9318109632509302] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (150.15,52.44) .. controls (150.15,50.67) and (151.56,49.25) .. (153.29,49.25) .. controls (155.02,49.25) and (156.42,50.67) .. (156.42,52.44) .. controls (156.42,54.2) and (155.02,55.62) .. (153.29,55.62) .. controls (151.56,55.62) and (150.15,54.2) .. (150.15,52.44) -- cycle ;
+%Flowchart: Connector [id:dp9145090355442493] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (143.99,61.34) .. controls (143.99,59.57) and (145.4,58.15) .. (147.13,58.15) .. controls (148.86,58.15) and (150.26,59.57) .. (150.26,61.34) .. controls (150.26,63.1) and (148.86,64.52) .. (147.13,64.52) .. controls (145.4,64.52) and (143.99,63.1) .. (143.99,61.34) -- cycle ;
+%Flowchart: Connector [id:dp6683007103923264] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (129.46,36.53) .. controls (129.46,34.77) and (130.86,33.34) .. (132.6,33.34) .. controls (134.33,33.34) and (135.73,34.77) .. (135.73,36.53) .. controls (135.73,38.29) and (134.33,39.72) .. (132.6,39.72) .. controls (130.86,39.72) and (129.46,38.29) .. (129.46,36.53) -- cycle ;
+%Flowchart: Connector [id:dp6005806739977249] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157.72,37.12) .. controls (157.72,35.36) and (159.12,33.93) .. (160.85,33.93) .. controls (162.58,33.93) and (163.99,35.36) .. (163.99,37.12) .. controls (163.99,38.88) and (162.58,40.31) .. (160.85,40.31) .. controls (159.12,40.31) and (157.72,38.88) .. (157.72,37.12) -- cycle ;
+%Flowchart: Connector [id:dp4440994575179438] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (119.46,56.53) .. controls (119.46,54.77) and (120.86,53.34) .. (122.6,53.34) .. controls (124.33,53.34) and (125.73,54.77) .. (125.73,56.53) .. controls (125.73,58.29) and (124.33,59.72) .. (122.6,59.72) .. controls (120.86,59.72) and (119.46,58.29) .. (119.46,56.53) -- cycle ;
+%Flowchart: Connector [id:dp5305816456009462] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (139.46,49.53) .. controls (139.46,47.77) and (140.86,46.34) .. (142.6,46.34) .. controls (144.33,46.34) and (145.73,47.77) .. (145.73,49.53) .. controls (145.73,51.29) and (144.33,52.72) .. (142.6,52.72) .. controls (140.86,52.72) and (139.46,51.29) .. (139.46,49.53) -- cycle ;
+%Flowchart: Connector [id:dp28451940356633676] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (129.72,50.12) .. controls (129.72,48.36) and (131.12,46.93) .. (132.85,46.93) .. controls (134.58,46.93) and (135.99,48.36) .. (135.99,50.12) .. controls (135.99,51.88) and (134.58,53.31) .. (132.85,53.31) .. controls (131.12,53.31) and (129.72,51.88) .. (129.72,50.12) -- cycle ;
+%Flowchart: Connector [id:dp2486377882972861] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (158.46,68.53) .. controls (158.46,66.77) and (159.86,65.34) .. (161.6,65.34) .. controls (163.33,65.34) and (164.73,66.77) .. (164.73,68.53) .. controls (164.73,70.29) and (163.33,71.72) .. (161.6,71.72) .. controls (159.86,71.72) and (158.46,70.29) .. (158.46,68.53) -- cycle ;
+%Flowchart: Connector [id:dp9841495214531633] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (148.72,69.12) .. controls (148.72,67.36) and (150.12,65.93) .. (151.85,65.93) .. controls (153.58,65.93) and (154.99,67.36) .. (154.99,69.12) .. controls (154.99,70.88) and (153.58,72.31) .. (151.85,72.31) .. controls (150.12,72.31) and (148.72,70.88) .. (148.72,69.12) -- cycle ;
+%Flowchart: Connector [id:dp4788766795541872] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (125.46,72.53) .. controls (125.46,70.77) and (126.86,69.34) .. (128.6,69.34) .. controls (130.33,69.34) and (131.73,70.77) .. (131.73,72.53) .. controls (131.73,74.29) and (130.33,75.72) .. (128.6,75.72) .. controls (126.86,75.72) and (125.46,74.29) .. (125.46,72.53) -- cycle ;
+%Flowchart: Connector [id:dp5427916103848591] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (119.2,72.53) .. controls (119.2,70.77) and (120.6,69.34) .. (122.33,69.34) .. controls (124.06,69.34) and (125.46,70.77) .. (125.46,72.53) .. controls (125.46,74.29) and (124.06,75.72) .. (122.33,75.72) .. controls (120.6,75.72) and (119.2,74.29) .. (119.2,72.53) -- cycle ;
+%Straight Lines [id:da694011912530841] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (208.57,84.86) -- (340.09,84.86) ;
+%Shape: Axis 2D [id:dp44617923069256915] 
+\draw  (209.04,138.45) -- (350.4,138.45)(209.04,14.06) -- (209.04,138.45) -- cycle (343.4,133.45) -- (350.4,138.45) -- (343.4,143.45) (204.04,21.06) -- (209.04,14.06) -- (214.04,21.06)  ;
+%Flowchart: Connector [id:dp3437487578148961] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (323.99,51.34) .. controls (323.99,49.57) and (325.4,48.15) .. (327.13,48.15) .. controls (328.86,48.15) and (330.26,49.57) .. (330.26,51.34) .. controls (330.26,53.1) and (328.86,54.52) .. (327.13,54.52) .. controls (325.4,54.52) and (323.99,53.1) .. (323.99,51.34) -- cycle ;
+%Flowchart: Connector [id:dp6246779138865619] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (304.23,77.55) .. controls (304.23,75.78) and (305.63,74.36) .. (307.36,74.36) .. controls (309.09,74.36) and (310.5,75.78) .. (310.5,77.55) .. controls (310.5,79.31) and (309.09,80.73) .. (307.36,80.73) .. controls (305.63,80.73) and (304.23,79.31) .. (304.23,77.55) -- cycle ;
+%Flowchart: Connector [id:dp818573823512686] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (287.2,94.62) .. controls (287.2,92.85) and (288.6,91.43) .. (290.33,91.43) .. controls (292.06,91.43) and (293.46,92.85) .. (293.46,94.62) .. controls (293.46,96.38) and (292.06,97.8) .. (290.33,97.8) .. controls (288.6,97.8) and (287.2,96.38) .. (287.2,94.62) -- cycle ;
+%Flowchart: Connector [id:dp43624638402664484] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (311.46,104.53) .. controls (311.46,102.77) and (312.86,101.34) .. (314.6,101.34) .. controls (316.33,101.34) and (317.73,102.77) .. (317.73,104.53) .. controls (317.73,106.29) and (316.33,107.72) .. (314.6,107.72) .. controls (312.86,107.72) and (311.46,106.29) .. (311.46,104.53) -- cycle ;
+%Flowchart: Connector [id:dp8472360229796214] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (319.9,94.72) .. controls (319.9,92.96) and (321.3,91.53) .. (323.03,91.53) .. controls (324.76,91.53) and (326.16,92.96) .. (326.16,94.72) .. controls (326.16,96.48) and (324.76,97.91) .. (323.03,97.91) .. controls (321.3,97.91) and (319.9,96.48) .. (319.9,94.72) -- cycle ;
+%Flowchart: Connector [id:dp19008897784306655] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (275.94,88.71) .. controls (275.94,86.95) and (277.34,85.52) .. (279.07,85.52) .. controls (280.81,85.52) and (282.21,86.95) .. (282.21,88.71) .. controls (282.21,90.47) and (280.81,91.9) .. (279.07,91.9) .. controls (277.34,91.9) and (275.94,90.47) .. (275.94,88.71) -- cycle ;
+%Flowchart: Connector [id:dp5905981447368311] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (289.61,84.8) .. controls (289.61,83.04) and (291.01,81.61) .. (292.74,81.61) .. controls (294.47,81.61) and (295.87,83.04) .. (295.87,84.8) .. controls (295.87,86.56) and (294.47,87.99) .. (292.74,87.99) .. controls (291.01,87.99) and (289.61,86.56) .. (289.61,84.8) -- cycle ;
+%Flowchart: Connector [id:dp7898985658216748] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (275.15,76.31) .. controls (275.15,74.55) and (276.55,73.12) .. (278.28,73.12) .. controls (280.01,73.12) and (281.41,74.55) .. (281.41,76.31) .. controls (281.41,78.07) and (280.01,79.5) .. (278.28,79.5) .. controls (276.55,79.5) and (275.15,78.07) .. (275.15,76.31) -- cycle ;
+%Flowchart: Connector [id:dp43057193758138124] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (321.1,78.77) .. controls (321.1,77.01) and (322.51,75.58) .. (324.24,75.58) .. controls (325.97,75.58) and (327.37,77.01) .. (327.37,78.77) .. controls (327.37,80.53) and (325.97,81.96) .. (324.24,81.96) .. controls (322.51,81.96) and (321.1,80.53) .. (321.1,78.77) -- cycle ;
+%Flowchart: Connector [id:dp678970697768797] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (257.07,79.65) .. controls (257.07,77.89) and (258.47,76.46) .. (260.2,76.46) .. controls (261.93,76.46) and (263.34,77.89) .. (263.34,79.65) .. controls (263.34,81.41) and (261.93,82.84) .. (260.2,82.84) .. controls (258.47,82.84) and (257.07,81.41) .. (257.07,79.65) -- cycle ;
+%Flowchart: Connector [id:dp17330756994766716] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (311,57.23) .. controls (311,55.47) and (312.4,54.04) .. (314.13,54.04) .. controls (315.86,54.04) and (317.27,55.47) .. (317.27,57.23) .. controls (317.27,58.99) and (315.86,60.42) .. (314.13,60.42) .. controls (312.4,60.42) and (311,58.99) .. (311,57.23) -- cycle ;
+%Flowchart: Connector [id:dp2378654169881087] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (264.54,89.74) .. controls (264.54,87.98) and (265.94,86.55) .. (267.67,86.55) .. controls (269.4,86.55) and (270.81,87.98) .. (270.81,89.74) .. controls (270.81,91.5) and (269.4,92.93) .. (267.67,92.93) .. controls (265.94,92.93) and (264.54,91.5) .. (264.54,89.74) -- cycle ;
+%Flowchart: Connector [id:dp6534305475623567] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (313.18,116.61) .. controls (313.18,114.85) and (314.58,113.42) .. (316.31,113.42) .. controls (318.04,113.42) and (319.45,114.85) .. (319.45,116.61) .. controls (319.45,118.37) and (318.04,119.8) .. (316.31,119.8) .. controls (314.58,119.8) and (313.18,118.37) .. (313.18,116.61) -- cycle ;
+%Flowchart: Connector [id:dp6511593149365038] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (301.72,105.12) .. controls (301.72,103.36) and (303.12,101.93) .. (304.85,101.93) .. controls (306.58,101.93) and (307.99,103.36) .. (307.99,105.12) .. controls (307.99,106.88) and (306.58,108.31) .. (304.85,108.31) .. controls (303.12,108.31) and (301.72,106.88) .. (301.72,105.12) -- cycle ;
+%Flowchart: Connector [id:dp5724775285793475] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (321.16,93.25) .. controls (321.16,91.49) and (322.57,90.07) .. (324.3,90.07) .. controls (326.03,90.07) and (327.43,91.49) .. (327.43,93.25) .. controls (327.43,95.02) and (326.03,96.44) .. (324.3,96.44) .. controls (322.57,96.44) and (321.16,95.02) .. (321.16,93.25) -- cycle ;
+%Flowchart: Connector [id:dp9754932883778691] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (301.72,83.14) .. controls (301.72,81.38) and (303.12,79.95) .. (304.85,79.95) .. controls (306.58,79.95) and (307.99,81.38) .. (307.99,83.14) .. controls (307.99,84.9) and (306.58,86.33) .. (304.85,86.33) .. controls (303.12,86.33) and (301.72,84.9) .. (301.72,83.14) -- cycle ;
+%Flowchart: Connector [id:dp6647815410452653] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (334,123.23) .. controls (334,121.47) and (335.4,120.04) .. (337.13,120.04) .. controls (338.86,120.04) and (340.27,121.47) .. (340.27,123.23) .. controls (340.27,124.99) and (338.86,126.42) .. (337.13,126.42) .. controls (335.4,126.42) and (334,124.99) .. (334,123.23) -- cycle ;
+%Flowchart: Connector [id:dp33374195671961737] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (290.99,103.34) .. controls (290.99,101.57) and (292.4,100.15) .. (294.13,100.15) .. controls (295.86,100.15) and (297.26,101.57) .. (297.26,103.34) .. controls (297.26,105.1) and (295.86,106.52) .. (294.13,106.52) .. controls (292.4,106.52) and (290.99,105.1) .. (290.99,103.34) -- cycle ;
+%Flowchart: Connector [id:dp10484712178609001] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322.46,112.53) .. controls (322.46,110.77) and (323.86,109.34) .. (325.6,109.34) .. controls (327.33,109.34) and (328.73,110.77) .. (328.73,112.53) .. controls (328.73,114.29) and (327.33,115.72) .. (325.6,115.72) .. controls (323.86,115.72) and (322.46,114.29) .. (322.46,112.53) -- cycle ;
+%Flowchart: Connector [id:dp44893327229183555] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (322,65.23) .. controls (322,63.47) and (323.4,62.04) .. (325.13,62.04) .. controls (326.86,62.04) and (328.27,63.47) .. (328.27,65.23) .. controls (328.27,66.99) and (326.86,68.42) .. (325.13,68.42) .. controls (323.4,68.42) and (322,66.99) .. (322,65.23) -- cycle ;
+%Flowchart: Connector [id:dp15062025308120042] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (307.72,93.12) .. controls (307.72,91.36) and (309.12,89.93) .. (310.85,89.93) .. controls (312.58,89.93) and (313.99,91.36) .. (313.99,93.12) .. controls (313.99,94.88) and (312.58,96.31) .. (310.85,96.31) .. controls (309.12,96.31) and (307.72,94.88) .. (307.72,93.12) -- cycle ;
+%Flowchart: Connector [id:dp7562898332216266] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (296.99,67.34) .. controls (296.99,65.57) and (298.4,64.15) .. (300.13,64.15) .. controls (301.86,64.15) and (303.26,65.57) .. (303.26,67.34) .. controls (303.26,69.1) and (301.86,70.52) .. (300.13,70.52) .. controls (298.4,70.52) and (296.99,69.1) .. (296.99,67.34) -- cycle ;
+%Flowchart: Connector [id:dp8697918652103924] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (284,73.23) .. controls (284,71.47) and (285.4,70.04) .. (287.13,70.04) .. controls (288.86,70.04) and (290.27,71.47) .. (290.27,73.23) .. controls (290.27,74.99) and (288.86,76.42) .. (287.13,76.42) .. controls (285.4,76.42) and (284,74.99) .. (284,73.23) -- cycle ;
+%Flowchart: Connector [id:dp7018279496208193] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (329.18,88.61) .. controls (329.18,86.85) and (330.58,85.42) .. (332.31,85.42) .. controls (334.04,85.42) and (335.45,86.85) .. (335.45,88.61) .. controls (335.45,90.37) and (334.04,91.8) .. (332.31,91.8) .. controls (330.58,91.8) and (329.18,90.37) .. (329.18,88.61) -- cycle ;
+%Flowchart: Connector [id:dp09498100975321666] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (332.72,106.12) .. controls (332.72,104.36) and (334.12,102.93) .. (335.85,102.93) .. controls (337.58,102.93) and (338.99,104.36) .. (338.99,106.12) .. controls (338.99,107.88) and (337.58,109.31) .. (335.85,109.31) .. controls (334.12,109.31) and (332.72,107.88) .. (332.72,106.12) -- cycle ;
+%Flowchart: Connector [id:dp8886013693891122] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (338.46,57.53) .. controls (338.46,55.77) and (339.86,54.34) .. (341.6,54.34) .. controls (343.33,54.34) and (344.73,55.77) .. (344.73,57.53) .. controls (344.73,59.29) and (343.33,60.72) .. (341.6,60.72) .. controls (339.86,60.72) and (338.46,59.29) .. (338.46,57.53) -- cycle ;
+%Flowchart: Connector [id:dp24327494798925575] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (338.2,73.53) .. controls (338.2,71.77) and (339.6,70.34) .. (341.33,70.34) .. controls (343.06,70.34) and (344.46,71.77) .. (344.46,73.53) .. controls (344.46,75.29) and (343.06,76.72) .. (341.33,76.72) .. controls (339.6,76.72) and (338.2,75.29) .. (338.2,73.53) -- cycle ;
+%Flowchart: Connector [id:dp15515175073823562] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (233.51,120.46) .. controls (233.55,122.22) and (232.17,123.67) .. (230.44,123.71) .. controls (228.71,123.74) and (227.28,122.34) .. (227.25,120.58) .. controls (227.21,118.82) and (228.59,117.36) .. (230.32,117.33) .. controls (232.05,117.29) and (233.48,118.69) .. (233.51,120.46) -- cycle ;
+%Flowchart: Connector [id:dp7962403020187387] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (252.76,93.86) .. controls (252.79,95.63) and (251.42,97.08) .. (249.69,97.11) .. controls (247.96,97.15) and (246.53,95.75) .. (246.49,93.99) .. controls (246.46,92.23) and (247.83,90.77) .. (249.56,90.74) .. controls (251.29,90.7) and (252.72,92.1) .. (252.76,93.86) -- cycle ;
+%Flowchart: Connector [id:dp22849855854467394] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (269.45,76.46) .. controls (269.49,78.23) and (268.11,79.68) .. (266.38,79.71) .. controls (264.65,79.75) and (263.22,78.35) .. (263.19,76.59) .. controls (263.16,74.83) and (264.53,73.37) .. (266.26,73.34) .. controls (267.99,73.3) and (269.42,74.7) .. (269.45,76.46) -- cycle ;
+%Flowchart: Connector [id:dp9776014145116456] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (245,67.02) .. controls (245.04,68.78) and (243.66,70.24) .. (241.93,70.27) .. controls (240.2,70.31) and (238.77,68.91) .. (238.74,67.15) .. controls (238.7,65.39) and (240.08,63.93) .. (241.81,63.9) .. controls (243.54,63.86) and (244.97,65.26) .. (245,67.02) -- cycle ;
+%Flowchart: Connector [id:dp22949874167348416] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (236.76,77) .. controls (236.79,78.76) and (235.42,80.22) .. (233.69,80.25) .. controls (231.96,80.28) and (230.53,78.88) .. (230.49,77.12) .. controls (230.46,75.36) and (231.83,73.91) .. (233.56,73.87) .. controls (235.29,73.84) and (236.73,75.24) .. (236.76,77) -- cycle ;
+%Flowchart: Connector [id:dp34667868550596803] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (282.8,81.11) .. controls (282.84,82.87) and (281.46,84.33) .. (279.73,84.36) .. controls (278,84.39) and (276.57,82.99) .. (276.54,81.23) .. controls (276.5,79.47) and (277.88,78.02) .. (279.61,77.98) .. controls (281.34,77.95) and (282.77,79.35) .. (282.8,81.11) -- cycle ;
+%Flowchart: Connector [id:dp563850157966556] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (264.24,89.32) .. controls (264.27,91.08) and (262.9,92.54) .. (261.17,92.57) .. controls (259.44,92.61) and (258.01,91.21) .. (257.97,89.45) .. controls (257.94,87.68) and (259.31,86.23) .. (261.04,86.2) .. controls (262.77,86.16) and (264.2,87.56) .. (264.24,89.32) -- cycle ;
+%Flowchart: Connector [id:dp026888108822867407] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (281.86,94.53) .. controls (281.9,96.29) and (280.52,97.75) .. (278.79,97.78) .. controls (277.06,97.82) and (275.63,96.42) .. (275.6,94.65) .. controls (275.56,92.89) and (276.94,91.44) .. (278.67,91.4) .. controls (280.4,91.37) and (281.83,92.77) .. (281.86,94.53) -- cycle ;
+%Flowchart: Connector [id:dp1575702125784797] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (235.87,92.97) .. controls (235.9,94.73) and (234.53,96.18) .. (232.8,96.22) .. controls (231.07,96.25) and (229.64,94.85) .. (229.6,93.09) .. controls (229.57,91.33) and (230.94,89.87) .. (232.67,89.84) .. controls (234.4,89.81) and (235.83,91.21) .. (235.87,92.97) -- cycle ;
+%Flowchart: Connector [id:dp1918988374909072] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (299.87,90.84) .. controls (299.9,92.6) and (298.53,94.05) .. (296.8,94.09) .. controls (295.07,94.12) and (293.64,92.72) .. (293.6,90.96) .. controls (293.57,89.2) and (294.94,87.74) .. (296.67,87.71) .. controls (298.4,87.68) and (299.83,89.08) .. (299.87,90.84) -- cycle ;
+%Flowchart: Connector [id:dp18999638121269147] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (246.39,114.31) .. controls (246.42,116.07) and (245.05,117.52) .. (243.32,117.56) .. controls (241.59,117.59) and (240.16,116.19) .. (240.12,114.43) .. controls (240.09,112.67) and (241.46,111.21) .. (243.19,111.18) .. controls (244.92,111.15) and (246.35,112.55) .. (246.39,114.31) -- cycle ;
+%Flowchart: Connector [id:dp7818019137047911] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (297.2,75.9) .. controls (297.24,77.66) and (295.86,79.11) .. (294.13,79.15) .. controls (292.4,79.18) and (290.97,77.78) .. (290.94,76.02) .. controls (290.91,74.26) and (292.28,72.8) .. (294.01,72.77) .. controls (295.74,72.74) and (297.17,74.14) .. (297.2,75.9) -- cycle ;
+%Flowchart: Connector [id:dp9467052271876044] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (243.05,54.98) .. controls (243.08,56.74) and (241.71,58.2) .. (239.98,58.23) .. controls (238.25,58.26) and (236.82,56.86) .. (236.78,55.1) .. controls (236.75,53.34) and (238.12,51.89) .. (239.85,51.85) .. controls (241.58,51.82) and (243.01,53.22) .. (243.05,54.98) -- cycle ;
+%Flowchart: Connector [id:dp9124953541435952] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (254.73,66.25) .. controls (254.77,68.01) and (253.39,69.46) .. (251.66,69.5) .. controls (249.93,69.53) and (248.5,68.13) .. (248.47,66.37) .. controls (248.43,64.61) and (249.81,63.15) .. (251.54,63.12) .. controls (253.27,63.09) and (254.7,64.49) .. (254.73,66.25) -- cycle ;
+%Flowchart: Connector [id:dp9531900807164937] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (226.76,77) .. controls (226.79,78.76) and (225.42,80.22) .. (223.69,80.25) .. controls (221.96,80.28) and (220.53,78.88) .. (220.49,77.12) .. controls (220.46,75.36) and (221.83,73.91) .. (223.56,73.87) .. controls (225.29,73.84) and (226.73,75.24) .. (226.76,77) -- cycle ;
+%Flowchart: Connector [id:dp34212998022998486] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (255.16,88.22) .. controls (255.19,89.98) and (253.82,91.44) .. (252.09,91.47) .. controls (250.36,91.5) and (248.93,90.1) .. (248.9,88.34) .. controls (248.86,86.58) and (250.24,85.13) .. (251.97,85.09) .. controls (253.7,85.06) and (255.13,86.46) .. (255.16,88.22) -- cycle ;
+%Flowchart: Connector [id:dp6497883823636712] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (222.1,48.77) .. controls (222.14,50.53) and (220.76,51.98) .. (219.03,52.02) .. controls (217.3,52.05) and (215.87,50.65) .. (215.84,48.89) .. controls (215.8,47.13) and (217.18,45.67) .. (218.91,45.64) .. controls (220.64,45.61) and (222.07,47.01) .. (222.1,48.77) -- cycle ;
+%Flowchart: Connector [id:dp03412997417326569] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (265.49,67.82) .. controls (265.52,69.58) and (264.15,71.04) .. (262.42,71.07) .. controls (260.69,71.1) and (259.26,69.7) .. (259.22,67.94) .. controls (259.19,66.18) and (260.57,64.73) .. (262.3,64.69) .. controls (264.03,64.66) and (265.46,66.06) .. (265.49,67.82) -- cycle ;
+%Flowchart: Connector [id:dp528133411818337] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (233.85,59.24) .. controls (233.88,61) and (232.51,62.46) .. (230.78,62.49) .. controls (229.05,62.52) and (227.62,61.12) .. (227.58,59.36) .. controls (227.55,57.6) and (228.92,56.15) .. (230.65,56.11) .. controls (232.38,56.08) and (233.81,57.48) .. (233.85,59.24) -- cycle ;
+%Flowchart: Connector [id:dp9643235771560703] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (235.23,106.52) .. controls (235.27,108.28) and (233.89,109.74) .. (232.16,109.77) .. controls (230.43,109.81) and (229,108.41) .. (228.97,106.65) .. controls (228.93,104.88) and (230.31,103.43) .. (232.04,103.4) .. controls (233.77,103.36) and (235.2,104.76) .. (235.23,106.52) -- cycle ;
+%Flowchart: Connector [id:dp5394139271103853] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (248.97,78.36) .. controls (249,80.12) and (247.63,81.58) .. (245.9,81.61) .. controls (244.17,81.65) and (242.74,80.25) .. (242.7,78.48) .. controls (242.67,76.72) and (244.04,75.27) .. (245.77,75.23) .. controls (247.5,75.2) and (248.93,76.6) .. (248.97,78.36) -- cycle ;
+%Flowchart: Connector [id:dp38003755989658905] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (260.2,103.93) .. controls (260.23,105.69) and (258.85,107.15) .. (257.12,107.18) .. controls (255.39,107.21) and (253.96,105.81) .. (253.93,104.05) .. controls (253.9,102.29) and (255.27,100.84) .. (257,100.8) .. controls (258.73,100.77) and (260.16,102.17) .. (260.2,103.93) -- cycle ;
+%Flowchart: Connector [id:dp6497830511170326] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (273.07,97.78) .. controls (273.1,99.54) and (271.73,101) .. (270,101.03) .. controls (268.27,101.07) and (266.84,99.67) .. (266.8,97.9) .. controls (266.77,96.14) and (268.14,94.69) .. (269.87,94.65) .. controls (271.61,94.62) and (273.04,96.02) .. (273.07,97.78) -- cycle ;
+%Flowchart: Connector [id:dp34194762288012814] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (229.83,95.25) .. controls (229.87,97.01) and (228.49,98.46) .. (226.76,98.5) .. controls (225.03,98.53) and (223.6,97.13) .. (223.57,95.37) .. controls (223.53,93.61) and (224.91,92.15) .. (226.64,92.12) .. controls (228.37,92.08) and (229.8,93.48) .. (229.83,95.25) -- cycle ;
+%Flowchart: Connector [id:dp8751322114132831] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (223.72,65.85) .. controls (223.75,67.61) and (222.38,69.07) .. (220.65,69.1) .. controls (218.92,69.14) and (217.49,67.74) .. (217.45,65.98) .. controls (217.42,64.21) and (218.79,62.76) .. (220.52,62.73) .. controls (222.25,62.69) and (223.68,64.09) .. (223.72,65.85) -- cycle ;
+%Flowchart: Connector [id:dp5459965748150246] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (218.93,114.54) .. controls (218.96,116.3) and (217.59,117.76) .. (215.86,117.79) .. controls (214.13,117.83) and (212.69,116.43) .. (212.66,114.66) .. controls (212.63,112.9) and (214,111.45) .. (215.73,111.41) .. controls (217.46,111.38) and (218.89,112.78) .. (218.93,114.54) -- cycle ;
+%Flowchart: Connector [id:dp3992533748888256] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (218.88,98.54) .. controls (218.91,100.3) and (217.54,101.76) .. (215.81,101.79) .. controls (214.08,101.82) and (212.65,100.42) .. (212.61,98.66) .. controls (212.58,96.9) and (213.95,95.45) .. (215.68,95.41) .. controls (217.41,95.38) and (218.84,96.78) .. (218.88,98.54) -- cycle ;
+
+% Text Node
+\draw (10.8,13.15) node   [align=left] {{\footnotesize $\displaystyle \varepsilon _{i}$}};
+% Text Node
+\draw (19.26,80.92) node  [font=\normalsize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 3}\\{\tiny 2}\\{\tiny 1}\\{\tiny \textcolor[rgb]{0.25,0.46,0.02}{0}}\\{\tiny -1}\\{\tiny -2}\\{\tiny -3}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (181.95,144.2) node   [align=left] {{\footnotesize $\displaystyle \hat{Y}_{i}$}};
+% Text Node
+\draw (360.95,145.2) node   [align=left] {{\footnotesize $\displaystyle \hat{Y}_{i}$}};
+% Text Node
+\draw (198.26,81.92) node  [font=\normalsize] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 3}\\{\tiny 2}\\{\tiny 1}\\{\tiny \textcolor[rgb]{0.25,0.46,0.02}{0}}\\{\tiny -1}\\{\tiny -2}\\{\tiny -3}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (189.8,14.15) node   [align=left] {{\footnotesize $\displaystyle \varepsilon _{i}$}};
+
+
+\end{tikzpicture}
+\end{center}
+\end{definitionGENERAL}
+
+\begin{rappel_enhanced}[Contexte]
+Il peut être difficile d'interpréter ces graphiques et il n'est pas évident de voir les patrons. Il est aussi important de voir comment le non-respect de certains postulats peut néanmoins respecter d'autres postulats. Par exemple, avoir de l'hétéroscédasticité n'empêche pas d'avoir une moyenne de zéro !
+
+\bigskip
+
+Il est important de lire l'interprétation des solutionnaires sur ces questions pour développer l'intuition nécessaire pour bien comprendre les graphiques. Également, de bien comprendre ce que représentent \textit{\color{bleudefrance}\underline{\hyperlink{postulatsSLR}{\color{bleudefrance} les différents postulats}}} du modèle de régression linéaire.
+
+\bigskip
+
+Également, il est très important de ne pas oublier qu'on observe le comportement \textbf{général}  des points. Alors, il ne faut pas se laisser influencer par une ou deux données aberrantes si le patron des observations en général semble adéquat.
+\end{rappel_enhanced}
+
+
+\subsubsection{Graphique résidus contre indice}
+Si les termes d'erreur sont indépendants, on \textbf{s'attend à ce que les résidus soient imprévisibles d'une observation à l'autre}. Voici un exemple d'un graphique ne présentant pas de problèmes : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,187); %set diagram left start at 0, and has height of 187
+
+%Straight Lines [id:da03645595362630116] 
+\draw    (10.5,128.52) -- (16.5,70.52) -- (29.5,122.52) -- (37.5,93.52) -- (50.5,141.52) -- (60.5,47.52) -- (69.5,82.52) -- (78.5,122.52) -- (90.5,83.52) -- (96.5,94.52) -- (105.5,57.52) -- (115.5,41.52) -- (130.5,103.52) -- (143.5,86.52) ;
+\draw [shift={(143.5,86.52)}, rotate = 307.41] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(10.5,128.52)}, rotate = 275.91] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Flowchart: Connector [id:dp7452992742387077] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (13.37,73.71) .. controls (13.37,71.95) and (14.77,70.52) .. (16.5,70.52) .. controls (18.23,70.52) and (19.63,71.95) .. (19.63,73.71) .. controls (19.63,75.48) and (18.23,76.9) .. (16.5,76.9) .. controls (14.77,76.9) and (13.37,75.48) .. (13.37,73.71) -- cycle ;
+%Flowchart: Connector [id:dp7874090066420265] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (34.37,94.71) .. controls (34.37,92.95) and (35.77,91.52) .. (37.5,91.52) .. controls (39.23,91.52) and (40.63,92.95) .. (40.63,94.71) .. controls (40.63,96.48) and (39.23,97.9) .. (37.5,97.9) .. controls (35.77,97.9) and (34.37,96.48) .. (34.37,94.71) -- cycle ;
+%Flowchart: Connector [id:dp8072571428202833] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (26.37,122.71) .. controls (26.37,120.95) and (27.77,119.52) .. (29.5,119.52) .. controls (31.23,119.52) and (32.63,120.95) .. (32.63,122.71) .. controls (32.63,124.48) and (31.23,125.9) .. (29.5,125.9) .. controls (27.77,125.9) and (26.37,124.48) .. (26.37,122.71) -- cycle ;
+%Flowchart: Connector [id:dp39208845952122484] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (47.37,140.71) .. controls (47.37,138.95) and (48.77,137.52) .. (50.5,137.52) .. controls (52.23,137.52) and (53.63,138.95) .. (53.63,140.71) .. controls (53.63,142.48) and (52.23,143.9) .. (50.5,143.9) .. controls (48.77,143.9) and (47.37,142.48) .. (47.37,140.71) -- cycle ;
+%Flowchart: Connector [id:dp660820856018882] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (57.37,48.71) .. controls (57.37,46.95) and (58.77,45.52) .. (60.5,45.52) .. controls (62.23,45.52) and (63.63,46.95) .. (63.63,48.71) .. controls (63.63,50.48) and (62.23,51.9) .. (60.5,51.9) .. controls (58.77,51.9) and (57.37,50.48) .. (57.37,48.71) -- cycle ;
+%Flowchart: Connector [id:dp7077510671678378] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (75.37,122.71) .. controls (75.37,120.95) and (76.77,119.52) .. (78.5,119.52) .. controls (80.23,119.52) and (81.63,120.95) .. (81.63,122.71) .. controls (81.63,124.48) and (80.23,125.9) .. (78.5,125.9) .. controls (76.77,125.9) and (75.37,124.48) .. (75.37,122.71) -- cycle ;
+%Flowchart: Connector [id:dp8509871689000696] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (87.37,81.71) .. controls (87.37,79.95) and (88.77,78.52) .. (90.5,78.52) .. controls (92.23,78.52) and (93.63,79.95) .. (93.63,81.71) .. controls (93.63,83.48) and (92.23,84.9) .. (90.5,84.9) .. controls (88.77,84.9) and (87.37,83.48) .. (87.37,81.71) -- cycle ;
+%Flowchart: Connector [id:dp7187096900452938] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (93.37,93.71) .. controls (93.37,91.95) and (94.77,90.52) .. (96.5,90.52) .. controls (98.23,90.52) and (99.63,91.95) .. (99.63,93.71) .. controls (99.63,95.48) and (98.23,96.9) .. (96.5,96.9) .. controls (94.77,96.9) and (93.37,95.48) .. (93.37,93.71) -- cycle ;
+%Flowchart: Connector [id:dp8471699612110115] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (102.37,56.71) .. controls (102.37,54.95) and (103.77,53.52) .. (105.5,53.52) .. controls (107.23,53.52) and (108.63,54.95) .. (108.63,56.71) .. controls (108.63,58.48) and (107.23,59.9) .. (105.5,59.9) .. controls (103.77,59.9) and (102.37,58.48) .. (102.37,56.71) -- cycle ;
+%Flowchart: Connector [id:dp8919580631373978] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (112.37,41.71) .. controls (112.37,39.95) and (113.77,38.52) .. (115.5,38.52) .. controls (117.23,38.52) and (118.63,39.95) .. (118.63,41.71) .. controls (118.63,43.48) and (117.23,44.9) .. (115.5,44.9) .. controls (113.77,44.9) and (112.37,43.48) .. (112.37,41.71) -- cycle ;
+%Flowchart: Connector [id:dp8562370424719732] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (127.37,102.34) .. controls (127.37,100.57) and (128.77,99.15) .. (130.5,99.15) .. controls (132.23,99.15) and (133.63,100.57) .. (133.63,102.34) .. controls (133.63,104.1) and (132.23,105.52) .. (130.5,105.52) .. controls (128.77,105.52) and (127.37,104.1) .. (127.37,102.34) -- cycle ;
+%Straight Lines [id:da4024646693778202] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (9.57,93.86) -- (141.09,93.86) ;
+%Shape: Axis 2D [id:dp29652058699354145] 
+\draw  (10.04,147.45) -- (151.4,147.45)(10.04,23.06) -- (10.04,147.45) -- cycle (144.4,142.45) -- (151.4,147.45) -- (144.4,152.45) (5.04,30.06) -- (10.04,23.06) -- (15.04,30.06)  ;
+
+
+% Text Node
+\draw (160.26,146.8) node  [font=\footnotesize] [align=left] {$\displaystyle i$};
+% Text Node
+\draw (10.26,12.8) node   [align=left] {$\displaystyle \varepsilon _{i}$};
+\end{tikzpicture}
+\end{center}
+
+Dans certains contextes, les termes d'erreur (particulièrement les termes adjacents) seront dépendants. Par exemple, ci-dessous les résidus d'une observation à l'autre ont tendance d'êtres semblables :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,187); %set diagram left start at 0, and has height of 187
+
+%Straight Lines [id:da5650007069184464] 
+\draw    (10.5,128.93) -- (16.5,70.93) -- (28.5,82.13) -- (40.5,75.13) -- (49.5,113.13) -- (58.5,104.13) -- (69.33,94.27) -- (75.5,112.13) -- (90.5,83.93) -- (96.5,94.93) -- (99.73,81.67) -- (106.5,75.13) -- (116.5,81.13) -- (128.5,89.13) -- (143.5,74.13) ;
+\draw [shift={(143.5,74.13)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+\draw [shift={(10.5,128.93)}, rotate = 275.91] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+%Flowchart: Connector [id:dp2146876836584648] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (13.37,74.12) .. controls (13.37,72.35) and (14.77,70.93) .. (16.5,70.93) .. controls (18.23,70.93) and (19.63,72.35) .. (19.63,74.12) .. controls (19.63,75.88) and (18.23,77.3) .. (16.5,77.3) .. controls (14.77,77.3) and (13.37,75.88) .. (13.37,74.12) -- cycle ;
+%Flowchart: Connector [id:dp9073109990349406] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (36.37,75.12) .. controls (36.37,73.35) and (37.77,71.93) .. (39.5,71.93) .. controls (41.23,71.93) and (42.63,73.35) .. (42.63,75.12) .. controls (42.63,76.88) and (41.23,78.3) .. (39.5,78.3) .. controls (37.77,78.3) and (36.37,76.88) .. (36.37,75.12) -- cycle ;
+%Flowchart: Connector [id:dp5078369810684711] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (25.37,81.12) .. controls (25.37,79.35) and (26.77,77.93) .. (28.5,77.93) .. controls (30.23,77.93) and (31.63,79.35) .. (31.63,81.12) .. controls (31.63,82.88) and (30.23,84.3) .. (28.5,84.3) .. controls (26.77,84.3) and (25.37,82.88) .. (25.37,81.12) -- cycle ;
+%Flowchart: Connector [id:dp6448226940542463] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (46.37,113.12) .. controls (46.37,111.35) and (47.77,109.93) .. (49.5,109.93) .. controls (51.23,109.93) and (52.63,111.35) .. (52.63,113.12) .. controls (52.63,114.88) and (51.23,116.3) .. (49.5,116.3) .. controls (47.77,116.3) and (46.37,114.88) .. (46.37,113.12) -- cycle ;
+%Flowchart: Connector [id:dp15676999799419344] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (65.37,96.12) .. controls (65.37,94.35) and (66.77,92.93) .. (68.5,92.93) .. controls (70.23,92.93) and (71.63,94.35) .. (71.63,96.12) .. controls (71.63,97.88) and (70.23,99.3) .. (68.5,99.3) .. controls (66.77,99.3) and (65.37,97.88) .. (65.37,96.12) -- cycle ;
+%Flowchart: Connector [id:dp10067314885415768] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (71.37,110.12) .. controls (71.37,108.35) and (72.77,106.93) .. (74.5,106.93) .. controls (76.23,106.93) and (77.63,108.35) .. (77.63,110.12) .. controls (77.63,111.88) and (76.23,113.3) .. (74.5,113.3) .. controls (72.77,113.3) and (71.37,111.88) .. (71.37,110.12) -- cycle ;
+%Flowchart: Connector [id:dp7185214190226274] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (87.37,82.12) .. controls (87.37,80.35) and (88.77,78.93) .. (90.5,78.93) .. controls (92.23,78.93) and (93.63,80.35) .. (93.63,82.12) .. controls (93.63,83.88) and (92.23,85.3) .. (90.5,85.3) .. controls (88.77,85.3) and (87.37,83.88) .. (87.37,82.12) -- cycle ;
+%Flowchart: Connector [id:dp2670252222726983] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (93.37,94.12) .. controls (93.37,92.35) and (94.77,90.93) .. (96.5,90.93) .. controls (98.23,90.93) and (99.63,92.35) .. (99.63,94.12) .. controls (99.63,95.88) and (98.23,97.3) .. (96.5,97.3) .. controls (94.77,97.3) and (93.37,95.88) .. (93.37,94.12) -- cycle ;
+%Flowchart: Connector [id:dp8271041065884741] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (97.37,82.12) .. controls (97.37,80.35) and (98.77,78.93) .. (100.5,78.93) .. controls (102.23,78.93) and (103.63,80.35) .. (103.63,82.12) .. controls (103.63,83.88) and (102.23,85.3) .. (100.5,85.3) .. controls (98.77,85.3) and (97.37,83.88) .. (97.37,82.12) -- cycle ;
+%Flowchart: Connector [id:dp6152709770921536] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (103.37,75.12) .. controls (103.37,73.35) and (104.77,71.93) .. (106.5,71.93) .. controls (108.23,71.93) and (109.63,73.35) .. (109.63,75.12) .. controls (109.63,76.88) and (108.23,78.3) .. (106.5,78.3) .. controls (104.77,78.3) and (103.37,76.88) .. (103.37,75.12) -- cycle ;
+%Flowchart: Connector [id:dp5691280213887269] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (125.37,87.74) .. controls (125.37,85.98) and (126.77,84.55) .. (128.5,84.55) .. controls (130.23,84.55) and (131.63,85.98) .. (131.63,87.74) .. controls (131.63,89.5) and (130.23,90.93) .. (128.5,90.93) .. controls (126.77,90.93) and (125.37,89.5) .. (125.37,87.74) -- cycle ;
+%Straight Lines [id:da6397357667951855] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (9.57,94.27) -- (141.09,94.27) ;
+%Shape: Axis 2D [id:dp4636221374213907] 
+\draw  (10.04,147.85) -- (151.4,147.85)(10.04,23.46) -- (10.04,147.85) -- cycle (144.4,142.85) -- (151.4,147.85) -- (144.4,152.85) (5.04,30.46) -- (10.04,23.46) -- (15.04,30.46)  ;
+
+
+% Text Node
+\draw (160.26,147.2) node  [font=\footnotesize] [align=left] {$\displaystyle i$};
+% Text Node
+\draw (10.26,13.2) node   [align=left] {$\displaystyle \varepsilon _{i}$};
+\end{tikzpicture}
+\end{center}
+
+
+\subsubsection{Diagramme quantile quantile des résidus}
+Le diagramme quantile quantile permet d'évaluer si la distribution des résidus semble être la même que celle d'une distribution normale standard. Voici un exemple d'un diagramme quantile quantile ne présentant pas de problèmes : 
+\begin{center}
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,212); %set diagram left start at 0, and has height of 212
+
+%Straight Lines [id:da18913064321671857] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (45.3,144.13) -- (138.58,74.17) -- (177.3,45.13) ;
+%Shape: Axis 2D [id:dp5755502048821317] 
+\draw  (29.17,162) -- (178.17,162)(29.17,21) -- (29.17,162) -- cycle (171.17,157) -- (178.17,162) -- (171.17,167) (24.17,28) -- (29.17,21) -- (34.17,28)  ;
+%Flowchart: Connector [id:dp8076249873216514] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (54,127.42) .. controls (54,125.99) and (55.16,124.83) .. (56.58,124.83) .. controls (58.01,124.83) and (59.17,125.99) .. (59.17,127.42) .. controls (59.17,128.84) and (58.01,130) .. (56.58,130) .. controls (55.16,130) and (54,128.84) .. (54,127.42) -- cycle ;
+%Flowchart: Connector [id:dp7705286260874333] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (56.58,124.83) .. controls (56.58,123.41) and (57.74,122.25) .. (59.17,122.25) .. controls (60.59,122.25) and (61.75,123.41) .. (61.75,124.83) .. controls (61.75,126.26) and (60.59,127.42) .. (59.17,127.42) .. controls (57.74,127.42) and (56.58,126.26) .. (56.58,124.83) -- cycle ;
+%Flowchart: Connector [id:dp2595563279238784] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (66.42,122) .. controls (66.42,120.57) and (67.57,119.42) .. (69,119.42) .. controls (70.43,119.42) and (71.58,120.57) .. (71.58,122) .. controls (71.58,123.43) and (70.43,124.58) .. (69,124.58) .. controls (67.57,124.58) and (66.42,123.43) .. (66.42,122) -- cycle ;
+%Flowchart: Connector [id:dp7053787948696189] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (72,121.42) .. controls (72,119.99) and (73.16,118.83) .. (74.58,118.83) .. controls (76.01,118.83) and (77.17,119.99) .. (77.17,121.42) .. controls (77.17,122.84) and (76.01,124) .. (74.58,124) .. controls (73.16,124) and (72,122.84) .. (72,121.42) -- cycle ;
+%Flowchart: Connector [id:dp18003342718142856] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (79,116.42) .. controls (79,114.99) and (80.16,113.83) .. (81.58,113.83) .. controls (83.01,113.83) and (84.17,114.99) .. (84.17,116.42) .. controls (84.17,117.84) and (83.01,119) .. (81.58,119) .. controls (80.16,119) and (79,117.84) .. (79,116.42) -- cycle ;
+%Flowchart: Connector [id:dp7050312976238953] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (90,112.42) .. controls (90,110.99) and (91.16,109.83) .. (92.58,109.83) .. controls (94.01,109.83) and (95.17,110.99) .. (95.17,112.42) .. controls (95.17,113.84) and (94.01,115) .. (92.58,115) .. controls (91.16,115) and (90,113.84) .. (90,112.42) -- cycle ;
+%Flowchart: Connector [id:dp906585269840321] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (96,108.42) .. controls (96,106.99) and (97.16,105.83) .. (98.58,105.83) .. controls (100.01,105.83) and (101.17,106.99) .. (101.17,108.42) .. controls (101.17,109.84) and (100.01,111) .. (98.58,111) .. controls (97.16,111) and (96,109.84) .. (96,108.42) -- cycle ;
+%Flowchart: Connector [id:dp07079163867159477] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (106,101.42) .. controls (106,99.99) and (107.16,98.83) .. (108.58,98.83) .. controls (110.01,98.83) and (111.17,99.99) .. (111.17,101.42) .. controls (111.17,102.84) and (110.01,104) .. (108.58,104) .. controls (107.16,104) and (106,102.84) .. (106,101.42) -- cycle ;
+%Flowchart: Connector [id:dp05593871528092054] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (115,95.42) .. controls (115,93.99) and (116.16,92.83) .. (117.58,92.83) .. controls (119.01,92.83) and (120.17,93.99) .. (120.17,95.42) .. controls (120.17,96.84) and (119.01,98) .. (117.58,98) .. controls (116.16,98) and (115,96.84) .. (115,95.42) -- cycle ;
+%Flowchart: Connector [id:dp028201950464175063] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (120.42,87) .. controls (120.42,85.57) and (121.57,84.42) .. (123,84.42) .. controls (124.43,84.42) and (125.58,85.57) .. (125.58,87) .. controls (125.58,88.43) and (124.43,89.58) .. (123,89.58) .. controls (121.57,89.58) and (120.42,88.43) .. (120.42,87) -- cycle ;
+%Flowchart: Connector [id:dp7924107032352545] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (125,83.42) .. controls (125,81.99) and (126.16,80.83) .. (127.58,80.83) .. controls (129.01,80.83) and (130.17,81.99) .. (130.17,83.42) .. controls (130.17,84.84) and (129.01,86) .. (127.58,86) .. controls (126.16,86) and (125,84.84) .. (125,83.42) -- cycle ;
+%Flowchart: Connector [id:dp24008213755803753] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (133,80.42) .. controls (133,78.99) and (134.16,77.83) .. (135.58,77.83) .. controls (137.01,77.83) and (138.17,78.99) .. (138.17,80.42) .. controls (138.17,81.84) and (137.01,83) .. (135.58,83) .. controls (134.16,83) and (133,81.84) .. (133,80.42) -- cycle ;
+%Flowchart: Connector [id:dp7297613981585807] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (139,77.42) .. controls (139,75.99) and (140.16,74.83) .. (141.58,74.83) .. controls (143.01,74.83) and (144.17,75.99) .. (144.17,77.42) .. controls (144.17,78.84) and (143.01,80) .. (141.58,80) .. controls (140.16,80) and (139,78.84) .. (139,77.42) -- cycle ;
+%Flowchart: Connector [id:dp519316674832357] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (143,74.42) .. controls (143,72.99) and (144.16,71.83) .. (145.58,71.83) .. controls (147.01,71.83) and (148.17,72.99) .. (148.17,74.42) .. controls (148.17,75.84) and (147.01,77) .. (145.58,77) .. controls (144.16,77) and (143,75.84) .. (143,74.42) -- cycle ;
+%Flowchart: Connector [id:dp5775906657739891] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (152,67.42) .. controls (152,65.99) and (153.16,64.83) .. (154.58,64.83) .. controls (156.01,64.83) and (157.17,65.99) .. (157.17,67.42) .. controls (157.17,68.84) and (156.01,70) .. (154.58,70) .. controls (153.16,70) and (152,68.84) .. (152,67.42) -- cycle ;
+%Flowchart: Connector [id:dp03915060924332758] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (157,62.42) .. controls (157,60.99) and (158.16,59.83) .. (159.58,59.83) .. controls (161.01,59.83) and (162.17,60.99) .. (162.17,62.42) .. controls (162.17,63.84) and (161.01,65) .. (159.58,65) .. controls (158.16,65) and (157,63.84) .. (157,62.42) -- cycle ;
+%Flowchart: Connector [id:dp8690889215321036] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (160,43.42) .. controls (160,41.99) and (161.16,40.83) .. (162.58,40.83) .. controls (164.01,40.83) and (165.17,41.99) .. (165.17,43.42) .. controls (165.17,44.84) and (164.01,46) .. (162.58,46) .. controls (161.16,46) and (160,44.84) .. (160,43.42) -- cycle ;
+%Flowchart: Connector [id:dp4177612953559997] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (165.17,38.42) .. controls (165.17,36.99) and (166.32,35.83) .. (167.75,35.83) .. controls (169.18,35.83) and (170.33,36.99) .. (170.33,38.42) .. controls (170.33,39.84) and (169.18,41) .. (167.75,41) .. controls (166.32,41) and (165.17,39.84) .. (165.17,38.42) -- cycle ;
+%Flowchart: Connector [id:dp5128286144574599] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (173,25.42) .. controls (173,23.99) and (174.16,22.83) .. (175.58,22.83) .. controls (177.01,22.83) and (178.17,23.99) .. (178.17,25.42) .. controls (178.17,26.84) and (177.01,28) .. (175.58,28) .. controls (174.16,28) and (173,26.84) .. (173,25.42) -- cycle ;
+%Flowchart: Connector [id:dp22947750381290377] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (52,143.42) .. controls (52,141.99) and (53.16,140.83) .. (54.58,140.83) .. controls (56.01,140.83) and (57.17,141.99) .. (57.17,143.42) .. controls (57.17,144.84) and (56.01,146) .. (54.58,146) .. controls (53.16,146) and (52,144.84) .. (52,143.42) -- cycle ;
+%Flowchart: Connector [id:dp8863637871678913] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (85,114.42) .. controls (85,112.99) and (86.16,111.83) .. (87.58,111.83) .. controls (89.01,111.83) and (90.17,112.99) .. (90.17,114.42) .. controls (90.17,115.84) and (89.01,117) .. (87.58,117) .. controls (86.16,117) and (85,115.84) .. (85,114.42) -- cycle ;
+%Flowchart: Connector [id:dp12145981530219196] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (100.17,105.42) .. controls (100.17,103.99) and (101.32,102.83) .. (102.75,102.83) .. controls (104.18,102.83) and (105.33,103.99) .. (105.33,105.42) .. controls (105.33,106.84) and (104.18,108) .. (102.75,108) .. controls (101.32,108) and (100.17,106.84) .. (100.17,105.42) -- cycle ;
+%Flowchart: Connector [id:dp3534241502734299] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (110.42,99) .. controls (110.42,97.57) and (111.57,96.42) .. (113,96.42) .. controls (114.43,96.42) and (115.58,97.57) .. (115.58,99) .. controls (115.58,100.43) and (114.43,101.58) .. (113,101.58) .. controls (111.57,101.58) and (110.42,100.43) .. (110.42,99) -- cycle ;
+%Flowchart: Connector [id:dp3714425687121712] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (118.58,90.83) .. controls (118.58,89.41) and (119.74,88.25) .. (121.17,88.25) .. controls (122.59,88.25) and (123.75,89.41) .. (123.75,90.83) .. controls (123.75,92.26) and (122.59,93.42) .. (121.17,93.42) .. controls (119.74,93.42) and (118.58,92.26) .. (118.58,90.83) -- cycle ;
+%Flowchart: Connector [id:dp04976356486726119] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (128.42,81.83) .. controls (128.42,80.41) and (129.57,79.25) .. (131,79.25) .. controls (132.43,79.25) and (133.58,80.41) .. (133.58,81.83) .. controls (133.58,83.26) and (132.43,84.42) .. (131,84.42) .. controls (129.57,84.42) and (128.42,83.26) .. (128.42,81.83) -- cycle ;
+%Flowchart: Connector [id:dp6906698808962104] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (147.83,69.42) .. controls (147.83,67.99) and (148.99,66.83) .. (150.42,66.83) .. controls (151.84,66.83) and (153,67.99) .. (153,69.42) .. controls (153,70.84) and (151.84,72) .. (150.42,72) .. controls (148.99,72) and (147.83,70.84) .. (147.83,69.42) -- cycle ;
+%Flowchart: Connector [id:dp4943922473518132] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (60.75,123.83) .. controls (60.75,122.41) and (61.91,121.25) .. (63.33,121.25) .. controls (64.76,121.25) and (65.92,122.41) .. (65.92,123.83) .. controls (65.92,125.26) and (64.76,126.42) .. (63.33,126.42) .. controls (61.91,126.42) and (60.75,125.26) .. (60.75,123.83) -- cycle ;
+%Flowchart: Connector [id:dp9753057025118685] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (45,153.42) .. controls (45,151.99) and (46.16,150.83) .. (47.58,150.83) .. controls (49.01,150.83) and (50.17,151.99) .. (50.17,153.42) .. controls (50.17,154.84) and (49.01,156) .. (47.58,156) .. controls (46.16,156) and (45,154.84) .. (45,153.42) -- cycle ;
+
+
+% Text Node
+\draw (180,149) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{40.834pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize quantiles }\\{\footnotesize théoriques}
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (36.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle -2$};
+% Text Node
+\draw (64.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle -1$};
+% Text Node
+\draw (100.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 0$};
+% Text Node
+\draw (129.62,170.3) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle 1$};
+% Text Node
+\draw (157.62,170.8) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {2};
+% Text Node
+\draw (15.8,14.15) node   [align=left] {{\footnotesize $\displaystyle \varepsilon _{i}$}};
+% Text Node
+\draw (11.26,93.92) node  [font=\footnotesize] [align=left] {\begin{minipage}[lt]{14.518000000000002pt}\setlength\topsep{0pt}
+\begin{flushright}
+12\\8\\4\\\textcolor[rgb]{0.25,0.46,0.02}{0}\\\mbox{-}4\\\mbox{-}8\\\mbox{-}12
+\end{flushright}
+
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+
+Bien que certains points sont loin de la droite, on observe le comportement \textbf{général} qui semble adéquat.
+
+
+
+\columnbreak
+\subsection{Facteur d'inflation de la variance (VIF)}
+\begin{rappel_enhanced}[Motivation]
+Pour évaluer la multicolinéarité, on cherche à détecter si un prédicteur est une combinaison linéaire des autres. Le coefficient de détermination indique si un modèle explique très bien une variable explicative. Il s'ensuit que le $R^{2}$ est une mesure utile pour évaluer la multicolinéarité si on l'ajuste pour notre cas ! En fait, on calcule le coefficient de détermination $p$ fois pour la régression de $x_{j}$ comme variable réponse par les $p - 1$ autres variables explicatives, dénoté $R^{2}_{(j)}$.
+
+\bigskip
+
+Cependant, il est difficile de comparer les différents $R^{2}_{(j)}$ puisque l'échelle des valeurs du coefficient est si petite. Nous voulons donc \textbf{changer l'échelle de $R^{2}_{(j)}$} afin d'augmenter les différences entre ses valeurs. On définit donc le VIF comme l'inverse du réciproque de $R^{2}_{(j)}$.
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILL}[\hypertarget{VIF}{Facteur d'inflation de la variance (VIF)}]
+Le facteur d'inflation de la variance (\textbf{\textit{VIF}}) est donc une \textbf{mesure de la \textit{\color{bleudefrance}\underline{\hyperlink{multicolin}{\color{bleudefrance} multicolinéarité}}}}. Le VIF pour le $j^{\text{e}}$ prédicteur $x_{j}$ est calculé en
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	effectuant une régression linéaire multiple avec $x_{j}$ comme variable réponse prédite par les $p - 1$ autres prédicteurs ;
+	\item	calculant le coefficient de détermination de cette régression dénoté $R^{2}_{(j)}$ ;
+	\item	calculant \lfbox[formula]{$VIF_{j} =  \frac{1}{1 - R^{2}_{(j)}}$}.
+\end{enumerate}
+
+\bigskip
+
+Si le VIF est élevé, il est probable qu'il y a un problème de multicolinéarité. L'implication d'un VIF élevé peut être clarifié en notant que l'erreur type du $j$ coefficient de régression \lfbox[formula]{$se(\hat{\beta}_{j}) = \sqrt{VIF_{j}} \sqrt{\frac{MSE}{(n - 1)s^{2}_{x_{j}}}}$}. 
+
+\bigskip
+
+Donc, comme noté dans la section de \textit{\underline{\nameref{subsec:LMHProbIssues}}}, un VIF élevé implique des coefficients instables. On voit ici que c'est en raison de l'erreur type des coefficients qui est élevée.
+
+\bigskip
+
+La règle du pouce est qu'on devrait s'inquiéter d'un problème de multicolinéarité si le \lfbox[formula]{$VIF_{j} > 5$} ou (de façon équivalente) si $R^{2}_{j} = 0.80$. Cependant, le $VIF$ comme toute autre mesure n'est qu'une \underline{\textit{indication}} de problèmes potentiels qu'il faut que nous devons analyser davantage.
+
+\paragraph{Note}	En anglais, \og \textit{variance inflation factor (VIF)} \fg{}.
+\end{definitionNOHFILL}
+
+
+
+
+\columnbreak
+\subsection{Résolutions potentielles}
+Dans le cas d'\textbf{hétéroscédasticité}, on veut stabiliser la variabilité. Par exemple, pour des résidus qui prennent la forme d'un entonnoir on peut transformer la variable réponse avec une \textbf{fonction concave} telle que le logarithme naturel ou la racine. La variable réponse est donc $\ln(Y)$ ou $\sqrt{Y}$ plutôt que $Y$.
+
+\bigskip
+
+Typiquement, si les \textbf{résidus sont dépendants} alors les données sont temporelles. Il faut donc utiliser un modèle de \textit{\underline{\nameref{chapt:seriesChrono}}} pour la variable réponse.
+
+\bigskip
+
+Si les \textbf{termes d'erreur ne sont pas normalement distribués} alors la variable réponse est discrète. Il faut donc utiliser un modèle qui utilise une autre distribution que la distribution normale.
+
+\bigskip
+
+Si on identifie un \textbf{problème de multicolinéarité} avec des coefficients, on peut mitiger le problème avec une de ces deux approches :
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	exclure tous sauf un des prédicteurs.
+	\item	combiner tous les prédicteurs en un.
+\end{enumerate}
+
+
+Une méthode n'est pas supérieure à l'autre, ça dépend du contexte. Dans certains cas, on peut simplement signaler le problème sans retirer les prédicteurs. Par exemple, si on est seulement intéressés aux autres résultats du modèle qui ne sont pas touchés par ces prédicteurs. Sinon, on peut utiliser des \textbf{prédicteurs orthogonales}.
+
+\bigskip
+
+Deux prédicteurs sont \textbf{\textit{orthogonales}}, alias \textit{non-corrélés} ou \textit{perpendiculaires}, si leur produit scalaire est nul : \lfbox[conditions]{$\sum_{i = 1}^{n} x_{i, 1} x_{i, 2} = 0$}. Un prédicteur est orthogonale à un ensemble de prédicteurs si son $VIF_{j} =  1$ la valeur minimale ($R^{2}_{(j)} = 0$).
 
 
 
 
 \newpage
 \section{Sélection du modèle}\label{sec:modelSelection}
+\subsection{Sélection de sous-ensemble}
 
+
+
+
+\columnbreak
+\subsection{Critère de sélection}
+
+
+
+
+\columnbreak
+\subsection{Validation croisée}
 
 
 
@@ -12253,8 +13151,7 @@ On défini la probabilité que la population disparaisse $\pi_{0}$ si $X_{0} = 1
 
 
 \newpage	
-\part{Séries chronologiques}
-\label{chapt:seriesChrono}
+\part{Séries chronologiques}\label{chapt:seriesChrono}
 
 
 \end{multicols*}
