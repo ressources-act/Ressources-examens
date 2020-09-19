@@ -6551,16 +6551,59 @@ L'avantage de l'algorithme hybride est qu'il traite les limitations des algorith
 
 \columnbreak
 \subsection{Critère de sélection}\label{subsec:modSelCrit}
-Mallow's $C_{p}$
-\lfbox[formula]{$C_{p} = \frac{SSE + 2p \times MSE_{g}}{n}$}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$MSE_{g}$]	L'EQM du modèle utilisant tous les $g$ prédicteurs.
+\end{description}
+\end{distributions}
+\begin{rappel_enhanced}[Contexte]
+Les critères de sélection permettent de choisir le modèle. Dans les algorithmes le $R^{2}_{a}$ est mentionné, cependant ont en présente 4 autres dans les deux prochaines sections. 
 
-AIC
-\lfbox[formula]{$AIC = \frac{SSE + 2p \times MSE_{g}}{n \times MSE_{g}}$}
+\bigskip
 
-BIC
-\lfbox[formula]{$BIC = \frac{SSE + \ln(n) \times p \times MSE_{g}}{n \times MSE_{g}}$}
+Cette section présente les 3 premières qui sont semblables à l'EQM d'entraînement, sauf qu'elles incluent une correction pour la flexibilité du modèle. La motivation est d'avoir une mesure qui peut mener à des conclusions semblables que celles obtenues de l'EQM de test sans les données de test. Cependant, la $4^{\text{e}}$ mesure qui utilise la validation croisée est une estimation plus directe de l'EQM de test.
+\end{rappel_enhanced}
 
-C.-V. error
+\paragraph{Note}	Voir la section sur la \textit{\underline{\nameref{subsec:PrecisionModel}}} pour la définition de l'EQM de test et d'entraînement.
+
+\bigskip
+
+\begin{definitionNOHFILL}[$C_{p}$ de Mallow]
+Le $C_{p}$ de Mallow est définit comme \lfbox[formula]{$C_{p} = \frac{SSE + 2p \times MSE_{g}}{n}$}. 
+
+\bigskip
+
+La formule, qui peut être décomposée comme \lfbox[formula]{$C_{p} = \textcolor{teal}{MSE} + \textcolor{amethyst}{2 \left(\frac{p}{n}\right) MSE_{g}}$}, équivaut à \textcolor{teal}{l'EQM d'entraînement} plus \textcolor{amethyst}{une pénalité par prédicteur}. Puisque \textcolor{teal}{l'EQM d'entraînement} décroît lorsque le nombre de prédicteurs $p$ augmente, le $C_{p}$ augmente si cette réduction ne compense pas pour \textcolor{amethyst}{la pénalité}.
+
+\paragraph{Note}	Ce que l'indice $p$ de $C_{p}$ représente n'est pas clair. Donc, on écrit toujours $C_{p}$ sans jamais substituer de valeur pour $p$.
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Voir les \textit{\underline{\nameref{subsec:ICModels}}} du chapitre de \textit{\underline{\nameref{chapt:mathIARD}}} qui contient la définition de l'AIC et du BIC avec la vraisemblance pour la sélection de modèles. Il s'ensuit que \textbf{la définition des mesures dépend du contexte}.
+
+\bigskip
+
+\begin{definitionNOHFILL}[Critère d'information d'Akaike (AIC)]
+En \textbf{\underline{régression linéaire multiple}}, \lfbox[formula]{$AIC = \frac{SSE + 2p \times MSE_{g}}{n \times \textcolor{burntorange}{MSE_{g}}}$}. 
+
+\bigskip
+
+L'AIC ne fait donc que \textcolor{burntorange}{changer l'échelle} du $C_{p}$ et choisira le même modèle.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Critère d'information bayésien (BIC)]
+En \textbf{\underline{régression linéaire multiple}}, \lfbox[formula]{$BIC = \frac{SSE + \ln(n) \times p \times MSE_{g}}{n \times MSE_{g}}$}.
+
+\bigskip
+
+Le BIC \textcolor{burntsienna}{modifie donc la pénalité} afin de tenir en compte le nombre d'observations. L'effet est que lorsque le nombre d'observations \lfbox[formula]{$n \geq 8$} le BIC va privilégier des modèles plus simples ayant moins de prédicteurs.
+
+\paragraph{Note}	La règle du pouce de $n \geq 8$ provient du fait que 8 est le première nombre pour lequel $\ln(n) \geq 2$.
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Motivation]
+L'avantage de ces mesure au $R^{2}_{a}$ est qu'elles ont des justifications théoriques. Cependant, tout comme le $R^{2}_{a}$, elles sont fonction de l'EQM d'entraînement et pas fiables pour des modèles surajustés.
+\end{rappel_enhanced}
 
 
 
