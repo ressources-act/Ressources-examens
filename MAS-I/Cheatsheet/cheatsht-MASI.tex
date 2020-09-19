@@ -5482,7 +5482,7 @@ Les données aberrantes (\og \textit{outliers} \fg{}) sont les observations avec
 Les points ayant un \og \textit{high leverage} \fg{} sont les observations dont les prédicteurs prennent des valeurs inhabituelles. L'estimation des coefficients est très sensible aux valeurs bizarres d'observations et donc on évalue ces observations de près afin qu'elles ne causent pas de biais dans l'estimation des coefficients.
 \end{definitionGENERAL}
 
-\begin{definitionGENERAL}{Dimensionalité élevée}[\circled{8}{trueblue}]
+\begin{definitionGENERAL}{\hypertarget{multidimProb}{Dimensionalité élevée}}[\circled{8}{trueblue}]
 La régression linéaire est conçue pour les ensembles de données où le nombre d'observations $n$ est plus large que le nombre de prédicteurs $p$. Le sur-ajustement peut survenir pour des ensembles de données ayant beaucoup de dimensions (alias, $p$ est trop grand).
 
 \bigskip
@@ -6465,20 +6465,113 @@ Deux prédicteurs sont \textbf{\textit{orthogonales}}, alias \textit{non-corrél
 
 \newpage
 \section{Sélection du modèle}\label{sec:modelSelection}
-\subsection{Sélection de sous-ensemble}
+\subsection{Sélection de sous-ensemble}\label{subsec:modSelSub}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$g$]	Nombre \textbf{total} de prédicteurs considéré.
+	\item[$p$]	Nombre de prédicteurs du modèle où $p \leq g$.
+	\item[$M_{p}$]	Meilleur modèle parmi les $\binom{g}{p}$ modèles possibles contenant $p$ prédicteurs.
+\end{description}
+\end{distributions}
+
+\begin{algo2}[Algorithme de sélection \og \textit{best subset} \fg{}]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Pour $p = 0, 1, \dots, g$, 
+		\begin{enumerate}[label = \circled{\scriptsize{(\alph*)}}{trueblue!80!white}]
+			\item	ajuster les $\binom{g}{p}$ modèles ayant $p$ prédicteurs ;
+			\item	poser que $M_{p}$ est le modèle ayant le plus gros $R^{2}$.
+		\end{enumerate}
+	\item	Choisir le meilleur modèle parmi $M_{0}, M_{1}, \dots, M_{g}$ selon un critère de sélection tel que le $R^{2}_{a}$.
+\end{enumerate}
+\paragraph{Note}	Il ne serait pas adéquat d'utiliser le $R^{2}$ à la deuxième étape puisque les modèles ont tous un nombre différent de paramètres.
+\end{algo2}
+
+\begin{rappel_enhanced}[Limitation]
+La méthode de sélection du meilleur sous-ensemble considère tous les \lfbox[formula]{$2^{g}$} modèles. Il s'ensuit que son intensité de calcul croît rapidement lorsque le nombre total de paramètres $g$ augmente.
+\end{rappel_enhanced}
+
+
+\subsubsection{Méthodes de sélection \og \textit{stepwise} \fg{}}
+\begin{algo2}[Algorithme de sélection \og \textit{Forward} \fg{}]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Ajuster $g$ modèles de régression linéaire simple, alias $g$ modèles avec un seul prédicteur.
+	\item	Poser que $M_{1}$ est le modèle ayant le plus gros $R^{2}$.
+	\item	Pour $p = 2, 3, \dots, g$, 
+		\begin{enumerate}[label = \circled{\scriptsize{(\alph*)}}{trueblue!80!white}]
+			\item	ajuster les modèles qui ajoutent un prédicteur au modèle $M_{p - 1}$ ;
+			\item	poser que $M_{p}$ est le modèle ayant le plus gros $R^{2}$.
+		\end{enumerate}
+	\item	Choisir le meilleur modèle parmi $M_{0}, M_{1}, \dots, M_{g}$ selon un critère de sélection tel que le $R^{2}_{a}$.
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Algorithme de sélection \og \textit{Backward} \fg{}]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Ajuster le modèle ayant $g$ prédicteurs $M_{g}$.
+	\item	Pour $p = g - 1, g - 2, \dots, 1$, 
+		\begin{enumerate}[label = \circled{\scriptsize{(\alph*)}}{trueblue!80!white}]
+			\item	ajuster les modèles qui retirent un prédicteur du modèle $M_{p + 1}$ ;
+			\item	poser que $M_{p}$ est le modèle ayant le plus gros $R^{2}$.
+		\end{enumerate}
+	\item	Choisir le meilleur modèle parmi $M_{0}, M_{1}, \dots, M_{g}$ selon un critère de sélection tel que le $R^{2}_{a}$.
+\end{enumerate}
+\end{algo2}
+
+\begin{rappel_enhanced}[Limitations]
+La méthode de sélection ascendante est une méthode dite \textit{gloutonne} (\og \textit{\textbf{greedy}} \fg{}), car elle ne fait qu'ajouter le meilleur prédicteur alors que le nombre de prédicteurs $P$ augmente plutôt que trouver le meilleur sous-ensemble de prédicteurs.
+
+\bigskip
+
+L'application de la méthode de sélection descendante peut être limitée. Lorsque $g$ est élevé il est possible que les modèles aient des problèmes de \textit{\color{bleudefrance}\underline{\hyperlink{multidimProb}{\color{bleudefrance} dimensionalité}}}. Les modèles pour lesquels \lfbox[formula]{$n \leq p + 1$} ne sont pas valides et même ceux pour lesquels \lfbox[formula]{$n \approx n - 2$} peuvent être surajustés. Donc, puisque la \og \textit{backward selection} \fg{} commence avec $M_{g}$ elle ne peut pas être utilisée. 
+
+\bigskip
+
+Ces méthodes de sélection \og \textit{stepwise} \fg{} forcent les modèles $M_{1}, \dots, M_{g}$ d'être des modèles \textit{\color{bleudefrance}\underline{\hyperlink{nestedModels}{\color{bleudefrance} emboîtés}}}. De plus, les deux méthodes examinent \lfbox[formula]{$1 + \frac{g(g + 1)}{2}$} modèles au lieu de $2^{g}$. Il s'ensuit que le modèle choisit n'est pas nécessairement le meilleur et donc qu'on échange de la précision pour de l'efficacité.
+\end{rappel_enhanced}
+
+
+\begin{algo2}[Algorithme de sélection hybride]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Débuter avec le modèle nul $M_{0}$.
+	\item	Ajouter le prédicteur pour lequel l'ajout au modèle a la plus petite valeur $p$, pour un test $t$ bilatéral, si la valeur $p$ est au delà d'un seuil minimal.
+		\begin{itemize}
+		\item	Si aucun modèle a une valeur $p$ au-delà du seuil minimal, ne pas ajouter un prédicteur.
+		\end{itemize}
+	\item	Retirer du modèle le prédicteur ayant la plus grande valeur $p$, pour un test $t$ bilatéral, si la valeur $p$ est au-delà d'un seuil maximal.
+	\item	Répéter les étapes 1 à 3 jusqu'à ce que le modèle se stabilise.
+\end{enumerate}
+\end{algo2}
+
+\begin{rappel_enhanced}[Contexte]
+L'avantage de l'algorithme hybride est qu'il traite les limitations des algorithmes précédents. Cependant, il y a également des problèmes tel que choisir le seuil critique des tests $t$ bilatérales.
+\end{rappel_enhanced}
 
 
 
 
 \columnbreak
-\subsection{Critère de sélection}
+\subsection{Critère de sélection}\label{subsec:modSelCrit}
+Mallow's $C_{p}$
+\lfbox[formula]{$C_{p} = \frac{SSE + 2p \times MSE_{g}}{n}$}
+
+AIC
+\lfbox[formula]{$AIC = \frac{SSE + 2p \times MSE_{g}}{n \times MSE_{g}}$}
+
+BIC
+\lfbox[formula]{$BIC = \frac{SSE + \ln(n) \times p \times MSE_{g}}{n \times MSE_{g}}$}
+
+C.-V. error
 
 
 
 
 \columnbreak
-\subsection{Validation croisée}
+\subsection{Validation croisée}\label{subsec:modSelCV}
+Ensemble de validation
+$k$-fold CV
+Leave-one-out CV (LOOCV)
 
+$\displaystyle \frac{1}{n} \sum_{i = 1}^{n} \left(\frac{y_{i} - \hat{y}_{i}}{1 - h_{i}}\right)^{2}$
 
 
 
@@ -9152,8 +9245,8 @@ Le test du rapport de vraisemblance teste la validité des restrictions d'un mod
 
 \end{definitionNOHFILLsub}
 
-\subsection{Critères d'information pour la sélection de modèles}
-Lorsque l'on compare deux modèles, on dit qu'un modèle est « emboîté » si l'autre comporte tous ses paramètres. Par exemple, un modèle basé sur une distribution exponentielle est emboîté par un modèle basé sur une distribution gamma ayant le même paramètre de fréquence $\beta$. 
+\subsection{Critères d'information pour la sélection de modèles}\label{subsec:ICModels}
+Lorsque l'on compare deux modèles, on dit qu'un modèle est « \hypertarget{nestedModels}{emboîté} » si l'autre comporte tous ses paramètres. Par exemple, un modèle basé sur une distribution exponentielle est emboîté par un modèle basé sur une distribution gamma ayant le même paramètre de fréquence $\beta$. 
 
 \bigskip
 
