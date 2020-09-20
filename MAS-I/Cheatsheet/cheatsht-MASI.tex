@@ -4059,7 +4059,7 @@ Par exemple,
 \end{itemize}
 \end{definitionNOHFILLsub}
 
-\paragraph{Note}	Dans le cadre de l'examen MAS-I, seule \textit{\underline{\hyperref[sec:PCA]{l'analyse en composantes principales}} (ACP)} est couverte. Nous nous concentrons surtout sur les méthodes d'apprentissage supervisé.
+\paragraph{Note}	Dans le cadre de l'examen MAS-I, seule \textit{\underline{\hyperref[subsubsec:PCA]{l'analyse en composantes principales}} (ACP)} est couverte. Nous nous concentrons surtout sur les méthodes d'apprentissage supervisé.
 
 
 
@@ -4192,7 +4192,7 @@ Donc,
 	\item	l'EQM de test est concave ce qui veut dire que le meilleur modèle fait un \textbf{\underline{compromis}} entre la \textit{flexibilité} et la \textit{précision} du modèle.
 \end{itemize}
 
-\subsubsection{Compromis biais-variance}
+\subsubsection{Compromis biais-variance}\label{subsubsec:BVtradeoff}
 \begin{rappel_enhanced}[Contexte]
 La variance de $\hat{f}$ mesure l'erreur due à la \textit{\textbf{sensibilité} du modèle à l'ensemble de données}. C'est-à-dire, si la \textbf{forme} de $\hat{f}$ varie beaucoup selon l'ensemble de données utilisé pour ajuster le modèle. Si la variance de $\hat{f}$ est très élevée, ça peut signaler qu'il est surajusté aux données. 
 
@@ -4692,7 +4692,7 @@ Il s'ensuit que le modèle de régression linéaire simple a des limitations inh
 
 
 \columnbreak
-\subsection{Estimation du modèle}
+\subsection{Estimation du modèle}\label{subsec:SLREstimation}
 \subsubsection{Estimation des paramètres libres}
 \begin{distributions}[Notation]
 \begin{description}
@@ -6474,7 +6474,7 @@ Deux prédicteurs sont \textbf{\textit{orthogonales}}, alias \textit{non-corrél
 \end{description}
 \end{distributions}
 
-\begin{algo2}[Algorithme de sélection \og \textit{best subset} \fg{}]
+\begin{algo2}[\hypertarget{bestSubset}{Algorithme de sélection \og \textit{best subset} \fg{}}]
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	Pour $p = 0, 1, \dots, g$, 
 		\begin{enumerate}[label = \circled{\scriptsize{(\alph*)}}{trueblue!80!white}]
@@ -6610,23 +6610,148 @@ L'avantage de ces mesure au $R^{2}_{a}$ est qu'elles ont des justifications thé
 
 \columnbreak
 \subsection{Validation croisée}\label{subsec:modSelCV}
-Ensemble de validation
-$k$-fold CV
-Leave-one-out CV (LOOCV)
+\begin{rappel_enhanced}[Contexte]
+On peut estimer l'EQM de test sans d'échantillon de test avec la validation croisée. La logique est de séparer les données afin d'en utiliser une partie pour entraîner le modèle et une autre pour le tester. On voit 3 approches dans cette section.
+%On peut soit avoir l'objectif de choisir un modèle parmi un ensemble de modèles possibles ou de déterminer le nombre de paramètres nécessaire pour le modèle. Pouor
+\end{rappel_enhanced}
 
-$\displaystyle \frac{1}{n} \sum_{i = 1}^{n} \left(\frac{y_{i} - \hat{y}_{i}}{1 - h_{i}}\right)^{2}$
+
+
+\subsubsection{Ensemble de validation (\og \textit{validation set} \fg{})}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$n_{1}$]	Nombre d'observations dans les données d'entraînement.
+	\item[$n_{2}$]	Nombre d'observations dans les données de test.
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+Avec l'ensemble de validation, on sépare les données en deux ensembles de données : des données d'entraînement et des données de test. Ceci s'apparente donc aux échantillons d'entraînement et de test mentionnés pour la première fois dans la section d'\textit{\underline{\nameref{subsec:SLREstimation}}} de la \textit{\underline{\nameref{sec:SLR}}}. 
+
+\bigskip
+
+La méthode ajuste le modèle avec \textbf{seulement} les $n_{1}$ données d'entraînement puis calcule l'EQM de test avec seulement les $n_{2}$ données de test. Cette EQM de test estimée correspond à l'\textbf{\textit{erreur de l'ensemble de validation}}.
+\end{rappel_enhanced}
+
+\begin{algo2}[Algorithme de validation croisée classique]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Ajuster $g$ modèles sur les $n_{1}$ données d'entraînement avec n'importe quelle méthode de sélection (p. ex. la sélection par \textit{\color{bleudefrance}\underline{\hyperlink{bestSubset}{\color{bleudefrance} meilleur sous-ensemble}}}).
+	\item	Déterminer le $p$ correspondant au meilleur modèle parmi $M_{0}, M_{1}, \dots, M_{p}$.
+		\begin{itemize}
+		\item	C'est-à-dire, le modèle ayant la plus faible erreur de l'ensemble de validation.
+		\end{itemize}
+	\item	Utiliser la méthode de sélection utilisée précédemment pour ajuster tous les modèles comportant $p$ prédicteurs sur \textbf{toutes} les observations, puis choisir le meilleur.
+		\begin{itemize}
+		\item	Ceci permet de mieux ajuster les coefficients du modèle.
+		\item	Le modèle choisit n'aura pas nécessairement les 3 mêmes prédicteurs que celui choisit à l'étape 2.
+		\end{itemize}
+\end{enumerate}
+\end{algo2}
+
+\begin{rappel_enhanced}[Limitations]
+La validation croisée avec un ensemble de validation a deux enjeux dont il faut tenir en compte. Premièrement, puisque les données sont segmentées en deux de façon aléatoire, les \textbf{résultats sont volatiles} et peuvent varier en fonction de l'échantillon choisit. De plus, puisque nous utilisons seulement $n_{1}$ observations pour ajuster le modèle, l'erreur de l'ensemble de validation à tendance à \textbf{surestimer} l'EQM de test. 
+\end{rappel_enhanced}
+
+
+
+%\columnbreak
+\subsubsection{Validation croisée par k sous-ensembles (\og \textit{k-fold validation} \fg{})}
+\begin{algo2}[Algorithme de validation croisée par $k$ sous-ensembles]
+La validation croisée par $k$ sous-ensembles divise de façon aléatoire toutes les observations en $k$ sous-ensembles (\og \textit{folds} \fg{}) d'environ la même taille. Puis, on ajuste le modèle $k$ fois selon l'algorithme suivant : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Pour $\upsilon = 1, \dots, k$, 
+		\begin{enumerate}[label = \circled{\scriptsize{(\alph*)}}{trueblue!80!white}]
+		\item	ajuster le $\upsilon^{\text{e}}$ modèle avec toutes les données sauf celles dans le $\upsilon^{\text{e}}$ sous-ensemble.
+		\item	utiliser le $\upsilon^{\text{e}}$ modèle pour calculer l'EQM de test avec les données du $\upsilon^{\text{e}}$ sous-ensemble.
+		\end{enumerate}
+	\item	Calculer l'\textbf{\textit{erreur de validation croisée}} : la moyenne des $k$ EQM de test calculées à l'étape 1.
+		\begin{itemize}
+		\item	En anglais, \og \textit{CV error} \fg{}.
+		\end{itemize}
+\end{enumerate}
+\end{algo2}
+
+\begin{algo2}[Algorithme de sélection par validation croisée par $k$ sous-ensembles]
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Pour $p = 0, \dots, g$ (ou $p = g, \dots, 0$ pour la sélection \og \textit{backward} \fg{}) appliquer l'algorithme de validation croisée par $k$ sous-ensembles.
+	\item	Déterminer le $p$ qui correspond au modèle ayant la plus faible erreur de validation croisée.
+	\item	Utiliser la méthode de sélection utilisée précédemment pour ajuster tous les modèles comportant $p$ prédicteurs sur \textbf{toutes} les observations, puis choisir le meilleur.
+\end{enumerate}
+\end{algo2}
+
+\begin{rappel_enhanced}[Contexte]
+La validation croisée par $k$ sous-ensembles répond aux enjeux soulevés avec l'ensemble de validation. La sélection du nombre de prédicteurs se base sur la moyenne de plusieurs modèles ce qui permet de \textbf{diminuer la volatilité des résultats}. De plus, puisqu'on utilise la majorité des données pour ajuster chacun des modèles les résultats sont moins biaisés.
+
+\bigskip
+
+Il y a cependant un compromis à faire entre le biais et la volatilité, ou variance, des résultats. On développe sur cette idée avec la validation croisée par $n$ sous-ensembles alias \og \textit{leave-one-out cross-validation (LOOCV)} \fg{}.
+\end{rappel_enhanced}
+
+
+\subsubsection{\og \textit{Leave-one-out cross-validation (LOOCV)} \fg{}}
+\begin{rappel_enhanced}[Contexte]
+Comme mentionné ci-dessus, la \og \textit{leave-one-out cross-validation (LOOCV)} \fg{} est un cas spécial de la validation croisée par $k$ sous-ensembles lorsque $k = n$. Ceci implique que chacun des sous-ensembles comporte une seule observation. Il s'ensuit que l'intensité de calcul du LOOCV croît rapidement alors que le nombre d'observations $n$ augmente puisque nous devons ajuster $n$ modèles.
+\end{rappel_enhanced}
+
+\bigskip
+
+\begin{definitionNOHFILL}[Erreur LOOCV]
+L'erreur LOOCV est la moyenne des résidus calculés à chaque étape comme l'EQM de test. Cependant, puisque l'erreur est calculée par observation on peut simplifier son calcul comme \lfbox[formula]{$\displaystyle \frac{1}{n} \sum_{i = 1}^{n} \left(\frac{y_{i} - \hat{y}_{i}}{1 - h_{i}}\right)^{2}$}. 
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Limitations]
+Plus le nombre de sous-ensembles augmente, plus les sous-ensembles de données se chevauchent, plus la variance dans l'estimation de l'EQM de test augmente. En revanche, le biais dans la prévision de l'EQM de test diminue. Par exemple, L'algorithme LOOCV aura le moins de biais mais le plus de volatilité ! Le \textit{\underline{\nameref{subsubsec:BVtradeoff}}} est donc à considérer ici aussi. 
+
+\bigskip
+
+La règle du pouce est d'utiliser \lfbox[formula]{$k = 5$} ou \lfbox[formula]{$k = 10$} sous-ensembles en validation croisée.
+\end{rappel_enhanced}
+
 
 
 
 \newpage
 \section{Méthodes de régression alternatives}\label{sec:altRegressionMethods}
+%Shrinkage methods : Ridge et Lasso
+%Dimension reduction methods : PCR et PLS
+
+\subsection{Standardisation de variables}
+%centered
+%scaled
+%standardised
+
+
+\subsection{Régression Ridge}
+
+%budget parameter
+%tuning parameter
+%	tuning
+%l2 norm
+
+
+\subsection{Régression Lasso}
+l1 norm
+
+
+
+\subsection{Analyse et régression en composantes principales}
+\subsubsection{Analyse en composantes principales (PCA)}\label{subsubsec:PCA}
+%loadings
+%scores
+%components
+
+
+\subsubsection{Régression en composantes principales (PCR)}
+
+
+\subsection{Partial least squares (PLS)}
+%directions
 
 
 
 
 \newpage
 \section{Régression linéaire généralisée}\label{sec:GLM}
-
 
 \subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
 \paragraph{Note}	La section \underline{\textit{\nameref{subsec:exhMinStat}}} du chapitre de \underline{\textit{\nameref{subsec:FamExpMVUE}}} détaille l'application de la famille exponentielle pour identifier le MVUE. Cette section couvre plus en détails la famille.
@@ -6667,6 +6792,9 @@ Sous cette forme, on déduit que \lfbox[formula]{$\text{E}[a(Y)]	=	-\frac{c'(\th
 %	\item[$\text{Var}(\varepsilon_{i}) \propto \left(\text{E}\lbrack Y_{i} \rbrack\right)^{4}$]		alors \lfbox[formula]{$g(y)	=	1 / Y$}.
 %	\item[$\text{Var}(\varepsilon_{i}) \propto \text{E}\lbrack Y_{i} \rbrack(1 - \text{E}\lbrack Y_{i} \rbrack)$]	, que $Y	\in [0, 1]$ et que $Y	\sim	 \text{Bern}$ alors \lfbox[formula]{$g(y)	=	\arcsin \sqrt{Y}$}.
 %\end{description}
+
+
+
 
 
 \newpage
@@ -6803,8 +6931,13 @@ Excepté l'intercepte, les paramètres $\beta$ ne varient pas par catégorie $j$
 \end{align*}
 
 
-\newpage	
-\section{Analyse en composantes principales}\label{sec:PCA}
+
+
+\newpage
+\section{\og \textit{Generalized Additive Models (GAM)} \fg{}}
+
+
+
 
 \newpage
 \section{Autres}
