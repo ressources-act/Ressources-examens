@@ -6712,28 +6712,208 @@ La règle du pouce est d'utiliser \lfbox[formula]{$k = 5$} ou \lfbox[formula]{$k
 
 \newpage
 \section{Méthodes de régression alternatives}\label{sec:altRegressionMethods}
+\begin{rappel_enhanced}[Contexte]
+Cette section discute les alternatifs à la régression linéaire multiple avec les \og \textit{shrinkage methods} \fg{} et les \og \textit{dimension reduction methods} \fg{}. Ces méthodes peuvent nécessiter de standardiser les variables.
+
+\bigskip
+
+
+\end{rappel_enhanced}
 %Shrinkage methods : Ridge et Lasso
 %Dimension reduction methods : PCR et PLS
-
+ 
 \subsection{Standardisation de variables}
-%centered
-%scaled
-%standardised
+Une variable :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,168); %set diagram left start at 0, and has height of 168
+
+%Rounded Rect [id:dp41181662832297294] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (189.82,33.86) .. controls (189.82,30.39) and (192.64,27.57) .. (196.11,27.57) -- (272.27,27.57) .. controls (275.74,27.57) and (278.56,30.39) .. (278.56,33.86) -- (278.56,52.73) .. controls (278.56,56.21) and (275.74,59.02) .. (272.27,59.02) -- (196.11,59.02) .. controls (192.64,59.02) and (189.82,56.21) .. (189.82,52.73) -- cycle ;
+
+%Rounded Rect [id:dp9405534032317031] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 253; green, 160; blue, 6 }  ,fill opacity=1 ] (299.82,33.86) .. controls (299.82,30.39) and (302.64,27.57) .. (306.11,27.57) -- (382.27,27.57) .. controls (385.74,27.57) and (388.56,30.39) .. (388.56,33.86) -- (388.56,52.73) .. controls (388.56,56.21) and (385.74,59.02) .. (382.27,59.02) -- (306.11,59.02) .. controls (302.64,59.02) and (299.82,56.21) .. (299.82,52.73) -- cycle ;
+
+%Rounded Rect [id:dp23593501662840177] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 229; green, 41; blue, 192 }  ,fill opacity=1 ] (406.39,33.86) .. controls (406.39,30.39) and (409.21,27.57) .. (412.68,27.57) -- (488.83,27.57) .. controls (492.31,27.57) and (495.12,30.39) .. (495.12,33.86) -- (495.12,52.73) .. controls (495.12,56.21) and (492.31,59.02) .. (488.83,59.02) -- (412.68,59.02) .. controls (409.21,59.02) and (406.39,56.21) .. (406.39,52.73) -- cycle ;
 
 
-\subsection{Régression Ridge}
+% Text Node
+\draw (322.69,35.8) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {réduite};
+% Text Node
+\draw (411.26,35.8) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {standardisée};
+% Text Node
+\draw (210.69,35.8) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {centrée};
+% Text Node
+\draw (216.11,62.02) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x-\overline{x}$};
+% Text Node
+\draw (432.68,62.02) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \frac{x-\overline{x}}{\hat{\sigma}}$};
+% Text Node
+\draw (336.11,62.02) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \frac{\overline{x}}{\hat{\sigma}}$};
+\end{tikzpicture}
+\end{center}
 
-%budget parameter
-%tuning parameter
-%	tuning
-%l2 norm
+\paragraph{Note}	Par défaut, on utilise la \hypertarget{empiricalVariance}{variance empirique} biaisée plutôt que la \hypertarget{variance échantillonnale}{variance échantillonnale}. Cependant, l'impact d'utiliser un ou l'autre est minime.
+
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+Ces transformations de variables ont un impact sur l'estimation des coefficients d'une régression linéaire multiple. Si on centre les variables, l'intercepte devient équivalent à la moyenne empirique. Si on réduit les variables, l'intercepte reste pareille, mais les coefficients sont multipliés par l'écart-type de la variable explicative. 
+
+\bigskip
+
+Par contre, en développant l'expression de $\hat{y}$, on trouve qu'elle est équivalente à l'expression originale. Donc, ces transformations ne changent pas les prévisions pour la régression linéaire puisque l'estimation est basée sur la \textbf{méthode des moindres carrés}. Cependant, si l'estimation est basée sur une \textit{\textbf{autre méthode}} alors ces transformations \textbf{\underline{peuvent}} avoir un impact ! 
+\end{rappel_enhanced}
 
 
-\subsection{Régression Lasso}
-l1 norm
+
+\columnbreak
+\subsection{Méthodes de réduction de la dimensionalité}
+\begin{rappel_enhanced}[Contexte]
+La méthode des moindres carrés (\og \textit{ordinary least squares (OLS)} \fg{}) estime les coefficients de régression en minimisant la \lfbox[formula]{$\displaystyle SSE = \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1}x_{i, 1} - \dots - b_{p} x_{i, p}\right)^{2}$}. Par le \textit{\underline{\nameref{subsubsec:BVtradeoff}}}, augmenter la $p$ (la flexibilité) diminue le biais de la méthode d'OLS mais augmente sa variance.
+
+\bigskip
+
+Une méthode de diminuer la variance, et d'accorder un peu de biais, est de \underline{\textit{restreindre}} les valeurs prises par les estimations des coefficients. 
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$a$]	\og \textit{budget parameter} \fg{}.
+	\item[$\lambda$]	\og \textit{tuning parameter} \fg{}.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Norme $\ell_{1}$]
+La norme $\ell_{1}$ du vecteur colonne $\bm{b}$ est \lfbox[formula]{$\displaystyle \lVert \bm{b} \rVert_{1} = \sum_{j = 1}^{p} \left| b_{j}\right|$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Norme $\ell_{2}$]
+La norme $\ell_{2}$ du vecteur colonne $\bm{b}$ est \lfbox[formula]{$\displaystyle \lVert \bm{b} \rVert_{2} = \sqrt{\sum_{j = 1}^{p} b_{j}^{2}}$}.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Régression Ridge}
+\begin{rappel_enhanced}[Contexte]
+La régression Ridge va limiter tous les coefficients (sauf l'intercepte), sans toutefois éliminer de prédicteurs. Elle est donc utile lorsque nous avons une dimensionalité élevée et que seulement certains des prédicteurs sont importants.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Régression Ridge]
+La méthode de \textbf{\textit{régression Ridge}} minimise également la SSE avec la contrainte additionnelle que \lfbox[formula]{$\displaystyle \sum_{j = 1}^{p} b^{2}_{j} \leq \alpha$}.
+
+\begin{definitionNOHFILLsub}[Visualisation pour $p = 2$]
+Afin de comprendre l'idée sous-jacente à la régression Ridge, on trace le dessin suivant : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,220); %set diagram left start at 0, and has height of 220
+
+%Shape: Circle [id:dp86882528672131] 
+\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.61 ] (54.5,82) .. controls (54.5,62.67) and (70.17,47) .. (89.5,47) .. controls (108.83,47) and (124.5,62.67) .. (124.5,82) .. controls (124.5,101.33) and (108.83,117) .. (89.5,117) .. controls (70.17,117) and (54.5,101.33) .. (54.5,82) -- cycle ;
+%Shape: Axis 2D [id:dp23549345671486388] 
+\draw  (11,82) -- (168.5,82)(89.5,2) -- (89.5,159.5) (161.5,77) -- (168.5,82) -- (161.5,87) (84.5,9) -- (89.5,2) -- (94.5,9)  ;
+%Straight Lines [id:da9517595855633638] 
+\draw [line width=1.5]    (125.1,78.52) -- (125,85.58) ;
+%Shape: Circle [id:dp824087275702917] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ][line width=3]  (157,31) .. controls (157,30.45) and (157.45,30) .. (158,30) .. controls (158.55,30) and (159,30.45) .. (159,31) .. controls (159,31.55) and (158.55,32) .. (158,32) .. controls (157.45,32) and (157,31.55) .. (157,31) -- cycle ;
+%Shape: Ellipse [id:dp2746677878337087] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (126.26,49.67) .. controls (121.43,40.72) and (133.13,25.04) .. (152.39,14.66) .. controls (171.65,4.27) and (191.17,3.1) .. (196,12.05) .. controls (200.82,21) and (189.12,36.68) .. (169.87,47.06) .. controls (150.61,57.45) and (131.09,58.62) .. (126.26,49.67) -- cycle ;
+%Shape: Ellipse [id:dp5317713155048021] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (113.69,56.1) .. controls (107.46,44.56) and (123.66,23.75) .. (149.86,9.62) .. controls (176.06,-4.51) and (202.35,-6.61) .. (208.57,4.93) .. controls (214.79,16.47) and (198.6,37.28) .. (172.4,51.41) .. controls (146.2,65.54) and (119.91,67.64) .. (113.69,56.1) -- cycle ;
+%Shape: Circle [id:dp454939332798024] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=3]  (114.5,58) .. controls (114.5,57.45) and (114.95,57) .. (115.5,57) .. controls (116.05,57) and (116.5,57.45) .. (116.5,58) .. controls (116.5,58.55) and (116.05,59) .. (115.5,59) .. controls (114.95,59) and (114.5,58.55) .. (114.5,58) -- cycle ;
+
+% Text Node
+\draw (130,87) node  [font=\footnotesize] [align=left] {$\displaystyle a$};
+% Text Node
+\draw (142,48) node  [font=\scriptsize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\left( b^{ridge}_{1} ,b^{ridge}_{2}\right)$};
+% Text Node
+\draw (174,89) node  [font=\scriptsize]  {$b_{1}$};
+% Text Node
+\draw (74,12) node  [font=\scriptsize]  {$b_{2}$};
+% Text Node
+\draw (196.05,29.03) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ]  {$\left( b^{OLS}_{1} ,\ \ b^{OLS}_{2}\right)$};
+\end{tikzpicture}
+\end{center}
+
+\textcolor{amethyst}{Le point mauve} correspond au point qui minimise la SSE; ses coordonnées correspondent donc aux estimations des paramètres $b_{1}$ et $b_{2}$ par la méthode d'OLS. \textcolor{burntorange}{Les ronds en orange} représentent ce point plus un nombre (p. ex. $50, 100, \dots$) correspondant à la pénalité additionnelle du modèle.
+
+\bigskip
+
+\textcolor{ashgrey!80!black}{Le cercle gris} correspond à la contrainte que $b^{2}_{1} + b^{2}_{2} \leq \alpha$. La pénalité choisie va donc correspondre au rond qui intersecte le cercle \textcolor{red}{au point rouge} dont les coordonnées sont les estimations des paramètres $b_{1}$ et $b_{2}$ par la méthode de régression Ridge. 
+
+\bigskip
+
+On peut également voir pourquoi la régression Ridge réduit les coefficients, car le cercle les force de tendre vers zéro.
+\end{definitionNOHFILLsub}
+
+La régression Ridge va donc chercher à minimiser \lfbox[formula]{$\displaystyle \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1}x_{i, 1} - \dots - b_{p} x_{i, p}\right)^{2} + \lambda \sum_{j = 1}^{p} b^{2}_{j}$} où $\lambda$ est le \og \textit{tuning parameter} \fg{} qui contrôle la réduction. Également, les variables explicatives doivent être \textbf{réduites} afin que les coefficients soient sur la \textbf{\textit{même échelle}} pour la contrainte.
+\end{definitionNOHFILL}
+
+Le paramètre $\lambda$ est inversement lié à la flexibilité; \textbf{\textit{augmenter $\lambda$ diminue la flexibilité}}. Si $\lambda = 0$, la régression Ridge équivaut à la méthode d'OLS alors que si $\lambda \rightarrow \infty$, la régression Ridge tend vers le modèle nul. Le processus de trouver la meilleur valeur de $\lambda$ s'appelle le \og \textit{\textbf{tuning}} \fg{} et se fait via la \textit{\underline{\nameref{subsec:modSelCV}}}.
+
+\paragraph{Note}	Augmenter $\lambda$ implique de diminuer \underline{la pénalité}, mais les coefficients individuels estimés $b_{j}$ pourraient toutefois augmenter (en valeur absolue).
 
 
 
+\subsubsection{Régression Lasso}
+\begin{rappel_enhanced}[Contexte]
+La distinction de la méthode de régression Lasso à la méthode de régression Ridge est que Lasso peut éliminer des prédicteurs plus aisément. Une utilité de la régression Lasso peut donc être d'éliminer des prédicteurs.
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILL}[Régression Lasso]
+La méthode de \textbf{\textit{régression Lasso}} minimise également la SSE avec la contrainte additionnelle que \lfbox[formula]{$\displaystyle \sum_{j = 1}^{p} \left| b_{j} \right| \leq \alpha$}.
+
+\begin{definitionNOHFILLsub}[Visualisation pour $p = 2$]
+Afin de comprendre l'idée sous-jacente à la régression Ridge, on trace le dessin suivant : 
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,220); %set diagram left start at 0, and has height of 220
+
+%Shape: Axis 2D [id:dp7572509297251417] 
+\draw  (11,82) -- (168.5,82)(89.5,2) -- (89.5,159.5) (161.5,77) -- (168.5,82) -- (161.5,87) (84.5,9) -- (89.5,2) -- (94.5,9)  ;
+%Straight Lines [id:da5237275839006372] 
+\draw [line width=1.5]    (125.1,78.52) -- (125,85.58) ;
+%Shape: Circle [id:dp04411617504071308] 
+\draw  [color={rgb, 255:red, 144; green, 19; blue, 254 }  ,draw opacity=1 ][fill={rgb, 255:red, 144; green, 19; blue, 254 }  ,fill opacity=1 ][line width=3]  (149,37) .. controls (149,36.45) and (149.45,36) .. (150,36) .. controls (150.55,36) and (151,36.45) .. (151,37) .. controls (151,37.55) and (150.55,38) .. (150,38) .. controls (149.45,38) and (149,37.55) .. (149,37) -- cycle ;
+%Shape: Ellipse [id:dp25401566008688814] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (118.26,55.67) .. controls (113.43,46.72) and (125.13,31.04) .. (144.39,20.66) .. controls (163.65,10.27) and (183.17,9.1) .. (188,18.05) .. controls (192.82,27) and (181.12,42.68) .. (161.87,53.06) .. controls (142.61,63.45) and (123.09,64.62) .. (118.26,55.67) -- cycle ;
+%Shape: Ellipse [id:dp3446068849663395] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (105.69,62.1) .. controls (99.46,50.56) and (115.66,29.75) .. (141.86,15.62) .. controls (168.06,1.49) and (194.35,-0.61) .. (200.57,10.93) .. controls (206.79,22.47) and (190.6,43.28) .. (164.4,57.41) .. controls (138.2,71.54) and (111.91,73.64) .. (105.69,62.1) -- cycle ;
+%Shape: Circle [id:dp008782280144266963] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ][line width=3]  (106.5,64) .. controls (106.5,63.45) and (106.95,63) .. (107.5,63) .. controls (108.05,63) and (108.5,63.45) .. (108.5,64) .. controls (108.5,64.55) and (108.05,65) .. (107.5,65) .. controls (106.95,65) and (106.5,64.55) .. (106.5,64) -- cycle ;
+%Shape: Diamond [id:dp5535685828383572] 
+\draw  [fill={rgb, 255:red, 155; green, 155; blue, 155 }  ,fill opacity=0.61 ] (89.5,47) -- (124.5,82) -- (89.5,117) -- (54.5,82) -- cycle ;
+
+% Text Node
+\draw (130,87) node  [font=\footnotesize] [align=left] {$\displaystyle a$};
+% Text Node
+\draw (134,54) node  [font=\scriptsize,color={rgb, 255:red, 208; green, 2; blue, 27 }  ,opacity=1 ]  {$\left( b^{lasso}_{1} ,b^{lasso}_{2}\right)$};
+% Text Node
+\draw (174,89) node  [font=\scriptsize]  {$b_{1}$};
+% Text Node
+\draw (74,12) node  [font=\scriptsize]  {$b_{2}$};
+% Text Node
+\draw (188.05,35.03) node  [font=\scriptsize,color={rgb, 255:red, 144; green, 19; blue, 254 }  ,opacity=1 ]  {$\left( b^{OLS}_{1} ,\ \ b^{OLS}_{2}\right)$};
+\end{tikzpicture}
+\end{center}
+
+\textcolor{ashgrey!80!black}{Le diamant gris} correspond à la contrainte que $|b_{1}| + |b_{2}| \leq \alpha$. La pénalité choisie va donc correspondre au rond qui intersecte le diamant \textcolor{red}{au point rouge} dont les coordonnées sont les estimations des paramètres $b_{1}$ et $b_{2}$ par la méthode de régression Lasso. 
+
+\bigskip
+
+On peut également voir pourquoi la régression Lasso peut éliminer des coefficients, car la forme du diamant peut impliquer que le point le plus près est sur une des axes sans nécessiter que $\lambda \rightarrow \infty$. 
+\end{definitionNOHFILLsub}
+
+La régression Lasso va donc chercher à minimiser \lfbox[formula]{$\displaystyle \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1}x_{i, 1} - \dots - b_{p} x_{i, p}\right)^{2} + \lambda \sum_{j = 1}^{p} \left| b_{j} \right| $} où $\lambda$ est le \og \textit{tuning parameter} \fg{} qui contrôle la réduction. Également, les variables explicatives doivent être \textbf{réduites} afin que les coefficients soient sur la \textbf{\textit{même échelle}} pour la contrainte.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
 \subsection{Analyse et régression en composantes principales}
 \subsubsection{Analyse en composantes principales (PCA)}\label{subsubsec:PCA}
 %loadings
