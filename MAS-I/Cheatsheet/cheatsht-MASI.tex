@@ -687,7 +687,7 @@ Par exemple, le pivot $\frac{\bar{X}_{n} - \mu}{\sqrt{n}}$ est un pivot; il est 
 
 
 \begin{formula}{Exemple d'application de la méthode du pivot}
-Soit $X \sim \sim \text{Pareto}(\alpha = 2, \theta)$ et le pivot $W = \frac{\theta}{X}$. Nous avons un échantillon d'une observation : $x = \{3.5\}$ et on désire trouver un intervalle de confiance bilatéral de 95\% pour $\theta$.
+Soit $X \sim \text{Pareto}(\alpha = 2, \theta)$ et le pivot $W = \frac{\theta}{X}$. Nous avons un échantillon d'une observation : $x = \{3.5\}$ et on désire trouver un intervalle de confiance bilatéral de 95\% pour $\theta$.
 
 \bigskip
 
@@ -702,7 +702,7 @@ Soit $X \sim \sim \text{Pareto}(\alpha = 2, \theta)$ et le pivot $W = \frac{\the
 			=	\Pr\left(\frac{\theta}{X} \leq w\right)	
 			=	\Pr\left(X < \frac{\theta}{w}\right)		\\
 			&=	\left(\frac{\theta}{\left(\frac{\theta}{w}\right) + \theta}\right)^{2}	\\
-			=	\left(\frac{w}{w + 1}\right)^{2}
+			&=	\left(\frac{w}{w + 1}\right)^{2}
 			\end{align*}
 		\end{enumerate}
 	\item	On doit établir quels quantiles trouver pour un niveau de confiance de 95\%. On déduit ces percentiles visuellement : 
@@ -3638,7 +3638,8 @@ Par exemple :
 
 
 
-\columnbreak
+
+\newpage
 \section{Construction d'estimateurs}
 \subsection{Introduction}
 \begin{rappel_enhanced}[Contexte]
@@ -3931,7 +3932,7 @@ Soit une distribution avec $r$ paramètre tel que $\hat{\bm{\theta}} = (\hat{\th
 
 
 
-\pagebreak
+\newpage
 \part{Modèles linéaires en actuariat}\label{chapt:modLin}
 \section{Apprentissage statistique}\label{sec:StatLearning}
 \begin{definitionNOHFILL}[Apprentissage statistique]
@@ -4642,6 +4643,8 @@ La régression linéaire simple revient à prédire la variable réponse par une
 \end{rappel_enhanced}
 
 
+
+\columnbreak
 \subsection{Définition du modèle}
 \begin{distributions}[Notation]
 \begin{description}
@@ -4735,7 +4738,7 @@ La variance de la valeur réponse, qui correspond à la variance de l'erreur de 
 
 
 
-\columnbreak
+%\columnbreak
 \subsubsection{Représentation matricielle du modèle de régression linéaire simple}
 \begin{rappel_enhanced}[Contexte]
 Au lieu d'écrire que $\forall i = 1, 2, \dots, n$ $Y_{i} = \beta_{0} + \beta_{1}x_{i} + \varepsilon_{i}$, on peut écrire l'expression sous forme matricielle avec $\bm{Y} = \bm{X} \bm{\beta} + \bm{\varepsilon}$.
@@ -4800,7 +4803,7 @@ Avec la matrice de projection, on obtient que \lfbox[formula]{$\hat{\bm{y}} = \b
 
 
 
-\columnbreak
+%\columnbreak
 \subsubsection{Somme des carrés}
 \begin{definitionNOHFILL}[Résidus $e_{i}$]
 Le $i^{\text{e}}$ résidu est \lfbox[formula]{$e_{i} = y_{i} - \hat{y}_{i}$} ce qui correspond à la réalisation de $\varepsilon_{i}$.
@@ -4941,7 +4944,7 @@ La méthode du \og \textit{\textbf{bootstrapping}} \fg{} permet d'éviter l'hypo
 
 
 
-\columnbreak
+%\columnbreak
 \subsubsection{Tests d'hypothèse}
 \begin{definitionNOHFILL}[Test $t$ bilatéral]
 S'il n'y a pas de relation linéaire entre la variable réponse $Y$ et la variable explicative $x$, la pente $\beta_{1}$ sera nulle et $Y = \beta_{0} + \varepsilon$. Donc, on effectue le test $t$ bilatéral pour tester s'il y a une relation linéaire : 
@@ -4974,7 +4977,7 @@ vers la droite	&	$t \geq t_{2\alpha, n - 2}$	\\\hline
 
 
 
-\columnbreak
+%\columnbreak
 \subsubsection{Intervalle de confiance et de prévision}\label{subsubsec:PIandCISLR}
 \begin{rappel_enhanced}[Contexte]
 De façon générale, nous avons l'expression \lfbox[formula]{$\text{estimation} \pm (\text{percentile de la loi } t) \times (\text{erreur type})$}.
@@ -5095,7 +5098,6 @@ Visuellement, l'impact du \og \textit{\textcolor{amethyst}{process risk}} \fg{} 
 
 
 
-
 \newpage
 \section{Régression linéaire multiple}\label{sec:MLR}
 \begin{rappel_enhanced}[Contexte]
@@ -5184,7 +5186,7 @@ On généralise l'équation obtenue pour la \textit{\underline{\nameref{sec:SLR}
 
 
 
-\columnbreak
+%\columnbreak
 \subsubsection{Somme des carrés}
 \begin{rappel_enhanced}[Contexte]
 Les sommes des carrés ne changement pas en régression linéaire multiple. La seule différence est que l'on ne peut pas exprimer le coefficient de détermination en fonction de la corrélation puisqu'il y a plusieurs variables explicatives ($R^{2} \neq r_{x, Y}^{2}$). Plutôt, on défini une nouvelle mesure : le coefficient de détermination ajusté $R_{a}^{2}$.
