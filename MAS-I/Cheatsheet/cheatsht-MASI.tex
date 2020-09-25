@@ -119,7 +119,7 @@ L'objectif est d'expliquer les concepts d'une façon claire, concise et visuelle
 \end{description}
 \end{distributions}
 
-\subsection{Statistiques}
+\subsection{Statistiques}\label{subsec:StatisticsDescription}
 \begin{definitionNOHFILL}[Statistique $T_{n}$]
 Une statistique $T_{n}$ est une fonction qui résume les $n$ v.a. d'un échantillon aléatoire en une seule valeur. 
 
@@ -2896,7 +2896,7 @@ On dénote donc :
 		\end{itemize}
 \end{description}
 
-Puis, la statistique du test \lfbox[formula]{$t = -2 (\ell_{1} - \ell_{0})$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$. 
+Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$. 
 \end{definitionNOHFILL}
 
 
@@ -6773,7 +6773,7 @@ Par contre, en développant l'expression de $\hat{y}$, on trouve qu'elle est éq
 \columnbreak
 \subsection{Méthodes de réduction de la dimensionalité}
 \begin{rappel_enhanced}[Contexte]
-La méthode des moindres carrés (\og \textit{ordinary least squares (OLS)} \fg{}) estime les coefficients de régression en minimisant la \lfbox[formula]{$\displaystyle SSE = \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1}x_{i, 1} - \dots - b_{p} x_{i, p}\right)^{2}$}. Par le \textit{\underline{\nameref{subsubsec:BVtradeoff}}}, augmenter la $p$ (la flexibilité) diminue le biais de la méthode d'OLS mais augmente sa variance.
+La méthode des moindres carrés (\og \textit{ordinary least squares (OLS)} \fg{}) estime les coefficients de régression en minimisant la \lfbox[formula]{$SSE = \sum_{i = 1}^{n} \left(y_{i} - b_{0} - b_{1}x_{i, 1} - \dots - b_{p} x_{i, p}\right)^{2}$}. Par le \textit{\underline{\nameref{subsubsec:BVtradeoff}}}, augmenter $p$ (la flexibilité) diminue le biais de la méthode d'OLS, mais augmente sa variance.
 
 \bigskip
 
@@ -6916,19 +6916,99 @@ La régression Lasso va donc chercher à minimiser \lfbox[formula]{$\displaystyl
 
 
 \columnbreak
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}
+
 \subsection{Analyse et régression en composantes principales}
+\begin{rappel_enhanced}[Contexte]
+Dans la section \textit{\underline{\nameref{subsec:StatisticsDescription}}}, on décrit une statistique comme une fonction qui résume $n$ v.a. en une seule valeur. La même idée s'applique pour l'\textbf{\textit{analyse en composantes principales}} (PCA) où l'on résume $p$ variables en un nombre inférieur de \textit{nouvelles} variables.
+
+\bigskip
+
+Le PCA permet donc de représenter les données en moins de dimensions sans perdre une grande proportion des données. Après avoir expliquée comment fonctionne l'analyse en composantes principales, on explique comment utiliser ces nouvelles variables pour faire une régression linéaire multiple---une \textbf{\textit{régression en composantes principales}} (PCR). 
+
+\bigskip
+
+Pour ce faire, on pose que toutes les variables explicatives $x_{1}, \dots, x_{p}$ sont \textbf{\textit{centrées}}.
+\end{rappel_enhanced}
+
+
 \subsubsection{Analyse en composantes principales (PCA)}\label{subsubsec:PCA}
-%loadings
-%scores
-%components
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$z_{m}$]	$m^{\text{e}}$ composante principale.
+	\item[$\phi_{j, m}$]	$j^{\text{e}}$ \og \textit{loading} \fg{} de la $m^{\text{e}}$ composante principale.
+	\item[$z_{i, m}$]	Score de la $m^{\text{e}}$ composante principale pour la $i^{\text{e}}$ observation.
+\end{description}
+\end{distributions}
+
+%\begin{rappel_enhanced}[Contexte]
+%L'analyse en composantes principales se base sur la décomposition en éléments propres. 
+%\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Composantes principales]
+Les \textbf{\textit{composantes principales}} du PCA s'apparentent à une statistique $T_{n}$; ce sont des fonctions, ou \textit{combinaisons linéaires}, des $p$ variables explicatives et des $p$ \og \textit{loadings} \fg{} de la $m^{\text{e}}$ composante : \lfbox[formula]{$\displaystyle z_{m} = \sum_{j = 1}^{p} \phi_{j, m} x_{j}$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Scores]
+On peut calculer le \textbf{\textit{score}} pour la $i^{\text{e}}$ observation de la $m^{\text{e}}$ composante principale après avoir calculé les \og \textit{loadings} \fg{} comme \lfbox[formula]{$\displaystyle z_{i, m} = \sum_{j = 1}^{p} \phi_{j, m} x_{i, j}$}.
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+Les composantes principales sont obtenues de façon itérative. Pour obtenir les \og \textit{loadings} \fg{}, on maximise la \textit{\color{bleudefrance}\underline{\hyperlink{empiricalVariance}{\color{bleudefrance} variance empirique}}} de la composante $z_{m}$, \lfbox[formula]{$\frac{\sum_{i = 1}^{n} z_{i, m}^{2}}{n}$} sous la contrainte que \lfbox[conditions]{$\sum_{j = 1}^{p}\phi^{2}_{j, m} = 1$}. De plus, on impose la contrainte que chaque composante n'est pas corrélée avec les précédentes : pour toutes les paires de $m, u$ tel que $m \neq u$, \lfbox[conditions]{$\sum_{j = 1}^{p} \phi_{j, m}\phi_{j, u} = 0$}. Cependant, \hl{calculer les loadings n'est pas dans le cadre de l'examen}.
+
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+L'idée du PCA que les \textit{premières dimensions expliquent la majorité de la variabilité} afin de réduire le nombre de dimensions de $p$. \textbf{Standardiser} les variables aide à diminuer l'impact que l'échelle originale des variables pourrait avoir sur l'estimation des \og \textit{loadings} \fg{}.
+\end{rappel_enhanced}
 
 
-\subsubsection{Régression en composantes principales (PCR)}
+\subsubsection{Régression en composantes principales (PCR)}\label{subsubsec:PCR}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$k$]	Nombre de composantes principales utilisées où $k \in \{1, \dots, p\}$.
+	\item[$\theta_{j}$]	$j^{\text{e}}$ coefficient de régression où $j \in \{0, \dots, k\}$.
+\end{description}
+\end{distributions}
+
+L'équation du modèle est \lfbox[formula]{$Y = \theta_{0} + \theta_{1}z_{1} + \cdots + \theta_{k}z_{k} + \varepsilon$}. Poser $k < p$ nous permet donc de réduire le nombre de dimensions de $p$. La valeur de $k$ idéale peut être obtenue par la validation croisée, c'est un hyperparamètre.
+
+\paragraph{Note}	Si $k = p$, alors le modèle est équivalent à celui obtenu avec la régression linéaire multiple et aura les mêmes coefficients $\beta$.
 
 
+
+\columnbreak
 \subsection{Partial least squares (PLS)}
-%directions
+\hl{Cette section n'est pas suffisamment bien expliquée pour que je la considère complète.}
 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$z_{m}$]	$m^{\text{e}}$ direction. 
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+De façon semblable au PCA, la méthode du PLS créé de nouvelles variables explicatives qui sont des combinaisons linéaires des $p$ variables explicatives originales ; ces nouvelles variables sont des \og \textit{\textbf{directions}} \fg{} $z_{m}$. 
+
+\bigskip
+
+La différence du PLS au PCA est que les \textbf{\underline{directions sont déduites de la variable réponse}} $y$. Donc, contrairement au PCA, la méthode du PLS est de l'apprentissage supervisé. Il s'ensuit également que l'utilité des directions du \og \textit{\textbf{partial least squares regression} (PLR)} \fg{} est plus limitée que les \og \textit{loadings} \fg{} du PCA. Les \og \textit{loadings} \fg{} peuvent être utilisés pour \underline{analyser} les données en plus de les modéliser.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Coefficients]
+Les coefficients $\phi_{1}, \dots, \phi_{p}$ des directions $z_{m}$ se calculent en fonction de la variable réponse. Pour la première direction $z_{1}$, le coefficient $\phi_{j}$ équivaut à la pente la de régression linéaire simple de $y$ en fonction de $x_{j}$ et \lfbox[formula]{$z_{1} = \sum_{j = 1}^{p} \phi_{j}x_{j}$}. 
+
+\bigskip
+
+On prend la même procédure pour la deuxième direction, mais les prédicteurs utilisés $x_{j}^{\ast}$ correspondent à la portion du prédicteur original pas prédit par $z_{1}$. Donc,  \lfbox[formula]{$z_{2} = \sum_{j = 1}^{p} \phi_{j}^{\ast} x_{j}^{\ast}$} où $\phi_{j}^{\ast}$ est la pente estimée de la régression de $y$ sur $x^{\ast}_{j}$.
+
+\bigskip
+
+La procédure est la même pour toutes les directions, puis on obtient que la $i^{\text{e}}$ prévision est \lfbox[formula]{$\hat{y}_{i} = \hat{\theta}_{1} z_{i, 1} + \dots + \hat{\theta}_{k} z_{i, k}$}.
+\end{definitionNOHFILLsub}
+
+\paragraph{Note}	Il y a une faute dans le manuel dans la procédure qu'ils donnent pour calculer les directions du PLS. Il est donc peu probable que l'examen pose des questions sur les spécifiques du calcul de la méthode du PLS. Plutôt, on devrait comprendre son utilité et son fonctionnement.
 
 
 
