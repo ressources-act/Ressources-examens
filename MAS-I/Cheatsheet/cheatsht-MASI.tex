@@ -7014,6 +7014,9 @@ La procédure est la même pour toutes les directions, puis on obtient que la $i
 
 \newpage
 \section{Régression linéaire généralisée}\label{sec:GLM}
+\begin{rappel_enhanced}[Contexte]
+La régression linéaire généralisée (GLM) \textit{généralise} la régression linéaire qui est limitée par plusieurs hypothèses. Les GLMs regroupent plusieurs types de modèles sous une branche commune dont la similarité se base sur la famille exponentielle.
+\end{rappel_enhanced}
 
 \subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
 \paragraph{Note}	La section \underline{\textit{\nameref{subsec:exhMinStat}}} du chapitre de \underline{\textit{\nameref{subsec:FamExpMVUE}}} détaille l'application de la famille exponentielle pour identifier le MVUE. Cette section couvre plus en détails la famille.
@@ -7028,23 +7031,29 @@ La famille exponentielle est de la forme : \lfbox[formula]{$f(y; \theta)	=	\text
 
 Sous cette forme, on déduit que \lfbox[formula]{$\text{E}[a(Y)]	=	-\frac{c'(\theta)}{b'(\theta)}$} et \lfbox[formula]{$\text{Var}(a(Y))	=	\frac{b''(\theta)c'(\theta)	-	c''(\theta)b'(\theta)}{\left(b'(\theta)\right)^{3}}$}.
 
-%\begin{formula}{Résidus de Pearson}
-%\begin{align*}
-%	r_{P_i} 
-%		&=	\frac{y_i - \hat{\mu}_i}{\sqrt{V(\hat{\mu}_i)}} 
-%\end{align*}
-%\end{formula}
-%\begin{formula}{Résidus de déviance}
-%\begin{equation*}
-%	r_{D_i} =	\text{signe}(y_{i} - \hat{\mu}_{i}) \sqrt{d_{i}}
-%\end{equation*}
-%\end{formula}
-%\begin{formula}{Résidus d'Anscombe}
-%\begin{align*}
-%	r_{A_i} 
-%		&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
-%\end{align*}
-%\end{formula}
+
+\subsubsection{Distribution Tweedie}
+\lfbox[formula]{$\text{Var}(Y) = a\text{E}[Y]^{d}$}.
+
+Si 
+\begin{description}
+	\item[$d = 0$]	on obtient la distribution normale.
+	\item[$d = 1$]	on obtient la distribution de Poisson.
+	\item[$1 < d < 2$]	on obtient la distribution de Poisson gamma composée.
+	\item[$d = 2$]	on obtient la distribution gamma.
+	\item[$d = 3$]	on obtient la distribution inverse gaussienne.
+\end{description}
+
+
+
+\columnbreak
+\subsection{Définition du modèle}
+\subsubsection{Modèle}
+
+
+\subsubsection{Fonctions de lien}
+
+
 %
 %
 %Transformations si :
@@ -7054,6 +7063,51 @@ Sous cette forme, on déduit que \lfbox[formula]{$\text{E}[a(Y)]	=	-\frac{c'(\th
 %	\item[$\text{Var}(\varepsilon_{i}) \propto \left(\text{E}\lbrack Y_{i} \rbrack\right)^{4}$]		alors \lfbox[formula]{$g(y)	=	1 / Y$}.
 %	\item[$\text{Var}(\varepsilon_{i}) \propto \text{E}\lbrack Y_{i} \rbrack(1 - \text{E}\lbrack Y_{i} \rbrack)$]	, que $Y	\in [0, 1]$ et que $Y	\sim	 \text{Bern}$ alors \lfbox[formula]{$g(y)	=	\arcsin \sqrt{Y}$}.
 %\end{description}
+
+
+
+\columnbreak
+\subsection{Estimation des paramètres}
+
+
+
+
+\columnbreak
+\subsection{Résumés numériques}
+Déviance \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\hat{\bm{b}})\right)$}
+
+Pseudo $R^{2}$ \lfbox[formula]{$R^{2}_{pse.} = \frac{\ell_{null} -  \ell(\hat{\bm{b}})}{\ell_{null}}$}.
+
+Critères d'information
+\lfbox[formula]{$AIC = -2  \ell(\hat{\bm{b}}) + 2 (\text{nomobrme de paramètres estimés})$}
+\lfbox[formula]{$BIC = -2  \ell(\hat{\bm{b}}) + \ln(n) (\text{nomobrme de paramètres estimés})$}
+
+
+\subsubsection{Résidus}
+raw residual $e_{i} = y_{i} - \hat{\mu}_{i}$
+
+
+\begin{definitionNOHFILL}[Résidus de Pearson]
+\lfbox[formula]{$e_{i}^{P} = \frac{e_{i}}{\sqrt{\widehat{\text{Var}}(Y_{i})}}$}.
+\lfbox[formula]{$e_{sta., i}^{P} = \frac{e_{i}^{P}}{\sqrt{1 - h_{i}}}$}.
+
+Statistique du khi carré de Pearson \lfbox[formula]{$\sum_{i = 1}^{n} \left(e_{i}^{p}\right)^{2}$}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Résidus de déviance]
+\lfbox[formula]{$e_{i}^{D} = \pm \sqrt{D_{i}}$}.
+\lfbox[formula]{$e_{sta., i}^{D} = \frac{e_{i}^{D}}{\sqrt{1 - h_{i}}}$}.
+\end{definitionNOHFILL}
+
+%\begin{definitionNOHFILL}[Résidus d'Anscombe]
+%\begin{align*}
+%	r_{A_i} 
+%		&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
+%\end{align*}
+%\end{definitionNOHFILL}
+
+%\subsection{Inférence statistique}
+%
 
 
 
