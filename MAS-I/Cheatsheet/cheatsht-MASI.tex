@@ -456,7 +456,7 @@ Avec la notation définie ci-dessus, on simplifie la définition pour dire que $
 \end{description}
 \end{distributions}
 
-\begin{definitionNOHFILL}[Information (de Fisher) de $\theta$]
+\begin{definitionNOHFILL}[\hypertarget{FisherInfoDef}{Information (de Fisher) de $\theta$}]
 \begin{rappel_enhanced}[Contexte]
 On peut penser à l'information de Fisher comme une mesure de la sensibilité de la dérivée de la log-vraisemblance $\ell'(\theta)$ aux données. Une information élevée, exprimée par une variabilité de $\ell'(\theta)$ élevée, suggère que la forme de $\ell(\theta)$ est sensible aux données.
 \end{rappel_enhanced}
@@ -3083,7 +3083,7 @@ Le ratio est seulement indépendant de $p$ si $\sum_{i = 1}^{n} x_{i} = \sum_{i 
 
 \columnbreak
 \subsection{Famille exponentielle}\label{subsec:FamExpMVUE}
-\paragraph{Note}	La section \underline{\textit{\nameref{subsec:ExpFamRegr}}} du chapitre de \underline{\textit{\nameref{chapt:modLin}}} couvre plus en détails la famille linéaire. Cette sous-section se limite à ses propriétés utiles pour identifier le MVUE.
+\paragraph{Note}	La sous-section sur la \underline{\textit{\nameref{subsec:ExpFamRegr}}} de la sections sur la \underline{\textit{\nameref{sec:GLM}}} couvre plus en détails la famille linéaire. Cette sous-section se limite à ses propriétés utiles pour identifier le MVUE.
 
 \bigskip
 
@@ -7019,17 +7019,28 @@ La régression linéaire généralisée (GLM) \textit{généralise} la régressi
 \end{rappel_enhanced}
 
 \subsection{Famille exponentielle}\label{subsec:ExpFamRegr}
-\paragraph{Note}	La section \underline{\textit{\nameref{subsec:exhMinStat}}} du chapitre de \underline{\textit{\nameref{subsec:FamExpMVUE}}} détaille l'application de la famille exponentielle pour identifier le MVUE. Cette section couvre plus en détails la famille.
+\paragraph{Note}	La sous-section sur la \underline{\textit{\nameref{subsec:FamExpMVUE}}} de la section sur les \textit{\underline{\nameref{sec:exhStat}}} détaille l'application de la famille exponentielle pour identifier le MVUE. Cette section couvre plus en détails la famille.
 
 \bigskip
 
-La famille exponentielle est de la forme : \lfbox[formula]{$f(y; \theta)	=	\textrm{e}^{a(y)b(\theta) + c(\theta) + d(y)}$}.
-\begin{itemize}
-	\item	Le GLM requiert que \lfbox[conditions]{$a(y)	=	y$} que l'on nomme la \textbf{forme canonique}.
-	\item	Sous cette paramétrisation, $b(\theta)$ est le paramètre canonique (\og \textit{natural parameter} \fg{}).
-\end{itemize}
+\begin{definitionNOHFILL}[Famille exponentielle]
+Une distribution est membre de la famille exponentielle si sa fonction de densité peut être écrite sous la forme \lfbox[formula]{$f(y; \theta)	=	\textrm{e}^{a(y)b(\theta) + c(\theta) + d(y)}$}. 
 
-Sous cette forme, on déduit que \lfbox[formula]{$\text{E}[a(Y)]	=	-\frac{c'(\theta)}{b'(\theta)}$} et \lfbox[formula]{$\text{Var}(a(Y))	=	\frac{b''(\theta)c'(\theta)	-	c''(\theta)b'(\theta)}{\left(b'(\theta)\right)^{3}}$}.
+\bigskip
+
+La fonction de densité implique que la distribution comporte un seul paramètre d'intérêt $\theta$. On surnomme tous les autres paramètres des \og \textit{\textbf{nuisance parameters}} \fg{} que l'on pose fixes.
+
+\bigskip
+
+\begin{definitionNOHFILLsub}[Forme canonique]
+Dans le contexte de régression linéaire généralisée, on pose que \lfbox[conditions]{$a(y) = y$}. La distribution est donc en \textbf{\textit{forme canonique}} et $b(\theta)$ est le \textbf{\textit{paramètre naturel}} de la distribution.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLprop}[Moyenne et variance]
+La famille exponentielle permet d'établir un lien entre le paramètre $\theta$ et la moyenne par l'équation \lfbox[formula]{$\text{E}[a(Y)] = -\frac{c'(\theta)}{b'(\theta)}$}. De plus, on peut lier la moyenne à la variance par l'équation \lfbox[formula]{$\text{Var}(a(Y)) = \frac{b''(\theta)c'(\theta) - c''(\theta)b'(\theta)}{\left[b'(\theta)\right]^{3}}$}.
+\end{definitionNOHFILLprop}
+\end{definitionNOHFILL}
+
 
 
 \subsubsection{Distribution Tweedie}
@@ -7049,13 +7060,52 @@ Si
 \columnbreak
 \subsection{Définition du modèle}
 \subsubsection{Modèle}
+\begin{definitionNOHFILLprop}[Postulats de la régression linéaire généralise]
+\begin{enumerate}
+	\item	La variable réponse suit une distribution qui est membre de la famille exponentielle.
+	\item	La composante linéaire $\matr{x_{i}^{\top}}\bm{\beta}$ est une fonction de la moyenne $g(\mu_{i})$
+\end{enumerate}
+
+En bref, modéliser avec un GLM nécessite de choisir la composante aléatoire (alias, la distribution) et la composante systématique (alias, la fonction $g(\cdot)$. Choisir la distribution se résume habituellement à choisir une distribution dont le domaine est compatible avec les valeurs possibles de la variable réponse. Par exemple, une distribution continue serait inadéquate pour des données de comptage.
+\end{definitionNOHFILLprop}
+
 
 
 \subsubsection{Fonctions de lien}
+\begin{rappel_enhanced}[Contexte]
+La \textbf{\textit{fonction de lien}} lie la moyenne $\text{E}[Y]$ à la composante linéaire $\matr{x^{\top}}\bm{\beta}$. Donc, elle établit le lien entre les prédicteurs et la moyenne de la variable réponse.
+\end{rappel_enhanced}
+
+Les fonctions de lien doivent être \textbf{monotones} et \textbf{différentiables}, en voici quelques-unes où  \lfbox[formula]{$\mu  = g^{-1}(\matr{x^{\top}}\bm{\beta})$}  : 
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Fonction de lien}}	&	\textcolor{white}{$g(\mu)$}		\\\specialrule{0.1em}{0em}{0em} 
+identité	&	$\mu$	\\\hline
+canonique	&	$b(\theta)$	\\\hline
+logit	&	$\ln\left(\frac{\mu}{1 - \mu}\right)$	\\\hline
+logarithmique	&	$\ln(\mu)$	\\\hline
+inverse	&	$\frac{1}{\mu}$	\\\hline
+puissance	&	$\mu^{d}$	\\\hline
+\end{tabular}
+\end{center}
 
 
-%
-%
+\begin{rappel_enhanced}[Contexte]
+Elle est typiquement choisie en fonction du domaine des valeurs possibles que prend la moyenne. Par exemple, $\mu \in \mathbb{R}$ pour une distribution normale et donc le lien d'identité est idéale. En revanche, la moyenne d'une distribution Bernoulli est entre $0$ et $1$ donc le lien logit $\matr{x^{\top}\beta} = \ln\left(\frac{\mu}{1 - \mu}\right)$ est plus approprié.
+\end{rappel_enhanced}
+
+\paragraph{Note}	La fonction de lien canonique pose que le paramètre naturel \lfbox[formula]{$b(\theta) = \matr{x^{\top}}\bm{\beta}$}. Selon la distribution, la fonction de lien canonique correspond à :
+\begin{description}
+	\item[normale]	fonction de lien d'identité.
+	\item[binomiale]	fonction de lien logit.
+	\item[Poisson]	fonction de lien logarithmique.
+	\item[gamma]	fonction de lien inverse.
+\end{description}
+
+
+
 %Transformations si :
 %\begin{description}
 %	\item[$\text{Var}(\varepsilon_{i}) \propto \text{E}\lbrack Y_{i} \rbrack$]	Et que les données sont de type Poisson alors \lfbox[formula]{$g(y)	=	\sqrt{Y}$}.
@@ -7068,8 +7118,94 @@ Si
 
 \columnbreak
 \subsection{Estimation des paramètres}
+\begin{rappel_enhanced}[Contexte]
+Les GLM estiment $\bm{\beta}$ par le MV. Sous l'hypothèse que les réalisations $Y_{i}$ de la variable réponse sont indépendantes, on souhaite trouver les valeurs de $\bm{\beta}$ qui maximisent l'équation \lfbox[formula]{$\ell(\bm{\beta}) = \sum_{i = 1}^{n} y_{i}b(\theta_{i}) + c(\theta_{i}) + d(y_{i})$}.
+
+\bigskip
+
+On sait que les coefficients $\bm{\beta}$ sont reliés à la moyenne $\mu_{i}$ par la fonction de lien et que $\mu_{i}$ est relié au paramètre d'intérêt $\theta_{i}$. Donc, les $\bm{\beta}$ sont imbriqués dans la fonction de vraisemblance et on peut obtenir les équations de Score en posant le vecteur de dérivées partielles par rapport à $\bm{\beta}$ égales à zéro $\left(\deriv{\beta_{0}}{\ell(\bm{\beta})} = 0, \dots, \deriv{\beta_{p}}{\ell(\bm{\beta})} = 0\right)$.
+
+\bigskip
+
+Sous la régression linéaire multiple, on peut obtenir une solution de façon analytique. Cependant, il est rate d'obtenir une expression analytique pour la régression linéaire généralisée. En lieu, on doit utiliser un \textit{algorithme de résolution numérique} pour obtenir le vecteur $\bm{b}$ de façon itérative.
+\end{rappel_enhanced}
+
+Une fois que l'EMV $\bm{b}$ est obtenue, on pose que \lfbox[formula]{$\hat{\mu} = g^{-1}\left(\matr{x^{\top}}\bm{\beta}\right)$}. Ceci s'apparente donc à la notation de $\hat{y}$ de la SLR. 
+
+\paragraph{Note}	$\hat{\mu}$ n'est pas biaisé si l'on utilise le lien canonique, mais l'est sinon.
 
 
+\subsubsection{Méthode de \og \textit{Scoring} \fg{}}
+\begin{rappel_enhanced}[Contexte]
+La méthode de Scoring est basée sur l'approximation de Newton-Raphson qui approxime les racines d'une fonction. La méthode s'applique sur la dérivée d'une fonction et part d'une hypothèse initiale. Puis, on répète l'algorithme jusqu'à ce que l'on converge vers une solution.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$u_{j}$]	Fonction de score de $\beta_{j}$, \lfbox[formula]{$u_{j} = \deriv{\beta_{j}}{\ell(\bm{\beta})}$} pour $j = 0, 1, \dots, p$.
+		\begin{itemize}
+		\item	On dénote le vecteur des $u_{j}$ par $\bm{u}$.
+		\item	On dénote l'estimation de $\bm{u}$ à la fin de la $m^{\text{e}}$ itération par $\bm{u}^{(m)}$.
+		\end{itemize}
+	\item[$\bm{I}$]	\textit{\color{bleudefrance}\underline{\hyperlink{FisherInfoDef}{\color{bleudefrance} Matrice d'information de Fisher}}} de $\bm{\beta}$.
+		\begin{itemize}
+		\item	On dénote l'estimation de $\bm{I}$ à la fin de la $m^{\text{e}}$ itération par $\bm{I}^{(m)}$.
+		\end{itemize}
+	\item[$\bm{b}^{(m)}$]	Estimation de $\bm{\beta}$ à la fin de la $m^{\text{e}}$ itération.
+\end{description}
+\end{distributions}
+
+On trouve que \lfbox[formula]{$u_{j} = \sum_{i = 1}^{n}\frac{(y_{i} - \mu_{i})x_{i, j}}{\text{Var}(Y_{i}) g'(\mu_{i})}$}. 
+
+\paragraph{Note}	La façon d'arriver à l'expression de $u_{j}$ n'est pas importante, il faut juste  conceptuellement comprendre l'idée de passer de la log-vraisemblance à la fonction de Score.
+
+\bigskip
+
+Dans notre cas, \textit{\color{bleudefrance}\underline{\hyperlink{FisherInfoDef}{\color{bleudefrance} la matrice d'information de Fisher}}} est : 
+\begin{align*}
+	\bm{I}
+	&=	\begin{bmatrix}
+		-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{0}^{2}}\ell(\bm{\beta})\right]		&	-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{0}\beta_{1}}\ell(\bm{\beta})\right]		&	\cdots	&	-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{0}\beta_{p}}\ell(\bm{\beta})\right]		\\
+		-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{1}\beta_{0}}\ell(\bm{\beta})\right]		&	-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{1}^{2}}\ell(\bm{\beta})\right]		&	\cdots	&	-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{1}\beta_{p}}\ell(\bm{\beta})\right]		\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{p}\beta_{0}}\ell(\bm{\beta})\right]		&	-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{p}\beta_{1}}\ell(\bm{\beta})\right]		&	\cdots	&	-\text{E}\left[\frac{\partial^{2}}{\partial\beta_{p}^{2}}\ell(\bm{\beta})\right]
+		\end{bmatrix}
+\end{align*}
+
+\bigskip
+
+On trouve que l'élément \lfbox[formula]{$\bm{I}_{j + 1, j^{\ast} + 1} = \sum_{i = 1}^{n} \frac{x_{i, j} x_{i, j^{\ast}}}{\text{Var}(Y_{i}) g'(\mu_{i})^{2}}$}.
+
+\begin{algo2}[Algorithme de Newton-Raphson]
+\begin{enumerate}
+	\item	Poser des valeurs de départ pour le vecteur $\bm{b}^{(0)}$.
+	\item	Pour $j = 1, 2, \dots$ :
+		\begin{enumerate}
+		\item	Poser que \lfbox[formula]{$\bm{b}^{(m)} = \bm{b}^{(m - 1)} + \left(\bm{I}^{(m - 1)}\right)^{-1}\bm{u}^{(m - 1)}$}.
+		\item	Si \lfbox[formula]{$\bm{b}^{(m)} \approx \bm{b}^{(m - 1)}$} alors l'EMV a convergé et on cesse l'algorithme, sinon répéter.
+		\end{enumerate}
+\end{enumerate}
+\end{algo2}
+
+\bigskip
+
+On peut définir une approche alternative lorsqu'il y a hétéroscédasticité et que $\text{Var}(\varepsilon_{i}) = \frac{\sigma^{2}}{w_{i}}$. Puisque la variance est fonction d'un vecteur de poids $\bm{W}$ où 
+\begin{align*}
+	\bm{W}
+	&=	\begin{bmatrix}
+		w_{1}	&	0	&	\cdots	&	0	\\
+		0	&	w_{2}	&	\cdots	&	0	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		0	&	0	&	\cdots	&	w_{n}	\\
+	\end{bmatrix}
+\end{align*}
+
+on définit la \textbf{\textit{méthode des moindres carrés pondérée}}. Au lieu d'avoir $\bm{b} = \left(\matr{X^{\top}X}\right)^{-1}\matr{X^{\top}y}$, on a \lfbox[formula]{$\bm{b} = \left(\matr{X^{\top}WX}\right)^{-1}\matr{X^{\top}Wy}$} où \lfbox[formula]{$w_{i} = \frac{1}{\text{Var}(Y_{i}) g'(\mu_{i})^{2}}$}. On peut donc définir que \lfbox[formula]{$\bm{I} = \sum_{i = 1}^{n} \frac{\matr{x_{i}x_{i}^{\top}}}{\text{Var}(Y_{i}) g'(\mu_{i})^{2}}$} et \lfbox[formula]{$z_{i} = g(\mu_{i}) + (y_{i} - \mu_{i})g'(\mu_{i})$}. 
+
+Alors, on obtient par la \og \textit{iterative weighted least squares procedure} \fg{} que \lfbox[formula]{$\bm{b}^{(m)} = \left(\matr{X^{\top}W^{(m - 1)}X}\right)^{-1}\matr{X^{\top}W^{(m - 1)}z^{(m - 1)}}$}.
+
+
+\paragraph{Note}	De façon générale, pour un paramètre d'intérêt $\theta$ la méthode de Score pose \lfbox[formula]{$\hat{\theta}^{(m)} = \hat{\theta}^{(m - 1)} + I\left(\hat{\theta}^{(m - 1)}\right)^{-1} \ell'\left(\hat{\theta}^{(m - 1)}\right)$}.
 
 
 \columnbreak
