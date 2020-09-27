@@ -2868,7 +2868,7 @@ La statistique du test a le même raisonnement que la statistique pour le test d
 
 
 \columnbreak
-\subsubsection{Test du rapport de vraisemblance}
+\subsubsection{Test du rapport de vraisemblance}\label{subsubsec:TRV}
 \begin{rappel_enhanced}[Motivation]
 L'idée du test du rapport de vraisemblance (TRV) est de tester si les données peuvent être suffisamment bien expliquée par une simplification d'une distribution. 
 \end{rappel_enhanced}
@@ -4805,7 +4805,7 @@ Avec la matrice de projection, on obtient que \lfbox[formula]{$\hat{\bm{y}} = \b
 
 %\columnbreak
 \subsubsection{Somme des carrés}
-\begin{definitionNOHFILL}[Résidus $e_{i}$]
+\begin{definitionNOHFILL}[\hypertarget{rawResidual}{Résidus $e_{i}$}]
 Le $i^{\text{e}}$ résidu est \lfbox[formula]{$e_{i} = y_{i} - \hat{y}_{i}$} ce qui correspond à la réalisation de $\varepsilon_{i}$.
 
 \bigskip
@@ -4861,7 +4861,7 @@ SSE	&	$\sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\right)^{2}$		&	inexpliquée	\\\
 
 \bigskip
 
-\begin{definitionNOHFILL}[Coefficient de détermination $R^{2}$]
+\begin{definitionNOHFILL}[\hypertarget{RSquaredDef}{Coefficient de détermination $R^{2}$}]
 \begin{rappel_enhanced}[Contexte]
 Le $R^{2}$ est une mesure de corrélation qui correspond au carré du coefficient de corrélation : \lfbox[formula]{$R^{2} = r_{Y, x}^{2}$}. Il est plus facile d'interpréter le $R^{2}$ que le coefficient de corrélation de Pearson, particulièrement pour la régression linéaire.
 
@@ -4878,6 +4878,8 @@ Le coefficient de détermination \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 - 
 \end{definitionNOHFILL}
 
 \paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{adjustedR2}{\color{bleudefrance} la définition du $R^{2}_{a}$}}} dans la section sur la \textit{\underline{\nameref{sec:MLR}}} pour les limitations du coefficient de détermination.
+
+\paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{RSquaredPs}{\color{bleudefrance} la définition du $R^{2}_{ps}$}}} dans la section sur la \textit{\underline{\nameref{sec:GLM}}} pour l'application du concept du coefficient de détermination aux GLMs.
 
 
 
@@ -5517,7 +5519,7 @@ Le résidu $e_{i}$ correspond à la différence entre la valeur de la variable r
 Nous devons donc standardiser les résidus. Cependant, diviser par la MSE serait erroné car il est possible que l'hypothèse d'homoscédasticité ne soit pas respectée. Plutôt, on doit utiliser une erreur type estimée. Bien qu'il y a plusieurs façons d'estimer cette erreur type, l'examen se concentre sur les deux façons les plus courantes.
 \end{rappel_enhanced}
 
-\begin{definitionNOHFILLsub}[Résidus standardisés]
+\begin{definitionNOHFILLsub}[\hypertarget{standResid}{Résidus standardisés}]
 Les \textbf{\textit{résidus standardisés}} pondèrent les résidus par une erreur type estimée qui gonfle la MSE par le réciproque du levier : \lfbox[formula]{$e_{sta, i} = \frac{e_{i}}{\sqrt{MSE(1 - h_{i})}}$}.
 
 \bigskip
@@ -5525,7 +5527,7 @@ Les \textbf{\textit{résidus standardisés}} pondèrent les résidus par une err
 Si le modèle est adéquat, les résidus standardisés sont \textit{approximativement} distribués selon la \textbf{loi normale standard}.
 \end{definitionNOHFILLsub}
 
-\begin{definitionNOHFILLsub}[Résidus studentisés]
+\begin{definitionNOHFILLsub}[\hypertarget{studenResid}{Résidus studentisés}]
 Les \textbf{\textit{résidus studentisés}} pondère les résidus par une erreur type estimée qui gonfle une différente MSE par le réciproque du levier : \lfbox[formula]{$e_{stu, i} = \frac{e_{i}}{\sqrt{MSE_{(i)}(1 - h_{i})}}$}. La $MSE_{(i)}$ correspond à la MSE de la régression qui exclue la $i^{\text{e}}$ observation.
 
 \bigskip
@@ -7076,7 +7078,7 @@ En bref, modéliser avec un GLM nécessite de choisir la composante aléatoire (
 La \textbf{\textit{fonction de lien}} lie la moyenne $\text{E}[Y]$ à la composante linéaire $\matr{x^{\top}}\bm{\beta}$. Donc, elle établit le lien entre les prédicteurs et la moyenne de la variable réponse.
 \end{rappel_enhanced}
 
-Les fonctions de lien doivent être \textbf{monotones} et \textbf{différentiables}, en voici quelques-unes où  \lfbox[formula]{$\mu  = g^{-1}(\matr{x^{\top}}\bm{\beta})$}  : 
+Les fonctions de lien doivent être \textbf{monotones} et \textbf{différentiables}, en voici quelques-unes où \lfbox[formula]{$g(\mu)  = \matr{x^{\top}}\bm{\beta}$}  : 
 
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
@@ -7135,7 +7137,7 @@ Une fois que l'EMV $\bm{b}$ est obtenue, on pose que \lfbox[formula]{$\hat{\mu} 
 \paragraph{Note}	$\hat{\mu}$ n'est pas biaisé si l'on utilise le lien canonique, mais l'est sinon.
 
 
-\subsubsection{Méthode de \og \textit{Scoring} \fg{}}
+\subsubsection{Méthode de \og \textit{Scoring} \fg{}}\label{subsubsec:ScoreMethod}
 \begin{rappel_enhanced}[Contexte]
 La méthode de Scoring est basée sur l'approximation de Newton-Raphson qui approxime les racines d'une fonction. La méthode s'applique sur la dérivée d'une fonction et part d'une hypothèse initiale. Puis, on répète l'algorithme jusqu'à ce que l'on converge vers une solution.
 \end{rappel_enhanced}
@@ -7210,29 +7212,101 @@ Alors, on obtient par la \og \textit{iterative weighted least squares procedure}
 
 \columnbreak
 \subsection{Résumés numériques}
-Déviance \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\hat{\bm{b}})\right)$}
+\begin{rappel_enhanced}[Contexte]
+Nous avons vu en régression linéaire \textit{\color{bleudefrance}\underline{\hyperlink{ANOVABefore}{\color{bleudefrance} la relation}}} $\textcolor{burntorange}{SST} = \textcolor{amethyst}{SSR} + \textcolor{ao(english)}{SSE}$. Cependant, ceci ne se généralise pas directement pour les GLMs. Plutôt, on a que \lfbox[formula]{$\textcolor{burntorange}{\sum_{i = 1}^{n} \left(y_{i} - \bar{y}\right)^{2}} = \textcolor{amethyst}{\sum_{i = 1}^{n} \left(\hat{y}_{i} - \bar{y}\right)^{2}} + \textcolor{ao(english)}{\sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\right)^{2}} + \textcolor{teal}{2\sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\right)\left(\hat{y}_{i} - \bar{y}\right)}$}. \textcolor{teal}{Le terme additionnel} est nul pour la MLR ce qui permet de définir le \textit{\color{bleudefrance}\underline{\hyperlink{RSquaredDef}{\color{bleudefrance} coefficient de détermination}}}.
 
-Pseudo $R^{2}$ \lfbox[formula]{$R^{2}_{pse.} = \frac{\ell_{null} -  \ell(\hat{\bm{b}})}{\ell_{null}}$}.
+\bigskip
 
-Critères d'information
-\lfbox[formula]{$AIC = -2  \ell(\hat{\bm{b}}) + 2 (\text{nomobrme de paramètres estimés})$}
-\lfbox[formula]{$BIC = -2  \ell(\hat{\bm{b}}) + \ln(n) (\text{nomobrme de paramètres estimés})$}
+Puisque pour les GLMs $\frac{\textcolor{amethyst}{SSR}}{\textcolor{burntorange}{SST}} \textcolor{teal}{\neq} 1 - \frac{\textcolor{ao(english)}{SSE}}{\textcolor{burntorange}{SST}}$, on doit définir de nouvelles mesures pour évaluer le modèle. 
+\end{rappel_enhanced}
+
+
+
+\subsubsection{Mesures basées sur la log-vraisemblance maximisée}
+\begin{rappel_enhanced}[Contexte]
+Nous avons utilisé la vraisemblance maximisée pour définir le \textit{\underline{\nameref{subsubsec:TRV}}} et la log-vraisemblance maximisée pour estimer les coefficients avec la \textit{\underline{\nameref{subsubsec:ScoreMethod}}}.
+\end{rappel_enhanced}
+
+Les mesures se basent sur deux modèles :
+
+\begin{definitionGENERAL}{Modèle nul}[\circled{1}{trueblue}]
+Le modèle \textbf{\textit{nul}}, ou \textit{minimale}, comporte uniquement l'intercepte ($p' = 1$) : $Y = \beta_{0}$. 
+
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Modèle saturé}[\circled{2}{trueblue}]
+Le modèle \textbf{\textit{saturé}}, ou \textit{complet}, comporte autant de prédicteurs que d'observations $(p' = n)$ : $Y = \beta_{0} + \beta_{1}x_{1} + \dots + \beta_{n - 1}x_{n - 1}$. Ceci implique que \lfbox[formula]{$\hat{\mu}_{i} = y_{i}$}.
+\end{definitionGENERAL}
+
+
+\begin{definitionNOHFILLsub}[Log-vraisemblance maximisée]
+On dénote par :
+\begin{description}
+	\item[$\ell_{null}$]	La log-vraisemblance du \textbf{modèle nul}. 
+	\item[$\ell_{sat}$]	La log-vraisemblance du \textbf{modèle saturé}. 
+\end{description}
+
+\bigskip
+
+La log-vraisemblance maximisée augmente avec le nombre de paramètre. Donc, pour un modèle ayant entre $1$ et $n$ coefficients on a que \lfbox[formula]{$\ell_{null} \leq \ell(\bm{b}) \leq \ell_{sat}$}. De façon générale, une log-vraisemblance maximisée qui est élevée indique que le modèle est bien ajusté aux données. Cependant, si $\ell(\bm{b}) \approx \ell_{sat}$ alors le modèle peut être surajusté !
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILL}[Déviance]
+La déviance d'un GLM est \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\hat{\bm{b}})\right)$}.
+
+\bigskip
+
+On peut voir la déviance comme l'analogue de l'EQM pour les GLMs. Pour comprendre l'intuition derrière la formule, on la récrit comme $D = \ln\left(\left(\frac{\mathcal{L}_{sat}}{\mathcal{L}(\bm{b})}\right)^{2}\right)$. Au lieu de prendre l'écart carré entre les prévisions et réalisations, on prend le carré du ratio du modèle estimé au modèle complet. Donc, on souhaite minimiser la déviance sans toutefois la rendre nulle (dans quel cas le modèle serait surajusté).
+
+\bigskip
+
+Si la distribution est normale, alias le cas de MLR, on a que \lfbox[formula]{$D = \frac{SSE}{\sigma^{2}}$} ou $\sigma^{2}D = SSE$. On surnomme $\sigma^{2}D$ la \og \textit{scaled deviance} \fg{}.
+
+\paragraph{Note}	Puisque les log-vraisemblances sont des sommes, on peut récrire la déviance comme une somme de composantes avec $D = \sum_{i = 1}^{n} D_{i}$.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[\hypertarget{RSquaredPs}{Pseudo $R^{2}_{ps}$}]
+On peut également définir un analogue du $R^{2}$ pour les GLMs. Le $R^{2}_{ps}$ capture l'apport du modèle proportionnellement au modèle nul avec \lfbox[formula]{$R^{2}_{ps} = \frac{\ell_{null} -  \ell(\hat{\bm{b}})}{\ell_{null}}$}.
+\end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Contexte]
+La déviance et le pseudo-$R^{2}$ sont des mesures qui servent à évaluer la qualité d'ajustement d'un modèle. Pour comparer des modèles entre eux, on redéfinit l'AIC et le BIC. Dans le chapitre de \textit{\underline{\nameref{chapt:mathIARD}}} on a définit l'AIC et le BIC \textit{\underline{\hyperref[subsec:ICModels]{en fonction de la vraisemblance}}} alors que dans ce chapitre on les a définit \textit{\underline{\hyperref[subsec:modSelCrit]{en fonction de l'EQM}}}. 
+\end{rappel_enhanced}
+
+L'utilité des mesures restent encore de comparer des modèles, mais nous les redéfinissons en fonction de la log-vraisemblance : 
+
+\begin{definitionGENERAL}{Critère d'information d'Akaike (AIC)}[\circled{1}{trueblue}]
+\lfbox[formula]{$AIC = -2  \ell(\hat{\bm{b}}) + 2 (\text{nombre de paramètres estimés})$}
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Critère d'information bayésien (BIC)}[\circled{2}{trueblue}]
+\lfbox[formula]{$BIC = -2  \ell(\hat{\bm{b}}) + \ln(n) (\text{nombre de paramètres estimés})$}
+\end{definitionGENERAL}
+
+\paragraph{Note}	Le nombre de paramètres estimés est habituellement $p'$, mais ça pourrait être plus que $p'$ s'il faut estimer, par exemple en MLR, d'autre paramètres comme $\sigma^{2}$.
+
+\paragraph{Note}	Ces définitions sont fournies dans l'examen.
 
 
 \subsubsection{Résidus}
-raw residual $e_{i} = y_{i} - \hat{\mu}_{i}$
+\begin{rappel_enhanced}[Contexte]
+Les \textit{\color{bleudefrance}\underline{\hyperlink{rawResidual}{\color{bleudefrance} résidus}}}, ou \og \textit{\textbf{raw residuals}} \fg{}, $e_{i} = y_{i} - \hat{\mu}_{i}$ ne sont pas directement utiles pour les GLMs. Au lieu de directement utiliser les résidus, on les modifient pour obtenir de différents résidus.
+\end{rappel_enhanced}
 
 
 \begin{definitionNOHFILL}[Résidus de Pearson]
-\lfbox[formula]{$e_{i}^{P} = \frac{e_{i}}{\sqrt{\widehat{\text{Var}}(Y_{i})}}$}.
-\lfbox[formula]{$e_{sta., i}^{P} = \frac{e_{i}^{P}}{\sqrt{1 - h_{i}}}$}.
+Les résidus de Pearson divisent le résidu par la variance évaluée à $\bm{b}$ au lieu de $\bm{\beta}$ : \lfbox[formula]{$e_{i}^{P} = \frac{e_{i}}{\sqrt{\widehat{\text{Var}}(Y_{i})}}$}. On peut ensuite \textit{\color{bleudefrance}\underline{\hyperlink{standResid}{\color{bleudefrance} standardiser les résidus comme on l'a avant}}} avec \lfbox[formula]{$e_{sta, i}^{P} = \frac{e_{i}^{P}}{\sqrt{1 - h_{i}}}$}.
 
-Statistique du khi carré de Pearson \lfbox[formula]{$\sum_{i = 1}^{n} \left(e_{i}^{p}\right)^{2}$}
+
+\begin{definitionNOHFILLsub}[Statistique du khi carré de Pearson]
+Avec les résidus de Pearson, on peut définir la \textbf{\textit{statistique du khi carré de Pearson}} \lfbox[formula]{$\sum_{i = 1}^{n} \left(e_{i}^{p}\right)^{2}$}. Cette équation s'apparente au SSE, mais avec de différents résidus.
+\end{definitionNOHFILLsub}
 \end{definitionNOHFILL}
 
+
 \begin{definitionNOHFILL}[Résidus de déviance]
-\lfbox[formula]{$e_{i}^{D} = \pm \sqrt{D_{i}}$}.
-\lfbox[formula]{$e_{sta., i}^{D} = \frac{e_{i}^{D}}{\sqrt{1 - h_{i}}}$}.
+Les résidus de déviance sont définis comme \lfbox[formula]{$e_{i}^{D} = \text{signe}(e_{i}) \sqrt{D_{i}}$} où $\text{signe}(e_{i}) \in \{-1, 1\}$ selon la valeur du résidu $e_{i}$. Également, on peut standardiser le résidu avec \lfbox[formula]{$e_{sta, i}^{D} = \frac{e_{i}^{D}}{\sqrt{1 - h_{i}}}$}.
 \end{definitionNOHFILL}
 
 %\begin{definitionNOHFILL}[Résidus d'Anscombe]
@@ -13873,6 +13947,70 @@ On défini la probabilité que la population disparaisse $\pi_{0}$ si $X_{0} = 1
 
 \newpage	
 \part{Séries chronologiques}\label{chapt:seriesChrono}
+\section{Introduction}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M_{t}$]	Trends in time.
+	\item[$S_{t}$]	Seasonal variations.
+	\item[$Z_{t}$]	Random patterns.
+\end{description}
+\end{distributions}
+
+Modèles
+	additifs
+	multiplicatifs
+	multiplicatifs avec facteur de saisonalité
+
+\subsection{Stationnarité}
+
+
+\subsection{Décomposition}
+
+
+\subsection{Auto-corrélation}
+
+
+\subsection{Cross-correlation}
+
+
+\newpage
+\section{Modèles de séries chronologiques}
+\subsection{Modèles de base}
+\subsubsection{White noise}
+	Prévisions
+
+\subsubsection{Marche aléatoire}
+	Prévisions
+
+\subsubsection{Marche aléatoire avec drift}
+	Prévisions
+
+
+\subsection{Propriétés}
+
+\subsection{Modèles auto-régressifs}
+
+
+\subsection{Modèles de moving average}
+
+
+\subsection{Modèles ARMA}
+
+
+\subsection{Modèles ARIMA}
+	
+
+
+\newpage
+\section{Régression avec des séries chronologiques}
+\subsection{Modèles de régression avec tendance}
+
+
+\subsection{Modèles de régression avec saisonnalité}
+
+
+\subsection{Modèles de régression non-linéaires}
+
 
 
 \end{multicols*}
