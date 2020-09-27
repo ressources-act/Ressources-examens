@@ -2873,7 +2873,7 @@ La statistique du test a le même raisonnement que la statistique pour le test d
 L'idée du test du rapport de vraisemblance (TRV) est de tester si les données peuvent être suffisamment bien expliquée par une simplification d'une distribution. 
 \end{rappel_enhanced}
 
-\begin{definitionNOHFILL}[Test du rapport de vraisemblance]
+\begin{definitionNOHFILL}[\hypertarget{TRVDef}{Test du rapport de vraisemblance}]
 Les hypothèses sont 
 \begin{align*}
 	\textrm{H}_{0}	&:	\text{les données proviennent d'une distribution $A$}	\\
@@ -7046,9 +7046,9 @@ La famille exponentielle permet d'établir un lien entre le paramètre $\theta$ 
 
 
 \subsubsection{Distribution Tweedie}
-\lfbox[formula]{$\text{Var}(Y) = a\text{E}[Y]^{d}$}.
+Les distributions de la famille exponentielle dont \lfbox[formula]{$\text{Var}(Y) = a\text{E}[Y]^{d}$} sont des \textit{\textbf{distributions Tweedie}} où $a, d$ sont des constantes.
 
-Si 
+Selon la valeur de $d$, on y inclut :
 \begin{description}
 	\item[$d = 0$]	on obtient la distribution normale.
 	\item[$d = 1$]	on obtient la distribution de Poisson.
@@ -7056,6 +7056,10 @@ Si
 	\item[$d = 2$]	on obtient la distribution gamma.
 	\item[$d = 3$]	on obtient la distribution inverse gaussienne.
 \end{description}
+
+\bigskip
+
+L'important n'est pas de savoir ces liens, mais plutôt de savoir que si un lien existe entre la moyenne et la variance, alors on peut mieux choisir la distribution.
 
 
 
@@ -7312,14 +7316,75 @@ Les résidus de déviance sont définis comme \lfbox[formula]{$e_{i}^{D} = \text
 %\begin{definitionNOHFILL}[Résidus d'Anscombe]
 %\begin{align*}
 %	r_{A_i} 
-%		&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
+%	&=	\frac{A(y_{i}) - A(\hat{\mu}_{i})}{\dot{A}(\hat{\mu}_{i}) \sqrt{\text{V}(\hat{\mu}_{i})}}
 %\end{align*}
 %\end{definitionNOHFILL}
 
-%\subsection{Inférence statistique}
-%
+
+\columnbreak
+\subsection{Inférence statistique}
+\begin{rappel_enhanced}[Contexte]
+Les test $t$ et $F$, ainsi que les intervalles de confiance, de la MLR ne sont pas directement applicables aux GLMs, mais des concepts semblables existent. On utilise la statistique de Score pour obtenir la distribution des coefficients. Puis, on montre comment on peut ajuster la variance s'il y a surdispersion. 
+
+\bigskip
+
+Puis, on montre l'analogue du test $t$ : la statistique de Wald. On l'utilise pour tester le retrait d'un coefficient. L'analogue du test $F$ est le TRV : on l'utilise pour tester la simplification d'un modèle. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Statistique de Score]
+La \textbf{\textit{statistique de Score}} $U_{j}$ est la variable aléatoire qui correspond à $u_{j}$ où \lfbox[formula]{$U_{j} = \sum_{i = 1}^{n} \frac{(Y_{i} - \mu_{i}) x_{i, j}}{\text{Var}(Y_{i}) g'(\mu_{i})}$}. 
+
+\bigskip
+
+On dénote le vecteur colonne des statistique $\bm{U}$ où \lfbox[formula]{$\bm{U} \sim \mathcal{N}_{p'}(\bm{0}, \bm{I}$}. De plus, \lfbox[formula]{$\matr{U^{\top}I^{-1}U} \approx \chi^{2}_{p'}$}.
+\end{definitionNOHFILL}
+
+On généralise la distribution des coefficients indiquée pour la \textit{\underline{\nameref{sec:SLR}}} aux GLMs avec la distribution \textbf{\underline{asymptotique}} \lfbox[formula]{$\bm{b} \sim \mathcal{N}_{p'}(\bm{b}, \bm{I}^{-1})$} où
+\begin{align*}
+	\bm{I}^{-1}
+	&=	\begin{bmatrix}
+		\widehat{\text{Var}}(b_{0})	&	\widehat{\text{Cov}}(b_{0}, b_{1})	&	\cdots	&	\widehat{\text{Cov}}(b_{0}, b_{p})	\\
+		\widehat{\text{Cov}}(b_{0}, b_{1})	&	\widehat{\text{Var}}(b_{1})	&	\cdots	&	\widehat{\text{Cov}}(b_{1}, b_{p})	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		\widehat{\text{Cov}}(b_{0}, b_{p})	&	\widehat{\text{Cov}}(b_{1}, b_{p})	&	\cdots	&	\widehat{\text{Var}}(b_{p})	\\
+		\end{bmatrix},
+\end{align*}
+et \lfbox[formula]{$\widehat{\text{Var}}(b_{j}) = se(b_{j})^{2}$}.
+
+\bigskip
+
+\subsubsection{Théorie de Wald}
+\begin{definitionNOHFILL}[Statistique de Wald]
+La \textbf{\textit{statistique de Wald}} \lfbox[formula]{$(\bm{b} - \bm{\beta})^{\top}\bm{I}(\bm{b} - \bm{\beta}) \approx \chi^{2}_{p'}$}. 
+
+\bigskip
+
+On peut ensuite effectuer le \textbf{\textit{test de Wald}} que $\beta_{j} = h$ avec \lfbox[formula]{$t = \left(\frac{b_{j} - h}{se(b_{j})}\right)^{2}$} où \lfbox[formula]{$T \approx \chi^{2}_{1}$}.
+\end{definitionNOHFILL}
 
 
+\subsubsection{Surdispersion}
+\begin{rappel_enhanced}[Contexte]
+La \textbf{\textit{surdispersion}} a lieu lorsque la variabilité est plus grande que celle estimée par le modèle. On peut détecter ceci avec $\frac{D}{\text{E}[D]} = \frac{D}{n - p'}$. Plus le ratio est élevé, plus la surdispersion est grave !
+\end{rappel_enhanced}
+
+La méthode de \textbf{\textit{quasi-vraisemblance}} adresse ce problème en multipliant la variance par un paramètre \lfbox[conditions]{$\phi > 1$} : \lfbox[formula]{$\text{Var}(Y_{i}) = \phi \frac{b''(\theta_{i})c'(\theta_{i}) - c''(\theta_{i})b'(\theta_{i})}{\left(b'(\theta_{i})\right)^{3}}$}. 
+
+\bigskip
+
+Cette méthode établie une relation entre la moyenne et la variance qui est moins restrictive au dépens de rendre la distribution moins claire.
+
+
+\subsubsection{Test du rapport de vraisemblance}
+Le \textit{\color{bleudefrance}\underline{\hyperlink{TRVDef}{\color{bleudefrance} test du rapport de vraisemblance}}} tel que définit dans la section \textit{\underline{\nameref{subsubsec:TRV}}} s'applique pour tester la simplification de modèles emboîtés. On pose que \lfbox[formula]{$t = 2\left[\ell(\bm{b}_{f}) - \ell(\bm{b}_{r})\right]$} pour tester 
+\begin{align*}
+	\mathrm{H}_{0}	&:	\text{modèle \textbf{r}éduit est adéquat}	\\
+	\mathrm{H}_{1}	&:	\text{modèle complet (\og \textit{\textbf{f}ull} \fg{}) est meilleur}.
+\end{align*}
+
+On teste donc si $p_{f} - p_{r}$ coefficients de régression sont nuls et \lfbox[formula]{$T \approx \chi^{2}_{p_{r} - p_{f}}$}. 
+
+\paragraph{Note}	On peut récrire la statistique comme \lfbox[formula]{$t = D_{r} - D_{f}$}.
 
 
 
