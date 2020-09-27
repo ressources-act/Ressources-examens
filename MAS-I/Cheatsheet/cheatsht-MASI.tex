@@ -3999,7 +3999,7 @@ Les \textit{variables quantitatives}, aussi appelées les \textbf{\textit{variab
 
 Les variables qualitatives se séparent en deux types selon la présence ou absence d'ordre à ses niveaux : 
 
-\begin{definitionGENERAL}{Variable nominale}[\circled{1}{trueblue}]
+\begin{definitionGENERAL}{\hypertarget{nominalVariable}{Variable nominale}}[\circled{1}{trueblue}]
 Variable qualitative dont les \textbf{catégories n'ont pas d'ordre}. Par exemple, 
 \begin{itemize}
 	\item	le programme d'étude d'un étudiant (actuariat, informatique, etc.), 
@@ -4008,7 +4008,7 @@ Variable qualitative dont les \textbf{catégories n'ont pas d'ordre}. Par exempl
 \end{itemize}
 \end{definitionGENERAL}
 
-\begin{definitionGENERAL}{Variable ordinale}[\circled{2}{trueblue}]
+\begin{definitionGENERAL}{\hypertarget{ordinalVariable}{Variable ordinale}}[\circled{2}{trueblue}]
 Variable qualitative dont les \textbf{niveaux ont une ordre}. Par exemple, 
 \begin{itemize}
 	\item	la sévérité d'un accident de 1 à 5,
@@ -7390,138 +7390,187 @@ On teste donc si $p_{f} - p_{r}$ coefficients de régression sont nuls et \lfbox
 
 \newpage
 \section{Classification}\label{sec:classification}
-On fait de la \textbf{classification} lorsque nous voulons prédire une variable \textit{catégorielle}. Il y a 3 trois types de variables : nominal, ordinal et binomial. Les deux premières ont été définies plus haut, une variable réponse binomiale est simplement une variable ayant 2 catégories.
-
-\subsection{Binomial}
-Soit $\eta	=	\beta_{0} + \sum_{j = 1}^{p} \beta_{j}x_{j}$.
-Soit la probabilité $\pi$ que $Y	=	1$.
-\begin{itemize}
-	\item	Alors, on veut une fonction de lien $g(\pi)	=	\eta$ tel que $g(\pi): [0, 1] \mapsto (-\infty, \infty)$.
-	\item	Par exemple, la fonction quantile d'une distribution $X$.
-		\begin{itemize}
-		\item	On appelle cette distribution la \og \textit{tolerance distribution} \fg{}.
-		\item	Ce nom provient de l'utilité du modèle pour évaluer si un médicament a un effet ou pas.
-		\item	Une valeur élevée de $\eta$ est plus probable de mener à une probabilité $\pi$ élevée de oui ($Y	=	1$).
-		\end{itemize}
-\end{itemize}
-
-Les 3 fonctions de lien les plus utilisées pour $\pi \in [0, 1]$ sont les suivantes :
-\begin{center}
-\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
-\hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{Nom}}	&	\textcolor{white}{$\mu	=	\pi$}		&	\textcolor{white}{$\eta$}		\\\hline
-Logit	&	$\frac{\textrm{e}^{\eta}}{1 + \textrm{e}^{\eta}}$	&	$\ln\left(\frac{\pi}{1	-	\pi}\right)$	\\\hline
-Probit	&	$\Phi(\eta)$	&	$\Phi^{-1}(\mu)$	\\\hline
-Log-log complémentaire	&	$1	-	\textrm{e}^{-\textrm{e}^{\eta}}$	&	$\ln\left(-\ln(1	-	\pi)\right)$	\\\hline
-\end{tabular}
-\end{center}
-
-Comme on peut observer ci-dessous, les fonctions de lien logit et probit sont \textbf{symétriques} à 0, mais pas la fonction de lien log-log complémentaire.
-\begin{center}
-
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
-
-%Shape: Axis 2D [id:dp48000806956401476] 
-\draw  (98.17,148.64) -- (338.17,148.64)(98.5,10) -- (98.5,148.64) (331.17,143.64) -- (338.17,148.64) -- (331.17,153.64) (93.5,17) -- (98.5,10) -- (103.5,17)  ;
-%Curve Lines [id:da6911332547105664] 
-\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (98.5,148.64) .. controls (236.5,146.64) and (225.5,30.64) .. (330.5,31.3) ;
-%Curve Lines [id:da5236167901193742] 
-\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (99.5,148.64) .. controls (139.5,148.64) and (155.5,149.64) .. (181.5,145.64) .. controls (207.5,141.64) and (244.5,40.64) .. (268.5,35.64) .. controls (292.5,30.64) and (282.5,31.64) .. (330.5,31.3) ;
-%Curve Lines [id:da7105130930164139] 
-\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (99.17,148) .. controls (196.5,148.3) and (227.5,31.64) .. (247.5,31.64) .. controls (267.5,31.64) and (231.5,31.64) .. (330.5,31.3) ;
-%Shape: Rectangle [id:dp3994976422081038] 
-\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (363.54,26.08) -- (524.5,26.08) -- (524.5,63.64) -- (363.54,63.64) -- cycle ;
-%Straight Lines [id:da8147114892565948] 
-\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (366.27,33.85) -- (408.99,33.85) ;
-%Straight Lines [id:da8363691109245619] 
-\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (366.27,44.85) -- (408.99,44.85) ;
-%Straight Lines [id:da07649571164976332] 
-\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (366.27,55.86) -- (408.99,55.86) ;
-
-% Text Node
-\draw (466.22,32.77) node  [font=\small] [align=left] {{\footnotesize log-log complémentaire}};
-% Text Node
-\draw (423.72,43.27) node  [font=\small] [align=left] {{\footnotesize probit}};
-% Text Node
-\draw (420.72,54.77) node  [font=\small] [align=left] {{\footnotesize logit}};
-% Text Node
-\draw (343,146) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \eta $}};
-% Text Node
-\draw (78,2) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle \pi $}};
-% Text Node
-\draw (221,151) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 0$}};
-\end{tikzpicture}
-\end{center}
-
-\paragraph{Note}	La cote, alias le \og \textit{odds ratio} \fg{}, est \lfbox[formula]{$\frac{\pi}{1	-	\pi}$}.
+\subsection{Préliminaire}
+\begin{rappel_enhanced}[Contexte]
+Puisque l'on peut récrire la f.m.p. d'une distribution binomiale sous la forme de la famille exponentielle, on sait qu'elle en fait partie. Cette section détaille donc l'application des GLMs pour des données binomiales.
+\end{rappel_enhanced}
 
 \bigskip
 
+\begin{definitionNOHFILL}[Cote]
+La \textbf{\textit{cote}} (\og \textit{odds} \fg{}) d'un événement est le ratio de la probabilité que l'événement se réalise par la probabilité que l'événement ne se réalise pas. Pour la distribution binomiale, \lfbox[formula]{$cote = \frac{q}{1 - q}$}.
 
-\subsection{Nominal}
+\begin{definitionNOHFILLsub}[log cote]
+La \textbf{\textit{log cote}} (\og \textit{log odds} \fg{}) est le logarithme naturel de la cote : \lfbox[formula]{$\ln(cote) = \ln\left(\frac{q}{1 - q}\right)$}.
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
+
+
+\subsubsection{Fonctions de lien}
+\begin{rappel_enhanced}[Contexte]
+Habituellement, on lie la moyenne $\mu$ aux coefficients $\bm{\beta}$ ce qui nous permet d'éviter d'avoir à spécifier la distribution. Dans le contexte de classification où on connaît la distribution, on peut simplement relier les coefficients \textbf{au paramètre d'intérêt} $\theta = q$ au lieu de la moyenne $\mu = mq$ avec $g(\theta) = \matr{x^{\top}}\bm{\beta}$. 
+\end{rappel_enhanced}
+
+Les 3 fonctions de lien les plus utilisées pour $q \in [0, 1]$ sont les suivantes :
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Nom}}	&	\textcolor{white}{$q = $}		&	\textcolor{white}{$\matr{x^{\top}}\bm{\beta} = $}		\\\hline
+Logit	&	$\frac{\textrm{e}^{\bm{x}^{\top}\bm{\beta}}}{1 + \textrm{e}^{\bm{x}^{\top}\bm{\beta}}}$	&	$\ln\left(\frac{q}{1 - q}\right)$	\\\hline
+Probit	&	$\Phi(\matr{x^{\top}}\bm{\beta})$	&	$\Phi^{-1}(q)$	\\\hline
+Log-log complémentaire	&	$1 - \textrm{e}^{-\textrm{e}^{\matr{x^{\top}}\bm{\beta}}}$	&	$\ln\left(-\ln(1 - q)\right)$	\\\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+L'utilité de ces 3 fonctions est que leurs domaines sont contenus entre $0$ et $1$ ($g^{-1}(\matr{x^{\top}}\bm{\beta}) = q \in [0, 1]$). Comme on peut observer ci-dessous, les fonctions de lien logit et probit sont \textbf{symétriques} à 0 alors que la fonction de lien log-log complémentaire ne l'est pas.
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp015283288026266106] 
+\draw  (98.17,166.59) -- (338.17,166.59)(98.5,10) -- (98.5,166.59) (331.17,161.59) -- (338.17,166.59) -- (331.17,171.59) (93.5,17) -- (98.5,10) -- (103.5,17)  ;
+%Curve Lines [id:da6480417977795516] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (98.5,148.64) .. controls (236.5,146.64) and (225.5,30.64) .. (330.5,31.3) ;
+%Curve Lines [id:da5612317517574985] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (99.5,148.64) .. controls (140.3,147.92) and (164.3,146.92) .. (181.5,143.64) .. controls (201.3,141.92) and (226.58,77.44) .. (246.44,49.74) .. controls (250.3,40.92) and (257.15,37) .. (262.3,35.92) .. controls (286.3,30.92) and (282.5,31.64) .. (330.5,31.3) ;
+%Curve Lines [id:da38065174744499286] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=1.5]    (99.17,148) .. controls (200.3,150.92) and (227.3,62.92) .. (236.3,46.92) .. controls (240.3,39.92) and (241.3,32.92) .. (246.88,31.59) .. controls (252,31.55) and (281,31.47) .. (330.5,31.3) ;
+%Shape: Rectangle [id:dp8787827557700443] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 250; green, 250; blue, 250 }  ,fill opacity=1 ] (243.54,96.08) -- (404.5,96.08) -- (404.5,133.64) -- (243.54,133.64) -- cycle ;
+%Straight Lines [id:da5396531874493631] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=2.25]    (246.27,103.85) -- (288.99,103.85) ;
+%Straight Lines [id:da41735160352053846] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=2.25]    (246.27,114.85) -- (288.99,114.85) ;
+%Straight Lines [id:da008998618804893166] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=2.25]    (246.27,125.86) -- (288.99,125.86) ;
+%Straight Lines [id:da21020270800000684] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (98.9,31.3) -- (330.5,31.3) ;
+%Straight Lines [id:da949543080105397] 
+\draw [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (99.5,148.64) -- (331.1,148.64) ;
+
+% Text Node
+\draw (346.22,102.77) node  [font=\small] [align=left] {{\footnotesize log-log complémentaire}};
+% Text Node
+\draw (303.72,113.27) node  [font=\small] [align=left] {{\footnotesize probit}};
+% Text Node
+\draw (300.72,124.77) node  [font=\small] [align=left] {{\footnotesize logit}};
+% Text Node
+\draw (343,164.72) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle x^{\top } \beta $}};
+% Text Node
+\draw (78,2) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle q$}};
+% Text Node
+\draw (221,170.36) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 0$}};
+% Text Node
+\draw (84,22) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 1$}};
+% Text Node
+\draw (83,140) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\footnotesize $\displaystyle 0$}};
+\end{tikzpicture}
+\end{center}
+
+
+\subsubsection{Modèle binomiale}
+\begin{rappel_enhanced}[Contexte]
+Lorsque la variable réponse prend une de deux catégories, alors elle suit une distribution binomiale. On détaille ce modèle de base.
+\end{rappel_enhanced}
+
+Soit les v.a. indépendantes binomiales $Y_{1}, \dots, Y_{n}$ dont les $m_{i}$s sont connus et $q_{i} = g^{-1}(\bm{x}_{i}^{\top}\bm{\beta})$. Alors, la fonction de log-vraisemblance \lfbox[formula]{$\ell(\bm{\beta}) = \sum_{i = 1}^{n}\left[y_{i} \ln\left(\frac{q_{i}}{1 - q_{i}}\right) + m_{i} \ln(1 - q_{i}) + \ln\binom{m_{i}}{y_{i}}\right]$}.
+
+\bigskip
+
+De cette expression, on obtient que la déviance \lfbox[formula]{$D = 2\sum_{i = 1}^{n}\bigg[y_{i} \ln\left(\frac{y_{i}}{\hat{\mu}_{i}}\right)$} \lfbox[formula]{$ + (m_{i} - y_{i})\ln\binom{m_{i} - y_{i}}{m_{i} - \hat{\mu}_{i}}\bigg]$} et que le résidu de Pearson \lfbox[formula]{$e_{i}^{P} = \frac{y_{i} - m_{i}\hat{q}_{i}}{\sqrt{m_{i}\hat{q}_{i}(1 - \hat{q}_{i})}}$}.
+
+\bigskip
+
+On obtient différents modèles selon la fonction de lien choisie. Par exemple, on obtient une \textbf{\textit{régression logistique}} avec la fonction de lien logit. Puisque nous avons une fonction de $q$ et non de la moyenne $\mu$, on doit définir la fonction de Score directement avec \lfbox[formula]{$u_{j} = \sum_{i = 1}^{n} (y_{i} - \mu_{i})x_{i, j}$} et donc \lfbox[formula]{$\bm{I} = \sum_{i = 1}^{n} m_{i}q_{i}(1 - q_{i}) \matr{x_{i}x_{i}^{\top}}$}.
+
+\paragraph{Note}	L'interprétation des paramètres se fait en fonction de \textbf{\textit{ratios de cotes}} et non directement. On peut donc interpréter la (dé)croissance des prédicteurs en fonction d'un autre.
+
+
+
+\columnbreak
+\subsection{Réponse nominale}
 %%	voir pour la régression logistique https://maurocamaraescudero.netlify.app/post/logistic-regression/
-On suppose qu'il y a $J$ catégories possibles pour la variable réponse. 
-Pour modéliser avec la régression logistique, on :
-\begin{enumerate}[label	=	\circled{\arabic*}{lightgray}]
-	\item	Choisit une catégorie comme catégorie de base $1$.
-	\item	Pour chacune des autres catégories, on trouve les cotes relatives (\og \textit{relative odds} \fg{}).
-\end{enumerate}
+\begin{rappel_enhanced}[Contexte]
+Lorsque la variable réponse est définie comme une de plusieurs catégories sans d'ordre, nous avons une \textit{\color{bleudefrance}\underline{\hyperlink{nominalVariable}{\color{bleudefrance} variable nominale}}}. 
+\end{rappel_enhanced}
 
-Le logarithme de la cote de la catégorie $j$ relatif à la catégorie de base $1$ est :
+On modélise la variable réponse par une \textbf{\textit{distribution multinomiale}}. On pose que $Y_{1}, \dots, Y_{g}$ suit une distribution multinomiale avec $m$ essais et avec probabilité de $\pi_{c}$ d'être dans la \textbf{catégorie} $c$ où $c = 1, \dots, g$. 
+
+\bigskip
+
+On trouve que \lfbox[formula]{$p(y_{1}, \dots, y_{g}) = \frac{m!}{y_{1}!\cdot \dots \cdot y_{g}!} \pi_{1}^{y_{1}} \cdot \dots \cdot \pi_{g}^{y_{g}}$}, puis que \lfbox[conditions]{$\sum_{c = 1}^{g} Y_{c} = m$} et \lfbox[conditions]{$\sum_{c = 1}^{g}\pi_{c} = 1$}.
+
+\bigskip
+
+Puisque nous avons une contrainte, on fixe une catégorie arbitraire $g$ comme la \textbf{\textit{catégorie de référence}}. Donc, $Y_{1}, \dots, Y_{g - 1}$ suit une distribution multinomiale, puis que \lfbox[formula]{$y_{g} = m - \sum_{c = 1}^{g - 1} y_{c}$} et \lfbox[formula]{$\pi_{g} = 1 - \sum_{c = 1}^{g - 1}\pi_{c}$}.
+
+
+
+
+\subsubsection{Régression logistique avec réponse nominale}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$k$]	Catégorie de référence.
+	\item[$\pi_{i, c}$]	Probabilité que la $i^{\text{e}}$ observation soit classifiée dans la catégorie $c$.
+\end{description}
+\end{distributions}
+
+On pose que \lfbox[formula]{$\bm{x}^{\top}_{i}\bm{\beta}_{t} = \ln\left(\frac{\pi_{i, t}}{\pi_{i, k}}\right)$} où $t \neq k$. Il y a donc $g - 1$ équations comme celle-ci desquelles on peut isoler  
 \begin{align*}
-	\ln \frac{\pi_{j}}{\pi_{1}}
-	&=	\sum_{i	=	1}^{p} \beta_{ij} X_{i}
-	=	\eta_{j}, \quad j	=	2, 3, \dots, J
+	\pi_{i, c}
+	&=	\begin{cases}
+		\frac{1}{1 + \sum_{t} \textrm{e}^{\bm{x}^{\top}_{i}\bm{\beta}_{t}}},	&	c = k	\\
+		\frac{\textrm{e}^{\bm{x}^{\top}_{i}\bm{\beta}_{c}}}{1 + \sum_{t} \textrm{e}^{\bm{x}^{\top}_{i}\bm{\beta}_{t}}},	&	c \neq k
+		\end{cases}
 \end{align*}
 
-Alors, $\pi_{j}	=	\pi_{1}\textrm{e}^{\eta_{j}}$ et puisque les probabilités doivent sommer jusqu'à 1 :
-\begin{align*}
-	\pi_{1}
-	&=	\frac{1}{1 + \sum_{k	=	2}^{J} \textrm{e}^{\eta_{k}}}	\\
-	\pi_{j}
-	&=	\frac{\textrm{e}^{\eta_{j}}}{1 + \sum_{k	=	2}^{J} \textrm{e}^{\eta_{k}}}, \quad j	=	2, 3, \dots, J
-\end{align*}
+\paragraph{Note}	On estime $(p + 1)(g - 1)$ coefficients au total.
 
 
+\columnbreak
+\subsection{Réponse ordinale}
+\begin{rappel_enhanced}[Contexte]
+Lorsque la variable réponse est définie comme une de plusieurs catégories ordonnées, nous avons une \textit{\color{bleudefrance}\underline{\hyperlink{ordinalVariable}{\color{bleudefrance} variable ordinale}}}. 
 
-\subsection{Ordinal}
-\textbf{Modèle logit cumulatif}
+\bigskip
 
-\begin{align*}
-	\frac{\Pr(Y \leq j)}{1	-	\Pr(Y \leq j)}
-	&=	\frac{\sum_{k	=	1}^{j} \pi_{k}}{1	-	\sum_{k	=	1}^{j} \pi_{k}}	
-	=	\frac{\pi_{1} + \hdots + \pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}	\\
-\end{align*}
+La différence du modèle pour une réponse nominale est que nous voulons capturer l'ordre des catégories. Pour ce faire, on modéliser les probabilités \textbf{\textit{cumulatives}}.
+\end{rappel_enhanced}
 
-Alors, avec les paramètres $\beta$ qui varient par catégorie $j$, :
-\begin{align*}
-	\ln\left(\frac{\pi_{1} + \hdots + \pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}\right)
-	&=	\sum_{i	=	1}^{p}\beta_{ij}X_{i}	\\
-\end{align*}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\Pi_{c}$]	Probabilité cumulative d'être classifié dans la catégorie $c$ où \lfbox[formula]{$\Pi_{c} = \pi_{1} + \dots + \pi_{c}$}.
+\end{description}
+\end{distributions}
 
-\textbf{Modèle de cotes proportionnelles}	\\
-Excepté l'intercepte, les paramètres $\beta$ ne varient pas par catégorie $j$ :
-\begin{align*}
-	\ln\left(\frac{\pi_{1} + \hdots + \pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}\right)
-	&=	\beta_{1j} + \sum_{i	=	2}^{p}\beta_{i}X_{i}	\\
-\end{align*}
-
-\textbf{Modèle logit de catégories adjacentes}
-\begin{align*}
-	\ln\left(\frac{\pi_{j}}{\pi_{j + 1}}\right)
-	&=	\sum_{i	=	1}^{p}\beta_{ij}X_{i}	\\
-\end{align*}
-
-\textbf{Modèle logit de ratio continu}
-\begin{align*}
-	\frac{\Pr(Y	=	j)}{\Pr(Y	>	j)}
-	&=	\frac{\pi_{j}}{\pi_{j + 1} + \hdots + \pi_{J}}
-\end{align*}
+Puisque \lfbox[conditions]{$\Pi_{g} = \sum_{c = 1}^{g} = 1$} nous avons encore seulement $g - 1$ probabilités à estimer.
 
 
+\subsubsection{Modèle de cotes proportionnelles}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\beta_{0, c}$]	Intercepte pour la catégorie $c$.
+\end{description}
+\end{distributions}
+
+
+Pour le modèle de cotes proportionnelles, on pose que tous les coefficients sauf l'intercepte sont les mêmes peu importe la catégorie. On modélise donc les probabilités cumulatives avec la relation \lfbox[formula]{$\ln\left(\frac{\Pi_{i, c}}{1 - \Pi_{i, c}}\right) = \beta_{0, c} + \bm{x}_{i}^{\top}\bm{\beta}$}. 
+
+\paragraph{Note}	Le modèle estime $g - 1 + p$ coefficients au total
+
+
+\newpage	
+\section{Modèles pour des données de comptage}
+\subsection{Régression de Poisson}
+%Exposure et offset
+%modèle
+%
+
+\columnbreak
+\subsection{Modèle log-linéaire}
 
 
 \newpage
