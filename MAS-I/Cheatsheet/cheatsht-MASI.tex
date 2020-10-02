@@ -397,7 +397,7 @@ On reprend les résultats de la section précédente en expliquant plus en déta
 
 On dit que $Y_{n}$ converge en probabilité à $Y$ si \lfbox[conditions]{$\forall \varepsilon > 0$}, 
 \begin{align*}
-	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|	>	\varepsilon\right]	
+	\limz{n}{\infty} \Pr\left[|Y_{n}	-	Y|	\geq	\varepsilon\right]	
 	&=	0
 \end{align*}
 %%%	--------------------
@@ -5217,13 +5217,13 @@ On définit le coefficient de détermination ajusté comme \lfbox[formula]{$\dis
 
 
 \columnbreak
-\subsection{Variables explicatives spéciales}
+\subsection{Variables explicatives spéciales}\label{subsec:SpecialExplVar}
 \subsubsection{Termes d'ordre supérieur}
 \begin{rappel_enhanced}[Contexte]
 Le « linéaire » de régression linéaire ne provient pas de la linéarité des variables explicatives, mais plutôt de la linéarité des coefficients. Donc, on peut avoir un modèle avec des polynômes.
 \end{rappel_enhanced}
 
-\begin{definitionNOHFILLsub}[Régression linéaire avec polynôme d'ordre $k$]
+\begin{definitionNOHFILLsub}[\hypertarget{polyReg}{Régression linéaire avec polynôme d'ordre $k$}]
 Soit une régression linéaire avec une seule variable explicative $x_{j}$, alors \lfbox[formula]{$Y = \beta_{0} + \beta_{1} x_{j} + \beta_{2} x_{j}^{2} + \dots + \beta_{k} x_{j}^{k} + \varepsilon$}. 
 
 \bigskip
@@ -7564,17 +7564,189 @@ Pour le modèle de cotes proportionnelles, on pose que tous les coefficients sau
 
 \newpage	
 \section{Modèles pour des données de comptage}
+\begin{rappel_enhanced}[Contexte]
+Puisque l'on peut récrire la f.m.p. d'une distribution de Poisson sous la forme de la famille exponentielle, on sait qu'elle en fait partie. Cette section détaille donc l'application des GLMs pour des données de comptage.
+\end{rappel_enhanced}
+
 \subsection{Régression de Poisson}
-%Exposure et offset
-%modèle
-%
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$a_{i}$]	unité d'exposition pour la $i^{\text{e}}$ observation.
+	\item[$\lambda_{i}$]	moyenne par exposition pour la $i^{\text{e}}$ observation.
+\end{description}
+\end{distributions}
+Une distribution de Poisson modélise la fréquence d'un événement pour un contexte donné mesuré en \textbf{\textit{unités d'exposition}}.
+
+Soit les v.a. indépendantes de Poisson $Y_{1}, \dots, Y_{n}$ de moyennes $\mu_{i} = a_{i}\lambda_{i}$. Avec la fonction de lien logarithmique, \lfbox[formula]{$\mu_{i} = a_{i} \textrm{e}^{\bm{x}_{i}^{\top}\bm{\beta}}$}.
+
+\bigskip
+
+Alors, la fonction de log-vraisemblance \lfbox[formula]{$\ell(\bm{\beta}) = \sum_{i = 1}^{n}\left[y_{i} \ln\mu_{i} - \mu_{i} - \ln(y_{i}!)\right]$} et la fonction de Score \lfbox[formula]{$u_{j} = \sum_{i = 1}^{n}(y_{i} - \mu_{i})x_{i, j}$}. De plus, la matrice d'information \lfbox[formula]{$\bm{I} = \sum_{i = 1}^{n}\mu_{i}\bm{x}_{i}\bm{x}_{i}^{\top}$} et la déviance \lfbox[formula]{$D = 2\sum_{i = 1}^{n}\left[y_{i} \ln\left(\frac{y_{i}}{\hat{\mu}_{i}}\right)- (y_{i} - \hat{\mu}_{i})\right]$}.
+
+\bigskip
+
+De cette expression, on obtient que le résidu de Pearson \lfbox[formula]{$e_{i}^{P} = \frac{\left(y_{i} - \hat{\mu}_{i}\right)^{2}}{\hat{\mu}_{i}}$}.
+
 
 \columnbreak
 \subsection{Modèle log-linéaire}
+Pour modéliser les fréquences dans tes tableaux de contingence, on utilise des modèles log-linéaires.
+
 
 
 \newpage
 \section{\og \textit{Generalized Additive Models (GAM)} \fg{}}
+\subsection{\og \textit{Basis functions} \fg{}}\label{subsec:BasisFunctions}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$b_{j}(x)$]	\og \textit{basis function} \fg{} où $j = 1, \dots, p$.
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+On reprend la section de \textit{\underline{\nameref{subsec:SpecialExplVar}}} en se limitant à une seule variable explicative $x$. On écrit l'équation du modèle en fonction de \og \textit{basis functions} \fg{} de la variable explicative : \lfbox[formula]{$Y = \beta_{0} + \beta_{1}b_{1}(x) + \dots + \beta_{p}b_{p}(x) + \varepsilon$}. 
+
+\bigskip
+
+Cette section considère donc 3 choix de \og \textit{basis functions} \fg{}.
+\end{rappel_enhanced}
+
+
+\subsubsection{Régression d'une fonction polynôme}
+L'équation a \textit{\color{bleudefrance}\underline{\hyperlink{polyReg}{\color{bleudefrance} déjà été présentée}}}, mais ont définit maintenant la fonction \lfbox[formula]{$b_{j}(x) = x^{j}$} pour $j = 1, \dots, d$ où l'équation est un polynôme d'ordre $d$.
+
+
+
+%\columnbreak
+\subsubsection{Régression d'une fonction en escalier}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\xi_{j}$]	\og \textit{cutpoints} \fg{} ou \og \textit{\textbf{knots}} \fg{} pour $j = 1, \dots, k$.
+\end{description}
+\end{distributions}
+
+On divise l'étendue de $x$ en $k + 1$ intervalles (\og \textit{bins} \fg{}). On obtient donc $k$ nœuds $\xi_{1}, \dots, \xi_{k}$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,108); %set diagram left start at 0, and has height of 108
+
+%Straight Lines [id:da40438686062456775] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (82.36,33.61) -- (462.17,33.61) (159.36,8.61) -- (159.36,58.61)(236.36,8.61) -- (236.36,58.61)(313.36,8.61) -- (313.36,58.61)(390.36,8.61) -- (390.36,58.61) ;
+\draw [shift={(465.17,33.61)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+% Text Node
+\draw (469,15.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle x$};
+% Text Node
+\draw (101,17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \textcolor[rgb]{0,0,0}{x< }\textcolor[rgb]{0.29,0.56,0.89}{\ \xi }\textcolor[rgb]{0.29,0.56,0.89}{_{1}}$};
+% Text Node
+\draw (163,17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{\xi _{1}}\textcolor[rgb]{0.29,0.29,0.29}{\leq x< }\textcolor[rgb]{0.96,0.65,0.14}{\xi }\textcolor[rgb]{0.96,0.65,0.14}{_{2}}$};
+% Text Node
+\draw (240,17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{\xi }\textcolor[rgb]{0.96,0.65,0.14}{_{2}}\textcolor[rgb]{0.29,0.29,0.29}{\leq x< }\textcolor[rgb]{0.82,0.01,0.11}{\xi _{3}}$};
+% Text Node
+\draw (317,17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{\xi _{3}}\textcolor[rgb]{0.29,0.29,0.29}{\leq x< }\textcolor[rgb]{0.45,0.76,0.11}{\xi }\textcolor[rgb]{0.45,0.76,0.11}{_{4}}$};
+% Text Node
+\draw (404,17) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.29,0.29}{x\geq }\textcolor[rgb]{0.45,0.76,0.11}{\xi }\textcolor[rgb]{0.45,0.76,0.11}{_{4}}$};
+% Text Node
+\draw (148,59.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{\ \xi }\textcolor[rgb]{0.29,0.56,0.89}{_{1}}$};
+% Text Node
+\draw (227,59.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.96,0.65,0.14}{\xi }\textcolor[rgb]{0.96,0.65,0.14}{_{2}}$};
+% Text Node
+\draw (304,59.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.82,0.01,0.11}{\xi }\textcolor[rgb]{0.82,0.01,0.11}{_{3}}$};
+% Text Node
+\draw (381,59.5) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.45,0.76,0.11}{\xi }\textcolor[rgb]{0.45,0.76,0.11}{_{4}}$};
+\end{tikzpicture}
+\end{center}
+
+Il s'ensuit que les \og \textit{basis functions} \fg{} sont des fonctions indicatrices :
+\begin{align*}
+	b_{j}(x)
+	&=	\begin{cases}
+		I_{\{\xi_{j} \leq x < \xi_{j + 1}\}},	&	j = 1, \dots, k - 1	\\
+		I_{\{x \geq \xi_{k}\}},	&	j = k	\\
+		\end{cases}
+\end{align*}
+
+Il s'ensuit que ces fonctions indicatrices sont des \og \textit{step functions} \fg{}.
+
+\bigskip
+
+Il n'y a pas d'approche absolue, mais habituellement on utilise des centiles pour identifier les nœuds.
+
+
+
+%\columnbreak
+\subsubsection{Régression d'une fonction polynôme par morceaux}
+On combine les deux approches précédentes pour créer un polynôme d'ordre $d$ pour chacun des $k$ intervalles. Ceci revient à écrire l'équation du modèle comme : 
+\begin{align*}
+	Y
+	&=	\begin{cases}
+		\beta_{0, 1} + \beta_{1, 1}x + \dots + \beta_{d, 1} x^{d} + 	\varepsilon,	&	x < \xi_{1}	\\
+		\beta_{0, 2} + \beta_{1, 2}x + \dots + \beta_{d, 2} x^{d} + 	\varepsilon,	&	\xi_{1} \leq x < \xi_{2}	\\
+		\vdots	&	\vdots	\\
+		\beta_{0, k + 1} + \beta_{1, k + 1}x + \dots + \beta_{d, k + 1} x^{d} + 	\varepsilon,	&	x \geq \xi_{k}	\\
+		\end{cases}
+\end{align*}
+
+
+\paragraph{Note}	Pratiquer le calcul de degrés de liberté pour ces régressions afin de comprendre combien de paramètres sont estimés.
+
+
+
+\columnbreak
+\subsection{Splines de régression}
+\begin{rappel_enhanced}[Contexte]
+La régression d'une fonction polynôme par morceaux a le désavantage de ne pas être continue. Afin d'obtenir une fonction continue, on impose une contrainte par nœud. 
+
+\bigskip
+
+Ça semble contre-intuitif, mais le fait d'ajouter contraintes \textbf{\underline{réduit}} le nombre de prédicteurs. C'est puisque, de façon générale, une contrainte est une équation qui exprime un coefficient de régression en fonction des autres. Il s'ensuit que c'est une coefficient de moins à estimer.
+
+\bigskip
+
+Pour assurer la continuité de la fonction, on requiert que les $d - 1$ premières dérivées soient continues aux $k$ nœuds. Donc, le nombre de prédicteurs d'une fonction polynôme d'ordre $d$ est $p = (d - 1) + k + \underbrace{k * (d - 1)}_{\text{intéractions}} - \underbrace{k * (d - 1)}_{\text{contraintes}} = (d - 1) + k$.
+\end{rappel_enhanced}
+
+Les \og \textit{basis functions} \fg{} sont $x, x^{2}, x^{3}$ puis $b_{4} = (x - \xi_{1})^{3}_{+}, b_{5} = (x - \xi_{2})^{3}_{+}, \dots, b_{3 + k} = (x - \xi_{k})^{3}_{+}$ connues comme les \og \textit{\textbf{truncated power} basis functions} \fg{}.
+
+\bigskip
+
+Pour obtenir des \og \textit{\textbf{natural splines}} \fg{} on pose que les intervalles $\{x < \xi_{1}\}$ et $\{x > \xi_{k}\}$ deviennent linéaires. Il s'ensuit que les nœuds $\xi_{1}$ et $\xi_{k}$ sont les \og \textit{\textbf{boundary knots}} \fg{} alors que les autres sont les \og \textit{\textbf{interior knots}} \fg{}.
+
+\bigskip
+
+En bref, pour un polynôme d'ordre $d$ ayant $k$ nœuds :
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Modèle}}	&	\textcolor{white}{\textbf{Nombre de prédicteurs $p$}}		\\\specialrule{0.1em}{0em}{0em} 
+Polynôme	&	$d$	\\\hline
+Constate par morceaux	&	$k$	\\\hline
+Polynôme par morceaux	&	$d + k + dk$	\\\hline
+Polynôme par morceaux continue	&	$d + dk$	\\\hline
+Spline cubique&	$3 + k$	\\\hline
+Spline cubique naturelle	&	$k - 1$	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\columnbreak
+\subsection{Splines de lissage}
+
+
+
+\columnbreak
+\subsection{Régression locale}
+
+
+
+\columnbreak
+\subsection{GAM}
+
+
 
 
 
