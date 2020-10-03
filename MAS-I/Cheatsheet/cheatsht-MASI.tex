@@ -4199,7 +4199,7 @@ La variance de $\hat{f}$ mesure l'erreur due à la \textit{\textbf{sensibilité}
 
 \bigskip
 
-Le biais de $\hat{f}$ mesure le degré auquel $\hat{f}$ est proche de $f$. Un modèle très flexible s'ajuste bien aux données et comporte un faible biais. Par exemple, un \og \textit{spline} \fg{} a un faible biais et une variance élevée alors qu'une régression linéaire a un biais élevée et une faible variance.
+Le biais de $\hat{f}$ mesure le degré auquel $\hat{f}$ est proche de $f$. C'est une mesure de l'erreur \textbf{due aux hypothèses du modèle} d'apprentissage statistique. Un modèle très flexible s'ajuste bien aux données et comporte un faible biais. Par exemple, un \og \textit{spline} \fg{} a un faible biais et une variance élevée alors qu'une régression linéaire a un biais élevée et une faible variance.
 
 \bigskip
 
@@ -7099,7 +7099,7 @@ puissance	&	$\mu^{d}$	\\\hline
 
 
 \begin{rappel_enhanced}[Contexte]
-Elle est typiquement choisie en fonction du domaine des valeurs possibles que prend la moyenne. Par exemple, $\mu \in \mathbb{R}$ pour une distribution normale et donc le lien d'identité est idéale. En revanche, la moyenne d'une distribution Bernoulli est entre $0$ et $1$ donc le lien logit $\matr{x^{\top}\beta} = \ln\left(\frac{\mu}{1 - \mu}\right)$ est plus approprié.
+Elle est typiquement choisie en fonction du domaine des valeurs possibles que prend la moyenne. Par exemple, $\mu \in \mathbb{R}$ pour une distribution normale et donc le lien d'identité est idéale. En revanche, la moyenne d'une distribution Bernoulli est entre $0$ et $1$ donc le lien logit $\bm{x}^{\top}\bm{beta} = \ln\left(\frac{\mu}{1 - \mu}\right)$ est plus approprié.
 \end{rappel_enhanced}
 
 \paragraph{Note}	La fonction de lien canonique pose que le paramètre naturel \lfbox[formula]{$b(\theta) = \matr{x^{\top}}\bm{\beta}$}. Selon la distribution, la fonction de lien canonique correspond à :
