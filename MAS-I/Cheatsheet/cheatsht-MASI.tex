@@ -2321,9 +2321,9 @@ Avec ces deux conditions, on identifie toutes les régions, dénotées $\mathcal
 Puis, pour trouver la région critique \textit{\underline{unique}}, on pose que la probabilité que \textcolor{amethyst}{l'échantillon aléatoire soit contenu dans \textbf{\textit{la}} région critique $\mathcal{C}$}, \textcolor{teal}{sachant que l'hypothèse alternative est vraie}, est supérieure à la probabilité que \textcolor{burntorange}{l'échantillon aléatoire soit contenu dans \underline{\textit{tout autre sous-ensemble}} $\mathcal{A}$} :
 
 \begin{align*}
-	Pr\left(\textcolor{amethyst}{(X_{1}, \dots, X_{n}) \in \mathcal{C}} | \textcolor{teal}{\theta = \theta_{1}} \right) 
+	\Pr\left(\textcolor{amethyst}{(X_{1}, \dots, X_{n}) \in \mathcal{C}} | \textcolor{teal}{\theta = \theta_{1}} \right) 
 	&\geq	
-	Pr\big(\textcolor{burntorange}{(X_{1}, \dots, X_{n}) \in \mathcal{A}} | \textcolor{teal}{\theta = \theta_{1}}	\big)
+	\Pr\big(\textcolor{burntorange}{(X_{1}, \dots, X_{n}) \in \mathcal{A}} | \textcolor{teal}{\theta = \theta_{1}}	\big)
 \end{align*}
 
 Bref, on prend la région critique qui a la plus grande puissance.
@@ -3208,7 +3208,7 @@ Si l'échantillon aléatoire est tiré d'une \textbf{distribution uniforme} sur 
 
 \begin{align*}
 	f_{X_{(k)}}(x)
-	&=	\frac{\Gamma(n + 1)}{\Gamma(k)\Gamma(n - k + 1)} \left(\frac{x}{\theta}\right)^{k}\left(1 0 \frac{x}{\theta}\right)^{k} \frac{1}{x}, \quad 0 \leq x \leq \theta
+	&=	\frac{\Gamma(n + 1)}{\Gamma(k)\Gamma(n - k + 1)} \left(\frac{x}{\theta}\right)^{k}\left(1 - \frac{x}{\theta}\right)^{k} \frac{1}{x}, \quad 0 \leq x \leq \theta
 \end{align*}
 où il s'ensuit que \lfbox[formula]{$X_{(k)} \sim \text{Beta}(k, n - k + 1, \theta)$}.
 
