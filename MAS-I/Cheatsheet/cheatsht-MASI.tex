@@ -3925,12 +3925,6 @@ La distribution normale asymptotique de l'estimateur du maximum de vraisemblance
 Soit une distribution avec $r$ paramètre tel que $\hat{\bm{\theta}} = (\hat{\theta}_{1}, \hat{\theta}_{2}, \dots, \hat{\theta}_{r})$, on trouve que : \lfbox[formula]{$\hat{\bm{\theta}}^{\text{EMV}}	\approx	\mathcal{N}\left(\bm{\theta}, \bm{I}(\bm{\theta})^{-1}\right)$}.
 
 
-%\subsection{Autres critères}
-%	Quantile-Quantile
-%	AIC
-%	BIC
-
-
 
 \newpage
 \part{Modèles linéaires en actuariat}\label{chapt:modLin}
@@ -4874,7 +4868,7 @@ Pour que la régression linéaire soit un bon modèle, on s'attend à ce qu'il y
 On peut également définir le $R^{2}$ en fonction des sommes de carré : $R^{2} = \frac{SS(\text{moyenne}) - SS(\text{prévisions})}{SS(\text{moyenne})}$. Donc, c'est le ratio de la variabilité expliquée par le modèle à la variabilité totale. Plus $R^{2}$ est élevé, plus le modèle explique la variabilité et le mieux qu'il est.
 \end{rappel_enhanced}
 
-Le coefficient de détermination \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}.
+Le coefficient de détermination \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}. Également, \lfbox[formula]{$R^{2} = b_{1}^{2} \sum_{i = 1}^{n}(x_{i} - \bar{x})^{2}$}.
 \end{definitionNOHFILL}
 
 \paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{adjustedR2}{\color{bleudefrance} la définition du $R^{2}_{a}$}}} dans la section sur la \textit{\underline{\nameref{sec:MLR}}} pour les limitations du coefficient de détermination.
@@ -7546,7 +7540,7 @@ La différence du modèle pour une réponse nominale est que nous voulons captur
 \end{description}
 \end{distributions}
 
-Puisque \lfbox[conditions]{$\Pi_{g} = \sum_{c = 1}^{g} = 1$} nous avons encore seulement $g - 1$ probabilités à estimer.
+Puisque \lfbox[conditions]{$\Pi_{g} = \sum_{c = 1}^{g}\pi_{c} = 1$} nous avons encore seulement $g - 1$ probabilités à estimer.
 
 
 \subsubsection{Modèle de cotes proportionnelles}
@@ -8637,10 +8631,23 @@ Soit $n$ v.a. $X_{1}, \dots, X_{n}$ que l'on veut transformer en $n$ autres vari
 
 
 
+\subsubsection{Mélanges}
+\begin{definitionNOHFILL}[Mélange discret de variables aléatoires]
+La variable aléatoire $Y$ est un \textbf{\textit{mélange discret}} des variables aléatoires $X_{1}, X_{2}, \dots, X_{n}$ si sa fonction de densité (survie, répartition) peut être exprimée comme la moyenne pondérée des fonctions de densités des $n$ v.a. : \lfbox[formula]{$f_{Y}(y) = \sum_{i = 1}^{n} w_{i} f_{X_{i}}(y)$} où \lfbox[conditions]{$\sum_{i = 1}^{n} w_{i} = 1$} et \lfbox[conditions]{$w_{i} \in [0, 1]$} pour $i = 1, 2, \dots, n$.
+
+\bigskip
+
+Il s'ensuit également que \lfbox[formula]{$S_{Y}(y) = \sum_{i = 1}^{n} w_{i} S_{X_{i}}(y)$}, \lfbox[formula]{$F_{Y}(y) = \sum_{i = 1}^{n} w_{i} F_{X_{i}}(y)$} et \lfbox[formula]{$\text{E}[Y^{k}] = \sum_{i = 1}^{n} w_{i} \text{E}[X_{i}^{k}]$}.
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{PGammaMixID}{\color{bleudefrance} l'identité Poisson-Gamma}}} pour un exemple d'un mélange continue de variables aléatoires.
+
+
+
 \columnbreak
 \subsection{Queues de distributions}
 \begin{rappel_enhanced}[Contexte]
-Si une distribution a une queue de droite qui est lourde, \og \textit{thick} \fg{} ou \og \textit{fat} \fg{}, alors elle a des probabilités élevées de pertes extrêmes.
+Si une distribution a une queue de droite qui est lourde, \og \textit{thick} \fg{} ou \og \textit{fat} \fg{}, alors elle a des probabilités élevées de pertes extrêmes. L'idée qu'une queue est « \textit{épaisse} » ou « \textit{lourde} » s'interprète comme l'écart entre la courbe de la fonction de densité et l'abscisse. Plus la courbe s'éloigne de l'abscisse, plus l'écart est plus « gras ». En revanche, une queue « \textit{légère} » est proche de l'abscisse.
 \end{rappel_enhanced}
 
 En situation d'examen nous ne pouvons pas visuellement évaluer la queue et donc nous utilisons un des 4 tests suivants :
@@ -12187,6 +12194,9 @@ Pour une variable aléatoire $X$,
 \draw (157,96) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle f( x)$};
 \end{tikzpicture}
 		\end{center}
+		\begin{itemize}
+		\item	Pour ce faire : trouver la dérivée de $f(x)/g(x)$; la poser égale à zéro; choisir la valeur critique qui maximise la fonction $f(x)/g(x)$.
+		\end{itemize}
 	\item	Simuler une réalisation $y_{j}$ de la variable aléatoire $Y$ ayant la fonction de densité $g$ et calculer $\frac{f(y_{j})}{c g(y_{j})}$.	
 	\item	Simuler une réalisation $u_{j}$ de la variable aléatoire $U(0, 1)$.
 	\item	Comparer la réalisation $u_{j}$ à $\frac{f(y_{j})}{c g(y_{j})}$, si \lfbox[formula]{$u_{j} \leq \frac{f(y_{j})}{c g(y_{j})}$} alors accepter la réalisation $y_{j}$, sinon la refuser et retourner à l'étape 2.
@@ -12774,7 +12784,7 @@ En bref :
 \end{tikzpicture}
 \end{center}
 
-Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{n + 1}$}. 
+Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{k + 1}$}. 
 
 \paragraph{Note}	Voir la \textit{\underline{\nameref{subsubsec:orderStatsSpecialCases}}} des \textit{\underline{\nameref{sec:orderStats}}} pour la définition de cette espérance.
 
@@ -13074,7 +13084,7 @@ Notes sur la représentation sous la forme \textbf{binomiale} :
 \subsection{Mélanges de processus de Poisson}
 Lorsque la fonction d'intensité \textit{est} une variable aléatoire, nous obtenons un mélange de processus de Poisson. Ce \textbf{mélange} est un nouveau processus qui \textbf{n'est pas un processus de Poisson}.
 
-\begin{rappel}{Identité Poisson-Gamma}
+\begin{rappel}{\hypertarget{PGammaMixID}{Identité Poisson-Gamma}}
 Si la v.a. conditionnelle \lfbox[conditions]{$(N | \Lambda) \sim \text{Poisson}(\Lambda)$} et que \lfbox[conditions]{$\Lambda	\sim \text{Gamma}(n, \theta)$} alors la v.a. inconditionnelle \lfbox[formula]{$N \sim \text{Binomiale Négative}(r = n, \theta)$}.
 \end{rappel}
 
