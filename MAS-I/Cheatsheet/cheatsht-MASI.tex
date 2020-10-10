@@ -4834,7 +4834,7 @@ On obtient que \lfbox[formula]{$SSE = \sum_{i = 1}^{n}\left(y_{i} - \hat{y}_{i}\
 Alors que la SST représente la variabilité totale et la SSE la variabilité qui n'est pas expliquée par le modèle, la SSR représente la variabilité qui \textit{\textbf{est expliquée}} par le modèle. 
 \end{rappel_enhanced}
 
-On obtient que \lfbox[formula]{$SSR = \sum_{i = 1}^{n} \left(\hat{y}_{i} - \bar{y}\right)^{2}$}.
+On obtient que \lfbox[formula]{$SSR = \sum_{i = 1}^{n} \left(\hat{y}_{i} - \bar{y}\right)^{2}$}. Également, \lfbox[formula]{$SSR = b_{1}^{2}\sum_{i = 1}^{n}(x_{i} - \bar{x})^{2}$}.
 \end{definitionGENERAL}
 
 \paragraph{Note}	La SSE est parfois nommé la \og \textit{Sum of Squared Residuals} \fg{} et dénotée par RSS. Il est donc important de ne pas confondre SSR avec RSS.
@@ -4868,7 +4868,7 @@ Pour que la régression linéaire soit un bon modèle, on s'attend à ce qu'il y
 On peut également définir le $R^{2}$ en fonction des sommes de carré : $R^{2} = \frac{SS(\text{moyenne}) - SS(\text{prévisions})}{SS(\text{moyenne})}$. Donc, c'est le ratio de la variabilité expliquée par le modèle à la variabilité totale. Plus $R^{2}$ est élevé, plus le modèle explique la variabilité et le mieux qu'il est.
 \end{rappel_enhanced}
 
-Le coefficient de détermination \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}. Également, \lfbox[formula]{$R^{2} = b_{1}^{2} \sum_{i = 1}^{n}(x_{i} - \bar{x})^{2}$}.
+Le coefficient de détermination \lfbox[formula]{$R^{2} = \frac{SSR}{SST} = 1 -  \frac{SSE}{SST}$}. Également, \lfbox[formula]{$\displaystyle R^{2} = b_{1}^{2} \frac{s_{X}^{2}}{s_{Y}^{2}}$}.
 \end{definitionNOHFILL}
 
 \paragraph{Note}	Voir \textit{\color{bleudefrance}\underline{\hyperlink{adjustedR2}{\color{bleudefrance} la définition du $R^{2}_{a}$}}} dans la section sur la \textit{\underline{\nameref{sec:MLR}}} pour les limitations du coefficient de détermination.
@@ -5314,7 +5314,7 @@ totale		&	SST	&	$n - 1$	&	$s^{2}_{y}$	\\\hline
 
 La nouvelle mesure \lfbox[formula]{$MSR = \frac{SSR}{p}$} mesure la variance expliquée par la régression linéaire en moyenne par degré de liberté.
 
-\paragraph{Note}	Bien que $SST + SSR + SSE$, $s^{2}_{y} \neq MSR + MSE$.
+\paragraph{Note}	Bien que $SST = SSR + SSE$, $s^{2}_{y} \neq MSR + MSE$.
 \end{definitionNOHFILL}
 
 
@@ -5399,6 +5399,10 @@ Visuellement, on rejette l'hypothèse nulle que le modèle réduit est suffisant
 \bigskip
 
 Il s'ensuit que la statistique \lfbox[formula]{$t = \frac{(SSE_{r} - SSE_{f})/(p_{f} - p_{r})}{SSE_{f} / (n - p_{f}')}$} où $SSE_{r}$ est la SSE du modèle \textbf{r}éduit et $SSE_{f}$ du modèle complet (\og \textit{\textbf{f}ull} \fg{}). Également, \lfbox[formula]{$T \sim F_{p_{f} - p_{r}, n - p_{f}'}$}.
+
+\bigskip
+
+Tout comme le test $F$, ce test est unilatéral vers la droite et on rejette l'hypothèse nulle si $t \geq F_{\alpha, p_{f} - p_{r}, n - p_{f}'}$.
 \end{definitionNOHFILL}
 
 
@@ -6397,11 +6401,11 @@ Bien que certains points sont loin de la droite, on observe le comportement \tex
 \columnbreak
 \subsection{Facteur d'inflation de la variance (VIF)}
 \begin{rappel_enhanced}[Motivation]
-Pour évaluer la multicolinéarité, on cherche à détecter si un prédicteur est une combinaison linéaire des autres. Le coefficient de détermination indique si un modèle explique très bien une variable explicative. Il s'ensuit que le $R^{2}$ est une mesure utile pour évaluer la multicolinéarité si on l'ajuste pour notre cas ! En fait, on calcule le coefficient de détermination $p$ fois pour la régression de $x_{j}$ comme variable réponse par les $p - 1$ autres variables explicatives, dénoté $R^{2}_{(j)}$.
+Pour évaluer la multicolinéarité, on cherche à détecter si un prédicteur est une combinaison linéaire des autres. Afin de quantifier ceci, on rappelle que le coefficient de détermination mesure le degré auquel un modèle explique une variable réponse. Pour évaluer la multicolinéarité, on applique le $R^{2}$ avec les prédicteurs comme variable réponse. C'est-à-dire, on calcule $p$ coefficients de détermination, un à la fois, en posant que la variable réponse est $x_{j}$. On dénote ces coefficients $R^{2}_{(j)}$ pour $j = 1, 2, \dots, n$.
 
 \bigskip
 
-Cependant, il est difficile de comparer les différents $R^{2}_{(j)}$ puisque l'échelle des valeurs du coefficient est si petite. Nous voulons donc \textbf{changer l'échelle de $R^{2}_{(j)}$} afin d'augmenter les différences entre ses valeurs. On définit donc le VIF comme l'inverse du réciproque de $R^{2}_{(j)}$.
+Cependant, il est difficile de comparer les différents $R^{2}_{(j)}$ puisque l'échelle des valeurs du coefficient est si petite. Nous voulons donc \textbf{changer l'échelle de $R^{2}_{(j)}$} afin d'augmenter les différences entre ses valeurs. On définit donc le VIF comme l'\textit{inverse} du \textit{réciproque} de $R^{2}_{(j)}$.
 \end{rappel_enhanced}
 
 
@@ -7093,7 +7097,7 @@ puissance	&	$\mu^{d}$	\\\hline
 
 
 \begin{rappel_enhanced}[Contexte]
-Elle est typiquement choisie en fonction du domaine des valeurs possibles que prend la moyenne. Par exemple, $\mu \in \mathbb{R}$ pour une distribution normale et donc le lien d'identité est idéale. En revanche, la moyenne d'une distribution Bernoulli est entre $0$ et $1$ donc le lien logit $\bm{x}^{\top}\bm{beta} = \ln\left(\frac{\mu}{1 - \mu}\right)$ est plus approprié.
+Elle est typiquement choisie en fonction du domaine des valeurs possibles que prend la moyenne. Par exemple, $\mu \in \mathbb{R}$ pour une distribution normale et donc le lien d'identité est idéale. En revanche, la moyenne d'une distribution Bernoulli est entre $0$ et $1$ donc le lien logit $\bm{x}^{\top}\bm{\beta} = \ln\left(\frac{\mu}{1 - \mu}\right)$ est plus approprié.
 \end{rappel_enhanced}
 
 \paragraph{Note}	La fonction de lien canonique pose que le paramètre naturel \lfbox[formula]{$b(\theta) = \matr{x^{\top}}\bm{\beta}$}. Selon la distribution, la fonction de lien canonique correspond à :
@@ -10251,7 +10255,7 @@ Il s'ensuit que le modèle comportant le plus de paramètres aura l'avantage de 
 L'AIC pénalise les modèles ayant plus de paramètres en soustrayant le nombre de paramètres estimés $p$ du modèle de la log-vraisemblance : \lfbox[formula]{$AIC	=	\log \mathcal{L}(\hat{\theta}^{\text{EMV}}_{n} ; \bm{x})	-	p$}.
 
 \begin{itemize}
-	\item	On choisit le modèle qui maximise l'AIC.
+	\item	On choisit le modèle qui minimise l'AIC.
 	\item	En anglais, \og \textit{Akaike Information Criterion (AIC)} \fg{}.
 \end{itemize}
 \end{definitionNOHFILLsub}
@@ -10264,7 +10268,7 @@ L'AIC pénalise les modèles ayant plus de paramètres en soustrayant le nombre 
 %%%	+	Faire lien à la consistency.
 %%%	------------------------
 
-Le désavantage de l'AIC est que, pour deux modèles emboîtés, la probabilité de choisir le modèle plus simple (p. ex., un modèle basé sur la distribution exponentielle au lieu de la distribution gamma) \textit{alors qu'il est vrai} )erreur de type I) ne tends pas vers 1 lorsque le nombre d'observations tend vers l'infini. On dit donc que c'est une mesure \og \textit{inconsistent} \fg{}. 
+Le désavantage de l'AIC est que, pour deux modèles emboîtés, la probabilité de choisir le modèle plus simple (p. ex., un modèle basé sur la distribution exponentielle au lieu de la distribution gamma) \textit{alors qu'il est vrai} (erreur de type I) ne tends pas vers 1 lorsque le nombre d'observations tend vers l'infini. On dit donc que c'est une mesure \og \textit{inconsistent} \fg{}. 
 
 \begin{definitionNOHFILLsub}[Critère d'information bayésien (BIC)]
 Le BIC pénalise plus sévèrement les modèles ayant plus de paramètres : \lfbox[formula]{$BIC	=	\log \mathcal{L}(\hat{\theta}^{\text{EMV}}_{n} ; \bm{x})	-	\frac{p}{2} \log (n)$}.
