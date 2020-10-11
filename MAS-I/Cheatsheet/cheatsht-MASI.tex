@@ -4244,7 +4244,7 @@ Pour choisir le meilleur modèle, nous allons donc vouloir trouver \textbf{le me
 
 
 \columnbreak
-\subsection{Résumés numériques des modèles}
+\subsection{Résumés numériques des modèles}\label{subsec:NumSumm}
 \begin{rappel_enhanced}[Contexte]
 L'EQM, la variance et le biais d'un modèle permettent de quantifier sa précision. Cependant, avant d'ajuster un modèle, nous désirons avoir une image globale de l'ensemble de données sur lequel on l'ajuste. 
 
@@ -7665,7 +7665,15 @@ Il s'ensuit que les \og \textit{basis functions} \fg{} sont des fonctions indica
 		\end{cases}
 \end{align*}
 
-Il s'ensuit que ces fonctions indicatrices sont des \og \textit{step functions} \fg{}.
+%Il s'ensuit que ces fonctions indicatrices sont des \og \textit{step functions} \fg{}. La prévision sera donc : 
+%
+%\begin{center}
+%\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+%\hline\rowcolor{airforceblue} 
+%\textcolor{white}{\textbf{Intervalle de $x$}}	&	\textcolor{white}{\textbf{Prévision}}		\\\specialrule{0.1em}{0em}{0em} 
+%Yep	&	Nep	\\\hline
+%\end{tabular}
+%\end{center}
 
 \bigskip
 
@@ -13713,7 +13721,7 @@ La chaîne de Markov est donc \textbf{\textit{périodique}}.
 \end{formula}
 
 
-\begin{definitionNOHFILLsub}[Chaîne de Markov ergodique]
+\begin{definitionNOHFILLsub}[\hypertarget{ergodicMC}{Chaîne de Markov ergodique}]
 Une chaîne de Markov \textbf{irréductible}, \textbf{récurrente positive} et \textbf{apériodique} est \textbf{\textit{ergodique}}.
 \end{definitionNOHFILLsub}
 
@@ -14247,30 +14255,476 @@ On défini la probabilité que la population disparaisse $\pi_{0}$ si $X_{0} = 1
 
 \newpage	
 \part{Séries chronologiques}\label{chapt:seriesChrono}
-\section{Introduction}
+\begin{rappel_enhanced}[Contexte]
+Les \textbf{données temporelles} (\og \textit{time series data} \fg{}) sont composées d'observations indexées par le temps. Typiquement, les données sont récoltées à des intervalles fixes nommées \og \textit{\textbf{sampling intervals}} \fg{}. Lorsque nous évaluons les séries chronologiques, on cherche à trouver des patrons dans les observations afin de prédire les prochaines valeurs de la série.
+\end{rappel_enhanced}
+
+
 \begin{distributions}[Notation]
 \begin{description}
-	\item[$M_{t}$]	Trends in time.
-	\item[$S_{t}$]	Seasonal variations.
-	\item[$Z_{t}$]	Random patterns.
+	\item[$\{x_{t}: t = 1, \dots, n\}$]	Série chronologique de longueur $n$, dénotée plus simplement par $\{x_{t}\}$.
 \end{description}
 \end{distributions}
 
-Modèles
-	additifs
-	multiplicatifs
-	multiplicatifs avec facteur de saisonalité
 
+\section{Introduction}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M_{t}$]	\og \textit{Trends in time} \fg{}.
+	\item[$S_{t}$]	\og \textit{Seasonal variations} \fg{}.
+	\item[$Z_{t}$]	\og \textit{Random patterns} \fg{}.
+\end{description}
+\end{distributions}
+
+De façon générale, on peut décomposer une série chronologique en 3 composantes : 
+
+\begin{definitionGENERAL}{Tendances avec le temps}[\circled{1}{trueblue}]
+La \textbf{tendance} (\og \textit{trend} \fg{}) \lfbox[formula]{$M_{t}$} est la variation \textbf{\underline{systématique}} d'une série chronologique. Par exemple, une croissance linéaire de la série chronologique avec le temps est une \textit{tendance}.
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Variations saisonnières}[\circled{2}{trueblue}]
+Une \textbf{variation saisonnière} \lfbox[formula]{$S_{t}$} est un patron \textbf{\underline{cyclique}} qui se répète dans une période de temps fixée. Par exemple, le volume de ventes d'une crèmerie sera plus élevé au cours de l'été que l'hiver. 
+
+\bigskip
+
+Typiquement la période de temps est d'une année, mais on dénote par $g$ la \textbf{\textit{base saisonnière}}. C'est-à-dire, le nombre d'unités de temps pour qu'un patron cyclique se répète. 
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Patrons aléatoires}[\circled{3}{trueblue}]
+Tous \textbf{patrons aléatoires} \lfbox[formula]{$Z_{t}$} sont des variations imprévisibles dans les données. $Z_{t}$ est donc un terme d'erreur habituellement composé de v.a. corrélées de moyenne nulle.
+\end{definitionGENERAL}
+
+
+\paragraph{Note}	Puisque $X_{t}$ contient une composante aléatoire, ou \textbf{\textit{stochastique}}, $Z_{t}$, alors c'est un \textbf{processus stochastique}.
+
+\bigskip
+
+Il y existe une multitude de façons de combiner les 3 composantes, mais les modèles principaux sont :
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,243); %set diagram left start at 0, and has height of 243
+
+%Straight Lines [id:da13860672861654422] 
+\draw    (104.08,211.99) -- (104.08,198.92) ;
+%Shape: Rectangle [id:dp8261386020534891] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (7,8.6) -- (250.3,8.6) -- (250.3,226.27) -- (7,226.27) -- cycle ;
+%Shape: Rectangle [id:dp416417193883289] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (7,8.6) -- (250.3,8.6) -- (250.3,36.38) -- (7,36.38) -- cycle ;
+%Shape: Rectangle [id:dp5109504736801285] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (7,35.8) -- (250.02,35.8) -- (250.02,73.69) -- (7,73.69) -- cycle ;
+%Shape: Axis 2D [id:dp9732497354577974] 
+\draw  (38.92,205.21) -- (235.25,205.21)(38.92,90) -- (38.92,205.21) -- cycle (228.25,200.21) -- (235.25,205.21) -- (228.25,210.21) (33.92,97) -- (38.92,90) -- (43.92,97)  ;
+%Curve Lines [id:da3910617436014605] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (38.92,205.21) .. controls (48.6,171.01) and (50.89,217.66) .. (56.04,192.79) .. controls (61.18,167.92) and (71.48,216.12) .. (75.25,182.37) .. controls (79.02,148.63) and (89.64,205.83) .. (94.26,166.19) .. controls (98.88,126.55) and (110.94,183.06) .. (113.27,150.01) .. controls (115.6,116.95) and (128.06,174.7) .. (132.28,133.82) .. controls (136.5,92.95) and (146.22,156.73) .. (151.28,117.64) .. controls (156.35,78.56) and (167.52,137.8) .. (170.29,101.46) .. controls (173.07,65.12) and (179.34,122.71) .. (189.3,85.27) ;
+
+% Text Node
+\draw (241.08,212.57) node   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (23.08,92.67) node   [align=left] {$\displaystyle X_{t}$};
+% Text Node
+\draw (117.49,12.69) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{t} =M_{t} +S_{t} +Z_{t}$};
+% Text Node
+\draw (11.93,13.99) node [anchor=north west][inner sep=0.75pt]   [align=left] {Modèle additif};
+% Text Node
+\draw (22.51,42.25) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{145.14600000000002pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize Idéal si la variation saisonnière semble }\\{\footnotesize rester constante }
+\end{center}
+
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,241); %set diagram left start at 0, and has height of 241
+
+%Shape: Rectangle [id:dp8875902721533537] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (6,3.6) -- (324.3,3.6) -- (324.3,221.27) -- (6,221.27) -- cycle ;
+%Shape: Rectangle [id:dp13556253623857217] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (6,34.8) -- (323.93,34.8) -- (323.93,72.69) -- (6,72.69) -- cycle ;
+%Shape: Rectangle [id:dp41299697281741055] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (6,3.6) -- (324.3,3.6) -- (324.3,35.27) -- (6,35.27) -- cycle ;
+%Shape: Axis 2D [id:dp015510093428766858] 
+\draw  (37.92,200.21) -- (234.25,200.21)(37.92,85) -- (37.92,200.21) -- cycle (227.25,195.21) -- (234.25,200.21) -- (227.25,205.21) (32.92,92) -- (37.92,85) -- (42.92,92)  ;
+%Curve Lines [id:da03262107172438333] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (37.3,155.27) .. controls (63.28,129.52) and (40.72,170.05) .. (57.3,150.27) .. controls (73.88,130.5) and (57.29,181.09) .. (75.87,152.48) .. controls (94.44,123.86) and (86.17,186.31) .. (105.74,148.29) .. controls (125.3,110.27) and (112.92,187.95) .. (135.61,144.11) .. controls (158.3,100.27) and (141.66,205.59) .. (165.48,139.93) .. controls (189.3,74.27) and (168.41,236.23) .. (195.35,135.75) .. controls (222.3,35.27) and (199.15,255.87) .. (225.23,131.57) .. controls (251.3,7.27) and (233.3,213.27) .. (255.1,127.39) ;
+
+% Text Node
+\draw (240.08,207.57) node   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (22.08,87.67) node   [align=left] {$\displaystyle X_{t}$};
+% Text Node
+\draw (196.74,8.69) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{t} =M_{t} \cdot S_{t} +Z_{t}$};
+% Text Node
+\draw (8,6.9) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{109.89684000000001pt}\setlength\topsep{0pt}
+\begin{center}
+Modèle de saisonnalité \\ multiplicatif
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (58.97,41.25) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{145.14600000000002pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize Idéal si la variation saisonnière semble }\\{\footnotesize augmenter avec la tendance }
+\end{center}
+
+\end{minipage}};
+\end{tikzpicture}
+
+\end{center}
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,235); %set diagram left start at 0, and has height of 235
+
+%Shape: Rectangle [id:dp2425696687541279] 
+\draw  [fill={rgb, 255:red, 255; green, 255; blue, 255 }  ,fill opacity=1 ] (7,7.6) -- (325.3,7.6) -- (325.3,225.27) -- (7,225.27) -- cycle ;
+%Shape: Rectangle [id:dp3409462130308889] 
+\draw  [fill={rgb, 255:red, 222; green, 222; blue, 222 }  ,fill opacity=1 ] (7,34.8) -- (324.93,34.8) -- (324.93,72.69) -- (7,72.69) -- cycle ;
+%Shape: Rectangle [id:dp39241803304501377] 
+\draw  [fill={rgb, 255:red, 152; green, 180; blue, 255 }  ,fill opacity=1 ] (7,7.6) -- (325.3,7.6) -- (325.3,35.27) -- (7,35.27) -- cycle ;
+%Shape: Axis 2D [id:dp2701484514794372] 
+\draw  (38.92,204.21) -- (235.25,204.21)(38.92,89) -- (38.92,204.21) -- cycle (228.25,199.21) -- (235.25,204.21) -- (228.25,209.21) (33.92,96) -- (38.92,89) -- (43.92,96)  ;
+%Curve Lines [id:da14887094835563808] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=2.25]    (38.3,159.27) .. controls (64.28,133.52) and (41.72,174.05) .. (58.3,154.27) .. controls (74.88,134.5) and (58.29,185.09) .. (76.87,156.48) .. controls (95.44,127.86) and (84.3,150.68) .. (95.3,149.68) .. controls (106.3,148.68) and (96.96,171.3) .. (106.74,152.29) .. controls (116.52,133.28) and (113.92,191.95) .. (136.61,148.11) .. controls (159.3,104.27) and (140.3,160.68) .. (150.3,160.68) .. controls (160.3,160.68) and (154.57,176.76) .. (166.48,143.93) .. controls (178.39,111.1) and (184.41,224.83) .. (196.35,139.75) .. controls (208.3,54.68) and (205.3,99.68) .. (211.35,101.4) .. controls (217.39,103.12) and (207.96,141.13) .. (211.62,146.59) .. controls (215.27,152.05) and (212.26,196.82) .. (225.3,134.68) .. controls (238.34,72.53) and (229.3,145.68) .. (235.3,151.68) .. controls (241.3,157.68) and (232.3,157.68) .. (244.3,161.68) .. controls (256.3,165.68) and (245.2,174.33) .. (256.1,131.39) ;
+
+% Text Node
+\draw (204.74,12.69) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle X_{t} =M_{t} \cdot S_{t} \cdot Z_{t}$};
+% Text Node
+\draw (13,16.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{89.46216000000001pt}\setlength\topsep{0pt}
+\begin{center}
+Modèle multiplicatif
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (36.97,41.25) node [anchor=north west][inner sep=0.75pt]   [align=left] {\begin{minipage}[lt]{176.91084pt}\setlength\topsep{0pt}
+\begin{center}
+{\footnotesize Idéal si la variation saisonnière et l'erreur }\\{\footnotesize aléatoire semblent augmenter avec la tendance }
+\end{center}
+
+\end{minipage}};
+% Text Node
+\draw (243.08,207) node   [align=left] {$\displaystyle t$};
+% Text Node
+\draw (25.08,87.09) node   [align=left] {$\displaystyle X_{t}$};
+\end{tikzpicture}
+\end{center}
+
+\paragraph{Note}	S'il n'y a pas de tendances saisonnières, on ignore la composante en fixant $S_{t} = 0$ pour le modèle additif ou $S_{t} = 1$ pour le modèle additif.
+
+
+
+\columnbreak
 \subsection{Stationnarité}
+\begin{rappel_enhanced}[Contexte]
+De façon générale, on désire qu'une série chronologique soit \textbf{\textit{stationnaire}}. La stationnarité implique que quelque-chose reste fixe dans le temps. Donc, un processus stochastique qui a une moyenne stationnaire aura la même espérance peu importe où on se situe dans le temps.
+
+\bigskip
+
+Les propriétés de second ordre d'un processus sont : sa moyenne, sa variance et sa corrélation. S'ils sont tous stationnaire, le processus est dit d'être \textbf{\textit{stationnaire de second ordre}}. Donc, $\text{E}[X_{t}]$ ne varie pas selon $t$ et $\text{Cov}(X_{t}, X_{s})$ dépend seulement de la différence $|t - s|$. Si \textbf{tous} les moments de $X_{t}$ sont stationnaires, alors le processus stochastique est \textbf{\textit{strictement stationnaire}}. Dans ce cas-ci, les v.a. $X_{1}, X_{2}, \dots, X_{n}$ sont \textbf{\underline{iid}}.
+
+\bigskip
+
+Finalement, un modèle de séries chronologiques avec une moyenne stationnaire est dit d'avoir une moyenne \textbf{\textit{ergodique}} si la moyenne, pour toute observation, tend vers la moyenne théorique alors que le temps tend vers l'infini. 
+\end{rappel_enhanced}
+
+\paragraph{Note}	La définition d'ergodique ici diffère donc de la définition d'une \textit{\color{bleudefrance}\underline{\hyperlink{ergodicMC}{\color{bleudefrance} chaîne de Markov ergodique}}}.
+
+\bigskip
+
+Puisqu'une série chronologique est beaucoup plus stable lorsqu'elle est stationnaire, on désire l'ajuster si elle ne l'est pas. Il y a plusieurs approches que l'on peut prendre pour le faire, mais les plus populaires sont :
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Calculer les écarts de temps entre les observations consécutives $X_{t} - X_{t - 1}$.
+	\item	Appliquer une transformation sur les données temporelles. Par exemple, une transformation d'échelle logarithmique ($\ln(X_{t})$).
+\end{enumerate}
 
 
+
+\columnbreak
 \subsection{Décomposition}
+\begin{rappel_enhanced}[Contexte]
+Nous avons mentionné que la tendance et la variation saisonnière sont déterministe alors que la variation aléatoire est stochastique. Nous voulons maintenant distinguer la tendance et la variation saisonnière afin des modéliser séparément.
+\end{rappel_enhanced}
 
 
-\subsection{Auto-corrélation}
+\subsubsection{Tendance}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$m_{t}$]	Tendance au temps $t$.
+	\item[$g$]	Base saisonnière.
+		\begin{itemize}
+		\item	Par exemple, pour des données mensuelles $g = 12$ et pour des données trimestrielles $g = 4$.
+		\end{itemize}
+\end{description}
+\end{distributions}
 
 
+\begin{definitionNOHFILL}[Moyenne mobile (\og \textit{moving average} \fg{})]
+La tendance au temps $t$, \lfbox[formula]{$m_{t}$}, est calculée comme étant la moyenne mobile centrée sur l'observation $x_{t}$. Afin de prendre en compte la variation saisonnière, la moyenne sera composée de $g$ observations consécutives, soit : 
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Les $\frac{g - 1}{2}$ observations avant $x_{t}$ ;
+	\item	L'observation $x_{t}$ ;
+	\item	Les $\frac{g - 1}{2}$ observations après $x_{t}$.
+\end{enumerate} 
+
+\bigskip
+
+Par exemple, pour des donnés mensuelles ($g = 12$) : \lfbox[formula]{$\hat{m}_{t} = \frac{0.5x_{t - 6} + \sum_{i = t - 5}^{t + 5}x_{i} + 0.5x_{t + 6}}{12}$}.
+
+\paragraph{Note}	Si $\frac{g - 1}{2}$ est fractionnaire, on pondère les extrémités par $0.5$.
+\end{definitionNOHFILL}
+
+
+\begin{rappel_enhanced}[Contexte]
+La moyenne mobile centrée est une technique de \textit{\textbf{lissage}} (\og \textit{smoothing} \fg{}) ou \textit{\textbf{filtrage}} pour trouver une tendance sous-jacente aux données temporelles. Une autre technique populaire est une technique de régression avec des poids locaux : le \textbf{\textit{loess}}. Cependant, bien que cette technique est facilement applicable en \texttt{R} elle est trop compliquée pour faire à la main.
+
+\bigskip
+
+Finalement, nous avons seulement vu comment estimer la tendance. La section \textit{\underline{\nameref{sec:TSRegression}}} présente des modèles pour ensuite effectuer des prévisions sur des séries chronologiques.
+\end{rappel_enhanced}
+
+
+
+\subsubsection{Variation saisonnière}
+\begin{rappel_enhanced}[Contexte]
+Une fois que les tendances sont estimées, on peut calculer les variations par rapport aux tendances pour trouver la variation saisonnière moyenne pour chaque saison. Puis, on peut soustraire ces variations des observations pour obtenir une série corrigée des variations saisonnières (\og \textit{seasonally adjusted series} \fg{}).
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Variation saisonnière additive]
+Pour un modèle additif, chaque observation d'un ensemble de données temporel peut se décomposer comme $x_{t} = m_{t} + s_{t} + z_{t}$. Il s'ensuit que les \textit{\underline{composantes de variation saisonnière}} de la série se calculent comme \lfbox[formula]{$\hat{s}_{t} = x_{t} - \hat{m}_{t}$}. Pour une variation saisonnière additive, on surnomme parfois ses composantes les \textbf{\textit{effets additifs}}.
+
+\bigskip
+
+Puis, on calcule la moyenne des composantes par saison pour obtenir $g$ effets additifs moyens \lfbox[formula]{$\bar{s}_{i}$}, pour $i = 1, 2, \dots, g$, et on ajuste les effets moyens pour qu'ils aient une moyenne nulle avec \lfbox[formula]{$\bar{s^{\ast}}_{i} = \bar{s}_{i} - \frac{\sum_{i = 1}^{g} \bar{s}_{i}}{g}$}. Finalement, on calcule la série corrigée des variations saisonnières comme \lfbox[formula]{$x_{t} - \bar{s^{\ast}}_{i}$}.
+\end{definitionNOHFILLsub}
+
+
+\begin{definitionNOHFILLsub}[Variation saisonnière multiplicative]
+Pour un modèle multiplicatif, chaque observation d'un ensemble de données temporel peut se décomposer comme $x_{t} = m_{t} \cdot s_{t} + z_{t}$ ou $x_{t} = m_{t} \cdot s_{t} \cdot z_{t}$. Il s'ensuit que, peu importe le modèle multiplicatif, les \textit{\underline{composantes de variation saisonnière}} de la série se calculent comme \lfbox[formula]{$\hat{s}_{t} = \frac{x_{t}}{\hat{m}_{t}}$}. On surnomme parfois les composantes les \textbf{\textit{effets multiplicatifs}}.
+
+\bigskip
+
+Puis, on calcule la moyenne des composantes par saison pour obtenir $g$ effets multiplicatifs moyens \lfbox[formula]{$\bar{s}_{i}$}, pour $i = 1, 2, \dots, g$, et on ajuste les effets moyens pour qu'ils aient une moyenne de $1$ avec \lfbox[formula]{$\bar{s^{\ast}}_{i} = \frac{\bar{s}_{i}}{\sum_{i = 1}^{g} \bar{s}_{i} / g}$}. Finalement, on calcule la série corrigé des variations saisonnières comme \lfbox[formula]{$\frac{x_{t}}{\bar{s^{\ast}}_{i}}$}.
+\end{definitionNOHFILLsub}
+
+
+
+\columnbreak
+\subsection{Autocorrélation}
+\begin{rappel_enhanced}[Contexte]
+Lorsque l'on retire la tendance et la variation saisonnière d'une série chronologique, il reste seulement la composante aléatoire qui est elle-même une série chronologique qu'on surnomme la \textbf{\textit{série d'erreurs résiduelles}} (\og \textit{residual error series} \fg{}). Cependant, ces termes d'erreurs ne peuvent pas être supposés indépendants et il faut tenir en compte la corrélation d'observations consécutives.
+
+\bigskip
+
+Dans la section de \textit{\underline{\nameref{sec:StatLearning}}}, les\textit{\underline{\nameref{subsec:NumSumm}}} utilisés pour des données bivariées sont \textit{\color{bleudefrance}\underline{\hyperlink{sampleCovariance}{\color{bleudefrance} covariance}}} et la \textit{\color{bleudefrance}\underline{\hyperlink{sampleCorrelation}{\color{bleudefrance} corrélation}}}. Dans notre cas, nous voulons évaluer le degré de dépendance entre une même variable aléatoire à différents moments dans le temps. Donc, nous utilisons l'\textbf{\textit{autocovariance}} et l'\textbf{\textit{autocorrélation}}.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[lag $k$]	Décalage entre deux termes d'une série chronologique. 
+		\begin{itemize}
+		\item	Par exemple, l'écart de temps entre $X_{t}$ et $X_{t + k}$.
+		\end{itemize}
+	\item[$\mu$]	Moyenne de la série chronologique.
+\end{description}
+\end{distributions}
+
+Les statistiques sont : 
+
+\begin{definitionNOHFILL}[Autocovariance]
+L'autocovariance de la variable $X$ avec un décalage de $k$ est \lfbox[formula]{$\gamma_{k} = \text{Cov}(X_{t}, X_{t + k}) = \text{E}[(X_{t} - \mu)(X_{t + k} - \mu)]$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Autocorrélation]
+L'autocorrélation de la variable $X$ avec un décalage de $k$ est \lfbox[formula]{$\rho_{k} = \text{Corr}(X_{t}, X_{t + k}) = \frac{\gamma_{k}}{\sigma^{2}}$}.
+
+\paragraph{Note}	On dénote la fonction d'autocorrélation comme l'\textbf{\textit{ACF}}.
+\end{definitionNOHFILL}
+
+\bigskip
+
+Puis, pour un échantillon d'observation temporelles $x_{1}, \dots, x_{n}$ :
+
+\begin{definitionNOHFILLprop}[Autocovariance échantillonnale]
+L'autocovariance échantillonnale avec un décalage (\og \textit{lag} \fg{}) de $k$ est \lfbox[formula]{$\displaystyle c_{k} = \frac{\sum_{t = 1}^{n - k} (x_{t} - \bar{x})(x_{t + k} - \bar{x})}{n}$}.
+
+\paragraph{Note}	On divise par $n$ même s'il y a $n - k$ termes à la sommation afin que $c_{k} \in [-1, 1]$. Également, avec $k = 0$ on obtient la \textit{\color{bleudefrance}\underline{\hyperlink{empiricalVariance}{\color{bleudefrance} variance empirique}}} (avec biais) : \lfbox[formula]{$c_{0} = \hat{\sigma}^{2}$}.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Autocorrélation échantillonnale]
+L'autocorrélation échantillonnale avec un décalage (\og \textit{lag} \fg{}) de $k$ est \lfbox[formula]{$\displaystyle r_{k} = \frac{c_{k}}{c_{0}} = \frac{\sum_{t = 1}^{n - k} (x_{t} - \bar{x})(x_{t + k} - \bar{x})}{\sum_{t = 1}^{n}(x_{t} - \bar{x})^{2}}$}.
+
+\bigskip
+
+La distribution de $r_{k}$ est approximativement normale avec \lfbox[formula]{$r_{k} \sim \mathcal{N}\left(-\frac{1}{n}, \frac{1}{n}\right)$}.
+\end{definitionNOHFILLprop}
+
+
+
+\subsubsection{Corrélogrammes}
+Une méthode d'évaluer s'il y existe d'importantes autocorrélations dans une série chronologique est le \textbf{\textit{corrélogramme}} : un graphique de l'autocorrélation contre le décalage $k$ :
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,194); %set diagram left start at 0, and has height of 194
+
+%Straight Lines [id:da6777252735790011] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (28.37,69.07) -- (198.77,69.07) ;
+%Straight Lines [id:da4148120799346966] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=1.5]  [dash pattern={on 5.63pt off 4.5pt}]  (28.37,105.07) -- (198.77,105.07) ;
+%Shape: Axis 2D [id:dp4956545394741303] 
+\draw  (29.9,155.07) -- (205.1,155.07)(29.9,15.06) -- (29.9,155.07) -- cycle (198.1,150.07) -- (205.1,155.07) -- (198.1,160.07) (24.9,22.06) -- (29.9,15.06) -- (34.9,22.06)  ;
+%Straight Lines [id:da7361414290663102] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (39.57,26.07) -- (39.57,85.86) ;
+%Straight Lines [id:da8686086453907949] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (49.57,39.07) -- (49.57,85.86) ;
+%Straight Lines [id:da8569835162399388] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (59.57,52.07) -- (59.57,85.86) ;
+%Straight Lines [id:da08848134283917419] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (69.57,66.07) -- (69.57,85.86) ;
+%Straight Lines [id:da11735198900445076] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (79.57,76.07) -- (79.57,85.86) ;
+%Straight Lines [id:da4193325112093178] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (89.57,80.07) -- (89.57,85.86) ;
+%Straight Lines [id:da4794952312012699] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (159.1,128.07) -- (159.57,85.07) ;
+%Straight Lines [id:da5940759289232334] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (149.57,122.64) -- (149.57,85.07) ;
+%Straight Lines [id:da26215978050090305] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (139.57,112.2) -- (139.57,85.07) ;
+%Straight Lines [id:da38878985892811735] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (129.57,104.86) -- (129.57,85.07) ;
+%Straight Lines [id:da0073465264762981874] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (119.57,94.86) -- (119.57,85.07) ;
+%Straight Lines [id:da8013766628027479] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (109.57,90.86) -- (109.57,85.07) ;
+%Straight Lines [id:da8360225534073] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (179.1,135.07) -- (179.57,85.07) ;
+%Straight Lines [id:da698710998479225] 
+\draw [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ][line width=1.5]    (169.57,128.75) -- (169.57,85.07) ;
+%Straight Lines [id:da7482508237591576] 
+\draw [color={rgb, 255:red, 65; green, 117; blue, 5 }  ,draw opacity=1 ][line width=1.5]    (29.57,85.86) -- (199.98,85.86) ;
+
+% Text Node
+\draw (16.8,11.15) node   [align=left] {{\footnotesize $\displaystyle r_{k}$}};
+% Text Node
+\draw (21.26,29.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 1}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (211.95,168.2) node  [font=\small] [align=left] {lag $\displaystyle k$};
+% Text Node
+\draw (30.26,160.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 0}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (61.26,160.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 5}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (100.26,160.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{9.528500000000001pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 10}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (141.26,160.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{9.528500000000001pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 15}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (180.26,160.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{9.528500000000001pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny 20}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (22.26,145.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny -1}
+\end{flushright}
+
+\end{minipage}};
+% Text Node
+\draw (21.26,82.92) node  [font=\large] [align=left] {\begin{minipage}[lt]{8.67pt}\setlength\topsep{0pt}
+\begin{flushright}
+{\tiny \textcolor[rgb]{0.25,0.46,0.02}{0}}
+\end{flushright}
+
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+
+Pour $k = 0$, on a toujours que $r_{0} = 1$. Puis, on trace des lignes \textcolor{airforceblue}{blueues} aux points \lfbox[formula]{$-\frac{1}{n} \pm \frac{2}{\sqrt{n}}$} comme règle de pouce d'autocorrélations significatives ($z_{0.975 \approx 2}$). Si $r_{k}$ se situe à l'extérieur de ces bornes, on rejette l'hypothèse nulle que $\rho_{k} = 0$ à un niveau de confiance de $95\%$.
+
+\bigskip
+
+De plus, on peut utiliser les corrélogrammes pour identifier s'il y a des patrons. Par exemple, si l'ACF décroît ça peut être indicatif d'une tendance qui demeure dans le données. Il s'ensuit qu'il est optimal d'utiliser le corrélogramme sur la série des erreurs résiduelles.
+
+
+
+\columnbreak
 \subsection{Cross-correlation}
+\begin{rappel_enhanced}[Contexte]
+Une série chronologique peut non seulement être corrélée avec un décalage d'elle-même, mais aussi avec un décalage d'une autre série chronologique. C'est le cas si une série devance (\og \textit{leads} \fg{}) une autre d'au moins une période. Par exemple, le nombre de meubles vendus au Ikea de Québec peut dépendre du nombre de nouvelles inscriptions à l'université Laval.
+\end{rappel_enhanced}
+
+Pour quantifier cette relation, nous avons les statistiques suivantes : 
+
+\begin{definitionNOHFILL}[Covariance croisée]
+La covariance croisée (\og \textit{cross-covariance} \fg{}) entre $X$ et $Y$ pour un décalage de $k$ est \lfbox[formula]{$\gamma_{k}(X, Y) = \text{Cov}(X_{t + k}, Y_{t}) = \text{E}[(X_{t + k} - \mu_{X})(Y_{t} - \mu_{Y})]$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Corrélation croisée]
+La fonction de corrélation croisée entre $X$ et $Y$ pour un décalage de $k$ est \lfbox[formula]{$\rho_{k}(X, Y) = \text{Corr}(X_{t + k}, Y_{t}) = \frac{\gamma_{k}(X, Y)}{\sigma_{X}\sigma_{Y}}$}.
+
+\paragraph{Note}	On dénote la fonction de corrélation croisée comme la \textbf{\textit{CCF}}.
+\end{definitionNOHFILL}
+
+\bigskip
+
+Puis, pour deux échantillons d'observations temporelles $x_{1}, \dots, x_{n}$ et $y_{1}, \dots, y_{n}$ : 
+
+\begin{definitionNOHFILLprop}[Covariance croisée échantillonnale]
+La covariance croisée échantillonnale avec un décalage de $k$ est \lfbox[formula]{$c_{k}(x, y) = \frac{\sum_{t = 1}^{n - k}(x_{t + k} - \bar{x})(y_{t} - \bar{y})}{n}$}.
+
+\paragraph{Note}	$\sigma^{2}_{X} = c_{0}(x, x)$ et $\sigma^{2}_{Y} = c_{0}(y, y)$.
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Corrélation croisée échantillonnale]
+La corrélation croisée échantillonnale avec un décalage de $k$ est \lfbox[formula]{$r_{k}(x, y) = \frac{c_{k}(x, y)}{\sqrt{c_{0}(x, x) c_{0}(y, y)}} = \frac{\sum_{t = 1}^{n - k}(x_{t + k} - \bar{x})(y_{t} - \bar{y})}{\sum_{t = 1}^{n} (x_{t} - \bar{x})^{2} \sum_{t = 1}^{n} (y_{t} - \bar{y})^{2}}$}.
+\end{definitionNOHFILLprop}
+
+
+\paragraph{Note}	Le décalage peut être négatif ce qui implique que $\gamma_{k}(X, Y) = \gamma_{-k}(Y, X)$, $\rho_{k}(X, Y) = \rho_{-k}(Y, X)$, etc.
+
+
+
+\subsubsection{Corrélogrammes croisés}
+De façon semblable au corrélogramme, on peut évaluer le \textbf\textit{{corrélogrammes croisé}} pour détecter des corrélations croisées significatives entre les deux séries chronologiques. Ce coups-ci, on trace la CCF contre le décalage $k$. 
+
+\paragraph{Note}	On utilise les mêmes valeurs critiques pour tester si les termes sont nuls.
+
+
 
 
 \newpage
@@ -14288,7 +14742,7 @@ Modèles
 
 \subsection{Propriétés}
 
-\subsection{Modèles auto-régressifs}
+\subsection{Modèles autorégressifs}
 
 
 \subsection{Modèles de moving average}
@@ -14302,7 +14756,7 @@ Modèles
 
 
 \newpage
-\section{Régression avec des séries chronologiques}
+\section{Régression avec des séries chronologiques}\label{sec:TSRegression}
 \subsection{Modèles de régression avec tendance}
 
 
