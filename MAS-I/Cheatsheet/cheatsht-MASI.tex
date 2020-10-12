@@ -3017,7 +3017,7 @@ La distribution de $T_{n}$ provient d'une famille \textbf{\textit{complète}} de
 Si : 
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	La statistique $T_{n}$ est une statistique exhaustive pour $\theta$.
-	\item	La distribution de $T_{n}$ provient d'une faille de distributions complète.
+	\item	La distribution de $T_{n}$ provient d'une famille de distributions complète.
 	\item	Il y existe une fonction unique $\varphi(\cdot)$ de $T_{n}$ tel que $\varphi(T_{n})$ est une estimateur non biaisé de $\theta$.
 \end{enumerate}
 alors la statistique $\varphi(T_{n})$ est le MVUE de $\theta$.
@@ -10321,9 +10321,9 @@ Ces algorithmes ont l'avantage d'être \textbf{plus rapide}s au coût d'être \t
 \label{sec:reliability}
 \begin{definitionNOHFILL}[Théorie de la fiabilité]
 \textbf{Contexte} : Un \textit{système} ayant plusieurs \textit{composantes}.	 \\
-\textbf{Idée} : Le fonctionnement du système dépend du fonctionnement des composantes.
+\textbf{Idée} : Le fonctionnement du système dépend du fonctionnement de ses composantes.
 
-La \textbf{théorie de la fiabilité} sert à quantifier la probabilité qu'un \textit{système} fonctionne selon la fiabilité de ses composantes, et selon le rôle qu'elles ont dans le système.
+La \textbf{théorie de la fiabilité} évalue la probabilité qu'un \textit{\underline{système}} fonctionne selon la \underline{fiabilité de ses composantes} et \underline{leurs rôles dans le système}.
 \end{definitionNOHFILL}
 
 
@@ -10331,14 +10331,14 @@ La \textbf{théorie de la fiabilité} sert à quantifier la probabilité qu'un \
 \begin{distributions}[Notation]
 \begin{description}
 	\item[$x_{i}$]	\textbf{État} de la composante $i$.
-	\item[$\phi(\bm{x})$]	\og \textit{\textbf{Structure function}} \fg{} d'un système représentant son \textbf{état}.
+	\item[$\phi(\bm{x})$]	\og \textit{\textbf{Structure function}} \fg{} désignant l'\textbf{état} d'un système.
 \end{description}
 \end{distributions}
 
 \bigskip
 
 \begin{definitionNOHFILLsub}[L'état d'une composante]
-Chacune des composantes du sys tème a sa propre durée de vie (\og \textit{lifetime} \fg{}). Cette durée de vie est dénotée par la variable aléatoire binaire \lfbox[formula]{$x_{i}$} représentant son état.
+Chacune des composantes du système a sa propre \textbf{\textit{durée de vie}} (\og \textit{lifetime} \fg{}) désignée par la variable aléatoire binaire de son état \lfbox[formula]{$x_{i}$}.
 
 \bigskip
 
@@ -10353,18 +10353,16 @@ Soit la composante \textbf{\textcolor{teal}{fonctionne}}, ou elle \textbf{\textc
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Vecteur des états d'un système (\og \textit{path vector} \fg{})]
-Le vecteur des états d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système. Il indique donc quelles composantes fonctionnent ou ne fonctionnent pas. Il est représentée sous la forme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n})$}.
+Le \textbf{\textit{vecteur des états}} d'un système (\og \textit{state vector} \fg{}) regroupe les états de toutes les composantes d'un système et se dénote comme \lfbox[formula]{$\bm{x} = (x_{1}, x_{2}, \dots, x_{n})$}. Il indique quelles composantes du système fonctionnent ou ne fonctionnent pas.
 
-\bigskip
-
-\paragraph{Note}	Un système ayant $n$ composantes et le vecteur des états peut être un de $2^{n}$ différentes combinaisons.
+\paragraph{Note}	Un système ayant $n$ composantes a $2^{n}$ différentes combinaisons possibles d'états de ses composantes. C'est-à-dire, $2^{n}$ différents \textit{vecteur des états} possibles.
 \begin{itemize}
-	\item	Puisque les composantes du système sont binaires, chacune a deux valeurs possibles. Ceci résulte en $2 \times 2 \times \cdots 2 = 2^{n}$ différentes combinaisons possibles.
+	\item	Puisque les composantes du système sont binaires, chacune prend une de deux valeurs  ce qui résulte en $2 \times 2 \times \cdots 2 = 2^{n}$ différentes combinaisons possibles.
 \end{itemize}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[L'état d'un système]
-L'état d'un système dépend des états de ses composantes. L'état du système est représentée sous la forme d'une fonction \lfbox[formula]{$\phi(\bm{x})$} binaire :
+L'état d'un système dépend des états de ses composantes. L'état du système s'écrit sous la forme d'une fonction binaire \lfbox[formula]{$\phi(\bm{x})$} :
 \begin{align*}
 	\phi(\bm{x})
 	&=	\begin{cases}
@@ -10374,7 +10372,9 @@ L'état d'un système dépend des états de ses composantes. L'état du système
 \end{align*}
 \end{definitionNOHFILLsub}
 
-Nous verrons le type de vecteur d'état selon l'état de fonctionnement du système : 
+\bigskip
+
+On distingue 2 types de vecteurs d'états selon le fonctionnement du système :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -10416,9 +10416,12 @@ Nous verrons le type de vecteur d'état selon l'état de fonctionnement du syst�
 \end{center}
 
 
-\subsubsection{Systèmes communs}
-\begin{definitionNOHFILL}[Système parallèle]
-Fonctionne tant qu'au moins une des composantes du système fonctionne.
+\subsubsection{Types de systèmes les plus courants}
+\begin{definitionNOHFILL}[Système en parallèle]
+Un \textbf{\textit{système en parallèle}} fonctionne tant qu'au moins une de ses composantes fonctionne.
+
+\bigskip
+
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -10450,8 +10453,11 @@ Fonctionne tant qu'au moins une des composantes du système fonctionne.
 \end{center}
 \end{definitionNOHFILL}
 
-\begin{definitionNOHFILL}[Système de série]
-Fonctionne seulement si toutes les composantes du système fonctionnent.
+\begin{definitionNOHFILL}[Système en série]
+Un \textbf{\textit{système en série}} fonctionne seulement si toutes ses composantes fonctionnent.
+
+\bigskip
+
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -10482,7 +10488,7 @@ Fonctionne seulement si toutes les composantes du système fonctionnent.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\hypertarget{fiabilitykParmin}{Système de $k$ parmi $n$}]
-Fonctionne si au moins $k$ des $n$ composantes du système fonctionnent.
+Un \textbf{\textit{système de $k$ parmi $n$}} fonctionne si au moins $k$ de ses $n$ composantes fonctionnent.
 
 \bigskip
 
@@ -10563,7 +10569,7 @@ Fonctionne si au moins $k$ des $n$ composantes du système fonctionnent.
 \end{center}
 
 \begin{itemize}
-	\item	Un système parallèle est donc un système de $1$ parmi $n$ et un système de série un système de $n$ parmi $n$.
+	\item	Un système en parallèle est donc un système de $1$ parmi $n$ et un système en série un système de $n$ parmi $n$.
 \end{itemize}
 \end{definitionNOHFILL}
 
@@ -10607,29 +10613,35 @@ Il y a deux branches connectées par un pont dans le milieu.
 \end{center}
 \end{definitionNOHFILL}
 
-\textbf{Autres systèmes}	\\
-En bref, il y a une infinité de systèmes qui peuvent être construits comme des combinaisons des systèmes précédents.
+\begin{rappel_enhanced}[Contexte]
+On peut construire une infinité de systèmes comme des combinaisons des systèmes précédents. Entre autres, on peut combiner des systèmes ensembles. Par exemple : construire un système en série de systèmes en parallèle. 
+
+\bigskip
+
+C'est lorsque nous créons des combinaisons que l'état de fonctionnement du système devient moins clair et c'est pourquoi les \og \textit{minimal path} \fg{} et \og \textit{minimal cut} \fg{} sets sont utiles. 
+\end{rappel_enhanced}
+
 
 
 \columnbreak
 \subsection{Minimal path and minimal cut sets}
 \begin{definitionNOHFILL}[\og \textit{Path vector} \fg{}]
-Vecteur d'états pour lequel le système fonctionne (\lfbox[conditions]{$\phi(\bm{x}) = 1$}). 
+Le \og \textit{path vector} \fg{} est le vecteur d'états pour lequel le système fonctionne \lfbox[conditions]{($\phi(\bm{x}) = 1$)}. 
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[\og \textit{Minimal path vectors} \fg{}]
-\og \textit{Path vectors} \fg{} ayant le \textit{minimum} de composantes pour \textbf{fonctionner}. Donc, le système cesse de fonctionner dès qu'une des composantes qui fonctionne échoue. 
+Les \og \textit{minimal path vectors} \fg{} sont les \og \textit{path vectors} \fg{} ayant le \textit{minimum} de composantes pour \textbf{fonctionner}. Il s'ensuit que dès qu'une des composantes d'un \og \textit{minimal path vector} \fg{} échoue, le système en entier cesse de fonctionner. 
 
 \bigskip
 
 En termes mathématiques, $\bm{x}$ est un \og \textit{minimal path vector} \fg{} si \lfbox[conditions]{$\phi(\bm{y}) = 0 \forall \bm{y} < \bm{x}$}. 
 \begin{itemize}
-	\item	$\bm{y} < \bm{x}$ implique que tous les éléments $y_{i}$ du vecteur $\bm{y}$ sont inférieurs ou égaux aux éléments $x_{i}$ du vecteur $\bm{x}$ ($y_{i} \leq x_{i} \forall i$) avec au moins un élément qui est strictement inférieur ($y_{i} < x_{i}$ pour au moins un $i$).
+	\item	$\bm{y} < \bm{x}$ implique que tous les éléments $y_{i}$ du vecteur $\bm{y}$ sont inférieurs ou égaux aux éléments $x_{i}$ du vecteur $\bm{x}$ ($y_{i} \leq x_{i} \ \forall i$) avec au moins un élément qui est strictement inférieur ($y_{i} < x_{i}$ pour au moins un $i$).
 \end{itemize}
 \end{definitionNOHFILLsub}
  
 \begin{definitionNOHFILLsub}[\og \textit{Minimal path sets} \fg{}]
-Ensembles minimaux des composantes dont le fonctionnement garanti le fonctionnement du système. Donc, le système fonctionne uniquement si toutes les composantes d'au moins un des \og \textit{minimal path sets} \fg{} fonctionne.
+Les \og \textit{minimal path sets} \fg{} sont les ensembles minimaux de composantes dont le fonctionnement garanti le fonctionnement du système. Donc, le système fonctionne uniquement si toutes les composantes d'au moins un des \og \textit{minimal path sets} \fg{} fonctionne.
 \end{definitionNOHFILLsub}
 
 \begin{formula}{Exemple de système}
@@ -10722,7 +10734,7 @@ Ensembles minimaux des composantes dont le fonctionnement garanti le fonctionnem
 \end{tikzpicture}
 \end{center}
 
-Pour bien comprendre la condition pour qu'un \og \textit{mimimal path vector} \fg{}, on observe les vecteurs $\bm{y}$ du premier \og \textit{minimal path vector} \fg{} $\bm{x}$ :
+Afin de bien comprendre la condition selon laquelle un vecteur est classifié comme un \og \textit{mimimal path vector} \fg{}, on observe les vecteurs $\bm{y}$ du premier \og \textit{minimal path vector} \fg{} $\bm{x}$ :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt, y=0.75pt, yscale=-1, xscale=1]
@@ -10758,7 +10770,7 @@ Pour bien comprendre la condition pour qu'un \og \textit{mimimal path vector} \f
 % Text Node
 \draw (37,151) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{0} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1} ,\ \textcolor[rgb]{0.49,0.83,0.13}{0} ,\ \textcolor[rgb]{0.56,0.07,1}{0})$};
 % Text Node
-\draw (42.42,15.93) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize Minimal path sets}};
+\draw (42.42,15.93) node [anchor=north west][inner sep=0.75pt]  [color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {{\footnotesize Minimal path vector}};
 % Text Node
 \draw (37.99,40.77) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \bm{x}  = (\textcolor[rgb]{0.29,0.56,0.89}{1} ,\ \textcolor[rgb]{0.96,0.65,0.14}{1} ,\ \textcolor[rgb]{0.98,0.52,0.99}{1} ,\ \textcolor[rgb]{0.49,0.83,0.13}{0} ,\ \textcolor[rgb]{0.56,0.07,1}{0})$};
 \end{tikzpicture}
@@ -10769,27 +10781,23 @@ On note que $\phi(\bm{y}) = 0$ pour tous les vecteurs ce qui fait de $x$ un \og 
 
 
 \begin{definitionNOHFILL}[\og \textit{Cut vector} \fg{}]
-Vecteur d'états pour lequel le système ne fonctionne \textbf{pas} (\lfbox[conditions]{$\phi(\bm{x}) = 0$}). 
-
-\begin{itemize}
-	\item	C'est donc l'inverse du \og \textit{path vector} \fg{}.
-\end{itemize}
+Le \og \textit{cut vector} \fg{} est le vecteur d'états pour lequel le système ne fonctionne \textbf{pas} (\lfbox[conditions]{$\phi(\bm{x}) = 0$}). C'est donc l'inverse du \og \textit{path vector} \fg{}.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[\og \textit{Minimal cut vectors} \fg{}]
-\og \textit{Cut vectors} \fg{} ayant le \textit{maximum} de composantes pour ne \textbf{pas fonctionner}. Donc, le système fonctionne dès qu'une des composantes qui ne fonctionne pas est réparée. 
+Les \og \textit{minimal cut vectors} \fg{} sont les \og \textit{cut vectors} \fg{} ayant le \textit{maximum} de composantes pour ne \textbf{pas fonctionner}. Il s'ensuit que dès qu'une des composantes « brisée » est réparée, le système fonctionne. 
 
 \bigskip
 
-En termes mathématiques, $\bm{x}$ est un \og \textit{minimal cut vector} \fg{} si \lfbox[conditions]{$\phi(\bm{y}) = 1 \forall \bm{y} > \bm{x}$}. 
+En termes mathématiques, $\bm{x}$ est un \og \textit{minimal cut vector} \fg{} si \lfbox[conditions]{$\phi(\bm{y}) = 1 \ \forall \bm{y} > \bm{x}$}. 
 \begin{itemize}
-	\item	$\bm{y} > \bm{x}$ implique que tous les éléments $y_{i}$ du vecteur $\bm{y}$ sont supérieurs ou égaux aux éléments $x_{i}$ du vecteur $\bm{x}$ ($y_{i} \geq x_{i} \forall i$) avec au moins un élément qui est strictement supérieur ($y_{i} > x_{i}$ pour au moins un $i$).
+	\item	$\bm{y} > \bm{x}$ implique que tous les éléments $y_{i}$ du vecteur $\bm{y}$ sont supérieurs ou égaux aux éléments $x_{i}$ du vecteur $\bm{x}$ ($y_{i} \ \geq x_{i} \forall i$) avec au moins un élément qui est strictement supérieur ($y_{i} > x_{i}$ pour au moins un $i$).
 \end{itemize}
 \end{definitionNOHFILLsub}
 
 
 \begin{definitionNOHFILLsub}[\og \textit{Minimal cut sets} \fg{}]
-Ensembles minimaux des composantes \lfbox[formula]{$\mathcal{C}$} dont l'échec garanti l'échec du système. Donc, le système cesse de fonctionner uniquement si toutes les composantes d'au moins un des \og \textit{minimal cut sets} \fg{} cessent de fonctionner.		
+Les \og \textit{minimal path sets} \fg{} sont les ensembles minimaux de composantes \lfbox[formula]{$\mathcal{C}$} dont l'échec garanti l'échec du système. Donc, le système cesse de fonctionner uniquement si toutes les composantes d'au moins un des \og \textit{minimal cut sets} \fg{} cessent de fonctionner.		
 
 \bigskip
 
@@ -10882,7 +10890,7 @@ Pont & $4$ & $4$ \\
 \end{tabular} 
 \end{center}
 
-Pour un système composé de plusieurs systèmes, le nombre de vecteurs dépend de comment qu'il est organisé.
+Pour un système composé de plusieurs systèmes, le nombre de vecteurs dépend de la façon dont il est construit :
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
 \hline\rowcolor{airforceblue} 
@@ -10893,6 +10901,7 @@ Pour un système composé de plusieurs systèmes, le nombre de vecteurs dépend 
 \multirow{-2}{*}{\og \textit{minimal cut sets} \fg{}}	&	série	&	somme	\\\hline
 \end{tabular}
 \end{center}
+
 
 
 \columnbreak
@@ -11004,11 +11013,11 @@ Alors, tout système peut être traité comme le système en parallèle de ses \
 \end{tikzpicture}
 \end{center}
 
-Il s'ensuit qu'on peut réécrire le système comme : 
+Il s'ensuit qu'on peut réécrire la fonction du système comme : 
 \begin{align*}
 	\phi(\bm{x})
-	&=	\max\left\{\underset{i \in A_{1}}{\min}\ x_{i}, \underset{i \in A_{2}}{\min}\ x_{i}, \dots, \underset{i \in A_{s}}{\min}\ x_{i}\right\}
-	=	\underset{j}{\min} \prod_{i \in A_{j}} x_{i}
+	&=	\max\left\{\underset{i \in A_{1}}{\min}\ x_{i}, \underset{i \in A_{2}}{\min}\ x_{i}, \dots, \underset{i \in A_{s}}{\min}\ x_{i}\right\}	\\
+	&=	\underset{j}{\min} \prod_{i \in A_{j}} x_{i}
 \end{align*}
 
 
@@ -11069,8 +11078,8 @@ Alors, tout système peut être traité comme le système en série de ses \og \
 Il s'ensuit qu'on peut réécrire le système comme : 
 \begin{align*}
 	\phi(\bm{x})
-	&=	\min\left\{\underset{i \in C_{1}}{\max}\ x_{i}, \underset{i \in C_{2}}{\max}\ x_{i}, \dots, \underset{i \in C_{s}}{\max}\ x_{i}\right\}
-	=	\prod_{j = 1}^{m} \max_{i \in C_{j}} x_{i}
+	&=	\min\left\{\underset{i \in C_{1}}{\max}\ x_{i}, \underset{i \in C_{2}}{\max}\ x_{i}, \dots, \underset{i \in C_{s}}{\max}\ x_{i}\right\}	\\
+	&=	\prod_{j = 1}^{m} \max_{i \in C_{j}} x_{i}
 \end{align*}
 
 \paragraph{Note}	Puisque l'état est une variable binaire, \lfbox[formula]{$x_{i}^{k} = x_{i}$}.
@@ -11109,20 +11118,22 @@ La fiabilité d'un \textbf{\underline{système}} est la \textbf{probabilité que
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[Fonction de fiabilité]
-Fonction de la fiabilité des composantes \lfbox[formula]{$r(\bm{p})$} qui quantifie la probabilité que le système fonctionne.
+La \textbf{\textit{fonction de fiabilité}} est une fonction de la fiabilité des composantes \lfbox[formula]{$r(\bm{p})$} qui quantifie la probabilité que le système fonctionne.
 
 \begin{align*}
 	r(\bm{p})
-	&=	\underbrace{\Pr(\phi(\bm{X}) = 1)}_{\substack{\text{somme des probabilités}\\ \text{des \og \textit{path vectors} \fg{}}}}
-	=	1 - \underbrace{\Pr(\phi(\bm{X}) = 0)}_{\substack{\text{somme des probabilités}\\ \text{des \og \textit{cut vectors} \fg{}}}}	\\
-	&=	0 \times \Pr(\phi(\bm{X}) = 0) + 1 \times \Pr(\phi(\bm{X}) = 1) 
-	= \text{E}[\phi(\bm{X})]
+	&=	\underbrace{\Pr(\phi(\bm{X}) = 1)}_{\substack{\text{somme des probabilités}\\ \text{des \og \textit{path vectors} \fg{}}}}	\\
+	&=	1 - \underbrace{\Pr(\phi(\bm{X}) = 0)}_{\substack{\text{somme des probabilités}\\ \text{des \og \textit{cut vectors} \fg{}}}}	
 \end{align*}
 
-\begin{itemize}
-	\item	Puisque $\phi$ est fonction du vecteur de v.a. Bernoulli $\bm{X}$, $\phi$ est également une v.a. Bernoulli. 
-	\item	Il s'ensuit que $r(\bm{p}) = 0 \times \Pr(\phi(\bm{X}) = 0) + 1 \times \Pr(\phi(\bm{X}) = 1) = \text{E}[\phi(\bm{X})]$.
-\end{itemize}
+\bigskip
+
+Puisque la fonction de structure $\phi$ est une fonction du vecteur de v.a. Bernoulli $\bm{X}$, alors $\phi$ est également une v.a. Bernoulli. Il s'ensuit que : 
+\begin{align*}
+	r(\bm{p}) 
+	&=	0 \times \Pr(\phi(\bm{X}) = 0) + 1 \times \Pr(\phi(\bm{X}) = 1) 	\\
+	&=	\text{E}[\phi(\bm{X})]
+\end{align*}
 \end{definitionNOHFILLsub}
 
 \begin{formula}{Exemple de calcul de la fonction de fiabilité}
@@ -11200,10 +11211,11 @@ On pose que les composante sont indépendantes, puis :
 \end{formula}
 
 
+
 \columnbreak
 \subsection{Bornes des fonctions de fiabilité}
 \begin{rappel_enhanced}[Contexte]
-Parfois, il n'est pas pratique ni nécessaire de trouver la fonction de fiabilité exacte. En lieu, on peut l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes suivantes.
+Parfois, il n'est \textit{pas pratique} \underline{\textit{ni nécessaire}} de trouver la fonction de fiabilité exacte. Plutôt, on peut l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes qui suit.
 \end{rappel_enhanced}
 
 \subsubsection{Méthode d'inclusion et d'exclusion}
@@ -11219,17 +11231,15 @@ Parfois, il n'est pas pratique ni nécessaire de trouver la fonction de fiabilit
 \end{align*}
 \end{rappel}
 
-Si on utilisait seulement la première somme de l'équation, on \textit{sur}-estime la probabilité. \\
-Si on utilise seulement les deux premières sommes, alors on \textit{sous}-estime.\\
-Ce qu'on en déduit est que la probabilité est \textbf{contenue entre ces deux estimations} et donc on peut établir des inégalités.
+L'intersection de plusieurs événements correspond à la somme de sommes ci-dessus. Si l'on approxime la probabilité par la première somme, alors on \textit{sur}-estime la probabilité. Si on utilise seulement les deux premières sommes, alors on la \textit{sous}-estime. Ce qu'on en déduit est que la probabilité est \textbf{\underline{contenue entre ces deux estimations}} ! 
 
 \bigskip
 
-On peut établir les inégalités soit pour la probabilité que le système fonctionne ($r(\bm{p})$) ou pour la probabilité que le système ne fonctionne pas ($1 - r(\bm{p})$).
+On peut donc établir des inégalités soit pour la probabilité que le système fonctionne ($r(\bm{p})$) ou pour la probabilité qu'il ne fonctionne pas ($1 - r(\bm{p})$).
 
 
 \paragraph{Minimal path sets}
-On a que $\sum_{j = 1}^{n} \Pr(E_{j})	=	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)$.
+On a que $\sum_{j = 1}^{n} \Pr(A_{j})	=	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)$.
 
 Pour les \og \textit{minimal path sets} \fg{} $A_{1}, \dots, A_{s}$, on établit : 
 \begin{align*}
@@ -11307,12 +11317,14 @@ C'est donc l'inverse que l'approche par \og \textit{minimal path sets} \fg{}.
 \end{formula}
 
 
+
 \subsubsection{Méthode d'intersection}
 \begin{rappel_enhanced}[Contexte]
 Au lieu d'utiliser les probabilités d'union des événements, on utilise les probabilités d'intersection des événements.
 \end{rappel_enhanced}
 
-Sous la méthode d'intersection, 
+Sous la \textbf{méthode d'intersection},
+
 \begin{align*}
 	&\underbrace{\prod_{j = 1}^{m} 
 		\overbrace{		
@@ -11343,11 +11355,15 @@ Ici, on pose que toutes les composantes ont une fiabilité de $p$, puis avec $C_
 	&=	\left(1 - (1 - p)^{2}\right)^{2}
 \end{align*}
 
+\bigskip
+
 Avec $A_{1} = (0, 0, 1)$ et $A_{2} = (1, 1, 0)$,
 \begin{align*}
 	1 - \prod_{j = 1}^{s} \left[1 - \prod_{i \in A_{j}} p_{i} \right]
 	&=	1 - (1 - p) \left(1 - p^{2}\right)
 \end{align*}
+
+\bigskip
 
 Donc $\left(1 - (1 - p)^{2}\right)^{2}	\leq r(\bm{p}) \leq 1 - (1 - p) \left(1 - p^{2}\right)$.
 
@@ -11356,7 +11372,9 @@ Donc $\left(1 - (1 - p)^{2}\right)^{2}	\leq r(\bm{p}) \leq 1 - (1 - p) \left(1 -
 Si $p = 0.2$, $r(\bm{p}) \in [0.1296, 0.232]$ et si $p = 0.6$ alors $1 - r(\bm{p}) \in [0.7056, 0.744]$. On voit donc que peut importe la valeur de $p$, l'intervalle approxime bien la fiabilité.
 \end{formula}
 
-En bref :
+\bigskip
+
+On résume l'efficacité des différents méthodes ci-dessous :
 \begin{center}
 \begin{tabular}{|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|	>{\columncolor{beaublue}}c	|}
 \hline\rowcolor{airforceblue} 
@@ -11374,6 +11392,7 @@ intersection	&	\textbf{étroit}	&	\textbf{étroit}	\\
 \end{center}
 
 
+
 \columnbreak
 \subsection{Graphiques aléatoires}
 \begin{definitionNOHFILL}[Graphique]
@@ -11385,14 +11404,14 @@ Ensemble de nœuds connectés par des arcs.
 	\item[$N$]	Ensemble des nœuds.
 	\item[$A$]	Ensemble des arcs connectant les nœuds.
 		\begin{itemize}
-		\item	Le nombre d'arcs est au plus $\binom{n}{2}$. 
+		\item	Le nombre d'arcs est d'au plus $\binom{n}{2}$. 
 		\item	C'est-à-dire, le nombre possibles de groupes de deux nœuds.
 		\end{itemize}
 \end{description}
 
 \
 
-Également, un graphique peut être décomposé en sous-graphiques qu'on nomme les \textbf{\textit{composantes}}. 
+Également, un graphique peut être décomposé en sous-graphiques qu'on nomme ses \textbf{\textit{composantes}}. 
 \begin{itemize}
 	\item	Les composantes ne se chevauchent pas.
 	\item	Les composantes sont composées de nœuds connectés.
@@ -11459,6 +11478,8 @@ On trouve que :
 	\item	5 arcs : $A	=	\{\{1, 2\}, \{3, 4\}, \{3, 5\}, \{4, 5\}, \{5, 6\}\}$.
 	\item	4 composantes : $\{\{1, 2\}, \{3, 4, 5\}, \{7\}, \{8\}\}$.
 \end{itemize}
+
+\bigskip
 
 Également, puisqu'il y a plusieurs composantes, le graphique n'est pas connecté.
 \end{formula}
@@ -11704,11 +11725,8 @@ Les deux autres graphiques possibles qui ne sont pas optimaux sont :
 \end{formula}
 
 \begin{definitionNOHFILLprop}[Probabilités de connectivité des graphiques]
-On pose que chaque v.a. est iid avec \lfbox[conditions]{$P_{i, j} = p$}. 
+On pose que les v.a. $X_{i, j}$ sont iid avec \lfbox[conditions]{$P_{i, j} = p$}. Puis, on trouve la probabilité \lfbox[formula]{$P_{n}$} qu'un graphique aléatoire de $n$ nœuds soit connecté avec la formule récursive :
 
-\bigskip
-
-Alors, on trouve la probabilité \lfbox[formula]{$P_{n}$} qu'un graphique aléatoire de $n$ nœuds soit connecté avec la formule récursive :
 \begin{align*}
 	P_{n}
 	&=	1 - \sum_{k = 1}^{n - 1}\binom{n - 1}{k - 1} (1 - p)^{k(n - k)}P_{k}, \quad n = 2, 3, \dots
@@ -11717,7 +11735,7 @@ où \lfbox[conditions]{$P_{1} = 1, P_{2} = p$}.
 
 \tcbline
 
-On peut également trouver les \textbf{bornes} pour la probabilité pour simplifier la tâche : 
+On peut également trouver les \textbf{bornes} pour la probabilité afin de simplifier la tâche : 
 \begin{align*}
 	n(1 - p)^{n - 1} - \binom{n}{2} (1 - p)^{2n - 3}	
 	\leq	1 - P_{n}		\leq	
@@ -11730,14 +11748,11 @@ Finalement, on peut \textbf{approximer} la probabilité avec \lfbox[formula]{$P_
 \end{definitionNOHFILLprop}
 
 
+
 \columnbreak
 \subsection{Durée de vie des systèmes}
 \begin{rappel_enhanced}[Contexte]
-Nous avons évalué la \textbf{\textit{fiabilité}} d'un système et comment qu'elle est impactée par la fiabilité de ses composantes.
-
-\bigskip
-
-Nous évaluons maintenant la \textbf{durée de vie} d'un système et comment qu'elle est impactée par la durée de vie de ses composantes.
+Nous avons évalué la \textbf{\textit{fiabilité}} d'un système et comment qu'elle est impactée par la fiabilité de ses composantes. Nous évaluons maintenant la \textbf{\underline{durée de vie}} d'un système et comment qu'elle est impactée par la durée de vie de ses composantes.
 \end{rappel_enhanced}
 
 \begin{distributions}[Notation]
@@ -11756,7 +11771,7 @@ La probabilité que le système fonctionne passé $t$ équivaut à la fonction d
 
 \bigskip
 
-Donc, on pose $p_{i}	=	S_{i}(t)$ pour $i = 1, 2, \dots, n$.
+Donc, on pose \lfbox[formula]{$p_{i} = S_{i}(t)$} pour $i = 1, 2, \dots, n$.
 \end{definitionNOHFILLprop}
 
 \begin{definitionNOHFILLprop}[Espérance de durée de vie]
@@ -11815,6 +11830,7 @@ On pose que les 3 composantes sont indépendantes et que la durée de vie est un
 \paragraph{Raccourci}	Pour un système de $k$ parmi $n$ avec des durées de vie iid suivant une loi exponentielle de moyenne $\mu$, \lfbox[formula]{$\text{E}[T]	=	\mu \sum_{i = k}^{n} \frac{1}{i}$}. Cette formule découle du coût espéré total pour les algorithmes \og \textit{greedy} \fg{} A et B.
 
 
+
 \columnbreak
 \subsection{Divers}
 \label{subsec:reliabilityVaria}
@@ -11858,11 +11874,7 @@ Une distribution est IFRA si $\frac{H(x)}{x}$ est une fonction \textit{croissant
 
 
 \subsubsection{Distributions particulières}
-Puisque la fonction de hasard de la distribution exponentielle est fixe, elle est à la fois IFR et DFR. 
-
-\bigskip
-
-Cependant, lorsque la fonction de hasard varie, le type de distribution peut varier aussi. Par exemple, pour la loi gamma et la loi de Weibull : 
+Puisque la fonction de hasard de la distribution exponentielle est fixe, elle est à la fois IFR et DFR. Cependant, lorsque la fonction de hasard varie, le type de distribution peut varier aussi. Par exemple, pour la loi gamma et la loi de Weibull : 
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
 \hline\rowcolor{airforceblue} 
@@ -14745,7 +14757,7 @@ De façon semblable au corrélogramme, on peut évaluer le \textbf\textit{{corr�
 \subsection{Modèles autorégressifs}
 
 
-\subsection{Modèles de moving average}
+\subsection{Modèles de moyenne mobile}
 
 
 \subsection{Modèles ARMA}
