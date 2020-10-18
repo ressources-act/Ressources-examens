@@ -34,7 +34,6 @@
 %% -----------------------------
 %% 	Format part
 %% -----------------------------
-\usepackage{titlesec}
 \titleformat
 	{\part}			%	command
 	[display]		%	shape
@@ -545,15 +544,13 @@ Par exemple, on trace ci-dessous \textcolor{amethyst}{la fonction de vraisemblan
 \draw (296,157) node  [font=\footnotesize] [align=left] {$\displaystyle \theta $};
 % Text Node
 \draw (66,40) node  [font=\footnotesize] [align=left] {$\displaystyle \mathcal{L}( y;\ \theta )$};
-
-
 \end{tikzpicture}
 
 On peut voir que la forme de la fonction de vraisemblance est plus comprimée. Alias, sa concavité est plus forte que l'autre fonction qui se maximise au même point. C'est-à-dire, la fonction de vraisemblance correspond à la fonction, dont le maximum est à $\hat{\theta}^{\text{EMV}}_{n}$, avec \textit{la plus forte concavité}.	
 
 \bigskip
 
-On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendu de valeurs possibles et moins de points près de $\hat\theta^{\text{EMV}}$. En bref, la \underline{deuxième dérivée assure} que, parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$, la fonction de vraisemblance est \underline{la fonction dont la variabilité des prévisions est minimisée}.	
+On peut observer que plus la concavité augmente, plus la variabilité de la fonction de vraisemblance se rapetisse. En effet, une faible concavité implique que la fonction de vraisemblance a un grand étendu de valeurs possibles et moins de points près de $\hat{\theta}^{\text{EMV}}$. En bref, la \underline{deuxième dérivée assure} que, parmi les fonctions se maximisant à $\hat{\theta}^{\text{EMV}}_{n}$, la fonction de vraisemblance est \underline{la fonction dont la variabilité des prévisions est minimisée}.	
 
 \bigskip
 
@@ -1844,7 +1841,7 @@ Pour $n$ qui est grand, le \hyperlink{TCLDef}{théorème centrale limite} impliq
 \subsubsection{2 échantillons}
 Pour $n_{1}$ et $n_{2}$ qui sont grands, le \hyperlink{TCLDef}{théorème centrale limite} implique que \lfbox[formula]{$\bar{X}_{1} - \bar{X}_{2} \overset{D}{\rightarrow} \mathcal{N}\left(q_{1} - q_{2}, \frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}\right)$}. Il s'ensuit que \lfbox[formula]{$t = \frac{\hat{q}_{1} - \hat{q}_{2} - h}{\sqrt{\frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}}}$} où \lfbox[formula]{$T \sim \mathcal{N}(0, 1)$}.
 
-\paragraph{Note}	Dans le cas où nous avons 1 échantillon, il faut juste connaître $q$ pour connaître la variance. Dans le cas où nous avons 2 échantillons, il faut connaître $q_{1}$ et $q_{2}$ individuellement alors que nous connaissons uniquement la différence $h$. C'est pourquoi l'erreur-type de la statistique diffère pour les scénarios.
+\paragraph{Note}	Dans le cas où nous avons 1 échantillon, il faut juste connaître $q$ pour connaître la variance. Dans le cas où nous avons 2 échantillons, il faut connaître $q_{1}$ et $q_{2}$ individuellement alors que nous connaissons uniquement la différence $h$. C'est pourquoi l'erreur type de la statistique diffère pour les scénarios.
 
 
 
@@ -4739,7 +4736,7 @@ Au lieu d'écrire que $\forall i = 1, 2, \dots, n$ $Y_{i} = \beta_{0} + \beta_{1
 
 \bigskip
 
-La représentation matricielle du modèle est superflue pour la régression linéaire simple puisqu'il y a seulement une variable explicative. Cependant, dès que nous en avons plusieurs et que nous obtenons une \textit{\underline{\nameref{subsec:MLR}}} on doit utiliser la représentation matricielle.
+La représentation matricielle du modèle est superflue pour la régression linéaire simple puisqu'il y a seulement une variable explicative. Cependant, dès que nous en avons plusieurs et que nous obtenons une \textit{\underline{\nameref{sec:MLR}}} on doit utiliser la représentation matricielle.
 \end{rappel_enhanced}
 
 
@@ -7283,7 +7280,7 @@ L'utilité des mesures restent encore de comparer des modèles, mais nous les re
 \end{definitionGENERAL}
 
 \begin{definitionGENERAL}{Critère d'information bayésien (BIC)}[\circled{2}{trueblue}]
-\lfbox[formula]{$BIC = -2  \ell(\hat{\bm{b}}) + \ln(n) (\text{nombre de paramètres estimés})$}
+\lfbox[formula]{$BIC = -2  \ell(\hat{\bm{b}}) + (\text{nombre de paramètres estimés})  \ln(n)$}
 \end{definitionGENERAL}
 
 \paragraph{Note}	Le nombre de paramètres estimés est habituellement $p'$, mais ça pourrait être plus que $p'$ s'il faut estimer, par exemple en MLR, d'autre paramètres comme $\sigma^{2}$.
@@ -7380,7 +7377,7 @@ Le \textit{\color{bleudefrance}\underline{\hyperlink{TRVDef}{\color{bleudefrance
 	\mathrm{H}_{1}	&:	\text{modèle complet (\og \textit{\textbf{f}ull} \fg{}) est meilleur}.
 \end{align*}
 
-On teste donc si $p_{f} - p_{r}$ coefficients de régression sont nuls et \lfbox[formula]{$T \approx \chi^{2}_{p_{r} - p_{f}}$}. 
+On teste donc si $p_{f} - p_{r}$ coefficients de régression sont nuls et \lfbox[formula]{$T \approx \chi^{2}_{p_{r} - p_{f}}$}. Il s'ensuit que c'est un \textbf{test unilatéral vers la droite}.
 
 \paragraph{Note}	On peut récrire la statistique comme \lfbox[formula]{$t = D_{r} - D_{f}$}.
 
@@ -8223,7 +8220,7 @@ TP
 \draw [color={rgb, 255:red, 139; green, 87; blue, 42 }  ,draw opacity=1 ][line width=2.25]    (416.08,134.92) -- (416.08,101.42)(419.08,134.92) -- (419.08,101.42) ;
 
 % Text Node
-\draw (417.58,145) node  [font=\small,color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small \textcolor[rgb]{0.25,0.46,0.02}{erreur-type}}};
+\draw (417.58,145) node  [font=\small,color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small \textcolor[rgb]{0.25,0.46,0.02}{erreur type}}};
 % Text Node
 \draw (417.58,96) node  [color={rgb, 255:red, 109; green, 61; blue, 19 }  ,opacity=1 ] [align=left] {{\small moyenne des moyennes}};
 
@@ -14513,7 +14510,7 @@ Pour un modèle additif, chaque observation d'un ensemble de données temporel p
 
 \bigskip
 
-Puis, on calcule la moyenne des composantes par saison pour obtenir $g$ effets additifs moyens \lfbox[formula]{$\bar{s}_{i}$}, pour $i = 1, 2, \dots, g$, et on ajuste les effets moyens pour qu'ils aient une moyenne nulle avec \lfbox[formula]{$\bar{s^{\ast}}_{i} = \bar{s}_{i} - \frac{\sum_{i = 1}^{g} \bar{s}_{i}}{g}$}. Finalement, on calcule la série corrigée des variations saisonnières comme \lfbox[formula]{$x_{t} - \bar{s^{\ast}}_{i}$}.
+Puis, on calcule la moyenne des composantes par saison pour obtenir $g$ effets additifs moyens \lfbox[formula]{$\bar{s}_{i}$}, pour $i = 1, 2, \dots, g$, et on ajuste les effets moyens pour qu'ils aient une moyenne nulle avec \lfbox[formula]{$\bar{s}^{\ast}_{i} = \bar{s}_{i} - \frac{\sum_{i = 1}^{g} \bar{s}_{i}}{g}$}. Finalement, on calcule la série corrigée des variations saisonnières comme \lfbox[formula]{$x_{t} - \bar{s^{\ast}}_{i}$}.
 \end{definitionNOHFILLsub}
 
 
@@ -14522,13 +14519,13 @@ Pour un modèle multiplicatif, chaque observation d'un ensemble de données temp
 
 \bigskip
 
-Puis, on calcule la moyenne des composantes par saison pour obtenir $g$ effets multiplicatifs moyens \lfbox[formula]{$\bar{s}_{i}$}, pour $i = 1, 2, \dots, g$, et on ajuste les effets moyens pour qu'ils aient une moyenne de $1$ avec \lfbox[formula]{$\bar{s^{\ast}}_{i} = \frac{\bar{s}_{i}}{\sum_{i = 1}^{g} \bar{s}_{i} / g}$}. Finalement, on calcule la série corrigé des variations saisonnières comme \lfbox[formula]{$\frac{x_{t}}{\bar{s^{\ast}}_{i}}$}.
+Puis, on calcule la moyenne des composantes par saison pour obtenir $g$ effets multiplicatifs moyens \lfbox[formula]{$\bar{s}_{i}$}, pour $i = 1, 2, \dots, g$, et on ajuste les effets moyens pour qu'ils aient une moyenne de $1$ avec \lfbox[formula]{$\bar{s}^{\ast}_{i} = \frac{\bar{s}_{i}}{\sum_{i = 1}^{g} \bar{s}_{i} / g}$}. Finalement, on calcule la série corrigé des variations saisonnières comme \lfbox[formula]{$\frac{x_{t}}{\bar{s}^{\ast}_{i}}$}.
 \end{definitionNOHFILLsub}
 
 
 
 \columnbreak
-\subsection{Autocorrélation}
+\subsection{Autocorrélation}\label{subsec:autocor}
 \begin{rappel_enhanced}[Contexte]
 Lorsque l'on retire la tendance et la variation saisonnière d'une série chronologique, il reste seulement la composante aléatoire qui est elle-même une série chronologique qu'on surnomme la \textbf{\textit{série d'erreurs résiduelles}} (\og \textit{residual error series} \fg{}). Cependant, ces termes d'erreurs ne peuvent pas être supposés indépendants et il faut tenir en compte la corrélation d'observations consécutives.
 
@@ -14742,18 +14739,100 @@ De façon semblable au corrélogramme, on peut évaluer le \textbf\textit{{corr�
 \newpage
 \section{Modèles de séries chronologiques}
 \subsection{Modèles de base}
+\begin{rappel_enhanced}[Contexte]
+Les deux premiers modèles de base que l'on voit sont le \og \textit{white noise} \fg{} et la marche aléatoire (avec et sans dérive). Également, on pose que l'espérance des séries chronologiques est nulle. Donc, pour le modèle $X_{t} = \alpha_{1} \cdot X_{t - 1} + Z_{t}$ si la moyenne est non-nulle il s'exprime comme $x_{t} - \mu = \alpha_{1}(x_{t - 1} - \mu) + z_{t}$ ou $x_{t} = \alpha_{0} + \alpha_{1}x_{t - 1} + z_{t}$ avec $\alpha_{0} = (1 - \alpha_{1})\mu$, puis $\hat{x}_{t + 1} = \mu + \alpha_{1}(x_{t} - \mu)$.
+\end{rappel_enhanced}
+
+
+
 \subsubsection{White noise}
-	Prévisions
+\begin{rappel_enhanced}[Contexte]
+Un processus de \og \textit{discrete white noise} \fg{} est une séquence de variable aléatoire iid idéale pour modéliser la série chronologique d'erreurs résiduelles. On s'attend à ce que cette série \textit{\textbf{purement aléatoire}} soit horizontale sans tendance et qu'elle ait une variance constante sans de patrons saisonniers discernables.
+\end{rappel_enhanced}
 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{W_{t}\}$]	Processus de \og \textit{white noise} \fg{} discret.
+	\item[$\hat{w}_{n + l}$]	prévision \og \textit{$l$-steps} \fg{} en avance basé sur la valeur observée $w_{n}$.
+	\item[$s^{2}_{W}$]	Erreur quadratique moyenne pour une série chronologique \og \textit{white noise} \fg{}.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Processus de \og \textit{white noise} \fg{}]
+Le processus $\{W_{t}\}$ est un processus de \og \textit{white noise} \fg{} discret si les variables $W_{1}, \dots, W_{n}$ sont iid de moyenne $0$. Il s'ensuit que les propriétés de deuxième ordre sont $\text{E}[W_{t}] = 0$, $\text{Var}(W_{t}) = \sigma^{2}_{W}$ et, $\forall k \neq 0$, $\gamma_{k} = 0$.
+
+\bigskip
+
+La prévision au temps $n$ de la valeur au temps $n + l$ est \lfbox[formula]{$\hat{w}_{n + l} = 0$} puisque la valeur prédite sera toujours nulle !
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Si les variables $W_{1}, \dots, W_{n}$ suivent une distribution normale, $W_{t}$ est un processus de \og \textit{white noise} \fg{} \textbf{\textit{gaussien}}.
+
+
+
+\columnbreak
 \subsubsection{Marche aléatoire}
-	Prévisions
+\begin{rappel_enhanced}[Contexte]
+La série d'erreurs résiduelles, telle que mentionnée dans la section sur l'\textit{\underline{\nameref{subsec:autocor}}}, est composée de termes qui ont tendance d'être dépendants. Une façon de traiter la série est avec une marche aléatoire définie comme des sommes partielles de processus de \og \textit{white noise} \fg{}.
+\end{rappel_enhanced}
 
-\subsubsection{Marche aléatoire avec drift}
-	Prévisions
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\{X_{t}\}$]	Processus de marche aléatoire.
+	\item[$\hat{x}_{n + l}$]	prévision \og \textit{$l$-steps} \fg{} en avance basé sur la valeur observée $x_{n}$.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Marche aléatoire]
+Une marche aléatoire est un processus stochastique dont les termes $X_{1}, \dots, X_{n}$ s'expriment comment la somme de termes d'une série \og \textit{white noise} \fg{} : \lfbox[formula]{$X_{t} = \sum_{i = 1}^{t} W_{i}$}.
+
+\bigskip
+
+La moyenne est également nulle pour le processus ($\text{E}[W_{t}] = 0$). Il s'ensuit que la variance et l'autocovariance sont équivalentes. Cependant, ces derniers sont proportionnelles au temps écoulé : \lfbox[formula]{$\text{Var}(X_{t}) = \gamma_{k}(t) = t \sigma^{2}_{W}$}. Donc, la série chronologique comporte une moyenne stationnaire, mais pas une variance ni autocovariance stationnaire. On déduit que \lfbox[formula]{$\rho_{k}(t) = \frac{t\sigma^{2}_{W}}{\sqrt{t\sigma^{2}_{W} + (t + k)\sigma^{2}_{W}}} = \frac{1}{\sqrt{1 + k/t}}$}.
+
+\bigskip
+
+Pour effectuer des prévisions, on récrit que $X_{n + l} = x_{n} + \sum_{i = 1}^{l}W_{n + i}$. Puis, puisque $\text{E}[W_{t}] = 0$ pour tout $t$, \lfbox[formula]{$\hat{x}_{n + l} = x_{n}$}.
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLsub}[Erreur type prédite]
+L'erreur type prédite (\og \textit{forecast standard error} \fg{}) correspond à l'erreur type estimée de la différence entre l'observation au temps $n + l$ $x_{n + l}$ et sa prévision $\hat{x}_{n + l}$. On trouve que \lfbox[formula]{$\displaystyle se(\hat{x}_{n + l}) = \sqrt{\widehat{\text{Var}}\left(\sum_{i = 1}^{l}W_{n + i}\right)} = s_{W} \sqrt{l}$}.
+\end{definitionNOHFILLsub}
 
 
+
+\subsubsection{Marche aléatoire avec dérive}
+\begin{rappel_enhanced}[Contexte]
+Si on trouve que la série d'erreurs résiduelles semble avoir un tendance dans le temps et qu'elle augmente ou décroît, on peut en tenir compte avec un paramètre de \textbf{\textit{dérive}}. 
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\delta$]	Paramètre de dérive (\og \textit{drift} \fg{}).
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Marche aléatoire avec dérive]
+Une marche aléatoire avec dérive se définie comme \lfbox[formula]{$X_{t} = X_{t - 1} + \delta + W_{t}$}. Donc, on peut interpréter le paramètre de dérive $\delta$ comme la différence moyenne entre 2 termes consécutifs de la série chronologique. Il s'ensuit que la moyenne est \underline{non-nulle} et que $\text{E}[X_{t}] = t\delta$. Ni la variance ou l'autocorrélation est affectée.
+
+\bigskip
+
+Pour effectuer des prévisions, on récrit que $X_{n + l} = x_{n} + l\delta + \sum_{i = 1}^{l}W_{n + i}$. Puis, en tenant en compte le paramètre de dérive $\delta$ : \lfbox[formula]{$\hat{x}_{n + l} = x_{n} + l\delta$}. L'erreur type prédite quant à elle ne change pas non plus.
+\end{definitionNOHFILL}
+
+
+
+\columnbreak
 \subsection{Propriétés}
+\subsubsection{Différenciation}
 
+
+
+\subsubsection{Équations caractéristiques}
+
+
+
+\columnbreak
 \subsection{Modèles autorégressifs}
 
 
