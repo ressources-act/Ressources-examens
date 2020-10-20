@@ -1114,11 +1114,11 @@ Les statistiques classiques posent que tout phénomène observable est régi par
 
 \bigskip
 
-Puis, on analyse les observations en présumant qu'elles sont régies par le processus hypothétique afin de déterminer la \textit{\textbf{vraisemblance}} des observations. On accepte le processus hypothétique si la vraisemblance est suffisamment élevée.
+Afin de déterminer la \textit{\textbf{vraisemblance}} que les observations sont régies par le processus hypothétique, on analyse les observations en présumant qu'elles le sont. On accepte le processus hypothétique si la vraisemblance est suffisamment élevée.
 
+\bigskip
 
-%Un test d'hypothèse prend deux possibilités de scénario opposantes et vérifie laquelle des deux est mieux supportée par les données. Les données sont résumées en une seule valeur dont on évalue la vraisemblance avec les probabilités. Selon que la valeur soit jugée d'être vraisemblable ou pas supporte l'une des deux hypothèses.
-
+Un test d'hypothèse prend deux possibilités de scénario opposantes et vérifie laquelle des deux est mieux supportée par les données. On pose un scénario de base (hypothèse nulle) représentant le statu quo. Puis, on résume les données en une seule statistique (de test) avec laquelle on évalue la vraisemblance que les données sont régies par un scénario alternatif que celui de base. 
 \end{rappel_enhanced}
 
 \begin{distributions}[Notation]
@@ -1131,7 +1131,7 @@ Puis, on analyse les observations en présumant qu'elles sont régies par le pro
 
 
 \begin{definitionNOHFILL}[Test d'hypothèse]
-On spécifie une \textcolor{burntorange}{hypothèse} nulle et, par conséquent, une hypothèse alternative :
+On spécifie une \textcolor{burntorange}{hypothèse} nulle et une hypothèse alternative :
 \begin{align*}
 	\textrm{H}_{0}
 	&:	\theta \in \Theta_{0}	&
@@ -1153,8 +1153,8 @@ Représente généralement un changement du statu quo.
 \begin{definitionNOHFILLprop}[Décision du test d'hypothèse]
 Soit on : 
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
-	\item	Ne peut rejeter l'hypothèse nulle $\textrm{H}_{0}$.
-	\item	On rejete l'hypothèse nulle $\mathrm{H}_{0}$ pour l'hypothèse alternative $\mathrm{H}_{a}$.
+	\item	Ne peut pas rejeter l'hypothèse nulle $\textrm{H}_{0}$.
+	\item	On rejette l'hypothèse nulle $\mathrm{H}_{0}$ pour l'hypothèse alternative $\mathrm{H}_{a}$.
 \end{enumerate}
 \end{definitionNOHFILLprop}
 \end{definitionNOHFILL}
@@ -1241,7 +1241,10 @@ On rejette $\textrm{H}_{0}$ si $\{X_{1}, \dots, X_{n}\} \in \mathcal{C}$ mais on
 \end{definitionNOHFILLsub}
 
 \begin{formula}{Exemple du laissez-passer universitaire (LPU)}
-On reprend l'exemple du LPU.\\
+On reprend l'exemple du LPU.
+
+\bigskip
+
 L'ensemble des résultats possibles est $\mathcal{S} = [0, 1]$.
 \begin{itemize}
 	\item	Un test "\textbf{bilatéral}" a comme région critique $\mathcal{C} = [0, 0.44) \cup (0.44, 1]$;
@@ -1254,7 +1257,7 @@ En bref, voici un résumé des régions et valeurs critiques selon le type de te
 \begin{tabular}{| >{\columncolor{airforceblue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
 \hline\rowcolor{airforceblue} 
 \textcolor{white}{\textbf{}}	&	\textcolor{white}{\textbf{unilatéral à gauche}}	&	\textcolor{white}{\textbf{bilatéral}}	&	\textcolor{white}{\textbf{unilatéral à droite}}	\\\specialrule{0.1em}{0em}{0em} 
-\textbf{\textcolor{white}{Région critique}}	&	$z \leq -c$	&	$|z| \geq c$	&	$z \geq c$	\\\hline
+\textbf{\textcolor{white}{Région critique}}	&	$t \leq -c$	&	$|t| \geq c$	&	$t \geq c$	\\\hline
 \textbf{\textcolor{white}{Valeur critique}}	&	$-z_{1 - \alpha}$	&	$z_{1 - \alpha/2}$	&	$z_{1 - \alpha}$	\\\hline
 \end{tabular}
 \end{center}
@@ -1332,9 +1335,8 @@ Avec cet approche, on trouve que l'on peut faire 2 types d'erreur, soit une erre
 
 \columnbreak
 \subsection{Certitude du test}\label{subsec:confTests}
-Lorsque nous voulons quantifier le degré auquel nous sommes confiants du test, nous utilisons la valeur $p$. \\
-La valeur $p$ a trois composantes:
-\begin{enumerate}
+Lorsque nous voulons quantifier le degré auquel nous sommes confiants du test, nous utilisons la \textbf{\textit{valeur $p$}} qui a trois composantes :
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	La probabilité que l'événement se produise aléatoirement.
 	\item	La probabilité qu'un événement tout aussi rare se produise.
 	\item	La probabilité qu'un événement encore plus rare se produise.
@@ -1353,26 +1355,25 @@ On souhaite tester si, en obtenant deux piles sur deux lancers, nous avons une p
 	\item	Puis, on calcule la probabilité d'obtenir 2 faces (un événement tout aussi rare): $0.5 \times 0.5 = 0.25$.
 	\item	Finalement, il n'y a pas d'autres séquences plus rares.
 \end{enumerate}
-Donc, la valeur $p$ du test est de $0.50$.
+Donc, la valeur $p$ du test est de $0.50$ ce qui est plutôt élevé. Souvent, on pose que la valeur $p$ du test doit être d'au plus $0.05$ ce qui veut dire que des événements tout aussi (ou plus) rares doivent arriver moins que $5\%$ du temps pour que l'on considère la pièce de monnaie comme étant truquée. 
 
-\begin{itemize}
-	\item	Ceci est plutôt élevé;
-	\item	Souvent, on pose que la valeur $p$ du test doit être d'au plus $0.05$;
-	\item	Ce qui veut dire que des événements tout aussi (ou plus) rares doivent arriver moins que 5\% du temps pour que l'on considère la pièce de monnaie comme étant truquée;
-	\item	Donc, dans notre cas, on ne peut pas rejeter l'hypothèse nulle que notre pièce de monnaie n'est pas spéciale.
-\end{itemize}
+\bigskip
+
+Donc, avec un valeur $p$ de $0.50$, on ne peut pas rejeter l'hypothèse nulle que notre pièce de monnaie n'est pas spéciale. 
 \end{formula}
 
-Dans le cas continu, on somme les probabilités d'être plus rare ou d'être moins rare. C'est la même idée que les intervalles de confiance avec la valeur $p$, ou \textit{seuil de signifiance $\alpha$}, représenté en rouge. 
+\bigskip
+
+Dans le cas continu, on somme les probabilités d'être plus rare ou d'être moins rare. C'est la même idée que les intervalles de confiance avec la valeur $p$, ou \textit{seuil de signifiance $\alpha$}, représentée en rouge. Si la valeur $p$ est :
 \begin{itemize}
-	\item	Si la valeur $p$ est petite, ceci indique que d'autres distributions pourraient potentiellement mieux s'ajuster aux données puisque l'événement est très rare;
-	\item	Si la valeur $p$ est grande, ceci indique que l'événement est très courant et que la distribution semble être bien ajustée.
+	\item	\textbf{faible}, ceci indique que d'autres distributions pourraient potentiellement mieux s'ajuster aux données puisque l'événement est très rare ;
+	\item	\textbf{élevée}, ceci indique que l'événement est très courant et que la distribution semble être bien ajustée.
 \end{itemize}
 
-\
+\bigskip
 
-Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \begin{distributions}[Terminologie]
+Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \begin{description}
 	\item[$p$]	La \textbf{valeur $p$} du test.
 	\item[$\alpha$]	Dénote habituellement le \textbf{seuil de signifiance} ou la \textbf{taille} du test.
@@ -1380,18 +1381,18 @@ Il y a plusieurs termes semblables qui peuvent devenir mélangeants.
 \end{distributions}
 
 \begin{definitionNOHFILLsub}[La valeur $p$ du test]
-On peut définir la valeur $p$ de plusieurs façons, soit comme : 
+On peut définir la valeur $p$ de plusieurs façons :
 \begin{enumerate}
 	\item	la probabilité d'un événement tout aussi (ou plus) rare sous l'hypothèse nulle.
 	\item	la \textbf{taille} de la région critique $\mathcal{C}$.
 		\begin{itemize}
 		\item	C'est-à-dire, l'\textit{aire} de la région de rejet de l'hypothèse nulle $\text{H}_{0}$ alors qu'elle est vraie.
 		\end{itemize}
-	\item	le \textbf{seuil de signifiance}.
 	\item	la \textbf{probabilité d'une erreur de type I}.
 		\begin{itemize}
 		\item	 C'est-à-dire, la probabilité de rejeter $\text{H}_{0}$ alors qu'elle est vraie
 		\end{itemize}
+	\item	le \textbf{seuil de signifiance}.
 \end{enumerate}
 \end{definitionNOHFILLsub}
 
@@ -1409,11 +1410,7 @@ En termes mathématiques, on définit \lfbox[formula]{$\alpha	=	{\color{indigo(w
 
 \bigskip
 
-En mots, 
-\begin{itemize}
-	\item	on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$), 
-	\item	où la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
-\end{itemize}
+En mots, on \textcolor{indigo(web)}{maximise} la probabilité que \textcolor{bondiblue!80!black}{l'échantillon aléatoire} soit \textcolor{armygreen}{contenu} dans \textcolor{bulgarianrose!90!black}{la région critique} (alias rejeter $\textrm{H}_{0}$) alors que la distribution est tracée \textcolor{amethyst}{en fonction du paramètre $\theta$} de \textcolor{pastelred}{l'hypothèse nulle}.
 \end{definitionNOHFILLsub}
 
 
@@ -1636,7 +1633,7 @@ La convergence en distribution est le théorème sous-jacent au théorème centr
 On pose que \lfbox[formula]{$\overline{X}_{n}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu, \frac{\sigma^{2}}{n}\right)$}.
 \end{rappel}
 
-Le théorème s'applique directement pour \textit{\underline{\nameref{subsubsec:MeanTests1Sample}}}. Pour \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}}, s'ils sont indépendants, on généralise pour trouver que la différence des moyennes empiriques \lfbox[formula]{$\overline{X}_{1} - \overline{X}_{2}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu_{1} - \mu_{2}, \frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}}\right)$}. S'ils sont appariés, on applique le théorème centrale limite à la différences des observations pour trouver que \lfbox[formula]{$\overline{D}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu_{d}, \sigma_{D}^{2}\right)$}.
+Le théorème s'applique directement pour \textit{\underline{\nameref{subsubsec:MeanTests1Sample}}}. Pour \textit{\underline{\nameref{subsubsec:MeanTests2Samples}}}, s'ils sont indépendants, on généralise pour trouver que la différence des moyennes empiriques \lfbox[formula]{$\overline{X}_{1} - \overline{X}_{2}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu_{1} - \mu_{2}, \frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}}\right)$}. S'ils sont appariés, on applique le théorème centrale limite à la différences des observations pour trouver que \lfbox[formula]{$\overline{D}	\overset{D}{\rightarrow}	\mathcal{N}\left(\mu_{D}, \sigma_{D}^{2}\right)$}.
 
 \bigskip
 
@@ -1980,7 +1977,7 @@ Une analyse de la puissance détermine le nombre d'observations qu'il faut afin 
 \subsubsection{Facteurs influençant la puissance}
 Plusieurs facteurs influencent la puissance d'un test. Afin de les visualiser, on teste si deux échantillons d'observations proviennent de la même distribution. 
 
-\begin{definitionNOHFILLsub}[La forme de la distribution]
+\begin{definitionGENERAL}{La forme de la distribution}[\circled{1}{trueblue}]
 Si les deux distributions sont:
 \begin{itemize}
 	\item	Très \textbf{distinctes}, la puissance sera très \textbf{élevée}:
@@ -2061,9 +2058,9 @@ Si les deux distributions sont:
 		\item	Cependant, la puissance peut être augmentée avec plus d'observations.
 		\end{itemize}
 \end{itemize}
-\end{definitionNOHFILLsub}
+\end{definitionGENERAL}
 
-\begin{definitionNOHFILLsub}[La variabilité des données]
+\begin{definitionGENERAL}{La variabilité des données}[\circled{2}{trueblue}]
 Si la variabilité de la distribution est
 \begin{itemize}
 	\item	\textbf{Faible}, alors la variabilité de l'échantillon sera probablement faible aussi menant à une puissance très \textbf{élevée}:
@@ -2143,22 +2140,21 @@ Puissance faible\\{\footnotesize variabilité élevée}
 \end{tikzpicture}
 		\end{center}
 \end{itemize}
-\end{definitionNOHFILLsub}
+\end{definitionGENERAL}
 
 Il existe plusieurs mesures qui permettent de considérer la variabilité des données ainsi que la forme de la distribution. Entres autre, il y a le \og \textit{\textbf{effect size ($d$)}} \fg{} où \lfbox[formula]{$d	=	\frac{\bar{x} - \bar{y}}{s^{2}_{p}}$}.
 
-\begin{definitionNOHFILLsub}[La taille de l'échantillon de données]
+\begin{definitionGENERAL}{La taille de l'échantillon de données}[\circled{3}{trueblue}]
 Un grand échantillon de données peut compenser pour des distributions qui se chevauchent ou une variabilité élevée. Ça permet d'augmenter notre \textit{confiance} qu'il y a bel et bien une différence entre les échantillons. 
 
 \bigskip
 
 En contraste, nous n'avons pas besoin d'un grand échantillon de données pour des distributions très distinctes ou avec une faible variabilité; nous sommes déjà confiants que les distributions sont différentes.
-\end{definitionNOHFILLsub}
+\end{definitionGENERAL}
 
-\begin{definitionNOHFILLsub}[Le test statistique]
-Certains tests ont une puissance plus élevée que les autres. \\
-Cela dit, le test $t$ habituel est très puissant.
-\end{definitionNOHFILLsub}
+\begin{definitionGENERAL}{Le test statistique}[\circled{4}{trueblue}]
+Certains tests ont une puissance plus élevée que les autres. Cela dit, le test $t$ habituel est très puissant.
+\end{definitionGENERAL}
 
 
 
@@ -2783,10 +2779,12 @@ Le test débute par définir $k$ intervalles (distincts) des données dans lesqu
 \bigskip
 
 Puis, pour $j \in \{1, \dots, k\}$, on défini : 
+\begin{distributions}[Notation]
 \begin{description}
 	\item[$q_{j}$]	La probabilité de la distribution hypothétique d'être contenu dans l'intervalle $j$.
 	\item[$n_{j}$]	Le nombre d'observations de l'échantillon de données contenues dans l'intervalle $j$.
 \end{description}
+\end{distributions}
 
 \bigskip
 
@@ -2798,7 +2796,7 @@ L'hypothèse du test est que les espérances théoriques du nombre d'observation
 
 \bigskip
 
-La statistique du test calcule les divergences pour chacun des intervalles : \lfbox[formula]{$\displaystyle t = \sum_{j = 1}^{k} \frac{(n_{j} - nq_{j})^{2}}{nq_{j}}$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{(k - 1 - r)}$. 
+La statistique du test calcule les divergences pour chacun des intervalles : \lfbox[formula]{$\displaystyle t = \sum_{j = 1}^{k} \frac{(n_{j} - nq_{j})^{2}}{nq_{j}}$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{(k - 1 - r)}$}. 
 
 \paragraph{Note}	Le $k - 1$ des degrés de liberté est dut au fait que nous avons $k$ données empiriques sous la contrainte que $\sum_{j = 1}^{n} n_{j} = n$. Donc, il y a seulement $k - 1$ données estimées. Le $r$ correspond au nombre de paramètres estimés de la distribution théorique. Par exemple, pour une distribution normale avec $\sigma = 2$ et $\mu$ inconnu, $r = 1$.
 
@@ -2834,15 +2832,17 @@ On pose qu'une variable aléatoire a $a$ catégories et que l'autre a $b$ catég
 \bigskip
 
 On dénote, pour $i \in \{1, \dots, a\}$ et $j \in \{1, \dots, b\}$,
+\begin{distributions}[Notation]
 \begin{description}
 	\item[$n_{ij}$]	Le nombre d'observations dans la catégorie $i$ de la première variable aléatoire et $j$ de la deuxième.
 	\item[$n_{i\cdot}$]	Le sous-total du nombre d'observations dans la catégorie $i$ de la première variable aléatoire pour toutes les catégories de la deuxième.
 	\item[$n_{\cdot j}$]	Le sous-total du nombre d'observations dans la catégorie $j$ de la deuxième variable aléatoire pour toutes les catégories de la première.
 \end{description}
+\end{distributions}
 
 \bigskip
 
-Donc, le tableau de contingence est de la forme: 
+Donc, le tableau de contingence est de la forme : 
 
 \begin{tabular}{|	c	|	l	|	l	|	l	|	l	|	l	|	l	|}
 \hline
@@ -2857,7 +2857,7 @@ Donc, le tableau de contingence est de la forme:
 
 \bigskip
 
-La statistique du test a le même raisonnement que la statistique pour le test d'adéquation du khi carré : \lfbox[formula]{$\displaystyle t = \frac{1}{n} \sum_{i = 1}^{a} \sum_{j = 1}^{b} \frac{(n_{ij}n - n_{i\cdot} n_{\cdot j})^{2}}{n_{i\cdot} n_{\cdot j}}$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{(a - 1)(b - 1)}$. 
+La statistique du test a le même raisonnement que la statistique pour le test d'adéquation du khi carré : \lfbox[formula]{$\displaystyle t = \frac{1}{n} \sum_{i = 1}^{a} \sum_{j = 1}^{b} \frac{(n_{ij}n - n_{i\cdot} n_{\cdot j})^{2}}{n_{i\cdot} n_{\cdot j}}$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{(a - 1)(b - 1)}$}. 
 
 %	la région critique est $t \geq \chi^{2}_{1 - \alpha, (a - 1)(b - 1)}$
 \end{definitionNOHFILL}
@@ -2885,6 +2885,7 @@ Il s'ensuit que la distribution $B$ est plus complexe que la distribution $A$ et
 \bigskip
 
 On dénote donc : 
+\begin{distributions}[Notation]
 \begin{description}
 	\item[$r_{0}$ et $r_{1}$]	Nombre de paramètres libres de la distribution $A$ et $B$.
 	\item[$\mathcal{L}_{0}$ et $\mathcal{L}_{1}$]	Maximum de vraisemblance sous l'hypothèse nulle et alternative.
@@ -2892,8 +2893,9 @@ On dénote donc :
 		\item	On dénote les log-vraisemblances comme $\ell_{0} = \ln(\mathcal{L}_{0})$ et $\ell_{1} = \ln(\mathcal{L}_{1})$.
 		\end{itemize}
 \end{description}
+\end{distributions}
 
-Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} où la statistique est approximativement distribué selon la loi du khi carré : $T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$. 
+Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$}. 
 \end{definitionNOHFILL}
 
 
@@ -2909,7 +2911,7 @@ Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} où 
 
 \bigskip
 
-\paragraph{Note}	Voir la section <section pas encore faite> du chapitre de \textit{\underline{\nameref{chapt:modLin}}} pour l'application du test du rapport de vraisemblance des les modèles linéaires généralisés.
+\paragraph{Note}	Voir la section \textit{\underline{\nameref{subsubsec:TRV}}} de la section sur la \textit{\underline{\nameref{sec:GLM}}} pour l'application du test du rapport de vraisemblance des les modèles linéaires généralisés.
 
 
 
@@ -7229,7 +7231,7 @@ Nous avons utilisé la vraisemblance maximisée pour définir le \textit{\underl
 Les mesures se basent sur deux modèles :
 
 \begin{definitionGENERAL}{Modèle nul}[\circled{1}{trueblue}]
-Le modèle \textbf{\textit{nul}}, ou \textit{minimale}, comporte uniquement l'intercepte ($p' = 1$) : $Y = \beta_{0}$. 
+Le modèle \textbf{\textit{nul}}, ou \textit{minimale}, comporte uniquement l'intercepte ($p' = 1$) : $Y = \beta_{0}$. Ceci implique que \lfbox[formula]{$\hat{\mu}_{i} = \bar{y}$} $\forall i$.
 
 \end{definitionGENERAL}
 
@@ -7370,7 +7372,7 @@ La méthode de \textbf{\textit{quasi-vraisemblance}} adresse ce problème en mul
 Cette méthode établie une relation entre la moyenne et la variance qui est moins restrictive au dépens de rendre la distribution moins claire.
 
 
-\subsubsection{Test du rapport de vraisemblance}
+\subsubsection{Test du rapport de vraisemblance}\label{subsubsec:TRV}
 Le \textit{\color{bleudefrance}\underline{\hyperlink{TRVDef}{\color{bleudefrance} test du rapport de vraisemblance}}} tel que définit dans la section \textit{\underline{\nameref{subsubsec:TRV}}} s'applique pour tester la simplification de modèles emboîtés. On pose que \lfbox[formula]{$t = 2\left[\ell(\bm{b}_{f}) - \ell(\bm{b}_{r})\right]$} pour tester 
 \begin{align*}
 	\mathrm{H}_{0}	&:	\text{modèle \textbf{r}éduit est adéquat}	\\
@@ -7703,7 +7705,7 @@ La régression d'une fonction polynôme par morceaux a le désavantage de ne pas
 
 \bigskip
 
-Ça semble contre-intuitif, mais le fait d'ajouter contraintes \textbf{\underline{réduit}} le nombre de prédicteurs. C'est puisque, de façon générale, une contrainte est une équation qui exprime un coefficient de régression en fonction des autres. Il s'ensuit que c'est une coefficient de moins à estimer.
+Ça semble contre-intuitif, mais le fait d'ajouter contraintes \textbf{\underline{réduit}} le nombre de prédicteurs. C'est puisque, de façon générale, une contrainte est une équation qui exprime un coefficient de régression en fonction des autres. Il s'ensuit que c'est un coefficient de moins à estimer.
 
 \bigskip
 
@@ -12216,7 +12218,7 @@ Pour une variable aléatoire $X$,
 \end{tikzpicture}
 		\end{center}
 		\begin{itemize}
-		\item	Pour ce faire : trouver la dérivée de $f(x)/g(x)$; la poser égale à zéro; choisir la valeur critique qui maximise la fonction $f(x)/g(x)$.
+		\item	Pour ce faire : trouver la dérivée de $f(x)/g(x)$; la poser égale à zéro; choisir la valeur critique $x^{\ast}$ qui maximise la fonction $f(x)/g(x)$; poser que $c = f(x^{\ast})/g(x^{\ast})$.
 		\end{itemize}
 	\item	Simuler une réalisation $y_{j}$ de la variable aléatoire $Y$ ayant la fonction de densité $g$ et calculer $\frac{f(y_{j})}{c g(y_{j})}$.	
 	\item	Simuler une réalisation $u_{j}$ de la variable aléatoire $U(0, 1)$.
@@ -12356,21 +12358,21 @@ Une collection de variables aléatoires.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILLsub}[Processus de comptage]
-On dénote le processus de comptage par \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$}. Le processus \textbf{compte le nombre d'événements} qui se produisent dans l'intervalle de temps $(0, t]$ où \lfbox[conditions]{$t > 0$}.
+On dénote le processus de comptage, ou processus de dénombrement, par \lfbox[formula]{$\underline{N}	=	\{N(t), t \geq 0\}$}. Le processus \textbf{compte le nombre d'événements} qui se produisent dans l'intervalle de temps $(0, t]$ où \lfbox[conditions]{$t > 0$}.
 
 \bigskip
 
 En termes mathématiques, c'est un processus stochastique dont les variables aléatoires prennent des valeurs non décroissantes et non négatives sous les conditions suivantes :
-\begin{enumerate}
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
 	\item	$N(0) = 0$ ;
 	\item	$N(t) \geq 0$ \textit{(valeurs non négatives)};
 	\item	$N(t)$ est entier ;
 	\item	$N(t + h) \geq N(h)$ pour $h	>	0$ \textit{(valeurs non décroissantes)}.
 \end{enumerate}
 
-\
+\bigskip
 
-Visuellement, on voir que l'\textbf{accroissement} $N(t + h) - N(t)$ représente le nombre d'événements produits sur l'intervalle $(t, t + h]$ :
+Visuellement, on voit que l'\textbf{accroissement} $N(t + h) - N(t)$ représente le nombre d'événements produits sur l'intervalle $(t, t + h]$ :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -12403,19 +12405,13 @@ Visuellement, on voir que l'\textbf{accroissement} $N(t + h) - N(t)$ représente
 \draw (144,9) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \textcolor[rgb]{0.29,0.56,0.89}{N( t)}$};
 \end{tikzpicture}
 \end{center}
-
-\tcbline
-
-\begin{itemize}
-	\item	Alias, processus de dénombrement.
-\end{itemize}
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Processus de Poisson]
 Processus de comptage dont :
 \begin{enumerate}
-	\item	chaque accroissement est une variable aléatoire de Poisson,
-	\item	les accroissements qui ne se \textbf{chevauchent pas} sont indépendants.
+	\item	chaque accroissement est distribué selon la loi de Poisson,
+	\item	les accroissements qui ne se \textbf{chevauchent \textit{pas}} sont indépendants.
 \end{enumerate}
 
 \bigskip
@@ -12807,7 +12803,7 @@ En bref :
 
 Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{k + 1}$}. 
 
-\paragraph{Note}	Voir la \textit{\underline{\nameref{subsubsec:orderStatsSpecialCases}}} des \textit{\underline{\nameref{sec:orderStats}}} pour la définition de cette espérance.
+\paragraph{Note}	Voir les \textit{\underline{\nameref{subsubsec:orderStatsSpecialCases}}} des \textit{\underline{\nameref{sec:orderStats}}} pour la définition de cette espérance.
 
 \bigskip
 
