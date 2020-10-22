@@ -14820,26 +14820,168 @@ Pour effectuer des prévisions, on récrit que $X_{n + l} = x_{n} + l\delta + \s
 
 \columnbreak
 \subsection{Propriétés}
-\subsubsection{Différenciation}
+\subsubsection{Opérateurs}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\nabla$]	Symbole de l'opérateur de différenciation.
+	\item[$\bm{B}$]	Symbole de l'opérateur de décalage.
+\end{description}
+\end{distributions}
 
+\begin{definitionNOHFILL}[Opérateur de différenciation]
+\begin{rappel_enhanced}[Contexte]
+Une façon de traiter une série chronologique comme une marche aléatoire est de calculer les différences des observations pour obtenir une série \og \textit{white noise} \fg{}. C'est-à-dire, $W_{t} = X_{t} - X_{t - 1}$. On définit l'opérateur $\nabla X_{t} = X_{t} - X_{t - 1}$ pour généraliser à des différences d'ordre supérieure.
+\end{rappel_enhanced}
+
+On a que $\nabla X_{t} = X_{t} - X_{t - 1}$, puis $\nabla^{2} X_{t} = \nabla(\nabla X_{t}) = \nabla X_{t} - \nabla X_{t - 1} = X_{t} - 2X_{t - 1} + X_{t - 2}$, etc.
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Opérateur de décalage (\og \textit{backward shift} \fg{})]
+L'opérateur de décalage \og \textit{shift} \fg{} les observations d'un espace. Par exemple, on a que $\bm{B} X_{t} = X_{t - 1}$, puis \lfbox[formula]{$\bm{B}^{n} X_{t} = X_{t - n}$}. Également, \lfbox[formula]{$\nabla^{n} = (1 - \bm{B})^{n}$}.
+\end{definitionNOHFILL}
 
 
 \subsubsection{Équations caractéristiques}
+\begin{definitionNOHFILL}[Équation caractéristique]
+\begin{rappel_enhanced}[Contexte]
+Polynôme écrit en fonction de $\bm{B}$ servant à déterminer si une série chronologique possède quelques propriétés. 
+\end{rappel_enhanced}
+
+Pour les paramètres $\alpha_{i}$ et $\beta_{j}$ pour $i = 1, \dots, p$ et $j = 1, \dots, q$, on a : 
+\begin{align*}
+	X_{t}
+	&=	\alpha_{1}X_{t - 1} + \dots + \alpha_{p} X_{1 - p} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}
+\end{align*}
+
+Ce modèle est couvert en plus de détails dans la section \hl{< À VENIR >}, mais les équations caractéristiques qu'on en déduit sont applicables pour la majorité des modèles. On peut la récrire comme : 
+\begin{align*}
+	(1 - \alpha_{1}\bm{B} - \dots - \alpha_{p}\bm{B}^{p})X_{t} = (1 + \beta_{1} \bm{B} + \dots + \beta_{q} \bm{B}^{q})W_{t}	\\
+	\Rightarrow
+	\theta_{p}(\bm{B})X_{t} = \phi_{q}(\bm{B})W_{t}
+\end{align*}
+
+Puis, on déduit que le modèle a la propriété de :
+\begin{description}
+	\item[stationnarité]	si aucune des racines de l'équation $\theta_{p}(\bm{B}) = 0$ est $\leq 1$ en valeur absolue.
+	\item[inversibilité]	si aucune des racines de l'équation $\phi_{q}(\bm{B}) = 0$ est $\leq 1$ en valeur absolue.
+	\item[redondance des paramètres]	si $\theta_{p}(\bm{B})$ et $\phi_{q}(\bm{B})$ ont un facteur en commun.
+\end{description}
+\end{definitionNOHFILL}
 
 
 
 \columnbreak
 \subsection{Modèles autorégressifs}
+\begin{rappel_enhanced}[Contexte]
+La modèle fondé sur la marche aléatoire a soulevé le concept qu'une observation soit dépendante d'une, ou plusieurs, observations précédentes. Le modèle autorégressif d'ordre $p$ généralise ce concept avec un modèle qui est fonction des $p$ observations précédentes. 
+
+\bigskip
+
+Le nom « autorégressif » provient du fait qu'on effectue la régression d'une observation avec les autres termes de la série chronologique.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Modèle autorégressif d'ordre $p$ $AR(p)$]
+Le modèle $AR(p)$ se définit comme \lfbox[formula]{$X_{t} = \alpha_{1} X_{t - 1} + \dots + \alpha_{p} X_{t - p} + W_{t}$}. De façon équivalente, $W_{t} = \theta_{p}(\bm{B})X_{t}$.
+
+\bigskip
+
+Le modèle $AR(1)$ peut être vu comme une généralisation du processus de \og \textit{white noise} \fg{} et de la marche aléatoire où si :
+\begin{description}
+	\item[$\alpha = 0$]	le modèle est un processus de \og \textit{white noise} \fg{} avec $X_{t} = W_{t}$.
+	\item[$\alpha = 1$]	le modèle est une marche aléatoire avec $X_{t} = X_{t - 1} + W_{t}$.
+	\item[$\alpha \in (-1, 1)$]	le modèle est stationnaire.
+\end{description}
+
+Puis, pour une modèle $AR(1)$ stationnaire, $\text{E}[X_{t}] = 0$, $\text{Var}(X_{t}) = \frac{\sigma^{2_{W}}}{1 - \alpha^{2}}$, $\gamma_{k} = \frac{\alpha^{k} \sigma^{2}_{W}}{1 - \alpha^{2}}$ et \lfbox[formula]{$\rho_{k} = \alpha^{k}$}.
+
+\bigskip
+
+Un modèle $AR(2)$ est stationnaire si :
+\begin{enumerate}
+	\item	 $\alpha_{2} - \alpha_{1} < 1$.
+	\item	 $\alpha_{2} + \alpha_{1} < 1$.
+	\item	 $|\alpha_{2}| < 1$.
+\end{enumerate}
+
+%Pour l'autocorrélation de décalage $k$, plus la valeur de $\alpha$ est élevée, alors plus le corrélogramme va lentement approcher zéro. De plus, si $\alpha$ est négatif, alors l'ACF va alterner entre positif et négatif.
+\end{definitionNOHFILL}
+
+Pour effectuer des prévisions, on utilise l'équation du modèle de façon récursive. De plus, on trouve que \lfbox[formula]{$se(\hat{x}_{n + l} = \sqrt{\text{Var}(X_{n + l} - \hat{X}_{n + l})}$}.
 
 
+
+\columnbreak
 \subsection{Modèles de moyenne mobile}
+\begin{rappel_enhanced}[Contexte]
+Nous généralisons l'idée de centrer les observations avec le modèle de moyenne mobile applicable sur la série des erreurs résiduelles. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Modèle de moyenne mobile d'ordre $q$ ($MA(q)$)]
+Le modèle $MA(q)$ se définit comme la combinaison linéaire des $q$ derniers termes de \og \textit{white noise} \fg{} les plus récents en plus de celui au temps $t$ : \lfbox[formula]{$X_{t} = W_{t} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}$}. De façon équivalente, $X_{t} = \phi_{q}(\bm{B})X_{t}$.
+
+\bigskip
+
+On obtient que $\text{E}[X_{t}] = 0$ et \lfbox[formula]{$\text{Var}(X_{t}) = \sigma^{2}_{W}\sum_{i = 0}^{q}\beta_{i}^{2}$} où le paramètre pour $W_{t}$ est \lfbox[conditions]{$\beta_{0} = 1$}. Également, 
+\begin{align*}
+	\gamma_{k}
+	&=	\sigma^{2}_{W} \sum_{i = 0}^{q - k}\beta_{i}\beta_{i + k}, \quad 0 \leq k \leq q	\\
+	\rho_{k}
+	&=	\begin{cases}
+		1,	&	k = 0	\\
+		\frac{\sum_{i = 0}^{q - k}\beta_{i}\beta_{i + k}}{\sum_{i = 0}^{q}\beta_{i}^{2}},	&	1 \leq k \leq q	\\
+		0,	&	k > q	
+	\end{cases}
+\end{align*}
+\end{definitionNOHFILL}
+
+\paragraph{Note}	Bien que d'habitude les prévisions des termes de \og \textit{white noise} \fg{} sont nuls, nous pouvons utiliser les termes observés de la série d'erreurs résiduelles. Il s'ensuit que pour une série de longueur $n$, \lfbox[formula]{$\hat{x}_{n + q} = b_{q} w_{n}$}.
+
+\bigskip
+
+\underline{Tous} les modèles de moyenne mobile sont \textbf{\textit{stationnaires}} et \underline{tous} les modèles autorégressifs sont \textbf{\textit{invertibles}}. Si un modèle $MA(q)$ est inversible, alors il peut s'exprimer comme un modèle $AR(\infty)$ stationnaire. De façon semblable, si un modèle $AR(p)$ est stationnaire, alors il peut s'exprimer comme un modèle $MA(\infty)$ inversible.
 
 
+
+\columnbreak
 \subsection{Modèles ARMA}
+\begin{rappel_enhanced}[Contexte]
+On peut combiner le modèle de moyenne mobile avec le modèle autorégressif pour obtenir un modèle autorégressif de moyenne mobile $ARMA(p, q)$.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Modèle autorégressif de moyenne mobile $ARMA(p, q)$]
+Le modèle $ARMA(p, q)$ se définit comme \lfbox[formula]{$X_{t} = \alpha_{1} X_{t - 1} + \dots + \alpha_{p}X_{t - p} + \beta_{1}W_{t - 1} + \dots + \beta_{q} W_{t - q} + W_{t}$}. De façon équivalente, $\theta_{p}(\bm{B})X_{t} = \phi_{q}(\bm{B})W_{t}$. Il s'ensuit que un modèle $ARMA(p, 0) = AR(p)$ et $ARMA(0, q) = MA(q)$.
+
+\bigskip
+
+Un modèle $ARMA(1, 1)$ stationnaire avec $X_{t} = \alpha X_{t - 1} + W_{t} + \beta W_{t - 1}$ a une moyenne nulle et \lfbox[formula]{$\displaystyle \text{Var}(X_{t}) = \sigma^{2}_{W} \left(\frac{1 + 2\alpha\beta + \beta^{2}}{1 - \alpha^{2}}\right)$}. Également, pour $k > 0$, $\gamma_{k} = \sigma^{2}_{W}(\alpha + \beta)\alpha^{k - 1}\left(\frac{1 + \alpha\beta}{1 - \alpha^{2}}\right)$ et $\rho_{k} = \frac{\alpha^{k - 1}(\alpha + \beta)(1 + \alpha\beta)}{1 + 2\alpha\beta + \beta^{2}}$. Finalement, pour $k \geq 2$ alors \lfbox[formula]{$\rho_{k} = \alpha \rho_{k - 1}$}.
+\end{definitionNOHFILL}
 
 
+
+\columnbreak
 \subsection{Modèles ARIMA}
+\begin{rappel_enhanced}[Contexte]
+Nous pouvons également tenir en compte la saisonnalité et les tendances (en différenciant) pour obtenir un modèle autorégressif de moyenne mobile intégré $ARIMA(p, d, q)$. Pour obtenir un modèle stationnaire, nous avons utilisé la différenciation. Le modèle ARIMA applique ceci avec l'opérateur de différenciation.
+
+\bigskip
+
+Une série chronologique est intégrée d'ordre $d$, $I(d)$, si la $d^{e}$ différence de $\{X_{t}\}$ est une série \og \textit{white noise} \fg{} : si $\nabla^{d} X_{t} = W_{t}$.
+
+\bigskip
+
+Également, nous pouvons tenir en compte les effets saisonniers en incorporant la différenciation saisonnière. 
+\end{rappel_enhanced}
 	
+
+\begin{definitionNOHFILL}[Modèle autorégressif de moyenne mobile intégré $ARIMA(p, d, q)$]
+Le modèle $AIRMA(p, d, q)$ se définit comme \lfbox[formula]{$\theta_{p}(\bm{B})(1 - \bm{B})^{d}X_{t} = \phi_{q}(\bm{B})W_{t}$}. 
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILL}[Modèle saisonnier autorégressif de moyenne mobile intégré $SARIMA(p, d, q)(P, D, Q)_{g}$]
+Le modèle $SARIMA(p, d, q)(P, D, Q)_{g}$ se définit comme \lfbox[formula]{$\Theta_{P}(\bm{B}^{g})  \theta_{p}(\bm{B}) (1 - \bm{B})^{d} X_{t} = \Phi_{Q}(\bm{B}^{g}) \phi_{q}(\bm{B}) W_{t}$}. 
+\end{definitionNOHFILL}
+
 
 
 \newpage
