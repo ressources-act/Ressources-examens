@@ -5416,14 +5416,73 @@ Tout comme le test $F$, ce test est unilatéral vers la droite et on rejette l'h
 
 \newpage
 \section{ANOVA}\label{sec:ANOVA}
+\hl{section incomplète.}
 \subsection{\og \textit{One-Way ANOVA} \fg{}}
 \og \textit{one-factor ANOVA} \fg{}
 
+L'expression du modèle ayant un facteur avec $w$ niveaux s'écrit comme \lfbox[formula]{$Y_{i, j} = \mu + \alpha_{j} + \varepsilon_{i, j}$} pour $i = 1, \dots, n_{j}$ et $j = 1, \dots, w$. 
 
+\bigskip
+
+On a que $\displaystyle	\bar{y}_{j} = \frac{\sum_{i = 1}^{n_{j}} y_{i, j}}{n_{j}}$, puis 
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
+Facteur	&	$SSR$	&	$w - 1$	\\\hline
+Erreur	&	$SSE	$	&	$n - w$	\\\hline
+Total	&	$SST	$	&	$n - 1$	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+\columnbreak
 \subsection{\og \textit{Two-Way ANOVA} \fg{}}
+\subsubsection{Modèle additif}
+L'expression du modèle ayant 2 facteurs avec $w$ et $\upsilon$ niveaux s'écrit comme \lfbox[formula]{$Y_{i, j, k} = \mu + \alpha_{j} + \beta_{k} + \varepsilon_{i, j, k}$} pour $i = 1, \dots, n_{\ast}$, $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
 
 
-\subsection{Modèle additif sans réplication}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
+Facteur A	&	$SSR_{A}$	&	$w - 1$	\\\hline
+Facteur B	&	$SSR_{B}$	&	$\upsilon - 1$	\\\hline
+Erreur		&	$SSE_{add}$	&	$n - w - \upsilon + 1$	\\\hline
+Total		&	$SST$		&	$n - 1$	\\\hline
+\end{tabular}
+\end{center}
+
+Également, \lfbox[formula]{$SSR_{B} = SSE_{A} - SSE_{add} = SSR_{add} - SSR_{A}$}.
+
+
+
+\subsubsection{Modèle additif sans réplication}
+Pour $n_{\ast} = 1$, l'expression du modèle ayant 2 facteurs s'écrit comme \lfbox[formula]{$Y_{j, k} = \mu + \alpha_{j} + \beta_{k} + \varepsilon_{j, k}$} pour $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
+
+\bigskip
+
+On a $\displaystyle \bar{y}_{j \cdot} = \frac{\sum_{k = 1}^{\upsilon} y_{j, k}}{\upsilon}$ et $\displaystyle \bar{y}_{\cdot k} = \frac{\sum_{j = 1}^{w} y_{j, k}}{w}$.
+
+
+\subsubsection{Modèle avec interactions}
+L'expression du modèle ayant 2 facteurs et une interaction s'écrit comme \lfbox[formula]{$Y_{i, j, k} = \mu + \alpha_{j} + \beta_{k} + \gamma_{j, k} + \varepsilon_{i, j, k}$} pour $i = 1, \dots, n_{\ast}$, $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
+Facteur A	&	$SSR_{A}$	&	$w - 1$	\\\hline
+Facteur B	&	$SSR_{B}$	&	$\upsilon - 1$	\\\hline
+Interaction	&	$SSR_{int} - SSR_{add}$	&	$(w - 1)(\upsilon - 1)$	\\\hline
+Erreur		&	$SSE_{add}$	&	$n - \upsilon w$	\\\hline
+Total		&	$SST$		&	$n - 1$	\\\hline
+\end{tabular}
+\end{center}
 
 
 \subsection{Autres}
@@ -7597,6 +7656,8 @@ Pour modéliser les fréquences dans tes tableaux de contingence, on utilise des
 
 \newpage
 \section{\og \textit{Generalized Additive Models (GAM)} \fg{}}
+\hl{section incomplète.}
+
 \subsection{\og \textit{Basis functions} \fg{}}\label{subsec:BasisFunctions}
 \begin{distributions}[Notation]
 \begin{description}
@@ -7744,11 +7805,26 @@ Spline cubique naturelle	&	$k - 1$	\\\hline
 
 \columnbreak
 \subsection{Splines de lissage}
+Un spline de lissage cherche à minimiser l'expression $\sum_{i = 1}^{n}(y_{i} - g(x_{i}))^{2} + \lambda \int_{-\infty}^{\infty}g''(t)^{2}dt$. Donc, on minimise le SSE plus une pénalité qui est fonction du paramètre de lissage $\lambda$. Cette pénalité est un indicateur de la \og \textit{wiggliness} \fg{} ou \og \textit{roughness} \fg{} de la fonction. La fonction $g(x)$ est : 
+\begin{enumerate}
+	\item	linéaire dans les intervalles $x < \min(x_{1}, \dots, x_{n})$ et $x > \max(x_{1}, \dots, x_{n})$ ;
+	\item	cubique par partie entre les réalisations triées $x_{1}, \dots, x_{n}$ ;
+	\item	continue, a une première dérivée continue et une deuxième dérivée continue aux points $x_{1}, \dots, x_{n}$.
+\end{enumerate}
+
 
 
 
 \columnbreak
 \subsection{Régression locale}
+On cherche à minimiser $\sum_{i = 1}^{n} w_{i}(y_{i} - \hat{y}_{i})^{2}$. Pour prédire la valeur de $x_{\ast}$, la procédure est : 
+\begin{enumerate}[label = \circled{\arabic*}{trueblue}]
+	\item	Choisir un étendu (\og \textit{span} \fg{}) $s \in [0, 1]$ qui indique la proportion des observations. On a que $s = \frac{v}{n}$.
+	\item	Identifier les $v$ réalisations dont la valeur de $x$ est la plus proche de $x_{\ast}$.
+	\item	Assigner les poids $w_{1}, \dots, w_{n}$ selon leur proximité à $x_{\ast}$.
+	\item	Résoudre pour les estimations de $b_{0, \ast}$ et $b_{1, \ast}$ en minimisant $\sum_{i = 1}^{n} w_{i} (y_{i} - b_{0, \ast} - b_{1, \ast}x_{i})^{2}$.
+	\item	Calculer la prévision comme $b_{0, \ast} + b_{1, \ast}x_{\ast}$.
+\end{enumerate}
 
 
 
@@ -15010,10 +15086,33 @@ Le modèle $SARIMA(p, d, q)(P, D, Q)_{g}$ se définit comme \lfbox[formula]{$\Th
 
 \newpage
 \section{Régression avec des séries chronologiques}\label{sec:TSRegression}
+\begin{rappel_enhanced}[Contexte]
+On peut modéliser les composantes déterministes (la tendance et la variation saisonnière) d'une série chronologique avec une régression temporelle. Habituellement, on peut trouver des explications vraisemblances pour les patrons d'une série chronologique et donc il s'ensuit qu'une régression peut estimer la tendance et la variation saisonnière en fonction du temps. 
+
+\bigskip
+
+De façon générale, la différence entre une régression temporelle et une régression typique est que les erreurs résiduelles sont autocorrélées. S'il y a une autocorrélation positive des résidus, l'erreur type des paramètres sera sous-estimée et donc l'importance de la tendance déterministe surestimée.
+\end{rappel_enhanced}
+
+
 \subsection{Modèles de régression avec tendance}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$w_{t, j}$]	Valeur de la $j^{e}$ variable explicative au temps $t$.
+	\item[$M_{t}$]	Tendance.
+\end{description}
+\end{distributions}
+
+\begin{definitionNOHFILL}[Modèle de régression linéaire]
+Le modèle linéaire pour la tendance de la série chronologique $\{X_{t}\}$ est \lfbox[formula]{$X_{t} = \beta_{0} + \beta_{1}w_{t, 1} + \dots + \beta_{p}w_{t, p} + Z_{t}$}.
+\end{definitionNOHFILL}
 
 
 \subsection{Modèles de régression avec saisonnalité}
+\begin{definitionNOHFILL}[Modèle indicateur de la saisonnalité]
+Le modèle indicateur de saisonnalité pour la série chronologique $\{X_{t}\}$ avec $g$ saisons est \lfbox[formula]{$X_{t} = M_{t} + S_{t} + Z_{t}$}.
+\end{definitionNOHFILL}
+
 
 
 \subsection{Modèles de régression non-linéaires}
