@@ -2441,7 +2441,7 @@ Soit un test $\delta^{*}$ avec les hypothèses \hyperlink{hyp-simple}{\color{blu
 Soit une constante $k > 0$ et la région critique $\mathcal{C}$ de taille $\alpha$ tel que :
 \begin{enumerate}
 	\item	si l'échantillon aléatoire est contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\leq	k$}.
-	\item	si l'échantillon aléatoire n'est pas contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$}.
+%	\item	si l'échantillon aléatoire n'est pas contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$}.
 	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
 \end{enumerate}
 
@@ -2449,9 +2449,7 @@ Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} 
 
 \paragraph{Note}	Réécrire la première égalité sous la forme de $\mathcal{L}(\textcolor{ao(english)}{\theta_{0}}; \bm{x}) \leq k\mathcal{L}(\textcolor{teal}{\theta_{1}}; \bm{x})$ mène à l'interprétation qu'il doit être plus \textit{vraisemblable} que l'échantillon soit distribué selon \textcolor{teal}{l'hypothèse alternative} ($\textcolor{teal}{\theta = \theta_{1}}$) que \textcolor{ao(english)}{l'hypothèse nulle} ($\textcolor{ao(english)}{\theta = \theta_{0}}$) lorsqu'il est contenu dans la région critique ($\bm{x} \in \mathcal{C}$) puisque que l'on rejette \textcolor{ao(english)}{l'hypothèse nulle} $\mathrm{H}_{0}$. On peut dire que les données semblent \textit{favoriser} l'hypothèse alternative. L'inverse peut être déduit à partir de la deuxième égalité.
 
-\bigskip
-
-\paragraph{Note}	L'approche est typiquement d'écrire le ratio puis de tender de trouver une statistique afin de calculer une probabilité avec sa distribution. Voir les exemples ci-dessous.
+\paragraph{Note}	L'approche est typiquement d'écrire le ratio puis d'essayer de trouver une statistique afin de calculer une probabilité avec sa distribution. Voir les exemples ci-dessous.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Neyman-Pearsoon selon les NDC de M.-P.	%%%%	
@@ -5593,7 +5591,7 @@ Si le modèle est adéquat, les résidus standardisés sont \textit{approximativ
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[\hypertarget{studenResid}{Résidus studentisés}]
-Les \textbf{\textit{résidus studentisés}} pondère les résidus par une erreur type estimée qui gonfle une différente MSE par le réciproque du levier : \lfbox[formula]{$e_{stu, i} = \frac{e_{i}}{\sqrt{MSE_{(i)}(1 - h_{i})}}$}. La $MSE_{(i)}$ correspond à la MSE de la régression qui exclue la $i^{\text{e}}$ observation.
+Les \textbf{\textit{résidus studentisés}} pondère les résidus par une erreur type estimée qui gonfle une différente MSE par le réciproque du levier : \lfbox[formula]{$e_{stu, i} = \frac{e_{i}}{\sqrt{MSE^{(i)}(1 - h_{i})}}$}. La $MSE_{(i)}$ correspond à la MSE de la régression qui exclue la $i^{\text{e}}$ observation.
 
 \bigskip
 
@@ -5604,28 +5602,49 @@ Puisque les 2 résidus convergent vers une loi normale standard, on déduit de l
 
 \bigskip
 
-\begin{rappel_enhanced}[Contexte]
 Pour évaluer le levier \textit{et} les résidus en une seule mesure, on peut calculer soit \og \textit{\textbf{cook's distance}} \fg{} ou \textit{\textbf{DFITS}} pour chaque observation.
+
+\bigskip
+
+\begin{rappel_enhanced}[Contexte]
+La mesure D\textbf{FF}IT (noter le double F et le manque de S) se définie comme la \og \textit{\textbf{d}i\textbf{f}fence in \textbf{fit}} \fg{} : \lfbox[formula]{$DFFIT = \hat{y}_{i} - \hat{y}_{i}^{(i)}$}. C'est donc la différence entre la valeur prédite du modèle $\hat{y}_{i}$ et la valeur prédite du modèle qui exclue la $i^{\text{e}}$ observation $\hat{y}_{i}$. 
+
+\bigskip
+
+Puis, la mesure D\textbf{FF}IT\textbf{S} (noter le S) se définie comme la \og \textit{\textbf{S}tudentised DFFIT} \fg{} : \lfbox[formula]{$DFFITS = \frac{\hat{y}_{i} - \hat{y}_{i}^{(i)}}{\sqrt{MSE^{(i)} (1 - h_{i})}} = e_{stu, i} \sqrt{\frac{h_{i}}{1 - h_{i}}}$}. 
+
+\bigskip
+
+Ces mesures servent à mesurer le degré d'influence qu'a une observation. Cependant, dans le cadre de l'examen MAS-I nous utilisons une mesure semblable, mais différente : DFITS. Les livres de référence ne donne pas de contexte sur cette mesure, c'est pourquoi j'ai présenté les deux mesures précédentes. La mesure DFITS, dont on note s'écrit avec un seul F, utilise le résidu \textit{\textbf{standardisé}} $e_{sta, i}$ au lieu du résidu studentisé $e_{stu, i}$ du DFFITS.
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[DFITS]
-\lfbox[formula]{$DFITS = e_{sta, i} \sqrt{\frac{h_{i}}{1 - h_{i}}}$}.
+La mesure d'influence \lfbox[formula]{$DFITS = e_{sta, i} \sqrt{\frac{h_{i}}{1 - h_{i}}}$}.
 \end{definitionNOHFILL}
 
+
+\begin{rappel_enhanced}[Contexte]
+La mesure de \og \textit{Cook's distance} \fg{} est semblable aux autres. Afin de comprendre ce que la distance représente, on définie la mesure comme : \lfbox[formula]{$\displaystyle D_{i} = \frac{\left(\sum_{j = 1}^{n} (\hat{y}_{j} - \hat{y}_{j}^{(i)})^{2}\right)/p'}{\left(\sum_{j = 1}^{n} (y_{i} - \hat{y}_{i})^{2}\right) / (n - p')}$}. On récrit ci-dessus d'autres écritures qui sont algébriquement équivalentes, mais plus faciles à calculer. 
+
+\bigskip
+
+L'intuition est qu'on calcule le ratio des écarts moyens entre les prévisions du modèle complet et les prévisions du modèle qui exclut la $i^{\text{e}}$ observation à la variance (MSE) du modèle. Pour comprendre l'intuition, on peut penser au \og \textit{cook's distance} \fg{} d'une façon semblable au \textit{\color{bleudefrance}\underline{\hyperlink{adjustedR2}{\color{bleudefrance} coefficient de détermination ajusté}}}.
+\end{rappel_enhanced}
+
 \begin{definitionNOHFILL}[\og \textit{Cooks's distance} \fg{}]
-La $i^{\text{e}}$ \og \textit{\textbf{cook's distance}} \fg{} peut être écrite de plusieurs façons : 
+La \og \textit{\textbf{Cook's distance}} \fg{} pour la $i^{\text{e}}$ observation s'écrit de plusieurs façons : 
 \begin{enumerate}
-	\item	En fonction du DFITS : \lfbox[formula]{$d_{i} =  \frac{DFITS^{2}_{i}}{p'}$}.
+	\item	En fonction du $DFITS$ : \lfbox[formula]{$d_{i} =  \frac{DFITS_{i}^{2}}{p'}$}.
 	\item	En fonction du résidu standardisé : \lfbox[formula]{$d_{i} = \frac{e^{2}_{sta, i}}{p'} \left(\frac{h_{i}}{1 - h_{i}}\right)$}.
 	\item	En fonction du résidu : \lfbox[formula]{$d_{i} = \frac{e^{2}_{i} h_{i}}{MSE p' (1 - h_{i})^{2}}$}.
 \end{enumerate}
   
-
 \bigskip
 
-La règle du pouce c'est que la $i^{\text{e}}$ observation est un \og \textit{influential point} \fg{} si $d_{i}$ \og \textit{exceeds \textbf{unity}} \fg{}. C'est-à-dire, si \lfbox[conditions]{$d_{i} > 1$}.
+La règle du pouce est que la $i^{\text{e}}$ observation est un \og \textit{influential point} \fg{} si $d_{i}$ \og \textit{exceeds \textbf{unity}} \fg{}. C'est-à-dire, si \lfbox[conditions]{$d_{i} > 1$}.
 \end{definitionNOHFILL}
 	
+
 
 \columnbreak
 \subsection{Graphiques des résidus}
@@ -7326,7 +7345,7 @@ La log-vraisemblance maximisée augmente avec le nombre de paramètre. Donc, pou
 On peut voir la déviance comme l'analogue de l'EQM pour les GLMs. Pour comprendre l'intuition derrière la formule, on la récrit comme $D = \ln\left(\left(\frac{\mathcal{L}_{sat}}{\mathcal{L}(\bm{b})}\right)^{2}\right)$. Au lieu de prendre l'écart carré entre les prévisions et réalisations, on prend le carré du ratio du \textit{modèle estimé} au \textit{modèle \textbf{parfait}}. Donc, on souhaite minimiser la déviance sans toutefois la rendre nulle (dans quel cas le modèle serait surajusté).
 
 \end{rappel_enhanced}
-La déviance d'un GLM est \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\hat{\bm{b}})\right)$}.
+La déviance d'un GLM est \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\bm{b})\right)$}.
 
 \bigskip
 
@@ -7335,8 +7354,12 @@ Si la distribution est normale, alias le cas de MLR, on a que \lfbox[formula]{$D
 \paragraph{Note}	Puisque les log-vraisemblances sont des sommes, on peut récrire la déviance comme une somme de composantes avec $D = \sum_{i = 1}^{n} D_{i}$.
 \end{definitionNOHFILL}
 
+\begin{definitionNOHFILL}[Ratio de vraisemblance du khi carré]
+Le ratio de vraisemblance du khi carré (\og \textit{likelihood ratio chi-square} \fg{}) est semblable à la déviance mais calcule l'écart entre le modèle ajusté et le modèle nul avec \lfbox[formula]{$C = 2\left(\ell(\bm{b}) - \ell_{null}\right)$}. On note que \lfbox[formula]{$C \sim \chi^{2}_{p' - 1}$}
+\end{definitionNOHFILL}
+
 \begin{definitionNOHFILL}[\hypertarget{RSquaredPs}{Pseudo $R^{2}_{ps}$}]
-On peut également définir un analogue du $R^{2}$ pour les GLMs. Le $R^{2}_{ps}$ capture l'apport du modèle proportionnellement au modèle nul avec \lfbox[formula]{$R^{2}_{ps} = \frac{\ell_{null} -  \ell(\hat{\bm{b}})}{\ell_{null}}$}.
+On peut également définir un analogue du $R^{2}$ pour les GLMs. Le $R^{2}_{ps}$ capture l'apport du modèle proportionnellement au modèle nul avec \lfbox[formula]{$R^{2}_{ps} = \frac{\ell_{null} -  \ell(\bm{b})}{\ell_{null}}$}.
 \end{definitionNOHFILL}
 
 \begin{rappel_enhanced}[Contexte]
@@ -7346,11 +7369,11 @@ La déviance et le pseudo-$R^{2}$ sont des mesures qui servent à évaluer la qu
 L'utilité des mesures restent encore de comparer des modèles, mais nous les redéfinissons en fonction de la log-vraisemblance : 
 
 \begin{definitionGENERAL}{Critère d'information d'Akaike (AIC)}[\circled{1}{trueblue}]
-\lfbox[formula]{$AIC = -2  \ell(\hat{\bm{b}}) + 2 (\text{nombre de paramètres estimés})$}
+\lfbox[formula]{$AIC = -2  \ell(\bm{b}) + 2 (\text{nombre de paramètres estimés})$}
 \end{definitionGENERAL}
 
 \begin{definitionGENERAL}{Critère d'information bayésien (BIC)}[\circled{2}{trueblue}]
-\lfbox[formula]{$BIC = -2  \ell(\hat{\bm{b}}) + (\text{nombre de paramètres estimés})  \ln(n)$}
+\lfbox[formula]{$BIC = -2  \ell(\bm{b}) + (\text{nombre de paramètres estimés})  \ln(n)$}
 \end{definitionGENERAL}
 
 \paragraph{Note}	Le nombre de paramètres estimés est habituellement $p'$, mais ça pourrait être plus que $p'$ s'il faut estimer, par exemple en MLR, d'autre paramètres comme $\sigma^{2}$.
@@ -7650,7 +7673,7 @@ Alors, la fonction de log-vraisemblance \lfbox[formula]{$\ell(\bm{\beta}) = \sum
 
 \bigskip
 
-De cette expression, on obtient que le résidu de Pearson \lfbox[formula]{$e_{i}^{P} = \frac{\left(y_{i} - \hat{\mu}_{i}\right)^{2}}{\hat{\mu}_{i}}$}.
+De cette expression, on obtient que le résidu de Pearson \lfbox[formula]{$e_{i}^{P} = \frac{y_{i} - \hat{\mu}_{i}}{\sqrt{\hat{\mu}_{i}}}$}.
 
 
 \columnbreak
@@ -12905,7 +12928,7 @@ En bref :
 \end{tikzpicture}
 \end{center}
 
-Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{k + 1}$}. 
+Également, lorsque \lfbox[conditions]{$X_{k} \sim U(a, b)$} pour $k = 1, 2, \dots, n$, on trouve que \lfbox[formula]{$\text{E}[X_{(k)}] = \text{E}[T_{k}] =	a + \frac{k(b - a)}{n + 1}$}. 
 
 \paragraph{Note}	Voir les \textit{\underline{\nameref{subsubsec:orderStatsSpecialCases}}} des \textit{\underline{\nameref{sec:orderStats}}} pour la définition de cette espérance.
 
@@ -14261,6 +14284,30 @@ La probabilité d'un succès $P_{i}$ est définie comme suit :
 	\end{cases}
 \end{align*}
 \end{definitionNOHFILLprop}
+
+\begin{formula}{Exemple de calcul de Gambler's Ruin}
+Soit un joueur ayant 10 jetons. À chaque ronde, il parie 1 jeton avec une stratégie qui lui garantit une probabilité de 0.6 de gagner. S'il gagne, il gagne un jeton de plus que celui qu'il a parié. Sinon, il en perd un additionnel. Quelle est la probabilité qu'il réussisse à amasser 25 jetons ?
+
+\bigskip
+
+\begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
+	\item	Calculer la probabilité d'amasser 25 jetons en commençant avec 10 lorsqu'il y a une probabilité $p = 0.6$ de gagner : 
+		\begin{align*}
+		\frac{1 - \left(\frac{0.4}{0.6}\right)^{10}}{1 - \left(\frac{0.4}{0.6}\right)^{25}}
+		&=	0.9827
+		\end{align*}
+\end{enumerate}
+\end{formula}
+
+\begin{formula}{Exemple de calcul de Gambler's Ruin}
+Tu as 6 jetons et ton ami en a 4. Vous pariez des jetons équiprobables jusqu'à ce que quelqu'un se rend à 10 jetons. Quelle est la probabilité que vous amassez 10 jetons?
+
+\bigskip
+
+Avec $p = 0.5$, on obtient que $P_{10} = \frac{6}{10} = 0.60$.
+\end{formula}
+
+\bigskip
 
 Pour calculer la variance, on rappelle le raccourci de Bernoulli :
 \begin{rappel}{Rappel : Raccourci de Bernoulli}
