@@ -5298,7 +5298,7 @@ Cependant, l'interprétation est très différente et il est important de se rap
 
 
 
-\subsubsection{Test F}
+\subsubsection{Test F}\label{subsubsec:testF}
 \begin{rappel_enhanced}[Contexte]
 La limitation inhérente au test $t$ est qu'elle peut seulement tester une variable à la fois. Pour tester l'importance de plusieurs variables explicatives, on doit utiliser un différent test. Cependant, avant de présenter ce test, on présente le \textbf{\textit{tableau d'ANOVA}} et le test $F$.
 \end{rappel_enhanced}
@@ -5421,35 +5421,88 @@ Tout comme le test $F$, ce test est unilatéral vers la droite et on rejette l'h
 
 \newpage
 \section{ANOVA}\label{sec:ANOVA}
-\hl{section incomplète.}
-\subsection{\og \textit{One-Way ANOVA} \fg{}}
-\og \textit{one-factor ANOVA} \fg{}
+\subsection{Un facteur}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$w$]	Nombre de niveaux, ou « traitements », du facteur.
+	\item[$n_{j}$]	Nombre d'observations dans le $j^{\text{e}}$ niveau.
+		\begin{itemize}
+		\item	$\displaystyle \sum_{i = 1}^{j}n_{j} = n$.
+		\end{itemize}
+	\item[$Y_{i, j}$]	Variable réponse pour la $i^{\text{e}}$ observation du $j^{\text{e}}$ groupe où $i = 1, \dots, n_{j}$ et $j = 1, \dots, w$.
+\end{description}
+\end{distributions}
 
-L'expression du modèle ayant un facteur avec $w$ niveaux s'écrit comme \lfbox[formula]{$Y_{i, j} = \mu + \alpha_{j} + \varepsilon_{i, j}$} pour $i = 1, \dots, n_{j}$ et $j = 1, \dots, w$. 
+\begin{rappel_enhanced}[Contexte]
+L'ANOVA pour un GLM ayant \underline{une variable explicative} (alias prédicteur, facteur) catégorique qui prédit la variable réponse s'appelle le modèle ANOVA \og \textit{one-factor} \fg{} ou \og \textit{one-way} \fg{}. 
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILL}[Modèle ANOVA pour un facteur]
+On pose que le niveau $w$ est le niveau de base, puis on pose que $x_{i, j} = \bm{I}_{\left\{\substack{\text{observation $i$ est}\\ \text{dans la catégorie $j$}}\right\}}$ pour $j = 1, \dots, w - 1$. Puis, on utilise la nouvelle notation \lfbox[formula]{$Y_{i, j} = \mu + \alpha_{j} + \varepsilon_{i, j}$} pour $i = 1, \dots, n_{j}$ et $j = 1, \dots, w$. Ici, $\alpha_{j} = \beta_{j}$ et $\mu = \beta_{0}$.
+\end{definitionNOHFILL}
+
+
+\subsubsection{Estimation}
+\begin{rappel_enhanced}[Contexte]
+Il est important de distinguer le $i$ de $Y_{i, j}$ du $i$ de $Y_{i}$ auquel nous sommes habitués. Ici, on dénote une observation d'un échantillon des observations $n_{j}$ et non de $n$ en entier. Entre autre, cette nouvelle écriture implique que les $SS()$ doivent être modifiées.
+\end{rappel_enhanced}
 
 \bigskip
 
-On a que $\displaystyle	\bar{y}_{j} = \frac{\sum_{i = 1}^{n_{j}} y_{i, j}}{n_{j}}$, puis 
+Puisque nous cherchons à évaluer la variation par sous-groupe, on définie la moyenne par sous-groupe : \lfbox[formula]{$\displaystyle	\bar{y}_{j} = \frac{\sum_{i = 1}^{n_{j}} y_{i, j}}{n_{j}}$}. Il s'ensuit que \lfbox[formula]{$\hat{\mu} = \bar{y}_{w}$} et que \lfbox[formula]{$\hat{\alpha}_{j} = \bar{y}_{j} - \bar{y}_{w}$} pour $j = 1, \dots, w - 1$.
 
+\bigskip
+
+L'hypothèse nulle pour le modèle est que la réponse moyenne $\alpha_{j}$ pour chacun des $w$ niveaux est égale et le tableau ANOVA est :
 
 \begin{center}
-\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
 \hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
-Facteur	&	$SSR$	&	$w - 1$	\\\hline
-Erreur	&	$SSE	$	&	$n - w$	\\\hline
-Total	&	$SST	$	&	$n - 1$	\\\hline
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{Calcul}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
+Facteur	&	$\sum_{j = 1}^{w} n_{j}(\bar{y}_{j} - \bar{y})^{2}$					&	$SSR$	&	$w - 1$	\\\hline
+Erreur	&	$\sum_{j = 1}^{w}\sum_{i = 1}^{n_{j}}(y_{i, j} - \bar{y}_{j})^{2}$	&	$SSE	$	&	$n - w$	\\\hline
+Total	&	$\sum_{j = 1}^{w}\sum_{i = 1}^{n_{j}}(y_{i, j} - \bar{y})^{2}$		&	$SST	$	&	$n - 1$	\\\hline
 \end{tabular}
 \end{center}
+
+\bigskip
+
+Il s'ensuit que la statistique du \textit{\underline{\nameref{subsubsec:testF}}} est la même avec \lfbox[formula]{$\displaystyle t = \frac{MSR}{MSE}$} où \lfbox[formula]{$T \sim F_{p, n - p'}$}.
 
 
 
 \columnbreak
-\subsection{\og \textit{Two-Way ANOVA} \fg{}}
+\subsection{Deux facteurs}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$w, \upsilon$]	Nombre de niveaux, ou « traitements », des facteurs $A$ et $B$.
+	\item[$Y_{i, j, k}$]	Variable réponse pour la $i^{\text{e}}$ observation du niveau $\{i, j\}$
+	\item[$\alpha_{j}$]	$j^{\text{e}}$ \textbf{effet principal} pour le facteur $A$.
+	\item[$\beta_{j}$]	$k^{\text{e}}$ \textbf{effet principal} pour le facteur $B$.
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+L'ANOVA pour un GLM ayant \underline{deux variables explicatives} catégoriques s'appelle le modèle ANOVA \og \og \textit{two-way} \fg{}. 
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[Modèle ANOVA pour deux facteurs]
+Puis, on utilise la nouvelle notation \lfbox[formula]{$Y_{i, j, k} = \mu + \alpha_{j} + \beta_{k} + \varepsilon_{i, j, k}$} pour $i = 1, \dots, n_{\ast}$, $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$.
+\end{definitionNOHFILL}
+
+
+
 \subsubsection{Modèle additif}
+\begin{rappel_enhanced}[Contexte]
+Dans le cadre de l'examen MAS-I, nous aurons seulement des ensembles de données balancés ayant $n_{\ast}$ observations par niveau.
+\end{rappel_enhanced}
+
 L'expression du modèle ayant 2 facteurs avec $w$ et $\upsilon$ niveaux s'écrit comme \lfbox[formula]{$Y_{i, j, k} = \mu + \alpha_{j} + \beta_{k} + \varepsilon_{i, j, k}$} pour $i = 1, \dots, n_{\ast}$, $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
 
+\bigskip
 
+Le tableau ANOVA du modèle additif s'écrit comme :
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
 \hline\rowcolor{airforceblue} 
@@ -5461,21 +5514,78 @@ Total		&	$SST$		&	$n - 1$	\\\hline
 \end{tabular}
 \end{center}
 
-Également, \lfbox[formula]{$SSR_{B} = SSE_{A} - SSE_{add} = SSR_{add} - SSR_{A}$}.
+\bigskip
+
+Afin de bien comprendre l'impact d'un deuxième facteur sur l'analyse de la variance, on observe la visualisation de la relation \lfbox[formula]{$SSR_{B} = SSE_{A} - SSE_{add} = SSR_{add} - SSR_{A}$} : 
+
+\begin{center}
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,228); %set diagram left start at 0, and has height of 228
+
+%Rounded Rect [id:dp00850068203628207] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 74; blue, 74 }  ,fill opacity=1 ] (189.82,44.82) .. controls (189.82,35.02) and (197.77,27.07) .. (207.57,27.07) -- (260.81,27.07) .. controls (270.61,27.07) and (278.56,35.02) .. (278.56,44.82) -- (278.56,110.12) .. controls (278.56,119.92) and (270.61,127.86) .. (260.81,127.86) -- (207.57,127.86) .. controls (197.77,127.86) and (189.82,119.92) .. (189.82,110.12) -- cycle ;
+
+%Rounded Rect [id:dp2819337958031658] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (289.49,44.42) .. controls (289.49,34.81) and (297.29,27.01) .. (306.9,27.01) -- (361.16,27.01) .. controls (370.77,27.01) and (378.57,34.81) .. (378.57,44.42) -- (378.57,110.52) .. controls (378.57,120.13) and (370.77,127.92) .. (361.16,127.92) -- (306.9,127.92) .. controls (297.29,127.92) and (289.49,120.13) .. (289.49,110.52) -- cycle ;
+%Rounded Rect [id:dp694095052935565] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (289.44,82.53) .. controls (289.44,75.57) and (295.08,69.92) .. (302.04,69.92) -- (365.91,69.92) .. controls (372.87,69.92) and (378.52,75.57) .. (378.52,82.53) -- (378.52,115.32) .. controls (378.52,122.28) and (372.87,127.92) .. (365.91,127.92) -- (302.04,127.92) .. controls (295.08,127.92) and (289.44,122.28) .. (289.44,115.32) -- cycle ;
+%Rounded Rect [id:dp7247002423272231] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (289.44,68.92) .. controls (289.44,68.92) and (289.44,68.92) .. (289.44,68.92) -- (378.52,68.92) .. controls (378.52,68.92) and (378.52,68.92) .. (378.52,68.92) -- (378.52,82.53) .. controls (378.52,82.53) and (378.52,82.53) .. (378.52,82.53) -- (289.44,82.53) .. controls (289.44,82.53) and (289.44,82.53) .. (289.44,82.53) -- cycle ;
 
 
+%Rounded Rect [id:dp27176926553246106] 
+\draw  [color={rgb, 255:red, 18; green, 72; blue, 135 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ] (389.49,44.42) .. controls (389.49,34.81) and (397.29,27.01) .. (406.9,27.01) -- (461.16,27.01) .. controls (470.77,27.01) and (478.57,34.81) .. (478.57,44.42) -- (478.57,110.52) .. controls (478.57,120.13) and (470.77,127.92) .. (461.16,127.92) -- (406.9,127.92) .. controls (397.29,127.92) and (389.49,120.13) .. (389.49,110.52) -- cycle ;
+%Rounded Rect [id:dp004031136955393366] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (389.44,101.47) .. controls (389.44,97.41) and (392.73,94.13) .. (396.79,94.13) -- (471.17,94.13) .. controls (475.23,94.13) and (478.52,97.41) .. (478.52,101.47) -- (478.52,120.58) .. controls (478.52,124.64) and (475.23,127.92) .. (471.17,127.92) -- (396.79,127.92) .. controls (392.73,127.92) and (389.44,124.64) .. (389.44,120.58) -- cycle ;
+%Rounded Rect [id:dp3118943028437733] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ] (389.44,90.47) .. controls (389.44,90.47) and (389.44,90.47) .. (389.44,90.47) -- (478.52,90.47) .. controls (478.52,90.47) and (478.52,90.47) .. (478.52,90.47) -- (478.52,102.13) .. controls (478.52,102.13) and (478.52,102.13) .. (478.52,102.13) -- (389.44,102.13) .. controls (389.44,102.13) and (389.44,102.13) .. (389.44,102.13) -- cycle ;
+%Rounded Rect [id:dp4298081219246621] 
+\draw  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][dash pattern={on 6.75pt off 4.5pt}][line width=2.25]  (389.44,69.95) .. controls (389.44,66.73) and (392.05,64.13) .. (395.26,64.13) -- (472.69,64.13) .. controls (475.91,64.13) and (478.52,66.73) .. (478.52,69.95) -- (478.52,85.1) .. controls (478.52,88.32) and (475.91,90.92) .. (472.69,90.92) -- (395.26,90.92) .. controls (392.05,90.92) and (389.44,88.32) .. (389.44,85.1) -- cycle ;
 
-\subsubsection{Modèle additif sans réplication}
-Pour $n_{\ast} = 1$, l'expression du modèle ayant 2 facteurs s'écrit comme \lfbox[formula]{$Y_{j, k} = \mu + \alpha_{j} + \beta_{k} + \varepsilon_{j, k}$} pour $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
+% Text Node
+\draw (296,135.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {avec facteur A};
+% Text Node
+\draw (412,136.5) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize] [align=left] {additif};
+% Text Node
+\draw (319,39.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle SSR_{A}$};
+% Text Node
+\draw (319,89.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle SSE_{A}$};
+% Text Node
+\draw (219.69,69.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {SST};
+% Text Node
+\draw (419,99.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle SSE_{add}$};
+% Text Node
+\draw (419,36.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle SSR_{A}$};
+% Text Node
+\draw (419,68.97) node [anchor=north west][inner sep=0.75pt]  [font=\small,color={rgb, 255:red, 255; green, 255; blue, 255 }  ,opacity=1 ] [align=left] {$\displaystyle SSR_{B}$};
+\end{tikzpicture}
+\end{center}
 
 \bigskip
 
-On a $\displaystyle \bar{y}_{j \cdot} = \frac{\sum_{k = 1}^{\upsilon} y_{j, k}}{\upsilon}$ et $\displaystyle \bar{y}_{\cdot k} = \frac{\sum_{j = 1}^{w} y_{j, k}}{w}$.
+On peut tester deux hypothèses nulles. On peut tester l'hypothèse nulle que la réponse moyenne $\alpha_{j}$ pour chacun des $w$ niveaux du facteur A est égale. Ceci équivaut à tester si le facteur $A$ est significatif au modèle et la statistique de test est \lfbox[formula]{$t = \frac{SSR_{A} / (w - 1)}{SSE_{add} / (n - (w + \upsilon - 1))}$}. On a que \lfbox[formula]{$T \sim F_{w - 1, n - (w + \upsilon - 1)}$} 
+
+\bigskip
+
+Sinon, on peut tester l'hypothèse nulle que la réponse moyenne $\beta_{k}$ pour chacun des $\upsilon$ niveaux du facteur B est égale. Ceci équivaut à tester si le facteur $B$ est significatif au modèle et la statistique de test est \lfbox[formula]{$t = \frac{SSR_{B} / (\upsilon - 1)}{SSE_{add} / (n - (w + \upsilon - 1))}$}. On a que \lfbox[formula]{$T \sim F_{\upsilon - 1, n - (w + \upsilon - 1)}$} 
 
 
+
+%\columnbreak
 \subsubsection{Modèle avec interactions}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\gamma_{j, k}$]	Interaction pour le niveau $\{j, k\}$.
+\end{description}
+\end{distributions}
+
+
 L'expression du modèle ayant 2 facteurs et une interaction s'écrit comme \lfbox[formula]{$Y_{i, j, k} = \mu + \alpha_{j} + \beta_{k} + \gamma_{j, k} + \varepsilon_{i, j, k}$} pour $i = 1, \dots, n_{\ast}$, $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
 
+\bigskip
+
+Le tableau ANOVA du modèle additif avec interactions s'écrit comme :
 
 \begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
@@ -5489,11 +5599,53 @@ Total		&	$SST$		&	$n - 1$	\\\hline
 \end{tabular}
 \end{center}
 
+\bigskip
 
+Puis, pour tester l'hypothèse nulle qu'il n'y a pas d'interactions (tous les $\gamma_{j, k}$ sont nuls) la statistique de test \lfbox[formula]{$t = \frac{(SSE_{add} - SSE_{int})/((w - 1)(\upsilon - 1)}{SSE_{int}/(n - w\upsilon)}$} où \lfbox[formula]{$T \sim F_{(w - 1)(\upsilon - 1), n - w\upsilon}$}. Sinon, on peut tester chacun des facteurs de façon semblable à avant en substituant $SSE_{add}$ par $SSE_{int}$ au dénominateur.
+
+
+
+%\columnbreak
+\subsubsection{Modèle additif sans réplication}
+\begin{rappel_enhanced}[Contexte]
+Le terme \textbf{\textit{réplication}} implique qu'il y a plusieurs observations pour chacun des niveaux. Un modèle \textit{sans} réplication implique qu'il y a une seule observation par niveau et que \lfbox[formula]{$n_{\ast} = 1$} et que $n = w\upsilon$.
+\end{rappel_enhanced}
+
+Il s'ensuit que l'on peut simplifier le modèle sans l'indice $i$ pour l'observation et que \lfbox[formula]{$Y_{j, k} = \mu + \alpha_{j} + \beta_{k} + \varepsilon_{j, k}$} pour $j = 1, \dots, w$ et $k = 1, \dots, \upsilon$. 
+
+\bigskip
+
+De façon semblable au modèle avec un facteur, on définit la moyenne par sous-groupe avec \lfbox[formula]{$\displaystyle \bar{y}_{j \cdot} = \frac{\sum_{k = 1}^{\upsilon} y_{j, k}}{\upsilon}$} et \lfbox[formula]{$\displaystyle \bar{y}_{\cdot k} = \frac{\sum_{j = 1}^{w} y_{j, k}}{w}$}.
+
+\bigskip
+
+Puis, 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{Calcul}}	&	\textcolor{white}{\textbf{SS}}	\\\specialrule{0.1em}{0em}{0em} 
+Facteur $A$	&	$\sum_{j = 1}^{w} \upsilon(\bar{y}_{j \cdot} - \bar{y})^{2}$					&	$SSR_{A}$	\\\hline
+Facteur $B$	&	$\sum_{k = 1}^{\upsilon} w(\bar{y}_{\cdot k} - \bar{y})^{2}$					&	$SSR_{B}$	\\\hline
+Erreur	&	$\sum_{k = 1}^{\upsilon}\sum_{j = 1}^{w}(y_{j, k} - \bar{y}_{j \cdot} - \bar{y}_{\cdot k} + \bar{y})^{2}$	&	$SSE_{add}	$	\\\hline
+Total	&	$\sum_{k = 1}^{\upsilon}\sum_{j = 1}^{w} (y_{j, k} - \bar{y})^{2}$		&	$SST	$	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+\columnbreak
 \subsection{Autres}
-Modèle de \og \textit{analysis of covariance (ANCOVA)} \fg{}
+\hl{section incomplète.}
 
-\og \textit{uncorrected total sum of squares} \fg{}
+\subsubsection{Modèle d'analyse de covariance (ANCOVA)}
+\begin{rappel_enhanced}[Contexte]
+Un modèle d'analyse de la covariance est un GLM ayant des prédicteurs quantitatifs et qualitatifs. 
+\end{rappel_enhanced}
+
+\subsubsection{Total non-ajusté}
+\begin{rappel_enhanced}[Contexte]
+On appelle SST la \og \textit{\textbf{corercted} total sum of squares} \fg{} lorsque nous devons être plus spécifiques.
+\end{rappel_enhanced}
 
 
 
