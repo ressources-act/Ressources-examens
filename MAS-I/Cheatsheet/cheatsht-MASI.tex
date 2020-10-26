@@ -2918,7 +2918,7 @@ Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} où 
 
 \bigskip
 
-\paragraph{Note}	Voir la section \textit{\underline{\nameref{subsubsec:TRV}}} de la section sur la \textit{\underline{\nameref{sec:GLM}}} pour l'application du test du rapport de vraisemblance des les modèles linéaires généralisés.
+\paragraph{Note}	Voir la section \textit{\underline{\nameref{subsubsec:TRVGLM}}} de la section sur la \textit{\underline{\nameref{sec:GLM}}} pour l'application du test du rapport de vraisemblance des les modèles linéaires généralisés.
 
 
 
@@ -4117,7 +4117,7 @@ Les différents modèles d'apprentissage statistique varient, entres autre, en \
 
 \bigskip
 
-Par exemple, une régression linéaire correspond à une ligne droite et donc $\hat{f}$ est très peu flexible. L'ajustement aux données est moins bon, car il est peu probable que les données soient situées sur une droite. En revanche, une \og \textit{spline} \fg{} passe à travers tous les points (l'ajustement est alors « parfait ») et donc $\hat{f}$ est très flexible. Cependant, un modèle peut devenir \textbf{\textit{surajusté}} aux données d'entraînement et effectuer de mauvaises prévisions. Voir la section \hl{<TBD>} pour de plus amples détails sur le surajustement d'un modèle.
+Par exemple, une régression linéaire correspond à une ligne droite et donc $\hat{f}$ est très peu flexible. L'ajustement aux données est moins bon, car il est peu probable que les données soient situées sur une droite. En revanche, une spline passe à travers tous les points (l'ajustement est alors « parfait ») et donc $\hat{f}$ est très flexible. Cependant, un modèle peut devenir \textbf{\textit{surajusté}} aux données d'entraînement et effectuer de mauvaises prévisions. Voir la section \hl{<TBD>} pour de plus amples détails sur le surajustement d'un modèle.
 
 \bigskip
 
@@ -4199,7 +4199,7 @@ La variance de $\hat{f}$ mesure l'erreur due à la \textit{\textbf{sensibilité}
 
 \bigskip
 
-Le biais de $\hat{f}$ mesure le degré auquel $\hat{f}$ est proche de $f$. C'est une mesure de l'erreur \textbf{due aux hypothèses du modèle} d'apprentissage statistique. Un modèle très flexible s'ajuste bien aux données et comporte un faible biais. Par exemple, un \og \textit{spline} \fg{} a un faible biais et une variance élevée alors qu'une régression linéaire a un biais élevée et une faible variance.
+Le biais de $\hat{f}$ mesure le degré auquel $\hat{f}$ est proche de $f$. C'est une mesure de l'erreur \textbf{due aux hypothèses du modèle} d'apprentissage statistique. Un modèle très flexible s'ajuste bien aux données et comporte un faible biais. Par exemple, un spline a un faible biais et une variance élevée alors qu'une régression linéaire a un biais élevée et une faible variance.
 
 \bigskip
 
@@ -5230,6 +5230,8 @@ Soit une régression linéaire avec une seule variable explicative $x_{j}$, alor
 
 Ce modèle suppose que la variable réponse est systématiquement reliée par un polynôme d'ordre $k$. On inclut aussi les polynômes de $1$ à $k - 1$ afin de mieux ajuster la forme de la droite de régression.
 \end{definitionNOHFILLsub}
+
+\paragraph{Note}	Voir la section de \textit{\underline{\nameref{sec:GAM}}} pour plus de détails sur la modélisation « non-linéaire ».
 
 
 
@@ -6661,7 +6663,7 @@ Le $C_{p}$ de Mallow est définit comme \lfbox[formula]{$C_{p} = \frac{SSE + 2p 
 
 \bigskip
 
-La formule, qui peut être décomposée comme \lfbox[formula]{$C_{p} = \textcolor{teal}{MSE} + \textcolor{amethyst}{2 \left(\frac{p}{n}\right) MSE_{g}}$}, équivaut à \textcolor{teal}{l'EQM d'entraînement} plus \textcolor{amethyst}{une pénalité par prédicteur}. Puisque \textcolor{teal}{l'EQM d'entraînement} décroît lorsque le nombre de prédicteurs $p$ augmente, le $C_{p}$ augmente si cette réduction ne compense pas pour \textcolor{amethyst}{la pénalité}.
+La formule, qui peut être décomposée comme \lfbox[formula]{$C_{p} = \textcolor{teal}{SSE/n} + \textcolor{amethyst}{2 \left(\frac{p}{n}\right) MSE_{g}}$}, équivaut à \textcolor{teal}{au SSE moyen} plus une \textcolor{amethyst}{pénalité par prédicteur}. Puisque \textcolor{teal}{la SSE d'entraînement moyen} décroît lorsque le nombre de prédicteurs $p$ augmente, le $C_{p}$ augmente si la réduction ne compense pas pour \textcolor{amethyst}{la pénalité}.
 
 \paragraph{Note}	Ce que l'indice $p$ de $C_{p}$ représente n'est pas clair. Donc, on écrit toujours $C_{p}$ sans jamais substituer de valeur pour $p$.
 \end{definitionNOHFILL}
@@ -7345,7 +7347,7 @@ La log-vraisemblance maximisée augmente avec le nombre de paramètre. Donc, pou
 On peut voir la déviance comme l'analogue de l'EQM pour les GLMs. Pour comprendre l'intuition derrière la formule, on la récrit comme $D = \ln\left(\left(\frac{\mathcal{L}_{sat}}{\mathcal{L}(\bm{b})}\right)^{2}\right)$. Au lieu de prendre l'écart carré entre les prévisions et réalisations, on prend le carré du ratio du \textit{modèle estimé} au \textit{modèle \textbf{parfait}}. Donc, on souhaite minimiser la déviance sans toutefois la rendre nulle (dans quel cas le modèle serait surajusté).
 
 \end{rappel_enhanced}
-La déviance d'un GLM est \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\bm{b})\right)$}.
+La déviance d'un GLM est \lfbox[formula]{$D = 2\left(\ell_{sat} - \ell(\bm{b})\right)$} où \lfbox[formula]{$D \sim \chi^{2}_{n - p'}$}.
 
 \bigskip
 
@@ -7355,7 +7357,15 @@ Si la distribution est normale, alias le cas de MLR, on a que \lfbox[formula]{$D
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Ratio de vraisemblance du khi carré]
-Le ratio de vraisemblance du khi carré (\og \textit{likelihood ratio chi-square} \fg{}) est semblable à la déviance mais calcule l'écart entre le modèle ajusté et le modèle nul avec \lfbox[formula]{$C = 2\left(\ell(\bm{b}) - \ell_{null}\right)$}. On note que \lfbox[formula]{$C \sim \chi^{2}_{p' - 1}$}
+\begin{rappel_enhanced}[Contexte]
+Le test utilisant le ratio de vraisemblance du khi carré test l'hypothèse nulle que le modèle nul est supérieur au modèle ajusté. On rejette l'hypothèse nulle et acceptons le modèle ajusté si la valeur observée de la statistique est \textit{supérieure} à la valeur critique. Ceci est donc le contraire d'un test utilisant la déviance qui rejette le modèle ajusté si la valeur observée dépasse la valeur critique. Ceci est cohérent, car on devrait s'attendre à ce que le modèle ajusté soit supérieur au modèle nul de la même façon que, en théorie, le modèle saturé soit « supérieur » au modèle ajusté.
+\end{rappel_enhanced}
+
+Le ratio de vraisemblance du khi carré (\og \textit{likelihood ratio chi-square} \fg{}) est semblable à la déviance mais calcule l'écart entre le modèle ajusté et le modèle nul avec \lfbox[formula]{$C = 2\left(\ell(\bm{b}) - \ell_{null}\right)$}. 
+
+\bigskip
+
+On note que \lfbox[formula]{$C \sim \chi^{2}_{p' - 1}$}.
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[\hypertarget{RSquaredPs}{Pseudo $R^{2}_{ps}$}]
@@ -7463,7 +7473,7 @@ La méthode de \textbf{\textit{quasi-vraisemblance}} adresse ce problème en mul
 Cette méthode établie une relation entre la moyenne et la variance qui est moins restrictive au dépens de rendre la distribution moins claire.
 
 
-\subsubsection{Test du rapport de vraisemblance}\label{subsubsec:TRV}
+\subsubsection{Test du rapport de vraisemblance}\label{subsubsec:TRVGLM}
 Le \textit{\color{bleudefrance}\underline{\hyperlink{TRVDef}{\color{bleudefrance} test du rapport de vraisemblance}}} tel que définit dans la section \textit{\underline{\nameref{subsubsec:TRV}}} s'applique pour tester la simplification de modèles emboîtés. On pose que \lfbox[formula]{$t = 2\left[\ell(\bm{b}_{f}) - \ell(\bm{b}_{r})\right]$} pour tester 
 \begin{align*}
 	\mathrm{H}_{0}	&:	\text{modèle \textbf{r}éduit est adéquat}	\\
@@ -7561,7 +7571,7 @@ L'utilité de ces 3 fonctions est que leurs domaines sont contenus entre $0$ et 
 
 \subsubsection{Modèle binomiale}
 \begin{rappel_enhanced}[Contexte]
-Lorsque la variable réponse prend une de deux catégories, alors elle suit une distribution binomiale. On détaille ce modèle de base.
+Lorsque la variable réponse prend une de deux catégories, alors elle suit une distribution binomiale. 
 \end{rappel_enhanced}
 
 Soit les v.a. indépendantes binomiales $Y_{1}, \dots, Y_{n}$ dont les $m_{i}$s sont connus et $q_{i} = g^{-1}(\bm{x}_{i}^{\top}\bm{\beta})$. Alors, la fonction de log-vraisemblance \lfbox[formula]{$\ell(\bm{\beta}) = \sum_{i = 1}^{n}\left[y_{i} \ln\left(\frac{q_{i}}{1 - q_{i}}\right) + m_{i} \ln(1 - q_{i}) + \ln\binom{m_{i}}{y_{i}}\right]$}.
@@ -7580,6 +7590,12 @@ On obtient différents modèles selon la fonction de lien choisie. Par exemple, 
 
 \columnbreak
 \subsection{Réponse nominale}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$g$]	Nombre de catégories.
+	\item[$c$]	Catégorie pour $c = 1, \dots, g$.
+\end{description}
+\end{distributions}
 %%	voir pour la régression logistique https://maurocamaraescudero.netlify.app/post/logistic-regression/
 \begin{rappel_enhanced}[Contexte]
 Lorsque la variable réponse est définie comme une de plusieurs catégories sans d'ordre, nous avons une \textit{\color{bleudefrance}\underline{\hyperlink{nominalVariable}{\color{bleudefrance} variable nominale}}}. 
@@ -7683,8 +7699,12 @@ Pour modéliser les fréquences dans tes tableaux de contingence, on utilise des
 
 
 \newpage
-\section{\og \textit{Generalized Additive Models (GAM)} \fg{}}
+\section{\og \textit{Generalized Additive Models (GAM)} \fg{}}\label{sec:GAM}
 \hl{section incomplète.}
+\begin{rappel_enhanced}[Contexte]
+Les méthodes alternatives de régression diminuent la complexité du modèle linéaire et diminuent la variance des prévisions. Cependant, ces modèles tiennent seulement sous l'hypothèse de normalité. Dans cette section, on cherche à assouplir l'hypothèse de normalité tout en gardant le modèle aussi interprétable que possible. On élargi le modèle linéaire avec des ajouts simples comme une fonction polynôme ou en escalier. Puis, on prend des approches plus avancées avec des splines, la régression locale et finalement un GAM.
+\end{rappel_enhanced}
+
 
 \subsection{\og \textit{Basis functions} \fg{}}\label{subsec:BasisFunctions}
 \begin{distributions}[Notation]
@@ -7695,25 +7715,33 @@ Pour modéliser les fréquences dans tes tableaux de contingence, on utilise des
 
 \begin{rappel_enhanced}[Contexte]
 On reprend la section de \textit{\underline{\nameref{subsec:SpecialExplVar}}} en se limitant à une seule variable explicative $x$. On écrit l'équation du modèle en fonction de \og \textit{basis functions} \fg{} de la variable explicative : \lfbox[formula]{$Y = \beta_{0} + \beta_{1}b_{1}(x) + \dots + \beta_{p}b_{p}(x) + \varepsilon$}. 
-
-\bigskip
+\end{rappel_enhanced}
 
 Cette section considère donc 3 choix de \og \textit{basis functions} \fg{}.
-\end{rappel_enhanced}
+
 
 
 \subsubsection{Régression d'une fonction polynôme}
+\begin{rappel_enhanced}[Contexte]
+La méthode la plus simple d'obtenir un ajustement non linéaire est d'ajouter des prédicteurs qui sont des puissances des prédicteurs préexistants. Par exemple, une régression cubique ajoute $x^{2}$ et $x^{3}$ comme prédicteurs.
+\end{rappel_enhanced}
+
 L'équation a \textit{\color{bleudefrance}\underline{\hyperlink{polyReg}{\color{bleudefrance} déjà été présentée}}}, mais ont définit maintenant la fonction \lfbox[formula]{$b_{j}(x) = x^{j}$} pour $j = 1, \dots, d$ où l'équation est un polynôme d'ordre $d$.
 
 
 
-%\columnbreak
-\subsubsection{Régression d'une fonction en escalier}
+\columnbreak
+\subsubsection{Régression d'une fonction constante par morceaux}
 \begin{distributions}[Notation]
 \begin{description}
+	\item[$k$]	Nombre de nœuds.
 	\item[$\xi_{j}$]	\og \textit{cutpoints} \fg{} ou \og \textit{\textbf{knots}} \fg{} pour $j = 1, \dots, k$.
 \end{description}
 \end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+Le désavantage de la régression d'un polynôme est que l'on impose une structure globale à la fonction non-linéaire de $x$. Avec une fonction constante par morceaux, on peut imposer des structures locales sur chaque intervalle. La méthode segmente l'étendu de la variable en $k$ régions distinctes, on obtient une variable catégorielle sur laquelle on ajuste une fonction constante par morceaux. 
+\end{rappel_enhanced}
 
 On divise l'étendue de $x$ en $k + 1$ intervalles (\og \textit{bins} \fg{}). On obtient donc $k$ nœuds $\xi_{1}, \dots, \xi_{k}$ :
 \begin{center}
@@ -7752,29 +7780,31 @@ Il s'ensuit que les \og \textit{basis functions} \fg{} sont des fonctions indica
 \begin{align*}
 	b_{j}(x)
 	&=	\begin{cases}
+%		I_{\{x < \xi_{1}\}},	&	j = 0	\\
 		I_{\{\xi_{j} \leq x < \xi_{j + 1}\}},	&	j = 1, \dots, k - 1	\\
 		I_{\{x \geq \xi_{k}\}},	&	j = k	\\
 		\end{cases}
 \end{align*}
 
-%Il s'ensuit que ces fonctions indicatrices sont des \og \textit{step functions} \fg{}. La prévision sera donc : 
-%
-%\begin{center}
-%\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
-%\hline\rowcolor{airforceblue} 
-%\textcolor{white}{\textbf{Intervalle de $x$}}	&	\textcolor{white}{\textbf{Prévision}}		\\\specialrule{0.1em}{0em}{0em} 
-%Yep	&	Nep	\\\hline
-%\end{tabular}
-%\end{center}
+Ceci revient à écrire l'équation du modèle comme \lfbox[formula]{$Y = \beta_{0} + \beta_{1}I_{\{\xi_{1} \leq x < \xi_{2}\}} + \dots + \beta_{k}I_{\{\xi_{k} \leq x < \xi_{k + 1}\}} + \varepsilon$}.
 
-\bigskip
 
-Il n'y a pas d'approche absolue, mais habituellement on utilise des centiles pour identifier les nœuds.
+\paragraph{Note}	Il n'y a pas d'approche absolue, mais habituellement on utilise des centiles pour identifier les nœuds.
 
 
 
-%\columnbreak
+\columnbreak
 \subsubsection{Régression d'une fonction polynôme par morceaux}
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$d$]	Ordre du polynôme.
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+Cette approche combine la fonction polynôme avec la fonction en escalier pour obtenir une fonction polynôme par morceaux.
+\end{rappel_enhanced}
+
 On combine les deux approches précédentes pour créer un polynôme d'ordre $d$ pour chacun des $k$ intervalles. Ceci revient à écrire l'équation du modèle comme : 
 \begin{align*}
 	Y
@@ -7794,22 +7824,34 @@ On combine les deux approches précédentes pour créer un polynôme d'ordre $d$
 \columnbreak
 \subsection{Splines de régression}
 \begin{rappel_enhanced}[Contexte]
-La régression d'une fonction polynôme par morceaux a le désavantage de ne pas être continue. Afin d'obtenir une fonction continue, on impose une contrainte par nœud. 
+Le désavantage de la régression d'une fonction polynôme par morceaux est qu'elle n'est pas continue. Afin d'obtenir une fonction continue, on impose une « contrainte » par nœud qui stipule que les extrémités doivent se connecter. Avec suffisamment de régions, on peut obtenir un modèle qui est très bien ajusté.
 
-\bigskip
-
-Ça semble contre-intuitif, mais le fait d'ajouter contraintes \textbf{\underline{réduit}} le nombre de prédicteurs. C'est puisque, de façon générale, une contrainte est une équation qui exprime un coefficient de régression en fonction des autres. Il s'ensuit que c'est un coefficient de moins à estimer.
+%\bigskip
+%
+%Bien que cela semble contre-intuitif le fait d'ajouter contraintes \textbf{\underline{réduit}} le nombre de prédicteurs, car, de façon générale, une contrainte est une équation qui exprime un coefficient de régression en fonction des autres. Il s'ensuit que c'est un coefficient de moins à estimer.
 
 \bigskip
 
 Pour assurer la continuité de la fonction, on requiert que les $d - 1$ premières dérivées soient continues aux $k$ nœuds. Donc, le nombre de prédicteurs d'une fonction polynôme d'ordre $d$ est $p = (d - 1) + k + \underbrace{k * (d - 1)}_{\text{intéractions}} - \underbrace{k * (d - 1)}_{\text{contraintes}} = (d - 1) + k$.
 \end{rappel_enhanced}
 
-Les \og \textit{basis functions} \fg{} sont $x, x^{2}, x^{3}$ puis $b_{4} = (x - \xi_{1})^{3}_{+}, b_{5} = (x - \xi_{2})^{3}_{+}, \dots, b_{3 + k} = (x - \xi_{k})^{3}_{+}$ connues comme les \og \textit{\textbf{truncated power} basis functions} \fg{}.
+Les $d + k - 1$ \og \textit{basis functions} \fg{} sont donc : 
+\begin{itemize}
+	\item	$x, x^{2}, x^{3}$ ;
+	\item	$b_{4} = (x - \xi_{1})^{3}_{+}$, $b_{5} = (x - \xi_{2})^{3}_{+}$, $\dots$, $b_{3 + k} = (x - \xi_{k})^{3}_{+}$.
+\end{itemize}
+surnommées les \og \textit{\textbf{truncated power} basis functions} \fg{}.
 
 \bigskip
 
-Pour obtenir des \og \textit{\textbf{natural splines}} \fg{} on pose que les intervalles $\{x < \xi_{1}\}$ et $\{x > \xi_{k}\}$ deviennent linéaires. Il s'ensuit que les nœuds $\xi_{1}$ et $\xi_{k}$ sont les \og \textit{\textbf{boundary knots}} \fg{} alors que les autres sont les \og \textit{\textbf{interior knots}} \fg{}.
+\subsubsection{Splines de régression naturel}
+\begin{rappel_enhanced}[Contexte]
+Sans contraintes, il se peut que la fonction ait une courbe excessive aux extrémités le menant au-delà du domaine des réalisations. Afin d'éviter ce problème, on utilise un \textbf{\textit{spline naturel}} qui ajoute des nœuds au maximum et au minimum de l'échantillon (les intervalles $\{x < \xi_{1}\}$ et $\{x > \xi_{k}\}$). On stipule que, passé ces \og \textit{boundary knots} \fg{}, la fonction doit être linéaire.
+
+\bigskip
+
+Puisque ceci ajoute 2 contraintes, un spline avec $k$ nœuds intérieurs aura \lfbox[formula]{$p = k + 1$} degrés de liberté.
+\end{rappel_enhanced}
 
 \bigskip
 
@@ -7833,32 +7875,67 @@ Spline cubique naturelle	&	$k - 1$	\\\hline
 
 \columnbreak
 \subsection{Splines de lissage}
-Un spline de lissage cherche à minimiser l'expression $\sum_{i = 1}^{n}(y_{i} - g(x_{i}))^{2} + \lambda \int_{-\infty}^{\infty}g''(t)^{2}dt$. Donc, on minimise le SSE plus une pénalité qui est fonction du paramètre de lissage $\lambda$. Cette pénalité est un indicateur de la \og \textit{wiggliness} \fg{} ou \og \textit{roughness} \fg{} de la fonction. La fonction $g(x)$ est : 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$\lambda$]	Paramètre de lissage (\og \textit{smoothness penalty} \fg{}).
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+Les splines de lissage sont un alternatif aux splines de régression. Bien qu'ils sont semblables, ils sont utiles dans un différent contexte et obtenus en minimisant la SSE plus une pénalité de lissage.
+
+\bigskip
+
+Tout comme le spline de régression, le modèle est composé d'un polynôme par intervalle tel que la valeur de la fonction évaluée aux nœuds est la même que la valeur de deux premières dérivées de la fonction. La différence est qu'un spline de lissage a un nœud pour chaque point des données d'entraînement.
+\end{rappel_enhanced}
+
+
+Un spline de lissage minimise l'expression $\sum_{i = 1}^{n}(y_{i} - g(x_{i}))^{2} + \lambda \int_{-\infty}^{\infty}g''(t)^{2}dt$. Donc, on minimise la SSE plus une pénalité qui est fonction du paramètre de lissage $\lambda$. Cette pénalité est un indicateur de la \og \textit{wiggliness} \fg{} ou \og \textit{roughness} \fg{} de la fonction. Bref, un spline de lissage équivaut à un spline de régression plus aplatit.
+
+\bigskip
+
+La fonction $g(x)$ est : 
 \begin{enumerate}
 	\item	linéaire dans les intervalles $x < \min(x_{1}, \dots, x_{n})$ et $x > \max(x_{1}, \dots, x_{n})$ ;
 	\item	cubique par partie entre les réalisations triées $x_{1}, \dots, x_{n}$ ;
 	\item	continue, a une première dérivée continue et une deuxième dérivée continue aux points $x_{1}, \dots, x_{n}$.
 \end{enumerate}
 
+\bigskip
+
+Puisque la flexibilité de la courbe est contrôlée par $\lambda$, le nombre de degrés de liberté n'est pas une bonne mesure de sa flexibilité. Plutôt, on utilise le \textbf{nombre de degrés de liberté \textit{effectif}} calculé avec une matrice qui correspond à la matrice chapeau de la régression linéaire. Si $\hat{\bm{g}}_{\lambda}$ est les prévisions de $y_{i}$ pour $\lambda$, alors $\hat{\bm{g}}_{\lambda} = \bm{S}_{\lambda} \bm{y}$. Le nombre de degrés de liberté effectif est donc la somme des éléments de la diagonale de $\bm{S}_{\lambda}$.
 
 
 
 \columnbreak
 \subsection{Régression locale}
-On cherche à minimiser $\sum_{i = 1}^{n} w_{i}(y_{i} - \hat{y}_{i})^{2}$. Pour prédire la valeur de $x_{\ast}$, la procédure est : 
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$s$]	Étendu (\og \textit{span} \fg{})
+\end{description}
+\end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+La régression locale s'apparente aux splines de lissage, sauf que l'approche pour établir le modèle ressemble plus à un \og \textit{$K$-nearest neighbors} \fg{}.
+\end{rappel_enhanced}
+
+
+On minimise $\sum_{i = 1}^{n} w_{i}(y_{i} - \hat{y}_{i})^{2}$. Puis, pour prédire la valeur de $x_{\ast}$, la procédure est : 
 \begin{enumerate}[label = \circled{\arabic*}{trueblue}]
-	\item	Choisir un étendu (\og \textit{span} \fg{}) $s \in [0, 1]$ qui indique la proportion des observations. On a que $s = \frac{v}{n}$.
-	\item	Identifier les $v$ réalisations dont la valeur de $x$ est la plus proche de $x_{\ast}$.
-	\item	Assigner les poids $w_{1}, \dots, w_{n}$ selon leur proximité à $x_{\ast}$.
-	\item	Résoudre pour les estimations de $b_{0, \ast}$ et $b_{1, \ast}$ en minimisant $\sum_{i = 1}^{n} w_{i} (y_{i} - b_{0, \ast} - b_{1, \ast}x_{i})^{2}$.
+	\item	Choisir un étendu \lfbox[conditions]{$s \in [0, 1]$} qui indique la proportion des observations utilisées pour la régression. 
+	\item	Identifier les \lfbox[formula]{$v = sn$} réalisations dont la valeur est la plus proche de $x_{\ast}$.
+	\item	Assigner les $n$ poids $K_{i, \ast} = K(x_{i}, x_{\ast})$ selon leur proximité à $x_{\ast}$ pour $i = 1, \dots, n$.
+	\item	Effectuer une régression pondérée, puis minimiser $\sum_{i = 1}^{n} K_{i, \ast} (y_{i} - b_{0, \ast} - b_{1, \ast} x_{i})^{2}$ afin d'obtenir les estimations $b_{0, \ast}$ et $b_{1, \ast}$.
 	\item	Calculer la prévision comme $b_{0, \ast} + b_{1, \ast}x_{\ast}$.
 \end{enumerate}
 
 
 
 \columnbreak
-\subsection{GAM}
-
+\subsection{Modèle additif généralisé (GAM)}
+\begin{rappel_enhanced}[Contexte]
+Les modèles généralisé additifs (\og \textit{generalized additive models} \fg{}) permettent de généraliser les méthodes ci-dessus \textbf{\textit{pour plusieurs prédicteurs}}.
+\end{rappel_enhanced}
 
 
 
@@ -7866,106 +7943,106 @@ On cherche à minimiser $\sum_{i = 1}^{n} w_{i}(y_{i} - \hat{y}_{i})^{2}$. Pour 
 
 \newpage
 \section{Autres}
-%	https://www.youtube.com/watch?v=0XfXHYDYoBA
-\begin{tabular}{|	c	|	c	|}
-Régression	&	Type de variable réponse	\\\hline
-Linéaire		&	Continue	\\
-Logistique	&	Binaire	\\
-Poisson		&	Données de comptage	\\
-Analyse de survie	&	Temps jusqu'à un événement	\\
-\end{tabular}
-\begin{itemize}
-	\item	Logistique prédit la probabilité qu'un événement ait lieu.
-	\item	Poisson prédit le \og \textit{rate} \fg{} auquel des événements aient lieu.
-		\begin{itemize}
-		\item	C'est-à-dire, le nombre de fois, ou la fréquence, d'un événement sur une période de temps.
-		\item	Donc, le temps est fixé et on observe le nombre d'événements.
-		\item	On ne peut pas simplement appliquer un modèle linéaire, car les données suivent une distribution de Poisson, pas une distribution normale! 
-		\item	Également, nous pouvons modéliser un \og \textit{offset} \fg{} pour considérer le temps d'exposition.
-		\end{itemize}
-	\item	Avec l'analyse de survie, on prédit le temps avant qu'un événement ait lieu.
-		\begin{itemize}
-		\item	Donc, le nombre d'événements est fixé à un et on veut savoir le temps avant qu'il ait lieu.
-		\end{itemize}
-\end{itemize}
-
-\subsection{Poisson}
-Il y a plusieurs façons de modéliser un même modèle de Poisson : 
-\begin{enumerate}
-	\item	Modéliser le taux comme une fonction log-linéaire des $x$ : $\lambda	=	\textrm{e}^{\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}}$.
-		\begin{itemize}
-		\item	Ceci puisque le taux $\lambda$ a une forme exponentielle.
-		\end{itemize}
-	\item	Modéliser le log du taux comme une fonction linéaire des $x$ : $\ln(\lambda)	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}$.
-		\begin{itemize}
-		\item	Ceci permet de traiter le taux $\lambda$ avec un modèle linéaire.
-		\item	L'avantage est la simplicité d'une ligne pour résumer le modèle.
-		\item	Mathématiquement, les deux premières équations sont équivalentes.
-		\end{itemize}
-	\item	Modéliser le log de la fréquence espérée avec un \og \textit{offset} \fg{} : $\ln(\text{E}[Y])	=	\ln(\text{E}[\lambda t])	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}	+	\ln(t)$.
-		\begin{itemize}
-		\item	La deuxième équation représente ce que l'on fait en théorie alors que la troisième représente ce que l'on fait en pratique.
-		\end{itemize}
-\end{enumerate}
-
-Hypothèses du modèle :
-\begin{enumerate}
-	\item	Les observations sont indépendantes.
-		\begin{itemize}
-		\item	Si, par exemple, avoir une récidive augmente la probabilité d'une deuxième récidive, alors le modèle n'est pas adéquat.
-		\end{itemize}
-	\item	Le taux auquel les événements se produisent est une fonction log-linéaire de $x$.
-		\begin{itemize}
-		\item	C'est-à-dire, le log du taux est une fonction linéaire des $x$.
-		\end{itemize}
-	\item	Les variations dans les $x$'s ont des effets multiplicatifs sur le nombre d'événements.
-		\begin{itemize}
-		\item	Par exemple, si on modélise la fréquence d'accidents auto alors on s'attend à ce que le nombre d'accidents sur deux ans soit le double du nombre d'accidents sur un an.
-		\end{itemize}
-	\item	La moyenne = variance = $\lambda$.
-	\item	Le taux est constant.
-		\begin{itemize}
-		\item	Donc, on pose que le taux est fixe.
-		\item	Par exemple, la probabilité d'une récidive pourrait diminuer dans le temps.
-		\end{itemize}
-\end{enumerate}
-
-Le modèle à deux gros problèmes, \underline{premièrement} la \textbf{sur-dispersion} où la variance est supérieure à la moyenne.
-\begin{itemize}
-		\item	C'est-à-dire que les données sont plus variables que ce qui est attendu.
-		\item	Contrairement à la régression linéaire où l'estimation de la moyenne et du SSE est séparée, l'estimation est la même pour le modèle de Poisson.
-		\item	Il y a des multiples raisons pour lesquelles ceci peut arriver : 
-			\begin{enumerate}
-			\item	Nous n'avons pas inclus toutes les variables explicatives significatives dans le modèle.
-			\item	La forme fonctionnelle du modèle est inadéquate (p. ex., les données ne sont pas log linéaires).
-			\item	Une variable est supposée d'être homogène alors qu'elle ne l'est pas.
-				\begin{itemize}
-				\item	P. ex., modéliser un groupe de fumeurs alors qu'il y a des sous-groupes (ceux qui font de l'exercice vs ceux qui n'en font pas, etc.)
-				\end{itemize}
-			\item	etc.
-			\end{enumerate}
-\end{itemize}
-
-On peut calculer la \textbf{dispersion} et on désire qu'elle soit environ de 1.\\
-Pour résoudre la sur-dispersion, on peut : 
-\begin{enumerate}
-	\item	On peut pondérer l'erreur type de tous les coefficients par la racine du paramètre de dispersion.
-		\begin{itemize}
-		\item	Ceci ne change pas les prévisions, plutôt ça augmente l'erreur type pour tenir compte du fait que la variabilité des données observées est plus élevée que ce à quoi on s'attendait.
-		\end{itemize}
-	\item	On peut ajuster un modèle avec une distribution binomiale négative.
-		\begin{itemize}
-		\item	Ceci permet d'estimer la fréquence et la variance séparément.
-		\item	La variance sera plus grande, mais proportionnelle à la moyenne.
-		\end{itemize}
-\end{enumerate}
-
-
-\underline{Deuxièmement}, \textbf{Données gonflées à zéro}. 
-\begin{itemize}
-	\item	L'idée est de modéliser la probabilité que l'événement ait lieu ou pas séparément de la fréquence.
-	\item	On peut modéliser la probabilité avec un modèle logistique est la fréquence avec un modèle de Poisson.
-\end{itemize}
+%%	https://www.youtube.com/watch?v=0XfXHYDYoBA
+%\begin{tabular}{|	c	|	c	|}
+%Régression	&	Type de variable réponse	\\\hline
+%Linéaire		&	Continue	\\
+%Logistique	&	Binaire	\\
+%Poisson		&	Données de comptage	\\
+%Analyse de survie	&	Temps jusqu'à un événement	\\
+%\end{tabular}
+%\begin{itemize}
+%	\item	Logistique prédit la probabilité qu'un événement ait lieu.
+%	\item	Poisson prédit le \og \textit{rate} \fg{} auquel des événements aient lieu.
+%		\begin{itemize}
+%		\item	C'est-à-dire, le nombre de fois, ou la fréquence, d'un événement sur une période de temps.
+%		\item	Donc, le temps est fixé et on observe le nombre d'événements.
+%		\item	On ne peut pas simplement appliquer un modèle linéaire, car les données suivent une distribution de Poisson, pas une distribution normale! 
+%		\item	Également, nous pouvons modéliser un \og \textit{offset} \fg{} pour considérer le temps d'exposition.
+%		\end{itemize}
+%	\item	Avec l'analyse de survie, on prédit le temps avant qu'un événement ait lieu.
+%		\begin{itemize}
+%		\item	Donc, le nombre d'événements est fixé à un et on veut savoir le temps avant qu'il ait lieu.
+%		\end{itemize}
+%\end{itemize}
+%
+%\subsection{Poisson}
+%Il y a plusieurs façons de modéliser un même modèle de Poisson : 
+%\begin{enumerate}
+%	\item	Modéliser le taux comme une fonction log-linéaire des $x$ : $\lambda	=	\textrm{e}^{\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}}$.
+%		\begin{itemize}
+%		\item	Ceci puisque le taux $\lambda$ a une forme exponentielle.
+%		\end{itemize}
+%	\item	Modéliser le log du taux comme une fonction linéaire des $x$ : $\ln(\lambda)	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}$.
+%		\begin{itemize}
+%		\item	Ceci permet de traiter le taux $\lambda$ avec un modèle linéaire.
+%		\item	L'avantage est la simplicité d'une ligne pour résumer le modèle.
+%		\item	Mathématiquement, les deux premières équations sont équivalentes.
+%		\end{itemize}
+%	\item	Modéliser le log de la fréquence espérée avec un \og \textit{offset} \fg{} : $\ln(\text{E}[Y])	=	\ln(\text{E}[\lambda t])	=	\beta_{0} + \beta_{1}x_{1} + \dots + \beta_{p}x_{p}	+	\ln(t)$.
+%		\begin{itemize}
+%		\item	La deuxième équation représente ce que l'on fait en théorie alors que la troisième représente ce que l'on fait en pratique.
+%		\end{itemize}
+%\end{enumerate}
+%
+%Hypothèses du modèle :
+%\begin{enumerate}
+%	\item	Les observations sont indépendantes.
+%		\begin{itemize}
+%		\item	Si, par exemple, avoir une récidive augmente la probabilité d'une deuxième récidive, alors le modèle n'est pas adéquat.
+%		\end{itemize}
+%	\item	Le taux auquel les événements se produisent est une fonction log-linéaire de $x$.
+%		\begin{itemize}
+%		\item	C'est-à-dire, le log du taux est une fonction linéaire des $x$.
+%		\end{itemize}
+%	\item	Les variations dans les $x$'s ont des effets multiplicatifs sur le nombre d'événements.
+%		\begin{itemize}
+%		\item	Par exemple, si on modélise la fréquence d'accidents auto alors on s'attend à ce que le nombre d'accidents sur deux ans soit le double du nombre d'accidents sur un an.
+%		\end{itemize}
+%	\item	La moyenne = variance = $\lambda$.
+%	\item	Le taux est constant.
+%		\begin{itemize}
+%		\item	Donc, on pose que le taux est fixe.
+%		\item	Par exemple, la probabilité d'une récidive pourrait diminuer dans le temps.
+%		\end{itemize}
+%\end{enumerate}
+%
+%Le modèle à deux gros problèmes, \underline{premièrement} la \textbf{sur-dispersion} où la variance est supérieure à la moyenne.
+%\begin{itemize}
+%		\item	C'est-à-dire que les données sont plus variables que ce qui est attendu.
+%		\item	Contrairement à la régression linéaire où l'estimation de la moyenne et du SSE est séparée, l'estimation est la même pour le modèle de Poisson.
+%		\item	Il y a des multiples raisons pour lesquelles ceci peut arriver : 
+%			\begin{enumerate}
+%			\item	Nous n'avons pas inclus toutes les variables explicatives significatives dans le modèle.
+%			\item	La forme fonctionnelle du modèle est inadéquate (p. ex., les données ne sont pas log linéaires).
+%			\item	Une variable est supposée d'être homogène alors qu'elle ne l'est pas.
+%				\begin{itemize}
+%				\item	P. ex., modéliser un groupe de fumeurs alors qu'il y a des sous-groupes (ceux qui font de l'exercice vs ceux qui n'en font pas, etc.)
+%				\end{itemize}
+%			\item	etc.
+%			\end{enumerate}
+%\end{itemize}
+%
+%On peut calculer la \textbf{dispersion} et on désire qu'elle soit environ de 1.\\
+%Pour résoudre la sur-dispersion, on peut : 
+%\begin{enumerate}
+%	\item	On peut pondérer l'erreur type de tous les coefficients par la racine du paramètre de dispersion.
+%		\begin{itemize}
+%		\item	Ceci ne change pas les prévisions, plutôt ça augmente l'erreur type pour tenir compte du fait que la variabilité des données observées est plus élevée que ce à quoi on s'attendait.
+%		\end{itemize}
+%	\item	On peut ajuster un modèle avec une distribution binomiale négative.
+%		\begin{itemize}
+%		\item	Ceci permet d'estimer la fréquence et la variance séparément.
+%		\item	La variance sera plus grande, mais proportionnelle à la moyenne.
+%		\end{itemize}
+%\end{enumerate}
+%
+%
+%\underline{Deuxièmement}, \textbf{Données gonflées à zéro}. 
+%\begin{itemize}
+%	\item	L'idée est de modéliser la probabilité que l'événement ait lieu ou pas séparément de la fréquence.
+%	\item	On peut modéliser la probabilité avec un modèle logistique est la fréquence avec un modèle de Poisson.
+%\end{itemize}
 
 
 
