@@ -1,0 +1,32 @@
+---
+title: "Demande d'accréditation d'examens professionnels en ligne pour l'ICA"
+author: "Jeanne Simard"
+date: "28/10/2020"
+output:
+  pdf_document: default
+  html_notebook: default
+urlcolor: blue
+---
+
+Ce document a été créé dans le but d'expliquer la démarche pour obtenir une accréditation d'examen professionnel en ligne sur le site de l'ICA. Avant de commencer, assurez-vous d'avoir en main votre relevé de notes officiel (disponible sur Mon Portail), et de l'avoir scanné.
+
+## Étape 1
+Se rendre sur la page des [demandes de crédit en vertu du PAU](https://www.cia-ica.ca/fr/adhesion/programme-d-agr%C3%A9ment-universitaire-(pau)-de-l-ica/renseignements-pour-les-candidats/demandes-de-cr%C3%A9dit-en-vertu-du-pau)
+
+## Étape 2
+Dans la première liste de points sur cette page, le mot « formulaire » apparaît en bleu dans le premier point. Cliquer sur le mot. Vous devriez être redigiré sur la page d'ouverture de session.
+
+## Étape 3
+Si vous n'avez pas encore de compte, créez-vous un compte. Sinon, connectez-vous à votre compte.
+
+## Étape 4
+Une fois connecté, vous tomberez directement sur la page de demande pour le PAU. Vérifiez que vos coordonées sont toujours exactes, puis cliquez sur « suivant » au bas de la page, à droite.
+
+## Étape 5
+Remplissez les informations des deux prochaines pages. La liste des cours nécessairent pour chaque accréditation, ainsi que la note de passage, se situe sur le [site de cours du baccalauréat en actuariat](https://sitescours.monportail.ulaval.ca/ena/site/accueil?idSite=99205&idPage=2078272). 
+
+## Étape 6
+Une fois la demande complétée, il faut payer la facture. Vous pouvez trouver votre facture sur votre profil, dans la section « Commandes » au bas de la page de Mon Profil. 
+
+## Étape 7
+Lorsque la facture est payée, vous devriez recevoir un courriel vous avisant que votre demande a été reçu et qu'elle sera analysée.
