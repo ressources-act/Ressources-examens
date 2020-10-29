@@ -1077,9 +1077,9 @@ Visuellement, nous avons une aire de $(1 - k)/2$ dans les deux queues et les poi
 % Text Node
 \draw (185,39) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize,color={rgb, 255:red, 74; green, 144; blue, 226 }  ,opacity=1 ] [align=left] {$\displaystyle k$};
 % Text Node
-\draw (111.83,103.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{( 1+k) /2}$};
+\draw (111.83,103.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{( 1-k) /2}$};
 % Text Node
-\draw (223,103.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{( 1-k) /2}$};
+\draw (223,103.33) node [anchor=north west][inner sep=0.75pt]   [align=left] {$\displaystyle \chi ^{2}_{( 1+k) /2}$};
 \end{tikzpicture}
 \end{center}
 
@@ -1406,7 +1406,7 @@ On dénote habituellement par $\alpha$ le \textbf{seuil de signifiance}, ou la \
 
 \bigskip
 
-En termes mathématiques, on définit \lfbox[formula]{$\alpha	=	{\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} | {\color{amethyst}\theta} \right\}$}. 
+En termes mathématiques, on définit \lfbox[formula]{$\displaystyle \alpha = {\color{indigo(web)}\max}_{{\color{amethyst}\theta} \in {\color{pastelred}\Theta_{0}}} \Pr\left\{{\color{bondiblue!80!black}(X_{1}, \dots, X_{n})} {\color{armygreen}\in} {\color{bulgarianrose}\mathcal{C}} | {\color{amethyst}\theta} \right\}$}. 
 
 \bigskip
 
@@ -1451,7 +1451,7 @@ $|\textcolor{burntorange}{t}| < \textcolor{amethyst}{c}$	&	Ne rejete pas $\textr
 
 
 \subsubsection{Résumé graphique des régions critiques}\label{subsubsec:CritRegGraph}
-On résume les régions critiques pour les 3 type de test : 
+On résume les \textcolor{brickred}{régions critiques} pour les 3 types d'hypothèses :
 \begin{center}
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
@@ -1608,7 +1608,7 @@ Premièrement, on généralise la \hyperlink{converge-prob}{convergence en proba
 \begin{description}
 	\item[$\{Y_{n}\}$]	Séquence de variables aléatoires indépendantes et identiquement distribuées.
 	\item[$Y$]	Variable aléatoire comprise dans $\{Y_{n}\}$ avec moyenne $\mu$ et variance $	\sigma^{2}$.
-	\item[$S_{n}$]	La somme des $n$ variables aléatoires, $S_{n} = Y_{1} + Y_{2} + \cdot + Y_{n}$.
+	\item[$S_{n}$]	La somme des $n$ variables aléatoires, $S_{n} = Y_{1} + Y_{2} + \dots + Y_{n}$.
 \end{description}
 \end{distributions}
 
@@ -1840,7 +1840,7 @@ Pour $n$ qui est grand, le \hyperlink{TCLDef}{théorème centrale limite} impliq
 
 
 \subsubsection{2 échantillons}
-Pour $n_{1}$ et $n_{2}$ qui sont grands, le \hyperlink{TCLDef}{théorème centrale limite} implique que \lfbox[formula]{$\bar{X}_{1} - \bar{X}_{2} \overset{D}{\rightarrow} \mathcal{N}\left(q_{1} - q_{2}, \frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}\right)$}. Il s'ensuit que \lfbox[formula]{$t = \frac{\hat{q}_{1} - \hat{q}_{2} - h}{\sqrt{\frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}}}$} où \lfbox[formula]{$T \sim \mathcal{N}(0, 1)$}.
+Pour $n_{1}$ et $n_{2}$ qui sont grands, le \hyperlink{TCLDef}{théorème centrale limite} implique que \lfbox[formula]{$\bar{X}_{1} - \bar{X}_{2} \overset{D}{\rightarrow} \mathcal{N}\left(q_{1} - q_{2}, \frac{q_{1}(1 - q_{1})}{n_{1}} + \frac{q_{2}(1 - q_{2})}{n_{2}}\right)$}. Il s'ensuit que \lfbox[formula]{$t = \frac{\hat{q}_{1} - \hat{q}_{2} - h}{\sqrt{\frac{\hat{q}_{1}(1 - \hat{q}_{1})}{n_{1}} + \frac{\hat{q}_{2}(1 - \hat{q}_{2})}{n_{2}}}}$} où \lfbox[formula]{$T \sim \mathcal{N}(0, 1)$}.
 
 \paragraph{Note}	Dans le cas où nous avons 1 échantillon, il faut juste connaître $q$ pour connaître la variance. Dans le cas où nous avons 2 échantillons, il faut connaître $q_{1}$ et $q_{2}$ individuellement alors que nous connaissons uniquement la différence $h$. C'est pourquoi l'erreur type de la statistique diffère pour les scénarios.
 
@@ -2442,14 +2442,13 @@ Soit une constante $k > 0$ et la région critique $\mathcal{C}$ de taille $\alph
 \begin{enumerate}
 	\item	si l'échantillon aléatoire est contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\leq	k$}.
 %	\item	si l'échantillon aléatoire n'est pas contenu dans la région critique, \lfbox[conditions]{$x \in \mathcal{C}^{\complement}$}, alors \lfbox[formula]{$\frac{\mathcal{L}(\theta_{0} ; \bm{x})}{\mathcal{L}(\theta_{1} ; \bm{x})}	\geq	k$}.
-	\item	\lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
+	\item	La taille \lfbox[formula]{$\alpha	=	\Pr\left\{ (X_{1}, \dots, X_{n}) \in \mathcal{C}| \theta_{1} \right\}	=	\alpha(\delta^{\ast})$}.
 \end{enumerate}
 
 Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} de taille $\alpha$.
 
-\paragraph{Note}	Réécrire la première égalité sous la forme de $\mathcal{L}(\textcolor{ao(english)}{\theta_{0}}; \bm{x}) \leq k\mathcal{L}(\textcolor{teal}{\theta_{1}}; \bm{x})$ mène à l'interprétation qu'il doit être plus \textit{vraisemblable} que l'échantillon soit distribué selon \textcolor{teal}{l'hypothèse alternative} ($\textcolor{teal}{\theta = \theta_{1}}$) que \textcolor{ao(english)}{l'hypothèse nulle} ($\textcolor{ao(english)}{\theta = \theta_{0}}$) lorsqu'il est contenu dans la région critique ($\bm{x} \in \mathcal{C}$) puisque que l'on rejette \textcolor{ao(english)}{l'hypothèse nulle} $\mathrm{H}_{0}$. On peut dire que les données semblent \textit{favoriser} l'hypothèse alternative. L'inverse peut être déduit à partir de la deuxième égalité.
-
-\paragraph{Note}	L'approche est typiquement d'écrire le ratio puis d'essayer de trouver une statistique afin de calculer une probabilité avec sa distribution. Voir les exemples ci-dessous.
+\paragraph{Note}	Réécrire la première égalité sous la forme de $\mathcal{L}(\textcolor{ao(english)}{\theta_{0}}; \bm{x}) \leq k\mathcal{L}(\textcolor{teal}{\theta_{1}}; \bm{x})$ mène à l'interprétation qu'il doit être plus \textit{vraisemblable} que l'échantillon soit distribué selon \textcolor{teal}{l'hypothèse alternative} ($\textcolor{teal}{\theta = \theta_{1}}$) que \textcolor{ao(english)}{l'hypothèse nulle} ($\textcolor{ao(english)}{\theta = \theta_{0}}$) lorsqu'il est contenu dans la région critique ($\bm{x} \in \mathcal{C}$) puisque que l'on rejette \textcolor{ao(english)}{l'hypothèse nulle} $\mathrm{H}_{0}$. On peut dire que les données semblent \textit{favoriser} l'hypothèse alternative.
+% L'inverse peut être déduit à partir de la deuxième égalité.
 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 %%%	Neyman-Pearsoon selon les NDC de M.-P.	%%%%	
@@ -2465,13 +2464,16 @@ Alors $\mathcal{C}$ est \textbf{\textit{la}} région critique \textbf{optimale} 
 %%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	%%%%	
 \end{definitionNOHFILL}
 
+Pour appliquer le \textit{\color{bleudefrance}\underline{\hyperlink{NeyPearThe}{\color{bleudefrance} lemme de Neyman-Pearson}}} l'approche est typiquement d'écrire le ratio, puis de trouver une statistique permettant de calculer une probabilité avec sa distribution. Voici quelques exemples qui clarifient cette notion :
 
 \begin{formula}{Exemple cas continu}
-Pour l'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ tiré d'une distribution normale $\mathcal{N}(\mu = \theta, \sigma^{2} = 0)$, on fixe les hypothèses suivantes : 
+Pour l'échantillon aléatoire $\bm{X}	=	(X_{1}, \dots, X_{n})$ tiré d'une distribution normale $\mathcal{N}(\mu = \theta, \sigma^{2} = 1)$, on fixe les hypothèses suivantes : 
 \begin{align*}
 	\mathrm{H}_{0}	&:	\theta	=	0	\\
 	\mathrm{H}_{1}	&:	\theta	=	1
 \end{align*}
+
+\bigskip
 
 On souhaite identifier le test le plus puissant pour un seuil fixé $\alpha$.
 
@@ -2516,13 +2518,14 @@ Par exemple, sous l'hypothèse nulle $\bar{X} \overset{\mathrm{H}_{0}}{\sim} \ma
 \begin{formula}{Exemple cas discret}
 Pour la variable aléatoire discrète $X$, on fixe les hypothèses suivantes :
 \begin{align*}
-	\mathrm{H}_{0}	&:	\theta	=	1\\
+	\mathrm{H}_{0}	&:	\theta	=	1	\\
 	\mathrm{H}_{1}	&:	\theta	=	2
 \end{align*}
 
 \bigskip
 
-On souhaite identifier meilleur région critique pour les tests de taille $0.06$. Cependant, puisque la variable aléatoire est discrète, on ne peut pas manipuler le ratio des vraisemblances. En lieu, 
+On souhaite identifier meilleur région critique pour les tests de taille $\alpha = 0.06$. Cependant, puisque la variable aléatoire est discrète, on ne peut pas manipuler le ratio des vraisemblances. Plutôt :
+ 
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	On produit le tableau des valeurs de la fonction de masse des probabilités sous les deux hypothèses : 
 	\begin{center}
@@ -2541,7 +2544,7 @@ $p(x | \theta = 2)$	&	0.02&	0.24	&	0.25	&	0.25	&	0.24	\\\hline
 $\Lambda$	&	0.50	&	0.208	&	2	&	1.72	&	0.042	\\\hline
 \end{tabular}
 	\end{center}
-	\item	Puisqu'on cherche à rejeter l'hypothèse nulle, il s'ensuit qu'on cherche des petites valeurs du ratio. Donc, on trie en ordre croissante les valeurs de $x$ : 
+	\item	Par défaut, on suppose que les données sont distribuées selon l'hypothèse nulle. Dans le cas contraire, la vraisemblance sous l'hypothèse nulle sera grande et le ratio des vraisemblances faible. Donc, on cherche des petites valeurs du ratio. Puis, on trie les valeurs de $x$ en ordre croissante du ratio des vraisemblances : 
 	\begin{center}
 \begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
 \hline\rowcolor{airforceblue} 
@@ -2574,12 +2577,13 @@ Bien que le théorème de Neyman-Pearson est très utile, le fait qu'il est seul
 
 \bigskip
 
-Bien qu'on ne peut pas l'utiliser directement pour des hypothèses composées, le théorème de Neyman-Pearson peut servir d'outil pour identifier le \textit{test uniformément le plus puissant}. La situation typique est que l'hypothèse nulle est simple alors que l'hypothèse alternative est composée. L'astuce pour appliquer le théorème de Neyman-Pearson aux hypothèses composées est de voir une hypothèse composée comme un regroupement d'hypothèses simples (e.g. $\theta > 2$ implique $\theta = 3$, $\theta = 4$, $\theta = 5$, etc.)
+Bien qu'on ne peut pas l'utiliser directement pour des hypothèses composées, le théorème de Neyman-Pearson peut servir d'outil pour identifier le \textit{\textit{test uniformément le plus puissant}}. La situation typique est que l'hypothèse nulle est simple alors que l'hypothèse alternative est composée. L'astuce pour appliquer le théorème de Neyman-Pearson aux hypothèses composées est de voir une hypothèse composée comme un regroupement d'hypothèses simples (e.g. $\theta > 2$ implique $\theta = 3$, $\theta = 4$, $\theta = 5$, etc.)
 
 \bigskip	
 
 On cherche donc la meilleur région critique pour tester l'hypothèse nulle à toutes les hypothèses alternatives simples contenues dans l'hypothèse alternative composée. Bref, le test uniformément le plus puissant a la meilleur région critique \textbf{pour toutes les combinaisons possibles d'hypothèses simples contenues dans l'hypothèse alternative composée}.
 \end{rappel_enhanced}
+
 
 \begin{definitionNOHFILL}[Test uniformément le plus puissant]
 Un test $\delta^{*}$ est le test de l'hypothèse \underline{simple} $\mathrm{H}_{0}$ contre l'hypothèse \underline{composée} $\mathrm{H}_{1}$ \textbf{uniformément le plus puissant} de taille $\alpha$ s'il a la plus grande puissance, $\gamma(\theta \in \Theta_{1} | \delta^{\ast})$, parmi tous les tests $\delta$ de taille $\alpha$, \textbf{pour toutes les valeurs possibles de l'hypothèse alternative} ($\theta \in \Theta_{1}$). 
@@ -2595,6 +2599,7 @@ En termes mathématiques, c'est le test $\delta^{\ast}$ tel que \lfbox[formula]{
 \end{itemize}
 \end{definitionNOHFILL}
 
+
 La procédure pour trouver le test \textit{uniformément le plus puissant} est de poser un $\theta_{1}$ fixe afin d'évaluer la forme du ratio de la vraisemblance. Selon la forme de l'hypothèse et la croissance, ou décroissance, du ratio $\Lambda$, on peut établir une région critique valide pour toutes les hypothèse alternatives simples contenues dans l'hypothèse alternative composée. 
 
 \begin{formula}{Exemple avec une distribution normale}
@@ -2604,6 +2609,7 @@ Pour l'échantillon aléatoire $\bm{X} = (X_{1}, X_{2}, \dots, X_{n})$ tiré d'u
 	\mathrm{H}_{1}	&:	\theta	>	1
 \end{align*}
 
+\bigskip
 \begin{enumerate}[label = \rectangled{\arabic*}{lightgray}]
 	\item	On trouve le ratio $\Lambda$ : 
 	\begin{align*}
@@ -2612,8 +2618,8 @@ Pour l'échantillon aléatoire $\bm{X} = (X_{1}, X_{2}, \dots, X_{n})$ tiré d'u
 		=	\frac{\frac{1}{(1)^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2(1)^{2}}}}{\frac{1}{\theta_{1}^{n}(\sqrt{2\pi})^{n}}\textrm{e}^{-\frac{\sum_{i = 1}^{n} x_{i}^{2}}{2\theta_{1}^{2}}}}	
 		=	\theta_{1}^{n} \textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2}\left(1 - \frac{1}{\theta_{1}^{2}}\right)}	
 	\end{align*}
-	\item	On observe que le ratio $\Lambda$ décroit alors que $\sum x^{2}_{i}$ augmente.
-	\item	Puisque le ratio est décroissant, un test uniformément le plus puissant aura une région critique définie par $\sum x_{i}^{2} \geq k$, où $k$ est choisi selon la taille $\alpha$.
+	\item	On observe que le ratio $\Lambda$ décroit alors que $\sum x^{2}_{i}$ augmente ce qui confirme que l'on peut isoler une région critique.
+	\item	Puisque le ratio $\Lambda$ est décroissant, un test \textit{uniformément} le plus puissant aura une région critique définie par $\sum x_{i}^{2} \geq k$, où $k$ est choisi selon la taille $\alpha$.
 		\begin{align*}
 		\theta_{1}^{n} \textrm{e}^{-\frac{\sum_{i = 1}^{n}x^{2}_{i}}{2}\left(1 - \frac{1}{\theta_{1}^{2}}\right)}	
 		&\leq	c	&
@@ -2629,7 +2635,7 @@ Pour l'échantillon aléatoire $\bm{X} = (X_{1}, X_{2}, \dots, X_{n})$ tiré d'u
 
 \bigskip
 
-L'approche prise dans l'exemple ci-dessus est de poser un $\theta_{0} = \text{un nombre}$ puis de poser une constante $\theta_{1} > \theta_{0}$. Cependant, on peut généraliser l'approche au cas où les deux hypothèses sont composées (e.g. $\textrm{H}_{0}: \theta \leq 2$ et $\textrm{H}_{1}: \theta > 2$), on définit le \textbf{ratio de vraisemblance monotone}. 
+L'approche prise dans l'exemple ci-dessus est de poser un $\theta_{0} = \text{un nombre}$, puis de poser une constante $\theta_{1} > \theta_{0}$. Cependant, on peut généraliser l'approche au cas où les deux hypothèses sont composées (e.g. $\textrm{H}_{0}: \theta \leq 2$ et $\textrm{H}_{1}: \theta > 2$), on définit le \textbf{ratio de vraisemblance monotone}. 
 
 \begin{definitionNOHFILLsub}[Ratio de vraisemblance monotone]
 Soit les constantes $a$ et $b$ tel que $a < b$ qui sont des valeurs possibles de $\theta$ (alias, $a, b \in \Theta$). Alors, on définit \lfbox[formula]{$\Lambda = \frac{\mathcal{L}(a)}{\mathcal{L}(b)}$}. 
@@ -2651,7 +2657,7 @@ croissant	&	$y \leq c$	&	$\Pr(Y \leq c | \theta = h)$	\\\hline
 \end{center}
 \end{definitionNOHFILLsub}
 
-\paragraph{Note}	On voit donc qu'en posant $a = \theta_{0} = \text{un nombre}$, cette approche est équivalente à celle de l'exemple ci-dessus.
+\paragraph{Note}	On voit donc qu'en posant $\theta = \theta_{0} = \text{un nombre}$, cette approche est équivalente à celle de l'exemple ci-dessus.
 
 \paragraph{Note}	De façon générale, on peut insérer l'EMV dans le ratio de vraisemblance pour un test bilatéral.
 
@@ -2805,9 +2811,7 @@ L'hypothèse du test est que les espérances théoriques du nombre d'observation
 
 La statistique du test calcule les divergences pour chacun des intervalles : \lfbox[formula]{$\displaystyle t = \sum_{j = 1}^{k} \frac{(n_{j} - nq_{j})^{2}}{nq_{j}}$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{(k - 1 - r)}$}. 
 
-\paragraph{Note}	Le $k - 1$ des degrés de liberté est dut au fait que nous avons $k$ données empiriques sous la contrainte que $\sum_{j = 1}^{n} n_{j} = n$. Donc, il y a seulement $k - 1$ données estimées. Le $r$ correspond au nombre de paramètres estimés de la distribution théorique. Par exemple, pour une distribution normale avec $\sigma = 2$ et $\mu$ inconnu, $r = 1$.
-
-%	la région critique est $t \geq \chi^{2}_{(1 - \alpha, k - 1 - r)}$
+\paragraph{Note}	Le $k - 1$ des degrés de liberté est dut au fait que nous avons $k$ données empiriques sous la contrainte que $\sum_{j = 1}^{n} n_{j} = n$. Donc, il y a seulement $k - 1$ données estimées. Le $r$ correspond au nombre de paramètres estimés de la distribution théorique. Par exemple, pour une distribution normale avec $\sigma = 2$ et $\mu$ inconnu, $r = 1$. La région critique est $t \geq \chi^{2}_{(1 - \alpha, k - 1 - r)}$.
 \end{definitionNOHFILL}
 
 
@@ -2864,9 +2868,7 @@ Donc, le tableau de contingence est de la forme :
 
 \bigskip
 
-La statistique du test a le même raisonnement que la statistique pour le test d'adéquation du khi carré : \lfbox[formula]{$\displaystyle t = \frac{1}{n} \sum_{i = 1}^{a} \sum_{j = 1}^{b} \frac{(n_{ij}n - n_{i\cdot} n_{\cdot j})^{2}}{n_{i\cdot} n_{\cdot j}}$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{(a - 1)(b - 1)}$}. 
-
-%	la région critique est $t \geq \chi^{2}_{1 - \alpha, (a - 1)(b - 1)}$
+La statistique du test a le même raisonnement que la statistique pour le test d'adéquation du khi carré : \lfbox[formula]{$\displaystyle t = \frac{1}{n} \sum_{i = 1}^{a} \sum_{j = 1}^{b} \frac{(n_{ij}n - n_{i\cdot} n_{\cdot j})^{2}}{n_{i\cdot} n_{\cdot j}}$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{(a - 1)(b - 1)}$}. La région critique est $t \geq \chi^{2}_{1 - \alpha, (a - 1)(b - 1)}$.
 \end{definitionNOHFILL}
 
 
@@ -3168,7 +3170,7 @@ Si l'échantillon est un \textbf{échantillon aléatoire}, on peut identifier la
 	f_{X_{(k)}}(x)
 	&=	\frac{n!}{\textcolor{teal}{(k - 1)!} \textcolor{cobalt}{1!} \textcolor{cyan}{(n - k)!}} \textcolor{teal}{\underset{\text{observations } < \ k}{\underbrace{\big[ F_{X}(x) \big]^{k - 1}}}} \textcolor{cobalt}{\overset{\text{observation } = \ k}{\overbrace{f_{X}(x)}}} \textcolor{cyan}{\underset{\text{observations } > \ k}{\underbrace{\big[ S_{X}(x) \big]^{n - k}}}} \\
 	F_{X_{(k)}}(x)
-	&=	\underset{\substack{\text{Probabilité qu'au moins $k$ des $n$}\\ \text{ observations $X_{k}$  sont $\le x$}}}{\underbrace{\sum_{i = k}^{n} \binom{n}{i} [F_{X}(x)]^{i} [1 - F_{X}(x)]^{n - i}}}
+	&=	\underset{\substack{\text{Probabilité qu'au moins $k$ des $n$}\\ \text{ observations $X_{k}$  sont $\le x$}}}{\underbrace{\sum_{i = k}^{n} \binom{n}{i} [F_{X}(x)]^{i} [S_{X}(x)]^{n - i}}}
 \end{align*}
 
 
@@ -8600,11 +8602,11 @@ Pour une variable aléatoire continue $X$, on dénote sa fonction de densité pa
 \end{itemize}
 
 De façon semblable à la PMF, \lfbox[conditions]{$f(x)	\geq	0$} et \lfbox[conditions]{$\int_{-\infty}^{\infty} f(x)dx	=	1$}.
-\begin{itemize}
-	\item	La différence entre les conditions pour la PMF et la PDF est que la fonction de densité peut être supérieure à $1$.
-	\item	Puisqu'elle ne représente pas une probabilité, elle ne doit pas être inférieure (ou égale) à 1.
-\end{itemize}
 \end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Contexte]
+La différence entre les conditions pour la PMF et la PDF est que la fonction de densité peut être supérieure à $1$. Puisqu'elle ne représente \textbf{\underline{pas}} une probabilité, elle ne doit pas être inférieure (ou égale) à 1 !
+\end{rappel_enhanced}
 
 
 \begin{definitionNOHFILL}[Fonction de répartition (CDF)]
@@ -8620,12 +8622,10 @@ La fonction de survie \lfbox[formula]{$S_{X}(x)	=	\Pr(X	>	x)$} tel que \lfbox[co
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Fonction de hasard]
-La fonction de hasard \lfbox[formula]{$h_{X}(x)	=	\frac{f(x)}{S(x)}$} tel que \lfbox[conditions]{$h(x)	\geq	0$}.
-
-\begin{itemize}
-	\item	Par la définition, on déduit qu'elle est \textbf{seulement applicable pour les v.a. continues}.
-	\item	La fonction de hasard mesure la \textbf{vraisemblance} que la v.a. soit égale à $x$ en gonflant la PDF moins il devient vraisemblable qu'elle soit supérieure à $x$.
-\end{itemize}
+\begin{rappel_enhanced}[Contexte]
+La fonction de hasard mesure la \textbf{vraisemblance} que la v.a. soit égale à $x$. La fonction de hasard « gonfle » la fonction de densité lorsqu'il devient de moins en moins vraisemblable qu'elle soit supérieure à $x$. De la définition, on déduit que c'est un concept seulement applicable pour les v.a. \underline{continues}.
+\end{rappel_enhanced}
+La fonction de hasard \lfbox[formula]{$h_{X}(x)	=	\frac{f(x)}{S(x)}$} tel que \lfbox[conditions]{$h(x)	\geq	0$}. 
 
 \begin{itemize}
 	\item	En anglais, \og \textit{hazard function} \fg{}, \og \textit{hazard rate} \fg{}, \og \textit{failure rate function} \fg{} ou même \og \textit{force of mortality} \fg{}.
@@ -8633,10 +8633,7 @@ La fonction de hasard \lfbox[formula]{$h_{X}(x)	=	\frac{f(x)}{S(x)}$} tel que \l
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Fonction de hasard cumulative]
-La fonction de hasard cumulative \lfbox[formula]{$H_{X}(x)	=	\int_{-\infty}^{x}h(t)dt$}.
-\begin{itemize}
-	\item	Également, \lfbox[formula]{$H(x)	=	-\ln S(x)$} ou \lfbox[formula]{$S(x)	=	\textrm{e}^{-H(x)}$}.
-\end{itemize}
+La fonction de hasard cumulative \lfbox[formula]{$H_{X}(x) = \int_{-\infty}^{x}h(t)dt$}. Également, \lfbox[formula]{$H(x)	=	-\ln S(x)$} ou \lfbox[formula]{$S(x)	=	\textrm{e}^{-H(x)}$}.
 \end{definitionNOHFILL}
 
 \paragraph{Note}	Voir la sous-section \textit{\underline{\nameref{subsec:reliabilityVaria}}} de la section sur la \textit{\underline{\nameref{sec:reliability}}} du chapitre \textit{\underline{\nameref{chapt:varia}}} pour l'interprétation de la distribution en fonction de la fonction de hasard et de la fonction de hasard cumulative.
@@ -8687,7 +8684,7 @@ Le $100q^{\text{e}}$ \textbf{\textit{centile}} d'une v.a. $X$ est la valeur $\pi
 
 \begin{definitionNOHFILL}[\og \textit{Conditionnal Tail Expectation (\textbf{CTE})} \fg{}]
 \begin{rappel_enhanced}[Contexte]
-La CTE sert à évaluer la \textit{\textbf{sévérité}} des pertes extrêmes. 
+La CTE sert à évaluer la \textit{\textbf{sévérité}} des pertes extrêmes. Ceci correspond au cas continu de la mesure \og \textit{Tail Value-at-Risk (TVaR)} \fg{} vue en introduction à l'actuariat II (ACT-2001).
 
 \bigskip
 
@@ -8703,23 +8700,24 @@ Par exemple, si la $CTE_{0.95}(X)	=	5000$ cela veut dire que la moyenne des pert
 
 \begin{itemize}
 	\item	On surnomme $1	-	q$ la \og \textit{tolerance probability} \fg{}.
-	\item	La CTE est le cas continu de la \og \textit{Tail-Value-at-Risk (TVaR)} \fg{}.
 \end{itemize}
 \end{definitionNOHFILL}
 
 
 \begin{definitionNOHFILL}[Mode]
 \begin{rappel_enhanced}[Contexte]
-Le mode est la réalisation qui a lieu le plus souvent. \\
-Par exemple, en anglais la lettre E est la lettre la plus utilisée dans le dictionnaire. Elle représente donc le \textit{mode} de la langue anglaise.
+Le mode est la réalisation qui survient le plus souvent. 
+
+\bigskip
+
+Par exemple, la lettre E est la lettre la plus utilisée dans le dictionnaire anglais. Elle représente donc le \textit{mode} de la langue anglaise.
 \end{rappel_enhanced}
 
 En termes mathématiques, le mode est le point qui maximise la PMF/PDF.
 
 \bigskip
 
-Dans le cas continu, si la distribution : 
-on peut simplement dériver la PDF et trouver le point qui la rend égale à zéro.
+Dans le cas continu, on peut simplement dériver la PDF et trouver le point qui la rend égale à zéro. Si la distribution : 
 \begin{itemize}
 	\item	est unimodal, c'est-à-dire qu'elle a une « bosse », alors \lfbox[formula]{$\text{mode}	=	x \text{ tel que } f'(x)	=	0$}.
 	\item	est strictement croissant ou décroissant, le mode sera une des deux extrémités.
@@ -8763,11 +8761,11 @@ on peut simplement dériver la PDF et trouver le point qui la rend égale à zé
 \end{definitionNOHFILLsub}
 
 \begin{definitionNOHFILLsub}[Kurtosis]
-\lfbox[formula]{$\text{Kurtosis}	=	\frac{\mu_{4}}{\sigma^{4}}		=	\frac{\mu'_{4} - 4\mu'_{3}\mu + 6\mu'_{2}\mu^{2} - 3\mu^{4}}{\sigma^{3}}$}.
-
-\bigskip
-
+\begin{rappel_enhanced}[Contexte]
 Le kurtosis mesure l'aplatissement d'une distribution et peut aider à juger la vraisemblance qu'une distribution produise des valeurs extrêmes (ou \og \textit{outliers} \fg{}).
+\end{rappel_enhanced}
+
+\lfbox[formula]{$\text{Kurtosis}	=	\frac{\mu_{4}}{\sigma^{4}}		=	\frac{\mu'_{4} - 4\mu'_{3}\mu + 6\mu'_{2}\mu^{2} - 3\mu^{4}}{\sigma^{3}}$}.
 
 \bigskip
 
@@ -15288,7 +15286,7 @@ Un modèle $AR(2)$ est stationnaire si :
 %Pour l'autocorrélation de décalage $k$, plus la valeur de $\alpha$ est élevée, alors plus le corrélogramme va lentement approcher zéro. De plus, si $\alpha$ est négatif, alors l'ACF va alterner entre positif et négatif.
 \end{definitionNOHFILL}
 
-Pour effectuer des prévisions, on utilise l'équation du modèle de façon récursive. De plus, on trouve que \lfbox[formula]{$se(\hat{x}_{n + l} = \sqrt{\text{Var}(X_{n + l} - \hat{X}_{n + l})}$}.
+Pour effectuer des prévisions, on utilise l'équation du modèle de façon récursive. De plus, on trouve que \lfbox[formula]{$se(\hat{x}_{n + l}) = \sqrt{\text{Var}(X_{n + l} - \hat{X}_{n + l})}$}.
 
 
 
