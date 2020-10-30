@@ -5595,15 +5595,20 @@ Le tableau ANOVA du modèle additif avec interactions s'écrit comme :
 \textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
 Facteur A	&	$SSR_{A}$	&	$w - 1$	\\\hline
 Facteur B	&	$SSR_{B}$	&	$\upsilon - 1$	\\\hline
-Interaction	&	$SSR_{int} - SSR_{add}$	&	$(w - 1)(\upsilon - 1)$	\\\hline
+Interaction	&	$SS_{diff}$	&	$(w - 1)(\upsilon - 1)$	\\\hline
 Erreur		&	$SSE_{add}$	&	$n - \upsilon w$	\\\hline
 Total		&	$SST$		&	$n - 1$	\\\hline
 \end{tabular}
 \end{center}
+où \lfbox[formula]{$SS_{diff} = SSE_{add} - SSE_{int} = SSR_{int} - SSR_{add}$}.
 
 \bigskip
 
-Puis, pour tester l'hypothèse nulle qu'il n'y a pas d'interactions (tous les $\gamma_{j, k}$ sont nuls) la statistique de test \lfbox[formula]{$t = \frac{(SSE_{add} - SSE_{int})/((w - 1)(\upsilon - 1)}{SSE_{int}/(n - w\upsilon)}$} où \lfbox[formula]{$T \sim F_{(w - 1)(\upsilon - 1), n - w\upsilon}$}. Sinon, on peut tester chacun des facteurs de façon semblable à avant en substituant $SSE_{add}$ par $SSE_{int}$ au dénominateur.
+Puis, pour tester l'hypothèse nulle qu'il n'y a pas d'interactions (tous les $\gamma_{j, k}$ sont nuls) la statistique de test \lfbox[formula]{$t = \frac{SS_{diff}/((w - 1)(\upsilon - 1))}{SSE_{int}/(n - w\upsilon)}$} où \lfbox[formula]{$T \sim F_{(w - 1)(\upsilon - 1), n - w\upsilon}$}. 
+
+\bigskip
+
+Sinon, on peut tester chacun des facteurs de façon semblable à avant en substituant $SSE_{add}$ par $SSE_{int}$ au dénominateur.
 
 
 
@@ -8000,10 +8005,6 @@ surnommées les \og \textit{\textbf{truncated power} basis functions} \fg{}.
 \subsubsection{Splines de régression naturel}
 \begin{rappel_enhanced}[Contexte]
 Sans contraintes, il se peut que la fonction ait une courbe excessive aux extrémités le menant au-delà du domaine des réalisations. Afin d'éviter ce problème, on utilise un \textbf{\textit{spline naturel}} qui ajoute des nœuds au maximum et au minimum de l'échantillon (les intervalles $\{x < \xi_{1}\}$ et $\{x > \xi_{k}\}$). On stipule que, passé ces \og \textit{boundary knots} \fg{}, la fonction doit être linéaire.
-
-\bigskip
-
-Puisque ceci ajoute 2 contraintes, un spline avec $k$ nœuds intérieurs aura \lfbox[formula]{$p = k + 1$} degrés de liberté.
 \end{rappel_enhanced}
 
 \bigskip
@@ -8011,15 +8012,17 @@ Puisque ceci ajoute 2 contraintes, un spline avec $k$ nœuds intérieurs aura \l
 En bref, pour un polynôme d'ordre $d$ ayant $k$ nœuds :
 
 \begin{center}
-\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\begin{tabular}{| >{\columncolor{beaublue}}l | >{\columncolor{beaublue}}l  |}
 \hline\rowcolor{airforceblue} 
-\textcolor{white}{\textbf{Modèle}}	&	\textcolor{white}{\textbf{Nombre de prédicteurs $p$}}		\\\specialrule{0.1em}{0em}{0em} 
-Polynôme	&	$d$	\\\hline
-Constate par morceaux	&	$k$	\\\hline
-Polynôme par morceaux	&	$d + k + dk$	\\\hline
-Polynôme par morceaux continue	&	$d + dk$	\\\hline
-Spline cubique&	$3 + k$	\\\hline
-Spline cubique naturelle	&	$k - 1$	\\\hline
+\textcolor{white}{\textbf{Modèle de régression}}	&	\textcolor{white}{\textbf{ddl}}		\\\specialrule{0.1em}{0em}{0em} 
+Polynôme							&	$(d + 1)$					\\\hline
+%Constate par morceaux			&	$k$							\\\hline
+Polynôme par morceaux			&	$(d + 1)(k + 1)$				\\\hline
+Polynôme par morceaux continue	&	$(d + 1)(k + 1) - (d - 1)k$	\\\hline
+%Spline cubique					&	$(3 + 1) + k$				\\\hline
+%Spline cubique naturelle		&	$k$							\\\hline
+Spline							&	$(d + 1) + k$				\\\hline
+Spline naturelle					&	$(d + 1) + k - 4$			\\\hline
 \end{tabular}
 \end{center}
 
