@@ -14934,6 +14934,8 @@ L'autocorrélation de la variable $X$ avec un décalage de $k$ est \lfbox[formul
 \paragraph{Note}	On dénote la fonction d'autocorrélation comme l'\textbf{\textit{ACF}}.
 \end{definitionNOHFILL}
 
+\paragraph{Note}	Les deux premiers moments de la série chronologique doivent être stationnaires pour calculer l'autocovariance et l'autocorrélation. C'est-à-dire que la série doit être stationnaire de second ordre.
+
 \bigskip
 
 Puis, pour un échantillon d'observation temporelles $x_{1}, \dots, x_{n}$ :
@@ -15233,7 +15235,7 @@ Polynôme écrit en fonction de $\bm{B}$ servant à déterminer si une série ch
 Pour les paramètres $\alpha_{i}$ et $\beta_{j}$ pour $i = 1, \dots, p$ et $j = 1, \dots, q$, on a : 
 \begin{align*}
 	X_{t}
-	&=	\alpha_{1}X_{t - 1} + \dots + \alpha_{p} X_{1 - p} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}
+	&=	\alpha_{1}X_{t - 1} + \dots + \alpha_{p} X_{1 - p} + W_{t} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}
 \end{align*}
 
 Ce modèle est couvert en plus de détails dans la section \hl{< À VENIR >}, mais les équations caractéristiques qu'on en déduit sont applicables pour la majorité des modèles. On peut la récrire comme : 
@@ -15357,7 +15359,7 @@ Une série chronologique est intégrée d'ordre $d$, $I(d)$, si la $d^{e}$ diff�
 	
 
 \begin{definitionNOHFILL}[Modèle autorégressif de moyenne mobile intégré $ARIMA(p, d, q)$]
-Le modèle $AIRMA(p, d, q)$ se définit comme \lfbox[formula]{$\theta_{p}(\bm{B})(1 - \bm{B})^{d}X_{t} = \phi_{q}(\bm{B})W_{t}$}. 
+Le modèle $ARIMA(p, d, q)$ se définit comme \lfbox[formula]{$\theta_{p}(\bm{B})(1 - \bm{B})^{d}X_{t} = \phi_{q}(\bm{B})W_{t}$}. 
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Modèle saisonnier autorégressif de moyenne mobile intégré $SARIMA(p, d, q)(P, D, Q)_{g}$]
