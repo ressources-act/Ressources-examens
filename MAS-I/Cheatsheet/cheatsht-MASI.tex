@@ -5642,17 +5642,37 @@ Total	&	$\sum_{k = 1}^{\upsilon}\sum_{j = 1}^{w} (y_{j, k} - \bar{y})^{2}$		&	$S
 
 \columnbreak
 \subsection{Autres}
-\hl{section incomplète.}
-
 \subsubsection{Modèle d'analyse de covariance (ANCOVA)}
 \begin{rappel_enhanced}[Contexte]
 Un modèle d'analyse de la covariance est un GLM ayant des prédicteurs quantitatifs et qualitatifs. 
 \end{rappel_enhanced}
 
+
 \subsubsection{Total non-ajusté}
 \begin{rappel_enhanced}[Contexte]
 On appelle SST la \og \textit{\textbf{corercted} total sum of squares} \fg{} lorsque nous devons être plus spécifiques.
 \end{rappel_enhanced}
+
+La $SST = \sum_{i = 1}^{n}(y_{i} - \bar{y})^{2}$ peut se décomposer en deux parties :
+\begin{enumerate}
+	\item	La SST \textbf{\textit{non corrigée}} $\sum_{i = 1}^{n} y_{i}^{2}$.
+	\item	La \textbf{\textit{correction}} de la SST $\sum_{i = 1}^{n} \bar{y}y_{i}$.
+\end{enumerate}
+
+\bigskip
+
+Cette formulation permet d'écrire le tableau ANOVA sous la forme suivante : 
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Source}}	&	\textcolor{white}{\textbf{SS}}	&	\textcolor{white}{\textbf{ddl}}	\\\specialrule{0.1em}{0em}{0em} 
+Moyenne		&	$\sum_{i = 1}^{n} \bar{y}y_{i}$	&	$1$		\\\hline
+Régression	&	$SSR$							&	$p'$		\\\hline
+Erreur		&	$SSE$							&	$n - p'$	\\\hline
+Total		&	$\sum_{i = 1}^{n} y_{i}^{2}$		&	$n$		\\\hline
+\end{tabular}
+\end{center}
+
 
 
 
@@ -11374,7 +11394,7 @@ Il s'ensuit qu'on peut réécrire la fonction du système comme :
 \begin{align*}
 	\phi(\bm{x})
 	&=	\max\left\{\underset{i \in A_{1}}{\min}\ x_{i}, \underset{i \in A_{2}}{\min}\ x_{i}, \dots, \underset{i \in A_{s}}{\min}\ x_{i}\right\}	\\
-	&=	\underset{j}{\min} \prod_{i \in A_{j}} x_{i}
+	&=	\underset{j}{\max} \prod_{i \in A_{j}} x_{i}
 \end{align*}
 
 
@@ -11615,12 +11635,12 @@ On reprend l'exemple de la sous-section sur les fonctions de fiabilité avec le 
 Ici, on pose que toutes les composantes ont une fiabilité de $p$, puis avec $A_{1} = (0, 0, 1)$ et $A_{2} = (1, 1, 0)$ : 
 
 \begin{align*}
-	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)
+	\sum_{j = 1}^{2} \left(\prod_{i \in A_{j}} p_{i}\right)
 	&=	\prod_{i \in A_{1}} p_{i} + \prod_{i \in A_{2}} p_{i}	
 	=	p + p^{2}	
 \end{align*}
 \begin{align*}
-	\sum_{j = 1}^{s} \sum_{k > j} \left(\prod_{i \in A_{j} \cup A_{k}} p_{i}\right)	
+	\sum_{j = 1}^{2} \sum_{k > j} \left(\prod_{i \in A_{j} \cup A_{k}} p_{i}\right)	
 	&=	\prod_{i \in A_{1} \cup A_{2}} p_{i}	
 	=	p^{3}	\\
 \end{align*}
