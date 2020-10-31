@@ -15232,31 +15232,41 @@ L'opérateur de décalage \og \textit{shift} \fg{} les observations d'un espace.
 Polynôme écrit en fonction de $\bm{B}$ servant à déterminer si une série chronologique possède quelques propriétés. 
 \end{rappel_enhanced}
 
-Pour les paramètres $\alpha_{i}$ et $\beta_{j}$ pour $i = 1, \dots, p$ et $j = 1, \dots, q$, on a : 
+Pour les paramètres $\alpha_{i}$ et $\beta_{j}$ pour $i = 1, \dots, p$ et $j = 1, \dots, q$, on a l'équation caractéristique suivante : 
 \begin{align*}
 	X_{t}
 	&=	\alpha_{1}X_{t - 1} + \dots + \alpha_{p} X_{1 - p} + W_{t} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}
 \end{align*}
 
-Ce modèle est couvert en plus de détails dans la section \hl{< À VENIR >}, mais les équations caractéristiques qu'on en déduit sont applicables pour la majorité des modèles. On peut la récrire comme : 
+\bigskip
+
+Cette équation correspond aux \textit{\underline{\nameref{subsec:ARMA}}}, mais elle sert à déduire des propriétés pour les \textit{\underline{\nameref{subsec:AR}}} et les \textit{\underline{\nameref{subsec:MA}}} qui sont des simplifications ! 
+
+\bigskip
+
+L'utilité devient plus claire lorsque l'on récrit l'équation comme : 
 \begin{align*}
-	(1 - \alpha_{1}\bm{B} - \dots - \alpha_{p}\bm{B}^{p})X_{t} = (1 + \beta_{1} \bm{B} + \dots + \beta_{q} \bm{B}^{q})W_{t}	\\
+	(1 - \alpha_{1}\bm{B} - \dots - \alpha_{p}\bm{B}^{p})X_{t} 
+	&= (1 + \beta_{1} \bm{B} + \dots + \beta_{q} \bm{B}^{q})W_{t}	\\
 	\Rightarrow
-	\theta_{p}(\bm{B})X_{t} = \phi_{q}(\bm{B})W_{t}
+	\theta_{p}(\bm{B})X_{t} 
+	&= \phi_{q}(\bm{B})W_{t}
 \end{align*}
 
-Puis, on déduit que le modèle a la propriété de :
+\begin{definitionNOHFILLprop}[Propriétés des modèles autorégressifs et de moyenne mobile]
+Le modèle est :
 \begin{description}
-	\item[stationnarité]	si aucune des racines de l'équation $\theta_{p}(\bm{B}) = 0$ est $\leq 1$ en valeur absolue.
-	\item[inversibilité]	si aucune des racines de l'équation $\phi_{q}(\bm{B}) = 0$ est $\leq 1$ en valeur absolue.
-	\item[redondance des paramètres]	si $\theta_{p}(\bm{B})$ et $\phi_{q}(\bm{B})$ ont un facteur en commun.
+	\item[stationnaire]	si aucune des racines de l'équation $\theta_{p}(\bm{B}) = 0$ est $\leq 1$ en valeur absolue.
+	\item[inversible]	si aucune des racines de l'équation $\phi_{q}(\bm{B}) = 0$ est $\leq 1$ en valeur absolue.
+	\item[composé de paramètres redondants]	si $\theta_{p}(\bm{B})$ et $\phi_{q}(\bm{B})$ ont un facteur en commun.
 \end{description}
+\end{definitionNOHFILLprop}
 \end{definitionNOHFILL}
 
 
 
 \columnbreak
-\subsection{Modèles autorégressifs}
+\subsection{Modèles autorégressifs}\label{subsec:AR}
 \begin{rappel_enhanced}[Contexte]
 La modèle fondé sur la marche aléatoire a soulevé le concept qu'une observation soit dépendante d'une, ou plusieurs, observations précédentes. Le modèle autorégressif d'ordre $p$ généralise ce concept avec un modèle qui est fonction des $p$ observations précédentes. 
 
@@ -15266,10 +15276,11 @@ Le nom « autorégressif » provient du fait qu'on effectue la régression d'une
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Modèle autorégressif d'ordre $p$ $AR(p)$]
-Le modèle $AR(p)$ se définit comme \lfbox[formula]{$X_{t} = \alpha_{1} X_{t - 1} + \dots + \alpha_{p} X_{t - p} + W_{t}$}. De façon équivalente, $W_{t} = \theta_{p}(\bm{B})X_{t}$.
+Le modèle $AR(p)$ se définit comme \lfbox[formula]{$X_{t} = \alpha_{1} X_{t - 1} + \dots + \alpha_{p} X_{t - p} + W_{t}$} ou, de façon plus générale, $W_{t} = \theta_{p}(\bm{B})X_{t}$.
 
 \bigskip
 
+\begin{definitionNOHFILLsub}[Modèle d'ordre 1]
 Le modèle $AR(1)$ peut être vu comme une généralisation du processus de \og \textit{white noise} \fg{} et de la marche aléatoire où si :
 \begin{description}
 	\item[$\alpha = 0$]	le modèle est un processus de \og \textit{white noise} \fg{} avec $X_{t} = W_{t}$.
@@ -15277,36 +15288,41 @@ Le modèle $AR(1)$ peut être vu comme une généralisation du processus de \og 
 	\item[$\alpha \in (-1, 1)$]	le modèle est stationnaire.
 \end{description}
 
-Puis, pour une modèle $AR(1)$ stationnaire, $\text{E}[X_{t}] = 0$, $\text{Var}(X_{t}) = \frac{\sigma^{2_{W}}}{1 - \alpha^{2}}$, $\gamma_{k} = \frac{\alpha^{k} \sigma^{2}_{W}}{1 - \alpha^{2}}$ et \lfbox[formula]{$\rho_{k} = \alpha^{k}$}.
-
 \bigskip
 
-Un modèle $AR(2)$ est stationnaire si :
-\begin{enumerate}
-	\item	 $\alpha_{2} - \alpha_{1} < 1$.
-	\item	 $\alpha_{2} + \alpha_{1} < 1$.
-	\item	 $|\alpha_{2}| < 1$.
-\end{enumerate}
+Puis, si le modèle $AR(1)$ est stationnaire, $\text{E}[X_{t}] = 0$, $\text{Var}(X_{t}) = \frac{\sigma^{2_{W}}}{1 - \alpha^{2}}$, $\gamma_{k} = \frac{\alpha^{k} \sigma^{2}_{W}}{1 - \alpha^{2}}$ et \lfbox[formula]{$\rho_{k} = \alpha^{k}$}.
+\end{definitionNOHFILLsub}
+
+%Un modèle $AR(2)$ est stationnaire si :
+%\begin{enumerate}
+%	\item	 $\alpha_{2} - \alpha_{1} < 1$.
+%	\item	 $\alpha_{2} + \alpha_{1} < 1$.
+%	\item	 $|\alpha_{2}| < 1$.
+%\end{enumerate}
 
 %Pour l'autocorrélation de décalage $k$, plus la valeur de $\alpha$ est élevée, alors plus le corrélogramme va lentement approcher zéro. De plus, si $\alpha$ est négatif, alors l'ACF va alterner entre positif et négatif.
 \end{definitionNOHFILL}
+
+\begin{rappel_enhanced}[Contexte]
+Le cas où $p = 1$ est le cas plus simple du modèle autorégressif permettant de déduire les mesures et les critères de stationnarité. De façon plus générale, la stationnarité se détermine avec les racines de $\theta_{p}(\bm{B})$ et les mesures (espérance, variance, etc.) sont calculées de façon récursive.
+\end{rappel_enhanced}
 
 Pour effectuer des prévisions, on utilise l'équation du modèle de façon récursive. De plus, on trouve que \lfbox[formula]{$se(\hat{x}_{n + l}) = \sqrt{\text{Var}(X_{n + l} - \hat{X}_{n + l})}$}.
 
 
 
 \columnbreak
-\subsection{Modèles de moyenne mobile}
+\subsection{Modèles de moyenne mobile}\label{subsec:MA}
 \begin{rappel_enhanced}[Contexte]
 Nous généralisons l'idée de centrer les observations avec le modèle de moyenne mobile applicable sur la série des erreurs résiduelles. 
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Modèle de moyenne mobile d'ordre $q$ ($MA(q)$)]
-Le modèle $MA(q)$ se définit comme la combinaison linéaire des $q$ derniers termes de \og \textit{white noise} \fg{} les plus récents en plus de celui au temps $t$ : \lfbox[formula]{$X_{t} = W_{t} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}$}. De façon équivalente, $X_{t} = \phi_{q}(\bm{B})X_{t}$.
+Le modèle $MA(q)$ se définit comme la combinaison linéaire du terme aléatoire (de \og \textit{white noise} \fg{}) au temps $t$ en plus des $q$ derniers termes les plus récents. L'équation est \lfbox[formula]{$X_{t} = W_{t} + \beta_{1} W_{t - 1} + \dots + \beta_{q} W_{t - q}$} ou, de façon plus générale, $X_{t} = \phi_{q}(\bm{B}) X_{t}$.
 
 \bigskip
 
-On obtient que $\text{E}[X_{t}] = 0$ et \lfbox[formula]{$\text{Var}(X_{t}) = \sigma^{2}_{W}\sum_{i = 0}^{q}\beta_{i}^{2}$} où le paramètre pour $W_{t}$ est \lfbox[conditions]{$\beta_{0} = 1$}. Également, 
+Comme pour les autres modèles, $\text{E}[X_{t}] = 0$. Cependant, puisque les termes d'erreurs sont indépendants, on peut déduire une équation explicite pour la variance \lfbox[formula]{$\text{Var}(X_{t}) = \sigma^{2}_{W}\sum_{i = 0}^{q}\beta_{i}^{2}$} où \lfbox[conditions]{$\beta_{0} = 1$}. Il s'ensuit que :
 \begin{align*}
 	\gamma_{k}
 	&=	\sigma^{2}_{W} \sum_{i = 0}^{q - k}\beta_{i}\beta_{i + k}, \quad 0 \leq k \leq q	\\
@@ -15323,22 +15339,59 @@ On obtient que $\text{E}[X_{t}] = 0$ et \lfbox[formula]{$\text{Var}(X_{t}) = \si
 
 \bigskip
 
-\underline{Tous} les modèles de moyenne mobile sont \textbf{\textit{stationnaires}} et \underline{tous} les modèles autorégressifs sont \textbf{\textit{invertibles}}. Si un modèle $MA(q)$ est inversible, alors il peut s'exprimer comme un modèle $AR(\infty)$ stationnaire. De façon semblable, si un modèle $AR(p)$ est stationnaire, alors il peut s'exprimer comme un modèle $MA(\infty)$ inversible.
+\begin{rappel_enhanced}[Contexte]
+On déduit des équations caractéristiques que \underline{tous} les modèles de \underline{moyenne mobile} sont \textbf{\textit{stationnaires}} et \underline{tous} les modèles \underline{autorégressifs} sont \textbf{\textit{inversibles}}. 
+
+\bigskip
+
+Puis, avec les deux séries géométriques suivantes pour $x \in (-1, 1)$ :
+\begin{align*}
+	\sum_{k = 0}^{\infty} x^{k}
+	&=	\frac{1}{1 - x}	&
+	\sum_{k = 0}^{\infty} (-x)^{k}
+	&=	\frac{1}{1 + x}	
+\end{align*}
+
+On déduit que si un modèle $MA(q)$ est inversible, alors il peut s'exprimer comme un modèle $AR(\infty)$ stationnaire. Puis, si un modèle $AR(p)$ est stationnaire, alors il peut s'exprimer comme un modèle $MA(\infty)$ inversible.
+
+\bigskip
+
+Par exemple, soit un modèle $AR(2)$ stationnaire avec $X_{t} = \alpha_{1} X_{t - 1} + \alpha_{2} X_{t - 2} + W_{t}$, 
+\begin{align*}
+	X_{t}(1 - \alpha_{1}\bm{B} - \alpha_{2}\bm{B}^{2})
+	&=	W_{t}	\\
+	X_{t}
+	&=	\frac{1}{1 - (\alpha_{1}\bm{B} + \alpha_{2}\bm{B}^{2})} W_{t}	\\
+	X_{t}
+	&=	[1 + (\alpha_{1}\bm{B} + \alpha_{2}\bm{B}^{2}) + (\alpha_{1}\bm{B} + \alpha_{2}\bm{B}^{2})^{2} + \dots] W_{t}	\\
+	X_{t}
+	&=	[1 + \alpha_{1}\bm{B} + (\alpha_{2} + \alpha_{1}^{2})\bm{B}^{2} + 2\alpha_{1}\alpha_{2}\bm{B}^{3} + \alpha_{2}^{2}\bm{B}^{4} + \dots] W_{t}	\\
+	X_{t}
+	&=	W_{t} + \alpha_{1}W_{t - 1} + (\alpha_{2} + \alpha_{1}^{2})W_{t - 2} + \dots	
+\end{align*}
+\end{rappel_enhanced}
+ 
 
 
 
 \columnbreak
-\subsection{Modèles ARMA}
+\subsection{Modèles ARMA}\label{subsec:ARMA}
 \begin{rappel_enhanced}[Contexte]
 On peut combiner le modèle de moyenne mobile avec le modèle autorégressif pour obtenir un modèle autorégressif de moyenne mobile $ARMA(p, q)$.
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[Modèle autorégressif de moyenne mobile $ARMA(p, q)$]
-Le modèle $ARMA(p, q)$ se définit comme \lfbox[formula]{$X_{t} = \alpha_{1} X_{t - 1} + \dots + \alpha_{p}X_{t - p} + \beta_{1}W_{t - 1} + \dots + \beta_{q} W_{t - q} + W_{t}$}. De façon équivalente, $\theta_{p}(\bm{B})X_{t} = \phi_{q}(\bm{B})W_{t}$. Il s'ensuit que un modèle $ARMA(p, 0) = AR(p)$ et $ARMA(0, q) = MA(q)$.
+Le modèle $ARMA(p, q)$ se définit comme \lfbox[formula]{$X_{t} = \alpha_{1} X_{t - 1} + \dots + \alpha_{p}X_{t - p} + \beta_{1}W_{t - 1} + \dots + \beta_{q} W_{t - q} + W_{t}$}, ou de façon plus générale, $\theta_{p}(\bm{B})X_{t} = \phi_{q}(\bm{B})W_{t}$. 
 
 \bigskip
 
+Il s'ensuit que un modèle $ARMA(p, 0) = AR(p)$ et $ARMA(0, q) = MA(q)$.
+
+\bigskip
+
+\begin{definitionNOHFILLsub}[Modèle d'ordre 1]
 Un modèle $ARMA(1, 1)$ stationnaire avec $X_{t} = \alpha X_{t - 1} + W_{t} + \beta W_{t - 1}$ a une moyenne nulle et \lfbox[formula]{$\displaystyle \text{Var}(X_{t}) = \sigma^{2}_{W} \left(\frac{1 + 2\alpha\beta + \beta^{2}}{1 - \alpha^{2}}\right)$}. Également, pour $k > 0$, $\gamma_{k} = \sigma^{2}_{W}(\alpha + \beta)\alpha^{k - 1}\left(\frac{1 + \alpha\beta}{1 - \alpha^{2}}\right)$ et $\rho_{k} = \frac{\alpha^{k - 1}(\alpha + \beta)(1 + \alpha\beta)}{1 + 2\alpha\beta + \beta^{2}}$. Finalement, pour $k \geq 2$ alors \lfbox[formula]{$\rho_{k} = \alpha \rho_{k - 1}$}.
+\end{definitionNOHFILLsub}
 \end{definitionNOHFILL}
 
 
@@ -15400,8 +15453,13 @@ Le modèle indicateur de saisonnalité pour la série chronologique $\{X_{t}\}$ 
 
 
 
+\columnbreak
 \subsection{Modèles de régression non-linéaires}
+Si on effectue des prévisions sur une transformation de la v.a., on doit tenir en compte l'erreur de la distribution de la transformation. Par exemple, pour une série chronologique $Z_{t}$ qui suit un processus Gaussien de \og \textit{white noise} \fg{}, on applique le \textbf{\textit{facteur de correction lognormale}}. C'est-à-dire, l'espérance est $\text{E}[\textrm{e}^{Z_{n + l}}] = \textrm{e}^{0 + \sigma^{2}/2} = \textrm{e}^{\sigma^{2}/2}$. 
 
+\bigskip
+
+Sinon, pour tout $Z_{t}$ on peut appliquer le \textbf{\textit{facteur de correction empirique}} $\text{E}[\textrm{e}^{Z_{n + l}}] = \frac{1}{n} \sum_{t = 1}^{n} \textrm{e}^{Z_{t}}$.
 
 
 \end{multicols*}
