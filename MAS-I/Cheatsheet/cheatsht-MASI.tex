@@ -6756,7 +6756,7 @@ Deux prédicteurs sont \textbf{\textit{orthogonales}}, alias \textit{non-corrél
 \end{algo2}
 
 \begin{rappel_enhanced}[Limitation]
-La méthode de sélection du meilleur sous-ensemble considère tous les \lfbox[formula]{$2^{g}$} modèles. Il s'ensuit que son intensité de calcul croît rapidement lorsque le nombre total de paramètres $g$ augmente.
+La méthode de sélection du meilleur sous-ensemble considère tous les \lfbox[formula]{$2^{g}$} modèles. Puisque chaque prédicteur est dans le modèle ou il ne l'est pas, ou obtient qu'il y a $2 \times 2 \times \dots \times 2 = 2^{g}$ différents modèles possible. Il s'ensuit que son intensité de calcul croît rapidement lorsque le nombre total de paramètres $g$ augmente.
 \end{rappel_enhanced}
 
 
@@ -6878,28 +6878,30 @@ L'avantage de ces mesure au $R^{2}_{a}$ est qu'elles ont des justifications thé
 
 
 \columnbreak
-\subsection{Validation croisée}\label{subsec:modSelCV}
+\subsection{Rééchantillonnage}\label{subsec:modSelCV}
 \begin{rappel_enhanced}[Contexte]
-On peut estimer l'EQM de test sans d'échantillon de test avec la validation croisée. La logique est de séparer les données afin d'en utiliser une partie pour entraîner le modèle et une autre pour le tester. On voit 3 approches dans cette section.
+Les \textit{méthodes de rééchantillonnage} consiste à ajuster un modèle plusieurs fois sur différents sous-échantillons de l'ensemble de données. Par exemple, on peut ajuster un modèle de régression linéaire sur plusieurs sous-échantillons d'un ensemble de données et comparer les modèles. L'idée est de séparer les données afin d'en utiliser une partie pour entraîner le modèle, puis une autre pour le tester.
+
+\bigskip
+
+Les deux méthodes couvertes dans le cadre de l'examen sont la \textit{\textbf{validation croisée}} et le \textit{\textbf{bootstrap}}. La première méthode consiste à séparer l'ensemble de données en plusieurs sous-ensembles, puis la deuxième de tirer des échantillons avec remplacement de l'ensemble de données. 
+
+\bigskip
+
+Le cas le plus simple de la validation croisée par $k$ ensembles est d'avoir $k = 1$ ensemble---ceci correspond à l'ensemble de validation. Le cas le plus complexe tant qu'à lui est d'avoir $k = n$ sous-ensembles---ceci correspond au \og \textit{leave-one-out cross-validation} \fg{}. 
+
+%On peut estimer l'EQM de test sans d'échantillon de test avec la validation croisée.
 %On peut soit avoir l'objectif de choisir un modèle parmi un ensemble de modèles possibles ou de déterminer le nombre de paramètres nécessaire pour le modèle. Pouor
 \end{rappel_enhanced}
 
 
-
 \subsubsection{Ensemble de validation (\og \textit{validation set} \fg{})}
-\begin{distributions}[Notation]
-\begin{description}
-	\item[$n_{1}$]	Nombre d'observations dans les données d'entraînement.
-	\item[$n_{2}$]	Nombre d'observations dans les données de test.
-\end{description}
-\end{distributions}
-
 \begin{rappel_enhanced}[Contexte]
-Avec l'ensemble de validation, on sépare les données en deux ensembles de données : des données d'entraînement et des données de test. Ceci s'apparente donc aux échantillons d'entraînement et de test mentionnés pour la première fois dans la section d'\textit{\underline{\nameref{subsec:SLREstimation}}} de la \textit{\underline{\nameref{sec:SLR}}}. 
+Avec l'ensemble de validation, on sépare les données en deux ensembles : les données d'entraînement et les données de test. Ceci s'apparente donc aux échantillons d'entraînement et de test mentionnés pour la première fois dans la section d'\textit{\underline{\nameref{subsec:SLREstimation}}} de la \textit{\underline{\nameref{sec:SLR}}}. 
 
 \bigskip
 
-La méthode ajuste le modèle avec \textbf{seulement} les $n_{1}$ données d'entraînement puis calcule l'EQM de test avec seulement les $n_{2}$ données de test. Cette EQM de test estimée correspond à l'\textbf{\textit{erreur de l'ensemble de validation}}.
+La méthode ajuste le modèle avec \textbf{seulement} les $n_{1}$ données d'entraînement puis calcule l'EQM de test avec seulement les $n_{2} = n - n_{1}$ données de test. Cette EQM de test estimée correspond à l'\textbf{\textit{erreur de l'ensemble de validation}}.
 \end{rappel_enhanced}
 
 \begin{algo2}[Algorithme de validation croisée classique]
@@ -6918,7 +6920,7 @@ La méthode ajuste le modèle avec \textbf{seulement} les $n_{1}$ données d'ent
 \end{algo2}
 
 \begin{rappel_enhanced}[Limitations]
-La validation croisée avec un ensemble de validation a deux enjeux dont il faut tenir en compte. Premièrement, puisque les données sont segmentées en deux de façon aléatoire, les \textbf{résultats sont volatiles} et peuvent varier en fonction de l'échantillon choisit. De plus, puisque nous utilisons seulement $n_{1}$ observations pour ajuster le modèle, l'erreur de l'ensemble de validation à tendance à \textbf{surestimer} l'EQM de test. 
+La validation croisée avec un ensemble de validation a deux enjeux dont il faut tenir en compte. Premièrement, puisque les données sont segmentées en deux de façon aléatoire, les \textbf{résultats sont volatiles} et peuvent varier en fonction de l'échantillon choisit. De plus, puisque nous utilisons seulement $n_{1}$ observations pour ajuster le modèle, le modèle est moins bien ajusté aux données et \textbf{l'erreur de l'ensemble de validation \textit{surestime} l'EQM de test}. 
 \end{rappel_enhanced}
 
 
@@ -6949,12 +6951,13 @@ La validation croisée par $k$ sous-ensembles divise de façon aléatoire toutes
 \end{algo2}
 
 \begin{rappel_enhanced}[Contexte]
-La validation croisée par $k$ sous-ensembles répond aux enjeux soulevés avec l'ensemble de validation. La sélection du nombre de prédicteurs se base sur la moyenne de plusieurs modèles ce qui permet de \textbf{diminuer la volatilité des résultats}. De plus, puisqu'on utilise la majorité des données pour ajuster chacun des modèles les résultats sont moins biaisés.
+La validation croisée par $k$ sous-ensembles répond aux enjeux soulevés avec l'ensemble de validation. La sélection du nombre de prédicteurs se base sur la moyenne de plusieurs modèles ce qui permet de \textbf{diminuer la volatilité des résultats}. De plus, puisqu'on utilise la majorité des données pour ajuster chacun des modèles, les résultats sont moins biaisés.
 
 \bigskip
 
-Il y a cependant un compromis à faire entre le biais et la volatilité, ou variance, des résultats. On développe sur cette idée avec la validation croisée par $n$ sous-ensembles alias \og \textit{leave-one-out cross-validation (LOOCV)} \fg{}.
+Donc, on peut utiliser la validation croisée pour \textbf{\textit{estimer l'erreur de test}} afin d'évaluer la performance d'un modèle ou pour \textbf{\textit{choisir un niveau adéquat de flexibilité}}. Il y a cependant un compromis à faire entre le biais et la volatilité, ou variance, des résultats. On développe sur cette idée avec la validation croisée par $n$ sous-ensembles, alias la \og \textit{leave-one-out cross-validation (LOOCV)} \fg{}.
 \end{rappel_enhanced}
+
 
 
 \subsubsection{\og \textit{Leave-one-out cross-validation (LOOCV)} \fg{}}
@@ -6969,12 +6972,20 @@ L'erreur LOOCV est la moyenne des résidus calculés à chaque étape comme l'EQ
 \end{definitionNOHFILL}
 
 \begin{rappel_enhanced}[Limitations]
-Plus le nombre de sous-ensembles augmente, plus les sous-ensembles de données se chevauchent, plus la variance dans l'estimation de l'EQM de test augmente. En revanche, le biais dans la prévision de l'EQM de test diminue. Par exemple, L'algorithme LOOCV aura le moins de biais mais le plus de volatilité ! Le \textit{\underline{\nameref{subsubsec:BVtradeoff}}} est donc à considérer ici aussi. 
+Plus le nombre de sous-ensembles augmente, plus les sous-ensembles de données se chevauchent, plus la variance dans l'estimation de l'EQM de test augmente. En revanche, le biais dans la prévision de l'EQM de test diminue. Par exemple, L'algorithme LOOCV aura le moins de biais, mais le plus de volatilité ! Le \textit{\underline{\nameref{subsubsec:BVtradeoff}}} est donc à considérer ici aussi. 
 
 \bigskip
 
 La règle du pouce est d'utiliser \lfbox[formula]{$k = 5$} ou \lfbox[formula]{$k = 10$} sous-ensembles en validation croisée.
 \end{rappel_enhanced}
+
+
+
+\subsubsection{Le bootstrap}
+\begin{rappel_enhanced}[Contexte]
+Le bootstrap est applicable dans divers contexte. Notamment, on l'utilise pour évaluer la précision des estimations des paramètres d'un modèle. 
+\end{rappel_enhanced}
+
 
 
 
@@ -8079,7 +8090,11 @@ La fonction $g(x)$ est :
 
 \bigskip
 
-Puisque la flexibilité de la courbe est contrôlée par $\lambda$, le nombre de degrés de liberté n'est pas une bonne mesure de sa flexibilité. Plutôt, on utilise le \textbf{nombre de degrés de liberté \textit{effectif}} calculé avec une matrice qui correspond à la matrice chapeau de la régression linéaire. Si $\hat{\bm{g}}_{\lambda}$ est les prévisions de $y_{i}$ pour $\lambda$, alors $\hat{\bm{g}}_{\lambda} = \bm{S}_{\lambda} \bm{y}$. Le nombre de degrés de liberté effectif est donc la somme des éléments de la diagonale de $\bm{S}_{\lambda}$.
+Puisque la flexibilité de la courbe est contrôlée par $\lambda$, le nombre de degrés de liberté n'est pas une bonne mesure de sa flexibilité. Plutôt, on utilise le \textbf{nombre de degrés de liberté \textit{effectif}} calculé avec une matrice $\bm{S}_{\lambda}$ qui s'apparente à la matrice chapeau $\bm{H}$ de la régression linéaire. 
+
+\bigskip
+
+On dénote par $\hat{\bm{g}}_{\lambda}$ les prévisions de $y_{i}$ pour un $\lambda$ fixé, puis on trouve que $\hat{\bm{g}}_{\lambda} = \bm{S}_{\lambda} \bm{y}$. Le nombre de degrés de liberté effectif correspond à la somme des éléments de la diagonale $h_{\lambda i}$ de la matrice $\bm{S}_{\lambda}$ avec \lfbox[formula]{$ddl_{\lambda} = \sum_{i = 1}^{n} h_{\lambda i}$}.
 
 
 
@@ -8109,12 +8124,19 @@ On minimise $\sum_{i = 1}^{n} w_{i}(y_{i} - \hat{y}_{i})^{2}$. Puis, pour prédi
 
 \columnbreak
 \subsection{Modèle additif généralisé (GAM)}
-\hl{section incomplète.}
-
 \begin{rappel_enhanced}[Contexte]
-Les modèles généralisé additifs (\og \textit{generalized additive models} \fg{}) permettent de généraliser les méthodes ci-dessus \textbf{\textit{pour plusieurs prédicteurs}}.
+Les modèles additifs généralisés (\og \textit{generalized additive models} \fg{}) permettent de généraliser les méthodes ci-dessus \textbf{\textit{pour plusieurs prédicteurs}}.
 \end{rappel_enhanced}
 
+On pose que \lfbox[formula]{$Y = \beta_{0} + f_{1}(x_{1}) + \dots + f_{g}(x_{g}) + \varepsilon$} où chacune des fonctions peut être un modèle lui-même. Par exemple, on peut avoir que $f_{1}$ est une spline cubique, $f_{2}$ est une spline de lissage, etc.
+
+\bigskip
+
+Si toutes les fonctions $f_{1}, \dots, f_{g}$ sont basées sur une régression des moindres carrés, alors le modèle GAM correspond à une régression linéaire multiple. Autrement, dès qu'au moins une des fonctions utilise une autre méthode comme une spline de lissage ou une régression locale, il faut utiliser une autre approche comme le \og \textit{backfitting} \fg{} qui ajuste séparément les modèles en fixant les $g - 1$ autres variables de façon répétée jusqu'à ce que l'ajustement globale du modèle converge.
+
+\bigskip
+
+Un des désavantages du modèle GAM est qu'il ne tient pas compte des interactions entre les variables puisqu'elles sont toutes traitées séparément. Cependant, on peut manuellement en ajouter au modèle.
 
 
 
@@ -15436,7 +15458,7 @@ Le modèle $ARIMA(p, d, q)$ se définit comme \lfbox[formula]{$\theta_{p}(\bm{B}
 \end{definitionNOHFILL}
 
 \begin{definitionNOHFILL}[Modèle saisonnier autorégressif de moyenne mobile intégré $SARIMA(p, d, q)(P, D, Q)_{g}$]
-Le modèle $SARIMA(p, d, q)(P, D, Q)_{g}$ se définit comme \lfbox[formula]{$\Theta_{P}(\bm{B}^{g})  \theta_{p}(\bm{B}) (1 - \bm{B})^{d} X_{t} = \Phi_{Q}(\bm{B}^{g}) \phi_{q}(\bm{B}) W_{t}$}. 
+Le modèle $SARIMA(p, d, q)(P, D, Q)_{g}$ se définit comme \lfbox[formula]{$\Theta_{P}(\bm{B}^{g})  \theta_{p}(\bm{B}) (1 - \bm{B}^{g})^{D} (1 - \bm{B})^{d} X_{t} = \Phi_{Q}(\bm{B}^{g}) \phi_{q}(\bm{B}) W_{t}$}. 
 \end{definitionNOHFILL}
 
 
@@ -15445,11 +15467,11 @@ Le modèle $SARIMA(p, d, q)(P, D, Q)_{g}$ se définit comme \lfbox[formula]{$\Th
 \newpage
 \section{Régression avec des séries chronologiques}\label{sec:TSRegression}
 \begin{rappel_enhanced}[Contexte]
-On peut modéliser les composantes déterministes (la tendance et la variation saisonnière) d'une série chronologique avec une régression temporelle. Habituellement, on peut trouver des explications vraisemblances pour les patrons d'une série chronologique et donc il s'ensuit qu'une régression peut estimer la tendance et la variation saisonnière en fonction du temps. 
+On peut modéliser les composantes déterministes (la tendance et la variation saisonnière) d'une série chronologique avec une régression temporelle. Habituellement, on peut trouver des explications vraisemblables pour les patrons d'une série chronologique et donc il s'ensuit qu'une régression peut estimer la tendance et la variation saisonnière en fonction du temps. 
 
 \bigskip
 
-De façon générale, la différence entre une régression temporelle et une régression typique est que les erreurs résiduelles sont autocorrélées. S'il y a une autocorrélation positive des résidus, l'erreur type des paramètres sera sous-estimée et donc l'importance de la tendance déterministe surestimée.
+De façon générale, la différence entre une régression temporelle et une régression typique est que les erreurs résiduelles sont autocorrélées. S'il y a une \textbf{\textit{autocorrélation positive}} des résidus, l'\textit{\textbf{erreur type}} des paramètres sera \textbf{\textit{sous-estimée}} et donc l'importance de la tendance déterministe surestimée.
 \end{rappel_enhanced}
 
 
@@ -15462,24 +15484,87 @@ De façon générale, la différence entre une régression temporelle et une ré
 \end{distributions}
 
 \begin{definitionNOHFILL}[Modèle de régression linéaire]
-Le modèle linéaire pour la tendance de la série chronologique $\{X_{t}\}$ est \lfbox[formula]{$X_{t} = \beta_{0} + \beta_{1}w_{t, 1} + \dots + \beta_{p}w_{t, p} + Z_{t}$}.
+Le modèle linéaire pour la tendance de la série chronologique $\{X_{t}\}$ est \lfbox[formula]{$X_{t} = \beta_{0} + \beta_{1}w_{t, 1} + \dots + \beta_{p}w_{t, p} + Z_{t}$}. Le modèle est linéaire puisque l'on somme les paramètres. Cependant, on peut modéliser des fonctions de variables explicatives comme $w_{t, j}$. Par exemple, on peut avoir $w_{t, j} = t^{j}$.
+
+\bigskip
+
+Puisque le modèle est fonction du temps, il s'ensuit qu'il n'est pas stationnaire. Également, la prévision sera fonction du temps avec \lfbox[formula]{$\hat{x}_{n + l} = b_{0} + b_{1}(n + l) + \hat{\text{E}}[Z_{n + l}]$}.
+
+\bigskip
+
+Les termes d'erreur $Z_{t}$ ont une moyenne nulle, mais ne sont pas nécessairement d'un processus de \og \textit{white noise} \fg{}. Si les variables aléatoires sont dépendantes, ont obtient que \lfbox[formula]{$\text{Var}(\bar{X}) = \frac{\sigma^{2}}{n}\left[1 + 2 \sum_{k = 1}^{n - 1} \left(1 - \frac{k}{n}\right)\rho_{k}\right]$}.
 \end{definitionNOHFILL}
 
 
+La méthode des moindres carrés ordinaire ne considère pas que les résidus peuvent être autocorrélés. Il faut donc utiliser une autre méthode : la \textbf{\textit{méthode des moindres carrés généralisée}} (\og \textit{generalized least squares (GLS)} \fg{}). Cette méthode trouve les paramètres estimés qui maximisent la vraisemblance en considérant l'autocorrélation de l'ensemble de données.
+
+\bigskip
+
+Le besoin pour la méthode de GLS peut se déterminer à partir d'un corrélogramme. S'il y a de l'autocorrélation significative, alors un la GLS peut être appliquée pour \textbf{\textit{améliorer les estimations}} des \textbf{\textit{erreurs types}}
+
+
+
+\columnbreak
 \subsection{Modèles de régression avec saisonnalité}
 \begin{definitionNOHFILL}[Modèle indicateur de la saisonnalité]
-Le modèle indicateur de saisonnalité pour la série chronologique $\{X_{t}\}$ avec $g$ saisons est \lfbox[formula]{$X_{t} = M_{t} + S_{t} + Z_{t}$}.
+Le modèle indicateur de saisonnalité pour la série chronologique $\{X_{t}\}$ avec $g$ saisons est \lfbox[formula]{$X_{t} = M_{t} + S_{t} + Z_{t}$} avec $S_{t} = \beta_{j}$ pour $j \in \{1, \dots, g\}$. Il s'ensuit qu'on peut réécrire le modèle comme :
+\begin{align*}
+	X_{t}
+	&=	\begin{cases}
+		M_{t} + \beta_{1} + Z_{t},	&	t = 1, g + 1, 2g + 1, \dots	\\
+		M_{t} + \beta_{2} + Z_{t},	&	t = 2, g + 2, 2g + 2, \dots	\\
+		\vdots,	&	\vdots	\\
+		M_{t} + \beta_{g} + Z_{t},	&	t = g, 2g, 3g, \dots	\\
+	\end{cases}	\\
+	&=	M_{t} + \beta_{1 + (t - 1) \mod g} + Z_{t}
+\end{align*}
+\end{definitionNOHFILL}
+
+
+\bigskip
+
+\begin{definitionNOHFILL}[Modèle de saisonnalité harmonique]
+Le modèle permet d'obtenir une courbe plus lisse et continue qu'avec des paramètres différents par saison. On utilise la fonction trigonométrique \lfbox[formula]{$h(t) = a \sin(2\pi ft + b)$} où : 
+\begin{description}
+	\item[$a$]	L'amplitude (la valeur maximale de la courbe).
+	\item[$f$]	La fréquence (le nombre de cycles sur l'intervalle $[0, 1]$).
+	\item[$b$]	Changement de phase (\og \textit{phase shift} \fg{}).
+\end{description}
+
+\bigskip
+
+Avec les propriétés des fonctions trigonométriques, puis en posant que $\beta_{1} = a \cos(b)$ et $\beta_{2} = a\sin(b)$, on réécrit la fonction $h(t)$ comme une fonction linéaire : \lfbox[formula]{$h(t) = \beta_{1} \sin(2\pi ft) + \beta_{2} \cos(2\pi ft)$}. Puis, la composante de variation saisonnière est \lfbox[formula]{$S_{t} = \sum_{j = 1}^{\lfloor g/2 \rfloor} \beta_{1, j} \sin(2\pi jt/g) + \beta_{2, j} \cos(2\pi jt/g)$} pour le modèle $X_{t} = M_{t} + S_{t} + Z_{t}$.
 \end{definitionNOHFILL}
 
 
 
 \columnbreak
 \subsection{Modèles de régression non-linéaires}
-Si on effectue des prévisions sur une transformation de la v.a., on doit tenir en compte l'erreur de la distribution de la transformation. Par exemple, pour une série chronologique $Z_{t}$ qui suit un processus Gaussien de \og \textit{white noise} \fg{}, on applique le \textbf{\textit{facteur de correction lognormale}}. C'est-à-dire, l'espérance est $\text{E}[\textrm{e}^{Z_{n + l}}] = \textrm{e}^{0 + \sigma^{2}/2} = \textrm{e}^{\sigma^{2}/2}$. 
+\begin{rappel_enhanced}[Contexte]
+Une transformation qu'on peut appliquer est la transformation logarithmique. Ceci convertit un modèle multiplicatif en un modèle additif avec $\ln X_{t} = \ln M_{t} + \ln S_{t} + \ln Z_{t}$. La transformation est idéale lorsque le modèle prend de très grandes valeurs ou lorsque la variance n'est pas constante (hétéroscédasticité).
 
 \bigskip
 
-Sinon, pour tout $Z_{t}$ on peut appliquer le \textbf{\textit{facteur de correction empirique}} $\text{E}[\textrm{e}^{Z_{n + l}}] = \frac{1}{n} \sum_{t = 1}^{n} \textrm{e}^{Z_{t}}$.
+Cependant, si on effectue des \textit{prévisions} sur une transformation de la v.a., on doit tenir en compte l'erreur de la distribution de la transformation. On voit deux facteurs de correction.
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILLsub}[Facteur de correction lognormale]
+\begin{rappel_enhanced}[Contexte]
+Pour une série chronologique $Z_{t}$ qui suit un processus gaussien de \og \textit{white noise} \fg{}, on applique le \textbf{\textit{facteur de correction lognormale}} qui correspond à ne pas oublier de prendre l'espérance de l'exponentiel du terme d'erreur. Cela puisque $\hat{X}_{n + l} = \textrm{e}^{\beta_{0} + \beta_{1}(n + l)} \text{E}[\textrm{e}^{Z_{n + l}}]$ et donc la moyenne des résidus n'est pas nulle !
+\end{rappel_enhanced}
+Le \textbf{\textit{facteur de correction lognormale}} est \lfbox[formula]{$\text{E}[\textrm{e}^{Z_{n + l}}] = \textrm{e}^{0 + \sigma^{2}/2} = \textrm{e}^{\sigma^{2}/2}$}. 
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+\begin{definitionNOHFILLsub}[Facteur de correction empirique]
+\begin{rappel_enhanced}[Contexte]
+Si la distribution des résidus $Z_{t}$ n'est pas normale, on peut appliquer un \textbf{\textit{facteur de correction empirique}} plus général.
+\end{rappel_enhanced}
+Le \textbf{\textit{facteur de correction empirique}} est \lfbox[formula]{$\text{E}[\textrm{e}^{Z_{n + l}}] = \frac{1}{n} \sum_{t = 1}^{n} \textrm{e}^{Z_{t}}$}.
+\end{definitionNOHFILLsub}
+
 
 
 \end{multicols*}
