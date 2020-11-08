@@ -4190,8 +4190,8 @@ De façon générale, l'EQM de test et d'entraînement ont le patron suivant :
 
 Donc, 
 \begin{itemize}
-	\item	puisque est optimisé pour les données d'entraînement, il sera toujours inférieur à l'EQM de test.
-	\item	l'EQM d'entraînement décroître lorsque la flexibilité (et donc, la complexité aussi) du modèle augmente.
+	\item	puisque l'EQM d'entraînement est optimisée pour les données d'entraînement, il sera toujours inférieur à l'EQM de test.
+	\item	l'EQM d'entraînement décroît lorsque la flexibilité (et donc, la complexité aussi) du modèle augmente.
 	\item	l'EQM de test est concave ce qui veut dire que le meilleur modèle fait un \textbf{\underline{compromis}} entre la \textit{flexibilité} et la \textit{précision} du modèle.
 \end{itemize}
 
@@ -5193,7 +5193,7 @@ On généralise l'équation obtenue pour la \textit{\underline{\nameref{sec:SLR}
 %\columnbreak
 \subsubsection{Somme des carrés}
 \begin{rappel_enhanced}[Contexte]
-Les sommes des carrés ne changement pas en régression linéaire multiple. La seule différence est que l'on ne peut pas exprimer le coefficient de détermination en fonction de la corrélation puisqu'il y a plusieurs variables explicatives ($R^{2} \neq r_{x, Y}^{2}$). Plutôt, on défini une nouvelle mesure : le coefficient de détermination ajusté $R_{a}^{2}$.
+Les sommes des carrés ne changent pas en régression linéaire multiple. La seule différence est que l'on ne peut pas exprimer le coefficient de détermination en fonction de la corrélation puisqu'il y a plusieurs variables explicatives ($R^{2} \neq r_{x, Y}^{2}$). Pour évaluer la qualité d'un modèle tout en tenant compte du nombre de paramètres, on définit une nouvelle mesure : le coefficient de détermination ajusté $R _{a}^{2}$.
 \end{rappel_enhanced}
 
 
@@ -5302,7 +5302,7 @@ Cependant, l'interprétation est très différente et il est important de se rap
 
 \subsubsection{Test F}\label{subsubsec:testF}
 \begin{rappel_enhanced}[Contexte]
-La limitation inhérente au test $t$ est qu'elle peut seulement tester une variable à la fois. Pour tester l'importance de plusieurs variables explicatives, on doit utiliser un différent test. Cependant, avant de présenter ce test, on présente le \textbf{\textit{tableau d'ANOVA}} et le test $F$.
+La limitation inhérente au test $t$ est qu'il peut seulement tester une variable à la fois. Pour tester l'importance de plusieurs variables explicatives, on doit utiliser un différent test. Cependant, avant de présenter ce test, on présente le \textbf{\textit{tableau d'ANOVA}} et le test $F$.
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[tableau d'ANOVA]
@@ -6842,7 +6842,7 @@ Le $C_{p}$ de Mallow est définit comme \lfbox[formula]{$C_{p} = \frac{SSE + 2p 
 
 \bigskip
 
-La formule, qui peut être décomposée comme \lfbox[formula]{$C_{p} = \textcolor{teal}{SSE/n} + \textcolor{amethyst}{2 \left(\frac{p}{n}\right) MSE_{g}}$}, équivaut à \textcolor{teal}{au SSE moyen} plus une \textcolor{amethyst}{pénalité par prédicteur}. Puisque \textcolor{teal}{la SSE d'entraînement moyen} décroît lorsque le nombre de prédicteurs $p$ augmente, le $C_{p}$ augmente si la réduction ne compense pas pour \textcolor{amethyst}{la pénalité}.
+La formule, qui peut être décomposée comme \lfbox[formula]{$C_{p} = \textcolor{teal}{SSE/n} + \textcolor{amethyst}{\left(2\frac{MSE_{g}}{n}\right) p}$}, équivaut \textcolor{teal}{au SSE moyen} plus une \textcolor{amethyst}{pénalité par prédicteur}. Puisque \textcolor{teal}{la SSE d'entraînement moyen} décroît lorsque le nombre de prédicteurs $p$ augmente, le $C_{p}$ augmente si la réduction ne compense pas pour \textcolor{amethyst}{la pénalité}.
 
 \paragraph{Note}	Ce que l'indice $p$ de $C_{p}$ représente n'est pas clair. Donc, on écrit toujours $C_{p}$ sans jamais substituer de valeur pour $p$.
 \end{definitionNOHFILL}
@@ -7624,7 +7624,7 @@ La \textbf{\textit{statistique de Score}} $U_{j}$ est la variable aléatoire qui
 
 \bigskip
 
-On dénote le vecteur colonne des statistique $\bm{U}$ où \lfbox[formula]{$\bm{U} \sim \mathcal{N}_{p'}(\bm{0}, \bm{I}$}. De plus, \lfbox[formula]{$\matr{U^{\top}I^{-1}U} \approx \chi^{2}_{p'}$}.
+On dénote le vecteur colonne des statistique $\bm{U}$ où \lfbox[formula]{$\bm{U} \sim \mathcal{N}_{p'}(\bm{0}, \bm{I})$}. De plus, \lfbox[formula]{$\matr{U^{\top}I^{-1}U} \approx \chi^{2}_{p'}$}.
 \end{definitionNOHFILL}
 
 On généralise la distribution des coefficients indiquée pour la \textit{\underline{\nameref{sec:SLR}}} aux GLMs avec la distribution \textbf{\underline{asymptotique}} \lfbox[formula]{$\bm{b} \sim \mathcal{N}_{p'}(\bm{b}, \bm{I}^{-1})$} où
@@ -11807,17 +11807,16 @@ Ensemble de nœuds connectés par des arcs.
 		\item	C'est-à-dire, le nombre possibles de groupes de deux nœuds.
 		\end{itemize}
 \end{description}
-
-\
-
-Également, un graphique peut être décomposé en sous-graphiques qu'on nomme ses \textbf{\textit{composantes}}. 
-\begin{itemize}
-	\item	Les composantes ne se chevauchent pas.
-	\item	Les composantes sont composées de nœuds connectés.
-	\item	Un graphique est \textbf{\textit{connecté}} s'il a une seule composante.
-	\item	En autres mots, on peut aller d'un nœud à tout autre nœud du graphique via les arcs.
-\end{itemize}
 \end{distributions}
+
+\begin{rappel_enhanced}[Contexte]
+Un graphique peut également être décomposé en sous-graphiques qu'on nomme ses \textbf{\textit{composantes}}. Les composantes ne se chevauchent pas et sont composées de nœuds connectés.
+
+\bigskip
+
+On dit qu'un graphique est \textbf{\textit{connecté}} s'il a une seule \textit{composante}. C'est-à-dire, si l'on peut passer d'un nœud à tout autre nœud du graphique via les arcs.
+\end{rappel_enhanced}
+
 
 \begin{formula}{Exemple de graphique}
 Soit le graphique suivant : 
