@@ -1,0 +1,247 @@
+\documentclass[english]{article}
+%% -----------------------------
+%% Préambule
+%% -----------------------------
+\input{../cheatsht-preamble-general-en.tex}
+
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+\def\cours{Modern Actuarial Statistics II}
+\def\sigle{MAS-II}
+
+%
+% 	Save more space than default
+%
+\setlength{\abovedisplayskip}{-15pt}
+\setlist{leftmargin=*}
+
+%% -----------------------------
+%% 	Colour setup for sections
+%% -----------------------------
+\def\SectionColor{cobalt}
+\def\SubSectionColor{azure(colorwheel)}
+\def\SubSubSectionColor{azure(colorwheel)}
+%%%	depth
+\setcounter{secnumdepth}{0}
+%% -----------------------------
+
+%% -----------------------------
+%% 	Format part
+%% -----------------------------
+\titleformat
+	{\part}			%	command
+	[display]		%	shape
+	{\normalfont\bfseries\filcenter}	%	format
+	{\LARGE\thepart}	%	label
+	{1ex}			%	sep
+	{
+		\titlerule[2pt]
+		\vspace{2ex}%
+		\LARGE
+	}				%	before-code
+	[
+		\vspace{1ex}%
+		{\titlerule[2pt]}
+	]				%	after-code
+\titlespacing{\part}
+	{0pc}			%	left margin spacing
+	{-5mm}			%	vertical space before title
+	{1pc}			%	seperation between title and non-sectioning text
+\renewcommand\thepart{\Alph{part}}
+%% -----------------------------
+
+%% -----------------------------
+%% Color definitions
+%% -----------------------------
+\definecolor{indigo(web)}{rgb}{0.29, 0.0, 0.51}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\definecolor{azure(colorwheel)}{rgb}{0.0, 0.5, 1.0}
+%% -----------------------------
+
+%% -----------------------------
+%% Variable definition
+%% -----------------------------
+%%
+%% Matrix notation variable (bold style)
+%%
+\newcommand\cololine[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
+\newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
+
+\begin{document}
+
+\begin{center}
+	\textsc{\Large Contributeurs}\\[0.5cm] 
+\end{center}
+\input{../contributeurs/contrib-MASII}
+
+%\begin{rappel_enhanced}[Motivation]
+%
+%\end{rappel_enhanced}
+
+
+
+\newpage
+\raggedcolumns
+\begin{multicols*}{2}
+\tableofcontents
+
+
+
+\newpage
+\part{Introduction to Credibility}\label{part:cred}
+\section{Basic Framework of Credibility}\label{sec:credBasics}
+\begin{rappel_enhanced}[Context]
+The \textbf{\textit{limitation fluctuation credibility}} approach, or \textbf{\textit{classical credibility}} approach, calculates an updated prediction ($U$) of the \textbf{loss measure} as a weighted ($Z$) average of recent claim experience ($D$) and a rate ($M$) specified in the manual. Thus, we calculate the \textit{premium} paid by the \textit{risk group} as \lfbox[formula]{$U = ZD + (1 - Z)M$}.
+\end{rappel_enhanced}
+
+\begin{distributions}[Notation]
+\begin{description}
+	\item[$M$]	Predicted loss based on the "\textit{\textbf{m}anual}".
+	\item[$D$]	Observe\textbf{d} losses based on the recent experience of the risk group.
+	\item[$Z$]	Weight assigned to the recent experience $D$ called the \textbf{\textit{credibility factor}} with \lfbox[conditions]{$Z \in [0, 1]$}. 
+	\item[$U$]	\textbf{U}pdated prediction of the premium.
+\end{description}
+\end{distributions}
+
+\begin{distributions}[Terminology]
+\begin{description}
+	\item[Risk group]	block of insurance policies, covered for a period of time upon payment of a \textit{premium}.
+	\item[Claim frequency]	The number of claims denoted $N$.
+	\item[Claim severity]	The amount of the $i^{\text{th}}$ claim denoted $X_{i}$.
+	\item[Aggregate loss]	The total loss denoted $S$ where $S = X_{1} + X_{2} + \hdots + X_{N}$.
+	\item[Pure premium]	The pure premium denoted $P$ where $P = S/E$ with $E$ denoting the number of exposure units.
+\end{description}
+\end{distributions}
+
+\begin{definitionGENERAL}{Exam tips}[][ao(english)]
+Typical questions about this involve being given 3 of $M, D, Z, \text{ and } U$ then finding the missing one.
+\end{definitionGENERAL}
+
+
+\begin{rappel_enhanced}[Context]
+With $\min\{D, M\} \leq U \leq \max\{D, M\}$, we can see that the credibility factor determines the relative importance of the claim experience of the risk group $D$ relative to the manual rate $M$.
+
+\bigskip
+
+If $Z = 1$, we obtain \textit{\underline{\nameref{subsec:FullCred}}} where the predicted premium depends only on the data ($U = D$). It follows that with $Z < 1$, we obtain \textit{\underline{\nameref{subsec:PartialCred}}} as the weighted average of both $D$ and $M$.
+\end{rappel_enhanced}
+
+
+%\columnbreak
+\subsection{Full Credibility}\label{subsec:FullCred}
+\begin{rappel_enhanced}[Contexte]
+The classical credibility approach determines the \textit{\textbf{minimum} data size} required for the experience data ($D$) to be given \textbf{\textit{full credibility}}. The minimum data size, or \textit{\textbf{standard for full credibility}}, depends on the \textbf{loss measure}.
+\end{rappel_enhanced}
+
+
+\subsubsection{Claim Frequency}
+The claim frequency random variable $N$ has mean $\mu_{N}$ and variance $\sigma^{2}_{N}$. 
+
+If we assume $N \approx \mathcal{N}(\mu_{N}, \sigma^{2}_{N})$, then the probability of observing claim frequency \textbf{within $k$ of the mean} is \lfbox[formula]{$\Pr(\mu_{N} - k\mu_{N} \leq N \leq \mu_{N} + k\mu_{N}) = 2 \Phi\left(\frac{k \mu_{N}}{\sigma_{N}}\right) - 1$}.
+
+\bigskip
+
+We often assume that the claim frequency \lfbox[conditions]{$N \sim \text{Pois}(\lambda_{N})$} and then apply the normal approximation to find the standard for full credibility for claim frequency \lfbox[formula]{$\lambda_{F}$}. First, we impose that the probability of the claim being with $k$ of the mean must be at least $1 - \alpha$. Then, we rewrite \lfbox[conditions]{$\frac{k \mu_{N}}{\sigma_{N}} = k\sqrt{\lambda_{N}}$} and set \lfbox[formula]{$\lambda_{N} \geq \left(\frac{z_{1 - \alpha/2}}{k}\right)^{2}$} where \lfbox[conditions]{$\lambda_{F} = \left(\frac{z_{1 - \alpha/2}}{k}\right)^{2}$}.
+
+
+\subsubsection{Claim Severity}
+We assume that the loss amounts $X_{1}, X_{2}, \dots, X_{N}$ are independent and identically distributed random variables with mean $\mu_{X}$ and variance $\sigma^{2}_{X}$. Full credibility is attributed to \lfbox[conditions]{$D = \bar{X}$} if \lfbox[conditions]{$2\Phi\left(\frac{k \mu_{X}}{\sigma_{N}/\sqrt{N}}\right) - 1 \geq 1 - \alpha$}. 
+
+\bigskip
+
+Similarly to claim frequency, we apply the normal approximation with \lfbox[conditions]{$\bar{X} \approx \mathcal{N}\left(\mu_{X}, \sigma^{2}_{X}/N\right)$}. Then, we find \lfbox[formula]{$N \geq \left(\frac{z_{1 - \alpha/2}}{k}\right)^{2} \cdot \left(\frac{\sigma_{X}}{\mu_{X}}\right)^{2} = \lambda_{F} CV_{X}^{2}$} where the \textbf{\textit{standard for full credibility for claim severity}} is $\lambda_{F}CV_{X}^{2}$.
+
+
+\subsubsection{Aggregate Loss}
+For the aggregate loss $S = X_{1} + X_{2} + \hdots + X_{N}$, we have \lfbox[formula]{$\mu_{S} = \mu_{N} \mu_{X}$} and \lfbox[formula]{$\sigma^{2}_{S} = \mu_{N} \sigma^{2}_{X} + \mu_{X}^{2} \sigma^{2}_{N}$}.
+
+\bigskip
+
+With the same normality assumptions for the Poisson distributed $N$, we find \lfbox[formula]{$\lambda_{N} \geq \left(\frac{z_{1 - \alpha/2}}{k}\right)^{2} \cdot \left(\frac{\mu_{X}^{2} + \sigma^{2}_{X}}{\mu_{X}^{2}}\right) = \lambda_{F} (1 + CV_{X}^{2})$} where the \textbf{\textit{standard for full credibility for claim severity}} is $\lambda_{F}(1 + CV_{X}^{2})$.
+
+\paragraph{Note}	The conditions are the same for the \textit{\textbf{Pure Premium}} as for the aggregate loss.
+
+
+%\columnbreak
+\subsection{Partial Credibility}\label{subsec:PartialCred}
+The \textbf{\textit{credibility factor}} for :
+\begin{description}
+	\item[Claim Frequency]	is \lfbox[formula]{$Z = \sqrt{\frac{\lambda_{N}}{\lambda_{F}}}$}.
+	\item[Claim Severity]	is \lfbox[formula]{$Z = \sqrt{\frac{N}{\lambda_{F} CV_{X}^{2}}}$}.
+	\item[Aggregate Loss and Pure Premium]	is \lfbox[formula]{$Z = \sqrt{\frac{\lambda_{N}}{\lambda_{F}(1 + CV_{X}^{2})}}$}
+\end{description}
+
+
+\newpage
+\section{Bühlmann Credibility}\label{sec:Buhl}
+\subsection{Basic framework}
+
+
+\subsection{Variance components}
+
+
+
+\subsection{Credibility factors}
+%Bûhlmann and Bûhlmann-Straub factors
+%Estimate loss
+
+
+
+\newpage
+\section{Bayesian Credibility}\label{sec:Bayes}
+\subsection{Basic framework}
+
+
+\subsection{Premium}
+
+
+
+\subsection{Conjugate distributions}
+
+\subsection{Nonparametric empirical Bayes method}
+
+
+
+
+\newpage
+\part{Linear Mixed Models}\label{part:LMM}
+
+
+
+
+\newpage
+\part{Bayesian Analysis and Markov Chain Monte Carlo}\label{part:BAandMCMC}
+
+
+
+
+\newpage
+\part{Statistical Learning}\label{part:statLearn}
+\section{K-Nearest Neighbors}\label{sec:KNN}
+
+
+\newpage
+\section{Decision Trees}
+%	building, purpose, pruning
+%	bagging, random forests, boosting
+
+
+\newpage
+\section{Principal Components Analysis (PCA)}\label{sec:PCA}
+%	purpose and computations
+%	interpretation of software outputs	
+
+
+\newpage
+\section{Clustering}
+%	purpose and computations
+%	interpretation of software outputs
+
+
+
+
+
+\end{multicols*}
+\end{document}
