@@ -69,6 +69,14 @@
 \newcommand\colbar[2]{\colorlet{temp}{.}\color{#1}\bar{\color{temp}#2}\color{temp}}
 \newcommand\cumlaut[2][black]{\stackon[.33ex]{#2}{\textcolor{#1}{\kern-.04ex.\kern-.2ex.}}}
 
+%% -----------------------------
+%% Tabular spacing
+%% -----------------------------
+%%
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   % = `bottom' strut
+
+
 \begin{document}
 
 \begin{center}
@@ -87,6 +95,325 @@
 \begin{multicols*}{2}
 \tableofcontents
 
+
+\newpage
+\part{Prerequisites}\label{part:prereq}
+\section{Distributions}\label{sec:0Distributions}
+\begin{rappel_enhanced}[Context]
+We typically use 3 types of random variable to describe losses:
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}m{6cm} | >{\columncolor{beaublue}}m{3cm}  |}
+\hline
+\hyperlink{0discrDistr}{\color{bleudefrance} Frequency} or number of losses	&	always discrete	\\\hline
+\hyperlink{0sevDistr}{\color{bleudefrance} Severity} or amount of losses (payment)	&	usually continuous, can be discrete or mixed too	\\\hline
+\hyperlink{0aggDistr}{\color{bleudefrance} Aggregate} or total loss from summing a number (Frequency) of Severity variables	&	same as the severity	\\\hline
+\end{tabular}
+\end{center}
+\end{rappel_enhanced}
+
+\subsection{Discrete Distributions}\label{subsec:0discrDistr}
+\begin{rappel_enhanced}[Context]
+Discrete random variables are usually counting (frequency) variables, meaning their possible values are $\{0, 1, 2, \dots\}$
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILL}[\hypertarget{0pmf}{Probability Mass Function (PMF)}]
+$N$ is a \textit{discrete random variable} if it has a \textbf{\textit{probability mass function}} $p_{k}$ such that \lfbox[formula]{$p_{k} = \Pr(N = k)$}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Definition}}	&	\textcolor{white}{\textbf{Domain}}		&	\textcolor{white}{\textbf{Condition}}	\\\specialrule{0.1em}{0em}{0em} 
+$p_{k} = \Pr(N = k)$	&	$p_{k} \in [0, 1]$	&	$\sum_{k} p_{k} = 1$\Tstrut\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILL}
+
+\begin{definitionNOHFILLprop}[\hypertarget{0poissDistr}{Poisson Distribution}]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em}
+$N \sim \text{Poisson}(\lambda)$	&	$\lambda	>	0$	&	$n = 0, 1, 2, \dots$	\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N = n)$}	&	 \[=\frac{\textrm{e}^{-\lambda} \lambda^{n}}{n!}\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$E[N]$}	&	 \[=\lambda\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$Var(N)$}	&	 \[=\lambda\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	If $N_{1}$ and $N_{2}$ are \textit{independent} Poisson r.v., then $N_{1} + N_{2} \sim \text{Poisson}(\lambda_{1} + \lambda_{2})$.
+	\item	The $\textrm{e}^{-\lambda}$ term makes the probabilities sum to $1$ as the Taylor series for $\textrm{e}^{\lambda}$ is $$\textrm{e}^{\lambda} = 1 + \lambda + \frac{\lambda^{2}}{2!} + \cdots + \frac{\lambda^{n}}{n!} + \cdots$$
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[\hypertarget{0binDistr}{Binomial Distribution}]
+\begin{rappel_enhanced}[Context]
+A binomial r.v. $N$ has $m$ \textit{independent} trials each having a probability $q$ of a loss where $n$ is the total number of losses.
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em}
+$N \sim \text{Bin}(m, q)$	&	$q \in (0, 1); m \in \mathbb{N}$	&	$n = 0, 1, 2, \dots$	\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N = n)$}	&	 \[= \binom{m}{n} q^{n} (1 - q)^{m - n} \]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$E[N]$}	&	 \[= mq \]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$Var(N)$}	&	 \[= mq \]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	If $N_{1}$ and $N_{2}$ are \textit{independent} binomial r.v. with the \textbf{\textit{same}} $q$ then $N_{1} + N_{2} \sim \text{Bin}(m_{1} + m_{2}, q)$.
+	\item	The case where $m = 1$ corresponds to a \textit{\textbf{Bernoulli}} r.v.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[\hypertarget{0geoDistr}{Geometric Distribution}]
+\begin{rappel_enhanced}[Context]
+A geometric r.v. $N$ with mean $\beta$ can be obtained by setting $n$ as the number of years \textit{\textbf{before}} the \underline{first} loss. Given the geometric distribution is memoryless, each year \textit{independently} has a loss with probability $\displaystyle \underbrace{\Pr(N = 0)}_{\shortstack{probability of a\\ loss the first year}} = \frac{1}{1 + \beta}$.	
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em}
+$N \sim \text{Geo}(\beta)$	&	$\beta > 0$	&	$n = 0, 1, 2, \dots$	\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N = n)$}	&	 \[=\left(\frac{\beta}{1 + \beta}\right)^{n} \frac{1}{1 + \beta}	\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N \geq n)$}	&	 \[=\left(\frac{\beta}{1 + \beta}\right)^{n}	\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$E[N]$}	&	 \[=\beta\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$Var(N)$}	&	 \[=\beta(1 + \beta)\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	Like the \hyperlink{0expDist}{\color{bleudefrance} exponential distribution}, the geometric distribution is memoryless:
+		\begin{align*}
+		\Pr(N = d + n | N \geq d)
+		&=	\Pr(N = n)	\\
+		E[N - d | N \geq d]
+		&=	E[N]
+		\end{align*}
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\begin{definitionNOHFILLprop}[Negative Binomial Distribution]
+\begin{rappel_enhanced}[Context]
+A negative binomial r.v. $N$ represents the number of years $n$ with no loss \textit{before} the $r^{\text{th}}$ year with a loss. We obtain a negative binomial r.v. $N \sim \text{NBin}(r, \beta)$ by summing $r$ iid geometric r.v., $N_{1}, N_{2}, \dots, N_{r}$, all with the same mean $\beta$.
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em}
+$N \sim \text{NBin}(\beta)$	&	$r, \beta > 0$	&	$n = 0, 1, 2, \dots$	\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N = n)$}	&	 \[= \binom{r + n - 1}{r - 1} \left(\frac{\beta}{1 + \beta}\right)^{n} \left(\frac{1}{1 + \beta}\right)^{r}	\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N \geq n)$}	&	 \[=\left(\frac{\beta}{1 + \beta}\right)^{n}	\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$E[N]$}	&	 \[=r\beta\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$Var(N)$}	&	 \[=r\beta(1 + \beta)\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	A \hyperlink{0geoDistr}{\color{bleudefrance} geometric} r.v. is a negative binomial r.v. with $r = 1$.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c   >{\columncolor{beaublue}}c  >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue}
+\textcolor{white}{\textbf{Distribution}}	&	\textcolor{white}{\textbf{Mean}}		&		&	\textcolor{white}{\textbf{Variance}}	\\\specialrule{0.1em}{0em}{0em}
+Binomial				&	$mq$			&	$>$	&	$mq(1 - q)$			\\\hline
+Poisson				&	$\lambda$	&	$=$	&	$\lambda$			\\\hline
+Geometric			&	$\beta$		&	$<$	&	$\beta(1 + \beta)$	\\\hline
+Negative Binomial	&	$r\beta$		&	$<$	&	$r\beta(1 + \beta)$	\\\hline
+\end{tabular}
+\end{center}
+
+
+
+\subsection{Severity Distributions}\label{subsec:0sevDistr}
+
+\begin{definitionNOHFILL}[\hypertarget{0pdf}{Probability Density Function (PDF)}]
+$X$ is a \textit{continuous random variable} if it has a \textbf{\textit{probability density function}} $f(x)$ such that \lfbox[formula]{$f(x)$}
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Definition}}	&	\textcolor{white}{\textbf{Domain}}		&	\textcolor{white}{\textbf{Condition}}	\\\specialrule{0.1em}{0em}{0em} 
+$f(x) = $	&	$f(x) \geq 0$	&	$\int_{\mathbb{R}} f(x)dx = 1$\Tstrut\\\hline
+\end{tabular}
+\end{center}
+\end{definitionNOHFILL}
+
+\subsection{Joint Distributions}\label{subsec:0jointDistr}
+\subsection{Conditional Distributions}\label{subsec:0condDistr}
+\subsection{Aggregate Distributions}\label{subsec:0aggDistr}
+\subsection{Normal, Uniform, Pareto, Exponential, and Gamma}\label{subsec:0gaExpNoDistr}
+\begin{definitionNOHFILLprop}[Normal Distribution]
+\begin{rappel_enhanced}[Contexte]
+La distribution Pareto est un mélange de deux distributions exponentielles originalement conçue pour étudier des distributions de revenus. 
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Pareto}(\alpha, \theta)$	&	$\alpha, \theta	>	0$	&	$x \geq 0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[=	\frac{\alpha\theta^{\alpha}}{(x + \theta)^{\alpha + 1}}\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$F(x)$}	&	 \[=1 -	\left(\frac{\theta}{x + \theta}\right)^{\alpha}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	Si $X \sim \text{Pareto}(\alpha, \theta)$ alors \lfbox[formula]{$Y	=	(X	-	d	|	X	>	d)	\sim \text{Pareto}(\alpha, \theta + d)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLprop}[Uniform Distribution]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Beta}(a, b, \theta)$	&	$a, b	>	0 \text{ et } \theta \geq 0$	&	$x \in [0, \theta]$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[= \frac{\theta}{\text{B}(a, b)}	\bigg(\frac{x}{\theta}\bigg)^{a - 1} \bigg(1 - \frac{x}{\theta}\bigg)^{b - 1}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	$X	\sim \text{Beta}(a = 1, b = 1, \theta) \sim \text{Unif}(0, \theta)$.
+	\item	Si $X \sim \text{Unif}(a, b)$ alors  \lfbox[formula]{$(X	|	X	>	d)	\sim \text{Unif}(d, b)$} et \lfbox[formula]{$(X	-	d	|	X	>	d)	\sim \text{Unif}(0, b - d)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+\begin{definitionNOHFILLprop}[Pareto Distribution]
+\begin{rappel_enhanced}[Contexte]
+La distribution Pareto est un mélange de deux distributions exponentielles originalement conçue pour étudier des distributions de revenus. 
+\end{rappel_enhanced}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Pareto}(\alpha, \theta)$	&	$\alpha, \theta	>	0$	&	$x \geq 0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[=	\frac{\alpha\theta^{\alpha}}{(x + \theta)^{\alpha + 1}}\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$F(x)$}	&	 \[=1 -	\left(\frac{\theta}{x + \theta}\right)^{\alpha}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	Si $X \sim \text{Pareto}(\alpha, \theta)$ alors \lfbox[formula]{$Y	=	(X	-	d	|	X	>	d)	\sim \text{Pareto}(\alpha, \theta + d)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+\hypertarget{0expDist}{Exponential Distribution}
+
+\begin{definitionNOHFILLprop}[Gamma Distribution]
+\begin{center}
+\begin{tabular}{| >{\columncolor{beaublue}}c | >{\columncolor{beaublue}}c  | >{\columncolor{beaublue}}c  |}
+\hline\rowcolor{airforceblue} 
+\textcolor{white}{\textbf{Notation}}	&	\textcolor{white}{\textbf{Parameters}}		&	\textcolor{white}{\textbf{Domain}}	\\\specialrule{0.1em}{0em}{0em} 
+$X \sim \text{Gamma}(\alpha, \theta)$	&	$\alpha, \theta > 0$	&	$x \geq	0$	\\\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{1cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$f(x)$}	&	 \[= \frac{x^{\alpha - 1} \textrm{e}^{-x/\theta}}{\Gamma(\alpha)\theta^{\alpha}}\]		\\\specialrule{0.1em}{0em}{0em}
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item	On appelle $\theta$ la moyenne et $\lambda	=	\frac{1}{\theta}$ le paramètre de fréquence (" \textit{rate} ").
+	\item	Soit n v.a. indépendantes \lfbox[conditions]{$X_{i}	\sim \text{Gamma}(\alpha_{i}, \theta)$} alors \lfbox[formula]{$\sum_{i = 1}^{n} X_{i} \sim \text{Gamma}(\sum_{i = 1}^{n} \alpha_{i}, \theta)$}.
+	\item	Soit n v.a. indépendantes \lfbox[conditions]{$X_{i}	\sim \text{Exp}(\lambda_{i})$} alors \lfbox[formula]{$Y	=	\min(X_{1}, \dots, X_{n})	\sim	\text{Exp}(\frac{1}{\sum_{i = 1}^{n} \lambda_{i})}$}.
+	\item	Si $X \sim \text{Exp}(\theta)$ alors \lfbox[formula]{$(X	-	d	|	X	>	d)	\sim \text{Exp}(\theta)$}.
+\end{itemize}
+\end{definitionNOHFILLprop}
+
+
+\section{Statistics}
+\begin{definitionNOHFILL}[Mode]
+\begin{rappel_enhanced}[Context]
+The mode is the value that occurs the most often. A non-mathematical example of the concept is looking at the most used letter in the English alphabet. The letter E is the most used letter in the dictionary and as such is the mode of the English language.
+\end{rappel_enhanced}
+
+In mathematical terms, the mode is the point which maximises the \hyperlink{0pmf}{\color{bleudefrance} PMF}/\hyperlink{0pdf}{\color{bleudefrance} PDF}.
+
+\bigskip
+
+Finding the mode of a continuous r.v. can be done by calculating the derivative of the PDF and finding the point where it equals $0$.  If the distribution is
+\begin{itemize}
+	\item	\textbf{unimodal}, i.e. it has a hump, then \lfbox[formula]{$\text{mode}	=	x \text{ s.t. } f'(x)	=	0$}.
+	\item	\underline{strictly increasing} or \underline{decreasing}, the mode will be one of the 2 extremes.
+		\begin{itemize}
+		\item	For example, the exponential distribution is strictly decreasing and its mode is always $0$.
+		\end{itemize}
+\end{itemize}
+
+\bigskip
+
+For discrete variables, there are some ways to simplify it's calculation:
+\begin{itemize}
+	\item	Using the table function on the calculator and seeing where the probabilities peak.
+	\item	Using the algebraic approach of looking at $p_{k} / p_{k - 1}$.
+		\begin{itemize}
+		\item	$p_{k} > p_{k - 1}$ iff $p_{k}/p_{k - 1} > 1$.
+		\item	The mode is the largest $k$ s.t. $p_{k} > p_{k - 1}$.
+		\end{itemize}
+\end{itemize}
+
+\paragraph{Note}	In the exam, it's best to use the calculator approach.
+\end{definitionNOHFILL}
 
 
 \newpage
@@ -176,8 +503,12 @@ The \textbf{\textit{credibility factor}} for :
 
 \newpage
 \section{Bühlmann Credibility}\label{sec:Buhl}
+\begin{rappel_enhanced}[Context]
+Buhlmann's approach, a.k.a. the greatest accuracy approach or the least squares approach, estimates the future loss measure $X_{n }$
+\end{rappel_enhanced}
 \subsection{Basic framework}
 
+ 
 
 \subsection{Variance components}
 
