@@ -29,10 +29,14 @@ Document | état
 ### Examen MAS-I
 Document | état  
 ---   | --------
-[Cheatsheet](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Cheatsheet/cheatsht-MASI.pdf)  | en cours de développement
-[Cheatsheet de R](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Cheatsheet/Autre/cheatsht-R-MAS-I.pdf)  | en cours de développement passif
+[Cheatsheet](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Cheatsheet/cheatsht-MASI.pdf)  | complété
+[Cheatsheet de R](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Cheatsheet/Autre/cheatsht-R-MAS-I.pdf)  | ébauche, projet abandonné
 [Guide d'étude](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Guide%20d'%C3%A9tude/Guide%20d'%C3%A9tude%20examen%20MAS-I%20(AJVR).pdf)  | ébauche, projet abandonné
 
+### Examen MAS-I
+Document | état  
+---   | --------
+[Cheatsheet](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-II/cheatsht-MASII.pdf)  | complété
 
 ### Examen SRM
 Document | état  
