@@ -33,10 +33,10 @@ Document | état
 [Cheatsheet de R](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Cheatsheet/Autre/cheatsht-R-MAS-I.pdf)  | ébauche, projet abandonné
 [Guide d'étude](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-I/Guide%20d'%C3%A9tude/Guide%20d'%C3%A9tude%20examen%20MAS-I%20(AJVR).pdf)  | ébauche, projet abandonné
 
-### Examen MAS-I
+### Examen MAS-II
 Document | état  
 ---   | --------
-[Cheatsheet](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-II/cheatsht-MASII.pdf)  | complété
+[Cheatsheet](https://github.com/ressources-act/Ressources-examens/blob/master/MAS-II/cheatsht-MASII.pdf)  | en cours de développement
 
 ### Examen SRM
 Document | état  
