@@ -98,7 +98,7 @@
 
 \newpage
 \part{Prerequisites}\label{part:prereq}
-\section{Distributions}\label{sec:0Distributions}
+\section{Distributions}\label{sec:00Distributions}
 \begin{rappel_enhanced}[Context]
 We typically use 3 types of random variable to describe losses:
 
@@ -217,6 +217,7 @@ $N \sim \text{Geo}(\beta)$	&	$\beta > 0$	&	$n = 0, 1, 2, \dots$	\\\hline
 \end{itemize}
 \end{definitionNOHFILLprop}
 
+\columnbreak	
 \begin{definitionNOHFILLprop}[Negative Binomial Distribution]
 \begin{rappel_enhanced}[Context]
 A negative binomial r.v. $N$ represents the number of years $n$ with no loss \textit{before} the $r^{\text{th}}$ year with a loss. We obtain a negative binomial r.v. $N \sim \text{NBin}(r, \beta)$ by summing $r$ iid geometric r.v., $N_{1}, N_{2}, \dots, N_{r}$, all with the same mean $\beta$.
@@ -231,13 +232,14 @@ $N \sim \text{NBin}(\beta)$	&	$r, \beta > 0$	&	$n = 0, 1, 2, \dots$	\\\hline
 \end{center}
 
 
+
 \begin{center}
-\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{4cm}  |}
+\begin{tabular}{| >{\columncolor{airforceblue}}m{2cm} | >{\columncolor{beaublue}}m{6cm}  |}
 \specialrule{0.1em}{0em}{0em}
-\textcolor{white}{$\Pr(N = n)$}	&	 \[= \binom{r + n - 1}{r - 1} \left(\frac{\beta}{1 + \beta}\right)^{n} \left(\frac{1}{1 + \beta}\right)^{r}	\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$\Pr(N = n)$}	&	 \[ = \binom{r + n - 1}{r - 1} \left(\frac{\beta}{1 + \beta}\right)^{n} \left(\frac{1}{1 + \beta}\right)^{r}	\]		\\\specialrule{0.1em}{0em}{0em}
 \textcolor{white}{$\Pr(N \geq n)$}	&	 \[=\left(\frac{\beta}{1 + \beta}\right)^{n}	\]		\\\specialrule{0.1em}{0em}{0em}
-\textcolor{white}{$E[N]$}	&	 \[=r\beta\]		\\\specialrule{0.1em}{0em}{0em}
-\textcolor{white}{$Var(N)$}	&	 \[=r\beta(1 + \beta)\]		\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$E[N]$}			&	 \[=r\beta\]					\\\specialrule{0.1em}{0em}{0em}
+\textcolor{white}{$Var(N)$}			&	 \[=r\beta(1 + \beta)\]		\\\specialrule{0.1em}{0em}{0em}
 \end{tabular}
 \end{center}
 
@@ -382,7 +384,7 @@ Negative Binomial	&	$r\beta$		&	$<$	&	$r\beta(1 + \beta)$	\\\hline
 
 \lfbox[formula]{$\gamma(1/2) = \sqrt{\pi}$}
 
-\section{Statistics}
+\section{Statistics}\label{sec:01Statistics}
 \begin{definitionNOHFILL}[Mode]
 \begin{rappel_enhanced}[Context]
 The mode is the value that occurs the most often. A non-mathematical example of the concept is looking at the most used letter in the English alphabet. The letter E is the most used letter in the dictionary and as such is the mode of the English language.
@@ -394,7 +396,7 @@ In mathematical terms, the mode is the point which maximises the \hyperlink{0pmf
 
 Finding the mode of a continuous r.v. can be done by calculating the derivative of the PDF and finding the point where it equals $0$.  If the distribution is
 \begin{itemize}
-	\item	\textbf{unimodal}, i.e. it has a hump, then \lfbox[formula]{$\text{mode} = x \text{s.t.} f'(x) = 0$}.
+	\item	\textbf{unimodal}, i.e. it has a hump, then \lfbox[formula]{$\text{mode} = x \text{ s.t. } f'(x) = 0$}.
 	\item	\underline{strictly increasing} or \underline{decreasing}, the mode will be one of the 2 extremes.
 		\begin{itemize}
 		\item	For example, the exponential distribution is strictly decreasing and its mode is always $0$.
@@ -419,7 +421,7 @@ For discrete variables, there are some ways to simplify it's calculation:
 
 \newpage
 \part{Introduction to Credibility}\label{part:cred}
-\section{Basic Framework of Credibility}\label{sec:credBasics}
+\section{Basic Framework of Credibility}\label{sec:A1credBasics}
 \begin{rappel_enhanced}[Context]
 The \textbf{\textit{limitation fluctuation credibility}} approach, or \textbf{\textit{classical credibility}} approach, calculates an updated prediction ($U$) of the \textbf{loss measure} as a weighted ($Z$) average of recent claim experience ($D$) and a rate ($M$) specified in the manual. Thus, we calculate the \textit{premium} paid by the \textit{risk group} as \lfbox[formula]{$U = ZD + (1 - Z)M$}.
 \end{rappel_enhanced}
@@ -503,7 +505,7 @@ The \textbf{\textit{credibility factor}} for :
 
 
 \newpage
-\section{Bühlmann Credibility}\label{sec:Buhl}
+\section{Bühlmann Credibility}\label{sec:ABuhl}
 \begin{rappel_enhanced}[Context]
 Buhlmann's approach, a.k.a. the greatest accuracy approach or the least squares approach, estimates the future loss measure $X_{n }$
 \end{rappel_enhanced}
@@ -522,7 +524,7 @@ Buhlmann's approach, a.k.a. the greatest accuracy approach or the least squares 
 
 
 \newpage
-\section{Bayesian Credibility}\label{sec:Bayes}
+\section{Bayesian Credibility}\label{sec:ABayes}
 \subsection{Basic framework}
 
 
@@ -539,13 +541,360 @@ Buhlmann's approach, a.k.a. the greatest accuracy approach or the least squares 
 
 \newpage
 \part{Linear Mixed Models}\label{part:LMM}
+\begin{rappel_enhanced}[Context]
+What distinguishes a linear mixed model is that it may include both \textbf{fixed-effect parameters} and \textbf{random effects}. The mix of these gives the linear \textit{mixed} model its name. Fixed-effect parameters describes the relationships of the covariates to the dependant variable for an \textit{entire population}. Random effects are specific to clusters or subjects \textit{within a population}. Random effects are thus directly used in modelling the random variation in the dependant variable at \underline{different levels} of the data.
+
+\bigskip
+
+Fixed factors are categorical or classification variables for which all levels (conditions) that are of interest are included. Random factors can be thought of as being \textit{randomly sampled} from a population of levels being studied. The text gives as an example the Dental Veneer case study where if we specified the tooth being sampled, selected teeth would become a fixed factor. This would however limit inferences by teeth rather than generalizing to "teeth within a patient". 
+\end{rappel_enhanced}
+
+The case studies use 3 types of data:
+\begin{description}
+	\item[clustered]	The dependant variable is measured once per subject (unit of analysis), and the units are grouped into/nested within clusters of units. 
+		\begin{itemize}
+		\item	We can have data sets that are two-level (e.g. rat pup data set), three-level (e.g. classroom data), etc.
+		\item	For MAS-II, we shouldn't have beyond three levels.
+		\end{itemize}
+	\item[repeated-measures]	The dependant variable is measured more than once (on the same unit of analysis) across levels of a repeated-measures factor(s). (e.g. time, measurement conditions, etc.)
+	\item[longitudinal]	The dependant variable is measured at several points in time for each unit of analysis.
+		\begin{itemize}
+		\item	\textit{\textbf{Clustered longitudinal}} data combines features of both. (e.g. Dental Veneer data set).
+		\item	Each unit is measured more than once, but those units of analysis are nested within clusters.
+		\end{itemize}
+\end{description}
+
+
+\begin{rappel_enhanced}[Context]
+These 3 are \textbf{\textit{hierarchical}} data sets as the observations can be placed into levels of a hierarchy in the data.
+
+\bigskip
+
+Generally:
+\begin{description}
+	\item[Level 1]	most detailed level; subjects, repeated measures on the same unit of analysis.
+	\item[Level 2]	clusters of units, units of analysis.
+	\item[Level 3]	clusters of clusters, clusters of units.
+\end{description}
+
+\bigskip
+
+Levels are emphasized in the text because they help to conceptualize LMM as simple models defined at each level of the data hierarchy. 
+\end{rappel_enhanced}
+
+\section{General Theory}\label{sec:BGenTheory}
+\subsection{Residual Variance Structures}
+Diagonal
+\begin{align*}
+	R_{i}
+	&=	\begin{bmatrix}
+		\sigma^{2}	&	0	&	\dots	&	0	\\
+		0	&	\sigma^{2}	&	\dots	&	0	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		0	&	0	&	\dots	&	\sigma^{2}	\\
+		\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Assumes residuals from the same subject are \textit{independent}.
+\end{itemize}
+
+Compound Symmetry
+\begin{align*}
+	R_{i}
+	&=	\begin{bmatrix}
+		\sigma^{2} + \sigma_{1}	&	\sigma_{1}	&	\dots	&	\sigma_{1}	\\
+		\sigma_{1}	&	\sigma^{2} + \sigma_{1}	&	\dots	&	\sigma_{1}	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		\sigma_{1}	&	\sigma_{1}	&	\dots	&	\sigma^{2} + \sigma_{1}	\\
+		\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Assumes \textit{equal correlation} between observations from the same individual.
+	\item	Good for clustered or repeated measures data.
+\end{itemize}
+
+
+First Order Auto-Regressive ($AR(1)$)
+\begin{align*}
+	R_{i}
+	&=	\begin{bmatrix}
+		\sigma^{2}	&	\sigma^{2}\rho	&	\dots	&	\sigma^{2}\rho^{n_{i}-1}	\\
+		\sigma^{2}\rho	&	\sigma^{2}	&	\dots	&	\sigma^{2}\rho^{n_{i}-2}	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		\sigma^{2}\rho^{n_{i}-1}	&	\sigma^{2}\rho^{n_{i}-2}	&	\dots	&	\sigma^{2}	\\
+		\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Good for longitudinal with \textit{equal time} between observations.
+\end{itemize}
+
+
+\subsection{Model Assumptions}
+\begin{definitionGENERAL}{Fixed Effects}[\circled{1}{trueblue}]
+
+\end{definitionGENERAL}
+
+\begin{definitionGENERAL}{Random Effects}[\circled{2}{trueblue}]
+
+\end{definitionGENERAL}
 
 
 
+\columnbreak
+\section{Algorithms}\label{sec:BAlgorithms}
+\begin{definitionNOHFILL}[Expectation Maximization]
+
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Newton-Raphson]
+
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[Fisher Scoring Algorithm]
+
+\end{definitionNOHFILL}
+
+
+
+\subsection{Troubleshooting}
+
+
+
+\columnbreak
+\section{Hypothesis Testing}\label{sec:BHypTesting}
+
+\subsection{Likelihood Ratio Tests}\label{subsec:LRT}
+Mixture of Chi Squares
+
+REML
+
+
+\subsection{Non-Likelihood Ratio Tests}
+\begin{definitionNOHFILL}[$t$-test]
+
+approximating df, not n-p
+\end{definitionNOHFILL}
+
+
+\begin{definitionNOHFILL}[$F$-test]
+\begin{rappel_enhanced}[Context]
+Degrees of freedom of the numerator correspond
+\end{rappel_enhanced}
+
+We get that the test statistic $t \approx F_{\text{num. df}, \text{den. df}}$ where the numerator df corresponds to the number of parameters being tested and the denominator degrees of freedom is obtained from R. 
+
+\bigskip
+
+The particularity of the $F$-test is that we must make adjustments for it due to:
+\begin{enumerate}
+	\item	Random Effects
+	\item	Potential correlation between residuals
+	\item	Estimate covariance matrix
+\end{enumerate}
+
+We have a few ways of approximating them:
+
+\begin{definitionNOHFILLpropos}[Scatterwhite]
+
+\begin{itemize}
+	\item	Method used by R.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLpropos}[Kenward-Rogers]
+
+\begin{itemize}
+	\item	Method used by SAS.
+\end{itemize}
+\end{definitionNOHFILLpropos}
+
+\begin{definitionNOHFILLsub}[Type $I$]
+Sequential
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Type $III$]
+Conditional
+\end{definitionNOHFILLsub}
+\end{definitionNOHFILL}
+
+
+Using tests:
+\begin{enumerate}
+	\item	Compute test statistic
+		\begin{itemize}
+		\item	$F$-statistic would be too hard to compute, would have to be provided.
+		\item	For $t$-test, may just give components of the calculation and have us compute $t$ to the compare it to the CV.
+		\item	For both tests, the number of df would have to be provided.
+		\end{itemize}
+	\item	Look up critical value table
+	\item	Reject null / keep effects if test statistic > CV
+\end{enumerate}
+
+\subsubsection{Other tests}
+Omnibus Wald Test (good)
+	similar to $F$-test
+	test statistic asymptotically $\chi^{2}$
+	
+
+Wald $z$-test (not good)
+	only good asymptotically and breaks in some situations
+	text recommends LRT instead	
+	
+	
+	
+\section{EBLUPS}
+
+\subsection{Intra Correlation Coefficient}
+\lfbox[formula]{$ICC_{\text{whatever}} = \frac{\text{variance in common}}{\text{total variance}}$}.
+
+2 level model $ICC_{\text{group}} = \frac{\sigma^{2}_{\text{lvl 2}}}{\sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
+3 level model
+	$ICC_{\text{lvl 3 group}} = \frac{\sigma^{2}_{\text{lvl 3}}}{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
+	$ICC_{\text{lvl 2 group}} = \frac{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}}}{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
+
+
+\subsection{EBLUPS}
+EBLUP
+\begin{description}
+	\item[E]	
+	\item[B]	Best i.e. lowest variance among all such unbiased estimators
+	\item[L]	Linear as functions of $\bm{y}_{i}$
+	\item[U]	Unbiased with $\text{E}[\hat{\bm{u}}_{i}] = \bm{u}_{i}$
+	\item[P]	
+\end{description}
+
+\begin{itemize}
+	\item	Typically tedious to calculate so we use computers unless we calculate only for 1 random effect.
+\end{itemize}
+
+
+Use Buhlmann's formula where:
+\begin{description}
+	\item[$M$]	Average predicted value from the implied marginal model
+	\item[$\bar{Y}$]	Average observed value from group
+	\item[$\sigma^{2}_{HM}$]	$\text{Var}(u_{j}) = \sigma^{2}_{int}$
+	\item[$\mu_{PV}$]	$\text{Var}(\varepsilon_{ij}) = \sigma^{2}$
+\end{description}
+Prediction is for $M + u_{j} = M + Z_{j} (\bar{Y} - M)$.
+
+
+
+\section{Information Criteria}
+\begin{rappel_enhanced}[Context]
+When comparing 2 nested models, the more complex will be better than the simpler model. While the \textit{\underline{\nameref{subsec:LRT}}} checks if the simpler model is sufficient, it does not enable us to directly compare the 2 models. In addition, with the LRT we are limited to nested models. The AIC and BIC measures permit us to compare several models which don't have to be nested. They do so by adding a penalty to the likelihood for a model's complexity via the amount of parameters it has.
+
+\bigskip
+
+We wish to maximize the likelihood of our observations. As observed for the LRT, maximizing the likelihood is equivalent to minimizing the loglikelihood or a function thereof. Namely, $-2 \times \ell(\theta)$ (a.k.a. the \hl{deviance}, see \textit{\underline{\nameref{part:BAandMCMC}}}). In both cases, we add a penalty to the measure we wish to minimize.
+\end{rappel_enhanced}
+
+\begin{definitionNOHFILLsub}[Akaike Information Criteria (AIC)]
+The AIC penalizes models which have more parameters by adding twice the number of estimated parameters $p$ in the model to twice the negative loglikelihood: \lfbox[formula]{$AIC = -2\ell(\theta) + 2p$}. 
+
+\bigskip
+
+We choose the model with the smallest AIC.
+\end{definitionNOHFILLsub}
+
+\begin{rappel_enhanced}[Context]
+The disadvantage of the AIC lies in that for 2 nested models the probability of choosing the simpler model knowing it's the true model does not tend towards 1 when the number of observations increases towards infinity. We thus consider it an \textit{inconsistent} measure.
+
+\bigskip
+
+In comparison, the BIC \textbf{is} a \textit{consistent} measure given its parameters penalty is a function of the number of observations.
+
+\bigskip
+
+That being said, in both cases, the probability of rejecting the simpler model while the true model is somewhere in between tends towards 1.
+\end{rappel_enhanced}
+
+
+\begin{definitionNOHFILLsub}[Bayesian Information Criteria (BIC)]
+The BIC penalizes more severely models which have more parameters given its penalty is a function of the number of observations $n$: \lfbox[formula]{$BIC = -2\ell(\theta) + \ln(n)p$}.
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+To better understand the difference between the AIC and BIC penalty, we can use log rules to rewrite the measures:
+\begin{align*}
+	AIC	
+	&=	-2\ln|\mathcal{L}(\theta)| + 2p	\\
+	&=	-2\ln|\mathcal{L}(\theta)| + \ln\left(\textrm{e}^{2p}\right)	\\
+	&=	-\left[\ln|\mathcal{L}(\theta)^{2}| - \ln\left|\left(\textrm{e}^{p}\right)^{2}\right|\right]	\\
+	&=	-\ln\left|\frac{\mathcal{L}(\theta)^{2}}{\left(\textrm{e}^{p}\right)^{2}}\right|	
+\end{align*}
+
+\begin{align*}
+	BIC
+	&=	-2\ln|\mathcal{L}(\theta)| + \ln|n|p	\\
+	&=	-\left[\ln\left|\mathcal{L}(\theta)^{2}\right| - \ln\left|n^{p}\right|\right]	\\
+	&=	-\ln\left|\frac{\mathcal{L}(\theta)^{2}}{n^{p}}\right|	
+\end{align*}
+
+\bigskip
+
+\begin{rappel_enhanced}[Context]
+There's no agreement on which is better for LMM and the text tends to build models piecewise, testing between steps with LRT. So, we probably won't use them much.
+
+\bigskip
+
+Fundamentally, the AIC tries to to find the model that best describes the data under the belief that there is no "correct" model. In contrast, the BIC tries to find the "correct" model under the belief that such a model exists. 
+
+\bigskip
+
+Intuitively, we may think we'd prefer the AIC given that it's typically unrealistic to believe there exists a "correct" model. However, some feel the BIC often gives better results. \textit{However}, part C on \textit{\underline{\nameref{part:BAandMCMC}}} has other information criterion that are more complicated but arguably better. 
+\end{rappel_enhanced}
+
+
+\bigskip
+
+Notes:
+\begin{itemize}
+	\item	REML criterion at convergence is the deviance ($-2\ell(\theta)$).
+		\begin{itemize}
+		\item	Likelihoods are typically $<1$ given they're probability densities.
+		\item	Thus, loglikelihoods are typically negative.
+		\item	Thus a positive output suggests they already multiplied by $-2$.
+		\end{itemize}
+\end{itemize}
+
+
+
+\section{Graphical Tests}
+Not heavily tested.
+	Case study will have some graphs and there will be some questions about case study which may need graphs interpretation
+	
+marginal residual
+	residual leftover plugging in estimated fixed effects
+	rarely used
+	
+conditional (textbook) / response (R) / raw (typical) residuals
+	residual from estimate of everything
+	In LMM, variance of residual $\varepsilon_{ij}$ can vary based on other factors
+	So, still not residual we want
+
+	
+standardized / normalized residuals
+	conditional residual / estimated SD for that residual
+	almost always prefer standardized residual
+	
+important:
+\begin{itemize}
+	\item	Use residual plots for normality testing
+	\item	raw data plots are useless; ignore them.
+	\item	Standardized residuals adjust the data so we can tell if a residual is an outlier because it's from a high variance group or because it's really an outlier.
+\end{itemize}
+
+
+implied marginal model is LMM w/o random effects but with same variance structure (var Yij same for both)
+
+marginal model is with just same variance for everything 
 
 \newpage
 \part{Bayesian Analysis and Markov Chain Monte Carlo}\label{part:BAandMCMC}
-
+%%%%	labbels not affixing to the parts? but to previous section? investigate
 
 
 
