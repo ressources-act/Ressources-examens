@@ -2877,6 +2877,10 @@ La statistique du test a le même raisonnement que la statistique pour le test d
 \subsubsection{Test du rapport de vraisemblance}\label{subsubsec:TRV}
 \begin{rappel_enhanced}[Motivation]
 L'idée du test du rapport de vraisemblance (TRV) est de tester si les données peuvent être suffisamment bien expliquée par une simplification d'une distribution. 
+
+\bigskip
+
+On l'appele le test du rapport de vraisemblance, \og likelihood ratio test \fg{}, car orginialement on calculait les 2 vraisemblances et on regardait le ratio. On utilisait des valeurs critiques calculées manuellement. Cependant, avec l'avancement de la statistique, on est venu à la réalisation que la statistique de test $T = 2 (\ell_{1} - \ell_{0})$ suit approximativement une distribution du khi carré et on peut utiliser valeurs critiques d'une table du khi carré. 
 \end{rappel_enhanced}
 
 \begin{definitionNOHFILL}[\hypertarget{TRVDef}{Test du rapport de vraisemblance}]
@@ -2885,11 +2889,15 @@ Les hypothèses sont
 	\textrm{H}_{0}	&:	\text{les données proviennent d'une distribution $A$}	\\
 	\textrm{H}_{1}	&:	\text{les données proviennent d'une distribution $B$}
 \end{align*}
-où la distribution $A$ est un cas spécial de la distribution $B$. L'exemple intuitif est la distribution exponentielle qui est un cas spécial de la distribution gamma avec $\alpha = 1$. Cependant, plus généralement, on peut penser à une distribution avec des paramètres prédéterminés comme une simplification de la même distribution avec des paramètres inconnus (e.g. normale avec $\mu$ et $\sigma^{2}$ inconnus vs normale avec $\mu = 2$ et $\sigma^{2}$ inconnu).
+où la distribution $A$ est un cas spécial de la distribution $B$. 
 
 \bigskip
 
-Il s'ensuit que la distribution $B$ est plus complexe que la distribution $A$ et donc que $B$ a plus de "paramètres libres". L'idée du test est que nous préférons un modèle plus simple (distribution $A$) mais utiliserons un modèle plus complexe (distribution $B$) s'il y a une amélioration suffisamment importante.
+Un des exemples le plus intuitif est le cas d'une distribution exponentielle. La distribution exponentielle est un cas spécial de la distribution gamma où le paramètre de forme $\alpha = 1$. Plus généralement, on pourrait avoir une distribution dont certains paramètres sont prédéterminés comme une simplification de la même distribution avec les paramètres qui sont inconnus. Par exemple, comparer une distribution \og $B$ \fg{} normale avec les 2 paramètres - d'emplacement $\mu$ et d'échelle $\sigma^{2}$ - inconnus avec la distribution \og $A$ \fg{} normale simplifiée où le paramètre d'emplacement $\mu = 2$ et le paramètre d'échelle $\sigma^{2}$ est inconnu.
+
+\bigskip
+
+Vu que la distribution $B$ est plus, de soi, plus complexe que la distribution $A$, on déduit que que $B$ a plus de "\textit{paramètres libres}". L'idée du test est que à priori nous préférons un modèle plus simple (distribution $A$), mais que nous utiliserons un modèle plus complexe (distribution $B$) s'il y a une amélioration suffisamment importante pour le justifier.
 
 \bigskip
 
@@ -2904,7 +2912,7 @@ On dénote donc :
 \end{description}
 \end{distributions}
 
-Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} où la statistique est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$}. 
+Puis, la statistique du test \lfbox[formula]{$t = 2 (\ell_{1} - \ell_{0})$} et est approximativement distribué selon la loi du khi carré : \lfbox[formula]{$T_{n} \sim \chi^{2}_{r_{1} - r_{0}}$}. 
 \end{definitionNOHFILL}
 
 
@@ -9484,7 +9492,7 @@ Le \og \textit{Loss Elimination Ratio (LER)} \fg{} évalue combien qu'épargne l
 		\begin{itemize}
 		\item	Par exemple, lorsqu'une police a un déductible, les pertes dont le coût est inférieur au déductible ne seront pas reportées à l'assureur.
 		\item	Le montant de paiement est donc le montant que l'assureur va payer conditionnel à ce qu'il y ait un paiement.
-		\item	Il s'ensuit que \lfbox[conditions]{$\text{E}[Y^{L}] \geq \text{E}[Y^{L}]$}.
+		\item	Il s'ensuit que \lfbox[conditions]{$\text{E}[Y^{L}] \geq \text{E}[Y^{P}]$}.
 		\end{itemize}
 \end{description}
 
@@ -11614,10 +11622,16 @@ On pose que les composante sont indépendantes, puis :
 \columnbreak
 \subsection{Bornes des fonctions de fiabilité}
 \begin{rappel_enhanced}[Contexte]
-Parfois, il n'est \textit{pas pratique} \underline{\textit{ni nécessaire}} de trouver la fonction de fiabilité exacte. Plutôt, on peut l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes qui suit.
+Parfois, il n'est \textit{pas pratique} \underline{\textit{ni nécessaire}} de trouver la fonction de fiabilité exacte. Plutôt, on peut l'approximer en trouvant les bornes supérieures et inférieures de la fonction avec une des deux méthodes qui suit. 
+
+\bigskip
+
+Donc, l'utilité des bornes est d'approximer la probabilité sans nécessairement trouver la valeur exacte.
 \end{rappel_enhanced}
 
 \subsubsection{Méthode d'inclusion et d'exclusion}
+Pour comprendre d'où proviennent les formules pour les bornes, ont rappel le calcul de probabilité conjointes :
+
 \begin{rappel}{Rappel: Probabilités conjointes}
 \begin{align*}
 	\Pr(E_{1} \cup E_{2})
@@ -11630,12 +11644,13 @@ Parfois, il n'est \textit{pas pratique} \underline{\textit{ni nécessaire}} de t
 \end{align*}
 \end{rappel}
 
-L'intersection de plusieurs événements correspond à la somme de sommes ci-dessus. Si l'on approxime la probabilité par la première somme, alors on \textit{sur}-estime la probabilité. Si on utilise seulement les deux premières sommes, alors on la \textit{sous}-estime. Ce qu'on en déduit est que la probabilité est \textbf{\underline{contenue entre ces deux estimations}} ! 
+L'intersection de plusieurs événements correspond à la somme de sommes ci-dessus. Si l'on approxime la probabilité en tronquant l'équation à la première somme, alors on \textit{sur}-estime la probabilité. Si on utilise seulement les deux premières sommes, alors on la \textit{sous}-estime. Ce qu'on en déduit est que la probabilité est \textbf{\underline{contenue entre ces deux estimations}} ! 
 
 \bigskip
 
-On peut donc établir des inégalités soit pour la probabilité que le système fonctionne ($r(\bm{p})$) ou pour la probabilité qu'il ne fonctionne pas ($1 - r(\bm{p})$).
+On peut donc établir des inégalités. Soit, pour la probabilité que le système fonctionne ($r(\bm{p})$) ou pour la probabilité qu'il ne fonctionne pas ($1 - r(\bm{p})$).
 
+\bigskip
 
 \paragraph{Minimal path sets}
 On a que $\sum_{j = 1}^{n} \Pr(A_{j})	=	\sum_{j = 1}^{s} \left(\prod_{i \in A_{j}} p_{i}\right)$.
@@ -11672,6 +11687,20 @@ Donc $p + p^{2} - p^{3}	\leq r(\bm{p}) \leq p + p^{2}$.
 \bigskip
 
 Si $p = 0.2$, $r(\bm{p}) \in [0.232, 0.24]$ mais si $p = 0.6$ alors $r(\bm{p}) \in [0.744, 0.96]$. On voit donc que plus $p$ est petit, mieux l'intervalle approxime la fiabilité.
+
+\bigskip
+
+On peut aussi faire le calcul de façon plus intuitive en regardant les minimum path vectors dans les probabilités: 
+\begin{align*}
+	r(\bm{p}) 
+	&=	\Pr(A_{1} \cup A_{2})	\\
+	&=	\Pr(A_{1}) + \Pr(A_{2}) - \Pr(A_{1} \cap A_{2})	\\
+	&=	\Pr(\{0, 0, 1\}) + \Pr(\{1, 1, 0\}) - \Pr(\{0, 0, 1\} \cap \{1, 1, 0\})	\\
+	&=	\Pr(\{0, 0, 1\}) + \Pr(\{1, 1, 0\}) - \Pr(\{1, 1, 1\})	\\
+	&=	p + p^{2} - p^{3}
+\end{align*}
+	
+
 \end{formula}
 
 
