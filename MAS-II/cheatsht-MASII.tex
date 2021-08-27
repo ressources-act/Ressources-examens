@@ -582,53 +582,9 @@ Generally:
 Levels are emphasized in the text because they help to conceptualize LMM as simple models defined at each level of the data hierarchy. 
 \end{rappel_enhanced}
 
+
+
 \section{General Theory}\label{sec:BGenTheory}
-\subsection{Residual Variance Structures}
-Diagonal
-\begin{align*}
-	R_{i}
-	&=	\begin{bmatrix}
-		\sigma^{2}	&	0	&	\dots	&	0	\\
-		0	&	\sigma^{2}	&	\dots	&	0	\\
-		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
-		0	&	0	&	\dots	&	\sigma^{2}	\\
-		\end{bmatrix}
-\end{align*}
-\begin{itemize}
-	\item	Assumes residuals from the same subject are \textit{independent}.
-\end{itemize}
-
-Compound Symmetry
-\begin{align*}
-	R_{i}
-	&=	\begin{bmatrix}
-		\sigma^{2} + \sigma_{1}	&	\sigma_{1}	&	\dots	&	\sigma_{1}	\\
-		\sigma_{1}	&	\sigma^{2} + \sigma_{1}	&	\dots	&	\sigma_{1}	\\
-		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
-		\sigma_{1}	&	\sigma_{1}	&	\dots	&	\sigma^{2} + \sigma_{1}	\\
-		\end{bmatrix}
-\end{align*}
-\begin{itemize}
-	\item	Assumes \textit{equal correlation} between observations from the same individual.
-	\item	Good for clustered or repeated measures data.
-\end{itemize}
-
-
-First Order Auto-Regressive ($AR(1)$)
-\begin{align*}
-	R_{i}
-	&=	\begin{bmatrix}
-		\sigma^{2}	&	\sigma^{2}\rho	&	\dots	&	\sigma^{2}\rho^{n_{i}-1}	\\
-		\sigma^{2}\rho	&	\sigma^{2}	&	\dots	&	\sigma^{2}\rho^{n_{i}-2}	\\
-		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
-		\sigma^{2}\rho^{n_{i}-1}	&	\sigma^{2}\rho^{n_{i}-2}	&	\dots	&	\sigma^{2}	\\
-		\end{bmatrix}
-\end{align*}
-\begin{itemize}
-	\item	Good for longitudinal with \textit{equal time} between observations.
-\end{itemize}
-
-
 \subsection{Model Assumptions}
 \begin{definitionGENERAL}{Fixed Effects}[\circled{1}{trueblue}]
 
@@ -639,28 +595,195 @@ First Order Auto-Regressive ($AR(1)$)
 \end{definitionGENERAL}
 
 
+\subsection{Model specification}
+\begin{align*}
+	\bm{Y}_{i}
+	&=	\underbrace{\bm{X}_{i}\bm{\beta}}_{\text{fixed}} + \underbrace{\bm{Z}_{i}\bm{u}_{i}}_{\text{random}} + \bm{\varepsilon}_{i}
+\end{align*}
+where:
+\begin{itemize}
+	\item	$\bm{Y}_{i}$ is the $n_{i} \times 1$ vector of continuous responses for the $i$-th subject.
+	\item	$\bm{X}_{i}$ is the $n_{i} \times p$ design matrix.
+	\item	$\bm{Z}_{i}$ is the $n_{i} \times q$ design matrix.
+		\begin{itemize}
+		\item	In a LMM in which only the intercepts are assumed to vary randomly from subject to subject, the $\bm{Z}_{i}$ matrix would simply be a column of $1$'s.
+		\end{itemize}	
+	\item	$\bm{u}_{i}$ is the $q_{i} \times 1$ matrix (vector) of random effects.
+	\item	$\bm{D}$ $q \times q$ variance-covariance matrix of $\bm{u}_{i}$.
+	\item	$\bm{\varepsilon}_{i}$ is the $n_{i} \times 1$ matrix (vector) of random effects.
+	\item	$\bm{R}_{i}$ $n_{i} \times n_{i}$ variance-covariance matrix of $\bm{\varepsilon}_{i}$.
+\end{itemize}
+
+\paragraph{Note}	When LMMs are specified in terms of an explicitly defined hierarchy of simpler models, they are often referred to as hierarchical linear models (HLMs) or multilevel models (MLMs). 
+
+\paragraph{Note}	The elements of both $\bm{R}_{i}$ and $\bm{D}$ are defined as functions of another set of covariance parameters $\bm{\theta}$.
+
+\subsubsection{Random Covariance Structures}
+\begin{description}
+	\item[unstructured]	$\bm{D}$ matrix with no additional constraints on the values of its elements.
+		\begin{itemize}
+		\item	Often used for random coefficient models.
+		\end{itemize}
+	\item[diagonal]	Each random effect $\bm{u}_{i}$ has its own variance, and all covariances in $\bm{D}$ are assumed to be zero.
+\end{description}
+
+
+\subsubsection{Residual Covariance Structures}
+\textbf{Diagonal}
+\begin{align*}
+	R_{i}
+	&=	\begin{bmatrix}
+		\sigma^{2}	&	0	&	\dots	&	0	\\
+		0	&	\sigma^{2}	&	\dots	&	0	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		0	&	0	&	\dots	&	\sigma^{2}	\\
+		\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Assumes residuals from the same subject are \textit{uncorrelated} with equal variance.
+	\item	Often the default structure.	
+\end{itemize}
+
+
+\textbf{Compound Symmetry}
+\begin{align*}
+	R_{i}
+	&=	\begin{bmatrix}
+		\sigma^{2} + \sigma_{1}	&	\sigma_{1}	&	\dots	&	\sigma_{1}	\\
+		\sigma_{1}	&	\sigma^{2} + \sigma_{1}	&	\dots	&	\sigma_{1}	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		\sigma_{1}	&	\sigma_{1}	&	\dots	&	\sigma^{2} + \sigma_{1}	\\
+		\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Assumes \textit{equal correlation} between residuals from the same individual. (e.g. repeated trials under the same condition in an experiment).
+	\item	Good for clustered or repeated measures data.
+\end{itemize}
+
+
+\textbf{First Order Auto-Regressive} ($AR(1)$)
+\begin{align*}
+	R_{i}
+	&=	\begin{bmatrix}
+		\sigma^{2}	&	\sigma^{2}\rho	&	\dots	&	\sigma^{2}\rho^{n_{i}-1}	\\
+		\sigma^{2}\rho	&	\sigma^{2}	&	\dots	&	\sigma^{2}\rho^{n_{i}-2}	\\
+		\vdots	&	\vdots	&	\ddots	&	\vdots	\\
+		\sigma^{2}\rho^{n_{i}-1}	&	\sigma^{2}\rho^{n_{i}-2}	&	\dots	&	\sigma^{2}	\\
+		\end{bmatrix}
+\end{align*}
+\begin{itemize}
+	\item	Means adjacent residuals have a covariance of $\sigma^{2}\rho$.
+	\item	Good for longitudinal observations with \textit{equal time} between observations.
+	\item	Implies observations closer to each other have a higher correlation than those that are further apart in time.
+\end{itemize}
+
+\paragraph{Note}	We can allow \textbf{heterogeneous variances} for different groups of subjects (e.g. males and females). We could assume the same structure but with different values.
+
+
+\subsection{The Marginal Linear Model}
+\begin{rappel_enhanced}[Context]
+Random effects are explicitly used in LMMs to explain the between-subject (between-cluster) variation, but they're not used in specifying marginal models. We thus refer to LMMs as \textit{subject-specific} models, and marginal models as \textit{population-averaged} models.
+\end{rappel_enhanced}
+
+We specify the model as $\bm{Y}_{i} = \underbrace{\bm{X}_{i}\bm{\beta}}_{\text{fixed}} + \bm{\varepsilon}_{i}$ where the \textbf{\textit{marginal residual errors}} $\bm{\varepsilon}_{i} \sim \mathcal{N}(0, \bm{V}^{*}_{i})$. 
+
+\bigskip
+
+The big difference here is that the entire random part of the marginal model is described in terms of the marginal residuals $\bm{\varepsilon}_{i}^{*}$ only.
+
+\paragraph{Note}	All structures used for $\bm{R}_{i}$ can be used for $\bm{V}_{i}^{*}$. There are others that can be used, such as the one defined for the implied marginal model. 
+
+
+\subsubsection{The Implied Marginal Model}
+\begin{rappel_enhanced}[Context]
+The concept of the implied marginal model is important for at least 2 reasons specified in the text:
+\begin{enumerate}
+	\item	The framework of the implied marginal model is used to estimate the fixed-effect and covariance parameters in the LMM.
+	\item	When we obtain an invalid estimate of the $\bm{D}$ matrix from a software, we can try to fit the implied marginal model (with fewer restrictions) to potentially diagnose problems with nonpositive-definiteness.
+\end{enumerate}
+\end{rappel_enhanced}
+
+The marginal model implied by the LMM has the variance-covariance matrix $\bm{V}_{i} = \bm{Z}_{i}\bm{D}\bm{Z}_{i}' + \bm{R}_{i}$. 
+\begin{itemize}
+	\item	Both the LMM and the implied marginal model involve the same set of covariance parameters $\bm{\theta}$, however there are more restrictions imposed on it in the LMM.
+	\item	Whereas both $\bm{R}_{i}$ and $\bm{D}$ have to be positive-definite, only $\bm{V}_{i}$ has to be for the implied marginal model.
+\end{itemize}
+
+\section{Estimation}
+When $\bm{\theta}$ is assumed to be known, we apply the method of \textbf{generalized least squares} (GLS) to estimate $\bm{\beta}$ with MLE. The estimate $\hat{\beta}$ is the \textit{\textbf{best linear unbiased estimator}} (BLUE) of $\bm{\beta}$. The \textbf{\textit{Empirical Best Linear Unbiased Estimator}} (EBLUE) of $\bm{\beta}$ replaces $\bm{V}_{i}$ by its estimate $\hat{\bm{V}}_{i}$.
+
+\bigskip
+
+We obtain that \lfbox[formula]{$\displaystyle \text{Var}(\hat{\bm{\beta}}) = \left(\sum_{i} \bm{X}_{i}'\hat{\bm{V}}_{i}^{-1}\bm{X}_{i}\right)^{-1}$}.
+
+\subsection{REML estimation}
+REML is often preferred to ML estimation because it produces unbiased estimates of covariance parameters. It does this by taking into account the loss of df that results from estimating the fixed effects in $\bm{\beta}$.
+
+\bigskip
+
+The resulting estimated $\hat{\bm{\beta}}$ and $\text{Var}(\hat{\bm{\beta}})$ differ because $\hat{\bm{V}}_{i}$ is different. 
+
+\begin{rappel_enhanced}[Context]
+The variance of the estimated fixed effects (diagonal elements of $\text{Var}(\hat{\bm{\beta}})$) are biased downward in both ML and REML estimation. This is because neither methods takes into account the uncertainty introduced replacing $\bm{V}_{i}$ by $\hat{\bm{V}}_{i}$.
+
+\bigskip
+
+It follows that $\text{se}(\hat{\bm{\beta}})$ is also biased downward.
+\end{rappel_enhanced}
+
 
 \columnbreak
 \section{Algorithms}\label{sec:BAlgorithms}
 \begin{definitionNOHFILL}[Expectation Maximization]
+The underlying assumption behind the EM algorithm is that optimization of the complete data log-likelihood function is simpler than optimization of the likelihood based on the observed data.
 
+\bigskip
+
+Its main drawback is its slow rate of convergence. Also, the precision of the estimators is overly optimistic. This because the estimators are based on the likelihood from the last maximization step which \hl{uses complete data instead of observed data}. 
+
+\bigskip
+
+Usually used to provide starting values for other algorithms.
 \end{definitionNOHFILL}
 
 
 \begin{definitionNOHFILL}[Newton-Raphson]
+Most commonly used in ML and REML estimation of LMMs.
 
+\bigskip
+
+While iterations are more time consuming (given Hessian matrix calculations), but convergence is quicker than the EM algorithm. Another advantage is that the last iteration's Hessian matrix can be used to obtain an asymptotic variance-covariance matrix for the estimated covariance parameters $\bm{\theta}$ to calculate the $\text{se}(\hat{\bm{\theta}})$.
 \end{definitionNOHFILL}
 
 
 \begin{definitionNOHFILL}[Fisher Scoring Algorithm]
+Modification of the N-R that uses the \textit{\textbf{expected}} Hassian matrix rather than the observed one. 
 
+\bigskip
+
+Its advantages are that it's more stable numerically, more likely to converge, and has simpler calculations at each iteration. However, it is not recommended to obtain the final estimates. It's primary disadvantage is that it may be difficult to determine the expected value of the Hessian matrix owing to difficulties identifying the appropriate sampling distribution.
 \end{definitionNOHFILL}
 
 
 
 \subsection{Troubleshooting}
+If there are problems fitting the model, these are the steps you can take:
+\begin{enumerate}
+	\item	Choose alternative starting values for covariance parameter estimates
+	\item	Rescale the covariates
+		\begin{itemize}
+		\item	Improves numerical stability of the optimization algorithm and may circumvent convergence problems.
+		\end{itemize}
+	\item	Simply and remove some random effects
+		\begin{itemize}
+		\item	Generally, start with higher-order terms.
+		\item	Though, it can be valid to remove lower-order terms, but requires thorough justification.
+		\end{itemize}
+	\item	Fit the implied marginal model
+	\item	Fit the marginal model with an unstructured covariance matrix
+\end{enumerate}
 
-
+Methods 4 and 5 shift a more restrictive requirement for the $\bm{D}$ and $\bm{R}_{i}$ matrices to be positive-definite to a less restrictive requirement that $\bm{V}_{i}$ be positive-definite.
 
 \columnbreak
 \section{Hypothesis Testing}\label{sec:BHypTesting}
@@ -674,11 +797,13 @@ REML
 \subsection{Non-Likelihood Ratio Tests}
 \begin{definitionNOHFILL}[$t$-test]
 
-approximating df, not n-p
+We compensate for the fact that the standard error is underestimated with REML/ML estimation by using an estimated number of df. We approximate the df hence is is not simply $n-p$.
 \end{definitionNOHFILL}
 
 
 \begin{definitionNOHFILL}[$F$-test]
+To test $\mathcal{H}_{0}: \bm{L}\bm{\beta} = 0$ vs $\mathcal{H}_{1}: \bm{L}\bm{\beta} \neq 0$.  
+
 \begin{rappel_enhanced}[Context]
 Degrees of freedom of the numerator correspond
 \end{rappel_enhanced}
@@ -734,16 +859,68 @@ Using tests:
 
 \subsubsection{Other tests}
 Omnibus Wald Test (good)
-	similar to $F$-test
+	similar to $F$-test.
+	Numerator of the $F$-test statistic.
 	test statistic asymptotically $\chi^{2}$
-	
 
 Wald $z$-test (not good)
 	only good asymptotically and breaks in some situations
 	text recommends LRT instead	
 	
 	
-	
+\section{Model-Building Strategies}
+\begin{definitionGENERAL}{Top-Down Strategy}[\circled{1}{trueblue}]
+Start with a model that includes the maximum number of fixed effects that we wish to consider. The steps to build the \textit{loaded} mean structure are:
+
+\begin{enumerate}
+	\item	Start with a \textbf{well-specified mean structure} for the model
+		\begin{itemize}
+		\item	Want to ensure that the systematic variation in the responses is well explained before investigating various covariance structures to describe random variation in the data.
+		\end{itemize}
+	\item	Select a structure for the random effects in the model
+		\begin{itemize}
+		\item	Selecting set of random effects to include in the model with REML-based LRT.
+		\end{itemize}
+	\item	Select a covariance structure for the residuals in the model
+		\begin{itemize}
+		\item	Variation remaining after both fixed and random effects have been added to the model due to residual error.
+		\item	Investigate an appropriate covariance structure for the those residuals.
+		\end{itemize}
+	\item	Reduce the model
+		\begin{itemize}
+		\item	Use appropriate statistical tests to determine whether certain fixed-effect parameters are needed in the model.
+		\end{itemize}
+\end{enumerate}
+\end{definitionGENERAL}
+
+
+\begin{definitionGENERAL}{Step-Up Strategy}[\circled{2}{trueblue}]
+\begin{enumerate}
+	\item	Start with an "unconditional" (or means-only) Level 1 model for the data
+	\item	Build the model by adding Level 1 covariates to the Level 1 model. In the Level 2 model, consider adding random effects to the equations for the coefficients of the Level 1 covariates.
+	\item	Build the model by adding Level 2 covariates to the Level 2 model. For 3-level models, consider adding random effects to the Level 3 equations for the coefficients of the Level 2 covariates.	
+\end{enumerate}
+\end{definitionGENERAL}
+
+\section{Checking Model Assumptions}
+In general, raw conditional residuals in their basic form are not well suited for verifying model assumptions and detecting outliers. They tend to be correlated and their variances may be different for different subgroups of individuals.
+
+\bigskip
+
+Standardized residuals are conditional residuals divided by their true standard deviations. Unfortunately, the true SDs are rarely knonw in practice and we use estimated SDs instead to obtain studentized residuals.
+
+\bigskip
+
+Scaling the residuals by dividing them by the estimated SD of the dependent variable produces Pearson residuals. This is appropriate when we assume we can ignore the variability of $\hat{\bm{\beta}}$. 
+
+\bigskip
+
+internal vs external studentization.
+
+\bigskip
+
+Influence diagnostics are formal techniques to identify observations that heavily influence estimates of the parameters in either $\bm{\beta}$ or $\bm{\theta}$.
+
 \section{EBLUPS}
 
 \subsection{Intra Correlation Coefficient}
@@ -860,6 +1037,65 @@ Notes:
 		\end{itemize}
 \end{itemize}
 
+
+
+\section{Checking model assumptions}
+The following displacement diagnostic measures serve to measure the overall influence of the subset $U$.
+
+\begin{definitionNOHFILLsub}[Likelihood distance / displacement]
+The change in Maximum log-Likelihood for all the data with the parameter of interest \lfbox[conditions]{$\bm{\psi}$} estimated with all vs reduced data is \lfbox[formula]{$LD_{(u)} = 2\left(\ell(\hat{\bm{\psi}}) - \ell(\hat{\bm{\psi}}_{(u)}) \right)$}.
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Restricted likelihood distance / displacement]
+The change in Restricted Maximum log-Likelihood for all the data with the parameter of interest \lfbox[conditions]{$\bm{\psi}$} estimated with all vs reduced data is \lfbox[formula]{$LD_{(u)} = 2\left(\ell_{R}(\hat{\bm{\psi}}) - \ell_{R}(\hat{\bm{\psi}}_{(u)}) \right)$}.
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+The following diagnostic measures serve to measure the influence of the subset $U$ on the estimation of the parameters.
+\begin{definitionNOHFILLsub}[Cook's $D$]
+For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$, the scaled change in the entire estimated $\bm{\beta}$ ou $\bm{\theta}$ vector is
+\begin{description}
+	\item[$D(\bm{\beta}) =$]	\lfbox[formula]{$\left(\hat{\bm{\beta}} - \hat{\bm{\beta}}_{(u)}\right)' \widehat{\text{Var}}\left[\hat{\bm{\beta}}\right]^{-1}\left(\hat{\bm{\beta}} - \hat{\bm{\beta}}_{(u)}\right)/rank(\bm{X})$}.
+	\item[$D(\bm{\theta}) =$]	\lfbox[formula]{$\left(\hat{\bm{\theta}} - \hat{\bm{\theta}}_{(u)}\right)' \widehat{\text{Var}}\left[\hat{\bm{\theta}}\right]^{-1}\left(\hat{\bm{\theta}} - \hat{\bm{\theta}}_{(u)}\right)$}.
+\end{description}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Multivariate DFFITS Statistic]
+For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$ the scaled change in the entire estimated $\bm{\beta}$ ou $\bm{\theta}$ vector, using externalized estimates of $\text{Var}(\hat{\bm{\beta}})$, is
+\begin{description}
+	\item[$MDFFITS(\bm{\beta}) =$]	\lfbox[formula]{$\left(\hat{\bm{\beta}} - \hat{\bm{\beta}}_{(u)}\right)' \widehat{\text{Var}}\left[\hat{\bm{\beta}}_{(u)}\right]^{-1}\left(\hat{\bm{\beta}} - \hat{\bm{\beta}}_{(u)}\right)/rank(\bm{X})$}.
+	\item[$MDFFITS(\bm{\theta}) =$]	\lfbox[formula]{$\left(\hat{\bm{\theta}} - \hat{\bm{\theta}}_{(u)}\right)' \widehat{\text{Var}}\left[\hat{\bm{\theta}}_{(u)}\right]^{-1}\left(\hat{\bm{\theta}} - \hat{\bm{\theta}}_{(u)}\right)$}.
+\end{description}
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+The following 2 diagnostic measures go a bit further and measure the influence of the subset $U$ on the \textit{precision} of the estimation of the parameters.
+
+\begin{definitionNOHFILLsub}[Trace of covariance matrix]
+For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$, the change in precision of estimated $\bm{\beta}$ ou $\bm{\theta}$ vector, based on trace of $\text{Var}(\hat{\bm{\beta}})$, is
+\begin{description}
+	\item[$COVTRACE(\bm{\beta}) =$]	\lfbox[formula]{$\left|trace(\widehat{\text{Var}}\left[\hat{\bm{\beta}} - \widehat{\text{Var}}\left[\hat{\bm{\beta}}_{(u)}\right]^{-1}\right]^{-1}) - rank(\bm{X})\right|$}.
+	\item[$COVTRACE(\bm{\theta}) =$]	\lfbox[formula]{$\left|trace(\widehat{\text{Var}}\left[\hat{\bm{\theta}} - \widehat{\text{Var}}\left[\hat{\bm{\theta}}_{(u)}\right]^{-1}\right]^{-1}) - q\right|$}.
+\end{description}
+\end{definitionNOHFILLsub}
+
+\begin{definitionNOHFILLsub}[Covariance ratio]
+For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$, the change in precision of estimated $\bm{\beta}$ ou $\bm{\theta}$ vector, based on determinant of $\text{Var}(\hat{\bm{\beta}})$, is
+\begin{description}
+	\item[$COV RATIO(\bm{\beta}) =$]	\lfbox[formula]{$\frac{\widehat{\text{Var}}\left[\hat{\bm{\beta}}_{(u)}\right]}{\widehat{\text{Var}}\left[\hat{\bm{\beta}}\right]}$}.
+	\item[$COV RATIO(\bm{\theta}) =$]		\lfbox[formula]{$\frac{\widehat{\text{Var}}\left[\hat{\bm{\theta}}_{(u)}\right]}{\widehat{\text{Var}}\left[\hat{\bm{\theta}}\right]}$}.
+\end{description}
+\end{definitionNOHFILLsub}
+
+\bigskip
+
+The following diagnostic measures serve to measure the influence of the subset $U$ on the estimation of the parameters.
+
+\begin{definitionNOHFILLsub}[Sum of squared PRESS residuals]
+The sum of PRESS residuals calculated by deleting observations in $U$ is \lfbox[formula]{$PRESS_{(u)} = \sum_{i \in u} (\bm{y}_{i} - x'_{i}\hat{\bm{\beta}}_{(u)})$}.
+\end{definitionNOHFILLsub}
 
 
 \section{Graphical Tests}
