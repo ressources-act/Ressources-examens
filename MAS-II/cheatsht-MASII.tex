@@ -923,27 +923,30 @@ Influence diagnostics are formal techniques to identify observations that heavil
 
 \section{EBLUPS}
 
-\subsection{Intra Correlation Coefficient}
-\lfbox[formula]{$ICC_{\text{whatever}} = \frac{\text{variance in common}}{\text{total variance}}$}.
-
-2 level model $ICC_{\text{group}} = \frac{\sigma^{2}_{\text{lvl 2}}}{\sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
-3 level model
-	$ICC_{\text{lvl 3 group}} = \frac{\sigma^{2}_{\text{lvl 3}}}{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
-	$ICC_{\text{lvl 2 group}} = \frac{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}}}{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
-
-
 \subsection{EBLUPS}
-EBLUP
+The conditional expected values of the random effects, $\bm{u}_{i}$, given the observed data in $\bm{y}_{i}$ are known as the best linear unbiased predictors (BLUPs) of the random effects. Because they're based on the estimates of the $\bm{\beta}$ and $\bm{\theta}$ parameters, we refer to them as \textbf{EBLUPs}:
 \begin{description}
-	\item[E]	
+	\item[E]	Empirical
 	\item[B]	Best i.e. lowest variance among all such unbiased estimators
 	\item[L]	Linear as functions of $\bm{y}_{i}$
 	\item[U]	Unbiased with $\text{E}[\hat{\bm{u}}_{i}] = \bm{u}_{i}$
-	\item[P]	
+	\item[P]	Predictors
 \end{description}
 
 \begin{itemize}
 	\item	Typically tedious to calculate so we use computers unless we calculate only for 1 random effect.
+	\item	They're also known as \textbf{\textit{shrinkage estimators}} because tend to be closer to zero than the esitmated effects would be if they were computed by treating a random factor as if it were fixed.
+		\begin{itemize}
+		\item	In the case of a variance components model, we can write the BLUP mean as $u_{i} = a_{i} \mu + (1 - a_{i}) \mu_{i}$ where:
+			\begin{description}
+			\item[$u_{i}$]	Shrinkage mean for level $i$ of the random factor
+			\item[$a_{i}$]	Weighing factor for level $i$, \lfbox[formula]{$a_{i} = \sigma^{2}_{i} / (\sigma^{2}_{i} + \sigma^{2}_{\text{random factor}})$}
+			\item[$\sigma^{2}_{i}$]	Variance for level $i$ of the random factor, \lfbox[formula]{$\sigma^{2}_{i} = \sigma^{2}_{\text{error}}/n_{i}$}
+			\item[$\sigma^{2}_{\text{random factor}}$]	variance of the random effects associated with the random factor 
+			\item[$\mu$]	the overall mean of the response values
+			\item[$\mu_{i}$]	the mean of the response values for level $i$ of the random factor
+			\end{description}
+		\end{itemize}
 \end{itemize}
 
 
@@ -956,6 +959,29 @@ Use Buhlmann's formula where:
 \end{description}
 Prediction is for $M + u_{j} = M + Z_{j} (\bar{Y} - M)$.
 
+
+\subsection{Intra Correlation Coefficient}
+In general, the ICC is a measure describing the similarity (or homogeneity) of the responses on the dependent variable within a cluster/unit of analysis (clustered dataset / repeated-measures or longitudinal dataset). In general, \lfbox[formula]{$ICC_{\text{whatever}} = \frac{\text{variance in common}}{\text{total variance}}$}.
+
+For a 
+\begin{description}
+	\item[2 level model]	$ICC_{\text{group}} = \frac{\sigma^{2}_{\text{lvl 2}}}{\sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
+	\item[3 level model]	$ICC_{\text{lvl 3 group}} = \frac{\sigma^{2}_{\text{lvl 3}}}{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$ and $ICC_{\text{lvl 2 group}} = \frac{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}}}{\sigma^{2}_{\text{lvl 3}} + \sigma^{2}_{\text{lvl 2}} + \sigma^{2}}$
+\end{description}
+
+\subsection{aliasing}
+%2.9.3
+
+
+\subsection{Examining Power}
+The steps to compute the power of a given study design to detect specified parameters of interests in a LMM using simulations are:
+\begin{enumerate}
+	\item	Specify the model of interest.
+	\item	Randomly generate a predetermined nb of observations based on the specified model (at each level of the data hierarchy).
+	\item	Fit the LMM (after generating a hypothetical dataset), and test the hypothesis of interest or generate inference on the target parameter.
+\end{enumerate}
+
+After repeating the first 2 steps, we obtain the power as the proportion of simulated data sets where the effect of interest can be detected at the specified level of significance.
 
 
 \section{Information Criteria}
@@ -1071,8 +1097,7 @@ For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$ the scaled change in the
 
 \bigskip
 
-The following 2 diagnostic measures go a bit further and measure the influence of the subset $U$ on the \textit{precision} of the estimation of the parameters.
-
+The following 2 diagnostic measures go a bit further and measure the influence of the subset $U$ on the \textit{precision} of the parameters' estimation.
 \begin{definitionNOHFILLsub}[Trace of covariance matrix]
 For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$, the change in precision of estimated $\bm{\beta}$ ou $\bm{\theta}$ vector, based on trace of $\text{Var}(\hat{\bm{\beta}})$, is
 \begin{description}
@@ -1091,8 +1116,7 @@ For parameter of interest $\bm{\beta}$ ou $\bm{\theta}$, the change in precision
 
 \bigskip
 
-The following diagnostic measures serve to measure the influence of the subset $U$ on the estimation of the parameters.
-
+Finally, the PRESS statistic measures the effect of the subset on the predicted values.
 \begin{definitionNOHFILLsub}[Sum of squared PRESS residuals]
 The sum of PRESS residuals calculated by deleting observations in $U$ is \lfbox[formula]{$PRESS_{(u)} = \sum_{i \in u} (\bm{y}_{i} - x'_{i}\hat{\bm{\beta}}_{(u)})$}.
 \end{definitionNOHFILLsub}
